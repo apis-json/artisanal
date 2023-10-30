@@ -1,5 +1,5 @@
 # Hand-crafted Artisanal APIs.json / APIS.yaml
-These are hand-crafted artisan APIs.json.
+These are hand-crafted artisan APIs.json, using the [APIs.json Builder](http://builder.apisyaml.org/) to index as many of the top APIs as we can.
 
 ## APIs - DONE
 
@@ -80,5 +80,5 @@ These are hand-crafted artisan APIs.json.
 - Marketo ([Developer](https://developers.marketo.com/))
 - United States Postal Service ([Developer](https://www.usps.com/business/web-tools-apis/))
 
-If there is an API you want to see, submit an issue.
+If there is an API you want to see, submit an issue, submit a pull, or [submit the APIs.json via the website](https://apis-io-site.apievangelist.com/add/).
 
