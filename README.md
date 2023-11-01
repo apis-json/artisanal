@@ -11,6 +11,10 @@ These are hand-crafted artisan APIs.json, using the [APIs.json Builder](http://b
 - ShutterStock ([JSON](apis/shutterstock.json)) ([YAML](apis/shutterstock.yml))
 - Slack ([JSON](apis/slack.json)) ([YAML](apis/slack.yml))
 
+## APIS - WIP
+
+- NPR ([Developer](https://dev.npr.org/)) : ([JSON](apis/npr.json))
+
 ## APIS - Todo
 
 - Adyen ([Developer](https://help.adyen.com/en_US))
