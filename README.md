@@ -3,13 +3,14 @@ These are hand-crafted artisan APIs.json, using the [APIs.json Builder](http://b
 
 ## APIs - DONE
 
-- Twilio ([JSON](apis/twilio.json)) ([YAML](apis/twilio.yml)) ([Discussion](https://github.com/orgs/api-search/discussions/21))
-- Stripe ([JSON](apis/stripe.json)) ([YAML](apis/stripe.yml))
-- YouTube ([JSON](apis/youtube.json)) ([YAML](apis/youtube.yml))
+- Amazon Web Services ([JSON](apis/amazon-web-services.json)) ([YAML](apis/amazon-web-services.yml)) ([Discussion](https://github.com/orgs/api-search/discussions/22))
 - New York Times ([JSON](apis/new-york-times.json)) ([YAML](apis/new-york-times.yml))
 - ShipEngine ([JSON](apis/shipengine.json)) ([YAML](apis/shipengine.yml))
 - ShutterStock ([JSON](apis/shutterstock.json)) ([YAML](apis/shutterstock.yml))
 - Slack ([JSON](apis/slack.json)) ([YAML](apis/slack.yml))
+- Stripe ([JSON](apis/stripe.json)) ([YAML](apis/stripe.yml))
+- Twilio ([JSON](apis/twilio.json)) ([YAML](apis/twilio.yml)) ([Discussion](https://github.com/orgs/api-search/discussions/21))
+- YouTube ([JSON](apis/youtube.json)) ([YAML](apis/youtube.yml))
 
 ## APIS - Todo
 
