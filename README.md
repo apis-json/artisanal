@@ -4,7 +4,8 @@ These are hand-crafted artisan APIs.json, using the [APIs.json Builder](http://b
 ## APIs - DONE
 
 - Amazon Web Services ([JSON](apis/amazon-web-services.json)) ([YAML](apis/amazon-web-services.yml)) ([Discussion](https://github.com/orgs/api-search/discussions/22))
-- Azure ([JSON](apis/microsoft-azure.json)) ([YAML](apis/microsoft-azure.yml)) ([Discussion](https://github.com/orgs/api-search/discussions/22))
+- Azure ([JSON](apis/microsoft-azure.json)) ([YAML](apis/microsoft-azure.yml)) ([Discussion](https://github.com/orgs/api-search/discussions/23))
+- Google ([JSON](apis/google.json)) ([YAML](apis/google.yml)) ([Discussion](https://github.com/orgs/api-search/discussions/24))
 - New York Times ([JSON](apis/new-york-times.json)) ([YAML](apis/new-york-times.yml))
 - ShipEngine ([JSON](apis/shipengine.json)) ([YAML](apis/shipengine.yml))
 - ShutterStock ([JSON](apis/shutterstock.json)) ([YAML](apis/shutterstock.yml))
@@ -20,7 +21,6 @@ These are hand-crafted artisan APIs.json, using the [APIs.json Builder](http://b
 - AWS ([Developer](https://docs.aws.amazon.com/))
 - eBay ([Developer](https://developer.ebay.com/))
 - Atlassian ([Developer](https://developer.atlassian.com/))
-- Google ([Developer](https://console.cloud.google.com/apis/library?pli=1))
 - Box ([Developer](https://developer.box.com/))
 - Bunq ([Developer](https://developer.bunq.com/))
 - Discourse ([Developer](https://docs.discourse.org/))
