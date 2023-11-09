@@ -4,6 +4,7 @@ These are hand-crafted artisan APIs.json, using the [APIs.json Builder](http://b
 ## APIs - DONE
 
 - Amazon Web Services ([JSON](apis/amazon-web-services.json)) ([YAML](apis/amazon-web-services.yml)) ([Discussion](https://github.com/orgs/api-search/discussions/22))
+- Azure ([JSON](apis/microsoft-azure.json)) ([YAML](apis/microsoft-azure.yml)) ([Discussion](https://github.com/orgs/api-search/discussions/22))
 - New York Times ([JSON](apis/new-york-times.json)) ([YAML](apis/new-york-times.yml))
 - ShipEngine ([JSON](apis/shipengine.json)) ([YAML](apis/shipengine.yml))
 - ShutterStock ([JSON](apis/shutterstock.json)) ([YAML](apis/shutterstock.yml))
@@ -17,7 +18,6 @@ These are hand-crafted artisan APIs.json, using the [APIs.json Builder](http://b
 - Adyen ([Developer](https://help.adyen.com/en_US))
 - Amadeus ([Developer](https://developers.amadeus.com/))
 - AWS ([Developer](https://docs.aws.amazon.com/))
-- Azure ([Developer](https://learn.microsoft.com/en-us/rest/api/azure/))
 - eBay ([Developer](https://developer.ebay.com/))
 - Atlassian ([Developer](https://developer.atlassian.com/))
 - Google ([Developer](https://console.cloud.google.com/apis/library?pli=1))
