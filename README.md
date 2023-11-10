@@ -6,6 +6,7 @@ These are hand-crafted artisan APIs.json, using the [APIs.json Builder](http://b
 - Amazon Web Services ([JSON](apis/amazon-web-services.json)) ([YAML](apis/amazon-web-services.yml)) ([Discussion](https://github.com/orgs/api-search/discussions/22))
 - Azure ([JSON](apis/microsoft-azure.json)) ([YAML](apis/microsoft-azure.yml)) ([Discussion](https://github.com/orgs/api-search/discussions/23))
 - Box ([JSON](apis/box.json)) ([YAML](apis/box.yml)) ([Discussion](https://github.com/orgs/api-search/discussions/23))
+- eBay ([JSON](apis/ebay.json)) ([YAML](apis/ebay.yml)) ([Discussion](https://github.com/orgs/api-search/discussions/23))
 - Google ([JSON](apis/google.json)) ([YAML](apis/google.yml)) ([Discussion](https://github.com/orgs/api-search/discussions/24))
 - New York Times ([JSON](apis/new-york-times.json)) ([YAML](apis/new-york-times.yml))
 - ShipEngine ([JSON](apis/shipengine.json)) ([YAML](apis/shipengine.yml))
@@ -19,10 +20,7 @@ These are hand-crafted artisan APIs.json, using the [APIs.json Builder](http://b
 
 - Adyen ([Developer](https://help.adyen.com/en_US))
 - Amadeus ([Developer](https://developers.amadeus.com/))
-- AWS ([Developer](https://docs.aws.amazon.com/))
-- eBay ([Developer](https://developer.ebay.com/))
 - Atlassian ([Developer](https://developer.atlassian.com/))
-- Box ([Developer](https://developer.box.com/))
 - Bunq ([Developer](https://developer.bunq.com/))
 - Discourse ([Developer](https://docs.discourse.org/))
 - GitHub ([Developer](https://docs.github.com/en/rest))
