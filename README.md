@@ -4,6 +4,7 @@ These are hand-crafted artisan APIs.json, using the [APIs.json Builder](http://b
 ## APIs - DONE
 
 - Amazon Web Services ([JSON](apis/amazon-web-services.json)) ([YAML](apis/amazon-web-services.yml)) ([Discussion](https://github.com/orgs/api-search/discussions/22))
+- Atlassian ([JSON](apis/atlassian.json)) ([YAML](apis/atlassian.yml)) ([Discussion](https://github.com/orgs/api-search/discussions/30))
 - Azure ([JSON](apis/microsoft-azure.json)) ([YAML](apis/microsoft-azure.yml)) ([Discussion](https://github.com/orgs/api-search/discussions/23))
 - Box ([JSON](apis/box.json)) ([YAML](apis/box.yml)) ([Discussion](https://github.com/orgs/api-search/discussions/25))
 - eBay ([JSON](apis/ebay.json)) ([YAML](apis/ebay.yml)) ([Discussion](https://github.com/orgs/api-search/discussions/26))
@@ -23,7 +24,6 @@ These are hand-crafted artisan APIs.json, using the [APIs.json Builder](http://b
 
 - Adyen ([Developer](https://help.adyen.com/en_US))
 - Amadeus ([Developer](https://developers.amadeus.com/))
-- Atlassian ([Developer](https://developer.atlassian.com/))
 - Bunq ([Developer](https://developer.bunq.com/))
 - Discourse ([Developer](https://docs.discourse.org/))
 - HERE ([Developer](https://developer.here.com/))
