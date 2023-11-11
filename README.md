@@ -7,7 +7,7 @@ These are hand-crafted artisan APIs.json, using the [APIs.json Builder](http://b
 - Azure ([JSON](apis/microsoft-azure.json)) ([YAML](apis/microsoft-azure.yml)) ([Discussion](https://github.com/orgs/api-search/discussions/23))
 - Box ([JSON](apis/box.json)) ([YAML](apis/box.yml)) ([Discussion](https://github.com/orgs/api-search/discussions/25))
 - eBay ([JSON](apis/ebay.json)) ([YAML](apis/ebay.yml)) ([Discussion](https://github.com/orgs/api-search/discussions/26))
-- GitHub ([JSON](apis/github.json)) ([YAML](apis/github.yml)) ([Discussion](https://github.com/orgs/api-search/discussions/26))
+- GitHub ([JSON](apis/github.json)) ([YAML](apis/github.yml)) ([Discussion](https://github.com/orgs/api-search/discussions/28))
 - Google ([JSON](apis/google.json)) ([YAML](apis/google.yml)) ([Discussion](https://github.com/orgs/api-search/discussions/24))
 - New York Times ([JSON](apis/new-york-times.json)) ([YAML](apis/new-york-times.yml))
 - OpenAI ([JSON](apis/openai.json)) ([YAML](apis/openai.yml)) ([Discussion](https://github.com/orgs/api-search/discussions/27))
