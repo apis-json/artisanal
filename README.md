@@ -8,6 +8,7 @@ These are hand-crafted artisan APIs.json, using the [APIs.json Builder](http://b
 - Box ([JSON](apis/box.json)) ([YAML](apis/box.yml)) ([Discussion](https://github.com/orgs/api-search/discussions/25))
 - eBay ([JSON](apis/ebay.json)) ([YAML](apis/ebay.yml)) ([Discussion](https://github.com/orgs/api-search/discussions/26))
 - GitHub ([JSON](apis/github.json)) ([YAML](apis/github.yml)) ([Discussion](https://github.com/orgs/api-search/discussions/28))
+- GitLab ([JSON](apis/gitlab.json)) ([YAML](apis/gitlab.yml)) ([Discussion](https://github.com/orgs/api-search/discussions/29))
 - Google ([JSON](apis/google.json)) ([YAML](apis/google.yml)) ([Discussion](https://github.com/orgs/api-search/discussions/24))
 - New York Times ([JSON](apis/new-york-times.json)) ([YAML](apis/new-york-times.yml))
 - OpenAI ([JSON](apis/openai.json)) ([YAML](apis/openai.yml)) ([Discussion](https://github.com/orgs/api-search/discussions/27))
@@ -25,7 +26,6 @@ These are hand-crafted artisan APIs.json, using the [APIs.json Builder](http://b
 - Atlassian ([Developer](https://developer.atlassian.com/))
 - Bunq ([Developer](https://developer.bunq.com/))
 - Discourse ([Developer](https://docs.discourse.org/))
-- GitLab ([Developer](https://docs.gitlab.com/ee/api/rest/index.html))
 - HERE ([Developer](https://developer.here.com/))
 - Hubspot ([Developer](https://developers.hubspot.com/))
 - Mastercard ([Developer](https://developer.mastercard.com/apis))
@@ -47,7 +47,6 @@ These are hand-crafted artisan APIs.json, using the [APIs.json Builder](http://b
 - Cloudflare ([Developer](https://developers.cloudflare.com/))
 - BigCommerce ([Developer](https://developer.bigcommerce.com/))
 - Typeform ([Developer](https://www.typeform.com/developers/))
-- Library of Congress ([Developer](https://www.loc.gov/apis/))
 - Meta ([Developer](https://developers.facebook.com/))
 - Airtable ([Developer](https://airtable.com/developers))
 - Auth0 ([Developer](https://auth0.com/docs))
@@ -82,6 +81,7 @@ These are hand-crafted artisan APIs.json, using the [APIs.json Builder](http://b
 - Department of Veterans Affairs ([Developer](https://developer.va.gov/))
 - UK Parliament ([Developer](https://developer.parliament.uk/))
 - FOIA ([Developer](https://www.foia.gov/developer/))
+- Library of Congress ([Developer](https://www.loc.gov/apis/))
 
 If there is an API you want to see, submit an issue, submit a pull, or [submit the APIs.json via the website](https://apis-io-site.apievangelist.com/add/).
 
