@@ -3,6 +3,7 @@ These are hand-crafted artisan APIs.json, using the [APIs.json Builder](http://b
 
 ## APIs - DONE
 
+- Adyen ([JSON](apis/adyen.json)) ([YAML](apis/adyen.yml)) ([Discussion](https://github.com/orgs/api-search/discussions/31))
 - Amazon Web Services ([JSON](apis/amazon-web-services.json)) ([YAML](apis/amazon-web-services.yml)) ([Discussion](https://github.com/orgs/api-search/discussions/22))
 - Atlassian ([JSON](apis/atlassian.json)) ([YAML](apis/atlassian.yml)) ([Discussion](https://github.com/orgs/api-search/discussions/30))
 - Azure ([JSON](apis/microsoft-azure.json)) ([YAML](apis/microsoft-azure.yml)) ([Discussion](https://github.com/orgs/api-search/discussions/23))
@@ -22,7 +23,6 @@ These are hand-crafted artisan APIs.json, using the [APIs.json Builder](http://b
 
 ## APIS - Todo
 
-- Adyen ([Developer](https://help.adyen.com/en_US))
 - Amadeus ([Developer](https://developers.amadeus.com/))
 - Bunq ([Developer](https://developer.bunq.com/))
 - Discourse ([Developer](https://docs.discourse.org/))
