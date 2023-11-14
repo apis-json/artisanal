@@ -9,6 +9,7 @@ These are hand-crafted artisan APIs.json, using the [APIs.json Builder](http://b
 - Atlassian ([JSON](apis/atlassian.json)) ([YAML](apis/atlassian.yml)) ([Discussion](https://github.com/orgs/api-search/discussions/30))
 - Azure ([JSON](apis/microsoft-azure.json)) ([YAML](apis/microsoft-azure.yml)) ([Discussion](https://github.com/orgs/api-search/discussions/23))
 - Box ([JSON](apis/box.json)) ([YAML](apis/box.yml)) ([Discussion](https://github.com/orgs/api-search/discussions/25))
+- Bunq ([JSON](apis/bunq.json)) ([YAML](apis/bunq.yml)) ([Discussion](https://github.com/orgs/api-search/discussions/33))
 - eBay ([JSON](apis/ebay.json)) ([YAML](apis/ebay.yml)) ([Discussion](https://github.com/orgs/api-search/discussions/26))
 - GitHub ([JSON](apis/github.json)) ([YAML](apis/github.yml)) ([Discussion](https://github.com/orgs/api-search/discussions/28))
 - GitLab ([JSON](apis/gitlab.json)) ([YAML](apis/gitlab.yml)) ([Discussion](https://github.com/orgs/api-search/discussions/29))
@@ -24,7 +25,6 @@ These are hand-crafted artisan APIs.json, using the [APIs.json Builder](http://b
 
 ## APIS - Todo
 
-- Bunq ([Developer](https://developer.bunq.com/))
 - Discourse ([Developer](https://docs.discourse.org/))
 - HERE ([Developer](https://developer.here.com/))
 - Hubspot ([Developer](https://developers.hubspot.com/))
