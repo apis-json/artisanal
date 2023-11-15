@@ -17,6 +17,7 @@ These are hand-crafted artisan APIs.json, using the [APIs.json Builder](http://b
 - Google ([JSON](apis/google.json)) ([YAML](apis/google.yml)) ([Discussion](https://github.com/orgs/api-search/discussions/24))
 - HERE ([JSON](apis/here.json)) ([YAML](apis/here.yml)) ([Discussion](https://github.com/orgs/api-search/discussions/35))
 - HubSpot ([JSON](apis/hubspot.json)) ([YAML](apis/hubspot.yml)) ([Discussion](https://github.com/orgs/api-search/discussions/36))
+- Mastercard ([JSON](apis/mastercard.json)) ([YAML](apis/mastercard.yml)) ([Discussion](https://github.com/orgs/api-search/discussions/37))
 - New York Times ([JSON](apis/new-york-times.json)) ([YAML](apis/new-york-times.yml))
 - OpenAI ([JSON](apis/openai.json)) ([YAML](apis/openai.yml)) ([Discussion](https://github.com/orgs/api-search/discussions/27))
 - ShipEngine ([JSON](apis/shipengine.json)) ([YAML](apis/shipengine.yml))
@@ -28,7 +29,6 @@ These are hand-crafted artisan APIs.json, using the [APIs.json Builder](http://b
 
 ## APIS - Todo
 
-- Mastercard ([Developer](https://developer.mastercard.com/apis))
 - Netlify ([Developer](https://docs.netlify.com/api/get-started/))
 - Vonage ([Developer](https://developer.vonage.com/en/home))
 - NPR ([Developer](https://dev.npr.org/))
