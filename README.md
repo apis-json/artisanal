@@ -26,11 +26,11 @@ These are hand-crafted artisan APIs.json, using the [APIs.json Builder](http://b
 - Slack ([JSON](apis/slack.json)) ([YAML](apis/slack.yml))
 - Stripe ([JSON](apis/stripe.json)) ([YAML](apis/stripe.yml))
 - Twilio ([JSON](apis/twilio.json)) ([YAML](apis/twilio.yml)) ([Discussion](https://github.com/orgs/api-search/discussions/21))
+- Vonage ([JSON](apis/vonage.json)) ([YAML](apis/vonage.yml)) ([Discussion](https://github.com/orgs/api-search/discussions/39))
 - YouTube ([JSON](apis/youtube.json)) ([YAML](apis/youtube.yml))
 
 ## APIS - Todo
 
-- Vonage ([Developer](https://developer.vonage.com/en/home))
 - NPR ([Developer](https://dev.npr.org/))
 - Oxford Dictionaries ([Developer](https://developer.oxforddictionaries.com/))
 - Postmark ([Developer](https://postmarkapp.com/))
