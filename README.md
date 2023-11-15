@@ -12,10 +12,11 @@ These are hand-crafted artisan APIs.json, using the [APIs.json Builder](http://b
 - Bunq ([JSON](apis/bunq.json)) ([YAML](apis/bunq.yml)) ([Discussion](https://github.com/orgs/api-search/discussions/33))
 - Discourse ([JSON](apis/discourse.json)) ([YAML](apis/discourse.yml)) ([Discussion](https://github.com/orgs/api-search/discussions/34))
 - eBay ([JSON](apis/ebay.json)) ([YAML](apis/ebay.yml)) ([Discussion](https://github.com/orgs/api-search/discussions/26))
-- HERE ([JSON](apis/here.json)) ([YAML](apis/here.yml)) ([Discussion](https://github.com/orgs/api-search/discussions/35))
 - GitHub ([JSON](apis/github.json)) ([YAML](apis/github.yml)) ([Discussion](https://github.com/orgs/api-search/discussions/28))
 - GitLab ([JSON](apis/gitlab.json)) ([YAML](apis/gitlab.yml)) ([Discussion](https://github.com/orgs/api-search/discussions/29))
 - Google ([JSON](apis/google.json)) ([YAML](apis/google.yml)) ([Discussion](https://github.com/orgs/api-search/discussions/24))
+- HERE ([JSON](apis/here.json)) ([YAML](apis/here.yml)) ([Discussion](https://github.com/orgs/api-search/discussions/35))
+- HubSpot ([JSON](apis/hubspot.json)) ([YAML](apis/hubspot.yml)) ([Discussion](https://github.com/orgs/api-search/discussions/36))
 - New York Times ([JSON](apis/new-york-times.json)) ([YAML](apis/new-york-times.yml))
 - OpenAI ([JSON](apis/openai.json)) ([YAML](apis/openai.yml)) ([Discussion](https://github.com/orgs/api-search/discussions/27))
 - ShipEngine ([JSON](apis/shipengine.json)) ([YAML](apis/shipengine.yml))
@@ -27,7 +28,6 @@ These are hand-crafted artisan APIs.json, using the [APIs.json Builder](http://b
 
 ## APIS - Todo
 
-- Hubspot ([Developer](https://developers.hubspot.com/))
 - Mastercard ([Developer](https://developer.mastercard.com/apis))
 - Netlify ([Developer](https://docs.netlify.com/api/get-started/))
 - Vonage ([Developer](https://developer.vonage.com/en/home))
