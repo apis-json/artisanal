@@ -29,6 +29,7 @@ These are hand-crafted artisan APIs.json, using the [APIs.json Builder](http://b
 - Slack ([JSON](apis/slack.json)) ([YAML](apis/slack.yml))
 - SportsData ([JSON](apis/sportsdata.json)) ([YAML](apis/sportsdata.yml)) ([Discussion](https://github.com/orgs/api-search/discussions/43))
 - Spotify ([JSON](apis/spotify.json)) ([YAML](apis/spotify.yml)) ([Discussion](https://github.com/orgs/api-search/discussions/44))
+- Stack Exchange ([JSON](apis/stack-exchange.json)) ([YAML](apis/stack-exchange.yml)) ([Discussion](https://github.com/orgs/api-search/discussions/45))
 - Stripe ([JSON](apis/stripe.json)) ([YAML](apis/stripe.yml))
 - Twilio ([JSON](apis/twilio.json)) ([YAML](apis/twilio.yml)) ([Discussion](https://github.com/orgs/api-search/discussions/21))
 - Vonage ([JSON](apis/vonage.json)) ([YAML](apis/vonage.yml)) ([Discussion](https://github.com/orgs/api-search/discussions/39))
@@ -36,7 +37,6 @@ These are hand-crafted artisan APIs.json, using the [APIs.json Builder](http://b
 
 ## APIS - Todo
 
-- StackExchange ([Developer](https://api.stackexchange.com/))
 - Walmart ([Developer](https://developer.walmart.com/))
 - Weatherbit ([Developer](https://www.weatherbit.io/))
 - Wikimedia ([Developer](https://www.mediawiki.org/wiki/API:REST_API))
