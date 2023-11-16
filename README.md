@@ -23,6 +23,7 @@ These are hand-crafted artisan APIs.json, using the [APIs.json Builder](http://b
 - Novu ([JSON](apis/novu.json)) ([YAML](apis/novu.yml)) ([Discussion](https://github.com/orgs/api-search/discussions/40))
 - OpenAI ([JSON](apis/openai.json)) ([YAML](apis/openai.yml)) ([Discussion](https://github.com/orgs/api-search/discussions/27))
 - Oxford Dictionaries ([JSON](apis/oxford-english-dictionaries.json)) ([YAML](apis/oxford-english-dictionaries.yml)) ([Discussion](https://github.com/orgs/api-search/discussions/41))
+- Postmark ([JSON](apis/postmark.json)) ([YAML](apis/postmark.yml)) ([Discussion](https://github.com/orgs/api-search/discussions/42))
 - ShipEngine ([JSON](apis/shipengine.json)) ([YAML](apis/shipengine.yml))
 - ShutterStock ([JSON](apis/shutterstock.json)) ([YAML](apis/shutterstock.yml))
 - Slack ([JSON](apis/slack.json)) ([YAML](apis/slack.yml))
@@ -33,7 +34,6 @@ These are hand-crafted artisan APIs.json, using the [APIs.json Builder](http://b
 
 ## APIS - Todo
 
-- Postmark ([Developer](https://postmarkapp.com/))
 - SportsData ([Developer](https://sportsdata.io/))
 - Spotify ([Developer](https://developer.spotify.com/documentation/web-api))
 - StackExchange ([Developer](https://api.stackexchange.com/))
