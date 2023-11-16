@@ -20,8 +20,9 @@ These are hand-crafted artisan APIs.json, using the [APIs.json Builder](http://b
 - Mastercard ([JSON](apis/mastercard.json)) ([YAML](apis/mastercard.yml)) ([Discussion](https://github.com/orgs/api-search/discussions/37))
 - Netlify ([JSON](apis/netlify.json)) ([YAML](apis/netlify.yml)) ([Discussion](https://github.com/orgs/api-search/discussions/38))
 - New York Times ([JSON](apis/new-york-times.json)) ([YAML](apis/new-york-times.yml))
-- Novu ([JSON](apis/novu.json)) ([YAML](apis/novu.yml)) ([Discussion](https://github.com/orgs/api-search/discussions/39))
+- Novu ([JSON](apis/novu.json)) ([YAML](apis/novu.yml)) ([Discussion](https://github.com/orgs/api-search/discussions/40))
 - OpenAI ([JSON](apis/openai.json)) ([YAML](apis/openai.yml)) ([Discussion](https://github.com/orgs/api-search/discussions/27))
+- Oxford Dictionaries ([JSON](apis/oxford-english-dictionaries.json)) ([YAML](apis/oxford-english-dictionaries.yml)) ([Discussion](https://github.com/orgs/api-search/discussions/41))
 - ShipEngine ([JSON](apis/shipengine.json)) ([YAML](apis/shipengine.yml))
 - ShutterStock ([JSON](apis/shutterstock.json)) ([YAML](apis/shutterstock.yml))
 - Slack ([JSON](apis/slack.json)) ([YAML](apis/slack.yml))
@@ -32,8 +33,6 @@ These are hand-crafted artisan APIs.json, using the [APIs.json Builder](http://b
 
 ## APIS - Todo
 
-- NPR ([Developer](https://dev.npr.org/))
-- Oxford Dictionaries ([Developer](https://developer.oxforddictionaries.com/))
 - Postmark ([Developer](https://postmarkapp.com/))
 - SportsData ([Developer](https://sportsdata.io/))
 - Spotify ([Developer](https://developer.spotify.com/documentation/web-api))
