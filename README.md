@@ -35,11 +35,11 @@ These are hand-crafted artisan APIs.json, using the [APIs.json Builder](http://b
 - Vonage ([JSON](apis/vonage.json)) ([YAML](apis/vonage.yml)) ([Discussion](https://github.com/orgs/api-search/discussions/39))
 - Walmart ([JSON](apis/walmart.json)) ([YAML](apis/walmart.yml)) ([Discussion](https://github.com/orgs/api-search/discussions/45))
 - Weatherbit ([JSON](apis/weatherbit.json)) ([YAML](apis/weatherbit.yml)) ([Discussion](https://github.com/orgs/api-search/discussions/46))
+- Wikimedia ([JSON](apis/wikimedia.json)) ([YAML](apis/wikimedia.yml)) ([Discussion](https://github.com/orgs/api-search/discussions/47))
 - YouTube ([JSON](apis/youtube.json)) ([YAML](apis/youtube.yml))
 
 ## APIS - Todo
 
-- Wikimedia ([Developer](https://www.mediawiki.org/wiki/API:REST_API))
 - Envestnet ([Developer](https://developer.envestnet.com/))
 - Zoom ([Developer](https://developers.zoom.us/docs/))
 - Contentful ([Developer](https://www.contentful.com/developers/))
