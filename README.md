@@ -23,6 +23,7 @@ These are hand-crafted artisan APIs.json, using the [APIs.json Builder](http://b
 - Netlify ([JSON](apis/netlify.json)) ([YAML](apis/netlify.yml)) ([Discussion](https://github.com/orgs/api-search/discussions/38))
 - New York Times ([JSON](apis/new-york-times.json)) ([YAML](apis/new-york-times.yml))
 - Novu ([JSON](apis/novu.json)) ([YAML](apis/novu.yml)) ([Discussion](https://github.com/orgs/api-search/discussions/40))
+- Okta ([JSON](apis/okta.json)) ([YAML](apis/okta.yml)) ([Discussion](https://github.com/orgs/api-search/discussions/51))
 - OpenAI ([JSON](apis/openai.json)) ([YAML](apis/openai.yml)) ([Discussion](https://github.com/orgs/api-search/discussions/27))
 - Oxford Dictionaries ([JSON](apis/oxford-english-dictionaries.json)) ([YAML](apis/oxford-english-dictionaries.yml)) ([Discussion](https://github.com/orgs/api-search/discussions/41))
 - Postmark ([JSON](apis/postmark.json)) ([YAML](apis/postmark.yml)) ([Discussion](https://github.com/orgs/api-search/discussions/42))
@@ -43,7 +44,6 @@ These are hand-crafted artisan APIs.json, using the [APIs.json Builder](http://b
 
 ## APIS - Todo
 
-- Okta ([Developer](https://developer.okta.com/))
 - Cloudflare ([Developer](https://developers.cloudflare.com/))
 - BigCommerce ([Developer](https://developer.bigcommerce.com/))
 - Typeform ([Developer](https://www.typeform.com/developers/))
