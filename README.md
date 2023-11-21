@@ -38,10 +38,10 @@ These are hand-crafted artisan APIs.json, using the [APIs.json Builder](http://b
 - Weatherbit ([JSON](apis/weatherbit.json)) ([YAML](apis/weatherbit.yml)) ([Discussion](https://github.com/orgs/api-search/discussions/46))
 - Wikimedia ([JSON](apis/wikimedia.json)) ([YAML](apis/wikimedia.yml)) ([Discussion](https://github.com/orgs/api-search/discussions/47))
 - YouTube ([JSON](apis/youtube.json)) ([YAML](apis/youtube.yml))
+- Zoom ([JSON](apis/zoom.json)) ([YAML](apis/zoom.yml)) ([Discussion](https://github.com/orgs/api-search/discussions/49))
 
 ## APIS - Todo
 
-- Zoom ([Developer](https://developers.zoom.us/docs/))
 - Contentful ([Developer](https://www.contentful.com/developers/))
 - Okta ([Developer](https://developer.okta.com/))
 - Cloudflare ([Developer](https://developers.cloudflare.com/))
