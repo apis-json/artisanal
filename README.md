@@ -12,6 +12,7 @@ These are hand-crafted artisan APIs.json, using the [APIs.json Builder](http://b
 - Bunq ([JSON](apis/bunq.json)) ([YAML](apis/bunq.yml)) ([Discussion](https://github.com/orgs/api-search/discussions/33))
 - Discourse ([JSON](apis/discourse.json)) ([YAML](apis/discourse.yml)) ([Discussion](https://github.com/orgs/api-search/discussions/34))
 - eBay ([JSON](apis/ebay.json)) ([YAML](apis/ebay.yml)) ([Discussion](https://github.com/orgs/api-search/discussions/26))
+- Envestnet ([JSON](apis/envestnet.json)) ([YAML](apis/envestnet.yml)) ([Discussion](https://github.com/orgs/api-search/discussions/48))
 - GitHub ([JSON](apis/github.json)) ([YAML](apis/github.yml)) ([Discussion](https://github.com/orgs/api-search/discussions/28))
 - GitLab ([JSON](apis/gitlab.json)) ([YAML](apis/gitlab.yml)) ([Discussion](https://github.com/orgs/api-search/discussions/29))
 - Google ([JSON](apis/google.json)) ([YAML](apis/google.yml)) ([Discussion](https://github.com/orgs/api-search/discussions/24))
@@ -40,7 +41,6 @@ These are hand-crafted artisan APIs.json, using the [APIs.json Builder](http://b
 
 ## APIS - Todo
 
-- Envestnet ([Developer](https://developer.envestnet.com/))
 - Zoom ([Developer](https://developers.zoom.us/docs/))
 - Contentful ([Developer](https://www.contentful.com/developers/))
 - Okta ([Developer](https://developer.okta.com/))
