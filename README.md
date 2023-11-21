@@ -10,6 +10,7 @@ These are hand-crafted artisan APIs.json, using the [APIs.json Builder](http://b
 - Azure ([JSON](apis/microsoft-azure.json)) ([YAML](apis/microsoft-azure.yml)) ([Discussion](https://github.com/orgs/api-search/discussions/23))
 - Box ([JSON](apis/box.json)) ([YAML](apis/box.yml)) ([Discussion](https://github.com/orgs/api-search/discussions/25))
 - Bunq ([JSON](apis/bunq.json)) ([YAML](apis/bunq.yml)) ([Discussion](https://github.com/orgs/api-search/discussions/33))
+- Contentful ([JSON](apis/contentful.json)) ([YAML](apis/contentful.yml)) ([Discussion](https://github.com/orgs/api-search/discussions/50))
 - Discourse ([JSON](apis/discourse.json)) ([YAML](apis/discourse.yml)) ([Discussion](https://github.com/orgs/api-search/discussions/34))
 - eBay ([JSON](apis/ebay.json)) ([YAML](apis/ebay.yml)) ([Discussion](https://github.com/orgs/api-search/discussions/26))
 - Envestnet ([JSON](apis/envestnet.json)) ([YAML](apis/envestnet.yml)) ([Discussion](https://github.com/orgs/api-search/discussions/48))
@@ -42,7 +43,6 @@ These are hand-crafted artisan APIs.json, using the [APIs.json Builder](http://b
 
 ## APIS - Todo
 
-- Contentful ([Developer](https://www.contentful.com/developers/))
 - Okta ([Developer](https://developer.okta.com/))
 - Cloudflare ([Developer](https://developers.cloudflare.com/))
 - BigCommerce ([Developer](https://developer.bigcommerce.com/))
