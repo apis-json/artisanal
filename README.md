@@ -51,6 +51,10 @@ These are hand-crafted artisan APIs.json, using the [APIs.json Builder](http://b
 - YouTube ([JSON](apis/youtube.json)) ([YAML](apis/youtube.yml))
 - Zoom ([JSON](apis/zoom.json)) ([YAML](apis/zoom.yml)) ([Discussion](https://github.com/orgs/api-search/discussions/49))
 
+## APIS - WIP
+
+- NPR ([Developer](https://dev.npr.org/)) : ([JSON](apis/npr.json))
+
 ## APIS - Todo
 
 - Paypal ([Developer](https://developer.paypal.com/home/))
