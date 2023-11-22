@@ -22,6 +22,7 @@ These are hand-crafted artisan APIs.json, using the [APIs.json Builder](http://b
 - HERE ([JSON](apis/here.json)) ([YAML](apis/here.yml)) ([Discussion](https://github.com/orgs/api-search/discussions/35))
 - HubSpot ([JSON](apis/hubspot.json)) ([YAML](apis/hubspot.yml)) ([Discussion](https://github.com/orgs/api-search/discussions/36))
 - Mastercard ([JSON](apis/mastercard.json)) ([YAML](apis/mastercard.yml)) ([Discussion](https://github.com/orgs/api-search/discussions/37))
+- Meta ([JSON](apis/meta.json)) ([YAML](apis/meta.yml)) ([Discussion](https://github.com/orgs/api-search/discussions/55))
 - Netlify ([JSON](apis/netlify.json)) ([YAML](apis/netlify.yml)) ([Discussion](https://github.com/orgs/api-search/discussions/38))
 - New York Times ([JSON](apis/new-york-times.json)) ([YAML](apis/new-york-times.yml))
 - Novu ([JSON](apis/novu.json)) ([YAML](apis/novu.yml)) ([Discussion](https://github.com/orgs/api-search/discussions/40))
@@ -47,7 +48,6 @@ These are hand-crafted artisan APIs.json, using the [APIs.json Builder](http://b
 
 ## APIS - Todo
 
-- Meta ([Developer](https://developers.facebook.com/))
 - Airtable ([Developer](https://airtable.com/developers))
 - Auth0 ([Developer](https://auth0.com/docs))
 - Notion ([Developer](https://developers.notion.com/))
