@@ -51,13 +51,8 @@ These are hand-crafted artisan APIs.json, using the [APIs.json Builder](http://b
 - YouTube ([JSON](apis/youtube.json)) ([YAML](apis/youtube.yml))
 - Zoom ([JSON](apis/zoom.json)) ([YAML](apis/zoom.yml)) ([Discussion](https://github.com/orgs/api-search/discussions/49))
 
-## APIS - WIP
-
-- NPR ([Developer](https://dev.npr.org/)) : ([JSON](apis/npr.json))
-
 ## APIS - Todo
 
-- Paypal ([Developer](https://developer.paypal.com/home/))
 - Mapbox ([Developer](https://docs.mapbox.com/api/overview/))
 - Figma ([Developer](https://www.figma.com/developers/api))
 - Docusign ([Developer](https://www.docusign.com/products/apis))
@@ -68,13 +63,16 @@ These are hand-crafted artisan APIs.json, using the [APIs.json Builder](http://b
 - Europeana ([Developer](https://pro.europeana.eu/page/apis))
 - Shopify ([Developer](https://shopify.dev/docs))
 - Mailchimp ([Developer](https://mailchimp.com/developer/))
-- Open Geospatial Consortium ([Developer](https://ogcapi.ogc.org/))
 - Zendesk ([Developer](https://developer.zendesk.com/documentation))
 - LinkedIn ([Developer](https://developer.linkedin.com/))
 - Riot Games ([Developer](https://developer.riotgames.com/))
 - Marketo ([Developer](https://developers.marketo.com/))
 
-## Government
+## Standards - Todo
+
+- Open Geospatial Consortium ([Developer](https://ogcapi.ogc.org/))
+
+## Government - Todo
 
 - Bureau of Economic Analysis (BEA) ([Developer](https://www.bea.gov/tools/))
 - United States Postal Service ([Developer](https://www.usps.com/business/web-tools-apis/))
