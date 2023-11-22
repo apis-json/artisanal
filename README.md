@@ -4,6 +4,7 @@ These are hand-crafted artisan APIs.json, using the [APIs.json Builder](http://b
 ## APIs - DONE
 
 - Adyen ([JSON](apis/adyen.json)) ([YAML](apis/adyen.yml)) ([Discussion](https://github.com/orgs/api-search/discussions/31))
+- Airtable ([JSON](apis/airtable.json)) ([YAML](apis/airtable.yml)) ([Discussion](https://github.com/orgs/api-search/discussions/56))
 - Amadeus ([JSON](apis/amadeus.json)) ([YAML](apis/amadeus.yml)) ([Discussion](https://github.com/orgs/api-search/discussions/32))
 - Amazon Web Services ([JSON](apis/amazon-web-services.json)) ([YAML](apis/amazon-web-services.yml)) ([Discussion](https://github.com/orgs/api-search/discussions/22))
 - Atlassian ([JSON](apis/atlassian.json)) ([YAML](apis/atlassian.yml)) ([Discussion](https://github.com/orgs/api-search/discussions/30))
@@ -48,7 +49,6 @@ These are hand-crafted artisan APIs.json, using the [APIs.json Builder](http://b
 
 ## APIS - Todo
 
-- Airtable ([Developer](https://airtable.com/developers))
 - Auth0 ([Developer](https://auth0.com/docs))
 - Notion ([Developer](https://developers.notion.com/))
 - Elsevier ([Developer](https://dev.elsevier.com/))
