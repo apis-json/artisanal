@@ -17,6 +17,7 @@ These are hand-crafted artisan APIs.json, using the [APIs.json Builder](http://b
 - Contentful ([JSON](apis/contentful.json)) ([YAML](apis/contentful.yml)) ([Discussion](https://github.com/orgs/api-search/discussions/50))
 - Discourse ([JSON](apis/discourse.json)) ([YAML](apis/discourse.yml)) ([Discussion](https://github.com/orgs/api-search/discussions/34))
 - eBay ([JSON](apis/ebay.json)) ([YAML](apis/ebay.yml)) ([Discussion](https://github.com/orgs/api-search/discussions/26))
+- Elsevier ([JSON](apis/elsevier.json)) ([YAML](apis/elsevier.yml)) ([Discussion](https://github.com/orgs/api-search/discussions/59))
 - Envestnet ([JSON](apis/envestnet.json)) ([YAML](apis/envestnet.yml)) ([Discussion](https://github.com/orgs/api-search/discussions/48))
 - GitHub ([JSON](apis/github.json)) ([YAML](apis/github.yml)) ([Discussion](https://github.com/orgs/api-search/discussions/28))
 - GitLab ([JSON](apis/gitlab.json)) ([YAML](apis/gitlab.yml)) ([Discussion](https://github.com/orgs/api-search/discussions/29))
@@ -51,7 +52,6 @@ These are hand-crafted artisan APIs.json, using the [APIs.json Builder](http://b
 
 ## APIS - Todo
 
-- Elsevier ([Developer](https://dev.elsevier.com/))
 - Datadog ([Developer](https://docs.datadoghq.com/))
 - Paypal ([Developer](https://developer.paypal.com/home/))
 - Mapbox ([Developer](https://docs.mapbox.com/api/overview/))
