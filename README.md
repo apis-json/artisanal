@@ -36,7 +36,7 @@ These are hand-crafted artisan APIs.json, using the [APIs.json Builder](http://b
 - Spotify ([JSON](apis/spotify.json)) ([YAML](apis/spotify.yml)) ([Discussion](https://github.com/orgs/api-search/discussions/44))
 - Stack Exchange ([JSON](apis/stack-exchange.json)) ([YAML](apis/stack-exchange.yml)) ([Discussion](https://github.com/orgs/api-search/discussions/45))
 - Stripe ([JSON](apis/stripe.json)) ([YAML](apis/stripe.yml))
-- Typeform ([JSON](apis/typeform.json)) ([YAML](apis/typeform.yml)) ([Discussion](https://github.com/orgs/api-search/discussions/53))
+- Typeform ([JSON](apis/typeform.json)) ([YAML](apis/typeform.yml)) ([Discussion](https://github.com/orgs/api-search/discussions/54))
 - Twilio ([JSON](apis/twilio.json)) ([YAML](apis/twilio.yml)) ([Discussion](https://github.com/orgs/api-search/discussions/21))
 - Vonage ([JSON](apis/vonage.json)) ([YAML](apis/vonage.yml)) ([Discussion](https://github.com/orgs/api-search/discussions/39))
 - Walmart ([JSON](apis/walmart.json)) ([YAML](apis/walmart.yml)) ([Discussion](https://github.com/orgs/api-search/discussions/45))
