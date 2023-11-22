@@ -27,6 +27,7 @@ These are hand-crafted artisan APIs.json, using the [APIs.json Builder](http://b
 - Meta ([JSON](apis/meta.json)) ([YAML](apis/meta.yml)) ([Discussion](https://github.com/orgs/api-search/discussions/55))
 - Netlify ([JSON](apis/netlify.json)) ([YAML](apis/netlify.yml)) ([Discussion](https://github.com/orgs/api-search/discussions/38))
 - New York Times ([JSON](apis/new-york-times.json)) ([YAML](apis/new-york-times.yml))
+- Notion ([JSON](apis/notion.json)) ([YAML](apis/notion.yml)) ([Discussion](https://github.com/orgs/api-search/discussions/58))
 - Novu ([JSON](apis/novu.json)) ([YAML](apis/novu.yml)) ([Discussion](https://github.com/orgs/api-search/discussions/40))
 - Okta ([JSON](apis/okta.json)) ([YAML](apis/okta.yml)) ([Discussion](https://github.com/orgs/api-search/discussions/51))
 - OpenAI ([JSON](apis/openai.json)) ([YAML](apis/openai.yml)) ([Discussion](https://github.com/orgs/api-search/discussions/27))
@@ -50,7 +51,6 @@ These are hand-crafted artisan APIs.json, using the [APIs.json Builder](http://b
 
 ## APIS - Todo
 
-- Notion ([Developer](https://developers.notion.com/))
 - Elsevier ([Developer](https://dev.elsevier.com/))
 - Datadog ([Developer](https://docs.datadoghq.com/))
 - Paypal ([Developer](https://developer.paypal.com/home/))
