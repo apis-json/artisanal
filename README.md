@@ -15,6 +15,7 @@ These are hand-crafted artisan APIs.json, using the [APIs.json Builder](http://b
 - Bunq ([JSON](apis/bunq.json)) ([YAML](apis/bunq.yml)) ([Discussion](https://github.com/orgs/api-search/discussions/33))
 - Cloudflare ([JSON](apis/cloudflare.json)) ([YAML](apis/cloudflare.yml)) ([Discussion](https://github.com/orgs/api-search/discussions/52))
 - Contentful ([JSON](apis/contentful.json)) ([YAML](apis/contentful.yml)) ([Discussion](https://github.com/orgs/api-search/discussions/50))
+- Datadog ([JSON](apis/datadog.json)) ([YAML](apis/datadog.yml)) ([Discussion](https://github.com/orgs/api-search/discussions/60))
 - Discourse ([JSON](apis/discourse.json)) ([YAML](apis/discourse.yml)) ([Discussion](https://github.com/orgs/api-search/discussions/34))
 - eBay ([JSON](apis/ebay.json)) ([YAML](apis/ebay.yml)) ([Discussion](https://github.com/orgs/api-search/discussions/26))
 - Elsevier ([JSON](apis/elsevier.json)) ([YAML](apis/elsevier.yml)) ([Discussion](https://github.com/orgs/api-search/discussions/59))
@@ -52,7 +53,6 @@ These are hand-crafted artisan APIs.json, using the [APIs.json Builder](http://b
 
 ## APIS - Todo
 
-- Datadog ([Developer](https://docs.datadoghq.com/))
 - Paypal ([Developer](https://developer.paypal.com/home/))
 - Mapbox ([Developer](https://docs.mapbox.com/api/overview/))
 - Figma ([Developer](https://www.figma.com/developers/api))
