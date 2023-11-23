@@ -3,6 +3,7 @@ These are hand-crafted artisan APIs.json, using the [APIs.json Builder](http://b
 
 ## APIs - DONE
 
+- Accuweather ([JSON](apis/accuweather.json)) ([YAML](apis/accuweather.yml)) ([Discussion](https://github.com/orgs/api-search/discussions/67))
 - Adyen ([JSON](apis/adyen.json)) ([YAML](apis/adyen.yml)) ([Discussion](https://github.com/orgs/api-search/discussions/31))
 - Airtable ([JSON](apis/airtable.json)) ([YAML](apis/airtable.yml)) ([Discussion](https://github.com/orgs/api-search/discussions/56))
 - Amadeus ([JSON](apis/amadeus.json)) ([YAML](apis/amadeus.yml)) ([Discussion](https://github.com/orgs/api-search/discussions/32))
@@ -59,7 +60,6 @@ These are hand-crafted artisan APIs.json, using the [APIs.json Builder](http://b
 
 ## APIS - Todo
 
-- Accuweather ([Developer](https://developer.accuweather.com/apis))
 - Plaid ([Developer](https://plaid.com/docs/))
 - Pinterest ([Developer](https://developers.pinterest.com/))
 - Europeana ([Developer](https://pro.europeana.eu/page/apis))
