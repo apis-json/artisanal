@@ -35,6 +35,7 @@ These are hand-crafted artisan APIs.json, using the [APIs.json Builder](http://b
 - Okta ([JSON](apis/okta.json)) ([YAML](apis/okta.yml)) ([Discussion](https://github.com/orgs/api-search/discussions/51))
 - OpenAI ([JSON](apis/openai.json)) ([YAML](apis/openai.yml)) ([Discussion](https://github.com/orgs/api-search/discussions/27))
 - Oxford Dictionaries ([JSON](apis/oxford-english-dictionaries.json)) ([YAML](apis/oxford-english-dictionaries.yml)) ([Discussion](https://github.com/orgs/api-search/discussions/41))
+- Paypal ([JSON](apis/paypal.json)) ([YAML](apis/paypal.yml)) ([Discussion](https://github.com/orgs/api-search/discussions/62))
 - Postmark ([JSON](apis/postmark.json)) ([YAML](apis/postmark.yml)) ([Discussion](https://github.com/orgs/api-search/discussions/42))
 - ShipEngine ([JSON](apis/shipengine.json)) ([YAML](apis/shipengine.yml))
 - ShutterStock ([JSON](apis/shutterstock.json)) ([YAML](apis/shutterstock.yml))
