@@ -46,6 +46,7 @@ These are hand-crafted artisan APIs.json, using the [APIs.json Builder](http://b
 - Pinterest ([JSON](apis/pinterest.json)) ([YAML](apis/pinterest.yml)) ([Discussion](https://github.com/orgs/api-search/discussions/69))
 - Plaid ([JSON](apis/plaid.json)) ([YAML](apis/plaid.yml)) ([Discussion](https://github.com/orgs/api-search/discussions/68))
 - Postmark ([JSON](apis/postmark.json)) ([YAML](apis/postmark.yml)) ([Discussion](https://github.com/orgs/api-search/discussions/42))
+- Riot Games ([JSON](apis/riot-games.json)) ([YAML](apis/riot-games.yml)) ([Discussion](https://github.com/orgs/api-search/discussions/75))
 - ShipEngine ([JSON](apis/shipengine.json)) ([YAML](apis/shipengine.yml))
 - Shopify ([JSON](apis/shopify.json)) ([YAML](apis/shopify.yml)) ([Discussion](https://github.com/orgs/api-search/discussions/71))
 - ShutterStock ([JSON](apis/shutterstock.json)) ([YAML](apis/shutterstock.yml))
@@ -67,7 +68,6 @@ These are hand-crafted artisan APIs.json, using the [APIs.json Builder](http://b
 
 ## APIS - Todo
 
-- Riot Games ([Developer](https://developer.riotgames.com/))
 - Marketo ([Developer](https://developers.marketo.com/))
 
 ## Standards - Todo
