@@ -45,6 +45,7 @@ These are hand-crafted artisan APIs.json, using the [APIs.json Builder](http://b
 - Plaid ([JSON](apis/plaid.json)) ([YAML](apis/plaid.yml)) ([Discussion](https://github.com/orgs/api-search/discussions/68))
 - Postmark ([JSON](apis/postmark.json)) ([YAML](apis/postmark.yml)) ([Discussion](https://github.com/orgs/api-search/discussions/42))
 - ShipEngine ([JSON](apis/shipengine.json)) ([YAML](apis/shipengine.yml))
+- Shopify ([JSON](apis/shopify.json)) ([YAML](apis/shopify.yml)) ([Discussion](https://github.com/orgs/api-search/discussions/71))
 - ShutterStock ([JSON](apis/shutterstock.json)) ([YAML](apis/shutterstock.yml))
 - Slack ([JSON](apis/slack.json)) ([YAML](apis/slack.yml))
 - SportsData ([JSON](apis/sportsdata.json)) ([YAML](apis/sportsdata.yml)) ([Discussion](https://github.com/orgs/api-search/discussions/43))
@@ -63,7 +64,6 @@ These are hand-crafted artisan APIs.json, using the [APIs.json Builder](http://b
 
 ## APIS - Todo
 
-- Shopify ([Developer](https://shopify.dev/docs))
 - Mailchimp ([Developer](https://mailchimp.com/developer/))
 - Zendesk ([Developer](https://developer.zendesk.com/documentation))
 - LinkedIn ([Developer](https://developer.linkedin.com/))
