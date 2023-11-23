@@ -20,6 +20,7 @@ These are hand-crafted artisan APIs.json, using the [APIs.json Builder](http://b
 - eBay ([JSON](apis/ebay.json)) ([YAML](apis/ebay.yml)) ([Discussion](https://github.com/orgs/api-search/discussions/26))
 - Elsevier ([JSON](apis/elsevier.json)) ([YAML](apis/elsevier.yml)) ([Discussion](https://github.com/orgs/api-search/discussions/59))
 - Envestnet ([JSON](apis/envestnet.json)) ([YAML](apis/envestnet.yml)) ([Discussion](https://github.com/orgs/api-search/discussions/48))
+- Figma ([JSON](apis/figma.json)) ([YAML](apis/figma.yml)) ([Discussion](https://github.com/orgs/api-search/discussions/64))
 - GitHub ([JSON](apis/github.json)) ([YAML](apis/github.yml)) ([Discussion](https://github.com/orgs/api-search/discussions/28))
 - GitLab ([JSON](apis/gitlab.json)) ([YAML](apis/gitlab.yml)) ([Discussion](https://github.com/orgs/api-search/discussions/29))
 - Google ([JSON](apis/google.json)) ([YAML](apis/google.yml)) ([Discussion](https://github.com/orgs/api-search/discussions/24))
@@ -56,7 +57,6 @@ These are hand-crafted artisan APIs.json, using the [APIs.json Builder](http://b
 
 ## APIS - Todo
 
-- Figma ([Developer](https://www.figma.com/developers/api))
 - Docusign ([Developer](https://www.docusign.com/products/apis))
 - Webflow ([Developer](https://developers.webflow.com/))
 - Accuweather ([Developer](https://developer.accuweather.com/apis))
