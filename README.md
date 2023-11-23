@@ -40,6 +40,7 @@ These are hand-crafted artisan APIs.json, using the [APIs.json Builder](http://b
 - OpenAI ([JSON](apis/openai.json)) ([YAML](apis/openai.yml)) ([Discussion](https://github.com/orgs/api-search/discussions/27))
 - Oxford Dictionaries ([JSON](apis/oxford-english-dictionaries.json)) ([YAML](apis/oxford-english-dictionaries.yml)) ([Discussion](https://github.com/orgs/api-search/discussions/41))
 - Paypal ([JSON](apis/paypal.json)) ([YAML](apis/paypal.yml)) ([Discussion](https://github.com/orgs/api-search/discussions/62))
+- Pinterest ([JSON](apis/pinterest.json)) ([YAML](apis/pinterest.yml)) ([Discussion](https://github.com/orgs/api-search/discussions/69))
 - Plaid ([JSON](apis/plaid.json)) ([YAML](apis/plaid.yml)) ([Discussion](https://github.com/orgs/api-search/discussions/68))
 - Postmark ([JSON](apis/postmark.json)) ([YAML](apis/postmark.yml)) ([Discussion](https://github.com/orgs/api-search/discussions/42))
 - ShipEngine ([JSON](apis/shipengine.json)) ([YAML](apis/shipengine.yml))
