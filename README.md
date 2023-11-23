@@ -32,6 +32,7 @@ These are hand-crafted artisan APIs.json, using the [APIs.json Builder](http://b
 - LinkedIn ([JSON](apis/linkedin.json)) ([YAML](apis/linkedin.yml)) ([Discussion](https://github.com/orgs/api-search/discussions/74))
 - Mailchimp ([JSON](apis/mailchimp.json)) ([YAML](apis/mailchimp.yml)) ([Discussion](https://github.com/orgs/api-search/discussions/72))
 - Mapbox ([JSON](apis/mapbox.json)) ([YAML](apis/mapbox.yml)) ([Discussion](https://github.com/orgs/api-search/discussions/63))
+- Marketo ([JSON](apis/marketo.json)) ([YAML](apis/marketo.yml)) ([Discussion](https://github.com/orgs/api-search/discussions/76))
 - Mastercard ([JSON](apis/mastercard.json)) ([YAML](apis/mastercard.yml)) ([Discussion](https://github.com/orgs/api-search/discussions/37))
 - Meta ([JSON](apis/meta.json)) ([YAML](apis/meta.yml)) ([Discussion](https://github.com/orgs/api-search/discussions/55))
 - Netlify ([JSON](apis/netlify.json)) ([YAML](apis/netlify.yml)) ([Discussion](https://github.com/orgs/api-search/discussions/38))
@@ -68,7 +69,7 @@ These are hand-crafted artisan APIs.json, using the [APIs.json Builder](http://b
 
 ## APIS - Todo
 
-- Marketo ([Developer](https://developers.marketo.com/))
+- NEED MORE
 
 ## Standards - Todo
 
