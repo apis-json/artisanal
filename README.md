@@ -17,6 +17,7 @@ These are hand-crafted artisan APIs.json, using the [APIs.json Builder](http://b
 - Contentful ([JSON](apis/contentful.json)) ([YAML](apis/contentful.yml)) ([Discussion](https://github.com/orgs/api-search/discussions/50))
 - Datadog ([JSON](apis/datadog.json)) ([YAML](apis/datadog.yml)) ([Discussion](https://github.com/orgs/api-search/discussions/60))
 - Discourse ([JSON](apis/discourse.json)) ([YAML](apis/discourse.yml)) ([Discussion](https://github.com/orgs/api-search/discussions/34))
+- Docusign ([JSON](apis/docusign.json)) ([YAML](apis/docusign.yml)) ([Discussion](https://github.com/orgs/api-search/discussions/65))
 - eBay ([JSON](apis/ebay.json)) ([YAML](apis/ebay.yml)) ([Discussion](https://github.com/orgs/api-search/discussions/26))
 - Elsevier ([JSON](apis/elsevier.json)) ([YAML](apis/elsevier.yml)) ([Discussion](https://github.com/orgs/api-search/discussions/59))
 - Envestnet ([JSON](apis/envestnet.json)) ([YAML](apis/envestnet.yml)) ([Discussion](https://github.com/orgs/api-search/discussions/48))
@@ -57,7 +58,6 @@ These are hand-crafted artisan APIs.json, using the [APIs.json Builder](http://b
 
 ## APIS - Todo
 
-- Docusign ([Developer](https://www.docusign.com/products/apis))
 - Webflow ([Developer](https://developers.webflow.com/))
 - Accuweather ([Developer](https://developer.accuweather.com/apis))
 - Plaid ([Developer](https://plaid.com/docs/))
