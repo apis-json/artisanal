@@ -22,6 +22,7 @@ These are hand-crafted artisan APIs.json, using the [APIs.json Builder](http://b
 - eBay ([JSON](apis/ebay.json)) ([YAML](apis/ebay.yml)) ([Discussion](https://github.com/orgs/api-search/discussions/26))
 - Elsevier ([JSON](apis/elsevier.json)) ([YAML](apis/elsevier.yml)) ([Discussion](https://github.com/orgs/api-search/discussions/59))
 - Envestnet ([JSON](apis/envestnet.json)) ([YAML](apis/envestnet.yml)) ([Discussion](https://github.com/orgs/api-search/discussions/48))
+- Europeana ([JSON](apis/europeana.json)) ([YAML](apis/europeana.yml)) ([Discussion](https://github.com/orgs/api-search/discussions/70))
 - Figma ([JSON](apis/figma.json)) ([YAML](apis/figma.yml)) ([Discussion](https://github.com/orgs/api-search/discussions/64))
 - GitHub ([JSON](apis/github.json)) ([YAML](apis/github.yml)) ([Discussion](https://github.com/orgs/api-search/discussions/28))
 - GitLab ([JSON](apis/gitlab.json)) ([YAML](apis/gitlab.yml)) ([Discussion](https://github.com/orgs/api-search/discussions/29))
@@ -62,7 +63,6 @@ These are hand-crafted artisan APIs.json, using the [APIs.json Builder](http://b
 
 ## APIS - Todo
 
-- Europeana ([Developer](https://pro.europeana.eu/page/apis))
 - Shopify ([Developer](https://shopify.dev/docs))
 - Mailchimp ([Developer](https://mailchimp.com/developer/))
 - Zendesk ([Developer](https://developer.zendesk.com/documentation))
