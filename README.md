@@ -31,6 +31,7 @@ These are hand-crafted artisan APIs.json, using the [APIs.json Builder](http://b
 - New York Times ([JSON](apis/new-york-times.json)) ([YAML](apis/new-york-times.yml))
 - Notion ([JSON](apis/notion.json)) ([YAML](apis/notion.yml)) ([Discussion](https://github.com/orgs/api-search/discussions/58))
 - Novu ([JSON](apis/novu.json)) ([YAML](apis/novu.yml)) ([Discussion](https://github.com/orgs/api-search/discussions/40))
+- NPR ([JSON](apis/npr.json)) ([YAML](apis/npr.yml)) ([Discussion](https://github.com/orgs/api-search/discussions/61))
 - Okta ([JSON](apis/okta.json)) ([YAML](apis/okta.yml)) ([Discussion](https://github.com/orgs/api-search/discussions/51))
 - OpenAI ([JSON](apis/openai.json)) ([YAML](apis/openai.yml)) ([Discussion](https://github.com/orgs/api-search/discussions/27))
 - Oxford Dictionaries ([JSON](apis/oxford-english-dictionaries.json)) ([YAML](apis/oxford-english-dictionaries.yml)) ([Discussion](https://github.com/orgs/api-search/discussions/41))
