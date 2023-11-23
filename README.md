@@ -69,7 +69,7 @@ These are hand-crafted artisan APIs.json, using the [APIs.json Builder](http://b
 
 ## APIS - Todo
 
-- NEED MORE
+- Nylas ([Website](https://www.nylas.com/)
 
 ## Standards - Todo
 
