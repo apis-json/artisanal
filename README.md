@@ -62,7 +62,6 @@ These are hand-crafted artisan APIs.json, using the [APIs.json Builder](http://b
 
 ## APIS - Todo
 
-- Pinterest ([Developer](https://developers.pinterest.com/))
 - Europeana ([Developer](https://pro.europeana.eu/page/apis))
 - Shopify ([Developer](https://shopify.dev/docs))
 - Mailchimp ([Developer](https://mailchimp.com/developer/))
