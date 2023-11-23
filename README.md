@@ -25,6 +25,7 @@ These are hand-crafted artisan APIs.json, using the [APIs.json Builder](http://b
 - Google ([JSON](apis/google.json)) ([YAML](apis/google.yml)) ([Discussion](https://github.com/orgs/api-search/discussions/24))
 - HERE ([JSON](apis/here.json)) ([YAML](apis/here.yml)) ([Discussion](https://github.com/orgs/api-search/discussions/35))
 - HubSpot ([JSON](apis/hubspot.json)) ([YAML](apis/hubspot.yml)) ([Discussion](https://github.com/orgs/api-search/discussions/36))
+- Mapbox ([JSON](apis/mapbox.json)) ([YAML](apis/mapbox.yml)) ([Discussion](https://github.com/orgs/api-search/discussions/63))
 - Mastercard ([JSON](apis/mastercard.json)) ([YAML](apis/mastercard.yml)) ([Discussion](https://github.com/orgs/api-search/discussions/37))
 - Meta ([JSON](apis/meta.json)) ([YAML](apis/meta.yml)) ([Discussion](https://github.com/orgs/api-search/discussions/55))
 - Netlify ([JSON](apis/netlify.json)) ([YAML](apis/netlify.yml)) ([Discussion](https://github.com/orgs/api-search/discussions/38))
@@ -55,7 +56,6 @@ These are hand-crafted artisan APIs.json, using the [APIs.json Builder](http://b
 
 ## APIS - Todo
 
-- Mapbox ([Developer](https://docs.mapbox.com/api/overview/))
 - Figma ([Developer](https://www.figma.com/developers/api))
 - Docusign ([Developer](https://www.docusign.com/products/apis))
 - Webflow ([Developer](https://developers.webflow.com/))
