@@ -52,6 +52,7 @@ These are hand-crafted artisan APIs.json, using the [APIs.json Builder](http://b
 - Vonage ([JSON](apis/vonage.json)) ([YAML](apis/vonage.yml)) ([Discussion](https://github.com/orgs/api-search/discussions/39))
 - Walmart ([JSON](apis/walmart.json)) ([YAML](apis/walmart.yml)) ([Discussion](https://github.com/orgs/api-search/discussions/45))
 - Weatherbit ([JSON](apis/weatherbit.json)) ([YAML](apis/weatherbit.yml)) ([Discussion](https://github.com/orgs/api-search/discussions/46))
+- Webflow ([JSON](apis/webflow.json)) ([YAML](apis/webflow.yml)) ([Discussion](https://github.com/orgs/api-search/discussions/66))
 - Wikimedia ([JSON](apis/wikimedia.json)) ([YAML](apis/wikimedia.yml)) ([Discussion](https://github.com/orgs/api-search/discussions/47))
 - YouTube ([JSON](apis/youtube.json)) ([YAML](apis/youtube.yml))
 - Zoom ([JSON](apis/zoom.json)) ([YAML](apis/zoom.yml)) ([Discussion](https://github.com/orgs/api-search/discussions/49))
