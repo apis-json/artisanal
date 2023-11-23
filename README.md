@@ -74,6 +74,8 @@ These are hand-crafted artisan APIs.json, using the [APIs.json Builder](http://b
 ## Standards - Todo
 
 - Open Geospatial Consortium ([Developer](https://ogcapi.ogc.org/))
+- FHIR ([Developer](https://www.hl7.org/fhir/))
+- UK Open Banking ([Developer](https://www.openbanking.org.uk/))
 
 ## Government - Todo
 
