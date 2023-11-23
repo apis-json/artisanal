@@ -61,11 +61,11 @@ These are hand-crafted artisan APIs.json, using the [APIs.json Builder](http://b
 - Webflow ([JSON](apis/webflow.json)) ([YAML](apis/webflow.yml)) ([Discussion](https://github.com/orgs/api-search/discussions/66))
 - Wikimedia ([JSON](apis/wikimedia.json)) ([YAML](apis/wikimedia.yml)) ([Discussion](https://github.com/orgs/api-search/discussions/47))
 - YouTube ([JSON](apis/youtube.json)) ([YAML](apis/youtube.yml))
+- Zendesk ([JSON](apis/zendesk.json)) ([YAML](apis/zendesk.yml)) ([Discussion](https://github.com/orgs/api-search/discussions/73))
 - Zoom ([JSON](apis/zoom.json)) ([YAML](apis/zoom.yml)) ([Discussion](https://github.com/orgs/api-search/discussions/49))
 
 ## APIS - Todo
 
-- Zendesk ([Developer](https://developer.zendesk.com/documentation))
 - LinkedIn ([Developer](https://developer.linkedin.com/))
 - Riot Games ([Developer](https://developer.riotgames.com/))
 - Marketo ([Developer](https://developers.marketo.com/))
