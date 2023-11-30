@@ -70,6 +70,7 @@ These are hand-crafted artisan APIs.json, using the [APIs.json Builder](http://b
 ## APIS - Todo
 
 - Nylas ([Website](https://www.nylas.com/)
+- Lemon Squeezy ([Website](https://www.lemonsqueezy.com/))
 
 ## Standards - Todo
 
