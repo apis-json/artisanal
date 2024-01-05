@@ -71,6 +71,7 @@ These are hand-crafted artisan APIs.json, using the [APIs.json Builder](http://b
 
 - Nylas ([Website](https://www.nylas.com/)
 - Lemon Squeezy ([Website](https://www.lemonsqueezy.com/))
+- Tesla ([Website](https://developer.tesla.com/docs/fleet-api))
 
 ## Standards - Todo
 
