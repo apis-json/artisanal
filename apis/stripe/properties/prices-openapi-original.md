@@ -1,0 +1,1113 @@
+---
+openapi: 3.0.0
+info:
+  title: Stripe Prices API
+  description: Needs description.
+  contact:
+    email: dev-platform@stripe.com
+    name: Stripe Dev Platform Team
+    url: 'https://stripe.com'
+  termsOfService: 'https://stripe.com/us/terms/'
+  version: '2023-10-16'
+  x-stripeSpecFilename: spec3
+security:
+  - basicAuth: []
+  - bearerAuth: []
+servers:
+  - url: 'https://api.stripe.com/'
+paths:
+  /v1/prices:
+    get:
+      description: >-
+        <p>Returns a list of your active prices, excluding <a
+        href="/docs/products-prices/pricing-models#inline-pricing">inline
+        prices</a>. For the list of inactive prices, set <code>active</code> to
+        false.</p>
+      operationId: GetPrices
+      parameters:
+        - description: >-
+            Only return prices that are active or inactive (e.g., pass `false`
+            to list all inactive prices).
+          in: query
+          name: active
+          required: false
+          schema:
+            type: boolean
+          style: form
+        - description: >-
+            A filter on the list, based on the object `created` field. The value
+            can be a string with an integer Unix timestamp, or it can be a
+            dictionary with a number of different query options.
+          explode: true
+          in: query
+          name: created
+          required: false
+          schema:
+            anyOf:
+              - properties:
+                  gt:
+                    type: integer
+                  gte:
+                    type: integer
+                  lt:
+                    type: integer
+                  lte:
+                    type: integer
+                title: range_query_specs
+                type: object
+              - type: integer
+          style: deepObject
+        - description: Only return prices for the given currency.
+          in: query
+          name: currency
+          required: false
+          schema:
+            type: string
+          style: form
+        - description: >-
+            A cursor for use in pagination. `ending_before` is an object ID that
+            defines your place in the list. For instance, if you make a list
+            request and receive 100 objects, starting with `obj_bar`, your
+            subsequent call can include `ending_before=obj_bar` in order to
+            fetch the previous page of the list.
+          in: query
+          name: ending_before
+          required: false
+          schema:
+            maxLength: 5000
+            type: string
+          style: form
+        - description: Specifies which fields in the response should be expanded.
+          explode: true
+          in: query
+          name: expand
+          required: false
+          schema:
+            items:
+              maxLength: 5000
+              type: string
+            type: array
+          style: deepObject
+        - description: >-
+            A limit on the number of objects to be returned. Limit can range
+            between 1 and 100, and the default is 10.
+          in: query
+          name: limit
+          required: false
+          schema:
+            type: integer
+          style: form
+        - description: 'Only return the price with these lookup_keys, if any exist.'
+          explode: true
+          in: query
+          name: lookup_keys
+          required: false
+          schema:
+            items:
+              maxLength: 5000
+              type: string
+            type: array
+          style: deepObject
+        - description: Only return prices for the given product.
+          in: query
+          name: product
+          required: false
+          schema:
+            maxLength: 5000
+            type: string
+          style: form
+        - description: Only return prices with these recurring fields.
+          explode: true
+          in: query
+          name: recurring
+          required: false
+          schema:
+            properties:
+              interval:
+                enum:
+                  - day
+                  - month
+                  - week
+                  - year
+                type: string
+              usage_type:
+                enum:
+                  - licensed
+                  - metered
+                type: string
+            title: all_prices_recurring_params
+            type: object
+          style: deepObject
+        - description: >-
+            A cursor for use in pagination. `starting_after` is an object ID
+            that defines your place in the list. For instance, if you make a
+            list request and receive 100 objects, ending with `obj_foo`, your
+            subsequent call can include `starting_after=obj_foo` in order to
+            fetch the next page of the list.
+          in: query
+          name: starting_after
+          required: false
+          schema:
+            maxLength: 5000
+            type: string
+          style: form
+        - description: Only return prices of type `recurring` or `one_time`.
+          in: query
+          name: type
+          required: false
+          schema:
+            enum:
+              - one_time
+              - recurring
+            type: string
+          style: form
+      requestBody:
+        content:
+          application/x-www-form-urlencoded:
+            encoding: {}
+            schema:
+              additionalProperties: false
+              $ref: '#/components/schemas/GetPricesRequest'
+        required: false
+      responses:
+        '200':
+          content:
+            application/json:
+              schema:
+                description: ''
+                x-expandableFields:
+                  - data
+                $ref: '#/components/schemas/PriceList'
+          description: Successful response.
+        default:
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/error'
+          description: Error response.
+    post:
+      description: >-
+        <p>Creates a new price for an existing product. The price can be
+        recurring or one-time.</p>
+      operationId: PostPrices
+      requestBody:
+        content:
+          application/x-www-form-urlencoded:
+            encoding:
+              currency_options:
+                explode: true
+                style: deepObject
+              custom_unit_amount:
+                explode: true
+                style: deepObject
+              expand:
+                explode: true
+                style: deepObject
+              metadata:
+                explode: true
+                style: deepObject
+              product_data:
+                explode: true
+                style: deepObject
+              recurring:
+                explode: true
+                style: deepObject
+              tiers:
+                explode: true
+                style: deepObject
+              transform_quantity:
+                explode: true
+                style: deepObject
+            schema:
+              additionalProperties: false
+              $ref: '#/components/schemas/PostPricesRequest'
+        required: true
+      responses:
+        '200':
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/price'
+          description: Successful response.
+        default:
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/error'
+          description: Error response.
+  /v1/prices/search:
+    get:
+      description: >-
+        <p>Search for prices you’ve previously created using Stripe’s <a
+        href="/docs/search#search-query-language">Search Query Language</a>.
+
+        Don’t use search in read-after-write flows where strict consistency is
+        necessary. Under normal operating
+
+        conditions, data is searchable in less than a minute. Occasionally,
+        propagation of new or updated data can be up
+
+        to an hour behind during outages. Search functionality is not available
+        to merchants in India.</p>
+      operationId: GetPricesSearch
+      parameters:
+        - description: Specifies which fields in the response should be expanded.
+          explode: true
+          in: query
+          name: expand
+          required: false
+          schema:
+            items:
+              maxLength: 5000
+              type: string
+            type: array
+          style: deepObject
+        - description: >-
+            A limit on the number of objects to be returned. Limit can range
+            between 1 and 100, and the default is 10.
+          in: query
+          name: limit
+          required: false
+          schema:
+            type: integer
+          style: form
+        - description: >-
+            A cursor for pagination across multiple pages of results. Don't
+            include this parameter on the first call. Use the next_page value
+            returned in a previous response to request subsequent results.
+          in: query
+          name: page
+          required: false
+          schema:
+            maxLength: 5000
+            type: string
+          style: form
+        - description: >-
+            The search query string. See [search query
+            language](https://stripe.com/docs/search#search-query-language) and
+            the list of supported [query fields for
+            prices](https://stripe.com/docs/search#query-fields-for-prices).
+          in: query
+          name: query
+          required: true
+          schema:
+            maxLength: 5000
+            type: string
+          style: form
+      requestBody:
+        content:
+          application/x-www-form-urlencoded:
+            encoding: {}
+            schema:
+              additionalProperties: false
+              $ref: '#/components/schemas/GetPricesSearchRequest'
+        required: false
+      responses:
+        '200':
+          content:
+            application/json:
+              schema:
+                description: ''
+                x-expandableFields:
+                  - data
+                $ref: '#/components/schemas/SearchResult'
+          description: Successful response.
+        default:
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/error'
+          description: Error response.
+  '/v1/prices/{price}':
+    get:
+      description: <p>Retrieves the price with the given ID.</p>
+      operationId: GetPricesPrice
+      parameters:
+        - description: Specifies which fields in the response should be expanded.
+          explode: true
+          in: query
+          name: expand
+          required: false
+          schema:
+            items:
+              maxLength: 5000
+              type: string
+            type: array
+          style: deepObject
+        - in: path
+          name: price
+          required: true
+          schema:
+            maxLength: 5000
+            type: string
+          style: simple
+      requestBody:
+        content:
+          application/x-www-form-urlencoded:
+            encoding: {}
+            schema:
+              additionalProperties: false
+              $ref: '#/components/schemas/GetPricesPriceRequest'
+        required: false
+      responses:
+        '200':
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/price'
+          description: Successful response.
+        default:
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/error'
+          description: Error response.
+    post:
+      description: >-
+        <p>Updates the specified price by setting the values of the parameters
+        passed. Any parameters not provided are left unchanged.</p>
+      operationId: PostPricesPrice
+      parameters:
+        - in: path
+          name: price
+          required: true
+          schema:
+            maxLength: 5000
+            type: string
+          style: simple
+      requestBody:
+        content:
+          application/x-www-form-urlencoded:
+            encoding:
+              currency_options:
+                explode: true
+                style: deepObject
+              expand:
+                explode: true
+                style: deepObject
+              metadata:
+                explode: true
+                style: deepObject
+            schema:
+              additionalProperties: false
+              $ref: '#/components/schemas/PostPricesPriceRequest'
+        required: false
+      responses:
+        '200':
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/price'
+          description: Successful response.
+        default:
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/error'
+          description: Error response.
+components:
+  schemas:
+    error:
+      description: An error response from the Stripe API
+      properties:
+        error:
+          $ref: '#/components/schemas/api_errors'
+      required:
+        - error
+      type: object
+    price:
+      description: >-
+        Prices define the unit cost, currency, and (optional) billing cycle for
+        both recurring and one-time purchases of products.
+
+        [Products](https://stripe.com/docs/api#products) help you track
+        inventory or provisioning, and prices help you track payment terms.
+        Different physical goods or levels of service should be represented by
+        products, and pricing options should be represented by prices. This
+        approach lets you change prices without having to change your
+        provisioning scheme.
+
+
+        For example, you might have a single "gold" product that has prices for
+        $10/month, $100/year, and €9 once.
+
+
+        Related guides: [Set up a
+        subscription](https://stripe.com/docs/billing/subscriptions/set-up-subscription),
+        [create an invoice](https://stripe.com/docs/billing/invoices/create),
+        and more about [products and
+        prices](https://stripe.com/docs/products-prices/overview).
+      properties:
+        active:
+          description: Whether the price can be used for new purchases.
+          type: boolean
+        billing_scheme:
+          description: >-
+            Describes how to compute the price per period. Either `per_unit` or
+            `tiered`. `per_unit` indicates that the fixed amount (specified in
+            `unit_amount` or `unit_amount_decimal`) will be charged per unit in
+            `quantity` (for prices with `usage_type=licensed`), or per unit of
+            total usage (for prices with `usage_type=metered`). `tiered`
+            indicates that the unit pricing will be computed using a tiering
+            strategy as defined using the `tiers` and `tiers_mode` attributes.
+          enum:
+            - per_unit
+            - tiered
+          type: string
+        created:
+          description: >-
+            Time at which the object was created. Measured in seconds since the
+            Unix epoch.
+          format: unix-time
+          type: integer
+        currency:
+          description: >-
+            Three-letter [ISO currency
+            code](https://www.iso.org/iso-4217-currency-codes.html), in
+            lowercase. Must be a [supported
+            currency](https://stripe.com/docs/currencies).
+          type: string
+        currency_options:
+          additionalProperties:
+            $ref: '#/components/schemas/currency_option'
+          description: >-
+            Prices defined in each available currency option. Each key must be a
+            three-letter [ISO currency
+            code](https://www.iso.org/iso-4217-currency-codes.html) and a
+            [supported currency](https://stripe.com/docs/currencies).
+          type: object
+        custom_unit_amount:
+          anyOf:
+            - $ref: '#/components/schemas/custom_unit_amount'
+          description: >-
+            When set, provides configuration for the amount to be adjusted by
+            the customer during Checkout Sessions and Payment Links.
+          nullable: true
+        id:
+          description: Unique identifier for the object.
+          maxLength: 5000
+          type: string
+        livemode:
+          description: >-
+            Has the value `true` if the object exists in live mode or the value
+            `false` if the object exists in test mode.
+          type: boolean
+        lookup_key:
+          description: >-
+            A lookup key used to retrieve prices dynamically from a static
+            string. This may be up to 200 characters.
+          maxLength: 5000
+          nullable: true
+          type: string
+        metadata:
+          additionalProperties:
+            maxLength: 500
+            type: string
+          description: >-
+            Set of [key-value pairs](https://stripe.com/docs/api/metadata) that
+            you can attach to an object. This can be useful for storing
+            additional information about the object in a structured format.
+          type: object
+        nickname:
+          description: 'A brief description of the price, hidden from customers.'
+          maxLength: 5000
+          nullable: true
+          type: string
+        object:
+          description: >-
+            String representing the object's type. Objects of the same type
+            share the same value.
+          enum:
+            - price
+          type: string
+        product:
+          anyOf:
+            - maxLength: 5000
+              type: string
+            - $ref: '#/components/schemas/product'
+            - $ref: '#/components/schemas/deleted_product'
+          description: The ID of the product this price is associated with.
+          x-expansionResources:
+            oneOf:
+              - $ref: '#/components/schemas/product'
+              - $ref: '#/components/schemas/deleted_product'
+        recurring:
+          anyOf:
+            - $ref: '#/components/schemas/recurring'
+          description: >-
+            The recurring components of a price such as `interval` and
+            `usage_type`.
+          nullable: true
+        tax_behavior:
+          description: >-
+            Only required if a [default tax
+            behavior](https://stripe.com/docs/tax/products-prices-tax-categories-tax-behavior#setting-a-default-tax-behavior-(recommended))
+            was not provided in the Stripe Tax settings. Specifies whether the
+            price is considered inclusive of taxes or exclusive of taxes. One of
+            `inclusive`, `exclusive`, or `unspecified`. Once specified as either
+            `inclusive` or `exclusive`, it cannot be changed.
+          enum:
+            - exclusive
+            - inclusive
+            - unspecified
+          nullable: true
+          type: string
+        tiers:
+          description: >-
+            Each element represents a pricing tier. This parameter requires
+            `billing_scheme` to be set to `tiered`. See also the documentation
+            for `billing_scheme`.
+          items:
+            $ref: '#/components/schemas/price_tier'
+          type: array
+        tiers_mode:
+          description: >-
+            Defines if the tiering price should be `graduated` or `volume`
+            based. In `volume`-based tiering, the maximum quantity within a
+            period determines the per unit price. In `graduated` tiering,
+            pricing can change as the quantity grows.
+          enum:
+            - graduated
+            - volume
+          nullable: true
+          type: string
+        transform_quantity:
+          anyOf:
+            - $ref: '#/components/schemas/transform_quantity'
+          description: >-
+            Apply a transformation to the reported usage or set quantity before
+            computing the amount billed. Cannot be combined with `tiers`.
+          nullable: true
+        type:
+          description: >-
+            One of `one_time` or `recurring` depending on whether the price is
+            for a one-time purchase or a recurring (subscription) purchase.
+          enum:
+            - one_time
+            - recurring
+          type: string
+        unit_amount:
+          description: >-
+            The unit amount in cents (or local equivalent) to be charged,
+            represented as a whole integer if possible. Only set if
+            `billing_scheme=per_unit`.
+          nullable: true
+          type: integer
+        unit_amount_decimal:
+          description: >-
+            The unit amount in cents (or local equivalent) to be charged,
+            represented as a decimal string with at most 12 decimal places. Only
+            set if `billing_scheme=per_unit`.
+          format: decimal
+          nullable: true
+          type: string
+      required:
+        - active
+        - billing_scheme
+        - created
+        - currency
+        - id
+        - livemode
+        - metadata
+        - object
+        - product
+        - type
+      title: Price
+      type: object
+      x-expandableFields:
+        - currency_options
+        - custom_unit_amount
+        - product
+        - recurring
+        - tiers
+        - transform_quantity
+      x-resourceId: price
+    GetPricesRequest:
+      type: object
+      properties: {}
+    PriceList:
+      type: object
+      required:
+        - data
+        - has_more
+        - object
+        - url
+      properties:
+        data:
+          description: Details about each object.
+          items:
+            $ref: '#/components/schemas/price'
+          type: array
+        has_more:
+          description: >-
+            True if this list has another page of items after this one that can
+            be fetched.
+          type: boolean
+        object:
+          description: >-
+            String representing the object's type. Objects of the same type
+            share the same value. Always has the value `list`.
+          enum:
+            - list
+          type: string
+        url:
+          description: The URL where this list can be accessed.
+          maxLength: 5000
+          pattern: ^/v1/prices
+          type: string
+    PostPricesRequest:
+      type: object
+      required:
+        - currency
+      properties:
+        active:
+          description: Whether the price can be used for new purchases. Defaults to `true`.
+          type: boolean
+        billing_scheme:
+          description: >-
+            Describes how to compute the price per period. Either `per_unit` or
+            `tiered`. `per_unit` indicates that the fixed amount (specified in
+            `unit_amount` or `unit_amount_decimal`) will be charged per unit in
+            `quantity` (for prices with `usage_type=licensed`), or per unit of
+            total usage (for prices with `usage_type=metered`). `tiered`
+            indicates that the unit pricing will be computed using a tiering
+            strategy as defined using the `tiers` and `tiers_mode` attributes.
+          enum:
+            - per_unit
+            - tiered
+          type: string
+        currency:
+          description: >-
+            Three-letter [ISO currency
+            code](https://www.iso.org/iso-4217-currency-codes.html), in
+            lowercase. Must be a [supported
+            currency](https://stripe.com/docs/currencies).
+          type: string
+        currency_options:
+          additionalProperties:
+            properties:
+              custom_unit_amount:
+                properties:
+                  enabled:
+                    type: boolean
+                  maximum:
+                    type: integer
+                  minimum:
+                    type: integer
+                  preset:
+                    type: integer
+                required:
+                  - enabled
+                title: custom_unit_amount
+                type: object
+              tax_behavior:
+                enum:
+                  - exclusive
+                  - inclusive
+                  - unspecified
+                type: string
+              tiers:
+                items:
+                  properties:
+                    flat_amount:
+                      type: integer
+                    flat_amount_decimal:
+                      format: decimal
+                      type: string
+                    unit_amount:
+                      type: integer
+                    unit_amount_decimal:
+                      format: decimal
+                      type: string
+                    up_to:
+                      anyOf:
+                        - enum:
+                            - inf
+                          maxLength: 5000
+                          type: string
+                        - type: integer
+                  required:
+                    - up_to
+                  title: tier
+                  type: object
+                type: array
+              unit_amount:
+                type: integer
+              unit_amount_decimal:
+                format: decimal
+                type: string
+            title: currency_option
+            type: object
+          description: >-
+            Prices defined in each available currency option. Each key must be a
+            three-letter [ISO currency
+            code](https://www.iso.org/iso-4217-currency-codes.html) and a
+            [supported currency](https://stripe.com/docs/currencies).
+          type: object
+        custom_unit_amount:
+          description: >-
+            When set, provides configuration for the amount to be adjusted by
+            the customer during Checkout Sessions and Payment Links.
+          properties:
+            enabled:
+              type: boolean
+            maximum:
+              type: integer
+            minimum:
+              type: integer
+            preset:
+              type: integer
+          required:
+            - enabled
+          title: custom_unit_amount
+          type: object
+        expand:
+          description: Specifies which fields in the response should be expanded.
+          items:
+            maxLength: 5000
+            type: string
+          type: array
+        lookup_key:
+          description: >-
+            A lookup key used to retrieve prices dynamically from a static
+            string. This may be up to 200 characters.
+          maxLength: 200
+          type: string
+        metadata:
+          additionalProperties:
+            type: string
+          description: >-
+            Set of [key-value pairs](https://stripe.com/docs/api/metadata) that
+            you can attach to an object. This can be useful for storing
+            additional information about the object in a structured format.
+            Individual keys can be unset by posting an empty value to them. All
+            keys can be unset by posting an empty value to `metadata`.
+          type: object
+        nickname:
+          description: 'A brief description of the price, hidden from customers.'
+          maxLength: 5000
+          type: string
+        product:
+          description: The ID of the product that this price will belong to.
+          maxLength: 5000
+          type: string
+        product_data:
+          description: >-
+            These fields can be used to create a new product that this price
+            will belong to.
+          properties:
+            active:
+              type: boolean
+            id:
+              maxLength: 5000
+              type: string
+            metadata:
+              additionalProperties:
+                type: string
+              type: object
+            name:
+              maxLength: 5000
+              type: string
+            statement_descriptor:
+              maxLength: 22
+              type: string
+            tax_code:
+              maxLength: 5000
+              type: string
+            unit_label:
+              maxLength: 12
+              type: string
+          required:
+            - name
+          title: inline_product_params
+          type: object
+        recurring:
+          description: >-
+            The recurring components of a price such as `interval` and
+            `usage_type`.
+          properties:
+            aggregate_usage:
+              enum:
+                - last_during_period
+                - last_ever
+                - max
+                - sum
+              type: string
+            interval:
+              enum:
+                - day
+                - month
+                - week
+                - year
+              type: string
+            interval_count:
+              type: integer
+            usage_type:
+              enum:
+                - licensed
+                - metered
+              type: string
+          required:
+            - interval
+          title: recurring
+          type: object
+        tax_behavior:
+          description: >-
+            Only required if a [default tax
+            behavior](https://stripe.com/docs/tax/products-prices-tax-categories-tax-behavior#setting-a-default-tax-behavior-(recommended))
+            was not provided in the Stripe Tax settings. Specifies whether the
+            price is considered inclusive of taxes or exclusive of taxes. One of
+            `inclusive`, `exclusive`, or `unspecified`. Once specified as either
+            `inclusive` or `exclusive`, it cannot be changed.
+          enum:
+            - exclusive
+            - inclusive
+            - unspecified
+          type: string
+        tiers:
+          description: >-
+            Each element represents a pricing tier. This parameter requires
+            `billing_scheme` to be set to `tiered`. See also the documentation
+            for `billing_scheme`.
+          items:
+            properties:
+              flat_amount:
+                type: integer
+              flat_amount_decimal:
+                format: decimal
+                type: string
+              unit_amount:
+                type: integer
+              unit_amount_decimal:
+                format: decimal
+                type: string
+              up_to:
+                anyOf:
+                  - enum:
+                      - inf
+                    maxLength: 5000
+                    type: string
+                  - type: integer
+            required:
+              - up_to
+            title: tier
+            type: object
+          type: array
+        tiers_mode:
+          description: >-
+            Defines if the tiering price should be `graduated` or `volume`
+            based. In `volume`-based tiering, the maximum quantity within a
+            period determines the per unit price, in `graduated` tiering pricing
+            can successively change as the quantity grows.
+          enum:
+            - graduated
+            - volume
+          type: string
+        transfer_lookup_key:
+          description: >-
+            If set to true, will atomically remove the lookup key from the
+            existing price, and assign it to this price.
+          type: boolean
+        transform_quantity:
+          description: >-
+            Apply a transformation to the reported usage or set quantity before
+            computing the billed price. Cannot be combined with `tiers`.
+          properties:
+            divide_by:
+              type: integer
+            round:
+              enum:
+                - down
+                - up
+              type: string
+          required:
+            - divide_by
+            - round
+          title: transform_usage_param
+          type: object
+        unit_amount:
+          description: >-
+            A positive integer in cents (or local equivalent) (or 0 for a free
+            price) representing how much to charge. One of `unit_amount` or
+            `custom_unit_amount` is required, unless `billing_scheme=tiered`.
+          type: integer
+        unit_amount_decimal:
+          description: >-
+            Same as `unit_amount`, but accepts a decimal value in cents (or
+            local equivalent) with at most 12 decimal places. Only one of
+            `unit_amount` and `unit_amount_decimal` can be set.
+          format: decimal
+          type: string
+    GetPricesSearchRequest:
+      type: object
+      properties: {}
+    SearchResult:
+      type: object
+      required:
+        - data
+        - has_more
+        - object
+        - url
+      properties:
+        data:
+          items:
+            $ref: '#/components/schemas/price'
+          type: array
+        has_more:
+          type: boolean
+        next_page:
+          maxLength: 5000
+          nullable: true
+          type: string
+        object:
+          description: >-
+            String representing the object's type. Objects of the same type
+            share the same value.
+          enum:
+            - search_result
+          type: string
+        total_count:
+          description: >-
+            The total number of objects that match the query, only accurate up
+            to 10,000.
+          type: integer
+        url:
+          maxLength: 5000
+          type: string
+    GetPricesPriceRequest:
+      type: object
+      properties: {}
+    PostPricesPriceRequest:
+      type: object
+      properties:
+        active:
+          description: Whether the price can be used for new purchases. Defaults to `true`.
+          type: boolean
+        currency_options:
+          anyOf:
+            - additionalProperties:
+                properties:
+                  custom_unit_amount:
+                    properties:
+                      enabled:
+                        type: boolean
+                      maximum:
+                        type: integer
+                      minimum:
+                        type: integer
+                      preset:
+                        type: integer
+                    required:
+                      - enabled
+                    title: custom_unit_amount
+                    type: object
+                  tax_behavior:
+                    enum:
+                      - exclusive
+                      - inclusive
+                      - unspecified
+                    type: string
+                  tiers:
+                    items:
+                      properties:
+                        flat_amount:
+                          type: integer
+                        flat_amount_decimal:
+                          format: decimal
+                          type: string
+                        unit_amount:
+                          type: integer
+                        unit_amount_decimal:
+                          format: decimal
+                          type: string
+                        up_to:
+                          anyOf:
+                            - enum:
+                                - inf
+                              maxLength: 5000
+                              type: string
+                            - type: integer
+                      required:
+                        - up_to
+                      title: tier
+                      type: object
+                    type: array
+                  unit_amount:
+                    type: integer
+                  unit_amount_decimal:
+                    format: decimal
+                    type: string
+                title: currency_option
+                type: object
+              type: object
+            - enum:
+                - ''
+              type: string
+          description: >-
+            Prices defined in each available currency option. Each key must be a
+            three-letter [ISO currency
+            code](https://www.iso.org/iso-4217-currency-codes.html) and a
+            [supported currency](https://stripe.com/docs/currencies).
+        expand:
+          description: Specifies which fields in the response should be expanded.
+          items:
+            maxLength: 5000
+            type: string
+          type: array
+        lookup_key:
+          description: >-
+            A lookup key used to retrieve prices dynamically from a static
+            string. This may be up to 200 characters.
+          maxLength: 200
+          type: string
+        metadata:
+          anyOf:
+            - additionalProperties:
+                type: string
+              type: object
+            - enum:
+                - ''
+              type: string
+          description: >-
+            Set of [key-value pairs](https://stripe.com/docs/api/metadata) that
+            you can attach to an object. This can be useful for storing
+            additional information about the object in a structured format.
+            Individual keys can be unset by posting an empty value to them. All
+            keys can be unset by posting an empty value to `metadata`.
+        nickname:
+          description: 'A brief description of the price, hidden from customers.'
+          maxLength: 5000
+          type: string
+        tax_behavior:
+          description: >-
+            Only required if a [default tax
+            behavior](https://stripe.com/docs/tax/products-prices-tax-categories-tax-behavior#setting-a-default-tax-behavior-(recommended))
+            was not provided in the Stripe Tax settings. Specifies whether the
+            price is considered inclusive of taxes or exclusive of taxes. One of
+            `inclusive`, `exclusive`, or `unspecified`. Once specified as either
+            `inclusive` or `exclusive`, it cannot be changed.
+          enum:
+            - exclusive
+            - inclusive
+            - unspecified
+          type: string
+        transfer_lookup_key:
+          description: >-
+            If set to true, will atomically remove the lookup key from the
+            existing price, and assign it to this price.
+          type: boolean
+  securitySchemes:
+    basicAuth:
+      description: >-
+        Basic HTTP authentication. Allowed headers-- Authorization: Basic
+        <api_key> | Authorization: Basic <base64 hash of `api_key:`>
+      scheme: basic
+      type: http
+    bearerAuth:
+      bearerFormat: auth-scheme
+      description: >-
+        Bearer HTTP authentication. Allowed headers-- Authorization: Bearer
+        <api_key>
+      scheme: bearer
+      type: http
+---

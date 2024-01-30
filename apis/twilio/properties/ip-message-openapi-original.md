@@ -1,0 +1,4150 @@
+---
+components:
+  schemas:
+    ip_messaging.v2.service.binding:
+      type: object
+      properties:
+        sid:
+          type: string
+          minLength: 34
+          maxLength: 34
+          pattern: '^BS[0-9a-fA-F]{32}$'
+          nullable: true
+        account_sid:
+          type: string
+          minLength: 34
+          maxLength: 34
+          pattern: '^AC[0-9a-fA-F]{32}$'
+          nullable: true
+        service_sid:
+          type: string
+          minLength: 34
+          maxLength: 34
+          pattern: '^IS[0-9a-fA-F]{32}$'
+          nullable: true
+        date_created:
+          type: string
+          format: date-time
+          nullable: true
+        date_updated:
+          type: string
+          format: date-time
+          nullable: true
+        endpoint:
+          type: string
+          nullable: true
+        identity:
+          type: string
+          nullable: true
+        credential_sid:
+          type: string
+          minLength: 34
+          maxLength: 34
+          pattern: '^CR[0-9a-fA-F]{32}$'
+          nullable: true
+        binding_type:
+          type: string
+          $ref: '#/components/schemas/binding_enum_binding_type'
+          nullable: true
+        message_types:
+          type: array
+          items:
+            type: string
+          nullable: true
+        url:
+          type: string
+          format: uri
+          nullable: true
+        links:
+          type: object
+          format: uri-map
+          nullable: true
+    binding_enum_binding_type:
+      type: string
+      enum:
+        - gcm
+        - apn
+        - fcm
+    ip_messaging.v2.service.channel:
+      type: object
+      properties:
+        sid:
+          type: string
+          minLength: 34
+          maxLength: 34
+          pattern: '^CH[0-9a-fA-F]{32}$'
+          nullable: true
+        account_sid:
+          type: string
+          minLength: 34
+          maxLength: 34
+          pattern: '^AC[0-9a-fA-F]{32}$'
+          nullable: true
+        service_sid:
+          type: string
+          minLength: 34
+          maxLength: 34
+          pattern: '^IS[0-9a-fA-F]{32}$'
+          nullable: true
+        friendly_name:
+          type: string
+          nullable: true
+        unique_name:
+          type: string
+          nullable: true
+        attributes:
+          type: string
+          nullable: true
+        type:
+          type: string
+          $ref: '#/components/schemas/channel_enum_channel_type'
+          nullable: true
+        date_created:
+          type: string
+          format: date-time
+          nullable: true
+        date_updated:
+          type: string
+          format: date-time
+          nullable: true
+        created_by:
+          type: string
+          nullable: true
+        members_count:
+          type: integer
+          nullable: true
+        messages_count:
+          type: integer
+          nullable: true
+        url:
+          type: string
+          format: uri
+          nullable: true
+        links:
+          type: object
+          format: uri-map
+          nullable: true
+    channel_enum_channel_type:
+      type: string
+      enum:
+        - public
+        - private
+    channel_enum_webhook_enabled_type:
+      type: string
+      enum:
+        - 'true'
+        - 'false'
+    ip_messaging.v2.service.channel.channel_webhook:
+      type: object
+      properties:
+        sid:
+          type: string
+          minLength: 34
+          maxLength: 34
+          pattern: '^WH[0-9a-fA-F]{32}$'
+          nullable: true
+        account_sid:
+          type: string
+          minLength: 34
+          maxLength: 34
+          pattern: '^AC[0-9a-fA-F]{32}$'
+          nullable: true
+        service_sid:
+          type: string
+          minLength: 34
+          maxLength: 34
+          pattern: '^IS[0-9a-fA-F]{32}$'
+          nullable: true
+        channel_sid:
+          type: string
+          minLength: 34
+          maxLength: 34
+          pattern: '^CH[0-9a-fA-F]{32}$'
+          nullable: true
+        type:
+          type: string
+          nullable: true
+        url:
+          type: string
+          format: uri
+          nullable: true
+        configuration:
+          nullable: true
+        date_created:
+          type: string
+          format: date-time
+          nullable: true
+        date_updated:
+          type: string
+          format: date-time
+          nullable: true
+    channel_webhook_enum_type:
+      type: string
+      enum:
+        - webhook
+        - trigger
+        - studio
+    channel_webhook_enum_method:
+      type: string
+      enum:
+        - GET
+        - POST
+    ip_messaging.v2.credential:
+      type: object
+      properties:
+        sid:
+          type: string
+          minLength: 34
+          maxLength: 34
+          pattern: '^CR[0-9a-fA-F]{32}$'
+          nullable: true
+        account_sid:
+          type: string
+          minLength: 34
+          maxLength: 34
+          pattern: '^AC[0-9a-fA-F]{32}$'
+          nullable: true
+        friendly_name:
+          type: string
+          nullable: true
+        type:
+          type: string
+          $ref: '#/components/schemas/credential_enum_push_service'
+          nullable: true
+        sandbox:
+          type: string
+          nullable: true
+        date_created:
+          type: string
+          format: date-time
+          nullable: true
+        date_updated:
+          type: string
+          format: date-time
+          nullable: true
+        url:
+          type: string
+          format: uri
+          nullable: true
+    credential_enum_push_service:
+      type: string
+      enum:
+        - gcm
+        - apn
+        - fcm
+    ip_messaging.v2.service.channel.invite:
+      type: object
+      properties:
+        sid:
+          type: string
+          minLength: 34
+          maxLength: 34
+          pattern: '^IN[0-9a-fA-F]{32}$'
+          nullable: true
+        account_sid:
+          type: string
+          minLength: 34
+          maxLength: 34
+          pattern: '^AC[0-9a-fA-F]{32}$'
+          nullable: true
+        channel_sid:
+          type: string
+          minLength: 34
+          maxLength: 34
+          pattern: '^CH[0-9a-fA-F]{32}$'
+          nullable: true
+        service_sid:
+          type: string
+          minLength: 34
+          maxLength: 34
+          pattern: '^IS[0-9a-fA-F]{32}$'
+          nullable: true
+        identity:
+          type: string
+          nullable: true
+        date_created:
+          type: string
+          format: date-time
+          nullable: true
+        date_updated:
+          type: string
+          format: date-time
+          nullable: true
+        role_sid:
+          type: string
+          minLength: 34
+          maxLength: 34
+          pattern: '^RL[0-9a-fA-F]{32}$'
+          nullable: true
+        created_by:
+          type: string
+          nullable: true
+        url:
+          type: string
+          format: uri
+          nullable: true
+    ip_messaging.v2.service.channel.member:
+      type: object
+      properties:
+        sid:
+          type: string
+          minLength: 34
+          maxLength: 34
+          pattern: '^MB[0-9a-fA-F]{32}$'
+          nullable: true
+        account_sid:
+          type: string
+          minLength: 34
+          maxLength: 34
+          pattern: '^AC[0-9a-fA-F]{32}$'
+          nullable: true
+        channel_sid:
+          type: string
+          minLength: 34
+          maxLength: 34
+          pattern: '^CH[0-9a-fA-F]{32}$'
+          nullable: true
+        service_sid:
+          type: string
+          minLength: 34
+          maxLength: 34
+          pattern: '^IS[0-9a-fA-F]{32}$'
+          nullable: true
+        identity:
+          type: string
+          nullable: true
+        date_created:
+          type: string
+          format: date-time
+          nullable: true
+        date_updated:
+          type: string
+          format: date-time
+          nullable: true
+        role_sid:
+          type: string
+          minLength: 34
+          maxLength: 34
+          pattern: '^RL[0-9a-fA-F]{32}$'
+          nullable: true
+        last_consumed_message_index:
+          type: integer
+          nullable: true
+        last_consumption_timestamp:
+          type: string
+          format: date-time
+          nullable: true
+        url:
+          type: string
+          format: uri
+          nullable: true
+        attributes:
+          type: string
+          nullable: true
+    member_enum_webhook_enabled_type:
+      type: string
+      enum:
+        - 'true'
+        - 'false'
+    ip_messaging.v2.service.channel.message:
+      type: object
+      properties:
+        sid:
+          type: string
+          minLength: 34
+          maxLength: 34
+          pattern: '^IM[0-9a-fA-F]{32}$'
+          nullable: true
+        account_sid:
+          type: string
+          minLength: 34
+          maxLength: 34
+          pattern: '^AC[0-9a-fA-F]{32}$'
+          nullable: true
+        attributes:
+          type: string
+          nullable: true
+        service_sid:
+          type: string
+          minLength: 34
+          maxLength: 34
+          pattern: '^IS[0-9a-fA-F]{32}$'
+          nullable: true
+        to:
+          type: string
+          minLength: 34
+          maxLength: 34
+          pattern: '^CH[0-9a-fA-F]{32}$'
+          nullable: true
+        channel_sid:
+          type: string
+          minLength: 34
+          maxLength: 34
+          pattern: '^CH[0-9a-fA-F]{32}$'
+          nullable: true
+        date_created:
+          type: string
+          format: date-time
+          nullable: true
+        date_updated:
+          type: string
+          format: date-time
+          nullable: true
+        last_updated_by:
+          type: string
+          nullable: true
+        was_edited:
+          type: boolean
+          nullable: true
+        from:
+          type: string
+          nullable: true
+        body:
+          type: string
+          nullable: true
+        index:
+          type: integer
+          nullable: true
+        type:
+          type: string
+          nullable: true
+        media:
+          nullable: true
+        url:
+          type: string
+          format: uri
+          nullable: true
+    message_enum_order_type:
+      type: string
+      enum:
+        - asc
+        - desc
+    message_enum_webhook_enabled_type:
+      type: string
+      enum:
+        - 'true'
+        - 'false'
+    ip_messaging.v2.service.role:
+      type: object
+      properties:
+        sid:
+          type: string
+          minLength: 34
+          maxLength: 34
+          pattern: '^RL[0-9a-fA-F]{32}$'
+          nullable: true
+        account_sid:
+          type: string
+          minLength: 34
+          maxLength: 34
+          pattern: '^AC[0-9a-fA-F]{32}$'
+          nullable: true
+        service_sid:
+          type: string
+          minLength: 34
+          maxLength: 34
+          pattern: '^IS[0-9a-fA-F]{32}$'
+          nullable: true
+        friendly_name:
+          type: string
+          nullable: true
+        type:
+          type: string
+          $ref: '#/components/schemas/role_enum_role_type'
+          nullable: true
+        permissions:
+          type: array
+          items:
+            type: string
+          nullable: true
+        date_created:
+          type: string
+          format: date-time
+          nullable: true
+        date_updated:
+          type: string
+          format: date-time
+          nullable: true
+        url:
+          type: string
+          format: uri
+          nullable: true
+    role_enum_role_type:
+      type: string
+      enum:
+        - channel
+        - deployment
+    ip_messaging.v2.service:
+      type: object
+      properties:
+        sid:
+          type: string
+          minLength: 34
+          maxLength: 34
+          pattern: '^IS[0-9a-fA-F]{32}$'
+          nullable: true
+        account_sid:
+          type: string
+          minLength: 34
+          maxLength: 34
+          pattern: '^AC[0-9a-fA-F]{32}$'
+          nullable: true
+        friendly_name:
+          type: string
+          nullable: true
+        date_created:
+          type: string
+          format: date-time
+          nullable: true
+        date_updated:
+          type: string
+          format: date-time
+          nullable: true
+        default_service_role_sid:
+          type: string
+          minLength: 34
+          maxLength: 34
+          pattern: '^RL[0-9a-fA-F]{32}$'
+          nullable: true
+        default_channel_role_sid:
+          type: string
+          minLength: 34
+          maxLength: 34
+          pattern: '^RL[0-9a-fA-F]{32}$'
+          nullable: true
+        default_channel_creator_role_sid:
+          type: string
+          minLength: 34
+          maxLength: 34
+          pattern: '^RL[0-9a-fA-F]{32}$'
+          nullable: true
+        read_status_enabled:
+          type: boolean
+          nullable: true
+        reachability_enabled:
+          type: boolean
+          nullable: true
+        typing_indicator_timeout:
+          type: integer
+          nullable: true
+        consumption_report_interval:
+          type: integer
+          nullable: true
+        limits:
+          nullable: true
+        pre_webhook_url:
+          type: string
+          nullable: true
+        post_webhook_url:
+          type: string
+          nullable: true
+        webhook_method:
+          type: string
+          nullable: true
+        webhook_filters:
+          type: array
+          items:
+            type: string
+          nullable: true
+        pre_webhook_retry_count:
+          type: integer
+          nullable: true
+        post_webhook_retry_count:
+          type: integer
+          nullable: true
+        notifications:
+          nullable: true
+        media:
+          nullable: true
+        url:
+          type: string
+          format: uri
+          nullable: true
+        links:
+          type: object
+          format: uri-map
+          nullable: true
+    ip_messaging.v2.service.user:
+      type: object
+      properties:
+        sid:
+          type: string
+          minLength: 34
+          maxLength: 34
+          pattern: '^US[0-9a-fA-F]{32}$'
+          nullable: true
+        account_sid:
+          type: string
+          minLength: 34
+          maxLength: 34
+          pattern: '^AC[0-9a-fA-F]{32}$'
+          nullable: true
+        service_sid:
+          type: string
+          minLength: 34
+          maxLength: 34
+          pattern: '^IS[0-9a-fA-F]{32}$'
+          nullable: true
+        attributes:
+          type: string
+          nullable: true
+        friendly_name:
+          type: string
+          nullable: true
+        role_sid:
+          type: string
+          minLength: 34
+          maxLength: 34
+          pattern: '^RL[0-9a-fA-F]{32}$'
+          nullable: true
+        identity:
+          type: string
+          nullable: true
+        is_online:
+          type: boolean
+          nullable: true
+        is_notifiable:
+          type: boolean
+          nullable: true
+        date_created:
+          type: string
+          format: date-time
+          nullable: true
+        date_updated:
+          type: string
+          format: date-time
+          nullable: true
+        joined_channels_count:
+          type: integer
+          nullable: true
+        links:
+          type: object
+          format: uri-map
+          nullable: true
+        url:
+          type: string
+          format: uri
+          nullable: true
+    user_enum_webhook_enabled_type:
+      type: string
+      enum:
+        - 'true'
+        - 'false'
+    ip_messaging.v2.service.user.user_binding:
+      type: object
+      properties:
+        sid:
+          type: string
+          minLength: 34
+          maxLength: 34
+          pattern: '^BS[0-9a-fA-F]{32}$'
+          nullable: true
+        account_sid:
+          type: string
+          minLength: 34
+          maxLength: 34
+          pattern: '^AC[0-9a-fA-F]{32}$'
+          nullable: true
+        service_sid:
+          type: string
+          minLength: 34
+          maxLength: 34
+          pattern: '^IS[0-9a-fA-F]{32}$'
+          nullable: true
+        date_created:
+          type: string
+          format: date-time
+          nullable: true
+        date_updated:
+          type: string
+          format: date-time
+          nullable: true
+        endpoint:
+          type: string
+          nullable: true
+        identity:
+          type: string
+          nullable: true
+        user_sid:
+          type: string
+          minLength: 34
+          maxLength: 34
+          pattern: '^US[0-9a-fA-F]{32}$'
+          nullable: true
+        credential_sid:
+          type: string
+          minLength: 34
+          maxLength: 34
+          pattern: '^CR[0-9a-fA-F]{32}$'
+          nullable: true
+        binding_type:
+          type: string
+          $ref: '#/components/schemas/user_binding_enum_binding_type'
+          nullable: true
+        message_types:
+          type: array
+          items:
+            type: string
+          nullable: true
+        url:
+          type: string
+          format: uri
+          nullable: true
+    user_binding_enum_binding_type:
+      type: string
+      enum:
+        - gcm
+        - apn
+        - fcm
+    ip_messaging.v2.service.user.user_channel:
+      type: object
+      properties:
+        account_sid:
+          type: string
+          minLength: 34
+          maxLength: 34
+          pattern: '^AC[0-9a-fA-F]{32}$'
+          nullable: true
+        service_sid:
+          type: string
+          minLength: 34
+          maxLength: 34
+          pattern: '^IS[0-9a-fA-F]{32}$'
+          nullable: true
+        channel_sid:
+          type: string
+          minLength: 34
+          maxLength: 34
+          pattern: '^CH[0-9a-fA-F]{32}$'
+          nullable: true
+        user_sid:
+          type: string
+          minLength: 34
+          maxLength: 34
+          pattern: '^US[0-9a-fA-F]{32}$'
+          nullable: true
+        member_sid:
+          type: string
+          minLength: 34
+          maxLength: 34
+          pattern: '^MB[0-9a-fA-F]{32}$'
+          nullable: true
+        status:
+          type: string
+          $ref: '#/components/schemas/user_channel_enum_channel_status'
+          nullable: true
+        last_consumed_message_index:
+          type: integer
+          nullable: true
+        unread_messages_count:
+          type: integer
+          nullable: true
+        links:
+          type: object
+          format: uri-map
+          nullable: true
+        url:
+          type: string
+          format: uri
+          nullable: true
+        notification_level:
+          type: string
+          $ref: '#/components/schemas/user_channel_enum_notification_level'
+          nullable: true
+    user_channel_enum_channel_status:
+      type: string
+      enum:
+        - joined
+        - invited
+        - not_participating
+    user_channel_enum_notification_level:
+      type: string
+      enum:
+        - default
+        - muted
+    ListBindingResponse:
+      type: object
+      properties:
+        bindings:
+          type: array
+          items:
+            $ref: '#/components/schemas/ip_messaging.v2.service.binding'
+        meta:
+          type: object
+          properties:
+            first_page_url:
+              type: string
+              format: uri
+            next_page_url:
+              type: string
+              format: uri
+              nullable: true
+            page:
+              type: integer
+            page_size:
+              type: integer
+            previous_page_url:
+              type: string
+              format: uri
+              nullable: true
+            url:
+              type: string
+              format: uri
+            key:
+              type: string
+    UpdateChannelRequest:
+      type: object
+      properties:
+        FriendlyName:
+          type: string
+          description: ''
+        UniqueName:
+          type: string
+          description: ''
+        Attributes:
+          type: string
+          description: ''
+        DateCreated:
+          type: string
+          format: date-time
+          description: ''
+        DateUpdated:
+          type: string
+          format: date-time
+          description: ''
+        CreatedBy:
+          type: string
+          description: ''
+    CreateChannelRequest:
+      type: object
+      properties:
+        FriendlyName:
+          type: string
+          description: ''
+        UniqueName:
+          type: string
+          description: ''
+        Attributes:
+          type: string
+          description: ''
+        Type:
+          type: string
+          $ref: '#/components/schemas/channel_enum_channel_type'
+          description: ''
+        DateCreated:
+          type: string
+          format: date-time
+          description: ''
+        DateUpdated:
+          type: string
+          format: date-time
+          description: ''
+        CreatedBy:
+          type: string
+          description: ''
+    ListChannelResponse:
+      type: object
+      properties:
+        channels:
+          type: array
+          items:
+            $ref: '#/components/schemas/ip_messaging.v2.service.channel'
+        meta:
+          type: object
+          properties:
+            first_page_url:
+              type: string
+              format: uri
+            next_page_url:
+              type: string
+              format: uri
+              nullable: true
+            page:
+              type: integer
+            page_size:
+              type: integer
+            previous_page_url:
+              type: string
+              format: uri
+              nullable: true
+            url:
+              type: string
+              format: uri
+            key:
+              type: string
+    ListChannelWebhookResponse:
+      type: object
+      properties:
+        webhooks:
+          type: array
+          items:
+            $ref: >-
+              #/components/schemas/ip_messaging.v2.service.channel.channel_webhook
+        meta:
+          type: object
+          properties:
+            first_page_url:
+              type: string
+              format: uri
+            next_page_url:
+              type: string
+              format: uri
+              nullable: true
+            page:
+              type: integer
+            page_size:
+              type: integer
+            previous_page_url:
+              type: string
+              format: uri
+              nullable: true
+            url:
+              type: string
+              format: uri
+            key:
+              type: string
+    CreateChannelWebhookRequest:
+      type: object
+      required:
+        - Type
+      properties:
+        Type:
+          type: string
+          $ref: '#/components/schemas/channel_webhook_enum_type'
+          description: ''
+        Configuration.Url:
+          type: string
+          description: ''
+        Configuration.Method:
+          type: string
+          $ref: '#/components/schemas/channel_webhook_enum_method'
+          description: ''
+        Configuration.Filters:
+          type: array
+          items:
+            type: string
+          description: ''
+        Configuration.Triggers:
+          type: array
+          items:
+            type: string
+          description: ''
+        Configuration.FlowSid:
+          type: string
+          minLength: 34
+          maxLength: 34
+          pattern: '^FW[0-9a-fA-F]{32}$'
+          description: ''
+        Configuration.RetryCount:
+          type: integer
+          description: ''
+    UpdateChannelWebhookRequest:
+      type: object
+      properties:
+        Configuration.Url:
+          type: string
+          description: ''
+        Configuration.Method:
+          type: string
+          $ref: '#/components/schemas/channel_webhook_enum_method'
+          description: ''
+        Configuration.Filters:
+          type: array
+          items:
+            type: string
+          description: ''
+        Configuration.Triggers:
+          type: array
+          items:
+            type: string
+          description: ''
+        Configuration.FlowSid:
+          type: string
+          minLength: 34
+          maxLength: 34
+          pattern: '^FW[0-9a-fA-F]{32}$'
+          description: ''
+        Configuration.RetryCount:
+          type: integer
+          description: ''
+    ListCredentialResponse:
+      type: object
+      properties:
+        credentials:
+          type: array
+          items:
+            $ref: '#/components/schemas/ip_messaging.v2.credential'
+        meta:
+          type: object
+          properties:
+            first_page_url:
+              type: string
+              format: uri
+            next_page_url:
+              type: string
+              format: uri
+              nullable: true
+            page:
+              type: integer
+            page_size:
+              type: integer
+            previous_page_url:
+              type: string
+              format: uri
+              nullable: true
+            url:
+              type: string
+              format: uri
+            key:
+              type: string
+    CreateCredentialRequest:
+      type: object
+      required:
+        - Type
+      properties:
+        Type:
+          type: string
+          $ref: '#/components/schemas/credential_enum_push_service'
+          description: ''
+        FriendlyName:
+          type: string
+          description: ''
+        Certificate:
+          type: string
+          description: ''
+        PrivateKey:
+          type: string
+          description: ''
+        Sandbox:
+          type: boolean
+          description: ''
+        ApiKey:
+          type: string
+          description: ''
+        Secret:
+          type: string
+          description: ''
+    UpdateCredentialRequest:
+      type: object
+      properties:
+        FriendlyName:
+          type: string
+          description: ''
+        Certificate:
+          type: string
+          description: ''
+        PrivateKey:
+          type: string
+          description: ''
+        Sandbox:
+          type: boolean
+          description: ''
+        ApiKey:
+          type: string
+          description: ''
+        Secret:
+          type: string
+          description: ''
+    CreateInviteRequest:
+      type: object
+      required:
+        - Identity
+      properties:
+        Identity:
+          type: string
+          description: ''
+        RoleSid:
+          type: string
+          minLength: 34
+          maxLength: 34
+          pattern: '^RL[0-9a-fA-F]{32}$'
+          description: ''
+    ListInviteResponse:
+      type: object
+      properties:
+        invites:
+          type: array
+          items:
+            $ref: '#/components/schemas/ip_messaging.v2.service.channel.invite'
+        meta:
+          type: object
+          properties:
+            first_page_url:
+              type: string
+              format: uri
+            next_page_url:
+              type: string
+              format: uri
+              nullable: true
+            page:
+              type: integer
+            page_size:
+              type: integer
+            previous_page_url:
+              type: string
+              format: uri
+              nullable: true
+            url:
+              type: string
+              format: uri
+            key:
+              type: string
+    UpdateMemberRequest:
+      type: object
+      properties:
+        RoleSid:
+          type: string
+          minLength: 34
+          maxLength: 34
+          pattern: '^RL[0-9a-fA-F]{32}$'
+          description: ''
+        LastConsumedMessageIndex:
+          type: integer
+          nullable: true
+          description: ''
+        LastConsumptionTimestamp:
+          type: string
+          format: date-time
+          description: ''
+        DateCreated:
+          type: string
+          format: date-time
+          description: ''
+        DateUpdated:
+          type: string
+          format: date-time
+          description: ''
+        Attributes:
+          type: string
+          description: ''
+    CreateMemberRequest:
+      type: object
+      required:
+        - Identity
+      properties:
+        Identity:
+          type: string
+          description: ''
+        RoleSid:
+          type: string
+          minLength: 34
+          maxLength: 34
+          pattern: '^RL[0-9a-fA-F]{32}$'
+          description: ''
+        LastConsumedMessageIndex:
+          type: integer
+          nullable: true
+          description: ''
+        LastConsumptionTimestamp:
+          type: string
+          format: date-time
+          description: ''
+        DateCreated:
+          type: string
+          format: date-time
+          description: ''
+        DateUpdated:
+          type: string
+          format: date-time
+          description: ''
+        Attributes:
+          type: string
+          description: ''
+    ListMemberResponse:
+      type: object
+      properties:
+        members:
+          type: array
+          items:
+            $ref: '#/components/schemas/ip_messaging.v2.service.channel.member'
+        meta:
+          type: object
+          properties:
+            first_page_url:
+              type: string
+              format: uri
+            next_page_url:
+              type: string
+              format: uri
+              nullable: true
+            page:
+              type: integer
+            page_size:
+              type: integer
+            previous_page_url:
+              type: string
+              format: uri
+              nullable: true
+            url:
+              type: string
+              format: uri
+            key:
+              type: string
+    UpdateMessageRequest:
+      type: object
+      properties:
+        Body:
+          type: string
+          description: ''
+        Attributes:
+          type: string
+          description: ''
+        DateCreated:
+          type: string
+          format: date-time
+          description: ''
+        DateUpdated:
+          type: string
+          format: date-time
+          description: ''
+        LastUpdatedBy:
+          type: string
+          description: ''
+        From:
+          type: string
+          description: ''
+    CreateMessageRequest:
+      type: object
+      properties:
+        From:
+          type: string
+          description: ''
+        Attributes:
+          type: string
+          description: ''
+        DateCreated:
+          type: string
+          format: date-time
+          description: ''
+        DateUpdated:
+          type: string
+          format: date-time
+          description: ''
+        LastUpdatedBy:
+          type: string
+          description: ''
+        Body:
+          type: string
+          description: ''
+        MediaSid:
+          type: string
+          minLength: 34
+          maxLength: 34
+          pattern: '^ME[0-9a-fA-F]{32}$'
+          description: ''
+    ListMessageResponse:
+      type: object
+      properties:
+        messages:
+          type: array
+          items:
+            $ref: '#/components/schemas/ip_messaging.v2.service.channel.message'
+        meta:
+          type: object
+          properties:
+            first_page_url:
+              type: string
+              format: uri
+            next_page_url:
+              type: string
+              format: uri
+              nullable: true
+            page:
+              type: integer
+            page_size:
+              type: integer
+            previous_page_url:
+              type: string
+              format: uri
+              nullable: true
+            url:
+              type: string
+              format: uri
+            key:
+              type: string
+    UpdateRoleRequest:
+      type: object
+      required:
+        - Permission
+      properties:
+        Permission:
+          type: array
+          items:
+            type: string
+          description: ''
+    CreateRoleRequest:
+      type: object
+      required:
+        - FriendlyName
+        - Type
+        - Permission
+      properties:
+        FriendlyName:
+          type: string
+          description: ''
+        Type:
+          type: string
+          $ref: '#/components/schemas/role_enum_role_type'
+          description: ''
+        Permission:
+          type: array
+          items:
+            type: string
+          description: ''
+    ListRoleResponse:
+      type: object
+      properties:
+        roles:
+          type: array
+          items:
+            $ref: '#/components/schemas/ip_messaging.v2.service.role'
+        meta:
+          type: object
+          properties:
+            first_page_url:
+              type: string
+              format: uri
+            next_page_url:
+              type: string
+              format: uri
+              nullable: true
+            page:
+              type: integer
+            page_size:
+              type: integer
+            previous_page_url:
+              type: string
+              format: uri
+              nullable: true
+            url:
+              type: string
+              format: uri
+            key:
+              type: string
+    UpdateServiceRequest:
+      type: object
+      properties:
+        FriendlyName:
+          type: string
+          description: ''
+        DefaultServiceRoleSid:
+          type: string
+          minLength: 34
+          maxLength: 34
+          pattern: '^RL[0-9a-fA-F]{32}$'
+          description: ''
+        DefaultChannelRoleSid:
+          type: string
+          minLength: 34
+          maxLength: 34
+          pattern: '^RL[0-9a-fA-F]{32}$'
+          description: ''
+        DefaultChannelCreatorRoleSid:
+          type: string
+          minLength: 34
+          maxLength: 34
+          pattern: '^RL[0-9a-fA-F]{32}$'
+          description: ''
+        ReadStatusEnabled:
+          type: boolean
+          description: ''
+        ReachabilityEnabled:
+          type: boolean
+          description: ''
+        TypingIndicatorTimeout:
+          type: integer
+          description: ''
+        ConsumptionReportInterval:
+          type: integer
+          description: ''
+        Notifications.NewMessage.Enabled:
+          type: boolean
+          description: ''
+        Notifications.NewMessage.Template:
+          type: string
+          description: ''
+        Notifications.NewMessage.Sound:
+          type: string
+          description: ''
+        Notifications.NewMessage.BadgeCountEnabled:
+          type: boolean
+          description: ''
+        Notifications.AddedToChannel.Enabled:
+          type: boolean
+          description: ''
+        Notifications.AddedToChannel.Template:
+          type: string
+          description: ''
+        Notifications.AddedToChannel.Sound:
+          type: string
+          description: ''
+        Notifications.RemovedFromChannel.Enabled:
+          type: boolean
+          description: ''
+        Notifications.RemovedFromChannel.Template:
+          type: string
+          description: ''
+        Notifications.RemovedFromChannel.Sound:
+          type: string
+          description: ''
+        Notifications.InvitedToChannel.Enabled:
+          type: boolean
+          description: ''
+        Notifications.InvitedToChannel.Template:
+          type: string
+          description: ''
+        Notifications.InvitedToChannel.Sound:
+          type: string
+          description: ''
+        PreWebhookUrl:
+          type: string
+          format: uri
+          description: ''
+        PostWebhookUrl:
+          type: string
+          format: uri
+          description: ''
+        WebhookMethod:
+          type: string
+          format: http-method
+          enum:
+            - HEAD
+            - GET
+            - POST
+            - PATCH
+            - PUT
+            - DELETE
+          description: ''
+        WebhookFilters:
+          type: array
+          items:
+            type: string
+          description: ''
+        Limits.ChannelMembers:
+          type: integer
+          description: ''
+        Limits.UserChannels:
+          type: integer
+          description: ''
+        Media.CompatibilityMessage:
+          type: string
+          description: ''
+        PreWebhookRetryCount:
+          type: integer
+          description: ''
+        PostWebhookRetryCount:
+          type: integer
+          description: ''
+        Notifications.LogEnabled:
+          type: boolean
+          description: ''
+    CreateServiceRequest:
+      type: object
+      required:
+        - FriendlyName
+      properties:
+        FriendlyName:
+          type: string
+          description: ''
+    ListServiceResponse:
+      type: object
+      properties:
+        services:
+          type: array
+          items:
+            $ref: '#/components/schemas/ip_messaging.v2.service'
+        meta:
+          type: object
+          properties:
+            first_page_url:
+              type: string
+              format: uri
+            next_page_url:
+              type: string
+              format: uri
+              nullable: true
+            page:
+              type: integer
+            page_size:
+              type: integer
+            previous_page_url:
+              type: string
+              format: uri
+              nullable: true
+            url:
+              type: string
+              format: uri
+            key:
+              type: string
+    UpdateUserRequest:
+      type: object
+      properties:
+        RoleSid:
+          type: string
+          minLength: 34
+          maxLength: 34
+          pattern: '^RL[0-9a-fA-F]{32}$'
+          description: ''
+        Attributes:
+          type: string
+          description: ''
+        FriendlyName:
+          type: string
+          description: ''
+    CreateUserRequest:
+      type: object
+      required:
+        - Identity
+      properties:
+        Identity:
+          type: string
+          description: ''
+        RoleSid:
+          type: string
+          minLength: 34
+          maxLength: 34
+          pattern: '^RL[0-9a-fA-F]{32}$'
+          description: ''
+        Attributes:
+          type: string
+          description: ''
+        FriendlyName:
+          type: string
+          description: ''
+    ListUserResponse:
+      type: object
+      properties:
+        users:
+          type: array
+          items:
+            $ref: '#/components/schemas/ip_messaging.v2.service.user'
+        meta:
+          type: object
+          properties:
+            first_page_url:
+              type: string
+              format: uri
+            next_page_url:
+              type: string
+              format: uri
+              nullable: true
+            page:
+              type: integer
+            page_size:
+              type: integer
+            previous_page_url:
+              type: string
+              format: uri
+              nullable: true
+            url:
+              type: string
+              format: uri
+            key:
+              type: string
+    ListUserBindingResponse:
+      type: object
+      properties:
+        bindings:
+          type: array
+          items:
+            $ref: '#/components/schemas/ip_messaging.v2.service.user.user_binding'
+        meta:
+          type: object
+          properties:
+            first_page_url:
+              type: string
+              format: uri
+            next_page_url:
+              type: string
+              format: uri
+              nullable: true
+            page:
+              type: integer
+            page_size:
+              type: integer
+            previous_page_url:
+              type: string
+              format: uri
+              nullable: true
+            url:
+              type: string
+              format: uri
+            key:
+              type: string
+    ListUserChannelResponse:
+      type: object
+      properties:
+        channels:
+          type: array
+          items:
+            $ref: '#/components/schemas/ip_messaging.v2.service.user.user_channel'
+        meta:
+          type: object
+          properties:
+            first_page_url:
+              type: string
+              format: uri
+            next_page_url:
+              type: string
+              format: uri
+              nullable: true
+            page:
+              type: integer
+            page_size:
+              type: integer
+            previous_page_url:
+              type: string
+              format: uri
+              nullable: true
+            url:
+              type: string
+              format: uri
+            key:
+              type: string
+    UpdateUserChannelRequest:
+      type: object
+      properties:
+        NotificationLevel:
+          type: string
+          $ref: '#/components/schemas/user_channel_enum_notification_level'
+          description: ''
+        LastConsumedMessageIndex:
+          type: integer
+          nullable: true
+          description: ''
+        LastConsumptionTimestamp:
+          type: string
+          format: date-time
+          description: ''
+  securitySchemes:
+    accountSid_authToken:
+      type: http
+      scheme: basic
+info:
+  title: Twilio - Ip_messaging
+  description: This is the public Twilio REST API.
+  termsOfService: 'https://www.twilio.com/legal/tos'
+  contact:
+    name: Twilio Support
+    url: 'https://support.twilio.com'
+    email: support@twilio.com
+  license:
+    name: Apache 2.0
+    url: 'https://www.apache.org/licenses/LICENSE-2.0.html'
+  version: 1.52.0
+openapi: 3.0.1
+paths:
+  '/v2/Services/{ServiceSid}/Bindings':
+    servers:
+      - url: 'https://ip-messaging.twilio.com'
+    description: 'TODO: Resource-level docs'
+    x-twilio:
+      defaultOutputProperties:
+        - sid
+        - endpoint
+        - identity
+      pathType: list
+      parent: '/Services/{Sid}'
+    get:
+      description: ''
+      tags:
+        - IpMessagingV2Binding
+      parameters:
+        - name: ServiceSid
+          in: path
+          description: ''
+          schema:
+            type: string
+            minLength: 34
+            maxLength: 34
+            pattern: '^IS[0-9a-fA-F]{32}$'
+          required: true
+        - name: BindingType
+          in: query
+          description: ''
+          schema:
+            type: array
+            items:
+              type: string
+              $ref: '#/components/schemas/binding_enum_binding_type'
+        - name: Identity
+          in: query
+          description: ''
+          schema:
+            type: array
+            items:
+              type: string
+        - name: PageSize
+          in: query
+          description: >-
+            How many resources to return in each list page. The default is 50,
+            and the maximum is 1000.
+          schema:
+            type: integer
+            minimum: 1
+            maximum: 1000
+        - name: Page
+          in: query
+          description: The page index. This value is simply for client state.
+          schema:
+            type: integer
+            minimum: 0
+        - name: PageToken
+          in: query
+          description: The page token. This is provided by the API.
+          schema:
+            type: string
+      responses:
+        '200':
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ListBindingResponse'
+          description: OK
+      security:
+        - accountSid_authToken: []
+      operationId: ListBinding
+      x-maturity:
+        - GA
+  '/v2/Services/{ServiceSid}/Bindings/{Sid}':
+    servers:
+      - url: 'https://ip-messaging.twilio.com'
+    description: 'TODO: Resource-level docs'
+    x-twilio:
+      defaultOutputProperties:
+        - sid
+        - endpoint
+        - identity
+      pathType: instance
+      parent: '/Services/{Sid}'
+    get:
+      description: ''
+      tags:
+        - IpMessagingV2Binding
+      parameters:
+        - name: ServiceSid
+          in: path
+          description: ''
+          schema:
+            type: string
+            minLength: 34
+            maxLength: 34
+            pattern: '^IS[0-9a-fA-F]{32}$'
+          required: true
+        - name: Sid
+          in: path
+          description: ''
+          schema:
+            type: string
+            minLength: 34
+            maxLength: 34
+            pattern: '^BS[0-9a-fA-F]{32}$'
+          required: true
+      responses:
+        '200':
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ip_messaging.v2.service.binding'
+          description: OK
+      security:
+        - accountSid_authToken: []
+      operationId: FetchBinding
+      x-maturity:
+        - GA
+    delete:
+      description: ''
+      tags:
+        - IpMessagingV2Binding
+      parameters:
+        - name: ServiceSid
+          in: path
+          description: ''
+          schema:
+            type: string
+            minLength: 34
+            maxLength: 34
+            pattern: '^IS[0-9a-fA-F]{32}$'
+          required: true
+        - name: Sid
+          in: path
+          description: ''
+          schema:
+            type: string
+            minLength: 34
+            maxLength: 34
+            pattern: '^BS[0-9a-fA-F]{32}$'
+          required: true
+      responses:
+        '204':
+          description: The resource was deleted successfully.
+      security:
+        - accountSid_authToken: []
+      operationId: DeleteBinding
+      x-maturity:
+        - GA
+  '/v2/Services/{ServiceSid}/Channels/{Sid}':
+    servers:
+      - url: 'https://ip-messaging.twilio.com'
+    description: 'TODO: Resource-level docs'
+    x-twilio:
+      defaultOutputProperties:
+        - sid
+        - unique_name
+        - friendly_name
+      pathType: instance
+      dependentProperties:
+        members:
+          mapping:
+            service_sid: service_sid
+            channel_sid: sid
+          resource_url: '/v2/Services/{service_sid}/Channels/{channel_sid}/Members'
+        messages:
+          mapping:
+            service_sid: service_sid
+            channel_sid: sid
+          resource_url: '/v2/Services/{service_sid}/Channels/{channel_sid}/Messages'
+        invites:
+          mapping:
+            service_sid: service_sid
+            channel_sid: sid
+          resource_url: '/v2/Services/{service_sid}/Channels/{channel_sid}/Invites'
+        webhooks:
+          mapping:
+            service_sid: service_sid
+            channel_sid: sid
+          resource_url: '/v2/Services/{service_sid}/Channels/{channel_sid}/Webhooks'
+      parent: '/Services/{Sid}'
+    get:
+      description: ''
+      tags:
+        - IpMessagingV2Channel
+      parameters:
+        - name: ServiceSid
+          in: path
+          description: ''
+          schema:
+            type: string
+            minLength: 34
+            maxLength: 34
+            pattern: '^IS[0-9a-fA-F]{32}$'
+          required: true
+        - name: Sid
+          in: path
+          description: ''
+          schema:
+            type: string
+          required: true
+      responses:
+        '200':
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ip_messaging.v2.service.channel'
+          description: OK
+      security:
+        - accountSid_authToken: []
+      operationId: FetchChannel
+      x-maturity:
+        - GA
+    delete:
+      description: ''
+      tags:
+        - IpMessagingV2Channel
+      parameters:
+        - name: ServiceSid
+          in: path
+          description: ''
+          schema:
+            type: string
+            minLength: 34
+            maxLength: 34
+            pattern: '^IS[0-9a-fA-F]{32}$'
+          required: true
+        - name: Sid
+          in: path
+          description: ''
+          schema:
+            type: string
+          required: true
+        - name: X-Twilio-Webhook-Enabled
+          in: header
+          description: The X-Twilio-Webhook-Enabled HTTP request header
+          schema:
+            type: string
+            $ref: '#/components/schemas/channel_enum_webhook_enabled_type'
+      responses:
+        '204':
+          description: The resource was deleted successfully.
+      security:
+        - accountSid_authToken: []
+      operationId: DeleteChannel
+      x-maturity:
+        - GA
+    post:
+      description: ''
+      tags:
+        - IpMessagingV2Channel
+      parameters:
+        - name: ServiceSid
+          in: path
+          description: ''
+          schema:
+            type: string
+            minLength: 34
+            maxLength: 34
+            pattern: '^IS[0-9a-fA-F]{32}$'
+          required: true
+        - name: Sid
+          in: path
+          description: ''
+          schema:
+            type: string
+          required: true
+        - name: X-Twilio-Webhook-Enabled
+          in: header
+          description: The X-Twilio-Webhook-Enabled HTTP request header
+          schema:
+            type: string
+            $ref: '#/components/schemas/channel_enum_webhook_enabled_type'
+      responses:
+        '200':
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ip_messaging.v2.service.channel'
+          description: OK
+      security:
+        - accountSid_authToken: []
+      operationId: UpdateChannel
+      x-maturity:
+        - GA
+      requestBody:
+        content:
+          application/x-www-form-urlencoded:
+            schema:
+              $ref: '#/components/schemas/UpdateChannelRequest'
+  '/v2/Services/{ServiceSid}/Channels':
+    servers:
+      - url: 'https://ip-messaging.twilio.com'
+    description: 'TODO: Resource-level docs'
+    x-twilio:
+      defaultOutputProperties:
+        - sid
+        - unique_name
+        - friendly_name
+      pathType: list
+      dependentProperties:
+        members:
+          mapping:
+            service_sid: service_sid
+            channel_sid: sid
+          resource_url: '/v2/Services/{service_sid}/Channels/{channel_sid}/Members'
+        messages:
+          mapping:
+            service_sid: service_sid
+            channel_sid: sid
+          resource_url: '/v2/Services/{service_sid}/Channels/{channel_sid}/Messages'
+        invites:
+          mapping:
+            service_sid: service_sid
+            channel_sid: sid
+          resource_url: '/v2/Services/{service_sid}/Channels/{channel_sid}/Invites'
+        webhooks:
+          mapping:
+            service_sid: service_sid
+            channel_sid: sid
+          resource_url: '/v2/Services/{service_sid}/Channels/{channel_sid}/Webhooks'
+      parent: '/Services/{Sid}'
+    post:
+      description: ''
+      tags:
+        - IpMessagingV2Channel
+      parameters:
+        - name: ServiceSid
+          in: path
+          description: ''
+          schema:
+            type: string
+            minLength: 34
+            maxLength: 34
+            pattern: '^IS[0-9a-fA-F]{32}$'
+          required: true
+        - name: X-Twilio-Webhook-Enabled
+          in: header
+          description: The X-Twilio-Webhook-Enabled HTTP request header
+          schema:
+            type: string
+            $ref: '#/components/schemas/channel_enum_webhook_enabled_type'
+      responses:
+        '201':
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ip_messaging.v2.service.channel'
+          description: Created
+      security:
+        - accountSid_authToken: []
+      operationId: CreateChannel
+      x-maturity:
+        - GA
+      requestBody:
+        content:
+          application/x-www-form-urlencoded:
+            schema:
+              $ref: '#/components/schemas/CreateChannelRequest'
+    get:
+      description: ''
+      tags:
+        - IpMessagingV2Channel
+      parameters:
+        - name: ServiceSid
+          in: path
+          description: ''
+          schema:
+            type: string
+            minLength: 34
+            maxLength: 34
+            pattern: '^IS[0-9a-fA-F]{32}$'
+          required: true
+        - name: Type
+          in: query
+          description: ''
+          schema:
+            type: array
+            items:
+              type: string
+              $ref: '#/components/schemas/channel_enum_channel_type'
+        - name: PageSize
+          in: query
+          description: >-
+            How many resources to return in each list page. The default is 50,
+            and the maximum is 1000.
+          schema:
+            type: integer
+            minimum: 1
+            maximum: 1000
+        - name: Page
+          in: query
+          description: The page index. This value is simply for client state.
+          schema:
+            type: integer
+            minimum: 0
+        - name: PageToken
+          in: query
+          description: The page token. This is provided by the API.
+          schema:
+            type: string
+      responses:
+        '200':
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ListChannelResponse'
+          description: OK
+      security:
+        - accountSid_authToken: []
+      operationId: ListChannel
+      x-maturity:
+        - GA
+  '/v2/Services/{ServiceSid}/Channels/{ChannelSid}/Webhooks':
+    servers:
+      - url: 'https://ip-messaging.twilio.com'
+    description: 'TODO: Resource-level docs'
+    x-twilio:
+      defaultOutputProperties:
+        - sid
+        - configuration
+      pathType: list
+      parent: '/Services/{ServiceSid}/Channels/{Sid}'
+    get:
+      description: ''
+      tags:
+        - IpMessagingV2Webhook
+      parameters:
+        - name: ServiceSid
+          in: path
+          description: ''
+          schema:
+            type: string
+            minLength: 34
+            maxLength: 34
+            pattern: '^IS[0-9a-fA-F]{32}$'
+          required: true
+        - name: ChannelSid
+          in: path
+          description: ''
+          schema:
+            type: string
+          required: true
+        - name: PageSize
+          in: query
+          description: >-
+            How many resources to return in each list page. The default is 50,
+            and the maximum is 1000.
+          schema:
+            type: integer
+            minimum: 1
+            maximum: 1000
+        - name: Page
+          in: query
+          description: The page index. This value is simply for client state.
+          schema:
+            type: integer
+            minimum: 0
+        - name: PageToken
+          in: query
+          description: The page token. This is provided by the API.
+          schema:
+            type: string
+      responses:
+        '200':
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ListChannelWebhookResponse'
+          description: OK
+      security:
+        - accountSid_authToken: []
+      operationId: ListChannelWebhook
+      x-maturity:
+        - GA
+    post:
+      description: ''
+      tags:
+        - IpMessagingV2Webhook
+      parameters:
+        - name: ServiceSid
+          in: path
+          description: ''
+          schema:
+            type: string
+            minLength: 34
+            maxLength: 34
+            pattern: '^IS[0-9a-fA-F]{32}$'
+          required: true
+        - name: ChannelSid
+          in: path
+          description: ''
+          schema:
+            type: string
+          required: true
+      responses:
+        '201':
+          content:
+            application/json:
+              schema:
+                $ref: >-
+                  #/components/schemas/ip_messaging.v2.service.channel.channel_webhook
+          description: Created
+      security:
+        - accountSid_authToken: []
+      operationId: CreateChannelWebhook
+      x-maturity:
+        - GA
+      requestBody:
+        content:
+          application/x-www-form-urlencoded:
+            schema:
+              $ref: '#/components/schemas/CreateChannelWebhookRequest'
+  '/v2/Services/{ServiceSid}/Channels/{ChannelSid}/Webhooks/{Sid}':
+    servers:
+      - url: 'https://ip-messaging.twilio.com'
+    description: 'TODO: Resource-level docs'
+    x-twilio:
+      defaultOutputProperties:
+        - sid
+        - configuration
+      pathType: instance
+      parent: '/Services/{ServiceSid}/Channels/{Sid}'
+    get:
+      description: ''
+      tags:
+        - IpMessagingV2Webhook
+      parameters:
+        - name: ServiceSid
+          in: path
+          description: ''
+          schema:
+            type: string
+            minLength: 34
+            maxLength: 34
+            pattern: '^IS[0-9a-fA-F]{32}$'
+          required: true
+        - name: ChannelSid
+          in: path
+          description: ''
+          schema:
+            type: string
+          required: true
+        - name: Sid
+          in: path
+          description: ''
+          schema:
+            type: string
+            minLength: 34
+            maxLength: 34
+            pattern: '^WH[0-9a-fA-F]{32}$'
+          required: true
+      responses:
+        '200':
+          content:
+            application/json:
+              schema:
+                $ref: >-
+                  #/components/schemas/ip_messaging.v2.service.channel.channel_webhook
+          description: OK
+      security:
+        - accountSid_authToken: []
+      operationId: FetchChannelWebhook
+      x-maturity:
+        - GA
+    post:
+      description: ''
+      tags:
+        - IpMessagingV2Webhook
+      parameters:
+        - name: ServiceSid
+          in: path
+          description: ''
+          schema:
+            type: string
+            minLength: 34
+            maxLength: 34
+            pattern: '^IS[0-9a-fA-F]{32}$'
+          required: true
+        - name: ChannelSid
+          in: path
+          description: ''
+          schema:
+            type: string
+          required: true
+        - name: Sid
+          in: path
+          description: ''
+          schema:
+            type: string
+            minLength: 34
+            maxLength: 34
+            pattern: '^WH[0-9a-fA-F]{32}$'
+          required: true
+      responses:
+        '200':
+          content:
+            application/json:
+              schema:
+                $ref: >-
+                  #/components/schemas/ip_messaging.v2.service.channel.channel_webhook
+          description: OK
+      security:
+        - accountSid_authToken: []
+      operationId: UpdateChannelWebhook
+      x-maturity:
+        - GA
+      requestBody:
+        content:
+          application/x-www-form-urlencoded:
+            schema:
+              $ref: '#/components/schemas/UpdateChannelWebhookRequest'
+    delete:
+      description: ''
+      tags:
+        - IpMessagingV2Webhook
+      parameters:
+        - name: ServiceSid
+          in: path
+          description: ''
+          schema:
+            type: string
+            minLength: 34
+            maxLength: 34
+            pattern: '^IS[0-9a-fA-F]{32}$'
+          required: true
+        - name: ChannelSid
+          in: path
+          description: ''
+          schema:
+            type: string
+          required: true
+        - name: Sid
+          in: path
+          description: ''
+          schema:
+            type: string
+            minLength: 34
+            maxLength: 34
+            pattern: '^WH[0-9a-fA-F]{32}$'
+          required: true
+      responses:
+        '204':
+          description: The resource was deleted successfully.
+      security:
+        - accountSid_authToken: []
+      operationId: DeleteChannelWebhook
+      x-maturity:
+        - GA
+  /v2/Credentials:
+    servers:
+      - url: 'https://ip-messaging.twilio.com'
+    description: 'TODO: Resource-level docs'
+    x-twilio:
+      defaultOutputProperties:
+        - sid
+        - friendly_name
+        - type
+      pathType: list
+    get:
+      description: ''
+      tags:
+        - IpMessagingV2Credential
+      parameters:
+        - name: PageSize
+          in: query
+          description: >-
+            How many resources to return in each list page. The default is 50,
+            and the maximum is 1000.
+          schema:
+            type: integer
+            minimum: 1
+            maximum: 1000
+        - name: Page
+          in: query
+          description: The page index. This value is simply for client state.
+          schema:
+            type: integer
+            minimum: 0
+        - name: PageToken
+          in: query
+          description: The page token. This is provided by the API.
+          schema:
+            type: string
+      responses:
+        '200':
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ListCredentialResponse'
+          description: OK
+      security:
+        - accountSid_authToken: []
+      operationId: ListCredential
+      x-maturity:
+        - GA
+    post:
+      description: ''
+      tags:
+        - IpMessagingV2Credential
+      responses:
+        '201':
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ip_messaging.v2.credential'
+          description: Created
+      security:
+        - accountSid_authToken: []
+      operationId: CreateCredential
+      x-maturity:
+        - GA
+      requestBody:
+        content:
+          application/x-www-form-urlencoded:
+            schema:
+              $ref: '#/components/schemas/CreateCredentialRequest'
+  '/v2/Credentials/{Sid}':
+    servers:
+      - url: 'https://ip-messaging.twilio.com'
+    description: 'TODO: Resource-level docs'
+    x-twilio:
+      defaultOutputProperties:
+        - sid
+        - friendly_name
+        - type
+      pathType: instance
+    get:
+      description: ''
+      tags:
+        - IpMessagingV2Credential
+      parameters:
+        - name: Sid
+          in: path
+          description: ''
+          schema:
+            type: string
+            minLength: 34
+            maxLength: 34
+            pattern: '^CR[0-9a-fA-F]{32}$'
+          required: true
+      responses:
+        '200':
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ip_messaging.v2.credential'
+          description: OK
+      security:
+        - accountSid_authToken: []
+      operationId: FetchCredential
+      x-maturity:
+        - GA
+    post:
+      description: ''
+      tags:
+        - IpMessagingV2Credential
+      parameters:
+        - name: Sid
+          in: path
+          description: ''
+          schema:
+            type: string
+            minLength: 34
+            maxLength: 34
+            pattern: '^CR[0-9a-fA-F]{32}$'
+          required: true
+      responses:
+        '200':
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ip_messaging.v2.credential'
+          description: OK
+      security:
+        - accountSid_authToken: []
+      operationId: UpdateCredential
+      x-maturity:
+        - GA
+      requestBody:
+        content:
+          application/x-www-form-urlencoded:
+            schema:
+              $ref: '#/components/schemas/UpdateCredentialRequest'
+    delete:
+      description: ''
+      tags:
+        - IpMessagingV2Credential
+      parameters:
+        - name: Sid
+          in: path
+          description: ''
+          schema:
+            type: string
+            minLength: 34
+            maxLength: 34
+            pattern: '^CR[0-9a-fA-F]{32}$'
+          required: true
+      responses:
+        '204':
+          description: The resource was deleted successfully.
+      security:
+        - accountSid_authToken: []
+      operationId: DeleteCredential
+      x-maturity:
+        - GA
+  '/v2/Services/{ServiceSid}/Channels/{ChannelSid}/Invites/{Sid}':
+    servers:
+      - url: 'https://ip-messaging.twilio.com'
+    description: 'TODO: Resource-level docs'
+    x-twilio:
+      defaultOutputProperties:
+        - sid
+        - identity
+        - date_created
+      pathType: instance
+      parent: '/Services/{ServiceSid}/Channels/{Sid}'
+    get:
+      description: ''
+      tags:
+        - IpMessagingV2Invite
+      parameters:
+        - name: ServiceSid
+          in: path
+          description: ''
+          schema:
+            type: string
+            minLength: 34
+            maxLength: 34
+            pattern: '^IS[0-9a-fA-F]{32}$'
+          required: true
+        - name: ChannelSid
+          in: path
+          description: ''
+          schema:
+            type: string
+          required: true
+        - name: Sid
+          in: path
+          description: ''
+          schema:
+            type: string
+            minLength: 34
+            maxLength: 34
+            pattern: '^IN[0-9a-fA-F]{32}$'
+          required: true
+      responses:
+        '200':
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ip_messaging.v2.service.channel.invite'
+          description: OK
+      security:
+        - accountSid_authToken: []
+      operationId: FetchInvite
+      x-maturity:
+        - GA
+    delete:
+      description: ''
+      tags:
+        - IpMessagingV2Invite
+      parameters:
+        - name: ServiceSid
+          in: path
+          description: ''
+          schema:
+            type: string
+            minLength: 34
+            maxLength: 34
+            pattern: '^IS[0-9a-fA-F]{32}$'
+          required: true
+        - name: ChannelSid
+          in: path
+          description: ''
+          schema:
+            type: string
+          required: true
+        - name: Sid
+          in: path
+          description: ''
+          schema:
+            type: string
+            minLength: 34
+            maxLength: 34
+            pattern: '^IN[0-9a-fA-F]{32}$'
+          required: true
+      responses:
+        '204':
+          description: The resource was deleted successfully.
+      security:
+        - accountSid_authToken: []
+      operationId: DeleteInvite
+      x-maturity:
+        - GA
+  '/v2/Services/{ServiceSid}/Channels/{ChannelSid}/Invites':
+    servers:
+      - url: 'https://ip-messaging.twilio.com'
+    description: 'TODO: Resource-level docs'
+    x-twilio:
+      defaultOutputProperties:
+        - sid
+        - identity
+        - date_created
+      pathType: list
+      parent: '/Services/{ServiceSid}/Channels/{Sid}'
+    post:
+      description: ''
+      tags:
+        - IpMessagingV2Invite
+      parameters:
+        - name: ServiceSid
+          in: path
+          description: ''
+          schema:
+            type: string
+            minLength: 34
+            maxLength: 34
+            pattern: '^IS[0-9a-fA-F]{32}$'
+          required: true
+        - name: ChannelSid
+          in: path
+          description: ''
+          schema:
+            type: string
+          required: true
+      responses:
+        '201':
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ip_messaging.v2.service.channel.invite'
+          description: Created
+      security:
+        - accountSid_authToken: []
+      operationId: CreateInvite
+      x-maturity:
+        - GA
+      requestBody:
+        content:
+          application/x-www-form-urlencoded:
+            schema:
+              $ref: '#/components/schemas/CreateInviteRequest'
+    get:
+      description: ''
+      tags:
+        - IpMessagingV2Invite
+      parameters:
+        - name: ServiceSid
+          in: path
+          description: ''
+          schema:
+            type: string
+            minLength: 34
+            maxLength: 34
+            pattern: '^IS[0-9a-fA-F]{32}$'
+          required: true
+        - name: ChannelSid
+          in: path
+          description: ''
+          schema:
+            type: string
+          required: true
+        - name: Identity
+          in: query
+          description: ''
+          schema:
+            type: array
+            items:
+              type: string
+        - name: PageSize
+          in: query
+          description: >-
+            How many resources to return in each list page. The default is 50,
+            and the maximum is 1000.
+          schema:
+            type: integer
+            minimum: 1
+            maximum: 1000
+        - name: Page
+          in: query
+          description: The page index. This value is simply for client state.
+          schema:
+            type: integer
+            minimum: 0
+        - name: PageToken
+          in: query
+          description: The page token. This is provided by the API.
+          schema:
+            type: string
+      responses:
+        '200':
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ListInviteResponse'
+          description: OK
+      security:
+        - accountSid_authToken: []
+      operationId: ListInvite
+      x-maturity:
+        - GA
+  '/v2/Services/{ServiceSid}/Channels/{ChannelSid}/Members/{Sid}':
+    servers:
+      - url: 'https://ip-messaging.twilio.com'
+    description: 'TODO: Resource-level docs'
+    x-twilio:
+      defaultOutputProperties:
+        - sid
+        - identity
+        - date_created
+      pathType: instance
+      parent: '/Services/{ServiceSid}/Channels/{Sid}'
+    get:
+      description: ''
+      tags:
+        - IpMessagingV2Member
+      parameters:
+        - name: ServiceSid
+          in: path
+          description: ''
+          schema:
+            type: string
+            minLength: 34
+            maxLength: 34
+            pattern: '^IS[0-9a-fA-F]{32}$'
+          required: true
+        - name: ChannelSid
+          in: path
+          description: ''
+          schema:
+            type: string
+          required: true
+        - name: Sid
+          in: path
+          description: ''
+          schema:
+            type: string
+          required: true
+      responses:
+        '200':
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ip_messaging.v2.service.channel.member'
+          description: OK
+      security:
+        - accountSid_authToken: []
+      operationId: FetchMember
+      x-maturity:
+        - GA
+    delete:
+      description: ''
+      tags:
+        - IpMessagingV2Member
+      parameters:
+        - name: ServiceSid
+          in: path
+          description: ''
+          schema:
+            type: string
+            minLength: 34
+            maxLength: 34
+            pattern: '^IS[0-9a-fA-F]{32}$'
+          required: true
+        - name: ChannelSid
+          in: path
+          description: ''
+          schema:
+            type: string
+          required: true
+        - name: Sid
+          in: path
+          description: ''
+          schema:
+            type: string
+          required: true
+        - name: X-Twilio-Webhook-Enabled
+          in: header
+          description: The X-Twilio-Webhook-Enabled HTTP request header
+          schema:
+            type: string
+            $ref: '#/components/schemas/member_enum_webhook_enabled_type'
+      responses:
+        '204':
+          description: The resource was deleted successfully.
+      security:
+        - accountSid_authToken: []
+      operationId: DeleteMember
+      x-maturity:
+        - GA
+    post:
+      description: ''
+      tags:
+        - IpMessagingV2Member
+      parameters:
+        - name: ServiceSid
+          in: path
+          description: ''
+          schema:
+            type: string
+            minLength: 34
+            maxLength: 34
+            pattern: '^IS[0-9a-fA-F]{32}$'
+          required: true
+        - name: ChannelSid
+          in: path
+          description: ''
+          schema:
+            type: string
+          required: true
+        - name: Sid
+          in: path
+          description: ''
+          schema:
+            type: string
+          required: true
+        - name: X-Twilio-Webhook-Enabled
+          in: header
+          description: The X-Twilio-Webhook-Enabled HTTP request header
+          schema:
+            type: string
+            $ref: '#/components/schemas/member_enum_webhook_enabled_type'
+      responses:
+        '200':
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ip_messaging.v2.service.channel.member'
+          description: OK
+      security:
+        - accountSid_authToken: []
+      operationId: UpdateMember
+      x-maturity:
+        - GA
+      requestBody:
+        content:
+          application/x-www-form-urlencoded:
+            schema:
+              $ref: '#/components/schemas/UpdateMemberRequest'
+  '/v2/Services/{ServiceSid}/Channels/{ChannelSid}/Members':
+    servers:
+      - url: 'https://ip-messaging.twilio.com'
+    description: 'TODO: Resource-level docs'
+    x-twilio:
+      defaultOutputProperties:
+        - sid
+        - identity
+        - date_created
+      pathType: list
+      parent: '/Services/{ServiceSid}/Channels/{Sid}'
+    post:
+      description: ''
+      tags:
+        - IpMessagingV2Member
+      parameters:
+        - name: ServiceSid
+          in: path
+          description: ''
+          schema:
+            type: string
+            minLength: 34
+            maxLength: 34
+            pattern: '^IS[0-9a-fA-F]{32}$'
+          required: true
+        - name: ChannelSid
+          in: path
+          description: ''
+          schema:
+            type: string
+          required: true
+        - name: X-Twilio-Webhook-Enabled
+          in: header
+          description: The X-Twilio-Webhook-Enabled HTTP request header
+          schema:
+            type: string
+            $ref: '#/components/schemas/member_enum_webhook_enabled_type'
+      responses:
+        '201':
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ip_messaging.v2.service.channel.member'
+          description: Created
+      security:
+        - accountSid_authToken: []
+      operationId: CreateMember
+      x-maturity:
+        - GA
+      requestBody:
+        content:
+          application/x-www-form-urlencoded:
+            schema:
+              $ref: '#/components/schemas/CreateMemberRequest'
+    get:
+      description: ''
+      tags:
+        - IpMessagingV2Member
+      parameters:
+        - name: ServiceSid
+          in: path
+          description: ''
+          schema:
+            type: string
+            minLength: 34
+            maxLength: 34
+            pattern: '^IS[0-9a-fA-F]{32}$'
+          required: true
+        - name: ChannelSid
+          in: path
+          description: ''
+          schema:
+            type: string
+          required: true
+        - name: Identity
+          in: query
+          description: ''
+          schema:
+            type: array
+            items:
+              type: string
+        - name: PageSize
+          in: query
+          description: >-
+            How many resources to return in each list page. The default is 50,
+            and the maximum is 1000.
+          schema:
+            type: integer
+            minimum: 1
+            maximum: 1000
+        - name: Page
+          in: query
+          description: The page index. This value is simply for client state.
+          schema:
+            type: integer
+            minimum: 0
+        - name: PageToken
+          in: query
+          description: The page token. This is provided by the API.
+          schema:
+            type: string
+      responses:
+        '200':
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ListMemberResponse'
+          description: OK
+      security:
+        - accountSid_authToken: []
+      operationId: ListMember
+      x-maturity:
+        - GA
+  '/v2/Services/{ServiceSid}/Channels/{ChannelSid}/Messages/{Sid}':
+    servers:
+      - url: 'https://ip-messaging.twilio.com'
+    description: 'TODO: Resource-level docs'
+    x-twilio:
+      defaultOutputProperties:
+        - sid
+        - from
+        - to
+        - date_created
+      pathType: instance
+      parent: '/Services/{ServiceSid}/Channels/{Sid}'
+    get:
+      description: ''
+      tags:
+        - IpMessagingV2Message
+      parameters:
+        - name: ServiceSid
+          in: path
+          description: ''
+          schema:
+            type: string
+            minLength: 34
+            maxLength: 34
+            pattern: '^IS[0-9a-fA-F]{32}$'
+          required: true
+        - name: ChannelSid
+          in: path
+          description: ''
+          schema:
+            type: string
+          required: true
+        - name: Sid
+          in: path
+          description: ''
+          schema:
+            type: string
+            minLength: 34
+            maxLength: 34
+            pattern: '^IM[0-9a-fA-F]{32}$'
+          required: true
+      responses:
+        '200':
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ip_messaging.v2.service.channel.message'
+          description: OK
+      security:
+        - accountSid_authToken: []
+      operationId: FetchMessage
+      x-maturity:
+        - GA
+    delete:
+      description: ''
+      tags:
+        - IpMessagingV2Message
+      parameters:
+        - name: ServiceSid
+          in: path
+          description: ''
+          schema:
+            type: string
+            minLength: 34
+            maxLength: 34
+            pattern: '^IS[0-9a-fA-F]{32}$'
+          required: true
+        - name: ChannelSid
+          in: path
+          description: ''
+          schema:
+            type: string
+          required: true
+        - name: Sid
+          in: path
+          description: ''
+          schema:
+            type: string
+            minLength: 34
+            maxLength: 34
+            pattern: '^IM[0-9a-fA-F]{32}$'
+          required: true
+        - name: X-Twilio-Webhook-Enabled
+          in: header
+          description: The X-Twilio-Webhook-Enabled HTTP request header
+          schema:
+            type: string
+            $ref: '#/components/schemas/message_enum_webhook_enabled_type'
+      responses:
+        '204':
+          description: The resource was deleted successfully.
+      security:
+        - accountSid_authToken: []
+      operationId: DeleteMessage
+      x-maturity:
+        - GA
+    post:
+      description: ''
+      tags:
+        - IpMessagingV2Message
+      parameters:
+        - name: ServiceSid
+          in: path
+          description: ''
+          schema:
+            type: string
+            minLength: 34
+            maxLength: 34
+            pattern: '^IS[0-9a-fA-F]{32}$'
+          required: true
+        - name: ChannelSid
+          in: path
+          description: ''
+          schema:
+            type: string
+          required: true
+        - name: Sid
+          in: path
+          description: ''
+          schema:
+            type: string
+            minLength: 34
+            maxLength: 34
+            pattern: '^IM[0-9a-fA-F]{32}$'
+          required: true
+        - name: X-Twilio-Webhook-Enabled
+          in: header
+          description: The X-Twilio-Webhook-Enabled HTTP request header
+          schema:
+            type: string
+            $ref: '#/components/schemas/message_enum_webhook_enabled_type'
+      responses:
+        '200':
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ip_messaging.v2.service.channel.message'
+          description: OK
+      security:
+        - accountSid_authToken: []
+      operationId: UpdateMessage
+      x-maturity:
+        - GA
+      requestBody:
+        content:
+          application/x-www-form-urlencoded:
+            schema:
+              $ref: '#/components/schemas/UpdateMessageRequest'
+  '/v2/Services/{ServiceSid}/Channels/{ChannelSid}/Messages':
+    servers:
+      - url: 'https://ip-messaging.twilio.com'
+    description: 'TODO: Resource-level docs'
+    x-twilio:
+      defaultOutputProperties:
+        - sid
+        - from
+        - to
+        - date_created
+      pathType: list
+      parent: '/Services/{ServiceSid}/Channels/{Sid}'
+    post:
+      description: ''
+      tags:
+        - IpMessagingV2Message
+      parameters:
+        - name: ServiceSid
+          in: path
+          description: ''
+          schema:
+            type: string
+            minLength: 34
+            maxLength: 34
+            pattern: '^IS[0-9a-fA-F]{32}$'
+          required: true
+        - name: ChannelSid
+          in: path
+          description: ''
+          schema:
+            type: string
+          required: true
+        - name: X-Twilio-Webhook-Enabled
+          in: header
+          description: The X-Twilio-Webhook-Enabled HTTP request header
+          schema:
+            type: string
+            $ref: '#/components/schemas/message_enum_webhook_enabled_type'
+      responses:
+        '201':
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ip_messaging.v2.service.channel.message'
+          description: Created
+      security:
+        - accountSid_authToken: []
+      operationId: CreateMessage
+      x-maturity:
+        - GA
+      requestBody:
+        content:
+          application/x-www-form-urlencoded:
+            schema:
+              $ref: '#/components/schemas/CreateMessageRequest'
+    get:
+      description: ''
+      tags:
+        - IpMessagingV2Message
+      parameters:
+        - name: ServiceSid
+          in: path
+          description: ''
+          schema:
+            type: string
+            minLength: 34
+            maxLength: 34
+            pattern: '^IS[0-9a-fA-F]{32}$'
+          required: true
+        - name: ChannelSid
+          in: path
+          description: ''
+          schema:
+            type: string
+          required: true
+        - name: Order
+          in: query
+          description: ''
+          schema:
+            type: string
+            $ref: '#/components/schemas/message_enum_order_type'
+        - name: PageSize
+          in: query
+          description: >-
+            How many resources to return in each list page. The default is 50,
+            and the maximum is 1000.
+          schema:
+            type: integer
+            minimum: 1
+            maximum: 1000
+        - name: Page
+          in: query
+          description: The page index. This value is simply for client state.
+          schema:
+            type: integer
+            minimum: 0
+        - name: PageToken
+          in: query
+          description: The page token. This is provided by the API.
+          schema:
+            type: string
+      responses:
+        '200':
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ListMessageResponse'
+          description: OK
+      security:
+        - accountSid_authToken: []
+      operationId: ListMessage
+      x-maturity:
+        - GA
+  '/v2/Services/{ServiceSid}/Roles/{Sid}':
+    servers:
+      - url: 'https://ip-messaging.twilio.com'
+    description: 'TODO: Resource-level docs'
+    x-twilio:
+      defaultOutputProperties:
+        - sid
+        - friendly_name
+        - type
+      pathType: instance
+      parent: '/Services/{Sid}'
+    get:
+      description: ''
+      tags:
+        - IpMessagingV2Role
+      parameters:
+        - name: ServiceSid
+          in: path
+          description: ''
+          schema:
+            type: string
+            minLength: 34
+            maxLength: 34
+            pattern: '^IS[0-9a-fA-F]{32}$'
+          required: true
+        - name: Sid
+          in: path
+          description: ''
+          schema:
+            type: string
+            minLength: 34
+            maxLength: 34
+            pattern: '^RL[0-9a-fA-F]{32}$'
+          required: true
+      responses:
+        '200':
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ip_messaging.v2.service.role'
+          description: OK
+      security:
+        - accountSid_authToken: []
+      operationId: FetchRole
+      x-maturity:
+        - GA
+    delete:
+      description: ''
+      tags:
+        - IpMessagingV2Role
+      parameters:
+        - name: ServiceSid
+          in: path
+          description: ''
+          schema:
+            type: string
+            minLength: 34
+            maxLength: 34
+            pattern: '^IS[0-9a-fA-F]{32}$'
+          required: true
+        - name: Sid
+          in: path
+          description: ''
+          schema:
+            type: string
+            minLength: 34
+            maxLength: 34
+            pattern: '^RL[0-9a-fA-F]{32}$'
+          required: true
+      responses:
+        '204':
+          description: The resource was deleted successfully.
+      security:
+        - accountSid_authToken: []
+      operationId: DeleteRole
+      x-maturity:
+        - GA
+    post:
+      description: ''
+      tags:
+        - IpMessagingV2Role
+      parameters:
+        - name: ServiceSid
+          in: path
+          description: ''
+          schema:
+            type: string
+            minLength: 34
+            maxLength: 34
+            pattern: '^IS[0-9a-fA-F]{32}$'
+          required: true
+        - name: Sid
+          in: path
+          description: ''
+          schema:
+            type: string
+            minLength: 34
+            maxLength: 34
+            pattern: '^RL[0-9a-fA-F]{32}$'
+          required: true
+      responses:
+        '200':
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ip_messaging.v2.service.role'
+          description: OK
+      security:
+        - accountSid_authToken: []
+      operationId: UpdateRole
+      x-maturity:
+        - GA
+      requestBody:
+        content:
+          application/x-www-form-urlencoded:
+            schema:
+              $ref: '#/components/schemas/UpdateRoleRequest'
+  '/v2/Services/{ServiceSid}/Roles':
+    servers:
+      - url: 'https://ip-messaging.twilio.com'
+    description: 'TODO: Resource-level docs'
+    x-twilio:
+      defaultOutputProperties:
+        - sid
+        - friendly_name
+        - type
+      pathType: list
+      parent: '/Services/{Sid}'
+    post:
+      description: ''
+      tags:
+        - IpMessagingV2Role
+      parameters:
+        - name: ServiceSid
+          in: path
+          description: ''
+          schema:
+            type: string
+            minLength: 34
+            maxLength: 34
+            pattern: '^IS[0-9a-fA-F]{32}$'
+          required: true
+      responses:
+        '201':
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ip_messaging.v2.service.role'
+          description: Created
+      security:
+        - accountSid_authToken: []
+      operationId: CreateRole
+      x-maturity:
+        - GA
+      requestBody:
+        content:
+          application/x-www-form-urlencoded:
+            schema:
+              $ref: '#/components/schemas/CreateRoleRequest'
+    get:
+      description: ''
+      tags:
+        - IpMessagingV2Role
+      parameters:
+        - name: ServiceSid
+          in: path
+          description: ''
+          schema:
+            type: string
+            minLength: 34
+            maxLength: 34
+            pattern: '^IS[0-9a-fA-F]{32}$'
+          required: true
+        - name: PageSize
+          in: query
+          description: >-
+            How many resources to return in each list page. The default is 50,
+            and the maximum is 1000.
+          schema:
+            type: integer
+            minimum: 1
+            maximum: 1000
+        - name: Page
+          in: query
+          description: The page index. This value is simply for client state.
+          schema:
+            type: integer
+            minimum: 0
+        - name: PageToken
+          in: query
+          description: The page token. This is provided by the API.
+          schema:
+            type: string
+      responses:
+        '200':
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ListRoleResponse'
+          description: OK
+      security:
+        - accountSid_authToken: []
+      operationId: ListRole
+      x-maturity:
+        - GA
+  '/v2/Services/{Sid}':
+    servers:
+      - url: 'https://ip-messaging.twilio.com'
+    description: 'TODO: Resource-level docs'
+    x-twilio:
+      defaultOutputProperties:
+        - sid
+        - friendly_name
+        - date_created
+      pathType: instance
+      dependentProperties:
+        channels:
+          mapping:
+            service_sid: sid
+          resource_url: '/v2/Services/{service_sid}/Channels'
+        roles:
+          mapping:
+            service_sid: sid
+          resource_url: '/v2/Services/{service_sid}/Roles'
+        users:
+          mapping:
+            service_sid: sid
+          resource_url: '/v2/Services/{service_sid}/Users'
+        bindings:
+          mapping:
+            service_sid: sid
+          resource_url: '/v2/Services/{service_sid}/Bindings'
+    get:
+      description: ''
+      tags:
+        - IpMessagingV2Service
+      parameters:
+        - name: Sid
+          in: path
+          description: ''
+          schema:
+            type: string
+            minLength: 34
+            maxLength: 34
+            pattern: '^IS[0-9a-fA-F]{32}$'
+          required: true
+      responses:
+        '200':
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ip_messaging.v2.service'
+          description: OK
+      security:
+        - accountSid_authToken: []
+      operationId: FetchService
+      x-maturity:
+        - GA
+    delete:
+      description: ''
+      tags:
+        - IpMessagingV2Service
+      parameters:
+        - name: Sid
+          in: path
+          description: ''
+          schema:
+            type: string
+            minLength: 34
+            maxLength: 34
+            pattern: '^IS[0-9a-fA-F]{32}$'
+          required: true
+      responses:
+        '204':
+          description: The resource was deleted successfully.
+      security:
+        - accountSid_authToken: []
+      operationId: DeleteService
+      x-maturity:
+        - GA
+    post:
+      description: ''
+      tags:
+        - IpMessagingV2Service
+      parameters:
+        - name: Sid
+          in: path
+          description: ''
+          schema:
+            type: string
+            minLength: 34
+            maxLength: 34
+            pattern: '^IS[0-9a-fA-F]{32}$'
+          required: true
+      responses:
+        '200':
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ip_messaging.v2.service'
+          description: OK
+      security:
+        - accountSid_authToken: []
+      operationId: UpdateService
+      x-maturity:
+        - GA
+      requestBody:
+        content:
+          application/x-www-form-urlencoded:
+            schema:
+              $ref: '#/components/schemas/UpdateServiceRequest'
+  /v2/Services:
+    servers:
+      - url: 'https://ip-messaging.twilio.com'
+    description: 'TODO: Resource-level docs'
+    x-twilio:
+      defaultOutputProperties:
+        - sid
+        - friendly_name
+        - date_created
+      pathType: list
+      dependentProperties:
+        channels:
+          mapping:
+            service_sid: sid
+          resource_url: '/v2/Services/{service_sid}/Channels'
+        roles:
+          mapping:
+            service_sid: sid
+          resource_url: '/v2/Services/{service_sid}/Roles'
+        users:
+          mapping:
+            service_sid: sid
+          resource_url: '/v2/Services/{service_sid}/Users'
+        bindings:
+          mapping:
+            service_sid: sid
+          resource_url: '/v2/Services/{service_sid}/Bindings'
+    post:
+      description: ''
+      tags:
+        - IpMessagingV2Service
+      responses:
+        '201':
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ip_messaging.v2.service'
+          description: Created
+      security:
+        - accountSid_authToken: []
+      operationId: CreateService
+      x-maturity:
+        - GA
+      requestBody:
+        content:
+          application/x-www-form-urlencoded:
+            schema:
+              $ref: '#/components/schemas/CreateServiceRequest'
+    get:
+      description: ''
+      tags:
+        - IpMessagingV2Service
+      parameters:
+        - name: PageSize
+          in: query
+          description: >-
+            How many resources to return in each list page. The default is 50,
+            and the maximum is 1000.
+          schema:
+            type: integer
+            minimum: 1
+            maximum: 1000
+        - name: Page
+          in: query
+          description: The page index. This value is simply for client state.
+          schema:
+            type: integer
+            minimum: 0
+        - name: PageToken
+          in: query
+          description: The page token. This is provided by the API.
+          schema:
+            type: string
+      responses:
+        '200':
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ListServiceResponse'
+          description: OK
+      security:
+        - accountSid_authToken: []
+      operationId: ListService
+      x-maturity:
+        - GA
+  '/v2/Services/{ServiceSid}/Users/{Sid}':
+    servers:
+      - url: 'https://ip-messaging.twilio.com'
+    description: 'TODO: Resource-level docs'
+    x-twilio:
+      defaultOutputProperties:
+        - sid
+        - friendly_name
+        - identity
+        - date_created
+      pathType: instance
+      dependentProperties:
+        user_channels:
+          mapping:
+            service_sid: service_sid
+            user_sid: sid
+          resource_url: '/v2/Services/{service_sid}/Users/{user_sid}/Channels'
+        user_bindings:
+          mapping:
+            service_sid: service_sid
+            user_sid: sid
+          resource_url: '/v2/Services/{service_sid}/Users/{user_sid}/Bindings'
+      parent: '/Services/{Sid}'
+    get:
+      description: ''
+      tags:
+        - IpMessagingV2User
+      parameters:
+        - name: ServiceSid
+          in: path
+          description: ''
+          schema:
+            type: string
+            minLength: 34
+            maxLength: 34
+            pattern: '^IS[0-9a-fA-F]{32}$'
+          required: true
+        - name: Sid
+          in: path
+          description: ''
+          schema:
+            type: string
+          required: true
+      responses:
+        '200':
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ip_messaging.v2.service.user'
+          description: OK
+      security:
+        - accountSid_authToken: []
+      operationId: FetchUser
+      x-maturity:
+        - GA
+    delete:
+      description: ''
+      tags:
+        - IpMessagingV2User
+      parameters:
+        - name: ServiceSid
+          in: path
+          description: ''
+          schema:
+            type: string
+            minLength: 34
+            maxLength: 34
+            pattern: '^IS[0-9a-fA-F]{32}$'
+          required: true
+        - name: Sid
+          in: path
+          description: ''
+          schema:
+            type: string
+          required: true
+      responses:
+        '204':
+          description: The resource was deleted successfully.
+      security:
+        - accountSid_authToken: []
+      operationId: DeleteUser
+      x-maturity:
+        - GA
+    post:
+      description: ''
+      tags:
+        - IpMessagingV2User
+      parameters:
+        - name: ServiceSid
+          in: path
+          description: ''
+          schema:
+            type: string
+            minLength: 34
+            maxLength: 34
+            pattern: '^IS[0-9a-fA-F]{32}$'
+          required: true
+        - name: Sid
+          in: path
+          description: ''
+          schema:
+            type: string
+          required: true
+        - name: X-Twilio-Webhook-Enabled
+          in: header
+          description: The X-Twilio-Webhook-Enabled HTTP request header
+          schema:
+            type: string
+            $ref: '#/components/schemas/user_enum_webhook_enabled_type'
+      responses:
+        '200':
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ip_messaging.v2.service.user'
+          description: OK
+      security:
+        - accountSid_authToken: []
+      operationId: UpdateUser
+      x-maturity:
+        - GA
+      requestBody:
+        content:
+          application/x-www-form-urlencoded:
+            schema:
+              $ref: '#/components/schemas/UpdateUserRequest'
+  '/v2/Services/{ServiceSid}/Users':
+    servers:
+      - url: 'https://ip-messaging.twilio.com'
+    description: 'TODO: Resource-level docs'
+    x-twilio:
+      defaultOutputProperties:
+        - sid
+        - friendly_name
+        - identity
+        - date_created
+      pathType: list
+      dependentProperties:
+        user_channels:
+          mapping:
+            service_sid: service_sid
+            user_sid: sid
+          resource_url: '/v2/Services/{service_sid}/Users/{user_sid}/Channels'
+        user_bindings:
+          mapping:
+            service_sid: service_sid
+            user_sid: sid
+          resource_url: '/v2/Services/{service_sid}/Users/{user_sid}/Bindings'
+      parent: '/Services/{Sid}'
+    post:
+      description: ''
+      tags:
+        - IpMessagingV2User
+      parameters:
+        - name: ServiceSid
+          in: path
+          description: ''
+          schema:
+            type: string
+            minLength: 34
+            maxLength: 34
+            pattern: '^IS[0-9a-fA-F]{32}$'
+          required: true
+        - name: X-Twilio-Webhook-Enabled
+          in: header
+          description: The X-Twilio-Webhook-Enabled HTTP request header
+          schema:
+            type: string
+            $ref: '#/components/schemas/user_enum_webhook_enabled_type'
+      responses:
+        '201':
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ip_messaging.v2.service.user'
+          description: Created
+      security:
+        - accountSid_authToken: []
+      operationId: CreateUser
+      x-maturity:
+        - GA
+      requestBody:
+        content:
+          application/x-www-form-urlencoded:
+            schema:
+              $ref: '#/components/schemas/CreateUserRequest'
+    get:
+      description: ''
+      tags:
+        - IpMessagingV2User
+      parameters:
+        - name: ServiceSid
+          in: path
+          description: ''
+          schema:
+            type: string
+            minLength: 34
+            maxLength: 34
+            pattern: '^IS[0-9a-fA-F]{32}$'
+          required: true
+        - name: PageSize
+          in: query
+          description: >-
+            How many resources to return in each list page. The default is 50,
+            and the maximum is 1000.
+          schema:
+            type: integer
+            minimum: 1
+            maximum: 1000
+        - name: Page
+          in: query
+          description: The page index. This value is simply for client state.
+          schema:
+            type: integer
+            minimum: 0
+        - name: PageToken
+          in: query
+          description: The page token. This is provided by the API.
+          schema:
+            type: string
+      responses:
+        '200':
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ListUserResponse'
+          description: OK
+      security:
+        - accountSid_authToken: []
+      operationId: ListUser
+      x-maturity:
+        - GA
+  '/v2/Services/{ServiceSid}/Users/{UserSid}/Bindings':
+    servers:
+      - url: 'https://ip-messaging.twilio.com'
+    description: 'TODO: Resource-level docs'
+    x-twilio:
+      defaultOutputProperties:
+        - sid
+        - endpoint
+        - identity
+        - binding_type
+      pathType: list
+      parent: '/Services/{ServiceSid}/Users/{Sid}'
+      mountName: user_bindings
+    get:
+      description: ''
+      tags:
+        - IpMessagingV2UserBinding
+      parameters:
+        - name: ServiceSid
+          in: path
+          description: ''
+          schema:
+            type: string
+            minLength: 34
+            maxLength: 34
+            pattern: '^IS[0-9a-fA-F]{32}$'
+          required: true
+        - name: UserSid
+          in: path
+          description: ''
+          schema:
+            type: string
+          required: true
+        - name: BindingType
+          in: query
+          description: ''
+          schema:
+            type: array
+            items:
+              type: string
+              $ref: '#/components/schemas/user_binding_enum_binding_type'
+        - name: PageSize
+          in: query
+          description: >-
+            How many resources to return in each list page. The default is 50,
+            and the maximum is 1000.
+          schema:
+            type: integer
+            minimum: 1
+            maximum: 1000
+        - name: Page
+          in: query
+          description: The page index. This value is simply for client state.
+          schema:
+            type: integer
+            minimum: 0
+        - name: PageToken
+          in: query
+          description: The page token. This is provided by the API.
+          schema:
+            type: string
+      responses:
+        '200':
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ListUserBindingResponse'
+          description: OK
+      security:
+        - accountSid_authToken: []
+      operationId: ListUserBinding
+      x-maturity:
+        - GA
+  '/v2/Services/{ServiceSid}/Users/{UserSid}/Bindings/{Sid}':
+    servers:
+      - url: 'https://ip-messaging.twilio.com'
+    description: 'TODO: Resource-level docs'
+    x-twilio:
+      defaultOutputProperties:
+        - sid
+        - endpoint
+        - identity
+        - binding_type
+      pathType: instance
+      parent: '/Services/{ServiceSid}/Users/{Sid}'
+      mountName: user_bindings
+    get:
+      description: ''
+      tags:
+        - IpMessagingV2UserBinding
+      parameters:
+        - name: ServiceSid
+          in: path
+          description: ''
+          schema:
+            type: string
+            minLength: 34
+            maxLength: 34
+            pattern: '^IS[0-9a-fA-F]{32}$'
+          required: true
+        - name: UserSid
+          in: path
+          description: ''
+          schema:
+            type: string
+          required: true
+        - name: Sid
+          in: path
+          description: ''
+          schema:
+            type: string
+            minLength: 34
+            maxLength: 34
+            pattern: '^BS[0-9a-fA-F]{32}$'
+          required: true
+      responses:
+        '200':
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ip_messaging.v2.service.user.user_binding'
+          description: OK
+      security:
+        - accountSid_authToken: []
+      operationId: FetchUserBinding
+      x-maturity:
+        - GA
+    delete:
+      description: ''
+      tags:
+        - IpMessagingV2UserBinding
+      parameters:
+        - name: ServiceSid
+          in: path
+          description: ''
+          schema:
+            type: string
+            minLength: 34
+            maxLength: 34
+            pattern: '^IS[0-9a-fA-F]{32}$'
+          required: true
+        - name: UserSid
+          in: path
+          description: ''
+          schema:
+            type: string
+          required: true
+        - name: Sid
+          in: path
+          description: ''
+          schema:
+            type: string
+            minLength: 34
+            maxLength: 34
+            pattern: '^BS[0-9a-fA-F]{32}$'
+          required: true
+      responses:
+        '204':
+          description: The resource was deleted successfully.
+      security:
+        - accountSid_authToken: []
+      operationId: DeleteUserBinding
+      x-maturity:
+        - GA
+  '/v2/Services/{ServiceSid}/Users/{UserSid}/Channels':
+    servers:
+      - url: 'https://ip-messaging.twilio.com'
+    description: 'TODO: Resource-level docs'
+    x-twilio:
+      defaultOutputProperties:
+        - channel_sid
+        - status
+      pathType: list
+      parent: '/Services/{ServiceSid}/Users/{Sid}'
+      mountName: user_channels
+    get:
+      description: ''
+      tags:
+        - IpMessagingV2UserChannel
+      parameters:
+        - name: ServiceSid
+          in: path
+          description: ''
+          schema:
+            type: string
+            minLength: 34
+            maxLength: 34
+            pattern: '^IS[0-9a-fA-F]{32}$'
+          required: true
+        - name: UserSid
+          in: path
+          description: ''
+          schema:
+            type: string
+          required: true
+        - name: PageSize
+          in: query
+          description: >-
+            How many resources to return in each list page. The default is 50,
+            and the maximum is 1000.
+          schema:
+            type: integer
+            minimum: 1
+            maximum: 1000
+        - name: Page
+          in: query
+          description: The page index. This value is simply for client state.
+          schema:
+            type: integer
+            minimum: 0
+        - name: PageToken
+          in: query
+          description: The page token. This is provided by the API.
+          schema:
+            type: string
+      responses:
+        '200':
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ListUserChannelResponse'
+          description: OK
+      security:
+        - accountSid_authToken: []
+      operationId: ListUserChannel
+      x-maturity:
+        - GA
+  '/v2/Services/{ServiceSid}/Users/{UserSid}/Channels/{ChannelSid}':
+    servers:
+      - url: 'https://ip-messaging.twilio.com'
+    description: 'TODO: Resource-level docs'
+    x-twilio:
+      defaultOutputProperties:
+        - channel_sid
+        - status
+      pathType: instance
+      parent: '/Services/{ServiceSid}/Users/{Sid}'
+      mountName: user_channels
+    get:
+      description: ''
+      tags:
+        - IpMessagingV2UserChannel
+      parameters:
+        - name: ServiceSid
+          in: path
+          description: ''
+          schema:
+            type: string
+            minLength: 34
+            maxLength: 34
+            pattern: '^IS[0-9a-fA-F]{32}$'
+          required: true
+        - name: UserSid
+          in: path
+          description: ''
+          schema:
+            type: string
+          required: true
+        - name: ChannelSid
+          in: path
+          description: ''
+          schema:
+            type: string
+          required: true
+      responses:
+        '200':
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ip_messaging.v2.service.user.user_channel'
+          description: OK
+      security:
+        - accountSid_authToken: []
+      operationId: FetchUserChannel
+      x-maturity:
+        - GA
+    delete:
+      description: ''
+      tags:
+        - IpMessagingV2UserChannel
+      parameters:
+        - name: ServiceSid
+          in: path
+          description: ''
+          schema:
+            type: string
+            minLength: 34
+            maxLength: 34
+            pattern: '^IS[0-9a-fA-F]{32}$'
+          required: true
+        - name: UserSid
+          in: path
+          description: ''
+          schema:
+            type: string
+          required: true
+        - name: ChannelSid
+          in: path
+          description: ''
+          schema:
+            type: string
+          required: true
+      responses:
+        '204':
+          description: The resource was deleted successfully.
+      security:
+        - accountSid_authToken: []
+      operationId: DeleteUserChannel
+      x-maturity:
+        - GA
+    post:
+      description: ''
+      tags:
+        - IpMessagingV2UserChannel
+      parameters:
+        - name: ServiceSid
+          in: path
+          description: ''
+          schema:
+            type: string
+            minLength: 34
+            maxLength: 34
+            pattern: '^IS[0-9a-fA-F]{32}$'
+          required: true
+        - name: UserSid
+          in: path
+          description: ''
+          schema:
+            type: string
+          required: true
+        - name: ChannelSid
+          in: path
+          description: ''
+          schema:
+            type: string
+          required: true
+      responses:
+        '200':
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ip_messaging.v2.service.user.user_channel'
+          description: OK
+      security:
+        - accountSid_authToken: []
+      operationId: UpdateUserChannel
+      x-maturity:
+        - GA
+      requestBody:
+        content:
+          application/x-www-form-urlencoded:
+            schema:
+              $ref: '#/components/schemas/UpdateUserChannelRequest'
+servers:
+  - url: 'https://ip-messaging.twilio.com'
+tags:
+  - name: IpMessagingV2Binding
+  - name: IpMessagingV2Channel
+  - name: IpMessagingV2Credential
+  - name: IpMessagingV2Invite
+  - name: IpMessagingV2Member
+  - name: IpMessagingV2Message
+  - name: IpMessagingV2Role
+  - name: IpMessagingV2Service
+  - name: IpMessagingV2User
+  - name: IpMessagingV2UserBinding
+  - name: IpMessagingV2UserChannel
+  - name: IpMessagingV2Webhook
+x-maturity:
+  - name: GA
+    description: This product is Generally Available.
+---

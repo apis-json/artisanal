@@ -1,0 +1,621 @@
+---
+openapi: 3.0.0
+info:
+  title: Stripe Topups API
+  description: Needs description.
+  contact:
+    email: dev-platform@stripe.com
+    name: Stripe Dev Platform Team
+    url: 'https://stripe.com'
+  termsOfService: 'https://stripe.com/us/terms/'
+  version: '2023-10-16'
+  x-stripeSpecFilename: spec3
+security:
+  - basicAuth: []
+  - bearerAuth: []
+servers:
+  - url: 'https://api.stripe.com/'
+paths:
+  /v1/topups:
+    get:
+      description: <p>Returns a list of top-ups.</p>
+      operationId: GetTopups
+      parameters:
+        - description: A positive integer representing how much to transfer.
+          explode: true
+          in: query
+          name: amount
+          required: false
+          schema:
+            anyOf:
+              - properties:
+                  gt:
+                    type: integer
+                  gte:
+                    type: integer
+                  lt:
+                    type: integer
+                  lte:
+                    type: integer
+                title: range_query_specs
+                type: object
+              - type: integer
+          style: deepObject
+        - description: >-
+            A filter on the list, based on the object `created` field. The value
+            can be a string with an integer Unix timestamp, or it can be a
+            dictionary with a number of different query options.
+          explode: true
+          in: query
+          name: created
+          required: false
+          schema:
+            anyOf:
+              - properties:
+                  gt:
+                    type: integer
+                  gte:
+                    type: integer
+                  lt:
+                    type: integer
+                  lte:
+                    type: integer
+                title: range_query_specs
+                type: object
+              - type: integer
+          style: deepObject
+        - description: >-
+            A cursor for use in pagination. `ending_before` is an object ID that
+            defines your place in the list. For instance, if you make a list
+            request and receive 100 objects, starting with `obj_bar`, your
+            subsequent call can include `ending_before=obj_bar` in order to
+            fetch the previous page of the list.
+          in: query
+          name: ending_before
+          required: false
+          schema:
+            maxLength: 5000
+            type: string
+          style: form
+        - description: Specifies which fields in the response should be expanded.
+          explode: true
+          in: query
+          name: expand
+          required: false
+          schema:
+            items:
+              maxLength: 5000
+              type: string
+            type: array
+          style: deepObject
+        - description: >-
+            A limit on the number of objects to be returned. Limit can range
+            between 1 and 100, and the default is 10.
+          in: query
+          name: limit
+          required: false
+          schema:
+            type: integer
+          style: form
+        - description: >-
+            A cursor for use in pagination. `starting_after` is an object ID
+            that defines your place in the list. For instance, if you make a
+            list request and receive 100 objects, ending with `obj_foo`, your
+            subsequent call can include `starting_after=obj_foo` in order to
+            fetch the next page of the list.
+          in: query
+          name: starting_after
+          required: false
+          schema:
+            maxLength: 5000
+            type: string
+          style: form
+        - description: >-
+            Only return top-ups that have the given status. One of `canceled`,
+            `failed`, `pending` or `succeeded`.
+          in: query
+          name: status
+          required: false
+          schema:
+            enum:
+              - canceled
+              - failed
+              - pending
+              - succeeded
+            maxLength: 5000
+            type: string
+          style: form
+      requestBody:
+        content:
+          application/x-www-form-urlencoded:
+            encoding: {}
+            schema:
+              additionalProperties: false
+              properties: {}
+              type: object
+        required: false
+      responses:
+        '200':
+          content:
+            application/json:
+              schema:
+                description: ''
+                properties:
+                  data:
+                    items:
+                      $ref: '#/components/schemas/topup'
+                    type: array
+                  has_more:
+                    description: >-
+                      True if this list has another page of items after this one
+                      that can be fetched.
+                    type: boolean
+                  object:
+                    description: >-
+                      String representing the object's type. Objects of the same
+                      type share the same value. Always has the value `list`.
+                    enum:
+                      - list
+                    type: string
+                  url:
+                    description: The URL where this list can be accessed.
+                    maxLength: 5000
+                    pattern: ^/v1/topups
+                    type: string
+                required:
+                  - data
+                  - has_more
+                  - object
+                  - url
+                title: TopupList
+                type: object
+                x-expandableFields:
+                  - data
+          description: Successful response.
+        default:
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/error'
+          description: Error response.
+      summary: Retrieve Top Ups
+      tags:
+        - Top Ups
+    post:
+      description: <p>Top up the balance of an account</p>
+      operationId: PostTopups
+      requestBody:
+        content:
+          application/x-www-form-urlencoded:
+            encoding:
+              expand:
+                explode: true
+                style: deepObject
+              metadata:
+                explode: true
+                style: deepObject
+            schema:
+              additionalProperties: false
+              properties:
+                amount:
+                  description: A positive integer representing how much to transfer.
+                  type: integer
+                currency:
+                  description: >-
+                    Three-letter [ISO currency
+                    code](https://www.iso.org/iso-4217-currency-codes.html), in
+                    lowercase. Must be a [supported
+                    currency](https://stripe.com/docs/currencies).
+                  type: string
+                description:
+                  description: >-
+                    An arbitrary string attached to the object. Often useful for
+                    displaying to users.
+                  maxLength: 5000
+                  type: string
+                expand:
+                  description: Specifies which fields in the response should be expanded.
+                  items:
+                    maxLength: 5000
+                    type: string
+                  type: array
+                metadata:
+                  anyOf:
+                    - additionalProperties:
+                        type: string
+                      type: object
+                    - enum:
+                        - ''
+                      type: string
+                  description: >-
+                    Set of [key-value
+                    pairs](https://stripe.com/docs/api/metadata) that you can
+                    attach to an object. This can be useful for storing
+                    additional information about the object in a structured
+                    format. Individual keys can be unset by posting an empty
+                    value to them. All keys can be unset by posting an empty
+                    value to `metadata`.
+                source:
+                  description: >-
+                    The ID of a source to transfer funds from. For most users,
+                    this should be left unspecified which will use the bank
+                    account that was set up in the dashboard for the specified
+                    currency. In test mode, this can be a test bank token (see
+                    [Testing
+                    Top-ups](https://stripe.com/docs/connect/testing#testing-top-ups)).
+                  maxLength: 5000
+                  type: string
+                statement_descriptor:
+                  description: >-
+                    Extra information about a top-up for the source's bank
+                    statement. Limited to 15 ASCII characters.
+                  maxLength: 15
+                  type: string
+                transfer_group:
+                  description: A string that identifies this top-up as part of a group.
+                  type: string
+              required:
+                - amount
+                - currency
+              type: object
+        required: true
+      responses:
+        '200':
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/topup'
+          description: Successful response.
+        default:
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/error'
+          description: Error response.
+      summary: Create Top Up
+      tags:
+        - Top Ups
+  '/v1/topups/{topup}':
+    get:
+      description: >-
+        <p>Retrieves the details of a top-up that has previously been created.
+        Supply the unique top-up ID that was returned from your previous
+        request, and Stripe will return the corresponding top-up
+        information.</p>
+      operationId: GetTopupsTopup
+      parameters:
+        - description: Specifies which fields in the response should be expanded.
+          explode: true
+          in: query
+          name: expand
+          required: false
+          schema:
+            items:
+              maxLength: 5000
+              type: string
+            type: array
+          style: deepObject
+        - in: path
+          name: topup
+          required: true
+          schema:
+            maxLength: 5000
+            type: string
+          style: simple
+      requestBody:
+        content:
+          application/x-www-form-urlencoded:
+            encoding: {}
+            schema:
+              additionalProperties: false
+              properties: {}
+              type: object
+        required: false
+      responses:
+        '200':
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/topup'
+          description: Successful response.
+        default:
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/error'
+          description: Error response.
+      summary: Retrieve Top Up
+      tags:
+        - Top Ups
+    post:
+      description: >-
+        <p>Updates the metadata of a top-up. Other top-up details are not
+        editable by design.</p>
+      operationId: PostTopupsTopup
+      parameters:
+        - in: path
+          name: topup
+          required: true
+          schema:
+            maxLength: 5000
+            type: string
+          style: simple
+      requestBody:
+        content:
+          application/x-www-form-urlencoded:
+            encoding:
+              expand:
+                explode: true
+                style: deepObject
+              metadata:
+                explode: true
+                style: deepObject
+            schema:
+              additionalProperties: false
+              properties:
+                description:
+                  description: >-
+                    An arbitrary string attached to the object. Often useful for
+                    displaying to users.
+                  maxLength: 5000
+                  type: string
+                expand:
+                  description: Specifies which fields in the response should be expanded.
+                  items:
+                    maxLength: 5000
+                    type: string
+                  type: array
+                metadata:
+                  anyOf:
+                    - additionalProperties:
+                        type: string
+                      type: object
+                    - enum:
+                        - ''
+                      type: string
+                  description: >-
+                    Set of [key-value
+                    pairs](https://stripe.com/docs/api/metadata) that you can
+                    attach to an object. This can be useful for storing
+                    additional information about the object in a structured
+                    format. Individual keys can be unset by posting an empty
+                    value to them. All keys can be unset by posting an empty
+                    value to `metadata`.
+              type: object
+        required: false
+      responses:
+        '200':
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/topup'
+          description: Successful response.
+        default:
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/error'
+          description: Error response.
+      summary: Update Top Up
+      tags:
+        - Top Ups
+  '/v1/topups/{topup}/cancel':
+    post:
+      description: <p>Cancels a top-up. Only pending top-ups can be canceled.</p>
+      operationId: PostTopupsTopupCancel
+      parameters:
+        - in: path
+          name: topup
+          required: true
+          schema:
+            maxLength: 5000
+            type: string
+          style: simple
+      requestBody:
+        content:
+          application/x-www-form-urlencoded:
+            encoding:
+              expand:
+                explode: true
+                style: deepObject
+            schema:
+              additionalProperties: false
+              properties:
+                expand:
+                  description: Specifies which fields in the response should be expanded.
+                  items:
+                    maxLength: 5000
+                    type: string
+                  type: array
+              type: object
+        required: false
+      responses:
+        '200':
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/topup'
+          description: Successful response.
+        default:
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/error'
+          description: Error response.
+      summary: Cancel Top Up
+      tags:
+        - Cancel
+        - Top Ups
+components:
+  schemas:
+    error:
+      description: An error response from the Stripe API
+      properties:
+        error:
+          $ref: '#/components/schemas/api_errors'
+      required:
+        - error
+      type: object
+    topup:
+      description: >-
+        To top up your Stripe balance, you create a top-up object. You can
+        retrieve
+
+        individual top-ups, as well as list all top-ups. Top-ups are identified
+        by a
+
+        unique, random ID.
+
+
+        Related guide: [Topping up your platform
+        account](https://stripe.com/docs/connect/top-ups)
+      properties:
+        amount:
+          description: Amount transferred.
+          type: integer
+        balance_transaction:
+          anyOf:
+            - maxLength: 5000
+              type: string
+            - $ref: '#/components/schemas/balance_transaction'
+          description: >-
+            ID of the balance transaction that describes the impact of this
+            top-up on your account balance. May not be specified depending on
+            status of top-up.
+          nullable: true
+          x-expansionResources:
+            oneOf:
+              - $ref: '#/components/schemas/balance_transaction'
+        created:
+          description: >-
+            Time at which the object was created. Measured in seconds since the
+            Unix epoch.
+          format: unix-time
+          type: integer
+        currency:
+          description: >-
+            Three-letter [ISO currency
+            code](https://www.iso.org/iso-4217-currency-codes.html), in
+            lowercase. Must be a [supported
+            currency](https://stripe.com/docs/currencies).
+          maxLength: 5000
+          type: string
+        description:
+          description: >-
+            An arbitrary string attached to the object. Often useful for
+            displaying to users.
+          maxLength: 5000
+          nullable: true
+          type: string
+        expected_availability_date:
+          description: >-
+            Date the funds are expected to arrive in your Stripe account for
+            payouts. This factors in delays like weekends or bank holidays. May
+            not be specified depending on status of top-up.
+          nullable: true
+          type: integer
+        failure_code:
+          description: >-
+            Error code explaining reason for top-up failure if available (see
+            [the errors section](https://stripe.com/docs/api#errors) for a list
+            of codes).
+          maxLength: 5000
+          nullable: true
+          type: string
+        failure_message:
+          description: >-
+            Message to user further explaining reason for top-up failure if
+            available.
+          maxLength: 5000
+          nullable: true
+          type: string
+        id:
+          description: Unique identifier for the object.
+          maxLength: 5000
+          type: string
+        livemode:
+          description: >-
+            Has the value `true` if the object exists in live mode or the value
+            `false` if the object exists in test mode.
+          type: boolean
+        metadata:
+          additionalProperties:
+            maxLength: 500
+            type: string
+          description: >-
+            Set of [key-value pairs](https://stripe.com/docs/api/metadata) that
+            you can attach to an object. This can be useful for storing
+            additional information about the object in a structured format.
+          type: object
+        object:
+          description: >-
+            String representing the object's type. Objects of the same type
+            share the same value.
+          enum:
+            - topup
+          type: string
+        source:
+          anyOf:
+            - $ref: '#/components/schemas/source'
+          description: >-
+            The source field is deprecated. It might not always be present in
+            the API response.
+          nullable: true
+        statement_descriptor:
+          description: >-
+            Extra information about a top-up. This will appear on your source's
+            bank statement. It must contain at least one letter.
+          maxLength: 5000
+          nullable: true
+          type: string
+        status:
+          description: >-
+            The status of the top-up is either `canceled`, `failed`, `pending`,
+            `reversed`, or `succeeded`.
+          enum:
+            - canceled
+            - failed
+            - pending
+            - reversed
+            - succeeded
+          type: string
+        transfer_group:
+          description: A string that identifies this top-up as part of a group.
+          maxLength: 5000
+          nullable: true
+          type: string
+      required:
+        - amount
+        - created
+        - currency
+        - id
+        - livemode
+        - metadata
+        - object
+        - status
+      title: Topup
+      type: object
+      x-expandableFields:
+        - balance_transaction
+        - source
+      x-resourceId: topup
+  securitySchemes:
+    basicAuth:
+      description: >-
+        Basic HTTP authentication. Allowed headers-- Authorization: Basic
+        <api_key> | Authorization: Basic <base64 hash of `api_key:`>
+      scheme: basic
+      type: http
+    bearerAuth:
+      bearerFormat: auth-scheme
+      description: >-
+        Bearer HTTP authentication. Allowed headers-- Authorization: Bearer
+        <api_key>
+      scheme: bearer
+      type: http
+tags:
+  - name: Top Ups
+    description: Needs a description.
+  - name: Cancel
+    description: Needs a description.
+---

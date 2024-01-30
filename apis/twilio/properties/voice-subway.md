@@ -1,0 +1,895 @@
+---
+tracks:
+- id: 46768da5-6cf9-4d7e-94fd-ab8edb2ebb7a
+  segmentStyle:
+    strokeColor: "#000000"
+    strokeWidth: 12
+    selectionColor: "#006400"
+    fullySelected: false
+  stationStyle:
+    strokeColor: "#000000"
+    strokeWidth: 6
+    fillColor: white
+    stationRadius: 12
+    selectionColor: "#006400"
+    fullySelected: false
+  segments: []
+  stationsMinor: []
+- id: 416e2d24-a7bc-48a0-83e7-96c0862edf61
+  segmentStyle:
+    strokeColor: "#000000"
+    strokeWidth: 12
+    selectionColor: "#006400"
+    fullySelected: false
+  stationStyle:
+    strokeColor: "#000000"
+    strokeWidth: 6
+    fillColor: white
+    stationRadius: 12
+    selectionColor: "#006400"
+    fullySelected: false
+  segments:
+  - stationA:
+      position:
+        x: 49
+        y: 40
+      id: dc194935
+      name: Create BYOC Trunk
+      offsetFactor:
+    stationB:
+      position:
+        x: 49
+        y: 131
+      id: 4ba18233
+      name: Retrieve BYOC Trunks
+      offsetFactor:
+    stationsUser:
+    - position:
+        x: 49
+        y: 40
+      id: dc194935
+      name: Create BYOC Trunk
+      offsetFactor:
+    - position:
+        x: 49
+        y: 131
+      id: 4ba18233
+      name: Retrieve BYOC Trunks
+      offsetFactor:
+    stationsAuto: []
+    id: '0013428e-b19d-40df-8dfc-cee02ab1894c'
+  - stationA:
+      position:
+        x: 49
+        y: 131
+      id: 4ba18233
+      name: Retrieve BYOC Trunks
+      offsetFactor:
+    stationB:
+      position:
+        x: 122
+        y: 247
+      id: '0962835d'
+      name: Retrieve BYOC Trunk
+      offsetFactor:
+    stationsUser:
+    - position:
+        x: 49
+        y: 131
+      id: 4ba18233
+      name: Retrieve BYOC Trunks
+      offsetFactor:
+    - position:
+        x: 122
+        y: 247
+      id: '0962835d'
+      name: Retrieve BYOC Trunk
+      offsetFactor:
+    stationsAuto: []
+    id: 9b3d811f-8d0f-4f45-a9a6-e807282382ff
+  - stationA:
+      position:
+        x: 122
+        y: 247
+      id: '0962835d'
+      name: Retrieve BYOC Trunk
+      offsetFactor:
+    stationB:
+      position:
+        x: 271
+        y: 247
+      id: e69f9318
+      name: Update BYOC Trunk
+      offsetFactor:
+    stationsUser:
+    - position:
+        x: 122
+        y: 247
+      id: '0962835d'
+      name: Retrieve BYOC Trunk
+      offsetFactor:
+    - position:
+        x: 271
+        y: 247
+      id: e69f9318
+      name: Update BYOC Trunk
+      offsetFactor:
+    stationsAuto: []
+    id: 8fca8bed-ae8f-4b00-84e9-c95598b45c25
+  - stationA:
+      position:
+        x: 271
+        y: 247
+      id: e69f9318
+      name: Update BYOC Trunk
+      offsetFactor:
+    stationB:
+      position:
+        x: 404
+        y: 247
+      id: 66f571ab
+      name: Delete BYOC Trunk
+      offsetFactor:
+    stationsUser:
+    - position:
+        x: 271
+        y: 247
+      id: e69f9318
+      name: Update BYOC Trunk
+      offsetFactor:
+    - position:
+        x: 404
+        y: 247
+      id: 66f571ab
+      name: Delete BYOC Trunk
+      offsetFactor:
+    stationsAuto: []
+    id: bd3c3676-aaec-48bf-975d-0f64b982c910
+  stationsMinor: []
+- id: c7dce80c-01e5-4d7c-9a64-5b90e0f68e25
+  segmentStyle:
+    strokeColor: "#000000"
+    strokeWidth: 12
+    selectionColor: "#006400"
+    fullySelected: false
+  stationStyle:
+    strokeColor: "#000000"
+    strokeWidth: 6
+    fillColor: white
+    stationRadius: 12
+    selectionColor: "#006400"
+    fullySelected: false
+  segments: []
+  stationsMinor: []
+- id: aa63e6fb-8c76-418c-88df-5b530138c712
+  segmentStyle:
+    strokeColor: "#000000"
+    strokeWidth: 12
+    selectionColor: "#006400"
+    fullySelected: false
+  stationStyle:
+    strokeColor: "#000000"
+    strokeWidth: 6
+    fillColor: white
+    stationRadius: 12
+    selectionColor: "#006400"
+    fullySelected: false
+  segments:
+  - stationA:
+      position:
+        x: 55
+        y: 283
+      id: ca21ff64
+      name: Create Connection Policy
+      offsetFactor:
+    stationB:
+      position:
+        x: 55
+        y: 332
+      id: f05604c1
+      name: Retrieve Connection Policies
+      offsetFactor:
+    stationsUser:
+    - position:
+        x: 55
+        y: 283
+      id: ca21ff64
+      name: Create Connection Policy
+      offsetFactor:
+    - position:
+        x: 55
+        y: 332
+      id: f05604c1
+      name: Retrieve Connection Policies
+      offsetFactor:
+    stationsAuto: []
+    id: 9b5f350e-16d9-4d1a-a26f-fd3dc215b491
+  - stationA:
+      position:
+        x: 55
+        y: 332
+      id: f05604c1
+      name: Retrieve Connection Policies
+      offsetFactor:
+    stationB:
+      position:
+        x: 55
+        y: 386
+      id: df8f6a71
+      name: Retrieve Connection Policy
+      offsetFactor:
+    stationsUser:
+    - position:
+        x: 55
+        y: 332
+      id: f05604c1
+      name: Retrieve Connection Policies
+      offsetFactor:
+    - position:
+        x: 55
+        y: 386
+      id: df8f6a71
+      name: Retrieve Connection Policy
+      offsetFactor:
+    stationsAuto: []
+    id: 5d28b2f6-3ce2-41bd-9973-7ea73d5b2684
+  - stationA:
+      position:
+        x: 55
+        y: 386
+      id: df8f6a71
+      name: Retrieve Connection Policy
+      offsetFactor:
+    stationB:
+      position:
+        x: 109
+        y: 435
+      id: 684b3a15
+      name: Update Connection Policy
+      offsetFactor:
+    stationsUser:
+    - position:
+        x: 55
+        y: 386
+      id: df8f6a71
+      name: Retrieve Connection Policy
+      offsetFactor:
+    - position:
+        x: 109
+        y: 435
+      id: 684b3a15
+      name: Update Connection Policy
+      offsetFactor:
+    stationsAuto: []
+    id: 5bcb0edb-cc33-4802-a50d-fee180910833
+  - stationA:
+      position:
+        x: 109
+        y: 435
+      id: 684b3a15
+      name: Update Connection Policy
+      offsetFactor:
+    stationB:
+      position:
+        x: 159
+        y: 435
+      id: 93a58446
+      name: Delete Connection Policy
+      offsetFactor:
+    stationsUser:
+    - position:
+        x: 109
+        y: 435
+      id: 684b3a15
+      name: Update Connection Policy
+      offsetFactor:
+    - position:
+        x: 159
+        y: 435
+      id: 93a58446
+      name: Delete Connection Policy
+      offsetFactor:
+    stationsAuto: []
+    id: fae3d5c6-68a8-4f8a-9e1f-5acef1de2acf
+  - stationA:
+      position:
+        x: 109
+        y: 435
+      id: 684b3a15
+      name: Update Connection Policy
+      offsetFactor:
+    stationB:
+      position:
+        x: 159
+        y: 435
+      id: 93a58446
+      name: Delete Connection Policy
+      offsetFactor:
+    stationsUser:
+    - position:
+        x: 109
+        y: 435
+      id: 684b3a15
+      name: Update Connection Policy
+      offsetFactor:
+    - position:
+        x: 159
+        y: 435
+      id: 93a58446
+      name: Delete Connection Policy
+      offsetFactor:
+    stationsAuto: []
+    id: 4ac708ac-d5ab-45ba-881c-1e6d019dda2d
+  stationsMinor: []
+- id: f64d050f-0b2d-4fa3-b487-e8587848834d
+  segmentStyle:
+    strokeColor: "#000000"
+    strokeWidth: 12
+    selectionColor: "#006400"
+    fullySelected: false
+  stationStyle:
+    strokeColor: "#000000"
+    strokeWidth: 6
+    fillColor: white
+    stationRadius: 12
+    selectionColor: "#006400"
+    fullySelected: false
+  segments:
+  - stationA:
+      position:
+        x: 909
+        y: 28
+      id: 0da0fd39
+      name: Create Connection Policies Target
+      offsetFactor:
+    stationB:
+      position:
+        x: 909
+        y: 116
+      id: 12ef2c92
+      name: Retrieve Connection Policies Targets
+      offsetFactor:
+    stationsUser:
+    - position:
+        x: 909
+        y: 28
+      id: 0da0fd39
+      name: Create Connection Policies Target
+      offsetFactor:
+    - position:
+        x: 909
+        y: 116
+      id: 12ef2c92
+      name: Retrieve Connection Policies Targets
+      offsetFactor:
+    stationsAuto: []
+    id: 5b2494d0-7059-4a84-b9be-4b5cefad7522
+  - stationA:
+      position:
+        x: 909
+        y: 116
+      id: 12ef2c92
+      name: Retrieve Connection Policies Targets
+      offsetFactor:
+    stationB:
+      position:
+        x: 909
+        y: 183
+      id: 28ba3e1b
+      name: Retrieve Connection Policies Target
+      offsetFactor:
+    stationsUser:
+    - position:
+        x: 909
+        y: 116
+      id: 12ef2c92
+      name: Retrieve Connection Policies Targets
+      offsetFactor:
+    - position:
+        x: 909
+        y: 183
+      id: 28ba3e1b
+      name: Retrieve Connection Policies Target
+      offsetFactor:
+    stationsAuto: []
+    id: 6aad3c76-ab40-4ba4-b1d9-553a6498e3cc
+  - stationA:
+      position:
+        x: 909
+        y: 183
+      id: 28ba3e1b
+      name: Retrieve Connection Policies Target
+      offsetFactor:
+    stationB:
+      position:
+        x: 909
+        y: 247
+      id: c1cfe909
+      name: Update Connection Policies Target
+      offsetFactor:
+    stationsUser:
+    - position:
+        x: 909
+        y: 183
+      id: 28ba3e1b
+      name: Retrieve Connection Policies Target
+      offsetFactor:
+    - position:
+        x: 909
+        y: 247
+      id: c1cfe909
+      name: Update Connection Policies Target
+      offsetFactor:
+    stationsAuto: []
+    id: 3727c9fa-e2f4-4cf7-ab7d-3e45b6b95a5c
+  - stationA:
+      position:
+        x: 909
+        y: 247
+      id: c1cfe909
+      name: Update Connection Policies Target
+      offsetFactor:
+    stationB:
+      position:
+        x: 909
+        y: 332
+      id: 4ca0aa93
+      name: Delete Connection Policies Target
+      offsetFactor:
+    stationsUser:
+    - position:
+        x: 909
+        y: 247
+      id: c1cfe909
+      name: Update Connection Policies Target
+      offsetFactor:
+    - position:
+        x: 909
+        y: 332
+      id: 4ca0aa93
+      name: Delete Connection Policies Target
+      offsetFactor:
+    stationsAuto: []
+    id: '04938874-80d1-48a8-8a85-7d2b8095162f'
+  stationsMinor: []
+- id: 55f6bfcf-444f-4070-a073-f9c169e6d5ec
+  segmentStyle:
+    strokeColor: "#000000"
+    strokeWidth: 12
+    selectionColor: "#006400"
+    fullySelected: false
+  stationStyle:
+    strokeColor: "#000000"
+    strokeWidth: 6
+    fillColor: white
+    stationRadius: 12
+    selectionColor: "#006400"
+    fullySelected: false
+  segments:
+  - stationA:
+      position:
+        x: 903
+        y: 393
+      id: e8b3a09b
+      name: Retrieve Dialing Permission Country
+      offsetFactor:
+    stationB:
+      position:
+        x: 693
+        y: 393
+      id: fd6c2a98
+      name: Retrieve Dialing Permission Countrie
+      offsetFactor:
+    stationsUser:
+    - position:
+        x: 903
+        y: 393
+      id: e8b3a09b
+      name: Retrieve Dialing Permission Country
+      offsetFactor:
+    - position:
+        x: 693
+        y: 393
+      id: fd6c2a98
+      name: Retrieve Dialing Permission Countrie
+      offsetFactor:
+    stationsAuto: []
+    id: 2c5cf1d4-276d-4651-8a58-3f4f3ce1029e
+  stationsMinor: []
+- id: 1e49b66d-0149-465c-9239-354635d31dd5
+  segmentStyle:
+    strokeColor: "#000000"
+    strokeWidth: 12
+    selectionColor: "#006400"
+    fullySelected: false
+  stationStyle:
+    strokeColor: "#000000"
+    strokeWidth: 6
+    fillColor: white
+    stationRadius: 12
+    selectionColor: "#006400"
+    fullySelected: false
+  segments: []
+  stationsMinor: []
+- id: 3c5f7f19-445f-4987-b48f-16bb75ef71aa
+  segmentStyle:
+    strokeColor: "#000000"
+    strokeWidth: 12
+    selectionColor: "#006400"
+    fullySelected: false
+  stationStyle:
+    strokeColor: "#000000"
+    strokeWidth: 6
+    fillColor: white
+    stationRadius: 12
+    selectionColor: "#006400"
+    fullySelected: false
+  segments: []
+  stationsMinor: []
+- id: ed8dc678-c565-4c7f-b903-56a936e79e79
+  segmentStyle:
+    strokeColor: "#000000"
+    strokeWidth: 12
+    selectionColor: "#006400"
+    fullySelected: false
+  stationStyle:
+    strokeColor: "#000000"
+    strokeWidth: 6
+    fillColor: white
+    stationRadius: 12
+    selectionColor: "#006400"
+    fullySelected: false
+  segments:
+  - stationA:
+      position:
+        x: 266
+        y: 143
+      id: dbdbc040
+      name: Retrieve Settings
+      offsetFactor:
+    stationB:
+      position:
+        x: 266
+        y: 80
+      id: 5cdddfe0
+      name: Update Settings
+      offsetFactor:
+    stationsUser:
+    - position:
+        x: 266
+        y: 143
+      id: dbdbc040
+      name: Retrieve Settings
+      offsetFactor:
+    - position:
+        x: 266
+        y: 80
+      id: 5cdddfe0
+      name: Update Settings
+      offsetFactor:
+    stationsAuto: []
+    id: 8930cf1b-39fd-4402-91d5-f059194de456
+  - stationA:
+      position:
+        x: 266
+        y: 80
+      id: 5cdddfe0
+      name: Update Settings
+      offsetFactor:
+    stationB:
+      position:
+        x: 370
+        y: 32
+      id: '33648313'
+      name: station
+      offsetFactor:
+    stationsUser:
+    - position:
+        x: 266
+        y: 80
+      id: 5cdddfe0
+      name: Update Settings
+      offsetFactor:
+    - position:
+        x: 370
+        y: 32
+      id: '33648313'
+      name: station
+      offsetFactor:
+    stationsAuto: []
+    id: 3ffdde30-2626-4acc-8ad4-32b89313b838
+  stationsMinor: []
+- id: ad438af4-3349-412e-823a-70c27a8dc9f3
+  segmentStyle:
+    strokeColor: "#000000"
+    strokeWidth: 12
+    selectionColor: "#006400"
+    fullySelected: false
+  stationStyle:
+    strokeColor: "#000000"
+    strokeWidth: 6
+    fillColor: white
+    stationRadius: 12
+    selectionColor: "#006400"
+    fullySelected: false
+  segments: []
+  stationsMinor: []
+- id: 17ce7ab3-19dd-4692-b2c0-1d3b87134655
+  segmentStyle:
+    strokeColor: "#000000"
+    strokeWidth: 12
+    selectionColor: "#006400"
+    fullySelected: false
+  stationStyle:
+    strokeColor: "#000000"
+    strokeWidth: 6
+    fillColor: white
+    stationRadius: 12
+    selectionColor: "#006400"
+    fullySelected: false
+  segments:
+  - stationA:
+      position:
+        x: 459
+        y: 27
+      id: ab36831b
+      name: Create IP Record
+      offsetFactor:
+    stationB:
+      position:
+        x: 459
+        y: 175
+      id: 8cf1164b
+      name: Retrieve IP Records
+      offsetFactor:
+    stationsUser:
+    - position:
+        x: 459
+        y: 27
+      id: ab36831b
+      name: Create IP Record
+      offsetFactor:
+    - position:
+        x: 459
+        y: 175
+      id: 8cf1164b
+      name: Retrieve IP Records
+      offsetFactor:
+    stationsAuto: []
+    id: 5f6661de-da32-463e-97b0-cd1f94edf1c0
+  - stationA:
+      position:
+        x: 459
+        y: 175
+      id: 8cf1164b
+      name: Retrieve IP Records
+      offsetFactor:
+    stationB:
+      position:
+        x: 579
+        y: 175
+      id: 1186f2db
+      name: Retrieve IP Record
+      offsetFactor:
+    stationsUser:
+    - position:
+        x: 459
+        y: 175
+      id: 8cf1164b
+      name: Retrieve IP Records
+      offsetFactor:
+    - position:
+        x: 579
+        y: 175
+      id: 1186f2db
+      name: Retrieve IP Record
+      offsetFactor:
+    stationsAuto: []
+    id: 9a1eb242-9ebe-4ad0-a522-81697a1e0589
+  - stationA:
+      position:
+        x: 579
+        y: 175
+      id: 1186f2db
+      name: Retrieve IP Record
+      offsetFactor:
+    stationB:
+      position:
+        x: 579
+        y: 118
+      id: 828eeb3c
+      name: Update IP Record
+      offsetFactor:
+    stationsUser:
+    - position:
+        x: 579
+        y: 175
+      id: 1186f2db
+      name: Retrieve IP Record
+      offsetFactor:
+    - position:
+        x: 579
+        y: 118
+      id: 828eeb3c
+      name: Update IP Record
+      offsetFactor:
+    stationsAuto: []
+    id: f915fb75-10d3-44e2-a9b9-59c1fbafad07
+  - stationA:
+      position:
+        x: 579
+        y: 118
+      id: 828eeb3c
+      name: Update IP Record
+      offsetFactor:
+    stationB:
+      position:
+        x: 579
+        y: 223
+      id: f8844b0b
+      name: Delete IP Record
+      offsetFactor:
+    stationsUser:
+    - position:
+        x: 579
+        y: 118
+      id: 828eeb3c
+      name: Update IP Record
+      offsetFactor:
+    - position:
+        x: 579
+        y: 223
+      id: f8844b0b
+      name: Delete IP Record
+      offsetFactor:
+    stationsAuto: []
+    id: fa5bed4e-7b5d-4913-a0d2-fb15c168b4b0
+  stationsMinor: []
+- id: abd3be75-0017-4a4d-bf80-8e2fdc12cfd8
+  segmentStyle:
+    strokeColor: "#000000"
+    strokeWidth: 12
+    selectionColor: "#006400"
+    fullySelected: false
+  stationStyle:
+    strokeColor: "#000000"
+    strokeWidth: 6
+    fillColor: white
+    stationRadius: 12
+    selectionColor: "#006400"
+    fullySelected: false
+  segments: []
+  stationsMinor: []
+- id: 9407d473-42c7-4bd6-b04c-d9b6f1dca4a8
+  segmentStyle:
+    strokeColor: "#000000"
+    strokeWidth: 12
+    selectionColor: "#006400"
+    fullySelected: false
+  stationStyle:
+    strokeColor: "#000000"
+    strokeWidth: 6
+    fillColor: white
+    stationRadius: 12
+    selectionColor: "#006400"
+    fullySelected: false
+  segments:
+  - stationA:
+      position:
+        x: 867
+        y: 24
+      id: 76d64f1f
+      name: Create Source IP Mapping
+      offsetFactor:
+    stationB:
+      position:
+        x: 867
+        y: 76
+      id: c326db52
+      name: Retrieve Source IP Mappings
+      offsetFactor:
+    stationsUser:
+    - position:
+        x: 867
+        y: 24
+      id: 76d64f1f
+      name: Create Source IP Mapping
+      offsetFactor:
+    - position:
+        x: 867
+        y: 76
+      id: c326db52
+      name: Retrieve Source IP Mappings
+      offsetFactor:
+    stationsAuto: []
+    id: f93e821a-2fa1-4ff4-bcb6-511fb0c4e7af
+  - stationA:
+      position:
+        x: 867
+        y: 76
+      id: c326db52
+      name: Retrieve Source IP Mappings
+      offsetFactor:
+    stationB:
+      position:
+        x: 867
+        y: 147
+      id: 2eadefb4
+      name: Retrieve Source IP Mapping
+      offsetFactor:
+    stationsUser:
+    - position:
+        x: 867
+        y: 76
+      id: c326db52
+      name: Retrieve Source IP Mappings
+      offsetFactor:
+    - position:
+        x: 867
+        y: 147
+      id: 2eadefb4
+      name: Retrieve Source IP Mapping
+      offsetFactor:
+    stationsAuto: []
+    id: 9c88a97f-7278-4b06-a7fe-381f7c513137
+  - stationA:
+      position:
+        x: 867
+        y: 147
+      id: 2eadefb4
+      name: Retrieve Source IP Mapping
+      offsetFactor:
+    stationB:
+      position:
+        x: 867
+        y: 245
+      id: 9f1d3080
+      name: Update Source IP Mapping
+      offsetFactor:
+    stationsUser:
+    - position:
+        x: 867
+        y: 147
+      id: 2eadefb4
+      name: Retrieve Source IP Mapping
+      offsetFactor:
+    - position:
+        x: 867
+        y: 245
+      id: 9f1d3080
+      name: Update Source IP Mapping
+      offsetFactor:
+    stationsAuto: []
+    id: 538857cc-a241-41f0-8083-a3bc9a483c0c
+  - stationA:
+      position:
+        x: 867
+        y: 245
+      id: 9f1d3080
+      name: Update Source IP Mapping
+      offsetFactor:
+    stationB:
+      position:
+        x: 867
+        y: 293
+      id: cd3c5dc7
+      name: Delete Source IP Mapping
+      offsetFactor:
+    stationsUser:
+    - position:
+        x: 867
+        y: 245
+      id: 9f1d3080
+      name: Update Source IP Mapping
+      offsetFactor:
+    - position:
+        x: 867
+        y: 293
+      id: cd3c5dc7
+      name: Delete Source IP Mapping
+      offsetFactor:
+    stationsAuto: []
+    id: 5c5cac6c-21af-4f1e-8bb0-c08d3f17ffd5
+  stationsMinor: []
+connections: []
+---

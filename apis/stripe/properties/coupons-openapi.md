@@ -1,0 +1,688 @@
+---
+openapi: 3.0.0
+info:
+  title: Stripe Coupons API
+  description: Needs description.
+  contact:
+    email: dev-platform@stripe.com
+    name: Stripe Dev Platform Team
+    url: 'https://stripe.com'
+  termsOfService: 'https://stripe.com/us/terms/'
+  version: '2023-10-16'
+  x-stripeSpecFilename: spec3
+security:
+  - basicAuth: []
+  - bearerAuth: []
+servers:
+  - url: 'https://api.stripe.com/'
+paths:
+  /v1/coupons:
+    get:
+      description: <p>Returns a list of your coupons.</p>
+      operationId: GetCoupons
+      parameters:
+        - description: >-
+            A filter on the list, based on the object `created` field. The value
+            can be a string with an integer Unix timestamp, or it can be a
+            dictionary with a number of different query options.
+          explode: true
+          in: query
+          name: created
+          required: false
+          schema:
+            anyOf:
+              - properties:
+                  gt:
+                    type: integer
+                  gte:
+                    type: integer
+                  lt:
+                    type: integer
+                  lte:
+                    type: integer
+                title: range_query_specs
+                type: object
+              - type: integer
+          style: deepObject
+        - description: >-
+            A cursor for use in pagination. `ending_before` is an object ID that
+            defines your place in the list. For instance, if you make a list
+            request and receive 100 objects, starting with `obj_bar`, your
+            subsequent call can include `ending_before=obj_bar` in order to
+            fetch the previous page of the list.
+          in: query
+          name: ending_before
+          required: false
+          schema:
+            maxLength: 5000
+            type: string
+          style: form
+        - description: Specifies which fields in the response should be expanded.
+          explode: true
+          in: query
+          name: expand
+          required: false
+          schema:
+            items:
+              maxLength: 5000
+              type: string
+            type: array
+          style: deepObject
+        - description: >-
+            A limit on the number of objects to be returned. Limit can range
+            between 1 and 100, and the default is 10.
+          in: query
+          name: limit
+          required: false
+          schema:
+            type: integer
+          style: form
+        - description: >-
+            A cursor for use in pagination. `starting_after` is an object ID
+            that defines your place in the list. For instance, if you make a
+            list request and receive 100 objects, ending with `obj_foo`, your
+            subsequent call can include `starting_after=obj_foo` in order to
+            fetch the next page of the list.
+          in: query
+          name: starting_after
+          required: false
+          schema:
+            maxLength: 5000
+            type: string
+          style: form
+      requestBody:
+        content:
+          application/x-www-form-urlencoded:
+            encoding: {}
+            schema:
+              additionalProperties: false
+              properties: {}
+              type: object
+        required: false
+      responses:
+        '200':
+          content:
+            application/json:
+              schema:
+                description: ''
+                properties:
+                  data:
+                    items:
+                      $ref: '#/components/schemas/coupon'
+                    type: array
+                  has_more:
+                    description: >-
+                      True if this list has another page of items after this one
+                      that can be fetched.
+                    type: boolean
+                  object:
+                    description: >-
+                      String representing the object's type. Objects of the same
+                      type share the same value. Always has the value `list`.
+                    enum:
+                      - list
+                    type: string
+                  url:
+                    description: The URL where this list can be accessed.
+                    maxLength: 5000
+                    pattern: ^/v1/coupons
+                    type: string
+                required:
+                  - data
+                  - has_more
+                  - object
+                  - url
+                title: CouponsResourceCouponList
+                type: object
+                x-expandableFields:
+                  - data
+          description: Successful response.
+        default:
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/error'
+          description: Error response.
+      summary: Retrieve Coupons
+      tags:
+        - Coupons
+    post:
+      description: >-
+        <p>You can create coupons easily via the <a
+        href="https://dashboard.stripe.com/coupons">coupon management</a> page
+        of the Stripe dashboard. Coupon creation is also accessible via the API
+        if you need to create coupons on the fly.</p>
+
+
+        <p>A coupon has either a <code>percent_off</code> or an
+        <code>amount_off</code> and <code>currency</code>. If you set an
+        <code>amount_off</code>, that amount will be subtracted from any
+        invoice’s subtotal. For example, an invoice with a subtotal of
+        <currency>100</currency> will have a final total of
+        <currency>0</currency> if a coupon with an <code>amount_off</code> of
+        <amount>200</amount> is applied to it and an invoice with a subtotal of
+        <currency>300</currency> will have a final total of
+        <currency>100</currency> if a coupon with an <code>amount_off</code> of
+        <amount>200</amount> is applied to it.</p>
+      operationId: PostCoupons
+      requestBody:
+        content:
+          application/x-www-form-urlencoded:
+            encoding:
+              applies_to:
+                explode: true
+                style: deepObject
+              currency_options:
+                explode: true
+                style: deepObject
+              expand:
+                explode: true
+                style: deepObject
+              metadata:
+                explode: true
+                style: deepObject
+            schema:
+              additionalProperties: false
+              properties:
+                amount_off:
+                  description: >-
+                    A positive integer representing the amount to subtract from
+                    an invoice total (required if `percent_off` is not passed).
+                  type: integer
+                applies_to:
+                  description: >-
+                    A hash containing directions for what this Coupon will apply
+                    discounts to.
+                  properties:
+                    products:
+                      items:
+                        maxLength: 5000
+                        type: string
+                      type: array
+                  title: applies_to_params
+                  type: object
+                currency:
+                  description: >-
+                    Three-letter [ISO code for the
+                    currency](https://stripe.com/docs/currencies) of the
+                    `amount_off` parameter (required if `amount_off` is passed).
+                  type: string
+                currency_options:
+                  additionalProperties:
+                    properties:
+                      amount_off:
+                        type: integer
+                    required:
+                      - amount_off
+                    title: currency_option
+                    type: object
+                  description: >-
+                    Coupons defined in each available currency option (only
+                    supported if `amount_off` is passed). Each key must be a
+                    three-letter [ISO currency
+                    code](https://www.iso.org/iso-4217-currency-codes.html) and
+                    a [supported currency](https://stripe.com/docs/currencies).
+                  type: object
+                duration:
+                  description: >-
+                    Specifies how long the discount will be in effect if used on
+                    a subscription. Defaults to `once`.
+                  enum:
+                    - forever
+                    - once
+                    - repeating
+                  type: string
+                  x-stripeBypassValidation: true
+                duration_in_months:
+                  description: >-
+                    Required only if `duration` is `repeating`, in which case it
+                    must be a positive integer that specifies the number of
+                    months the discount will be in effect.
+                  type: integer
+                expand:
+                  description: Specifies which fields in the response should be expanded.
+                  items:
+                    maxLength: 5000
+                    type: string
+                  type: array
+                id:
+                  description: >-
+                    Unique string of your choice that will be used to identify
+                    this coupon when applying it to a customer. If you don't
+                    want to specify a particular code, you can leave the ID
+                    blank and we'll generate a random code for you.
+                  maxLength: 5000
+                  type: string
+                max_redemptions:
+                  description: >-
+                    A positive integer specifying the number of times the coupon
+                    can be redeemed before it's no longer valid. For example,
+                    you might have a 50% off coupon that the first 20 readers of
+                    your blog can use.
+                  type: integer
+                metadata:
+                  anyOf:
+                    - additionalProperties:
+                        type: string
+                      type: object
+                    - enum:
+                        - ''
+                      type: string
+                  description: >-
+                    Set of [key-value
+                    pairs](https://stripe.com/docs/api/metadata) that you can
+                    attach to an object. This can be useful for storing
+                    additional information about the object in a structured
+                    format. Individual keys can be unset by posting an empty
+                    value to them. All keys can be unset by posting an empty
+                    value to `metadata`.
+                name:
+                  description: >-
+                    Name of the coupon displayed to customers on, for instance
+                    invoices, or receipts. By default the `id` is shown if
+                    `name` is not set.
+                  maxLength: 40
+                  type: string
+                percent_off:
+                  description: >-
+                    A positive float larger than 0, and smaller or equal to 100,
+                    that represents the discount the coupon will apply (required
+                    if `amount_off` is not passed).
+                  type: number
+                redeem_by:
+                  description: >-
+                    Unix timestamp specifying the last time at which the coupon
+                    can be redeemed. After the redeem_by date, the coupon can no
+                    longer be applied to new customers.
+                  format: unix-time
+                  type: integer
+              type: object
+        required: false
+      responses:
+        '200':
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/coupon'
+          description: Successful response.
+        default:
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/error'
+          description: Error response.
+      summary: Create Coupon
+      tags:
+        - Coupons
+  '/v1/coupons/{coupon}':
+    delete:
+      description: >-
+        <p>You can delete coupons via the <a
+        href="https://dashboard.stripe.com/coupons">coupon management</a> page
+        of the Stripe dashboard. However, deleting a coupon does not affect any
+        customers who have already applied the coupon; it means that new
+        customers can’t redeem the coupon. You can also delete coupons via the
+        API.</p>
+      operationId: DeleteCouponsCoupon
+      parameters:
+        - in: path
+          name: coupon
+          required: true
+          schema:
+            maxLength: 5000
+            type: string
+          style: simple
+      requestBody:
+        content:
+          application/x-www-form-urlencoded:
+            encoding: {}
+            schema:
+              additionalProperties: false
+              properties: {}
+              type: object
+        required: false
+      responses:
+        '200':
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/deleted_coupon'
+          description: Successful response.
+        default:
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/error'
+          description: Error response.
+      summary: Delet Coupon
+      tags:
+        - Coupons
+    get:
+      description: <p>Retrieves the coupon with the given ID.</p>
+      operationId: GetCouponsCoupon
+      parameters:
+        - in: path
+          name: coupon
+          required: true
+          schema:
+            maxLength: 5000
+            type: string
+          style: simple
+        - description: Specifies which fields in the response should be expanded.
+          explode: true
+          in: query
+          name: expand
+          required: false
+          schema:
+            items:
+              maxLength: 5000
+              type: string
+            type: array
+          style: deepObject
+      requestBody:
+        content:
+          application/x-www-form-urlencoded:
+            encoding: {}
+            schema:
+              additionalProperties: false
+              properties: {}
+              type: object
+        required: false
+      responses:
+        '200':
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/coupon'
+          description: Successful response.
+        default:
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/error'
+          description: Error response.
+      summary: Retrieve Coupon
+      tags:
+        - Coupons
+    post:
+      description: >-
+        <p>Updates the metadata of a coupon. Other coupon details (currency,
+        duration, amount_off) are, by design, not editable.</p>
+      operationId: PostCouponsCoupon
+      parameters:
+        - in: path
+          name: coupon
+          required: true
+          schema:
+            maxLength: 5000
+            type: string
+          style: simple
+      requestBody:
+        content:
+          application/x-www-form-urlencoded:
+            encoding:
+              currency_options:
+                explode: true
+                style: deepObject
+              expand:
+                explode: true
+                style: deepObject
+              metadata:
+                explode: true
+                style: deepObject
+            schema:
+              additionalProperties: false
+              properties:
+                currency_options:
+                  additionalProperties:
+                    properties:
+                      amount_off:
+                        type: integer
+                    required:
+                      - amount_off
+                    title: currency_option
+                    type: object
+                  description: >-
+                    Coupons defined in each available currency option (only
+                    supported if the coupon is amount-based). Each key must be a
+                    three-letter [ISO currency
+                    code](https://www.iso.org/iso-4217-currency-codes.html) and
+                    a [supported currency](https://stripe.com/docs/currencies).
+                  type: object
+                expand:
+                  description: Specifies which fields in the response should be expanded.
+                  items:
+                    maxLength: 5000
+                    type: string
+                  type: array
+                metadata:
+                  anyOf:
+                    - additionalProperties:
+                        type: string
+                      type: object
+                    - enum:
+                        - ''
+                      type: string
+                  description: >-
+                    Set of [key-value
+                    pairs](https://stripe.com/docs/api/metadata) that you can
+                    attach to an object. This can be useful for storing
+                    additional information about the object in a structured
+                    format. Individual keys can be unset by posting an empty
+                    value to them. All keys can be unset by posting an empty
+                    value to `metadata`.
+                name:
+                  description: >-
+                    Name of the coupon displayed to customers on, for instance
+                    invoices, or receipts. By default the `id` is shown if
+                    `name` is not set.
+                  maxLength: 40
+                  type: string
+              type: object
+        required: false
+      responses:
+        '200':
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/coupon'
+          description: Successful response.
+        default:
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/error'
+          description: Error response.
+      summary: Update Coupon
+      tags:
+        - Coupons
+components:
+  schemas:
+    error:
+      description: An error response from the Stripe API
+      properties:
+        error:
+          $ref: '#/components/schemas/api_errors'
+      required:
+        - error
+      type: object
+    coupon:
+      description: >-
+        A coupon contains information about a percent-off or amount-off discount
+        you
+
+        might want to apply to a customer. Coupons may be applied to
+        [subscriptions](https://stripe.com/docs/api#subscriptions),
+        [invoices](https://stripe.com/docs/api#invoices),
+
+        [checkout sessions](https://stripe.com/docs/api/checkout/sessions),
+        [quotes](https://stripe.com/docs/api#quotes), and more. Coupons do not
+        work with conventional one-off
+        [charges](https://stripe.com/docs/api#create_charge) or [payment
+        intents](https://stripe.com/docs/api/payment_intents).
+      properties:
+        amount_off:
+          description: >-
+            Amount (in the `currency` specified) that will be taken off the
+            subtotal of any invoices for this customer.
+          nullable: true
+          type: integer
+        applies_to:
+          $ref: '#/components/schemas/coupon_applies_to'
+        created:
+          description: >-
+            Time at which the object was created. Measured in seconds since the
+            Unix epoch.
+          format: unix-time
+          type: integer
+        currency:
+          description: >-
+            If `amount_off` has been set, the three-letter [ISO code for the
+            currency](https://stripe.com/docs/currencies) of the amount to take
+            off.
+          nullable: true
+          type: string
+        currency_options:
+          additionalProperties:
+            $ref: '#/components/schemas/coupon_currency_option'
+          description: >-
+            Coupons defined in each available currency option. Each key must be
+            a three-letter [ISO currency
+            code](https://www.iso.org/iso-4217-currency-codes.html) and a
+            [supported currency](https://stripe.com/docs/currencies).
+          type: object
+        duration:
+          description: >-
+            One of `forever`, `once`, and `repeating`. Describes how long a
+            customer who applies this coupon will get the discount.
+          enum:
+            - forever
+            - once
+            - repeating
+          type: string
+          x-stripeBypassValidation: true
+        duration_in_months:
+          description: >-
+            If `duration` is `repeating`, the number of months the coupon
+            applies. Null if coupon `duration` is `forever` or `once`.
+          nullable: true
+          type: integer
+        id:
+          description: Unique identifier for the object.
+          maxLength: 5000
+          type: string
+        livemode:
+          description: >-
+            Has the value `true` if the object exists in live mode or the value
+            `false` if the object exists in test mode.
+          type: boolean
+        max_redemptions:
+          description: >-
+            Maximum number of times this coupon can be redeemed, in total,
+            across all customers, before it is no longer valid.
+          nullable: true
+          type: integer
+        metadata:
+          additionalProperties:
+            maxLength: 500
+            type: string
+          description: >-
+            Set of [key-value pairs](https://stripe.com/docs/api/metadata) that
+            you can attach to an object. This can be useful for storing
+            additional information about the object in a structured format.
+          nullable: true
+          type: object
+        name:
+          description: >-
+            Name of the coupon displayed to customers on for instance invoices
+            or receipts.
+          maxLength: 5000
+          nullable: true
+          type: string
+        object:
+          description: >-
+            String representing the object's type. Objects of the same type
+            share the same value.
+          enum:
+            - coupon
+          type: string
+        percent_off:
+          description: >-
+            Percent that will be taken off the subtotal of any invoices for this
+            customer for the duration of the coupon. For example, a coupon with
+            percent_off of 50 will make a $ (or local equivalent)100 invoice $
+            (or local equivalent)50 instead.
+          nullable: true
+          type: number
+        redeem_by:
+          description: Date after which the coupon can no longer be redeemed.
+          format: unix-time
+          nullable: true
+          type: integer
+        times_redeemed:
+          description: Number of times this coupon has been applied to a customer.
+          type: integer
+        valid:
+          description: >-
+            Taking account of the above properties, whether this coupon can
+            still be applied to a customer.
+          type: boolean
+      required:
+        - created
+        - duration
+        - id
+        - livemode
+        - object
+        - times_redeemed
+        - valid
+      title: Coupon
+      type: object
+      x-expandableFields:
+        - applies_to
+        - currency_options
+      x-resourceId: coupon
+    deleted_coupon:
+      description: ''
+      properties:
+        deleted:
+          description: Always true for a deleted object
+          enum:
+            - true
+          type: boolean
+        id:
+          description: Unique identifier for the object.
+          maxLength: 5000
+          type: string
+        object:
+          description: >-
+            String representing the object's type. Objects of the same type
+            share the same value.
+          enum:
+            - coupon
+          type: string
+      required:
+        - deleted
+        - id
+        - object
+      title: DeletedCoupon
+      type: object
+      x-expandableFields: []
+      x-resourceId: deleted_coupon
+  securitySchemes:
+    basicAuth:
+      description: >-
+        Basic HTTP authentication. Allowed headers-- Authorization: Basic
+        <api_key> | Authorization: Basic <base64 hash of `api_key:`>
+      scheme: basic
+      type: http
+    bearerAuth:
+      bearerFormat: auth-scheme
+      description: >-
+        Bearer HTTP authentication. Allowed headers-- Authorization: Bearer
+        <api_key>
+      scheme: bearer
+      type: http
+tags:
+  - name: Coupons
+    description: Needs a description.
+---

@@ -1,0 +1,764 @@
+---
+tracks:
+- id: ac096cb5-d234-498f-a333-ad701ba56317
+  segmentStyle:
+    strokeColor: "#000000"
+    strokeWidth: 12
+    selectionColor: "#006400"
+    fullySelected: false
+  stationStyle:
+    strokeColor: "#000000"
+    strokeWidth: 6
+    fillColor: white
+    stationRadius: 12
+    selectionColor: "#006400"
+    fullySelected: false
+  segments:
+  - stationA:
+      position:
+        x: 936
+        y: 36
+      id: 49502fb8
+      name: Retrieve SIM Billing Periods
+      offsetFactor:
+    stationB:
+      position:
+        x: 815
+        y: 149
+      id: 1c529df0
+      name: Create ESIM Profile
+      offsetFactor:
+    stationsUser:
+    - position:
+        x: 936
+        y: 36
+      id: 49502fb8
+      name: Retrieve SIM Billing Periods
+      offsetFactor:
+    - position:
+        x: 815
+        y: 149
+      id: 1c529df0
+      name: Create ESIM Profile
+      offsetFactor:
+    stationsAuto: []
+    id: b22b6dd6-a7ac-408f-bfa5-212aeb54c09f
+  - stationA:
+      position:
+        x: 815
+        y: 149
+      id: 1c529df0
+      name: Create ESIM Profile
+      offsetFactor:
+    stationB:
+      position:
+        x: 692
+        y: 48
+      id: 47e9e8e1
+      name: Retrieve ESIM Profiles
+      offsetFactor:
+    stationsUser:
+    - position:
+        x: 815
+        y: 149
+      id: 1c529df0
+      name: Create ESIM Profile
+      offsetFactor:
+    - position:
+        x: 692
+        y: 48
+      id: 47e9e8e1
+      name: Retrieve ESIM Profiles
+      offsetFactor:
+    stationsAuto: []
+    id: a90393bb-33fd-47a6-b6eb-28d38fbd43ec
+  - stationA:
+      position:
+        x: 692
+        y: 48
+      id: 47e9e8e1
+      name: Retrieve ESIM Profiles
+      offsetFactor:
+    stationB:
+      position:
+        x: 522
+        y: 48
+      id: 8c2215e1
+      name: Retrieve ESIM Profile
+      offsetFactor:
+    stationsUser:
+    - position:
+        x: 692
+        y: 48
+      id: 47e9e8e1
+      name: Retrieve ESIM Profiles
+      offsetFactor:
+    - position:
+        x: 522
+        y: 48
+      id: 8c2215e1
+      name: Retrieve ESIM Profile
+      offsetFactor:
+    stationsAuto: []
+    id: 3cc2733e-6399-4ea0-82fb-be2250a4a27c
+  stationsMinor: []
+- id: 54eaa18a-adce-4207-8ea8-ea0464bd1f36
+  segmentStyle:
+    strokeColor: "#000000"
+    strokeWidth: 12
+    selectionColor: "#006400"
+    fullySelected: false
+  stationStyle:
+    strokeColor: "#000000"
+    strokeWidth: 6
+    fillColor: white
+    stationRadius: 12
+    selectionColor: "#006400"
+    fullySelected: false
+  segments:
+  - stationA:
+      position:
+        x: 58
+        y: 32
+      id: 750451f5
+      name: Create Fleets
+      offsetFactor:
+    stationB:
+      position:
+        x: 213
+        y: 124
+      id: a60860df
+      name: Retrieve Fleets
+      offsetFactor:
+    stationsUser:
+    - position:
+        x: 58
+        y: 32
+      id: 750451f5
+      name: Create Fleets
+      offsetFactor:
+    - position:
+        x: 213
+        y: 124
+      id: a60860df
+      name: Retrieve Fleets
+      offsetFactor:
+    stationsAuto: []
+    id: f4b534da-027d-4738-9387-8a7cd6fde48f
+  - stationA:
+      position:
+        x: 213
+        y: 124
+      id: a60860df
+      name: Retrieve Fleets
+      offsetFactor:
+    stationB:
+      position:
+        x: 347
+        y: 257
+      id: afddcc22
+      name: Retrieve Fleet
+      offsetFactor:
+    stationsUser:
+    - position:
+        x: 213
+        y: 124
+      id: a60860df
+      name: Retrieve Fleets
+      offsetFactor:
+    - position:
+        x: 347
+        y: 257
+      id: afddcc22
+      name: Retrieve Fleet
+      offsetFactor:
+    stationsAuto: []
+    id: 48ae2feb-4719-4bc7-839b-f2695d24f1f4
+  - stationA:
+      position:
+        x: 347
+        y: 257
+      id: afddcc22
+      name: Retrieve Fleet
+      offsetFactor:
+    stationB:
+      position:
+        x: 415
+        y: 343
+      id: 1fb73952
+      name: Update Fleet
+      offsetFactor:
+    stationsUser:
+    - position:
+        x: 347
+        y: 257
+      id: afddcc22
+      name: Retrieve Fleet
+      offsetFactor:
+    - position:
+        x: 415
+        y: 343
+      id: 1fb73952
+      name: Update Fleet
+      offsetFactor:
+    stationsAuto: []
+    id: 514ec2eb-a3ee-443b-ab4c-a3d42ab269a9
+  stationsMinor: []
+- id: 0cab7bee-ec91-4da3-a6d9-e29a456f5ff7
+  segmentStyle:
+    strokeColor: "#000000"
+    strokeWidth: 12
+    selectionColor: "#006400"
+    fullySelected: false
+  stationStyle:
+    strokeColor: "#000000"
+    strokeWidth: 6
+    fillColor: white
+    stationRadius: 12
+    selectionColor: "#006400"
+    fullySelected: false
+  segments:
+  - stationA:
+      position:
+        x: 67
+        y: 170
+      id: 4c3e898c
+      name: Create IP Command
+      offsetFactor:
+    stationB:
+      position:
+        x: 67
+        y: 218
+      id: 1415179e
+      name: Retrieve IP Commands
+      offsetFactor:
+    stationsUser:
+    - position:
+        x: 67
+        y: 170
+      id: 4c3e898c
+      name: Create IP Command
+      offsetFactor:
+    - position:
+        x: 67
+        y: 218
+      id: 1415179e
+      name: Retrieve IP Commands
+      offsetFactor:
+    stationsAuto: []
+    id: 9c57e069-4625-4b27-9e4b-c1c207c0a55b
+  - stationA:
+      position:
+        x: 67
+        y: 218
+      id: 1415179e
+      name: Retrieve IP Commands
+      offsetFactor:
+    stationB:
+      position:
+        x: 67
+        y: 325
+      id: 700aa01a
+      name: Retrieve IP Command
+      offsetFactor:
+    stationsUser:
+    - position:
+        x: 67
+        y: 218
+      id: 1415179e
+      name: Retrieve IP Commands
+      offsetFactor:
+    - position:
+        x: 67
+        y: 325
+      id: 700aa01a
+      name: Retrieve IP Command
+      offsetFactor:
+    stationsAuto: []
+    id: c9f069ab-4c5a-45fc-ad33-3dbb901b9e40
+  stationsMinor: []
+- id: a2ddc508-56ac-45f9-a56b-e07a0723f11e
+  segmentStyle:
+    strokeColor: "#000000"
+    strokeWidth: 12
+    selectionColor: "#006400"
+    fullySelected: false
+  stationStyle:
+    strokeColor: "#000000"
+    strokeWidth: 6
+    fillColor: white
+    stationRadius: 12
+    selectionColor: "#006400"
+    fullySelected: false
+  segments:
+  - stationA:
+      position:
+        x: 273
+        y: 68
+      id: 8a3b6e13
+      name: Retrieve Network
+      offsetFactor:
+    stationB:
+      position:
+        x: 553
+        y: 116
+      id: b1753aef
+      name: Retrieve Networks
+      offsetFactor:
+    stationsUser:
+    - position:
+        x: 273
+        y: 68
+      id: 8a3b6e13
+      name: Retrieve Network
+      offsetFactor:
+    - position:
+        x: 553
+        y: 116
+      id: b1753aef
+      name: Retrieve Networks
+      offsetFactor:
+    stationsAuto: []
+    id: a3a1c10f-959c-4ee7-bfd3-3831af547004
+  stationsMinor: []
+- id: 89b8a7a4-2628-425c-82cd-aa2cba9716b4
+  segmentStyle:
+    strokeColor: "#000000"
+    strokeWidth: 12
+    selectionColor: "#006400"
+    fullySelected: false
+  stationStyle:
+    strokeColor: "#000000"
+    strokeWidth: 6
+    fillColor: white
+    stationRadius: 12
+    selectionColor: "#006400"
+    fullySelected: false
+  segments:
+  - stationA:
+      position:
+        x: 927
+        y: 454
+      id: 65fda418
+      name: Create Network Access Profile
+      offsetFactor:
+    stationB:
+      position:
+        x: 927
+        y: 392
+      id: 8640eb34
+      name: Retrieve Network Access Profiles
+      offsetFactor:
+    stationsUser:
+    - position:
+        x: 927
+        y: 454
+      id: 65fda418
+      name: Create Network Access Profile
+      offsetFactor:
+    - position:
+        x: 927
+        y: 392
+      id: 8640eb34
+      name: Retrieve Network Access Profiles
+      offsetFactor:
+    stationsAuto: []
+    id: e2cb52f4-08d3-49a4-a2d7-88d4e6707032
+  - stationA:
+      position:
+        x: 927
+        y: 392
+      id: 8640eb34
+      name: Retrieve Network Access Profiles
+      offsetFactor:
+    stationB:
+      position:
+        x: 927
+        y: 339
+      id: 56b5920e
+      name: Retrieve Network Access Profiles
+      offsetFactor:
+    stationsUser:
+    - position:
+        x: 927
+        y: 392
+      id: 8640eb34
+      name: Retrieve Network Access Profiles
+      offsetFactor:
+    - position:
+        x: 927
+        y: 339
+      id: 56b5920e
+      name: Retrieve Network Access Profiles
+      offsetFactor:
+    stationsAuto: []
+    id: bc605d13-0c36-4658-afcb-b93f2dcebfcd
+  - stationA:
+      position:
+        x: 927
+        y: 339
+      id: 56b5920e
+      name: Retrieve Network Access Profiles
+      offsetFactor:
+    stationB:
+      position:
+        x: 927
+        y: 278
+      id: db06d832
+      name: Create Network Access Profile
+      offsetFactor:
+    stationsUser:
+    - position:
+        x: 927
+        y: 339
+      id: 56b5920e
+      name: Retrieve Network Access Profiles
+      offsetFactor:
+    - position:
+        x: 927
+        y: 278
+      id: db06d832
+      name: Create Network Access Profile
+      offsetFactor:
+    stationsAuto: []
+    id: e969a7a0-3bb0-41f4-87d2-7e0851ca9e69
+  stationsMinor: []
+- id: 60f5a72e-f8eb-4001-a814-929e5fc18ede
+  segmentStyle:
+    strokeColor: "#000000"
+    strokeWidth: 12
+    selectionColor: "#006400"
+    fullySelected: false
+  stationStyle:
+    strokeColor: "#000000"
+    strokeWidth: 6
+    fillColor: white
+    stationRadius: 12
+    selectionColor: "#006400"
+    fullySelected: false
+  segments:
+  - stationA:
+      position:
+        x: 869
+        y: 456
+      id: dddbbe2c
+      name: Retrieve Access Profile Networks
+      offsetFactor:
+    stationB:
+      position:
+        x: 869
+        y: 388
+      id: f5640b4f
+      name: Create Access Profile Network
+      offsetFactor:
+    stationsUser:
+    - position:
+        x: 869
+        y: 456
+      id: dddbbe2c
+      name: Retrieve Access Profile Networks
+      offsetFactor:
+    - position:
+        x: 869
+        y: 388
+      id: f5640b4f
+      name: Create Access Profile Network
+      offsetFactor:
+    stationsAuto: []
+    id: 1fcd467a-6660-4ac6-8614-54de3f30a6c4
+  - stationA:
+      position:
+        x: 869
+        y: 388
+      id: f5640b4f
+      name: Create Access Profile Network
+      offsetFactor:
+    stationB:
+      position:
+        x: 869
+        y: 337
+      id: a3e98280
+      name: Delete Access Profile Network
+      offsetFactor:
+    stationsUser:
+    - position:
+        x: 869
+        y: 388
+      id: f5640b4f
+      name: Create Access Profile Network
+      offsetFactor:
+    - position:
+        x: 869
+        y: 337
+      id: a3e98280
+      name: Delete Access Profile Network
+      offsetFactor:
+    stationsAuto: []
+    id: e74da75c-7db5-461a-8e84-e219688934b9
+  - stationA:
+      position:
+        x: 869
+        y: 337
+      id: a3e98280
+      name: Delete Access Profile Network
+      offsetFactor:
+    stationB:
+      position:
+        x: 869
+        y: 275
+      id: 1c3eaacd
+      name: Retrieve Access Profile Network
+      offsetFactor:
+    stationsUser:
+    - position:
+        x: 869
+        y: 337
+      id: a3e98280
+      name: Delete Access Profile Network
+      offsetFactor:
+    - position:
+        x: 869
+        y: 275
+      id: 1c3eaacd
+      name: Retrieve Access Profile Network
+      offsetFactor:
+    stationsAuto: []
+    id: 29492a31-6954-4a01-86a9-9073c50da93f
+  stationsMinor: []
+- id: 8102ccd2-579e-46e1-8dbd-a953b7243d02
+  segmentStyle:
+    strokeColor: "#000000"
+    strokeWidth: 12
+    selectionColor: "#006400"
+    fullySelected: false
+  stationStyle:
+    strokeColor: "#000000"
+    strokeWidth: 6
+    fillColor: white
+    stationRadius: 12
+    selectionColor: "#006400"
+    fullySelected: false
+  segments: []
+  stationsMinor: []
+- id: 37855773-444f-4cc8-b528-466fb1e956bb
+  segmentStyle:
+    strokeColor: "#000000"
+    strokeWidth: 12
+    selectionColor: "#006400"
+    fullySelected: false
+  stationStyle:
+    strokeColor: "#000000"
+    strokeWidth: 6
+    fillColor: white
+    stationRadius: 12
+    selectionColor: "#006400"
+    fullySelected: false
+  segments: []
+  stationsMinor: []
+- id: 1c9d114a-998a-4632-a536-6aa3d0282211
+  segmentStyle:
+    strokeColor: "#000000"
+    strokeWidth: 12
+    selectionColor: "#006400"
+    fullySelected: false
+  stationStyle:
+    strokeColor: "#000000"
+    strokeWidth: 6
+    fillColor: white
+    stationRadius: 12
+    selectionColor: "#006400"
+    fullySelected: false
+  segments:
+  - stationA:
+      position:
+        x: 354
+        y: 308
+      id: de5becec
+      name: Create SIM
+      offsetFactor:
+    stationB:
+      position:
+        x: 354
+        y: 387
+      id: 0bdb41c2
+      name: Retrieve SIM
+      offsetFactor:
+    stationsUser:
+    - position:
+        x: 354
+        y: 308
+      id: de5becec
+      name: Create SIM
+      offsetFactor:
+    - position:
+        x: 354
+        y: 387
+      id: 0bdb41c2
+      name: Retrieve SIM
+      offsetFactor:
+    stationsAuto: []
+    id: c6861212-db05-461d-b00e-730036d348ca
+  - stationA:
+      position:
+        x: 354
+        y: 387
+      id: 0bdb41c2
+      name: Retrieve SIM
+      offsetFactor:
+    stationB:
+      position:
+        x: 354
+        y: 439
+      id: 04fc269a
+      name: Retrieve SIM
+      offsetFactor:
+    stationsUser:
+    - position:
+        x: 354
+        y: 387
+      id: 0bdb41c2
+      name: Retrieve SIM
+      offsetFactor:
+    - position:
+        x: 354
+        y: 439
+      id: 04fc269a
+      name: Retrieve SIM
+      offsetFactor:
+    stationsAuto: []
+    id: 9049b651-f677-400a-b9a4-ef04a193c8e3
+  - stationA:
+      position:
+        x: 354
+        y: 439
+      id: 04fc269a
+      name: Retrieve SIM
+      offsetFactor:
+    stationB:
+      position:
+        x: 243
+        y: 439
+      id: 8b7e4fe2
+      name: Update SIM
+      offsetFactor:
+    stationsUser:
+    - position:
+        x: 354
+        y: 439
+      id: 04fc269a
+      name: Retrieve SIM
+      offsetFactor:
+    - position:
+        x: 243
+        y: 439
+      id: 8b7e4fe2
+      name: Update SIM
+      offsetFactor:
+    stationsAuto: []
+    id: 2cad1b16-00c4-4988-8017-a0ab53c11d9f
+  stationsMinor: []
+- id: f62b0ac1-1741-414f-a572-e6df5887ac71
+  segmentStyle:
+    strokeColor: "#000000"
+    strokeWidth: 12
+    selectionColor: "#006400"
+    fullySelected: false
+  stationStyle:
+    strokeColor: "#000000"
+    strokeWidth: 6
+    fillColor: white
+    stationRadius: 12
+    selectionColor: "#006400"
+    fullySelected: false
+  segments: []
+  stationsMinor: []
+- id: 6f6d8ca6-9cfd-47ff-b592-a66761e67853
+  segmentStyle:
+    strokeColor: "#000000"
+    strokeWidth: 12
+    selectionColor: "#006400"
+    fullySelected: false
+  stationStyle:
+    strokeColor: "#000000"
+    strokeWidth: 6
+    fillColor: white
+    stationRadius: 12
+    selectionColor: "#006400"
+    fullySelected: false
+  segments:
+  - stationA:
+      position:
+        x: 544
+        y: 405
+      id: '38021494'
+      name: station
+      offsetFactor:
+    stationB:
+      position:
+        x: 625
+        y: 212
+      id: fc1750cc
+      name: Retrieve SMS Commands
+      offsetFactor:
+    stationsUser:
+    - position:
+        x: 544
+        y: 405
+      id: '38021494'
+      name: station
+      offsetFactor:
+    - position:
+        x: 625
+        y: 212
+      id: fc1750cc
+      name: Retrieve SMS Commands
+      offsetFactor:
+    stationsAuto: []
+    id: 36b3eaec-ce4a-459a-8c44-0a35c7caee2c
+  - stationA:
+      position:
+        x: 625
+        y: 212
+      id: fc1750cc
+      name: Retrieve SMS Commands
+      offsetFactor:
+    stationB:
+      position:
+        x: 426
+        y: 212
+      id: 428d588f
+      name: Retrieve SMS Command
+      offsetFactor:
+    stationsUser:
+    - position:
+        x: 625
+        y: 212
+      id: fc1750cc
+      name: Retrieve SMS Commands
+      offsetFactor:
+    - position:
+        x: 426
+        y: 212
+      id: 428d588f
+      name: Retrieve SMS Command
+      offsetFactor:
+    stationsAuto: []
+    id: a5d8caf6-4221-464b-9485-1c3339f76539
+  stationsMinor: []
+- id: df6abaa0-2f5a-4493-8a8c-1619c458f9bf
+  segmentStyle:
+    strokeColor: "#000000"
+    strokeWidth: 12
+    selectionColor: "#006400"
+    fullySelected: false
+  stationStyle:
+    strokeColor: "#000000"
+    strokeWidth: 6
+    fillColor: white
+    stationRadius: 12
+    selectionColor: "#006400"
+    fullySelected: false
+  segments: []
+  stationsMinor: []
+connections: []
+---

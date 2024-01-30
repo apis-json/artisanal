@@ -1,0 +1,388 @@
+---
+openapi: 3.0.0
+info:
+  title: Stripe Reviews API
+  description: Needs description.
+  contact:
+    email: dev-platform@stripe.com
+    name: Stripe Dev Platform Team
+    url: 'https://stripe.com'
+  termsOfService: 'https://stripe.com/us/terms/'
+  version: '2023-10-16'
+  x-stripeSpecFilename: spec3
+security:
+  - basicAuth: []
+  - bearerAuth: []
+servers:
+  - url: 'https://api.stripe.com/'
+paths:
+  /v1/reviews:
+    get:
+      description: >-
+        <p>Returns a list of <code>Review</code> objects that have
+        <code>open</code> set to <code>true</code>. The objects are sorted in
+        descending order by creation date, with the most recently created object
+        appearing first.</p>
+      operationId: GetReviews
+      parameters:
+        - explode: true
+          in: query
+          name: created
+          required: false
+          schema:
+            anyOf:
+              - properties:
+                  gt:
+                    type: integer
+                  gte:
+                    type: integer
+                  lt:
+                    type: integer
+                  lte:
+                    type: integer
+                title: range_query_specs
+                type: object
+              - type: integer
+          style: deepObject
+        - description: >-
+            A cursor for use in pagination. `ending_before` is an object ID that
+            defines your place in the list. For instance, if you make a list
+            request and receive 100 objects, starting with `obj_bar`, your
+            subsequent call can include `ending_before=obj_bar` in order to
+            fetch the previous page of the list.
+          in: query
+          name: ending_before
+          required: false
+          schema:
+            maxLength: 5000
+            type: string
+          style: form
+        - description: Specifies which fields in the response should be expanded.
+          explode: true
+          in: query
+          name: expand
+          required: false
+          schema:
+            items:
+              maxLength: 5000
+              type: string
+            type: array
+          style: deepObject
+        - description: >-
+            A limit on the number of objects to be returned. Limit can range
+            between 1 and 100, and the default is 10.
+          in: query
+          name: limit
+          required: false
+          schema:
+            type: integer
+          style: form
+        - description: >-
+            A cursor for use in pagination. `starting_after` is an object ID
+            that defines your place in the list. For instance, if you make a
+            list request and receive 100 objects, ending with `obj_foo`, your
+            subsequent call can include `starting_after=obj_foo` in order to
+            fetch the next page of the list.
+          in: query
+          name: starting_after
+          required: false
+          schema:
+            maxLength: 5000
+            type: string
+          style: form
+      requestBody:
+        content:
+          application/x-www-form-urlencoded:
+            encoding: {}
+            schema:
+              additionalProperties: false
+              $ref: '#/components/schemas/GetReviewsRequest'
+        required: false
+      responses:
+        '200':
+          content:
+            application/json:
+              schema:
+                description: ''
+                x-expandableFields:
+                  - data
+                $ref: '#/components/schemas/RadarReviewList'
+          description: Successful response.
+        default:
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/error'
+          description: Error response.
+  '/v1/reviews/{review}':
+    get:
+      description: <p>Retrieves a <code>Review</code> object.</p>
+      operationId: GetReviewsReview
+      parameters:
+        - description: Specifies which fields in the response should be expanded.
+          explode: true
+          in: query
+          name: expand
+          required: false
+          schema:
+            items:
+              maxLength: 5000
+              type: string
+            type: array
+          style: deepObject
+        - in: path
+          name: review
+          required: true
+          schema:
+            maxLength: 5000
+            type: string
+          style: simple
+      requestBody:
+        content:
+          application/x-www-form-urlencoded:
+            encoding: {}
+            schema:
+              additionalProperties: false
+              $ref: '#/components/schemas/GetReviewsReviewRequest'
+        required: false
+      responses:
+        '200':
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/review'
+          description: Successful response.
+        default:
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/error'
+          description: Error response.
+  '/v1/reviews/{review}/approve':
+    post:
+      description: >-
+        <p>Approves a <code>Review</code> object, closing it and removing it
+        from the list of reviews.</p>
+      operationId: PostReviewsReviewApprove
+      parameters:
+        - in: path
+          name: review
+          required: true
+          schema:
+            maxLength: 5000
+            type: string
+          style: simple
+      requestBody:
+        content:
+          application/x-www-form-urlencoded:
+            encoding:
+              expand:
+                explode: true
+                style: deepObject
+            schema:
+              additionalProperties: false
+              $ref: '#/components/schemas/PostReviewsReviewApproveRequest'
+        required: false
+      responses:
+        '200':
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/review'
+          description: Successful response.
+        default:
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/error'
+          description: Error response.
+components:
+  schemas:
+    error:
+      description: An error response from the Stripe API
+      properties:
+        error:
+          $ref: '#/components/schemas/api_errors'
+      required:
+        - error
+      type: object
+    review:
+      description: >-
+        Reviews can be used to supplement automated fraud detection with human
+        expertise.
+
+
+        Learn more about [Radar](/radar) and reviewing payments
+
+        [here](https://stripe.com/docs/radar/reviews).
+      properties:
+        billing_zip:
+          description: 'The ZIP or postal code of the card used, if applicable.'
+          maxLength: 5000
+          nullable: true
+          type: string
+        charge:
+          anyOf:
+            - maxLength: 5000
+              type: string
+            - $ref: '#/components/schemas/charge'
+          description: The charge associated with this review.
+          nullable: true
+          x-expansionResources:
+            oneOf:
+              - $ref: '#/components/schemas/charge'
+        closed_reason:
+          description: >-
+            The reason the review was closed, or null if it has not yet been
+            closed. One of `approved`, `refunded`, `refunded_as_fraud`,
+            `disputed`, or `redacted`.
+          enum:
+            - approved
+            - disputed
+            - redacted
+            - refunded
+            - refunded_as_fraud
+          nullable: true
+          type: string
+        created:
+          description: >-
+            Time at which the object was created. Measured in seconds since the
+            Unix epoch.
+          format: unix-time
+          type: integer
+        id:
+          description: Unique identifier for the object.
+          maxLength: 5000
+          type: string
+        ip_address:
+          description: The IP address where the payment originated.
+          maxLength: 5000
+          nullable: true
+          type: string
+        ip_address_location:
+          anyOf:
+            - $ref: '#/components/schemas/radar_review_resource_location'
+          description: >-
+            Information related to the location of the payment. Note that this
+            information is an approximation and attempts to locate the nearest
+            population center - it should not be used to determine a specific
+            address.
+          nullable: true
+        livemode:
+          description: >-
+            Has the value `true` if the object exists in live mode or the value
+            `false` if the object exists in test mode.
+          type: boolean
+        object:
+          description: >-
+            String representing the object's type. Objects of the same type
+            share the same value.
+          enum:
+            - review
+          type: string
+        open:
+          description: 'If `true`, the review needs action.'
+          type: boolean
+        opened_reason:
+          description: The reason the review was opened. One of `rule` or `manual`.
+          enum:
+            - manual
+            - rule
+          type: string
+        payment_intent:
+          anyOf:
+            - maxLength: 5000
+              type: string
+            - $ref: '#/components/schemas/payment_intent'
+          description: 'The PaymentIntent ID associated with this review, if one exists.'
+          x-expansionResources:
+            oneOf:
+              - $ref: '#/components/schemas/payment_intent'
+        reason:
+          description: >-
+            The reason the review is currently open or closed. One of `rule`,
+            `manual`, `approved`, `refunded`, `refunded_as_fraud`, `disputed`,
+            or `redacted`.
+          maxLength: 5000
+          type: string
+        session:
+          anyOf:
+            - $ref: '#/components/schemas/radar_review_resource_session'
+          description: >-
+            Information related to the browsing session of the user who
+            initiated the payment.
+          nullable: true
+      required:
+        - created
+        - id
+        - livemode
+        - object
+        - open
+        - opened_reason
+        - reason
+      title: RadarReview
+      type: object
+      x-expandableFields:
+        - charge
+        - ip_address_location
+        - payment_intent
+        - session
+      x-resourceId: review
+    GetReviewsRequest:
+      type: object
+      properties: {}
+    RadarReviewList:
+      type: object
+      required:
+        - data
+        - has_more
+        - object
+        - url
+      properties:
+        data:
+          items:
+            $ref: '#/components/schemas/review'
+          type: array
+        has_more:
+          description: >-
+            True if this list has another page of items after this one that can
+            be fetched.
+          type: boolean
+        object:
+          description: >-
+            String representing the object's type. Objects of the same type
+            share the same value. Always has the value `list`.
+          enum:
+            - list
+          type: string
+        url:
+          description: The URL where this list can be accessed.
+          maxLength: 5000
+          type: string
+    GetReviewsReviewRequest:
+      type: object
+      properties: {}
+    PostReviewsReviewApproveRequest:
+      type: object
+      properties:
+        expand:
+          description: Specifies which fields in the response should be expanded.
+          items:
+            maxLength: 5000
+            type: string
+          type: array
+  securitySchemes:
+    basicAuth:
+      description: >-
+        Basic HTTP authentication. Allowed headers-- Authorization: Basic
+        <api_key> | Authorization: Basic <base64 hash of `api_key:`>
+      scheme: basic
+      type: http
+    bearerAuth:
+      bearerFormat: auth-scheme
+      description: >-
+        Bearer HTTP authentication. Allowed headers-- Authorization: Bearer
+        <api_key>
+      scheme: bearer
+      type: http
+---

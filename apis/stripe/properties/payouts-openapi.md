@@ -1,0 +1,818 @@
+---
+openapi: 3.0.0
+info:
+  title: Stripe Payouts API
+  description: Needs description.
+  contact:
+    email: dev-platform@stripe.com
+    name: Stripe Dev Platform Team
+    url: 'https://stripe.com'
+  termsOfService: 'https://stripe.com/us/terms/'
+  version: '2023-10-16'
+  x-stripeSpecFilename: spec3
+security:
+  - basicAuth: []
+  - bearerAuth: []
+servers:
+  - url: 'https://api.stripe.com/'
+paths:
+  /v1/payouts:
+    get:
+      description: >-
+        <p>Returns a list of existing payouts sent to third-party bank accounts
+        or payouts that Stripe sent to you. The payouts return in sorted order,
+        with the most recently created payouts appearing first.</p>
+      operationId: GetPayouts
+      parameters:
+        - explode: true
+          in: query
+          name: arrival_date
+          required: false
+          schema:
+            anyOf:
+              - properties:
+                  gt:
+                    type: integer
+                  gte:
+                    type: integer
+                  lt:
+                    type: integer
+                  lte:
+                    type: integer
+                title: range_query_specs
+                type: object
+              - type: integer
+          style: deepObject
+        - explode: true
+          in: query
+          name: created
+          required: false
+          schema:
+            anyOf:
+              - properties:
+                  gt:
+                    type: integer
+                  gte:
+                    type: integer
+                  lt:
+                    type: integer
+                  lte:
+                    type: integer
+                title: range_query_specs
+                type: object
+              - type: integer
+          style: deepObject
+        - description: >-
+            The ID of an external account - only return payouts sent to this
+            external account.
+          in: query
+          name: destination
+          required: false
+          schema:
+            type: string
+          style: form
+        - description: >-
+            A cursor for use in pagination. `ending_before` is an object ID that
+            defines your place in the list. For instance, if you make a list
+            request and receive 100 objects, starting with `obj_bar`, your
+            subsequent call can include `ending_before=obj_bar` in order to
+            fetch the previous page of the list.
+          in: query
+          name: ending_before
+          required: false
+          schema:
+            maxLength: 5000
+            type: string
+          style: form
+        - description: Specifies which fields in the response should be expanded.
+          explode: true
+          in: query
+          name: expand
+          required: false
+          schema:
+            items:
+              maxLength: 5000
+              type: string
+            type: array
+          style: deepObject
+        - description: >-
+            A limit on the number of objects to be returned. Limit can range
+            between 1 and 100, and the default is 10.
+          in: query
+          name: limit
+          required: false
+          schema:
+            type: integer
+          style: form
+        - description: >-
+            A cursor for use in pagination. `starting_after` is an object ID
+            that defines your place in the list. For instance, if you make a
+            list request and receive 100 objects, ending with `obj_foo`, your
+            subsequent call can include `starting_after=obj_foo` in order to
+            fetch the next page of the list.
+          in: query
+          name: starting_after
+          required: false
+          schema:
+            maxLength: 5000
+            type: string
+          style: form
+        - description: >-
+            Only return payouts that have the given status: `pending`, `paid`,
+            `failed`, or `canceled`.
+          in: query
+          name: status
+          required: false
+          schema:
+            maxLength: 5000
+            type: string
+          style: form
+      requestBody:
+        content:
+          application/x-www-form-urlencoded:
+            encoding: {}
+            schema:
+              additionalProperties: false
+              properties: {}
+              type: object
+        required: false
+      responses:
+        '200':
+          content:
+            application/json:
+              schema:
+                description: ''
+                properties:
+                  data:
+                    items:
+                      $ref: '#/components/schemas/payout'
+                    type: array
+                  has_more:
+                    description: >-
+                      True if this list has another page of items after this one
+                      that can be fetched.
+                    type: boolean
+                  object:
+                    description: >-
+                      String representing the object's type. Objects of the same
+                      type share the same value. Always has the value `list`.
+                    enum:
+                      - list
+                    type: string
+                  url:
+                    description: The URL where this list can be accessed.
+                    maxLength: 5000
+                    pattern: ^/v1/payouts
+                    type: string
+                required:
+                  - data
+                  - has_more
+                  - object
+                  - url
+                title: PayoutList
+                type: object
+                x-expandableFields:
+                  - data
+          description: Successful response.
+        default:
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/error'
+          description: Error response.
+      summary: Retrieve Payouts
+      tags:
+        - Payouts
+    post:
+      description: >-
+        <p>To send funds to your own bank account, create a new payout object.
+        Your <a href="#balance">Stripe balance</a> must cover the payout amount.
+        If it doesn’t, you receive an “Insufficient Funds” error.</p>
+
+
+        <p>If your API key is in test mode, money won’t actually be sent, though
+        every other action occurs as if you’re in live mode.</p>
+
+
+        <p>If you create a manual payout on a Stripe account that uses multiple
+        payment source types, you need to specify the source type balance that
+        the payout draws from. The <a href="#balance_object">balance object</a>
+        details available and pending amounts by source type.</p>
+      operationId: PostPayouts
+      requestBody:
+        content:
+          application/x-www-form-urlencoded:
+            encoding:
+              expand:
+                explode: true
+                style: deepObject
+              metadata:
+                explode: true
+                style: deepObject
+            schema:
+              additionalProperties: false
+              properties:
+                amount:
+                  description: A positive integer in cents representing how much to payout.
+                  type: integer
+                currency:
+                  description: >-
+                    Three-letter [ISO currency
+                    code](https://www.iso.org/iso-4217-currency-codes.html), in
+                    lowercase. Must be a [supported
+                    currency](https://stripe.com/docs/currencies).
+                  type: string
+                description:
+                  description: >-
+                    An arbitrary string attached to the object. Often useful for
+                    displaying to users.
+                  maxLength: 5000
+                  type: string
+                destination:
+                  description: >-
+                    The ID of a bank account or a card to send the payout to. If
+                    you don't provide a destination, we use the default external
+                    account for the specified currency.
+                  type: string
+                expand:
+                  description: Specifies which fields in the response should be expanded.
+                  items:
+                    maxLength: 5000
+                    type: string
+                  type: array
+                metadata:
+                  additionalProperties:
+                    type: string
+                  description: >-
+                    Set of [key-value
+                    pairs](https://stripe.com/docs/api/metadata) that you can
+                    attach to an object. This can be useful for storing
+                    additional information about the object in a structured
+                    format. Individual keys can be unset by posting an empty
+                    value to them. All keys can be unset by posting an empty
+                    value to `metadata`.
+                  type: object
+                method:
+                  description: >-
+                    The method used to send this payout, which is `standard` or
+                    `instant`. We support `instant` for payouts to debit cards
+                    and bank accounts in certain countries. Learn more about
+                    [bank support for Instant
+                    Payouts](https://stripe.com/docs/payouts/instant-payouts-banks).
+                  enum:
+                    - instant
+                    - standard
+                  maxLength: 5000
+                  type: string
+                  x-stripeBypassValidation: true
+                source_type:
+                  description: >-
+                    The balance type of your Stripe balance to draw this payout
+                    from. Balances for different payment sources are kept
+                    separately. You can find the amounts with the Balances API.
+                    One of `bank_account`, `card`, or `fpx`.
+                  enum:
+                    - bank_account
+                    - card
+                    - fpx
+                  maxLength: 5000
+                  type: string
+                  x-stripeBypassValidation: true
+                statement_descriptor:
+                  description: >-
+                    A string that displays on the recipient's bank or card
+                    statement (up to 22 characters). A `statement_descriptor`
+                    that's longer than 22 characters return an error. Most banks
+                    truncate this information and display it inconsistently.
+                    Some banks might not display it at all.
+                  maxLength: 22
+                  type: string
+                  x-stripeBypassValidation: true
+              required:
+                - amount
+                - currency
+              type: object
+        required: true
+      responses:
+        '200':
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/payout'
+          description: Successful response.
+        default:
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/error'
+          description: Error response.
+      summary: Create Payout
+      tags:
+        - Payouts
+  '/v1/payouts/{payout}':
+    get:
+      description: >-
+        <p>Retrieves the details of an existing payout. Supply the unique payout
+        ID from either a payout creation request or the payout list. Stripe
+        returns the corresponding payout information.</p>
+      operationId: GetPayoutsPayout
+      parameters:
+        - description: Specifies which fields in the response should be expanded.
+          explode: true
+          in: query
+          name: expand
+          required: false
+          schema:
+            items:
+              maxLength: 5000
+              type: string
+            type: array
+          style: deepObject
+        - in: path
+          name: payout
+          required: true
+          schema:
+            maxLength: 5000
+            type: string
+          style: simple
+      requestBody:
+        content:
+          application/x-www-form-urlencoded:
+            encoding: {}
+            schema:
+              additionalProperties: false
+              properties: {}
+              type: object
+        required: false
+      responses:
+        '200':
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/payout'
+          description: Successful response.
+        default:
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/error'
+          description: Error response.
+      summary: Retrieve Payout
+      tags:
+        - Payouts
+    post:
+      description: >-
+        <p>Updates the specified payout by setting the values of the parameters
+        you pass. We don’t change parameters that you don’t provide. This
+        request only accepts the metadata as arguments.</p>
+      operationId: PostPayoutsPayout
+      parameters:
+        - in: path
+          name: payout
+          required: true
+          schema:
+            maxLength: 5000
+            type: string
+          style: simple
+      requestBody:
+        content:
+          application/x-www-form-urlencoded:
+            encoding:
+              expand:
+                explode: true
+                style: deepObject
+              metadata:
+                explode: true
+                style: deepObject
+            schema:
+              additionalProperties: false
+              properties:
+                expand:
+                  description: Specifies which fields in the response should be expanded.
+                  items:
+                    maxLength: 5000
+                    type: string
+                  type: array
+                metadata:
+                  anyOf:
+                    - additionalProperties:
+                        type: string
+                      type: object
+                    - enum:
+                        - ''
+                      type: string
+                  description: >-
+                    Set of [key-value
+                    pairs](https://stripe.com/docs/api/metadata) that you can
+                    attach to an object. This can be useful for storing
+                    additional information about the object in a structured
+                    format. Individual keys can be unset by posting an empty
+                    value to them. All keys can be unset by posting an empty
+                    value to `metadata`.
+              type: object
+        required: false
+      responses:
+        '200':
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/payout'
+          description: Successful response.
+        default:
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/error'
+          description: Error response.
+      summary: Update Payout
+      tags:
+        - Payouts
+  '/v1/payouts/{payout}/cancel':
+    post:
+      description: >-
+        <p>You can cancel a previously created payout if it hasn’t been paid out
+        yet. Stripe refunds the funds to your available balance. You can’t
+        cancel automatic Stripe payouts.</p>
+      operationId: PostPayoutsPayoutCancel
+      parameters:
+        - in: path
+          name: payout
+          required: true
+          schema:
+            maxLength: 5000
+            type: string
+          style: simple
+      requestBody:
+        content:
+          application/x-www-form-urlencoded:
+            encoding:
+              expand:
+                explode: true
+                style: deepObject
+            schema:
+              additionalProperties: false
+              properties:
+                expand:
+                  description: Specifies which fields in the response should be expanded.
+                  items:
+                    maxLength: 5000
+                    type: string
+                  type: array
+              type: object
+        required: false
+      responses:
+        '200':
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/payout'
+          description: Successful response.
+        default:
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/error'
+          description: Error response.
+      summary: Cancel Payout
+      tags:
+        - Cancel
+        - Payouts
+  '/v1/payouts/{payout}/reverse':
+    post:
+      description: >-
+        <p>Reverses a payout by debiting the destination bank account. At this
+        time, you can only reverse payouts for connected accounts to US bank
+        accounts. If the payout is in the <code>pending</code> status, use
+        <code>/v1/payouts/:id/cancel</code> instead.</p>
+
+
+        <p>By requesting a reversal through
+        <code>/v1/payouts/:id/reverse</code>, you confirm that the authorized
+        signatory of the selected bank account authorizes the debit on the bank
+        account and that no other authorization is required.</p>
+      operationId: PostPayoutsPayoutReverse
+      parameters:
+        - in: path
+          name: payout
+          required: true
+          schema:
+            maxLength: 5000
+            type: string
+          style: simple
+      requestBody:
+        content:
+          application/x-www-form-urlencoded:
+            encoding:
+              expand:
+                explode: true
+                style: deepObject
+              metadata:
+                explode: true
+                style: deepObject
+            schema:
+              additionalProperties: false
+              properties:
+                expand:
+                  description: Specifies which fields in the response should be expanded.
+                  items:
+                    maxLength: 5000
+                    type: string
+                  type: array
+                metadata:
+                  additionalProperties:
+                    type: string
+                  description: >-
+                    Set of [key-value
+                    pairs](https://stripe.com/docs/api/metadata) that you can
+                    attach to an object. This can be useful for storing
+                    additional information about the object in a structured
+                    format. Individual keys can be unset by posting an empty
+                    value to them. All keys can be unset by posting an empty
+                    value to `metadata`.
+                  type: object
+              type: object
+        required: false
+      responses:
+        '200':
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/payout'
+          description: Successful response.
+        default:
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/error'
+          description: Error response.
+      summary: Reverse Payout
+      tags:
+        - Reverse
+        - Payouts
+components:
+  schemas:
+    error:
+      description: An error response from the Stripe API
+      properties:
+        error:
+          $ref: '#/components/schemas/api_errors'
+      required:
+        - error
+      type: object
+    payout:
+      description: >-
+        A `Payout` object is created when you receive funds from Stripe, or when
+        you
+
+        initiate a payout to either a bank account or debit card of a [connected
+
+        Stripe account](/docs/connect/bank-debit-card-payouts). You can retrieve
+        individual payouts,
+
+        and list all payouts. Payouts are made on [varying
+
+        schedules](/docs/connect/manage-payout-schedule), depending on your
+        country and
+
+        industry.
+
+
+        Related guide: [Receiving payouts](https://stripe.com/docs/payouts)
+      properties:
+        amount:
+          description: >-
+            The amount (in cents (or local equivalent)) that transfers to your
+            bank account or debit card.
+          type: integer
+        arrival_date:
+          description: >-
+            Date that you can expect the payout to arrive in the bank. This
+            factors in delays to account for weekends or bank holidays.
+          format: unix-time
+          type: integer
+        automatic:
+          description: >-
+            Returns `true` if the payout is created by an [automated payout
+            schedule](https://stripe.com/docs/payouts#payout-schedule) and
+            `false` if it's [requested
+            manually](https://stripe.com/docs/payouts#manual-payouts).
+          type: boolean
+        balance_transaction:
+          anyOf:
+            - maxLength: 5000
+              type: string
+            - $ref: '#/components/schemas/balance_transaction'
+          description: >-
+            ID of the balance transaction that describes the impact of this
+            payout on your account balance.
+          nullable: true
+          x-expansionResources:
+            oneOf:
+              - $ref: '#/components/schemas/balance_transaction'
+        created:
+          description: >-
+            Time at which the object was created. Measured in seconds since the
+            Unix epoch.
+          format: unix-time
+          type: integer
+        currency:
+          description: >-
+            Three-letter [ISO currency
+            code](https://www.iso.org/iso-4217-currency-codes.html), in
+            lowercase. Must be a [supported
+            currency](https://stripe.com/docs/currencies).
+          type: string
+        description:
+          description: >-
+            An arbitrary string attached to the object. Often useful for
+            displaying to users.
+          maxLength: 5000
+          nullable: true
+          type: string
+        destination:
+          anyOf:
+            - maxLength: 5000
+              type: string
+            - $ref: '#/components/schemas/bank_account'
+            - $ref: '#/components/schemas/card'
+            - $ref: '#/components/schemas/deleted_bank_account'
+            - $ref: '#/components/schemas/deleted_card'
+          description: ID of the bank account or card the payout is sent to.
+          nullable: true
+          x-expansionResources:
+            oneOf:
+              - $ref: '#/components/schemas/bank_account'
+              - $ref: '#/components/schemas/card'
+              - $ref: '#/components/schemas/deleted_bank_account'
+              - $ref: '#/components/schemas/deleted_card'
+          x-stripeBypassValidation: true
+        failure_balance_transaction:
+          anyOf:
+            - maxLength: 5000
+              type: string
+            - $ref: '#/components/schemas/balance_transaction'
+          description: >-
+            If the payout fails or cancels, this is the ID of the balance
+            transaction that reverses the initial balance transaction and
+            returns the funds from the failed payout back in your balance.
+          nullable: true
+          x-expansionResources:
+            oneOf:
+              - $ref: '#/components/schemas/balance_transaction'
+        failure_code:
+          description: >-
+            Error code that provides a reason for a payout failure, if
+            available. View our [list of failure
+            codes](https://stripe.com/docs/api#payout_failures).
+          maxLength: 5000
+          nullable: true
+          type: string
+        failure_message:
+          description: 'Message that provides the reason for a payout failure, if available.'
+          maxLength: 5000
+          nullable: true
+          type: string
+        id:
+          description: Unique identifier for the object.
+          maxLength: 5000
+          type: string
+        livemode:
+          description: >-
+            Has the value `true` if the object exists in live mode or the value
+            `false` if the object exists in test mode.
+          type: boolean
+        metadata:
+          additionalProperties:
+            maxLength: 500
+            type: string
+          description: >-
+            Set of [key-value pairs](https://stripe.com/docs/api/metadata) that
+            you can attach to an object. This can be useful for storing
+            additional information about the object in a structured format.
+          nullable: true
+          type: object
+        method:
+          description: >-
+            The method used to send this payout, which can be `standard` or
+            `instant`. `instant` is supported for payouts to debit cards and
+            bank accounts in certain countries. Learn more about [bank support
+            for Instant
+            Payouts](https://stripe.com/docs/payouts/instant-payouts-banks).
+          maxLength: 5000
+          type: string
+        object:
+          description: >-
+            String representing the object's type. Objects of the same type
+            share the same value.
+          enum:
+            - payout
+          type: string
+        original_payout:
+          anyOf:
+            - maxLength: 5000
+              type: string
+            - $ref: '#/components/schemas/payout'
+          description: >-
+            If the payout reverses another, this is the ID of the original
+            payout.
+          nullable: true
+          x-expansionResources:
+            oneOf:
+              - $ref: '#/components/schemas/payout'
+        reconciliation_status:
+          description: >-
+            If `completed`, you can use the [Balance Transactions
+            API](https://stripe.com/docs/api/balance_transactions/list#balance_transaction_list-payout)
+            to list all balance transactions that are paid out in this payout.
+          enum:
+            - completed
+            - in_progress
+            - not_applicable
+          type: string
+        reversed_by:
+          anyOf:
+            - maxLength: 5000
+              type: string
+            - $ref: '#/components/schemas/payout'
+          description: >-
+            If the payout reverses, this is the ID of the payout that reverses
+            this payout.
+          nullable: true
+          x-expansionResources:
+            oneOf:
+              - $ref: '#/components/schemas/payout'
+        source_type:
+          description: >-
+            The source balance this payout came from, which can be one of the
+            following: `card`, `fpx`, or `bank_account`.
+          maxLength: 5000
+          type: string
+        statement_descriptor:
+          description: >-
+            Extra information about a payout that displays on the user's bank
+            statement.
+          maxLength: 5000
+          nullable: true
+          type: string
+        status:
+          description: >-
+            Current status of the payout: `paid`, `pending`, `in_transit`,
+            `canceled` or `failed`. A payout is `pending` until it's submitted
+            to the bank, when it becomes `in_transit`. The status changes to
+            `paid` if the transaction succeeds, or to `failed` or `canceled`
+            (within 5 business days). Some payouts that fail might initially
+            show as `paid`, then change to `failed`.
+          maxLength: 5000
+          type: string
+        type:
+          description: Can be `bank_account` or `card`.
+          enum:
+            - bank_account
+            - card
+          type: string
+          x-stripeBypassValidation: true
+      required:
+        - amount
+        - arrival_date
+        - automatic
+        - created
+        - currency
+        - id
+        - livemode
+        - method
+        - object
+        - reconciliation_status
+        - source_type
+        - status
+        - type
+      title: Payout
+      type: object
+      x-expandableFields:
+        - balance_transaction
+        - destination
+        - failure_balance_transaction
+        - original_payout
+        - reversed_by
+      x-resourceId: payout
+  securitySchemes:
+    basicAuth:
+      description: >-
+        Basic HTTP authentication. Allowed headers-- Authorization: Basic
+        <api_key> | Authorization: Basic <base64 hash of `api_key:`>
+      scheme: basic
+      type: http
+    bearerAuth:
+      bearerFormat: auth-scheme
+      description: >-
+        Bearer HTTP authentication. Allowed headers-- Authorization: Bearer
+        <api_key>
+      scheme: bearer
+      type: http
+tags:
+  - name: Payouts
+    description: Needs a description.
+  - name: Cancel
+    description: Needs a description.
+  - name: Reverse
+    description: Needs a description.
+---

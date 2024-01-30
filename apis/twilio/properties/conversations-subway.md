@@ -1,0 +1,354 @@
+---
+tracks:
+- id: fdd46a45-7405-45a2-901a-39a0cb4ca85d
+  segmentStyle:
+    strokeColor: "#000000"
+    strokeWidth: 12
+    selectionColor: "#006400"
+    fullySelected: false
+  stationStyle:
+    strokeColor: "#000000"
+    strokeWidth: 4
+    fillColor: white
+    stationRadius: 10
+    selectionColor: "#006400"
+    fullySelected: false
+  segments:
+  - stationA:
+      position:
+        x: 362
+        y: 58
+      id: 62d1048a
+      name: Retrieve Configuration
+      offsetFactor:
+    stationB:
+      position:
+        x: 415
+        y: 219
+      id: 352d8327
+      name: Update Configuration
+      offsetFactor:
+    stationsUser:
+    - position:
+        x: 362
+        y: 58
+      id: 62d1048a
+      name: Retrieve Configuration
+      offsetFactor:
+    - position:
+        x: 415
+        y: 219
+      id: 352d8327
+      name: Update Configuration
+      offsetFactor:
+    stationsAuto: []
+    id: a8a1c81f-be02-4199-b3cf-d2391fc16aaf
+  stationsMinor: []
+- id: 70227f5f-91e5-4202-b44c-4368e5d8ac5b
+  segmentStyle:
+    strokeColor: "#000000"
+    strokeWidth: 12
+    selectionColor: "#006400"
+    fullySelected: false
+  stationStyle:
+    strokeColor: "#000000"
+    strokeWidth: 4
+    fillColor: white
+    stationRadius: 10
+    selectionColor: "#006400"
+    fullySelected: false
+  segments:
+  - stationA:
+      position:
+        x: 59
+        y: 58
+      id: 06f33bda
+      name: Retrieve Configuration Addresses
+      offsetFactor:
+    stationB:
+      position:
+        x: 59
+        y: 162
+      id: abeb174b
+      name: Create Configuration Address
+      offsetFactor:
+    stationsUser:
+    - position:
+        x: 59
+        y: 58
+      id: 06f33bda
+      name: Retrieve Configuration Addresses
+      offsetFactor:
+    - position:
+        x: 59
+        y: 162
+      id: abeb174b
+      name: Create Configuration Address
+      offsetFactor:
+    stationsAuto: []
+    id: bf06eb4c-1ecb-43e3-9a8f-5667add85a62
+  - stationA:
+      position:
+        x: 59
+        y: 162
+      id: abeb174b
+      name: Create Configuration Address
+      offsetFactor:
+    stationB:
+      position:
+        x: 145
+        y: 282
+      id: '095a5b98'
+      name: Retrieve Configuration Address
+      offsetFactor:
+    stationsUser:
+    - position:
+        x: 59
+        y: 162
+      id: abeb174b
+      name: Create Configuration Address
+      offsetFactor:
+    - position:
+        x: 145
+        y: 282
+      id: '095a5b98'
+      name: Retrieve Configuration Address
+      offsetFactor:
+    stationsAuto: []
+    id: 3e2f8483-5146-4e76-bee8-32ab520354d3
+  - stationA:
+      position:
+        x: 145
+        y: 282
+      id: '095a5b98'
+      name: Retrieve Configuration Address
+      offsetFactor:
+    stationB:
+      position:
+        x: 325
+        y: 346
+      id: ac4cfc31
+      name: Update Configuration Address
+      offsetFactor:
+    stationsUser:
+    - position:
+        x: 145
+        y: 282
+      id: '095a5b98'
+      name: Retrieve Configuration Address
+      offsetFactor:
+    - position:
+        x: 325
+        y: 346
+      id: ac4cfc31
+      name: Update Configuration Address
+      offsetFactor:
+    stationsAuto: []
+    id: 8bcf23b1-c8a7-47f5-81d8-c43ecf8abbc3
+  - stationA:
+      position:
+        x: 325
+        y: 346
+      id: ac4cfc31
+      name: Update Configuration Address
+      offsetFactor:
+    stationB:
+      position:
+        x: 218
+        y: 405
+      id: e76fdb0b
+      name: Delete Configuration Address
+      offsetFactor:
+    stationsUser:
+    - position:
+        x: 325
+        y: 346
+      id: ac4cfc31
+      name: Update Configuration Address
+      offsetFactor:
+    - position:
+        x: 218
+        y: 405
+      id: e76fdb0b
+      name: Delete Configuration Address
+      offsetFactor:
+    stationsAuto: []
+    id: c39ebed2-4df5-47fa-b81a-2c254f24a86f
+  stationsMinor: []
+- id: b5dc9c50-7d0e-4e96-a514-848384379d1f
+  segmentStyle:
+    strokeColor: "#000000"
+    strokeWidth: 12
+    selectionColor: "#006400"
+    fullySelected: false
+  stationStyle:
+    strokeColor: "#000000"
+    strokeWidth: 4
+    fillColor: white
+    stationRadius: 10
+    selectionColor: "#006400"
+    fullySelected: false
+  segments:
+  - stationA:
+      position:
+        x: 590
+        y: 39
+      id: a70a81f9
+      name: Retrieve Configuration Webhooks
+      offsetFactor:
+    stationB:
+      position:
+        x: 590
+        y: 406
+      id: 1f58f9b1
+      name: Create Configuration Webhooks
+      offsetFactor:
+    stationsUser:
+    - position:
+        x: 590
+        y: 39
+      id: a70a81f9
+      name: Retrieve Configuration Webhooks
+      offsetFactor:
+    - position:
+        x: 590
+        y: 406
+      id: 1f58f9b1
+      name: Create Configuration Webhooks
+      offsetFactor:
+    stationsAuto: []
+    id: dfdc2f71-f0ae-4ed2-a628-5f6c4d2418e0
+  stationsMinor: []
+- id: 2c2a9a06-24c5-49da-bf93-450cbd6a75fe
+  segmentStyle:
+    strokeColor: "#000000"
+    strokeWidth: 12
+    selectionColor: "#006400"
+    fullySelected: false
+  stationStyle:
+    strokeColor: "#000000"
+    strokeWidth: 4
+    fillColor: white
+    stationRadius: 10
+    selectionColor: "#006400"
+    fullySelected: false
+  segments:
+  - stationA:
+      position:
+        x: 812
+        y: 73
+      id: efc7bca2
+      name: Create Conversation
+      offsetFactor:
+    stationB:
+      position:
+        x: 866
+        y: 147
+      id: '05074777'
+      name: Retrieve Conversations
+      offsetFactor:
+    stationsUser:
+    - position:
+        x: 812
+        y: 73
+      id: efc7bca2
+      name: Create Conversation
+      offsetFactor:
+    - position:
+        x: 866
+        y: 147
+      id: '05074777'
+      name: Retrieve Conversations
+      offsetFactor:
+    stationsAuto: []
+    id: 01deb247-f16b-4a9d-8431-a92ee4b0b307
+  - stationA:
+      position:
+        x: 866
+        y: 147
+      id: '05074777'
+      name: Retrieve Conversations
+      offsetFactor:
+    stationB:
+      position:
+        x: 866
+        y: 293
+      id: b25b9a2d
+      name: Update Conversation
+      offsetFactor:
+    stationsUser:
+    - position:
+        x: 866
+        y: 147
+      id: '05074777'
+      name: Retrieve Conversations
+      offsetFactor:
+    - position:
+        x: 866
+        y: 293
+      id: b25b9a2d
+      name: Update Conversation
+      offsetFactor:
+    stationsAuto: []
+    id: 7411f3bf-52c3-4497-94f7-1632e95759e4
+  - stationA:
+      position:
+        x: 866
+        y: 293
+      id: b25b9a2d
+      name: Update Conversation
+      offsetFactor:
+    stationB:
+      position:
+        x: 866
+        y: 352
+      id: 30052b96
+      name: Delete Conversation
+      offsetFactor:
+    stationsUser:
+    - position:
+        x: 866
+        y: 293
+      id: b25b9a2d
+      name: Update Conversation
+      offsetFactor:
+    - position:
+        x: 866
+        y: 352
+      id: 30052b96
+      name: Delete Conversation
+      offsetFactor:
+    stationsAuto: []
+    id: 4ad5e8b0-e179-4b58-a122-d3105cec40a5
+  - stationA:
+      position:
+        x: 866
+        y: 352
+      id: 30052b96
+      name: Delete Conversation
+      offsetFactor:
+    stationB:
+      position:
+        x: 681
+        y: 217
+      id: cee1d828
+      name: Retrieve Conversation
+      offsetFactor:
+    stationsUser:
+    - position:
+        x: 866
+        y: 352
+      id: 30052b96
+      name: Delete Conversation
+      offsetFactor:
+    - position:
+        x: 681
+        y: 217
+      id: cee1d828
+      name: Retrieve Conversation
+      offsetFactor:
+    stationsAuto: []
+    id: 3a406cd0-59df-4921-b550-8e49a99f58d9
+  stationsMinor: []
+connections: []
+---

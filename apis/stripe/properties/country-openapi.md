@@ -1,0 +1,286 @@
+---
+openapi: 3.0.0
+info:
+  title: Stripe Country API
+  description: Needs description.
+  contact:
+    email: dev-platform@stripe.com
+    name: Stripe Dev Platform Team
+    url: 'https://stripe.com'
+  termsOfService: 'https://stripe.com/us/terms/'
+  version: '2023-10-16'
+  x-stripeSpecFilename: spec3
+security:
+  - basicAuth: []
+  - bearerAuth: []
+servers:
+  - url: 'https://api.stripe.com/'
+paths:
+  /v1/country_specs:
+    get:
+      description: <p>Lists all Country Spec objects available in the API.</p>
+      operationId: GetCountrySpecs
+      parameters:
+        - description: >-
+            A cursor for use in pagination. `ending_before` is an object ID that
+            defines your place in the list. For instance, if you make a list
+            request and receive 100 objects, starting with `obj_bar`, your
+            subsequent call can include `ending_before=obj_bar` in order to
+            fetch the previous page of the list.
+          in: query
+          name: ending_before
+          required: false
+          schema:
+            maxLength: 5000
+            type: string
+          style: form
+        - description: Specifies which fields in the response should be expanded.
+          explode: true
+          in: query
+          name: expand
+          required: false
+          schema:
+            items:
+              maxLength: 5000
+              type: string
+            type: array
+          style: deepObject
+        - description: >-
+            A limit on the number of objects to be returned. Limit can range
+            between 1 and 100, and the default is 10.
+          in: query
+          name: limit
+          required: false
+          schema:
+            type: integer
+          style: form
+        - description: >-
+            A cursor for use in pagination. `starting_after` is an object ID
+            that defines your place in the list. For instance, if you make a
+            list request and receive 100 objects, ending with `obj_foo`, your
+            subsequent call can include `starting_after=obj_foo` in order to
+            fetch the next page of the list.
+          in: query
+          name: starting_after
+          required: false
+          schema:
+            maxLength: 5000
+            type: string
+          style: form
+      requestBody:
+        content:
+          application/x-www-form-urlencoded:
+            encoding: {}
+            schema:
+              additionalProperties: false
+              properties: {}
+              type: object
+        required: false
+      responses:
+        '200':
+          content:
+            application/json:
+              schema:
+                description: ''
+                properties:
+                  data:
+                    items:
+                      $ref: '#/components/schemas/country_spec'
+                    type: array
+                  has_more:
+                    description: >-
+                      True if this list has another page of items after this one
+                      that can be fetched.
+                    type: boolean
+                  object:
+                    description: >-
+                      String representing the object's type. Objects of the same
+                      type share the same value. Always has the value `list`.
+                    enum:
+                      - list
+                    type: string
+                  url:
+                    description: The URL where this list can be accessed.
+                    maxLength: 5000
+                    pattern: ^/v1/country_specs
+                    type: string
+                required:
+                  - data
+                  - has_more
+                  - object
+                  - url
+                title: CountrySpecList
+                type: object
+                x-expandableFields:
+                  - data
+          description: Successful response.
+        default:
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/error'
+          description: Error response.
+      summary: Retrieve Countries
+      tags:
+        - Countries
+  '/v1/country_specs/{country}':
+    get:
+      description: <p>Returns a Country Spec for a given Country code.</p>
+      operationId: GetCountrySpecsCountry
+      parameters:
+        - in: path
+          name: country
+          required: true
+          schema:
+            maxLength: 5000
+            type: string
+          style: simple
+        - description: Specifies which fields in the response should be expanded.
+          explode: true
+          in: query
+          name: expand
+          required: false
+          schema:
+            items:
+              maxLength: 5000
+              type: string
+            type: array
+          style: deepObject
+      requestBody:
+        content:
+          application/x-www-form-urlencoded:
+            encoding: {}
+            schema:
+              additionalProperties: false
+              properties: {}
+              type: object
+        required: false
+      responses:
+        '200':
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/country_spec'
+          description: Successful response.
+        default:
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/error'
+          description: Error response.
+      summary: Retrieve Country
+      tags:
+        - Countries
+components:
+  schemas:
+    error:
+      description: An error response from the Stripe API
+      properties:
+        error:
+          $ref: '#/components/schemas/api_errors'
+      required:
+        - error
+      type: object
+    country_spec:
+      description: >-
+        Stripe needs to collect certain pieces of information about each account
+
+        created. These requirements can differ depending on the account's
+        country. The
+
+        Country Specs API makes these rules available to your integration.
+
+
+        You can also view the information from this API call as [an online
+
+        guide](/docs/connect/required-verification-information).
+      properties:
+        default_currency:
+          description: >-
+            The default currency for this country. This applies to both payment
+            methods and bank accounts.
+          maxLength: 5000
+          type: string
+        id:
+          description: >-
+            Unique identifier for the object. Represented as the ISO country
+            code for this country.
+          maxLength: 5000
+          type: string
+        object:
+          description: >-
+            String representing the object's type. Objects of the same type
+            share the same value.
+          enum:
+            - country_spec
+          type: string
+        supported_bank_account_currencies:
+          additionalProperties:
+            items:
+              maxLength: 5000
+              type: string
+            type: array
+          description: >-
+            Currencies that can be accepted in the specific country (for
+            transfers).
+          type: object
+        supported_payment_currencies:
+          description: >-
+            Currencies that can be accepted in the specified country (for
+            payments).
+          items:
+            maxLength: 5000
+            type: string
+          type: array
+        supported_payment_methods:
+          description: >-
+            Payment methods available in the specified country. You may need to
+            enable some payment methods (e.g.,
+            [ACH](https://stripe.com/docs/ach)) on your account before they
+            appear in this list. The `stripe` payment method refers to [charging
+            through your
+            platform](https://stripe.com/docs/connect/destination-charges).
+          items:
+            maxLength: 5000
+            type: string
+          type: array
+        supported_transfer_countries:
+          description: Countries that can accept transfers from the specified country.
+          items:
+            maxLength: 5000
+            type: string
+          type: array
+        verification_fields:
+          $ref: '#/components/schemas/country_spec_verification_fields'
+      required:
+        - default_currency
+        - id
+        - object
+        - supported_bank_account_currencies
+        - supported_payment_currencies
+        - supported_payment_methods
+        - supported_transfer_countries
+        - verification_fields
+      title: CountrySpec
+      type: object
+      x-expandableFields:
+        - verification_fields
+      x-resourceId: country_spec
+  securitySchemes:
+    basicAuth:
+      description: >-
+        Basic HTTP authentication. Allowed headers-- Authorization: Basic
+        <api_key> | Authorization: Basic <base64 hash of `api_key:`>
+      scheme: basic
+      type: http
+    bearerAuth:
+      bearerFormat: auth-scheme
+      description: >-
+        Bearer HTTP authentication. Allowed headers-- Authorization: Bearer
+        <api_key>
+      scheme: bearer
+      type: http
+tags:
+  - name: Countries
+    description: Needs a description.
+---

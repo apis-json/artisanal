@@ -1,0 +1,2871 @@
+---
+components:
+  schemas:
+    insights.v1.account_settings:
+      type: object
+      properties:
+        account_sid:
+          type: string
+          minLength: 34
+          maxLength: 34
+          pattern: '^AC[0-9a-fA-F]{32}$'
+          nullable: true
+          description: The unique SID identifier of the Account.
+        advanced_features:
+          type: boolean
+          nullable: true
+          description: >-
+            A boolean flag indicating whether Advanced Features for Voice
+            Insights are enabled.
+        voice_trace:
+          type: boolean
+          nullable: true
+          description: A boolean flag indicating whether Voice Trace is enabled.
+        url:
+          type: string
+          format: uri
+          nullable: true
+          description: The URL of this resource.
+    insights.v1.call.annotation:
+      type: object
+      properties:
+        call_sid:
+          type: string
+          minLength: 34
+          maxLength: 34
+          pattern: '^CA[0-9a-fA-F]{32}$'
+          nullable: true
+          description: The unique SID identifier of the Call.
+        account_sid:
+          type: string
+          minLength: 34
+          maxLength: 34
+          pattern: '^AC[0-9a-fA-F]{32}$'
+          nullable: true
+          description: The unique SID identifier of the Account.
+        answered_by:
+          type: string
+          $ref: '#/components/schemas/annotation_enum_answered_by'
+          nullable: true
+          description: >-
+            Specifies which entity answered the call as determined by Answering
+            Machine Detection. Possible enumerated values, one of: `human`,
+            `machine`. `human` indicates the call was answered by a person.
+            `machine` indicates the call was answered by an answering machine.
+        connectivity_issue:
+          type: string
+          $ref: '#/components/schemas/annotation_enum_connectivity_issue'
+          nullable: true
+          description: >-
+            Specifies if the call had any connectivity issues. One of
+            `no_connectivity_issue`, `invalid_number`, `caller_id`,
+            `dropped_call`, or `number_reachability`.
+        quality_issues:
+          type: array
+          items:
+            type: string
+          nullable: true
+          description: >-
+            Specifies if the call had any subjective quality issues. Possible
+            values are one or more of `no_quality_issue`, `low_volume`,
+            `choppy_robotic`, `echo`, `dtmf`, `latency`, `owa`, or
+            `static_noise`.
+        spam:
+          type: boolean
+          nullable: true
+          description: >-
+            Specifies if the call was a spam call. Use this to provide feedback
+            on whether calls placed from your account were marked as spam, or if
+            inbound calls received by your account were unwanted spam. Is of
+            type Boolean: true, false. Use true if the call was a spam call.
+        call_score:
+          type: integer
+          nullable: true
+          description: >-
+            Specifies the Call Score, if available. This is of type integer. Use
+            a range of 1-5 to indicate the call experience score, with the
+            following mapping as a reference for rating the call [5: Excellent,
+            4: Good, 3 : Fair, 2 : Poor, 1: Bad].
+        comment:
+          type: string
+          nullable: true
+          description: >-
+            Specifies any comments pertaining to the call. Twilio does not treat
+            this field as PII, so no PII should be included in comments.
+        incident:
+          type: string
+          nullable: true
+          description: >-
+            Incident or support ticket associated with this call. The `incident`
+            property is of type string with a maximum character limit of 100.
+            Twilio does not treat this field as PII, so no PII should be
+            included in `incident`.
+        url:
+          type: string
+          format: uri
+          nullable: true
+    annotation_enum_answered_by:
+      type: string
+      enum:
+        - unknown_answered_by
+        - human
+        - machine
+    annotation_enum_connectivity_issue:
+      type: string
+      enum:
+        - unknown_connectivity_issue
+        - no_connectivity_issue
+        - invalid_number
+        - caller_id
+        - dropped_call
+        - number_reachability
+    annotation_enum_quality_issues:
+      type: string
+      enum:
+        - unknown_quality_issue
+        - no_quality_issue
+        - low_volume
+        - choppy_robotic
+        - echo
+        - dtmf
+        - latency
+        - owa
+        - static_noise
+    insights.v1.call:
+      type: object
+      properties:
+        sid:
+          type: string
+          minLength: 34
+          maxLength: 34
+          pattern: '^CA[0-9a-fA-F]{32}$'
+          nullable: true
+        url:
+          type: string
+          format: uri
+          nullable: true
+        links:
+          type: object
+          format: uri-map
+          nullable: true
+    insights.v1.call_summaries:
+      type: object
+      properties:
+        account_sid:
+          type: string
+          minLength: 34
+          maxLength: 34
+          pattern: '^AC[0-9a-fA-F]{32}$'
+          nullable: true
+          description: The unique SID identifier of the Account.
+        call_sid:
+          type: string
+          minLength: 34
+          maxLength: 34
+          pattern: '^CA[0-9a-fA-F]{32}$'
+          nullable: true
+          description: The unique SID identifier of the Call.
+        answered_by:
+          type: string
+          $ref: '#/components/schemas/call_summaries_enum_answered_by'
+          nullable: true
+          description: >-
+            The Answered By value for the summarized call based on `Answering
+            Machine Detection (AMD)`. One of `unknown`, `machine_start`,
+            `machine_end_beep`, `machine_end_silence`, `machine_end_other`,
+            `human` or `fax`. Refer to
+            [AMD](https://www.twilio.com/docs/voice/answering-machine-detection)
+            for more detail.
+        call_type:
+          type: string
+          $ref: '#/components/schemas/call_summaries_enum_call_type'
+          nullable: true
+          description: >-
+            The Call Type of the summarized Call. One of `carrier`, `sip`,
+            `trunking` or `client`.
+        call_state:
+          type: string
+          $ref: '#/components/schemas/call_summaries_enum_call_state'
+          nullable: true
+          description: >-
+            The Call State of the summarized Call. One of `ringing`,
+            `completed`, `busy`, `fail`, `noanswer`, `canceled`, `answered`,
+            `undialed`.
+        processing_state:
+          type: string
+          $ref: '#/components/schemas/call_summaries_enum_processing_state'
+          nullable: true
+          description: >-
+            The Processing State of the Call Summary. The Processing State will
+            be `partial` until the assembly of the Call Summary finishes, which
+            occurs approximately 30 minutes after Call end. Then the Processing
+            State changes to `complete`
+        created_time:
+          type: string
+          format: date-time
+          nullable: true
+          description: >-
+            The time at which the Call was created, given in ISO 8601 format.
+            Can be different from `start_time` in the event of queueing due to
+            CPS
+        start_time:
+          type: string
+          format: date-time
+          nullable: true
+          description: 'The time at which the Call was started, given in ISO 8601 format.'
+        end_time:
+          type: string
+          format: date-time
+          nullable: true
+          description: 'The time at which the Call was ended, given in ISO 8601 format.'
+        duration:
+          type: integer
+          nullable: true
+          description: Duration between when the call was initiated and the call was ended
+        connect_duration:
+          type: integer
+          nullable: true
+          description: Duration between when the call was answered and when it ended
+        from:
+          nullable: true
+          description: The calling party.
+          x-twilio:
+            pii:
+              handling: standard
+              deleteSla: 30
+        to:
+          nullable: true
+          description: The called party.
+          x-twilio:
+            pii:
+              handling: standard
+              deleteSla: 30
+        carrier_edge:
+          nullable: true
+          description: >-
+            Contains metrics and properties for the Twilio media gateway of a
+            PSTN call.
+        client_edge:
+          nullable: true
+          description: >-
+            Contains metrics and properties for the Twilio media gateway of a
+            Client call.
+        sdk_edge:
+          nullable: true
+          description: >-
+            Contains metrics and properties for the SDK sensor library for
+            Client calls.
+        sip_edge:
+          nullable: true
+          description: >-
+            Contains metrics and properties for the Twilio media gateway of a
+            SIP Interface or Trunking call.
+        tags:
+          type: array
+          items:
+            type: string
+          nullable: true
+          description: >-
+            Tags applied to calls by Voice Insights analysis indicating a
+            condition that could result in subjective degradation of the call
+            quality.
+        url:
+          type: string
+          format: uri
+          nullable: true
+          description: The URL of this resource.
+        attributes:
+          nullable: true
+          description: Attributes capturing call-flow-specific details.
+        properties:
+          nullable: true
+          description: Contains edge-agnostic call-level details.
+        trust:
+          nullable: true
+          description: >-
+            Contains trusted communications details including Branded Call and
+            verified caller ID.
+        annotation:
+          nullable: true
+    call_summaries_enum_answered_by:
+      type: string
+      enum:
+        - unknown
+        - machine_start
+        - machine_end_beep
+        - machine_end_silence
+        - machine_end_other
+        - human
+        - fax
+    call_summaries_enum_call_type:
+      type: string
+      enum:
+        - carrier
+        - sip
+        - trunking
+        - client
+    call_summaries_enum_call_state:
+      type: string
+      enum:
+        - ringing
+        - completed
+        - busy
+        - fail
+        - noanswer
+        - canceled
+        - answered
+        - undialed
+    call_summaries_enum_processing_state:
+      type: string
+      enum:
+        - complete
+        - partial
+    call_summaries_enum_call_direction:
+      type: string
+      enum:
+        - outbound_api
+        - outbound_dial
+        - inbound
+        - trunking_originating
+        - trunking_terminating
+    call_summaries_enum_sort_by:
+      type: string
+      enum:
+        - start_time
+        - end_time
+    call_summaries_enum_processing_state_request:
+      type: string
+      enum:
+        - completed
+        - started
+        - partial
+        - all
+    insights.v1.conference:
+      type: object
+      properties:
+        conference_sid:
+          type: string
+          minLength: 34
+          maxLength: 34
+          pattern: '^CF[0-9a-fA-F]{32}$'
+          nullable: true
+          description: The unique SID identifier of the Conference.
+        account_sid:
+          type: string
+          minLength: 34
+          maxLength: 34
+          pattern: '^AC[0-9a-fA-F]{32}$'
+          nullable: true
+          description: The unique SID identifier of the Account.
+        friendly_name:
+          type: string
+          nullable: true
+          description: 'Custom label for the conference resource, up to 64 characters.'
+          x-twilio:
+            pii:
+              handling: standard
+              deleteSla: 30
+        create_time:
+          type: string
+          format: date-time
+          nullable: true
+          description: Conference creation date and time in ISO 8601 format.
+        start_time:
+          type: string
+          format: date-time
+          nullable: true
+          description: >-
+            Timestamp in ISO 8601 format when the conference started.
+            Conferences do not start until at least two participants join, at
+            least one of whom has startConferenceOnEnter=true.
+        end_time:
+          type: string
+          format: date-time
+          nullable: true
+          description: Conference end date and time in ISO 8601 format.
+        duration_seconds:
+          type: integer
+          nullable: true
+          description: Conference duration in seconds.
+        connect_duration_seconds:
+          type: integer
+          nullable: true
+          description: >-
+            Duration of the between conference start event and conference end
+            event in seconds.
+        status:
+          type: string
+          $ref: '#/components/schemas/conference_enum_conference_status'
+          nullable: true
+          description: >-
+            Status of this Conference; `in_progress`, `not_started`, `completed`
+            or `summary_timeout`. if Twilio don't receive
+            `last_participant_left` event, summary will be timeout after 24
+            hours
+        max_participants:
+          type: integer
+          nullable: true
+          description: >-
+            Maximum number of concurrent participants as specified by the
+            configuration.
+        max_concurrent_participants:
+          type: integer
+          nullable: true
+          description: Actual maximum number of concurrent participants in the conference.
+        unique_participants:
+          type: integer
+          nullable: true
+          description: Unique conference participants based on caller ID.
+        end_reason:
+          type: string
+          $ref: '#/components/schemas/conference_enum_conference_end_reason'
+          nullable: true
+          description: >-
+            Conference end reason; e.g. last participant left, modified by API,
+            etc.
+        ended_by:
+          type: string
+          minLength: 34
+          maxLength: 34
+          pattern: '^CA[0-9a-fA-F]{32}$'
+          nullable: true
+          description: Call SID of the participant whose actions ended the conference.
+        mixer_region:
+          type: string
+          $ref: '#/components/schemas/conference_enum_region'
+          nullable: true
+          description: Twilio region where the conference media was mixed.
+        mixer_region_requested:
+          type: string
+          $ref: '#/components/schemas/conference_enum_region'
+          nullable: true
+          description: >-
+            Twilio region where conference mixed was specified to be mixed in
+            configuration.
+        recording_enabled:
+          type: boolean
+          nullable: true
+          description: >-
+            Boolean. Indicates whether recording was enabled at the conference
+            mixer.
+        detected_issues:
+          nullable: true
+          description: Potential issues detected by Twilio during the conference.
+        tags:
+          type: array
+          items:
+            type: string
+            $ref: '#/components/schemas/conference_enum_tag'
+          nullable: true
+          description: >-
+            Tags for detected conference conditions and participant behaviors
+            which may be of interest.
+        tag_info:
+          nullable: true
+          description: Object. Contains details about conference tags including severity.
+        processing_state:
+          type: string
+          $ref: '#/components/schemas/conference_enum_processing_state'
+          nullable: true
+          description: >-
+            Processing state for the Conference Summary resource. Will be
+            `in_progress` while data is being aggregated, `timeout` if Twilio
+            couldn't process the summary in 24hrs, and `complete` once
+            aggregations and analysis has ended.
+        url:
+          type: string
+          format: uri
+          nullable: true
+          description: The URL of this resource.
+        links:
+          type: object
+          format: uri-map
+          nullable: true
+          description: >-
+            Contains a dictionary of URL links to nested resources of this
+            Conference.
+    conference_enum_conference_status:
+      type: string
+      enum:
+        - in_progress
+        - not_started
+        - completed
+        - summary_timeout
+    conference_enum_conference_end_reason:
+      type: string
+      enum:
+        - last_participant_left
+        - conference_ended_via_api
+        - participant_with_end_conference_on_exit_left
+        - last_participant_kicked
+        - participant_with_end_conference_on_exit_kicked
+    conference_enum_region:
+      type: string
+      enum:
+        - us1
+        - au1
+        - br1
+        - ie1
+        - jp1
+        - sg1
+        - de1
+    conference_enum_tag:
+      type: string
+      enum:
+        - invalid_requested_region
+        - duplicate_identity
+        - start_failure
+        - region_configuration_issues
+        - quality_warnings
+        - participant_behavior_issues
+        - high_packet_loss
+        - high_jitter
+        - high_latency
+        - low_mos
+        - detected_silence
+    conference_enum_processing_state:
+      type: string
+      enum:
+        - complete
+        - in_progress
+        - timeout
+    insights.v1.conference.conference_participant:
+      type: object
+      properties:
+        participant_sid:
+          type: string
+          minLength: 34
+          maxLength: 34
+          pattern: '^CP[0-9a-fA-F]{32}$'
+          nullable: true
+          description: SID for this participant.
+        label:
+          type: string
+          nullable: true
+          description: The user-specified label of this participant.
+          x-twilio:
+            pii:
+              handling: standard
+              deleteSla: 30
+        conference_sid:
+          type: string
+          minLength: 34
+          maxLength: 34
+          pattern: '^CF[0-9a-fA-F]{32}$'
+          nullable: true
+          description: The unique SID identifier of the Conference.
+        call_sid:
+          type: string
+          minLength: 34
+          maxLength: 34
+          pattern: '^CA[0-9a-fA-F]{32}$'
+          nullable: true
+          description: >-
+            Unique SID identifier of the call that generated the Participant
+            resource.
+        account_sid:
+          type: string
+          minLength: 34
+          maxLength: 34
+          pattern: '^AC[0-9a-fA-F]{32}$'
+          nullable: true
+          description: The unique SID identifier of the Account.
+        call_direction:
+          type: string
+          $ref: '#/components/schemas/conference_participant_enum_call_direction'
+          nullable: true
+          description: Call direction of the participant; inbound or outbound.
+        from:
+          type: string
+          nullable: true
+          description: Caller ID of the calling party.
+          x-twilio:
+            pii:
+              handling: standard
+              deleteSla: 30
+        to:
+          type: string
+          nullable: true
+          description: Called party.
+          x-twilio:
+            pii:
+              handling: standard
+              deleteSla: 30
+        call_status:
+          type: string
+          $ref: '#/components/schemas/conference_participant_enum_call_status'
+          nullable: true
+          description: Call status of the call that generated the participant.
+        country_code:
+          type: string
+          nullable: true
+          description: >-
+            ISO alpha-2 country code of the participant based on caller ID or
+            called number.
+        is_moderator:
+          type: boolean
+          nullable: true
+          description: >-
+            Boolean. Indicates whether participant had
+            startConferenceOnEnter=true or endConferenceOnExit=true.
+        join_time:
+          type: string
+          format: date-time
+          nullable: true
+          description: ISO 8601 timestamp of participant join event.
+        leave_time:
+          type: string
+          format: date-time
+          nullable: true
+          description: ISO 8601 timestamp of participant leave event.
+        duration_seconds:
+          type: integer
+          nullable: true
+          description: Participant durations in seconds.
+        outbound_queue_length:
+          type: integer
+          nullable: true
+          description: Add Participant API only. Estimated time in queue at call creation.
+        outbound_time_in_queue:
+          type: integer
+          nullable: true
+          description: Add Participant API only. Actual time in queue in seconds.
+        jitter_buffer_size:
+          type: string
+          $ref: '#/components/schemas/conference_participant_enum_jitter_buffer_size'
+          nullable: true
+          description: >-
+            The Jitter Buffer Size of this Conference Participant. One of
+            `large`, `small`, `medium` or `off`.
+        is_coach:
+          type: boolean
+          nullable: true
+          description: Boolean. Indicated whether participant was a coach.
+        coached_participants:
+          type: array
+          items:
+            type: string
+          nullable: true
+          description: Call SIDs coached by this participant.
+        participant_region:
+          type: string
+          $ref: '#/components/schemas/conference_participant_enum_region'
+          nullable: true
+          description: Twilio region where the participant media originates.
+        conference_region:
+          type: string
+          $ref: '#/components/schemas/conference_participant_enum_region'
+          nullable: true
+          description: >-
+            The Conference Region of this Conference Participant. One of `us1`,
+            `us2`, `au1`, `br1`, `ie1`, `jp1`, `sg1` or `de1`.
+        call_type:
+          type: string
+          $ref: '#/components/schemas/conference_participant_enum_call_type'
+          nullable: true
+          description: >-
+            The Call Type of this Conference Participant. One of `carrier`,
+            `client` or `sip`.
+        processing_state:
+          type: string
+          $ref: '#/components/schemas/conference_participant_enum_processing_state'
+          nullable: true
+          description: >-
+            Processing state of the Participant Summary. Will be `in_progress`
+            while data is being aggregated, `timeout` if Twilio couldn't process
+            the summary in 24hrs, and `complete` once aggregations and analysis
+            has ended.
+        properties:
+          nullable: true
+          description: Participant properties and metadata.
+        events:
+          nullable: true
+          description: >-
+            Object containing information of actions taken by participants.
+            Contains a dictionary of URL links to nested resources of this
+            Conference Participant.
+        metrics:
+          nullable: true
+          description: Object. Contains participant call quality metrics.
+        url:
+          type: string
+          format: uri
+          nullable: true
+          description: The URL of this resource.
+    conference_participant_enum_call_direction:
+      type: string
+      enum:
+        - inbound
+        - outbound
+    conference_participant_enum_call_status:
+      type: string
+      enum:
+        - answered
+        - completed
+        - busy
+        - fail
+        - noanswer
+        - ringing
+        - canceled
+    conference_participant_enum_jitter_buffer_size:
+      type: string
+      enum:
+        - large
+        - small
+        - medium
+        - 'off'
+    conference_participant_enum_region:
+      type: string
+      enum:
+        - us1
+        - us2
+        - au1
+        - br1
+        - ie1
+        - jp1
+        - sg1
+        - de1
+    conference_participant_enum_call_type:
+      type: string
+      enum:
+        - carrier
+        - client
+        - sip
+    conference_participant_enum_processing_state:
+      type: string
+      enum:
+        - complete
+        - in_progress
+        - timeout
+    insights.v1.call.event:
+      type: object
+      properties:
+        timestamp:
+          type: string
+          nullable: true
+          description: Event time.
+        call_sid:
+          type: string
+          minLength: 34
+          maxLength: 34
+          pattern: '^CA[0-9a-fA-F]{32}$'
+          nullable: true
+          description: The unique SID identifier of the Call.
+        account_sid:
+          type: string
+          minLength: 34
+          maxLength: 34
+          pattern: '^AC[0-9a-fA-F]{32}$'
+          nullable: true
+          description: The unique SID identifier of the Account.
+        edge:
+          type: string
+          $ref: '#/components/schemas/event_enum_twilio_edge'
+          nullable: true
+          description: >-
+            The Edge of this Event. One of `unknown_edge`, `carrier_edge`,
+            `sip_edge`, `sdk_edge` or `client_edge`.
+        group:
+          type: string
+          nullable: true
+          description: Event group.
+        level:
+          type: string
+          $ref: '#/components/schemas/event_enum_level'
+          nullable: true
+          description: >-
+            The Level of this Event. One of `UNKNOWN`, `DEBUG`, `INFO`,
+            `WARNING` or `ERROR`.
+        name:
+          type: string
+          nullable: true
+          description: Event name.
+        carrier_edge:
+          nullable: true
+          description: >-
+            Represents the connection between Twilio and our immediate carrier
+            partners. The events here describe the call lifecycle as reported by
+            Twilio's carrier media gateways.
+        sip_edge:
+          nullable: true
+          description: >-
+            Represents the Twilio media gateway for SIP interface and SIP
+            trunking calls. The events here describe the call lifecycle as
+            reported by Twilio's public media gateways.
+        sdk_edge:
+          nullable: true
+          description: >-
+            Represents the Voice SDK running locally in the browser or in the
+            Android/iOS application. The events here are emitted by the Voice
+            SDK in response to certain call progress events, network changes, or
+            call quality conditions.
+        client_edge:
+          nullable: true
+          description: >-
+            Represents the Twilio media gateway for Client calls. The events
+            here describe the call lifecycle as reported by Twilio's Voice SDK
+            media gateways.
+    event_enum_twilio_edge:
+      type: string
+      enum:
+        - unknown_edge
+        - carrier_edge
+        - sip_edge
+        - sdk_edge
+        - client_edge
+    event_enum_level:
+      type: string
+      enum:
+        - UNKNOWN
+        - DEBUG
+        - INFO
+        - WARNING
+        - ERROR
+    insights.v1.call.metric:
+      type: object
+      properties:
+        timestamp:
+          type: string
+          nullable: true
+          description: >-
+            Timestamp of metric sample. Samples are taken every 10 seconds and
+            contain the metrics for the previous 10 seconds.
+        call_sid:
+          type: string
+          minLength: 34
+          maxLength: 34
+          pattern: '^CA[0-9a-fA-F]{32}$'
+          nullable: true
+          description: The unique SID identifier of the Call.
+        account_sid:
+          type: string
+          minLength: 34
+          maxLength: 34
+          pattern: '^AC[0-9a-fA-F]{32}$'
+          nullable: true
+          description: The unique SID identifier of the Account.
+        edge:
+          type: string
+          $ref: '#/components/schemas/metric_enum_twilio_edge'
+          nullable: true
+          description: >-
+            The Twilio media edge this Metric was captured on. One of
+            `unknown_edge`, `carrier_edge`, `sip_edge`, `sdk_edge` or
+            `client_edge`.
+        direction:
+          type: string
+          $ref: '#/components/schemas/metric_enum_stream_direction'
+          nullable: true
+          description: >-
+            The Direction of the media stream from the perspective of the Twilio
+            media edge. One of `unknown`, `inbound`, `outbound` or `both`.
+        carrier_edge:
+          nullable: true
+          description: >-
+            Contains metrics and properties for the Twilio media gateway of a
+            PSTN call.
+        sip_edge:
+          nullable: true
+          description: >-
+            Contains metrics and properties for the Twilio media gateway of a
+            SIP Interface or Trunking call.
+        sdk_edge:
+          nullable: true
+          description: >-
+            Contains metrics and properties for the SDK sensor library for
+            Client calls.
+        client_edge:
+          nullable: true
+          description: >-
+            Contains metrics and properties for the Twilio media gateway of a
+            Client call.
+    metric_enum_twilio_edge:
+      type: string
+      enum:
+        - unknown_edge
+        - carrier_edge
+        - sip_edge
+        - sdk_edge
+        - client_edge
+    metric_enum_stream_direction:
+      type: string
+      enum:
+        - unknown
+        - inbound
+        - outbound
+        - both
+    insights.v1.call.summary:
+      type: object
+      properties:
+        account_sid:
+          type: string
+          minLength: 34
+          maxLength: 34
+          pattern: '^AC[0-9a-fA-F]{32}$'
+          nullable: true
+          description: The unique SID identifier of the Account.
+        call_sid:
+          type: string
+          minLength: 34
+          maxLength: 34
+          pattern: '^CA[0-9a-fA-F]{32}$'
+          nullable: true
+          description: The unique SID identifier of the Call.
+        call_type:
+          type: string
+          $ref: '#/components/schemas/summary_enum_call_type'
+          nullable: true
+          description: >-
+            The Call Type of the summarized Call. One of `carrier`, `sip`,
+            `trunking` or `client`.
+        call_state:
+          type: string
+          $ref: '#/components/schemas/summary_enum_call_state'
+          nullable: true
+          description: >-
+            The Call State of the summarized Call. One of `ringing`,
+            `completed`, `busy`, `fail`, `noanswer`, `canceled`, `answered`,
+            `undialed`.
+        answered_by:
+          type: string
+          $ref: '#/components/schemas/summary_enum_answered_by'
+          nullable: true
+          description: >-
+            The Answered By value for the summarized call based on `Answering
+            Machine Detection (AMD)`. One of `unknown`, `machine_start`,
+            `machine_end_beep`, `machine_end_silence`, `machine_end_other`,
+            `human` or `fax`. Refer to
+            [AMD](https://www.twilio.com/docs/voice/answering-machine-detection)
+            for more detail.
+        processing_state:
+          type: string
+          $ref: '#/components/schemas/summary_enum_processing_state'
+          nullable: true
+          description: >-
+            The Processing State of the Call Summary. The Processing State will
+            be `partial` until the assembly of the Call Summary finishes, which
+            occurs approximately 30 minutes after Call end. Then the Processing
+            State changes to `complete`
+        created_time:
+          type: string
+          format: date-time
+          nullable: true
+          description: >-
+            The time at which the Call was created, given in ISO 8601 format.
+            Can be different from `start_time` in the event of queueing due to
+            CPS
+        start_time:
+          type: string
+          format: date-time
+          nullable: true
+          description: 'The time at which the Call was started, given in ISO 8601 format.'
+        end_time:
+          type: string
+          format: date-time
+          nullable: true
+          description: 'The time at which the Call was ended, given in ISO 8601 format.'
+        duration:
+          type: integer
+          nullable: true
+          description: Duration between when the call was initiated and the call was ended
+        connect_duration:
+          type: integer
+          nullable: true
+          description: Duration between when the call was answered and when it ended
+        from:
+          nullable: true
+          description: The calling party.
+          x-twilio:
+            pii:
+              handling: standard
+              deleteSla: 30
+        to:
+          nullable: true
+          description: The called party.
+          x-twilio:
+            pii:
+              handling: standard
+              deleteSla: 30
+        carrier_edge:
+          nullable: true
+          description: >-
+            Contains metrics and properties for the Twilio media gateway of a
+            PSTN call.
+        client_edge:
+          nullable: true
+          description: >-
+            Contains metrics and properties for the Twilio media gateway of a
+            Client call.
+        sdk_edge:
+          nullable: true
+          description: >-
+            Contains metrics and properties for the SDK sensor library for
+            Client calls.
+        sip_edge:
+          nullable: true
+          description: >-
+            Contains metrics and properties for the Twilio media gateway of a
+            SIP Interface or Trunking call.
+        tags:
+          type: array
+          items:
+            type: string
+          nullable: true
+          description: >-
+            Tags applied to calls by Voice Insights analysis indicating a
+            condition that could result in subjective degradation of the call
+            quality.
+        url:
+          type: string
+          format: uri
+          nullable: true
+          description: The URL of this resource.
+        attributes:
+          nullable: true
+          description: Attributes capturing call-flow-specific details.
+        properties:
+          nullable: true
+          description: Contains edge-agnostic call-level details.
+        trust:
+          nullable: true
+          description: >-
+            Contains trusted communications details including Branded Call and
+            verified caller ID.
+        annotation:
+          nullable: true
+          description: >-
+            Programmatically labeled annotations for the Call. Developers can
+            update the Call Summary records with Annotation during or after a
+            Call. Annotations can be updated as long as the Call Summary record
+            is addressable via the API.
+    summary_enum_answered_by:
+      type: string
+      enum:
+        - unknown
+        - machine_start
+        - machine_end_beep
+        - machine_end_silence
+        - machine_end_other
+        - human
+        - fax
+    summary_enum_call_type:
+      type: string
+      enum:
+        - carrier
+        - sip
+        - trunking
+        - client
+    summary_enum_call_state:
+      type: string
+      enum:
+        - ringing
+        - completed
+        - busy
+        - fail
+        - noanswer
+        - canceled
+        - answered
+        - undialed
+    summary_enum_processing_state:
+      type: string
+      enum:
+        - complete
+        - partial
+    insights.v1.video_room_summary.video_participant_summary:
+      type: object
+      properties:
+        participant_sid:
+          type: string
+          minLength: 34
+          maxLength: 34
+          pattern: '^PA[0-9a-fA-F]{32}$'
+          nullable: true
+          description: Unique identifier for the participant.
+        participant_identity:
+          type: string
+          nullable: true
+          description: >-
+            The application-defined string that uniquely identifies the
+            participant within a Room.
+        join_time:
+          type: string
+          format: date-time
+          nullable: true
+          description: When the participant joined the room.
+        leave_time:
+          type: string
+          format: date-time
+          nullable: true
+          description: When the participant left the room.
+        duration_sec:
+          type: integer
+          format: int64
+          nullable: true
+          description: Amount of time in seconds the participant was in the room.
+        account_sid:
+          type: string
+          minLength: 34
+          maxLength: 34
+          pattern: '^AC[0-9a-fA-F]{32}$'
+          nullable: true
+          description: Account SID associated with the room.
+        room_sid:
+          type: string
+          minLength: 34
+          maxLength: 34
+          pattern: '^RM[0-9a-fA-F]{32}$'
+          nullable: true
+          description: Unique identifier for the room.
+        status:
+          type: string
+          $ref: '#/components/schemas/video_participant_summary_enum_room_status'
+          nullable: true
+          description: Status of the room. Can be `in_progress` or `completed`.
+        codecs:
+          type: array
+          items:
+            type: string
+            $ref: '#/components/schemas/video_participant_summary_enum_codec'
+          nullable: true
+          description: >-
+            Codecs detected from the participant. Can be `VP8`, `H264`, or
+            `VP9`.
+        end_reason:
+          type: string
+          nullable: true
+          description: >-
+            Reason the participant left the room. See [the list of possible
+            values
+            here](https://www.twilio.com/docs/video/troubleshooting/video-log-analyzer-api#end_reason).
+        error_code:
+          type: integer
+          nullable: true
+          description: Errors encountered by the participant.
+        error_code_url:
+          type: string
+          nullable: true
+          description: Twilio error code dictionary link.
+        media_region:
+          type: string
+          $ref: '#/components/schemas/video_participant_summary_enum_twilio_realm'
+          nullable: true
+          description: >-
+            Twilio media region the participant connected to. See [the list of
+            possible media servers
+            here](https://www.twilio.com/docs/video/ip-addresses).
+        properties:
+          nullable: true
+          description: >-
+            Object containing information about the participant's data from the
+            room. See
+            [below](https://www.twilio.com/docs/video/troubleshooting/video-log-analyzer-api#properties)
+            for more information.
+        edge_location:
+          type: string
+          $ref: '#/components/schemas/video_participant_summary_enum_edge_location'
+          nullable: true
+          description: >-
+            Name of the edge location the participant connected to. See [the
+            list of public edge
+            locations](https://www.twilio.com/docs/global-infrastructure/edge-locations#public-edge-locations)
+            for the possible values.
+        publisher_info:
+          nullable: true
+          description: >-
+            Object containing information about the SDK name and version. See
+            [below](https://www.twilio.com/docs/video/troubleshooting/video-log-analyzer-api#publisher_info)
+            for more information.
+        url:
+          type: string
+          format: uri
+          nullable: true
+          description: URL of the participant resource.
+    video_participant_summary_enum_room_status:
+      type: string
+      enum:
+        - in_progress
+        - completed
+    video_participant_summary_enum_codec:
+      type: string
+      enum:
+        - VP8
+        - H264
+        - VP9
+    video_participant_summary_enum_twilio_realm:
+      type: string
+      enum:
+        - us1
+        - us2
+        - au1
+        - br1
+        - ie1
+        - jp1
+        - sg1
+        - in1
+        - de1
+        - gll
+    video_participant_summary_enum_edge_location:
+      type: string
+      enum:
+        - ashburn
+        - dublin
+        - frankfurt
+        - singapore
+        - sydney
+        - sao_paulo
+        - roaming
+        - umatilla
+        - tokyo
+    insights.v1.video_room_summary:
+      type: object
+      properties:
+        account_sid:
+          type: string
+          minLength: 34
+          maxLength: 34
+          pattern: '^AC[0-9a-fA-F]{32}$'
+          nullable: true
+          description: Account SID associated with this room.
+        room_sid:
+          type: string
+          minLength: 34
+          maxLength: 34
+          pattern: '^RM[0-9a-fA-F]{32}$'
+          nullable: true
+          description: Unique identifier for the room.
+        room_name:
+          type: string
+          nullable: true
+          description: Room friendly name.
+        create_time:
+          type: string
+          format: date-time
+          nullable: true
+          description: Creation time of the room.
+        end_time:
+          type: string
+          format: date-time
+          nullable: true
+          description: End time for the room.
+        room_type:
+          type: string
+          $ref: '#/components/schemas/video_room_summary_enum_room_type'
+          nullable: true
+          description: >-
+            Type of room. Can be `go`, `peer_to_peer`, `group`, or
+            `group_small`.
+        room_status:
+          type: string
+          $ref: '#/components/schemas/video_room_summary_enum_room_status'
+          nullable: true
+          description: Status of the room. Can be `in_progress` or `completed`.
+        status_callback:
+          type: string
+          format: uri
+          nullable: true
+          description: Webhook provided for status callbacks.
+        status_callback_method:
+          type: string
+          format: http-method
+          enum:
+            - HEAD
+            - GET
+            - POST
+            - PATCH
+            - PUT
+            - DELETE
+          nullable: true
+          description: HTTP method provided for status callback URL.
+        created_method:
+          type: string
+          $ref: '#/components/schemas/video_room_summary_enum_created_method'
+          nullable: true
+          description: 'How the room was created. Can be `sdk`, `ad_hoc`, or `api`.'
+        end_reason:
+          type: string
+          $ref: '#/components/schemas/video_room_summary_enum_end_reason'
+          nullable: true
+          description: Reason the room ended. Can be `room_ended_via_api` or `timeout`.
+        max_participants:
+          type: integer
+          nullable: true
+          description: >-
+            Max number of total participants allowed by the application
+            settings.
+        unique_participants:
+          type: integer
+          nullable: true
+          description: >-
+            Number of participants. May include duplicate identities for
+            participants who left and rejoined.
+        unique_participant_identities:
+          type: integer
+          nullable: true
+          description: Unique number of participant identities.
+        concurrent_participants:
+          type: integer
+          nullable: true
+          description: Actual number of concurrent participants.
+        max_concurrent_participants:
+          type: integer
+          nullable: true
+          description: >-
+            Maximum number of participants allowed in the room at the same time
+            allowed by the application settings.
+        codecs:
+          type: array
+          items:
+            type: string
+            $ref: '#/components/schemas/video_room_summary_enum_codec'
+          nullable: true
+          description: >-
+            Codecs used by participants in the room. Can be `VP8`, `H264`, or
+            `VP9`.
+        media_region:
+          type: string
+          $ref: '#/components/schemas/video_room_summary_enum_twilio_realm'
+          nullable: true
+          description: >-
+            Region of Twilio media servers for the room. See [the list of
+            possible media servers
+            here](https://www.twilio.com/docs/video/ip-addresses).
+        duration_sec:
+          type: integer
+          format: int64
+          nullable: true
+          description: Total room duration from create time to end time.
+        total_participant_duration_sec:
+          type: integer
+          format: int64
+          nullable: true
+          description: Combined amount of participant time in the room.
+        total_recording_duration_sec:
+          type: integer
+          format: int64
+          nullable: true
+          description: Combined amount of recorded seconds for participants in the room.
+        processing_state:
+          type: string
+          $ref: '#/components/schemas/video_room_summary_enum_processing_state'
+          nullable: true
+          description: >-
+            Video Log Analyzer resource state. Will be either `in-progress` or
+            `complete`. `in-progress` indicates that more details may be
+            appended to the resource. `complete` indicates no further
+            information will be added.
+        recording_enabled:
+          type: boolean
+          nullable: true
+          description: Boolean indicating if recording is enabled for the room.
+        edge_location:
+          type: string
+          $ref: '#/components/schemas/video_room_summary_enum_edge_location'
+          nullable: true
+          description: >-
+            Edge location of Twilio media servers for the room. See [the list of
+            public edge
+            locations](https://www.twilio.com/docs/global-infrastructure/edge-locations#public-edge-locations)
+            for the possible values.
+        url:
+          type: string
+          format: uri
+          nullable: true
+          description: URL for the room resource.
+        links:
+          type: object
+          format: uri-map
+          nullable: true
+          description: Room subresources.
+    video_room_summary_enum_room_type:
+      type: string
+      enum:
+        - go
+        - peer_to_peer
+        - group
+        - group_small
+    video_room_summary_enum_room_status:
+      type: string
+      enum:
+        - in_progress
+        - completed
+    video_room_summary_enum_created_method:
+      type: string
+      enum:
+        - sdk
+        - ad_hoc
+        - api
+    video_room_summary_enum_end_reason:
+      type: string
+      enum:
+        - room_ended_via_api
+        - timeout
+    video_room_summary_enum_codec:
+      type: string
+      enum:
+        - VP8
+        - H264
+        - VP9
+    video_room_summary_enum_twilio_realm:
+      type: string
+      enum:
+        - us1
+        - us2
+        - au1
+        - br1
+        - ie1
+        - jp1
+        - sg1
+        - in1
+        - de1
+        - gll
+    video_room_summary_enum_processing_state:
+      type: string
+      enum:
+        - complete
+        - in_progress
+    video_room_summary_enum_edge_location:
+      type: string
+      enum:
+        - ashburn
+        - dublin
+        - frankfurt
+        - singapore
+        - sydney
+        - sao_paulo
+        - roaming
+        - umatilla
+        - tokyo
+    UpdateAccountSettingsRequest:
+      type: object
+      properties:
+        AdvancedFeatures:
+          type: boolean
+          description: A boolean flag to enable Advanced Features for Voice Insights.
+        VoiceTrace:
+          type: boolean
+          description: A boolean flag to enable Voice Trace.
+        SubaccountSid:
+          type: string
+          minLength: 34
+          maxLength: 34
+          pattern: '^AC[0-9a-fA-F]{32}$'
+          description: The unique SID identifier of the Subaccount.
+    UpdateAnnotationRequest:
+      type: object
+      properties:
+        AnsweredBy:
+          type: string
+          $ref: '#/components/schemas/annotation_enum_answered_by'
+          description: >-
+            Specify which entity answered the call as determined by Answering
+            Machine Detection. Use this to provide feedback on Answering Machine
+            Detection accuracy. Possible enumerated values, one of: `human`,
+            `machine`. `human` indicates the call was answered by a person.
+            `machine` indicates the call was answered by an answering machine.
+        ConnectivityIssue:
+          type: string
+          $ref: '#/components/schemas/annotation_enum_connectivity_issue'
+          description: >-
+            Specify if the call had any connectivity issues. Possible enumerated
+            values, one of `no_connectivity_issue`, `invalid_number`,
+            `caller_id`, `dropped_call`, or `number_reachability`.
+        QualityIssues:
+          type: string
+          description: >-
+            Specify if the call had any subjective quality issues. Possible
+            values, one or more of `no_quality_issue`, `low_volume`,
+            `choppy_robotic`, `echo`, `dtmf`, `latency`, `owa`, `static_noise`.
+            Use comma separated values to indicate multiple quality issues for
+            the same call.
+        Spam:
+          type: boolean
+          description: >-
+            A boolean flag to indicate if the call was a spam call. Use this to
+            provide feedback on whether calls placed from your account were
+            marked as spam, or if inbound calls received by your account were
+            unwanted spam. Use `true` if the call was a spam call.
+        CallScore:
+          type: integer
+          nullable: true
+          description: >-
+            Specify the call score. This is of type integer. Use a range of 1-5
+            to indicate the call experience score, with the following mapping as
+            a reference for rating the call [5: Excellent, 4: Good, 3 : Fair, 2
+            : Poor, 1: Bad].
+        Comment:
+          type: string
+          description: >-
+            Specify any comments pertaining to the call. `comment` has a maximum
+            character limit of 100. Twilio does not treat this field as PII, so
+            no PII should be included in the `comment`.
+        Incident:
+          type: string
+          description: >-
+            Associate this call with an incident or support ticket. The
+            `incident` parameter is of type string with a maximum character
+            limit of 100. Twilio does not treat this field as PII, so no PII
+            should be included in `incident`.
+    ListCallSummariesResponse:
+      type: object
+      properties:
+        call_summaries:
+          type: array
+          items:
+            $ref: '#/components/schemas/insights.v1.call_summaries'
+        meta:
+          type: object
+          properties:
+            first_page_url:
+              type: string
+              format: uri
+            next_page_url:
+              type: string
+              format: uri
+              nullable: true
+            page:
+              type: integer
+            page_size:
+              type: integer
+            previous_page_url:
+              type: string
+              format: uri
+              nullable: true
+            url:
+              type: string
+              format: uri
+            key:
+              type: string
+    ListConferenceResponse:
+      type: object
+      properties:
+        conferences:
+          type: array
+          items:
+            $ref: '#/components/schemas/insights.v1.conference'
+        meta:
+          type: object
+          properties:
+            first_page_url:
+              type: string
+              format: uri
+            next_page_url:
+              type: string
+              format: uri
+              nullable: true
+            page:
+              type: integer
+            page_size:
+              type: integer
+            previous_page_url:
+              type: string
+              format: uri
+              nullable: true
+            url:
+              type: string
+              format: uri
+            key:
+              type: string
+    ListConferenceParticipantResponse:
+      type: object
+      properties:
+        participants:
+          type: array
+          items:
+            $ref: '#/components/schemas/insights.v1.conference.conference_participant'
+        meta:
+          type: object
+          properties:
+            first_page_url:
+              type: string
+              format: uri
+            next_page_url:
+              type: string
+              format: uri
+              nullable: true
+            page:
+              type: integer
+            page_size:
+              type: integer
+            previous_page_url:
+              type: string
+              format: uri
+              nullable: true
+            url:
+              type: string
+              format: uri
+            key:
+              type: string
+    ListEventResponse:
+      type: object
+      properties:
+        events:
+          type: array
+          items:
+            $ref: '#/components/schemas/insights.v1.call.event'
+        meta:
+          type: object
+          properties:
+            first_page_url:
+              type: string
+              format: uri
+            next_page_url:
+              type: string
+              format: uri
+              nullable: true
+            page:
+              type: integer
+            page_size:
+              type: integer
+            previous_page_url:
+              type: string
+              format: uri
+              nullable: true
+            url:
+              type: string
+              format: uri
+            key:
+              type: string
+    ListMetricResponse:
+      type: object
+      properties:
+        metrics:
+          type: array
+          items:
+            $ref: '#/components/schemas/insights.v1.call.metric'
+        meta:
+          type: object
+          properties:
+            first_page_url:
+              type: string
+              format: uri
+            next_page_url:
+              type: string
+              format: uri
+              nullable: true
+            page:
+              type: integer
+            page_size:
+              type: integer
+            previous_page_url:
+              type: string
+              format: uri
+              nullable: true
+            url:
+              type: string
+              format: uri
+            key:
+              type: string
+    ListVideoParticipantSummaryResponse:
+      type: object
+      properties:
+        participants:
+          type: array
+          items:
+            $ref: >-
+              #/components/schemas/insights.v1.video_room_summary.video_participant_summary
+        meta:
+          type: object
+          properties:
+            first_page_url:
+              type: string
+              format: uri
+            next_page_url:
+              type: string
+              format: uri
+              nullable: true
+            page:
+              type: integer
+            page_size:
+              type: integer
+            previous_page_url:
+              type: string
+              format: uri
+              nullable: true
+            url:
+              type: string
+              format: uri
+            key:
+              type: string
+    ListVideoRoomSummaryResponse:
+      type: object
+      properties:
+        rooms:
+          type: array
+          items:
+            $ref: '#/components/schemas/insights.v1.video_room_summary'
+        meta:
+          type: object
+          properties:
+            first_page_url:
+              type: string
+              format: uri
+            next_page_url:
+              type: string
+              format: uri
+              nullable: true
+            page:
+              type: integer
+            page_size:
+              type: integer
+            previous_page_url:
+              type: string
+              format: uri
+              nullable: true
+            url:
+              type: string
+              format: uri
+            key:
+              type: string
+  securitySchemes:
+    accountSid_authToken:
+      type: http
+      scheme: basic
+info:
+  title: Twilio - Insights
+  description: This is the public Twilio REST API.
+  termsOfService: 'https://www.twilio.com/legal/tos'
+  contact:
+    name: Twilio Support
+    url: 'https://support.twilio.com'
+    email: support@twilio.com
+  license:
+    name: Apache 2.0
+    url: 'https://www.apache.org/licenses/LICENSE-2.0.html'
+  version: 1.52.0
+openapi: 3.0.1
+paths:
+  /v1/Voice/Settings:
+    servers:
+      - url: 'https://insights.twilio.com'
+    description: 'TODO: Resource-level docs'
+    x-twilio:
+      defaultOutputProperties:
+        - advanced_features
+        - voice_trace
+      pathType: instance
+    get:
+      description: Get the Voice Insights Settings.
+      tags:
+        - InsightsV1Setting
+      parameters:
+        - name: SubaccountSid
+          in: query
+          description: The unique SID identifier of the Subaccount.
+          schema:
+            type: string
+            minLength: 34
+            maxLength: 34
+            pattern: '^AC[0-9a-fA-F]{32}$'
+      responses:
+        '200':
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/insights.v1.account_settings'
+          description: OK
+      security:
+        - accountSid_authToken: []
+      operationId: FetchAccountSettings
+      x-maturity:
+        - GA
+    post:
+      description: Update a specific Voice Insights Setting.
+      tags:
+        - InsightsV1Setting
+      responses:
+        '200':
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/insights.v1.account_settings'
+          description: OK
+      security:
+        - accountSid_authToken: []
+      operationId: UpdateAccountSettings
+      x-maturity:
+        - GA
+      requestBody:
+        content:
+          application/x-www-form-urlencoded:
+            schema:
+              $ref: '#/components/schemas/UpdateAccountSettingsRequest'
+  '/v1/Voice/{CallSid}/Annotation':
+    servers:
+      - url: 'https://insights.twilio.com'
+    description: 'TODO: Resource-level docs'
+    x-twilio:
+      defaultOutputProperties:
+        - call_sid
+        - account_sid
+      pathType: instance
+      parent: '/Voice/{Sid}'
+    post:
+      description: Update an Annotation for a specific Call.
+      tags:
+        - InsightsV1Annotation
+      parameters:
+        - name: CallSid
+          in: path
+          description: >-
+            The unique string that Twilio created to identify this Call
+            resource. It always starts with a CA.
+          schema:
+            type: string
+            minLength: 34
+            maxLength: 34
+            pattern: '^CA[0-9a-fA-F]{32}$'
+          required: true
+      responses:
+        '200':
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/insights.v1.call.annotation'
+          description: OK
+      security:
+        - accountSid_authToken: []
+      operationId: UpdateAnnotation
+      x-maturity:
+        - Beta
+      requestBody:
+        content:
+          application/x-www-form-urlencoded:
+            schema:
+              $ref: '#/components/schemas/UpdateAnnotationRequest'
+    get:
+      description: Get the Annotation for a specific Call.
+      tags:
+        - InsightsV1Annotation
+      parameters:
+        - name: CallSid
+          in: path
+          description: The unique SID identifier of the Call.
+          schema:
+            type: string
+            minLength: 34
+            maxLength: 34
+            pattern: '^CA[0-9a-fA-F]{32}$'
+          required: true
+      responses:
+        '200':
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/insights.v1.call.annotation'
+          description: OK
+      security:
+        - accountSid_authToken: []
+      operationId: FetchAnnotation
+      x-maturity:
+        - Beta
+  '/v1/Voice/{Sid}':
+    servers:
+      - url: 'https://insights.twilio.com'
+    description: 'TODO: Resource-level docs'
+    x-twilio:
+      defaultOutputProperties: []
+      pathType: instance
+      dependentProperties:
+        events:
+          mapping:
+            call_sid: sid
+          resource_url: '/v1/Voice/{call_sid}/Events'
+        metrics:
+          mapping:
+            call_sid: sid
+          resource_url: '/v1/Voice/{call_sid}/Metrics'
+        summary:
+          mapping:
+            call_sid: sid
+          resource_url: /v1None
+        annotation:
+          mapping:
+            call_sid: sid
+          resource_url: /v1None
+      mountName: calls
+    get:
+      description: ''
+      tags:
+        - InsightsV1Call
+      parameters:
+        - name: Sid
+          in: path
+          description: ''
+          schema:
+            type: string
+            minLength: 34
+            maxLength: 34
+            pattern: '^CA[0-9a-fA-F]{32}$'
+          required: true
+      responses:
+        '200':
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/insights.v1.call'
+          description: OK
+      security:
+        - accountSid_authToken: []
+      operationId: FetchCall
+      x-maturity:
+        - GA
+  /v1/Voice/Summaries:
+    servers:
+      - url: 'https://insights.twilio.com'
+    description: 'TODO: Resource-level docs'
+    x-twilio:
+      defaultOutputProperties:
+        - account_sid
+        - call_sid
+        - create_time
+        - start_time
+        - end_time
+        - duration
+        - connect_duration
+        - call_type
+        - call_state
+      pathType: list
+      mountName: call_summaries
+      className: call_summaries
+    get:
+      description: Get a list of Call Summaries.
+      tags:
+        - InsightsV1CallSummaries
+      parameters:
+        - name: From
+          in: query
+          description: >-
+            A calling party. Could be an E.164 number, a SIP URI, or a Twilio
+            Client registered name.
+          schema:
+            type: string
+          x-twilio:
+            pii:
+              handling: standard
+              deleteSla: 30
+        - name: To
+          in: query
+          description: >-
+            A called party. Could be an E.164 number, a SIP URI, or a Twilio
+            Client registered name.
+          schema:
+            type: string
+          x-twilio:
+            pii:
+              handling: standard
+              deleteSla: 30
+        - name: FromCarrier
+          in: query
+          description: An origination carrier.
+          schema:
+            type: string
+        - name: ToCarrier
+          in: query
+          description: A destination carrier.
+          schema:
+            type: string
+        - name: FromCountryCode
+          in: query
+          description: A source country code based on phone number in From.
+          schema:
+            type: string
+        - name: ToCountryCode
+          in: query
+          description: A destination country code. Based on phone number in To.
+          schema:
+            type: string
+        - name: Branded
+          in: query
+          description: >-
+            A boolean flag indicating whether or not the calls were branded
+            using Twilio Branded Calls.
+          schema:
+            type: boolean
+        - name: VerifiedCaller
+          in: query
+          description: >-
+            A boolean flag indicating whether or not the caller was verified
+            using SHAKEN/STIR.
+          schema:
+            type: boolean
+        - name: HasTag
+          in: query
+          description: >-
+            A boolean flag indicating the presence of one or more [Voice
+            Insights Call
+            Tags](https://www.twilio.com/docs/voice/voice-insights/api/call/details-call-tags).
+          schema:
+            type: boolean
+        - name: StartTime
+          in: query
+          description: >-
+            A Start time of the calls. xm (x minutes), xh (x hours), xd (x
+            days), 1w, 30m, 3d, 4w or datetime-ISO. Defaults to 4h.
+          schema:
+            type: string
+        - name: EndTime
+          in: query
+          description: >-
+            An End Time of the calls. xm (x minutes), xh (x hours), xd (x days),
+            1w, 30m, 3d, 4w or datetime-ISO. Defaults to 0m.
+          schema:
+            type: string
+        - name: CallType
+          in: query
+          description: >-
+            A Call Type of the calls. One of `carrier`, `sip`, `trunking` or
+            `client`.
+          schema:
+            type: string
+        - name: CallState
+          in: query
+          description: >-
+            A Call State of the calls. One of `ringing`, `completed`, `busy`,
+            `fail`, `noanswer`, `canceled`, `answered`, `undialed`.
+          schema:
+            type: string
+        - name: Direction
+          in: query
+          description: >-
+            A Direction of the calls. One of `outbound_api`, `outbound_dial`,
+            `inbound`, `trunking_originating`, `trunking_terminating`.
+          schema:
+            type: string
+        - name: ProcessingState
+          in: query
+          description: >-
+            A Processing State of the Call Summaries. One of `completed`,
+            `partial` or `all`.
+          schema:
+            type: string
+            $ref: '#/components/schemas/call_summaries_enum_processing_state_request'
+        - name: SortBy
+          in: query
+          description: >-
+            A Sort By criterion for the returned list of Call Summaries. One of
+            `start_time` or `end_time`.
+          schema:
+            type: string
+            $ref: '#/components/schemas/call_summaries_enum_sort_by'
+        - name: Subaccount
+          in: query
+          description: A unique SID identifier of a Subaccount.
+          schema:
+            type: string
+            minLength: 34
+            maxLength: 34
+            pattern: '^AC[0-9a-fA-F]{32}$'
+        - name: AbnormalSession
+          in: query
+          description: >-
+            A boolean flag indicating an abnormal session where the last SIP
+            response was not 200 OK.
+          schema:
+            type: boolean
+        - name: AnsweredBy
+          in: query
+          description: >-
+            An Answered By value for the calls based on `Answering Machine
+            Detection (AMD)`. One of `unknown`, `machine_start`,
+            `machine_end_beep`, `machine_end_silence`, `machine_end_other`,
+            `human` or `fax`.
+          schema:
+            type: string
+            $ref: '#/components/schemas/call_summaries_enum_answered_by'
+        - name: AnsweredByAnnotation
+          in: query
+          description: Either machine or human.
+          schema:
+            type: string
+        - name: ConnectivityIssueAnnotation
+          in: query
+          description: >-
+            A Connectivity Issue with the calls. One of `no_connectivity_issue`,
+            `invalid_number`, `caller_id`, `dropped_call`, or
+            `number_reachability`.
+          schema:
+            type: string
+        - name: QualityIssueAnnotation
+          in: query
+          description: >-
+            A subjective Quality Issue with the calls. One of
+            `no_quality_issue`, `low_volume`, `choppy_robotic`, `echo`, `dtmf`,
+            `latency`, `owa`, `static_noise`.
+          schema:
+            type: string
+        - name: SpamAnnotation
+          in: query
+          description: A boolean flag indicating spam calls.
+          schema:
+            type: boolean
+        - name: CallScoreAnnotation
+          in: query
+          description: >-
+            A Call Score of the calls. Use a range of 1-5 to indicate the call
+            experience score, with the following mapping as a reference for the
+            rated call [5: Excellent, 4: Good, 3 : Fair, 2 : Poor, 1: Bad].
+          schema:
+            type: string
+        - name: PageSize
+          in: query
+          description: >-
+            How many resources to return in each list page. The default is 50,
+            and the maximum is 1000.
+          schema:
+            type: integer
+            minimum: 1
+            maximum: 1000
+        - name: Page
+          in: query
+          description: The page index. This value is simply for client state.
+          schema:
+            type: integer
+            minimum: 0
+        - name: PageToken
+          in: query
+          description: The page token. This is provided by the API.
+          schema:
+            type: string
+      responses:
+        '200':
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ListCallSummariesResponse'
+          description: OK
+      security:
+        - accountSid_authToken: []
+      operationId: ListCallSummaries
+      x-maturity:
+        - GA
+  '/v1/Conferences/{ConferenceSid}':
+    servers:
+      - url: 'https://insights.twilio.com'
+    description: 'TODO: Resource-level docs'
+    x-twilio:
+      defaultOutputProperties:
+        - conference_sid
+        - account_sid
+      pathType: instance
+      dependentProperties:
+        conference_participants:
+          mapping:
+            conference_sid: conference_sid
+          resource_url: '/v1/Conferences/{conference_sid}/Participants'
+    get:
+      description: Get a specific Conference Summary.
+      tags:
+        - InsightsV1Conference
+      parameters:
+        - name: ConferenceSid
+          in: path
+          description: The unique SID identifier of the Conference.
+          schema:
+            type: string
+            minLength: 34
+            maxLength: 34
+            pattern: '^CF[0-9a-fA-F]{32}$'
+          required: true
+      responses:
+        '200':
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/insights.v1.conference'
+          description: OK
+      security:
+        - accountSid_authToken: []
+      operationId: FetchConference
+      x-maturity:
+        - GA
+  /v1/Conferences:
+    servers:
+      - url: 'https://insights.twilio.com'
+    description: 'TODO: Resource-level docs'
+    x-twilio:
+      defaultOutputProperties:
+        - conference_sid
+        - account_sid
+      pathType: list
+      dependentProperties:
+        conference_participants:
+          mapping:
+            conference_sid: conference_sid
+          resource_url: '/v1/Conferences/{conference_sid}/Participants'
+    get:
+      description: Get a list of Conference Summaries.
+      tags:
+        - InsightsV1Conference
+      parameters:
+        - name: ConferenceSid
+          in: query
+          description: The SID of the conference.
+          schema:
+            type: string
+        - name: FriendlyName
+          in: query
+          description: 'Custom label for the conference resource, up to 64 characters.'
+          schema:
+            type: string
+          x-twilio:
+            pii:
+              handling: standard
+              deleteSla: 30
+        - name: Status
+          in: query
+          description: Conference status.
+          schema:
+            type: string
+        - name: CreatedAfter
+          in: query
+          description: >-
+            Conferences created after the provided timestamp specified in ISO
+            8601 format
+          schema:
+            type: string
+        - name: CreatedBefore
+          in: query
+          description: >-
+            Conferences created before the provided timestamp specified in ISO
+            8601 format.
+          schema:
+            type: string
+        - name: MixerRegion
+          in: query
+          description: Twilio region where the conference media was mixed.
+          schema:
+            type: string
+        - name: Tags
+          in: query
+          description: >-
+            Tags applied by Twilio for common potential configuration, quality,
+            or performance issues.
+          schema:
+            type: string
+        - name: Subaccount
+          in: query
+          description: Account SID for the subaccount whose resources you wish to retrieve.
+          schema:
+            type: string
+            minLength: 34
+            maxLength: 34
+            pattern: '^AC[0-9a-fA-F]{32}$'
+        - name: DetectedIssues
+          in: query
+          description: >-
+            Potential configuration, behavior, or performance issues detected
+            during the conference.
+          schema:
+            type: string
+        - name: EndReason
+          in: query
+          description: >-
+            Conference end reason; e.g. last participant left, modified by API,
+            etc.
+          schema:
+            type: string
+        - name: PageSize
+          in: query
+          description: >-
+            How many resources to return in each list page. The default is 50,
+            and the maximum is 1000.
+          schema:
+            type: integer
+            minimum: 1
+            maximum: 1000
+        - name: Page
+          in: query
+          description: The page index. This value is simply for client state.
+          schema:
+            type: integer
+            minimum: 0
+        - name: PageToken
+          in: query
+          description: The page token. This is provided by the API.
+          schema:
+            type: string
+      responses:
+        '200':
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ListConferenceResponse'
+          description: OK
+      security:
+        - accountSid_authToken: []
+      operationId: ListConference
+      x-maturity:
+        - GA
+  '/v1/Conferences/{ConferenceSid}/Participants/{ParticipantSid}':
+    servers:
+      - url: 'https://insights.twilio.com'
+    description: 'TODO: Resource-level docs'
+    x-twilio:
+      defaultOutputProperties:
+        - participant_sid
+        - conference_sid
+        - call_sid
+        - account_sid
+      pathType: instance
+      parent: '/Conferences/{ConferenceSid}'
+      mountName: conference_participants
+    get:
+      description: Get a specific Conference Participant Summary for a Conference.
+      tags:
+        - InsightsV1ConferenceParticipant
+      parameters:
+        - name: ConferenceSid
+          in: path
+          description: The unique SID identifier of the Conference.
+          schema:
+            type: string
+            minLength: 34
+            maxLength: 34
+            pattern: '^CF[0-9a-fA-F]{32}$'
+          required: true
+        - name: ParticipantSid
+          in: path
+          description: The unique SID identifier of the Participant.
+          schema:
+            type: string
+            minLength: 34
+            maxLength: 34
+            pattern: '^CP[0-9a-fA-F]{32}$'
+          required: true
+        - name: Events
+          in: query
+          description: >-
+            Conference events generated by application or participant activity;
+            e.g. `hold`, `mute`, etc.
+          schema:
+            type: string
+        - name: Metrics
+          in: query
+          description: Object. Contains participant call quality metrics.
+          schema:
+            type: string
+      responses:
+        '200':
+          content:
+            application/json:
+              schema:
+                $ref: >-
+                  #/components/schemas/insights.v1.conference.conference_participant
+          description: OK
+      security:
+        - accountSid_authToken: []
+      operationId: FetchConferenceParticipant
+      x-maturity:
+        - GA
+  '/v1/Conferences/{ConferenceSid}/Participants':
+    servers:
+      - url: 'https://insights.twilio.com'
+    description: 'TODO: Resource-level docs'
+    x-twilio:
+      defaultOutputProperties:
+        - participant_sid
+        - conference_sid
+        - call_sid
+        - account_sid
+      pathType: list
+      parent: '/Conferences/{ConferenceSid}'
+      mountName: conference_participants
+    get:
+      description: Get a list of Conference Participants Summaries for a Conference.
+      tags:
+        - InsightsV1ConferenceParticipant
+      parameters:
+        - name: ConferenceSid
+          in: path
+          description: The unique SID identifier of the Conference.
+          schema:
+            type: string
+            minLength: 34
+            maxLength: 34
+            pattern: '^CF[0-9a-fA-F]{32}$'
+          required: true
+        - name: ParticipantSid
+          in: query
+          description: The unique SID identifier of the Participant.
+          schema:
+            type: string
+        - name: Label
+          in: query
+          description: User-specified label for a participant.
+          schema:
+            type: string
+          x-twilio:
+            pii:
+              handling: standard
+              deleteSla: 30
+        - name: Events
+          in: query
+          description: >-
+            Conference events generated by application or participant activity;
+            e.g. `hold`, `mute`, etc.
+          schema:
+            type: string
+        - name: PageSize
+          in: query
+          description: >-
+            How many resources to return in each list page. The default is 50,
+            and the maximum is 1000.
+          schema:
+            type: integer
+            minimum: 1
+            maximum: 1000
+        - name: Page
+          in: query
+          description: The page index. This value is simply for client state.
+          schema:
+            type: integer
+            minimum: 0
+        - name: PageToken
+          in: query
+          description: The page token. This is provided by the API.
+          schema:
+            type: string
+      responses:
+        '200':
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ListConferenceParticipantResponse'
+          description: OK
+      security:
+        - accountSid_authToken: []
+      operationId: ListConferenceParticipant
+      x-maturity:
+        - GA
+  '/v1/Voice/{CallSid}/Events':
+    servers:
+      - url: 'https://insights.twilio.com'
+    description: 'TODO: Resource-level docs'
+    x-twilio:
+      defaultOutputProperties:
+        - timestamp
+        - call_sid
+        - account_sid
+        - edge
+        - name
+      pathType: list
+      parent: '/Voice/{Sid}'
+    get:
+      description: Get a list of Call Insight Events for a Call.
+      tags:
+        - InsightsV1Event
+      parameters:
+        - name: CallSid
+          in: path
+          description: The unique SID identifier of the Call.
+          schema:
+            type: string
+            minLength: 34
+            maxLength: 34
+            pattern: '^CA[0-9a-fA-F]{32}$'
+          required: true
+        - name: Edge
+          in: query
+          description: >-
+            The Edge of this Event. One of `unknown_edge`, `carrier_edge`,
+            `sip_edge`, `sdk_edge` or `client_edge`.
+          schema:
+            type: string
+            $ref: '#/components/schemas/event_enum_twilio_edge'
+        - name: PageSize
+          in: query
+          description: >-
+            How many resources to return in each list page. The default is 50,
+            and the maximum is 1000.
+          schema:
+            type: integer
+            minimum: 1
+            maximum: 1000
+        - name: Page
+          in: query
+          description: The page index. This value is simply for client state.
+          schema:
+            type: integer
+            minimum: 0
+        - name: PageToken
+          in: query
+          description: The page token. This is provided by the API.
+          schema:
+            type: string
+      responses:
+        '200':
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ListEventResponse'
+          description: OK
+      security:
+        - accountSid_authToken: []
+      operationId: ListEvent
+      x-maturity:
+        - Preview
+  '/v1/Voice/{CallSid}/Metrics':
+    servers:
+      - url: 'https://insights.twilio.com'
+    description: 'TODO: Resource-level docs'
+    x-twilio:
+      defaultOutputProperties:
+        - timestamp
+        - call_sid
+        - account_sid
+        - edge
+        - direction
+      pathType: list
+      parent: '/Voice/{Sid}'
+    get:
+      description: Get a list of Call Metrics for a Call.
+      tags:
+        - InsightsV1Metric
+      parameters:
+        - name: CallSid
+          in: path
+          description: The unique SID identifier of the Call.
+          schema:
+            type: string
+            minLength: 34
+            maxLength: 34
+            pattern: '^CA[0-9a-fA-F]{32}$'
+          required: true
+        - name: Edge
+          in: query
+          description: >-
+            The Edge of this Metric. One of `unknown_edge`, `carrier_edge`,
+            `sip_edge`, `sdk_edge` or `client_edge`.
+          schema:
+            type: string
+            $ref: '#/components/schemas/metric_enum_twilio_edge'
+        - name: Direction
+          in: query
+          description: >-
+            The Direction of this Metric. One of `unknown`, `inbound`,
+            `outbound` or `both`.
+          schema:
+            type: string
+            $ref: '#/components/schemas/metric_enum_stream_direction'
+        - name: PageSize
+          in: query
+          description: >-
+            How many resources to return in each list page. The default is 50,
+            and the maximum is 1000.
+          schema:
+            type: integer
+            minimum: 1
+            maximum: 1000
+        - name: Page
+          in: query
+          description: The page index. This value is simply for client state.
+          schema:
+            type: integer
+            minimum: 0
+        - name: PageToken
+          in: query
+          description: The page token. This is provided by the API.
+          schema:
+            type: string
+      responses:
+        '200':
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ListMetricResponse'
+          description: OK
+      security:
+        - accountSid_authToken: []
+      operationId: ListMetric
+      x-maturity:
+        - Preview
+  '/v1/Voice/{CallSid}/Summary':
+    servers:
+      - url: 'https://insights.twilio.com'
+    description: 'TODO: Resource-level docs'
+    x-twilio:
+      defaultOutputProperties:
+        - call_type
+        - call_state
+        - processing_state
+        - duration
+      pathType: instance
+      parent: '/Voice/{Sid}'
+      className: call_summary
+    get:
+      description: Get a specific Call Summary.
+      tags:
+        - InsightsV1CallSummary
+      parameters:
+        - name: CallSid
+          in: path
+          description: The unique SID identifier of the Call.
+          schema:
+            type: string
+            minLength: 34
+            maxLength: 34
+            pattern: '^CA[0-9a-fA-F]{32}$'
+          required: true
+        - name: ProcessingState
+          in: query
+          description: >-
+            The Processing State of this Call Summary. One of `complete`,
+            `partial` or `all`.
+          schema:
+            type: string
+            $ref: '#/components/schemas/summary_enum_processing_state'
+      responses:
+        '200':
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/insights.v1.call.summary'
+          description: OK
+      security:
+        - accountSid_authToken: []
+      operationId: FetchSummary
+      x-maturity:
+        - GA
+  '/v1/Video/Rooms/{RoomSid}/Participants/{ParticipantSid}':
+    servers:
+      - url: 'https://insights.twilio.com'
+    description: 'TODO: Resource-level docs'
+    x-twilio:
+      defaultOutputProperties:
+        - participant_sid
+      pathType: instance
+      parent: '/Video/Rooms/{RoomSid}'
+    get:
+      description: Get Video Log Analyzer data for a Room Participant.
+      tags:
+        - InsightsV1Participant
+      parameters:
+        - name: RoomSid
+          in: path
+          description: The SID of the Room resource.
+          schema:
+            type: string
+          required: true
+        - name: ParticipantSid
+          in: path
+          description: The SID of the Participant resource.
+          schema:
+            type: string
+          required: true
+      responses:
+        '200':
+          content:
+            application/json:
+              schema:
+                $ref: >-
+                  #/components/schemas/insights.v1.video_room_summary.video_participant_summary
+          description: OK
+      security:
+        - accountSid_authToken: []
+      operationId: FetchVideoParticipantSummary
+      x-maturity:
+        - Beta
+  '/v1/Video/Rooms/{RoomSid}/Participants':
+    servers:
+      - url: 'https://insights.twilio.com'
+    description: 'TODO: Resource-level docs'
+    x-twilio:
+      defaultOutputProperties:
+        - participant_sid
+      pathType: list
+      parent: '/Video/Rooms/{RoomSid}'
+    get:
+      description: Get a list of room participants.
+      tags:
+        - InsightsV1Participant
+      parameters:
+        - name: RoomSid
+          in: path
+          description: The SID of the Room resource.
+          schema:
+            type: string
+          required: true
+        - name: PageSize
+          in: query
+          description: >-
+            How many resources to return in each list page. The default is 50,
+            and the maximum is 1000.
+          schema:
+            type: integer
+            minimum: 1
+            maximum: 1000
+        - name: Page
+          in: query
+          description: The page index. This value is simply for client state.
+          schema:
+            type: integer
+            minimum: 0
+        - name: PageToken
+          in: query
+          description: The page token. This is provided by the API.
+          schema:
+            type: string
+      responses:
+        '200':
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ListVideoParticipantSummaryResponse'
+          description: OK
+      security:
+        - accountSid_authToken: []
+      operationId: ListVideoParticipantSummary
+      x-maturity:
+        - Beta
+  '/v1/Video/Rooms/{RoomSid}':
+    servers:
+      - url: 'https://insights.twilio.com'
+    description: 'TODO: Resource-level docs'
+    x-twilio:
+      defaultOutputProperties:
+        - room_sid
+        - create_time
+      pathType: instance
+      dependentProperties:
+        participants:
+          mapping:
+            room_sid: room_sid
+          resource_url: '/v1/Video/Rooms/{room_sid}/Participants'
+    get:
+      description: Get Video Log Analyzer data for a Room.
+      tags:
+        - InsightsV1Room
+      parameters:
+        - name: RoomSid
+          in: path
+          description: The SID of the Room resource.
+          schema:
+            type: string
+          required: true
+      responses:
+        '200':
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/insights.v1.video_room_summary'
+          description: OK
+      security:
+        - accountSid_authToken: []
+      operationId: FetchVideoRoomSummary
+      x-maturity:
+        - Beta
+  /v1/Video/Rooms:
+    servers:
+      - url: 'https://insights.twilio.com'
+    description: 'TODO: Resource-level docs'
+    x-twilio:
+      defaultOutputProperties:
+        - room_sid
+        - create_time
+      pathType: list
+      dependentProperties:
+        participants:
+          mapping:
+            room_sid: room_sid
+          resource_url: '/v1/Video/Rooms/{room_sid}/Participants'
+    get:
+      description: Get a list of Programmable Video Rooms.
+      tags:
+        - InsightsV1Room
+      parameters:
+        - name: RoomType
+          in: query
+          description: >-
+            Type of room. Can be `go`, `peer_to_peer`, `group`, or
+            `group_small`.
+          schema:
+            type: array
+            items:
+              type: string
+              $ref: '#/components/schemas/video_room_summary_enum_room_type'
+        - name: Codec
+          in: query
+          description: >-
+            Codecs used by participants in the room. Can be `VP8`, `H264`, or
+            `VP9`.
+          schema:
+            type: array
+            items:
+              type: string
+              $ref: '#/components/schemas/video_room_summary_enum_codec'
+        - name: RoomName
+          in: query
+          description: Room friendly name.
+          schema:
+            type: string
+        - name: CreatedAfter
+          in: query
+          description: Only read rooms that started on or after this ISO 8601 timestamp.
+          schema:
+            type: string
+            format: date-time
+        - name: CreatedBefore
+          in: query
+          description: Only read rooms that started before this ISO 8601 timestamp.
+          schema:
+            type: string
+            format: date-time
+        - name: PageSize
+          in: query
+          description: >-
+            How many resources to return in each list page. The default is 50,
+            and the maximum is 1000.
+          schema:
+            type: integer
+            minimum: 1
+            maximum: 1000
+        - name: Page
+          in: query
+          description: The page index. This value is simply for client state.
+          schema:
+            type: integer
+            minimum: 0
+        - name: PageToken
+          in: query
+          description: The page token. This is provided by the API.
+          schema:
+            type: string
+      responses:
+        '200':
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ListVideoRoomSummaryResponse'
+          description: OK
+      security:
+        - accountSid_authToken: []
+      operationId: ListVideoRoomSummary
+      x-maturity:
+        - Beta
+servers:
+  - url: 'https://insights.twilio.com'
+tags:
+  - name: InsightsV1Annotation
+  - name: InsightsV1Call
+  - name: InsightsV1CallSummaries
+  - name: InsightsV1CallSummary
+  - name: InsightsV1Conference
+  - name: InsightsV1ConferenceParticipant
+  - name: InsightsV1Event
+  - name: InsightsV1Metric
+  - name: InsightsV1Participant
+  - name: InsightsV1Room
+  - name: InsightsV1Setting
+x-maturity:
+  - name: GA
+    description: This product is Generally Available.
+  - name: Beta
+    description: >-
+      PLEASE NOTE that this is a Beta product that is subject to change. Use it
+      with caution.
+  - name: Preview
+    description: >-
+      PLEASE NOTE that this is a Preview product that is subject to change. Use
+      it with caution. If you currently do not have developer preview access,
+      please contact https://www.twilio.com/help/contact.
+---

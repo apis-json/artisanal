@@ -1,0 +1,886 @@
+---
+info:
+  title: 'Marketplace API'
+  description: Needs description.
+  termsOfService: 'https://www.twilio.com/legal/tos'
+  contact:
+    name: Twilio Support
+    url: 'https://support.twilio.com'
+    email: support@twilio.com
+  license:
+    name: Apache 2.0
+    url: 'https://www.apache.org/licenses/LICENSE-2.0.html'
+  version: 1.52.0
+openapi: 3.0.1
+paths:
+  '/marketplace/AvailableAddOns/{Sid}':
+    servers:
+      - url: 'https://preview.twilio.com'
+    description: 'TODO: Resource-level docs'
+    x-twilio:
+      defaultOutputProperties: []
+      pathType: instance
+      dependentProperties:
+        extensions:
+          mapping:
+            available_add_on_sid: sid
+          resource_url: '/marketplace/AvailableAddOns/{available_add_on_sid}/Extensions'
+    get:
+      description: Fetch an instance of an Add-on currently available to be installed.
+      tags:
+        - PreviewMarketplaceAvailableAddOn
+      parameters:
+        - name: Sid
+          in: path
+          description: The SID of the AvailableAddOn resource to fetch.
+          schema:
+            type: string
+            minLength: 34
+            maxLength: 34
+            pattern: '^XB[0-9a-fA-F]{32}$'
+          required: true
+      responses:
+        '200':
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/preview.marketplace.available_add_on'
+          description: OK
+      security:
+        - accountSid_authToken: []
+      operationId: FetchMarketplaceAvailableAddOn
+      x-maturity:
+        - Preview
+  /marketplace/AvailableAddOns:
+    servers:
+      - url: 'https://preview.twilio.com'
+    description: 'TODO: Resource-level docs'
+    x-twilio:
+      defaultOutputProperties: []
+      pathType: list
+      dependentProperties:
+        extensions:
+          mapping:
+            available_add_on_sid: sid
+          resource_url: '/marketplace/AvailableAddOns/{available_add_on_sid}/Extensions'
+    get:
+      description: Retrieve a list of Add-ons currently available to be installed.
+      tags:
+        - PreviewMarketplaceAvailableAddOn
+      parameters:
+        - name: PageSize
+          in: query
+          description: >-
+            How many resources to return in each list page. The default is 50,
+            and the maximum is 1000.
+          schema:
+            type: integer
+            minimum: 1
+            maximum: 1000
+        - name: Page
+          in: query
+          description: The page index. This value is simply for client state.
+          schema:
+            type: integer
+            minimum: 0
+        - name: PageToken
+          in: query
+          description: The page token. This is provided by the API.
+          schema:
+            type: string
+      responses:
+        '200':
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ListMarketplaceAvailableAddOnResponse'
+          description: OK
+      security:
+        - accountSid_authToken: []
+      operationId: ListMarketplaceAvailableAddOn
+      x-maturity:
+        - Preview
+  '/marketplace/AvailableAddOns/{AvailableAddOnSid}/Extensions/{Sid}':
+    servers:
+      - url: 'https://preview.twilio.com'
+    description: 'TODO: Resource-level docs'
+    x-twilio:
+      defaultOutputProperties: []
+      pathType: instance
+      parent: '/AvailableAddOns/{Sid}'
+      className: available_add_on_extension
+    get:
+      description: Fetch an instance of an Extension for the Available Add-on.
+      tags:
+        - PreviewMarketplaceAvailableAddOnExtension
+      parameters:
+        - name: AvailableAddOnSid
+          in: path
+          description: The SID of the AvailableAddOn resource with the extension to fetch.
+          schema:
+            type: string
+            minLength: 34
+            maxLength: 34
+            pattern: '^XB[0-9a-fA-F]{32}$'
+          required: true
+        - name: Sid
+          in: path
+          description: The SID of the AvailableAddOn Extension resource to fetch.
+          schema:
+            type: string
+            minLength: 34
+            maxLength: 34
+            pattern: '^XF[0-9a-fA-F]{32}$'
+          required: true
+      responses:
+        '200':
+          content:
+            application/json:
+              schema:
+                $ref: >-
+                  #/components/schemas/preview.marketplace.available_add_on.available_add_on_extension
+          description: OK
+      security:
+        - accountSid_authToken: []
+      operationId: FetchMarketplaceAvailableAddOnExtension
+      x-maturity:
+        - Preview
+  '/marketplace/AvailableAddOns/{AvailableAddOnSid}/Extensions':
+    servers:
+      - url: 'https://preview.twilio.com'
+    description: 'TODO: Resource-level docs'
+    x-twilio:
+      defaultOutputProperties: []
+      pathType: list
+      parent: '/AvailableAddOns/{Sid}'
+      className: available_add_on_extension
+    get:
+      description: Retrieve a list of Extensions for the Available Add-on.
+      tags:
+        - PreviewMarketplaceAvailableAddOnExtension
+      parameters:
+        - name: AvailableAddOnSid
+          in: path
+          description: The SID of the AvailableAddOn resource with the extensions to read.
+          schema:
+            type: string
+            minLength: 34
+            maxLength: 34
+            pattern: '^XB[0-9a-fA-F]{32}$'
+          required: true
+        - name: PageSize
+          in: query
+          description: >-
+            How many resources to return in each list page. The default is 50,
+            and the maximum is 1000.
+          schema:
+            type: integer
+            minimum: 1
+            maximum: 1000
+        - name: Page
+          in: query
+          description: The page index. This value is simply for client state.
+          schema:
+            type: integer
+            minimum: 0
+        - name: PageToken
+          in: query
+          description: The page token. This is provided by the API.
+          schema:
+            type: string
+      responses:
+        '200':
+          content:
+            application/json:
+              schema:
+                $ref: >-
+                  #/components/schemas/ListMarketplaceAvailableAddOnExtensionResponse
+          description: OK
+      security:
+        - accountSid_authToken: []
+      operationId: ListMarketplaceAvailableAddOnExtension
+      x-maturity:
+        - Preview
+  /marketplace/InstalledAddOns:
+    servers:
+      - url: 'https://preview.twilio.com'
+    description: 'TODO: Resource-level docs'
+    x-twilio:
+      defaultOutputProperties: []
+      pathType: list
+      dependentProperties:
+        extensions:
+          mapping:
+            installed_add_on_sid: sid
+          resource_url: '/marketplace/InstalledAddOns/{installed_add_on_sid}/Extensions'
+        usage:
+          mapping:
+            installed_add_on_sid: sid
+          resource_url: '/marketplace/InstalledAddOns/{installed_add_on_sid}/Usage'
+    post:
+      description: Install an Add-on for the Account specified.
+      tags:
+        - PreviewMarketplaceInstalledAddOn
+      responses:
+        '201':
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/preview.marketplace.installed_add_on'
+          description: Created
+      security:
+        - accountSid_authToken: []
+      operationId: CreateMarketplaceInstalledAddOn
+      x-maturity:
+        - Preview
+      requestBody:
+        content:
+          application/x-www-form-urlencoded:
+            schema:
+              $ref: '#/components/schemas/CreateMarketplaceInstalledAddOnRequest'
+    get:
+      description: Retrieve a list of Add-ons currently installed on this Account.
+      tags:
+        - PreviewMarketplaceInstalledAddOn
+      parameters:
+        - name: PageSize
+          in: query
+          description: >-
+            How many resources to return in each list page. The default is 50,
+            and the maximum is 1000.
+          schema:
+            type: integer
+            minimum: 1
+            maximum: 1000
+        - name: Page
+          in: query
+          description: The page index. This value is simply for client state.
+          schema:
+            type: integer
+            minimum: 0
+        - name: PageToken
+          in: query
+          description: The page token. This is provided by the API.
+          schema:
+            type: string
+      responses:
+        '200':
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ListMarketplaceInstalledAddOnResponse'
+          description: OK
+      security:
+        - accountSid_authToken: []
+      operationId: ListMarketplaceInstalledAddOn
+      x-maturity:
+        - Preview
+  '/marketplace/InstalledAddOns/{Sid}':
+    servers:
+      - url: 'https://preview.twilio.com'
+    description: 'TODO: Resource-level docs'
+    x-twilio:
+      defaultOutputProperties: []
+      pathType: instance
+      dependentProperties:
+        extensions:
+          mapping:
+            installed_add_on_sid: sid
+          resource_url: '/marketplace/InstalledAddOns/{installed_add_on_sid}/Extensions'
+        usage:
+          mapping:
+            installed_add_on_sid: sid
+          resource_url: '/marketplace/InstalledAddOns/{installed_add_on_sid}/Usage'
+    delete:
+      description: Remove an Add-on installation from your account
+      tags:
+        - PreviewMarketplaceInstalledAddOn
+      parameters:
+        - name: Sid
+          in: path
+          description: The SID of the InstalledAddOn resource to delete.
+          schema:
+            type: string
+            minLength: 34
+            maxLength: 34
+            pattern: '^XE[0-9a-fA-F]{32}$'
+          required: true
+      responses:
+        '204':
+          description: The resource was deleted successfully.
+      security:
+        - accountSid_authToken: []
+      operationId: DeleteMarketplaceInstalledAddOn
+      x-maturity:
+        - Preview
+    get:
+      description: Fetch an instance of an Add-on currently installed on this Account.
+      tags:
+        - PreviewMarketplaceInstalledAddOn
+      parameters:
+        - name: Sid
+          in: path
+          description: The SID of the InstalledAddOn resource to fetch.
+          schema:
+            type: string
+            minLength: 34
+            maxLength: 34
+            pattern: '^XE[0-9a-fA-F]{32}$'
+          required: true
+      responses:
+        '200':
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/preview.marketplace.installed_add_on'
+          description: OK
+      security:
+        - accountSid_authToken: []
+      operationId: FetchMarketplaceInstalledAddOn
+      x-maturity:
+        - Preview
+    post:
+      description: Update an Add-on installation for the Account specified.
+      tags:
+        - PreviewMarketplaceInstalledAddOn
+      parameters:
+        - name: Sid
+          in: path
+          description: The SID of the InstalledAddOn resource to update.
+          schema:
+            type: string
+            minLength: 34
+            maxLength: 34
+            pattern: '^XE[0-9a-fA-F]{32}$'
+          required: true
+      responses:
+        '200':
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/preview.marketplace.installed_add_on'
+          description: OK
+      security:
+        - accountSid_authToken: []
+      operationId: UpdateMarketplaceInstalledAddOn
+      x-maturity:
+        - Preview
+      requestBody:
+        content:
+          application/x-www-form-urlencoded:
+            schema:
+              $ref: '#/components/schemas/UpdateMarketplaceInstalledAddOnRequest'
+  '/marketplace/InstalledAddOns/{InstalledAddOnSid}/Extensions/{Sid}':
+    servers:
+      - url: 'https://preview.twilio.com'
+    description: 'TODO: Resource-level docs'
+    x-twilio:
+      defaultOutputProperties: []
+      pathType: instance
+      parent: '/InstalledAddOns/{Sid}'
+      className: installed_add_on_extension
+    get:
+      description: Fetch an instance of an Extension for the Installed Add-on.
+      tags:
+        - PreviewMarketplaceInstalledAddOnExtension
+      parameters:
+        - name: InstalledAddOnSid
+          in: path
+          description: The SID of the InstalledAddOn resource with the extension to fetch.
+          schema:
+            type: string
+            minLength: 34
+            maxLength: 34
+            pattern: '^XE[0-9a-fA-F]{32}$'
+          required: true
+        - name: Sid
+          in: path
+          description: The SID of the InstalledAddOn Extension resource to fetch.
+          schema:
+            type: string
+            minLength: 34
+            maxLength: 34
+            pattern: '^XF[0-9a-fA-F]{32}$'
+          required: true
+      responses:
+        '200':
+          content:
+            application/json:
+              schema:
+                $ref: >-
+                  #/components/schemas/preview.marketplace.installed_add_on.installed_add_on_extension
+          description: OK
+      security:
+        - accountSid_authToken: []
+      operationId: FetchMarketplaceInstalledAddOnExtension
+      x-maturity:
+        - Preview
+    post:
+      description: Update an Extension for an Add-on installation.
+      tags:
+        - PreviewMarketplaceInstalledAddOnExtension
+      parameters:
+        - name: InstalledAddOnSid
+          in: path
+          description: The SID of the InstalledAddOn resource with the extension to update.
+          schema:
+            type: string
+            minLength: 34
+            maxLength: 34
+            pattern: '^XE[0-9a-fA-F]{32}$'
+          required: true
+        - name: Sid
+          in: path
+          description: The SID of the InstalledAddOn Extension resource to update.
+          schema:
+            type: string
+            minLength: 34
+            maxLength: 34
+            pattern: '^XF[0-9a-fA-F]{32}$'
+          required: true
+      responses:
+        '200':
+          content:
+            application/json:
+              schema:
+                $ref: >-
+                  #/components/schemas/preview.marketplace.installed_add_on.installed_add_on_extension
+          description: OK
+      security:
+        - accountSid_authToken: []
+      operationId: UpdateMarketplaceInstalledAddOnExtension
+      x-maturity:
+        - Preview
+      requestBody:
+        content:
+          application/x-www-form-urlencoded:
+            schema:
+              $ref: >-
+                #/components/schemas/UpdateMarketplaceInstalledAddOnExtensionRequest
+  '/marketplace/InstalledAddOns/{InstalledAddOnSid}/Extensions':
+    servers:
+      - url: 'https://preview.twilio.com'
+    description: 'TODO: Resource-level docs'
+    x-twilio:
+      defaultOutputProperties: []
+      pathType: list
+      parent: '/InstalledAddOns/{Sid}'
+      className: installed_add_on_extension
+    get:
+      description: Retrieve a list of Extensions for the Installed Add-on.
+      tags:
+        - PreviewMarketplaceInstalledAddOnExtension
+      parameters:
+        - name: InstalledAddOnSid
+          in: path
+          description: The SID of the InstalledAddOn resource with the extensions to read.
+          schema:
+            type: string
+            minLength: 34
+            maxLength: 34
+            pattern: '^XE[0-9a-fA-F]{32}$'
+          required: true
+        - name: PageSize
+          in: query
+          description: >-
+            How many resources to return in each list page. The default is 50,
+            and the maximum is 1000.
+          schema:
+            type: integer
+            minimum: 1
+            maximum: 1000
+        - name: Page
+          in: query
+          description: The page index. This value is simply for client state.
+          schema:
+            type: integer
+            minimum: 0
+        - name: PageToken
+          in: query
+          description: The page token. This is provided by the API.
+          schema:
+            type: string
+      responses:
+        '200':
+          content:
+            application/json:
+              schema:
+                $ref: >-
+                  #/components/schemas/ListMarketplaceInstalledAddOnExtensionResponse
+          description: OK
+      security:
+        - accountSid_authToken: []
+      operationId: ListMarketplaceInstalledAddOnExtension
+      x-maturity:
+        - Preview
+servers:
+  - url: 'https://preview.twilio.com'
+tags:
+  - name: PreviewMarketplaceAvailableAddOn
+  - name: PreviewMarketplaceAvailableAddOnExtension
+  - name: PreviewMarketplaceInstalledAddOn
+  - name: PreviewMarketplaceInstalledAddOnExtension
+x-maturity:
+  - name: Preview
+    description: >-
+      PLEASE NOTE that this is a Preview product that is subject to change. Use
+      it with caution. If you currently do not have developer preview access,
+      please contact https://www.twilio.com/help/contact. 
+components:
+  schemas:
+    UpdateMarketplaceInstalledAddOnExtensionRequest:
+      type: object
+      required:
+        - Enabled
+      properties:
+        Enabled:
+          type: boolean
+          description: Whether the Extension should be invoked.  
+    UpdateMarketplaceInstalledAddOnRequest:
+      type: object
+      properties:
+        Configuration:
+          description: >-
+            Valid JSON object that conform to the configuration schema exposed
+            by the associated AvailableAddOn resource. This is only required by
+            Add-ons that need to be configured
+        UniqueName:
+          type: string
+          description: >-
+            An application-defined string that uniquely identifies the resource.
+            This value must be unique within the Account.  
+    CreateMarketplaceInstalledAddOnRequest:
+      type: object
+      required:
+        - AvailableAddOnSid
+        - AcceptTermsOfService
+      properties:
+        AvailableAddOnSid:
+          type: string
+          minLength: 34
+          maxLength: 34
+          pattern: '^XB[0-9a-fA-F]{32}$'
+          description: The SID of the AvaliableAddOn to install.
+        AcceptTermsOfService:
+          type: boolean
+          description: Whether the Terms of Service were accepted.
+        Configuration:
+          description: >-
+            The JSON object that represents the configuration of the new Add-on
+            being installed.
+        UniqueName:
+          type: string
+          description: >-
+            An application-defined string that uniquely identifies the resource.
+            This value must be unique within the Account.  
+    preview.marketplace.available_add_on:
+      type: object
+      properties:
+        sid:
+          type: string
+          minLength: 34
+          maxLength: 34
+          pattern: '^XB[0-9a-fA-F]{32}$'
+          nullable: true
+          description: >-
+            The unique string that we created to identify the AvailableAddOn
+            resource.
+        friendly_name:
+          type: string
+          nullable: true
+          description: The string that you assigned to describe the resource.
+        description:
+          type: string
+          nullable: true
+          description: A short description of the Add-on's functionality.
+        pricing_type:
+          type: string
+          nullable: true
+          description: How customers are charged for using this Add-on.
+        configuration_schema:
+          nullable: true
+          description: >-
+            The JSON object with the configuration that must be provided when
+            installing a given Add-on.
+        url:
+          type: string
+          format: uri
+          nullable: true
+          description: The absolute URL of the resource.
+        links:
+          type: object
+          format: uri-map
+          nullable: true
+          description: The URLs of related resources.
+    ListMarketplaceAvailableAddOnResponse:
+      type: object
+      properties:
+        available_add_ons:
+          type: array
+          items:
+            $ref: '#/components/schemas/preview.marketplace.available_add_on'
+        meta:
+          type: object
+          properties:
+            first_page_url:
+              type: string
+              format: uri
+            next_page_url:
+              type: string
+              format: uri
+              nullable: true
+            page:
+              type: integer
+            page_size:
+              type: integer
+            previous_page_url:
+              type: string
+              format: uri
+              nullable: true
+            url:
+              type: string
+              format: uri
+            key:
+              type: string
+    preview.marketplace.available_add_on.available_add_on_extension:
+      type: object
+      properties:
+        sid:
+          type: string
+          minLength: 34
+          maxLength: 34
+          pattern: '^XF[0-9a-fA-F]{32}$'
+          nullable: true
+          description: >-
+            The unique string that we created to identify the
+            AvailableAddOnExtension resource.
+        available_add_on_sid:
+          type: string
+          minLength: 34
+          maxLength: 34
+          pattern: '^XB[0-9a-fA-F]{32}$'
+          nullable: true
+          description: >-
+            The SID of the AvailableAddOn resource to which this extension
+            applies.
+        friendly_name:
+          type: string
+          nullable: true
+          description: The string that you assigned to describe the resource.
+        product_name:
+          type: string
+          nullable: true
+          description: The name of the Product this Extension is used within.
+        unique_name:
+          type: string
+          nullable: true
+          description: An application-defined string that uniquely identifies the resource.
+        url:
+          type: string
+          format: uri
+          nullable: true
+          description: The absolute URL of the resource.
+    ListMarketplaceAvailableAddOnExtensionResponse:
+      type: object
+      properties:
+        extensions:
+          type: array
+          items:
+            $ref: >-
+              #/components/schemas/preview.marketplace.available_add_on.available_add_on_extension
+        meta:
+          type: object
+          properties:
+            first_page_url:
+              type: string
+              format: uri
+            next_page_url:
+              type: string
+              format: uri
+              nullable: true
+            page:
+              type: integer
+            page_size:
+              type: integer
+            previous_page_url:
+              type: string
+              format: uri
+              nullable: true
+            url:
+              type: string
+              format: uri
+            key:
+              type: string
+    ListMarketplaceInstalledAddOnResponse:
+      type: object
+      properties:
+        installed_add_ons:
+          type: array
+          items:
+            $ref: '#/components/schemas/preview.marketplace.installed_add_on'
+        meta:
+          type: object
+          properties:
+            first_page_url:
+              type: string
+              format: uri
+            next_page_url:
+              type: string
+              format: uri
+              nullable: true
+            page:
+              type: integer
+            page_size:
+              type: integer
+            previous_page_url:
+              type: string
+              format: uri
+              nullable: true
+            url:
+              type: string
+              format: uri
+            key:
+              type: string
+    preview.marketplace.installed_add_on:
+      type: object
+      properties:
+        sid:
+          type: string
+          minLength: 34
+          maxLength: 34
+          pattern: '^XE[0-9a-fA-F]{32}$'
+          nullable: true
+          description: >-
+            The unique string that we created to identify the InstalledAddOn
+            resource. This Sid can also be found in the Console on that specific
+            Add-ons page as the 'Available Add-on Sid'.
+        account_sid:
+          type: string
+          minLength: 34
+          maxLength: 34
+          pattern: '^AC[0-9a-fA-F]{32}$'
+          nullable: true
+          description: >-
+            The SID of the
+            [Account](https://www.twilio.com/docs/iam/api/account) that created
+            the InstalledAddOn resource.
+        friendly_name:
+          type: string
+          nullable: true
+          description: The string that you assigned to describe the resource.
+        description:
+          type: string
+          nullable: true
+          description: A short description of the Add-on's functionality.
+        configuration:
+          nullable: true
+          description: >-
+            The JSON object that represents the current configuration of
+            installed Add-on.
+        unique_name:
+          type: string
+          nullable: true
+          description: An application-defined string that uniquely identifies the resource.
+        date_created:
+          type: string
+          format: date-time
+          nullable: true
+          description: >-
+            The date and time in GMT when the resource was created specified in
+            [ISO 8601](https://en.wikipedia.org/wiki/ISO_8601) format.
+        date_updated:
+          type: string
+          format: date-time
+          nullable: true
+          description: >-
+            The date and time in GMT when the resource was last updated
+            specified in [ISO 8601](https://en.wikipedia.org/wiki/ISO_8601)
+            format.
+        url:
+          type: string
+          format: uri
+          nullable: true
+          description: The absolute URL of the resource.
+        links:
+          type: object
+          format: uri-map
+          nullable: true
+          description: The URLs of related resources.
+    preview.marketplace.installed_add_on.installed_add_on_extension:
+      type: object
+      properties:
+        sid:
+          type: string
+          minLength: 34
+          maxLength: 34
+          pattern: '^XF[0-9a-fA-F]{32}$'
+          nullable: true
+          description: >-
+            The unique string that we created to identify the InstalledAddOn
+            Extension resource.
+        installed_add_on_sid:
+          type: string
+          minLength: 34
+          maxLength: 34
+          pattern: '^XE[0-9a-fA-F]{32}$'
+          nullable: true
+          description: >-
+            The SID of the InstalledAddOn resource to which this extension
+            applies.
+        friendly_name:
+          type: string
+          nullable: true
+          description: The string that you assigned to describe the resource.
+        product_name:
+          type: string
+          nullable: true
+          description: The name of the Product this Extension is used within.
+        unique_name:
+          type: string
+          nullable: true
+          description: An application-defined string that uniquely identifies the resource.
+        enabled:
+          type: boolean
+          nullable: true
+          description: Whether the Extension will be invoked.
+        url:
+          type: string
+          format: uri
+          nullable: true
+          description: The absolute URL of the resource.
+    ListMarketplaceInstalledAddOnExtensionResponse:
+      type: object
+      properties:
+        extensions:
+          type: array
+          items:
+            $ref: >-
+              #/components/schemas/preview.marketplace.installed_add_on.installed_add_on_extension
+        meta:
+          type: object
+          properties:
+            first_page_url:
+              type: string
+              format: uri
+            next_page_url:
+              type: string
+              format: uri
+              nullable: true
+            page:
+              type: integer
+            page_size:
+              type: integer
+            previous_page_url:
+              type: string
+              format: uri
+              nullable: true
+            url:
+              type: string
+              format: uri
+            key:
+              type: string
+  securitySchemes:
+    accountSid_authToken:
+      type: http
+      scheme: basic
+---

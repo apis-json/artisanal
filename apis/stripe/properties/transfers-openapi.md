@@ -1,0 +1,1111 @@
+---
+openapi: 3.0.0
+info:
+  title: Stripe Transfers API
+  description: Needs description.
+  contact:
+    email: dev-platform@stripe.com
+    name: Stripe Dev Platform Team
+    url: 'https://stripe.com'
+  termsOfService: 'https://stripe.com/us/terms/'
+  version: '2023-10-16'
+  x-stripeSpecFilename: spec3
+security:
+  - basicAuth: []
+  - bearerAuth: []
+servers:
+  - url: 'https://api.stripe.com/'
+paths:
+  /v1/transfers:
+    get:
+      description: >-
+        <p>Returns a list of existing transfers sent to connected accounts. The
+        transfers are returned in sorted order, with the most recently created
+        transfers appearing first.</p>
+      operationId: GetTransfers
+      parameters:
+        - explode: true
+          in: query
+          name: created
+          required: false
+          schema:
+            anyOf:
+              - properties:
+                  gt:
+                    type: integer
+                  gte:
+                    type: integer
+                  lt:
+                    type: integer
+                  lte:
+                    type: integer
+                title: range_query_specs
+                type: object
+              - type: integer
+          style: deepObject
+        - description: >-
+            Only return transfers for the destination specified by this account
+            ID.
+          in: query
+          name: destination
+          required: false
+          schema:
+            maxLength: 5000
+            type: string
+          style: form
+        - description: >-
+            A cursor for use in pagination. `ending_before` is an object ID that
+            defines your place in the list. For instance, if you make a list
+            request and receive 100 objects, starting with `obj_bar`, your
+            subsequent call can include `ending_before=obj_bar` in order to
+            fetch the previous page of the list.
+          in: query
+          name: ending_before
+          required: false
+          schema:
+            maxLength: 5000
+            type: string
+          style: form
+        - description: Specifies which fields in the response should be expanded.
+          explode: true
+          in: query
+          name: expand
+          required: false
+          schema:
+            items:
+              maxLength: 5000
+              type: string
+            type: array
+          style: deepObject
+        - description: >-
+            A limit on the number of objects to be returned. Limit can range
+            between 1 and 100, and the default is 10.
+          in: query
+          name: limit
+          required: false
+          schema:
+            type: integer
+          style: form
+        - description: >-
+            A cursor for use in pagination. `starting_after` is an object ID
+            that defines your place in the list. For instance, if you make a
+            list request and receive 100 objects, ending with `obj_foo`, your
+            subsequent call can include `starting_after=obj_foo` in order to
+            fetch the next page of the list.
+          in: query
+          name: starting_after
+          required: false
+          schema:
+            maxLength: 5000
+            type: string
+          style: form
+        - description: Only return transfers with the specified transfer group.
+          in: query
+          name: transfer_group
+          required: false
+          schema:
+            maxLength: 5000
+            type: string
+          style: form
+      requestBody:
+        content:
+          application/x-www-form-urlencoded:
+            encoding: {}
+            schema:
+              additionalProperties: false
+              properties: {}
+              type: object
+        required: false
+      responses:
+        '200':
+          content:
+            application/json:
+              schema:
+                description: ''
+                properties:
+                  data:
+                    description: Details about each object.
+                    items:
+                      $ref: '#/components/schemas/transfer'
+                    type: array
+                  has_more:
+                    description: >-
+                      True if this list has another page of items after this one
+                      that can be fetched.
+                    type: boolean
+                  object:
+                    description: >-
+                      String representing the object's type. Objects of the same
+                      type share the same value. Always has the value `list`.
+                    enum:
+                      - list
+                    type: string
+                  url:
+                    description: The URL where this list can be accessed.
+                    maxLength: 5000
+                    pattern: ^/v1/transfers
+                    type: string
+                required:
+                  - data
+                  - has_more
+                  - object
+                  - url
+                title: TransferList
+                type: object
+                x-expandableFields:
+                  - data
+          description: Successful response.
+        default:
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/error'
+          description: Error response.
+      summary: Retrieve Transfers
+      tags:
+        - Transfers
+    post:
+      description: >-
+        <p>To send funds from your Stripe account to a connected account, you
+        create a new transfer object. Your <a href="#balance">Stripe balance</a>
+        must be able to cover the transfer amount, or you’ll receive an
+        “Insufficient Funds” error.</p>
+      operationId: PostTransfers
+      requestBody:
+        content:
+          application/x-www-form-urlencoded:
+            encoding:
+              expand:
+                explode: true
+                style: deepObject
+              metadata:
+                explode: true
+                style: deepObject
+            schema:
+              additionalProperties: false
+              properties:
+                amount:
+                  description: >-
+                    A positive integer in cents (or local equivalent)
+                    representing how much to transfer.
+                  type: integer
+                currency:
+                  description: >-
+                    3-letter [ISO code for
+                    currency](https://stripe.com/docs/payouts).
+                  type: string
+                description:
+                  description: >-
+                    An arbitrary string attached to the object. Often useful for
+                    displaying to users.
+                  maxLength: 5000
+                  type: string
+                destination:
+                  description: >-
+                    The ID of a connected Stripe account. <a
+                    href="/docs/connect/separate-charges-and-transfers">See the
+                    Connect documentation</a> for details.
+                  type: string
+                expand:
+                  description: Specifies which fields in the response should be expanded.
+                  items:
+                    maxLength: 5000
+                    type: string
+                  type: array
+                metadata:
+                  additionalProperties:
+                    type: string
+                  description: >-
+                    Set of [key-value
+                    pairs](https://stripe.com/docs/api/metadata) that you can
+                    attach to an object. This can be useful for storing
+                    additional information about the object in a structured
+                    format. Individual keys can be unset by posting an empty
+                    value to them. All keys can be unset by posting an empty
+                    value to `metadata`.
+                  type: object
+                source_transaction:
+                  description: >-
+                    You can use this parameter to transfer funds from a charge
+                    before they are added to your available balance. A pending
+                    balance will transfer immediately but the funds will not
+                    become available until the original charge becomes
+                    available. [See the Connect
+                    documentation](https://stripe.com/docs/connect/separate-charges-and-transfers#transfer-availability)
+                    for details.
+                  type: string
+                source_type:
+                  description: >-
+                    The source balance to use for this transfer. One of
+                    `bank_account`, `card`, or `fpx`. For most users, this will
+                    default to `card`.
+                  enum:
+                    - bank_account
+                    - card
+                    - fpx
+                  maxLength: 5000
+                  type: string
+                  x-stripeBypassValidation: true
+                transfer_group:
+                  description: >-
+                    A string that identifies this transaction as part of a
+                    group. See the [Connect
+                    documentation](https://stripe.com/docs/connect/separate-charges-and-transfers#transfer-options)
+                    for details.
+                  type: string
+              required:
+                - currency
+                - destination
+              type: object
+        required: true
+      responses:
+        '200':
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/transfer'
+          description: Successful response.
+        default:
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/error'
+          description: Error response.
+      summary: Create Transfer
+      tags:
+        - Transfers
+  '/v1/transfers/{id}/reversals':
+    get:
+      description: >-
+        <p>You can see a list of the reversals belonging to a specific transfer.
+        Note that the 10 most recent reversals are always available by default
+        on the transfer object. If you need more than those 10, you can use this
+        API method and the <code>limit</code> and <code>starting_after</code>
+        parameters to page through additional reversals.</p>
+      operationId: GetTransfersIdReversals
+      parameters:
+        - description: >-
+            A cursor for use in pagination. `ending_before` is an object ID that
+            defines your place in the list. For instance, if you make a list
+            request and receive 100 objects, starting with `obj_bar`, your
+            subsequent call can include `ending_before=obj_bar` in order to
+            fetch the previous page of the list.
+          in: query
+          name: ending_before
+          required: false
+          schema:
+            maxLength: 5000
+            type: string
+          style: form
+        - description: Specifies which fields in the response should be expanded.
+          explode: true
+          in: query
+          name: expand
+          required: false
+          schema:
+            items:
+              maxLength: 5000
+              type: string
+            type: array
+          style: deepObject
+        - in: path
+          name: id
+          required: true
+          schema:
+            maxLength: 5000
+            type: string
+          style: simple
+        - description: >-
+            A limit on the number of objects to be returned. Limit can range
+            between 1 and 100, and the default is 10.
+          in: query
+          name: limit
+          required: false
+          schema:
+            type: integer
+          style: form
+        - description: >-
+            A cursor for use in pagination. `starting_after` is an object ID
+            that defines your place in the list. For instance, if you make a
+            list request and receive 100 objects, ending with `obj_foo`, your
+            subsequent call can include `starting_after=obj_foo` in order to
+            fetch the next page of the list.
+          in: query
+          name: starting_after
+          required: false
+          schema:
+            maxLength: 5000
+            type: string
+          style: form
+      requestBody:
+        content:
+          application/x-www-form-urlencoded:
+            encoding: {}
+            schema:
+              additionalProperties: false
+              properties: {}
+              type: object
+        required: false
+      responses:
+        '200':
+          content:
+            application/json:
+              schema:
+                description: ''
+                properties:
+                  data:
+                    description: Details about each object.
+                    items:
+                      $ref: '#/components/schemas/transfer_reversal'
+                    type: array
+                  has_more:
+                    description: >-
+                      True if this list has another page of items after this one
+                      that can be fetched.
+                    type: boolean
+                  object:
+                    description: >-
+                      String representing the object's type. Objects of the same
+                      type share the same value. Always has the value `list`.
+                    enum:
+                      - list
+                    type: string
+                  url:
+                    description: The URL where this list can be accessed.
+                    maxLength: 5000
+                    type: string
+                required:
+                  - data
+                  - has_more
+                  - object
+                  - url
+                title: TransferReversalList
+                type: object
+                x-expandableFields:
+                  - data
+          description: Successful response.
+        default:
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/error'
+          description: Error response.
+      summary: Retrieve Transfer Reversals
+      tags:
+        - Transfers
+        - Reversals
+    post:
+      description: >-
+        <p>When you create a new reversal, you must specify a transfer to create
+        it on.</p>
+
+
+        <p>When reversing transfers, you can optionally reverse part of the
+        transfer. You can do so as many times as you wish until the entire
+        transfer has been reversed.</p>
+
+
+        <p>Once entirely reversed, a transfer can’t be reversed again. This
+        method will return an error when called on an already-reversed transfer,
+        or when trying to reverse more money than is left on a transfer.</p>
+      operationId: PostTransfersIdReversals
+      parameters:
+        - in: path
+          name: id
+          required: true
+          schema:
+            maxLength: 5000
+            type: string
+          style: simple
+      requestBody:
+        content:
+          application/x-www-form-urlencoded:
+            encoding:
+              expand:
+                explode: true
+                style: deepObject
+              metadata:
+                explode: true
+                style: deepObject
+            schema:
+              additionalProperties: false
+              properties:
+                amount:
+                  description: >-
+                    A positive integer in cents (or local equivalent)
+                    representing how much of this transfer to reverse. Can only
+                    reverse up to the unreversed amount remaining of the
+                    transfer. Partial transfer reversals are only allowed for
+                    transfers to Stripe Accounts. Defaults to the entire
+                    transfer amount.
+                  type: integer
+                description:
+                  description: >-
+                    An arbitrary string which you can attach to a reversal
+                    object. It is displayed alongside the reversal in the
+                    Dashboard. This will be unset if you POST an empty value.
+                  maxLength: 5000
+                  type: string
+                expand:
+                  description: Specifies which fields in the response should be expanded.
+                  items:
+                    maxLength: 5000
+                    type: string
+                  type: array
+                metadata:
+                  anyOf:
+                    - additionalProperties:
+                        type: string
+                      type: object
+                    - enum:
+                        - ''
+                      type: string
+                  description: >-
+                    Set of [key-value
+                    pairs](https://stripe.com/docs/api/metadata) that you can
+                    attach to an object. This can be useful for storing
+                    additional information about the object in a structured
+                    format. Individual keys can be unset by posting an empty
+                    value to them. All keys can be unset by posting an empty
+                    value to `metadata`.
+                refund_application_fee:
+                  description: >-
+                    Boolean indicating whether the application fee should be
+                    refunded when reversing this transfer. If a full transfer
+                    reversal is given, the full application fee will be
+                    refunded. Otherwise, the application fee will be refunded
+                    with an amount proportional to the amount of the transfer
+                    reversed.
+                  type: boolean
+              type: object
+        required: false
+      responses:
+        '200':
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/transfer_reversal'
+          description: Successful response.
+        default:
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/error'
+          description: Error response.
+      summary: Update Transfer Reversal
+      tags:
+        - Transfers
+        - Reversal
+  '/v1/transfers/{transfer}':
+    get:
+      description: >-
+        <p>Retrieves the details of an existing transfer. Supply the unique
+        transfer ID from either a transfer creation request or the transfer
+        list, and Stripe will return the corresponding transfer information.</p>
+      operationId: GetTransfersTransfer
+      parameters:
+        - description: Specifies which fields in the response should be expanded.
+          explode: true
+          in: query
+          name: expand
+          required: false
+          schema:
+            items:
+              maxLength: 5000
+              type: string
+            type: array
+          style: deepObject
+        - in: path
+          name: transfer
+          required: true
+          schema:
+            maxLength: 5000
+            type: string
+          style: simple
+      requestBody:
+        content:
+          application/x-www-form-urlencoded:
+            encoding: {}
+            schema:
+              additionalProperties: false
+              properties: {}
+              type: object
+        required: false
+      responses:
+        '200':
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/transfer'
+          description: Successful response.
+        default:
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/error'
+          description: Error response.
+      summary: Retrieve Transfer
+      tags:
+        - Transfers
+    post:
+      description: >-
+        <p>Updates the specified transfer by setting the values of the
+        parameters passed. Any parameters not provided will be left
+        unchanged.</p>
+
+
+        <p>This request accepts only metadata as an argument.</p>
+      operationId: PostTransfersTransfer
+      parameters:
+        - in: path
+          name: transfer
+          required: true
+          schema:
+            maxLength: 5000
+            type: string
+          style: simple
+      requestBody:
+        content:
+          application/x-www-form-urlencoded:
+            encoding:
+              expand:
+                explode: true
+                style: deepObject
+              metadata:
+                explode: true
+                style: deepObject
+            schema:
+              additionalProperties: false
+              properties:
+                description:
+                  description: >-
+                    An arbitrary string attached to the object. Often useful for
+                    displaying to users.
+                  maxLength: 5000
+                  type: string
+                expand:
+                  description: Specifies which fields in the response should be expanded.
+                  items:
+                    maxLength: 5000
+                    type: string
+                  type: array
+                metadata:
+                  anyOf:
+                    - additionalProperties:
+                        type: string
+                      type: object
+                    - enum:
+                        - ''
+                      type: string
+                  description: >-
+                    Set of [key-value
+                    pairs](https://stripe.com/docs/api/metadata) that you can
+                    attach to an object. This can be useful for storing
+                    additional information about the object in a structured
+                    format. Individual keys can be unset by posting an empty
+                    value to them. All keys can be unset by posting an empty
+                    value to `metadata`.
+              type: object
+        required: false
+      responses:
+        '200':
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/transfer'
+          description: Successful response.
+        default:
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/error'
+          description: Error response.
+      summary: Update Transfer
+      tags:
+        - Transfers
+  '/v1/transfers/{transfer}/reversals/{id}':
+    get:
+      description: >-
+        <p>By default, you can see the 10 most recent reversals stored directly
+        on the transfer object, but you can also retrieve details about a
+        specific reversal stored on the transfer.</p>
+      operationId: GetTransfersTransferReversalsId
+      parameters:
+        - description: Specifies which fields in the response should be expanded.
+          explode: true
+          in: query
+          name: expand
+          required: false
+          schema:
+            items:
+              maxLength: 5000
+              type: string
+            type: array
+          style: deepObject
+        - in: path
+          name: id
+          required: true
+          schema:
+            maxLength: 5000
+            type: string
+          style: simple
+        - in: path
+          name: transfer
+          required: true
+          schema:
+            maxLength: 5000
+            type: string
+          style: simple
+      requestBody:
+        content:
+          application/x-www-form-urlencoded:
+            encoding: {}
+            schema:
+              additionalProperties: false
+              properties: {}
+              type: object
+        required: false
+      responses:
+        '200':
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/transfer_reversal'
+          description: Successful response.
+        default:
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/error'
+          description: Error response.
+      summary: Retrieve Transfer Reversal
+      tags:
+        - Transfers
+        - Reversals
+    post:
+      description: >-
+        <p>Updates the specified reversal by setting the values of the
+        parameters passed. Any parameters not provided will be left
+        unchanged.</p>
+
+
+        <p>This request only accepts metadata and description as arguments.</p>
+      operationId: PostTransfersTransferReversalsId
+      parameters:
+        - in: path
+          name: id
+          required: true
+          schema:
+            maxLength: 5000
+            type: string
+          style: simple
+        - in: path
+          name: transfer
+          required: true
+          schema:
+            maxLength: 5000
+            type: string
+          style: simple
+      requestBody:
+        content:
+          application/x-www-form-urlencoded:
+            encoding:
+              expand:
+                explode: true
+                style: deepObject
+              metadata:
+                explode: true
+                style: deepObject
+            schema:
+              additionalProperties: false
+              properties:
+                expand:
+                  description: Specifies which fields in the response should be expanded.
+                  items:
+                    maxLength: 5000
+                    type: string
+                  type: array
+                metadata:
+                  anyOf:
+                    - additionalProperties:
+                        type: string
+                      type: object
+                    - enum:
+                        - ''
+                      type: string
+                  description: >-
+                    Set of [key-value
+                    pairs](https://stripe.com/docs/api/metadata) that you can
+                    attach to an object. This can be useful for storing
+                    additional information about the object in a structured
+                    format. Individual keys can be unset by posting an empty
+                    value to them. All keys can be unset by posting an empty
+                    value to `metadata`.
+              type: object
+        required: false
+      responses:
+        '200':
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/transfer_reversal'
+          description: Successful response.
+        default:
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/error'
+          description: Error response.
+      summary: Update Transfer Reversal
+      tags:
+        - Transfers
+        - Reversals
+components:
+  schemas:
+    error:
+      description: An error response from the Stripe API
+      properties:
+        error:
+          $ref: '#/components/schemas/api_errors'
+      required:
+        - error
+      type: object
+    transfer:
+      description: >-
+        A `Transfer` object is created when you move funds between Stripe
+        accounts as
+
+        part of Connect.
+
+
+        Before April 6, 2017, transfers also represented movement of funds from
+        a
+
+        Stripe account to a card or bank account. This behavior has since been
+        split
+
+        out into a [Payout](https://stripe.com/docs/api#payout_object) object,
+        with corresponding payout endpoints. For more
+
+        information, read about the
+
+        [transfer/payout split](https://stripe.com/docs/transfer-payout-split).
+
+
+        Related guide: [Creating separate charges and
+        transfers](https://stripe.com/docs/connect/separate-charges-and-transfers)
+      properties:
+        amount:
+          description: Amount in cents (or local equivalent) to be transferred.
+          type: integer
+        amount_reversed:
+          description: >-
+            Amount in cents (or local equivalent) reversed (can be less than the
+            amount attribute on the transfer if a partial reversal was issued).
+          type: integer
+        balance_transaction:
+          anyOf:
+            - maxLength: 5000
+              type: string
+            - $ref: '#/components/schemas/balance_transaction'
+          description: >-
+            Balance transaction that describes the impact of this transfer on
+            your account balance.
+          nullable: true
+          x-expansionResources:
+            oneOf:
+              - $ref: '#/components/schemas/balance_transaction'
+        created:
+          description: Time that this record of the transfer was first created.
+          format: unix-time
+          type: integer
+        currency:
+          description: >-
+            Three-letter [ISO currency
+            code](https://www.iso.org/iso-4217-currency-codes.html), in
+            lowercase. Must be a [supported
+            currency](https://stripe.com/docs/currencies).
+          type: string
+        description:
+          description: >-
+            An arbitrary string attached to the object. Often useful for
+            displaying to users.
+          maxLength: 5000
+          nullable: true
+          type: string
+        destination:
+          anyOf:
+            - maxLength: 5000
+              type: string
+            - $ref: '#/components/schemas/account'
+          description: ID of the Stripe account the transfer was sent to.
+          nullable: true
+          x-expansionResources:
+            oneOf:
+              - $ref: '#/components/schemas/account'
+        destination_payment:
+          anyOf:
+            - maxLength: 5000
+              type: string
+            - $ref: '#/components/schemas/charge'
+          description: >-
+            If the destination is a Stripe account, this will be the ID of the
+            payment that the destination account received for the transfer.
+          x-expansionResources:
+            oneOf:
+              - $ref: '#/components/schemas/charge'
+        id:
+          description: Unique identifier for the object.
+          maxLength: 5000
+          type: string
+        livemode:
+          description: >-
+            Has the value `true` if the object exists in live mode or the value
+            `false` if the object exists in test mode.
+          type: boolean
+        metadata:
+          additionalProperties:
+            maxLength: 500
+            type: string
+          description: >-
+            Set of [key-value pairs](https://stripe.com/docs/api/metadata) that
+            you can attach to an object. This can be useful for storing
+            additional information about the object in a structured format.
+          type: object
+        object:
+          description: >-
+            String representing the object's type. Objects of the same type
+            share the same value.
+          enum:
+            - transfer
+          type: string
+        reversals:
+          description: A list of reversals that have been applied to the transfer.
+          properties:
+            data:
+              description: Details about each object.
+              items:
+                $ref: '#/components/schemas/transfer_reversal'
+              type: array
+            has_more:
+              description: >-
+                True if this list has another page of items after this one that
+                can be fetched.
+              type: boolean
+            object:
+              description: >-
+                String representing the object's type. Objects of the same type
+                share the same value. Always has the value `list`.
+              enum:
+                - list
+              type: string
+            url:
+              description: The URL where this list can be accessed.
+              maxLength: 5000
+              type: string
+          required:
+            - data
+            - has_more
+            - object
+            - url
+          title: TransferReversalList
+          type: object
+          x-expandableFields:
+            - data
+        reversed:
+          description: >-
+            Whether the transfer has been fully reversed. If the transfer is
+            only partially reversed, this attribute will still be false.
+          type: boolean
+        source_transaction:
+          anyOf:
+            - maxLength: 5000
+              type: string
+            - $ref: '#/components/schemas/charge'
+          description: >-
+            ID of the charge or payment that was used to fund the transfer. If
+            null, the transfer was funded from the available balance.
+          nullable: true
+          x-expansionResources:
+            oneOf:
+              - $ref: '#/components/schemas/charge'
+        source_type:
+          description: >-
+            The source balance this transfer came from. One of `card`, `fpx`, or
+            `bank_account`.
+          maxLength: 5000
+          type: string
+        transfer_group:
+          description: >-
+            A string that identifies this transaction as part of a group. See
+            the [Connect
+            documentation](https://stripe.com/docs/connect/separate-charges-and-transfers#transfer-options)
+            for details.
+          maxLength: 5000
+          nullable: true
+          type: string
+      required:
+        - amount
+        - amount_reversed
+        - created
+        - currency
+        - id
+        - livemode
+        - metadata
+        - object
+        - reversals
+        - reversed
+      title: Transfer
+      type: object
+      x-expandableFields:
+        - balance_transaction
+        - destination
+        - destination_payment
+        - reversals
+        - source_transaction
+      x-resourceId: transfer
+    transfer_reversal:
+      description: >-
+        [Stripe Connect](https://stripe.com/docs/connect) platforms can reverse
+        transfers made to a
+
+        connected account, either entirely or partially, and can also specify
+        whether
+
+        to refund any related application fees. Transfer reversals add to the
+
+        platform's balance and subtract from the destination account's balance.
+
+
+        Reversing a transfer that was made for a [destination
+
+        charge](/docs/connect/destination-charges) is allowed only up to the
+        amount of
+
+        the charge. It is possible to reverse a
+
+        [transfer_group](https://stripe.com/docs/connect/separate-charges-and-transfers#transfer-options)
+
+        transfer only if the destination account has enough balance to cover the
+
+        reversal.
+
+
+        Related guide: [Reversing
+        transfers](https://stripe.com/docs/connect/separate-charges-and-transfers#reversing-transfers)
+      properties:
+        amount:
+          description: 'Amount, in cents (or local equivalent).'
+          type: integer
+        balance_transaction:
+          anyOf:
+            - maxLength: 5000
+              type: string
+            - $ref: '#/components/schemas/balance_transaction'
+          description: >-
+            Balance transaction that describes the impact on your account
+            balance.
+          nullable: true
+          x-expansionResources:
+            oneOf:
+              - $ref: '#/components/schemas/balance_transaction'
+        created:
+          description: >-
+            Time at which the object was created. Measured in seconds since the
+            Unix epoch.
+          format: unix-time
+          type: integer
+        currency:
+          description: >-
+            Three-letter [ISO currency
+            code](https://www.iso.org/iso-4217-currency-codes.html), in
+            lowercase. Must be a [supported
+            currency](https://stripe.com/docs/currencies).
+          type: string
+        destination_payment_refund:
+          anyOf:
+            - maxLength: 5000
+              type: string
+            - $ref: '#/components/schemas/refund'
+          description: Linked payment refund for the transfer reversal.
+          nullable: true
+          x-expansionResources:
+            oneOf:
+              - $ref: '#/components/schemas/refund'
+        id:
+          description: Unique identifier for the object.
+          maxLength: 5000
+          type: string
+        metadata:
+          additionalProperties:
+            maxLength: 500
+            type: string
+          description: >-
+            Set of [key-value pairs](https://stripe.com/docs/api/metadata) that
+            you can attach to an object. This can be useful for storing
+            additional information about the object in a structured format.
+          nullable: true
+          type: object
+        object:
+          description: >-
+            String representing the object's type. Objects of the same type
+            share the same value.
+          enum:
+            - transfer_reversal
+          type: string
+        source_refund:
+          anyOf:
+            - maxLength: 5000
+              type: string
+            - $ref: '#/components/schemas/refund'
+          description: ID of the refund responsible for the transfer reversal.
+          nullable: true
+          x-expansionResources:
+            oneOf:
+              - $ref: '#/components/schemas/refund'
+        transfer:
+          anyOf:
+            - maxLength: 5000
+              type: string
+            - $ref: '#/components/schemas/transfer'
+          description: ID of the transfer that was reversed.
+          x-expansionResources:
+            oneOf:
+              - $ref: '#/components/schemas/transfer'
+      required:
+        - amount
+        - created
+        - currency
+        - id
+        - object
+        - transfer
+      title: TransferReversal
+      type: object
+      x-expandableFields:
+        - balance_transaction
+        - destination_payment_refund
+        - source_refund
+        - transfer
+      x-resourceId: transfer_reversal
+  securitySchemes:
+    basicAuth:
+      description: >-
+        Basic HTTP authentication. Allowed headers-- Authorization: Basic
+        <api_key> | Authorization: Basic <base64 hash of `api_key:`>
+      scheme: basic
+      type: http
+    bearerAuth:
+      bearerFormat: auth-scheme
+      description: >-
+        Bearer HTTP authentication. Allowed headers-- Authorization: Bearer
+        <api_key>
+      scheme: bearer
+      type: http
+tags:
+  - name: Transfers
+    description: Needs a description.
+  - name: Reversals
+    description: Needs a description.
+  - name: Reversal
+    description: Needs a description.
+---

@@ -1,0 +1,1279 @@
+---
+openapi: 3.0.0
+info:
+  title: Stripe Radar API
+  description: Needs description.
+  contact:
+    email: dev-platform@stripe.com
+    name: Stripe Dev Platform Team
+    url: 'https://stripe.com'
+  termsOfService: 'https://stripe.com/us/terms/'
+  version: '2023-10-16'
+  x-stripeSpecFilename: spec3
+security:
+  - basicAuth: []
+  - bearerAuth: []
+servers:
+  - url: 'https://api.stripe.com/'
+paths:
+  /v1/radar/early_fraud_warnings:
+    get:
+      description: <p>Returns a list of early fraud warnings.</p>
+      operationId: GetRadarEarlyFraudWarnings
+      parameters:
+        - description: >-
+            Only return early fraud warnings for the charge specified by this
+            charge ID.
+          in: query
+          name: charge
+          required: false
+          schema:
+            type: string
+          style: form
+        - description: >-
+            Only return early fraud warnings that were created during the given
+            date interval.
+          explode: true
+          in: query
+          name: created
+          required: false
+          schema:
+            anyOf:
+              - properties:
+                  gt:
+                    type: integer
+                  gte:
+                    type: integer
+                  lt:
+                    type: integer
+                  lte:
+                    type: integer
+                title: range_query_specs
+                type: object
+              - type: integer
+          style: deepObject
+        - description: >-
+            A cursor for use in pagination. `ending_before` is an object ID that
+            defines your place in the list. For instance, if you make a list
+            request and receive 100 objects, starting with `obj_bar`, your
+            subsequent call can include `ending_before=obj_bar` in order to
+            fetch the previous page of the list.
+          in: query
+          name: ending_before
+          required: false
+          schema:
+            maxLength: 5000
+            type: string
+          style: form
+        - description: Specifies which fields in the response should be expanded.
+          explode: true
+          in: query
+          name: expand
+          required: false
+          schema:
+            items:
+              maxLength: 5000
+              type: string
+            type: array
+          style: deepObject
+        - description: >-
+            A limit on the number of objects to be returned. Limit can range
+            between 1 and 100, and the default is 10.
+          in: query
+          name: limit
+          required: false
+          schema:
+            type: integer
+          style: form
+        - description: >-
+            Only return early fraud warnings for charges that were created by
+            the PaymentIntent specified by this PaymentIntent ID.
+          in: query
+          name: payment_intent
+          required: false
+          schema:
+            maxLength: 5000
+            type: string
+          style: form
+        - description: >-
+            A cursor for use in pagination. `starting_after` is an object ID
+            that defines your place in the list. For instance, if you make a
+            list request and receive 100 objects, ending with `obj_foo`, your
+            subsequent call can include `starting_after=obj_foo` in order to
+            fetch the next page of the list.
+          in: query
+          name: starting_after
+          required: false
+          schema:
+            maxLength: 5000
+            type: string
+          style: form
+      requestBody:
+        content:
+          application/x-www-form-urlencoded:
+            encoding: {}
+            schema:
+              additionalProperties: false
+              properties: {}
+              type: object
+        required: false
+      responses:
+        '200':
+          content:
+            application/json:
+              schema:
+                description: ''
+                properties:
+                  data:
+                    items:
+                      $ref: '#/components/schemas/radar.early_fraud_warning'
+                    type: array
+                  has_more:
+                    description: >-
+                      True if this list has another page of items after this one
+                      that can be fetched.
+                    type: boolean
+                  object:
+                    description: >-
+                      String representing the object's type. Objects of the same
+                      type share the same value. Always has the value `list`.
+                    enum:
+                      - list
+                    type: string
+                  url:
+                    description: The URL where this list can be accessed.
+                    maxLength: 5000
+                    pattern: ^/v1/radar/early_fraud_warnings
+                    type: string
+                required:
+                  - data
+                  - has_more
+                  - object
+                  - url
+                title: RadarEarlyFraudWarningList
+                type: object
+                x-expandableFields:
+                  - data
+          description: Successful response.
+        default:
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/error'
+          description: Error response.
+      summary: Retrieve Early Fraud Warnings
+      tags:
+        - Radar
+        - Early
+        - Fraud
+        - Warnings
+  '/v1/radar/early_fraud_warnings/{early_fraud_warning}':
+    get:
+      description: >-
+        <p>Retrieves the details of an early fraud warning that has previously
+        been created. </p>
+
+
+        <p>Please refer to the <a href="#early_fraud_warning_object">early fraud
+        warning</a> object reference for more details.</p>
+      operationId: GetRadarEarlyFraudWarningsEarlyFraudWarning
+      parameters:
+        - in: path
+          name: early_fraud_warning
+          required: true
+          schema:
+            maxLength: 5000
+            type: string
+          style: simple
+        - description: Specifies which fields in the response should be expanded.
+          explode: true
+          in: query
+          name: expand
+          required: false
+          schema:
+            items:
+              maxLength: 5000
+              type: string
+            type: array
+          style: deepObject
+      requestBody:
+        content:
+          application/x-www-form-urlencoded:
+            encoding: {}
+            schema:
+              additionalProperties: false
+              properties: {}
+              type: object
+        required: false
+      responses:
+        '200':
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/radar.early_fraud_warning'
+          description: Successful response.
+        default:
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/error'
+          description: Error response.
+      summary: Retrieve Early Fraud Warning
+      tags:
+        - Radar
+        - Early
+        - Fraud
+        - Warnings
+  /v1/radar/value_list_items:
+    get:
+      description: >-
+        <p>Returns a list of <code>ValueListItem</code> objects. The objects are
+        sorted in descending order by creation date, with the most recently
+        created object appearing first.</p>
+      operationId: GetRadarValueListItems
+      parameters:
+        - explode: true
+          in: query
+          name: created
+          required: false
+          schema:
+            anyOf:
+              - properties:
+                  gt:
+                    type: integer
+                  gte:
+                    type: integer
+                  lt:
+                    type: integer
+                  lte:
+                    type: integer
+                title: range_query_specs
+                type: object
+              - type: integer
+          style: deepObject
+        - description: >-
+            A cursor for use in pagination. `ending_before` is an object ID that
+            defines your place in the list. For instance, if you make a list
+            request and receive 100 objects, starting with `obj_bar`, your
+            subsequent call can include `ending_before=obj_bar` in order to
+            fetch the previous page of the list.
+          in: query
+          name: ending_before
+          required: false
+          schema:
+            maxLength: 5000
+            type: string
+          style: form
+        - description: Specifies which fields in the response should be expanded.
+          explode: true
+          in: query
+          name: expand
+          required: false
+          schema:
+            items:
+              maxLength: 5000
+              type: string
+            type: array
+          style: deepObject
+        - description: >-
+            A limit on the number of objects to be returned. Limit can range
+            between 1 and 100, and the default is 10.
+          in: query
+          name: limit
+          required: false
+          schema:
+            type: integer
+          style: form
+        - description: >-
+            A cursor for use in pagination. `starting_after` is an object ID
+            that defines your place in the list. For instance, if you make a
+            list request and receive 100 objects, ending with `obj_foo`, your
+            subsequent call can include `starting_after=obj_foo` in order to
+            fetch the next page of the list.
+          in: query
+          name: starting_after
+          required: false
+          schema:
+            maxLength: 5000
+            type: string
+          style: form
+        - description: >-
+            Return items belonging to the parent list whose value matches the
+            specified value (using an "is like" match).
+          in: query
+          name: value
+          required: false
+          schema:
+            maxLength: 800
+            type: string
+          style: form
+        - description: Identifier for the parent value list this item belongs to.
+          in: query
+          name: value_list
+          required: true
+          schema:
+            maxLength: 5000
+            type: string
+          style: form
+      requestBody:
+        content:
+          application/x-www-form-urlencoded:
+            encoding: {}
+            schema:
+              additionalProperties: false
+              properties: {}
+              type: object
+        required: false
+      responses:
+        '200':
+          content:
+            application/json:
+              schema:
+                description: ''
+                properties:
+                  data:
+                    items:
+                      $ref: '#/components/schemas/radar.value_list_item'
+                    type: array
+                  has_more:
+                    description: >-
+                      True if this list has another page of items after this one
+                      that can be fetched.
+                    type: boolean
+                  object:
+                    description: >-
+                      String representing the object's type. Objects of the same
+                      type share the same value. Always has the value `list`.
+                    enum:
+                      - list
+                    type: string
+                  url:
+                    description: The URL where this list can be accessed.
+                    maxLength: 5000
+                    pattern: ^/v1/radar/value_list_items
+                    type: string
+                required:
+                  - data
+                  - has_more
+                  - object
+                  - url
+                title: RadarListListItemList
+                type: object
+                x-expandableFields:
+                  - data
+          description: Successful response.
+        default:
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/error'
+          description: Error response.
+      summary: Retrieve Value List Items
+      tags:
+        - Radar
+        - Values
+        - Lists
+        - Items
+    post:
+      description: >-
+        <p>Creates a new <code>ValueListItem</code> object, which is added to
+        the specified parent value list.</p>
+      operationId: PostRadarValueListItems
+      requestBody:
+        content:
+          application/x-www-form-urlencoded:
+            encoding:
+              expand:
+                explode: true
+                style: deepObject
+            schema:
+              additionalProperties: false
+              properties:
+                expand:
+                  description: Specifies which fields in the response should be expanded.
+                  items:
+                    maxLength: 5000
+                    type: string
+                  type: array
+                value:
+                  description: >-
+                    The value of the item (whose type must match the type of the
+                    parent value list).
+                  maxLength: 800
+                  type: string
+                value_list:
+                  description: >-
+                    The identifier of the value list which the created item will
+                    be added to.
+                  maxLength: 5000
+                  type: string
+              required:
+                - value
+                - value_list
+              type: object
+        required: true
+      responses:
+        '200':
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/radar.value_list_item'
+          description: Successful response.
+        default:
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/error'
+          description: Error response.
+      summary: Create Value List Items
+      tags:
+        - Radar
+        - Values
+        - Lists
+        - Items
+  '/v1/radar/value_list_items/{item}':
+    delete:
+      description: >-
+        <p>Deletes a <code>ValueListItem</code> object, removing it from its
+        parent value list.</p>
+      operationId: DeleteRadarValueListItemsItem
+      parameters:
+        - in: path
+          name: item
+          required: true
+          schema:
+            maxLength: 5000
+            type: string
+          style: simple
+      requestBody:
+        content:
+          application/x-www-form-urlencoded:
+            encoding: {}
+            schema:
+              additionalProperties: false
+              properties: {}
+              type: object
+        required: false
+      responses:
+        '200':
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/deleted_radar.value_list_item'
+          description: Successful response.
+        default:
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/error'
+          description: Error response.
+      summary: Delete Value List Item
+      tags:
+        - Radar
+        - Values
+        - Lists
+        - Items
+    get:
+      description: <p>Retrieves a <code>ValueListItem</code> object.</p>
+      operationId: GetRadarValueListItemsItem
+      parameters:
+        - description: Specifies which fields in the response should be expanded.
+          explode: true
+          in: query
+          name: expand
+          required: false
+          schema:
+            items:
+              maxLength: 5000
+              type: string
+            type: array
+          style: deepObject
+        - in: path
+          name: item
+          required: true
+          schema:
+            maxLength: 5000
+            type: string
+          style: simple
+      requestBody:
+        content:
+          application/x-www-form-urlencoded:
+            encoding: {}
+            schema:
+              additionalProperties: false
+              properties: {}
+              type: object
+        required: false
+      responses:
+        '200':
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/radar.value_list_item'
+          description: Successful response.
+        default:
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/error'
+          description: Error response.
+      summary: Retrieve Value List Item
+      tags:
+        - Radar
+        - Values
+        - Lists
+        - Items
+  /v1/radar/value_lists:
+    get:
+      description: >-
+        <p>Returns a list of <code>ValueList</code> objects. The objects are
+        sorted in descending order by creation date, with the most recently
+        created object appearing first.</p>
+      operationId: GetRadarValueLists
+      parameters:
+        - description: The alias used to reference the value list when writing rules.
+          in: query
+          name: alias
+          required: false
+          schema:
+            maxLength: 100
+            type: string
+          style: form
+        - description: >-
+            A value contained within a value list - returns all value lists
+            containing this value.
+          in: query
+          name: contains
+          required: false
+          schema:
+            maxLength: 800
+            type: string
+          style: form
+        - explode: true
+          in: query
+          name: created
+          required: false
+          schema:
+            anyOf:
+              - properties:
+                  gt:
+                    type: integer
+                  gte:
+                    type: integer
+                  lt:
+                    type: integer
+                  lte:
+                    type: integer
+                title: range_query_specs
+                type: object
+              - type: integer
+          style: deepObject
+        - description: >-
+            A cursor for use in pagination. `ending_before` is an object ID that
+            defines your place in the list. For instance, if you make a list
+            request and receive 100 objects, starting with `obj_bar`, your
+            subsequent call can include `ending_before=obj_bar` in order to
+            fetch the previous page of the list.
+          in: query
+          name: ending_before
+          required: false
+          schema:
+            maxLength: 5000
+            type: string
+          style: form
+        - description: Specifies which fields in the response should be expanded.
+          explode: true
+          in: query
+          name: expand
+          required: false
+          schema:
+            items:
+              maxLength: 5000
+              type: string
+            type: array
+          style: deepObject
+        - description: >-
+            A limit on the number of objects to be returned. Limit can range
+            between 1 and 100, and the default is 10.
+          in: query
+          name: limit
+          required: false
+          schema:
+            type: integer
+          style: form
+        - description: >-
+            A cursor for use in pagination. `starting_after` is an object ID
+            that defines your place in the list. For instance, if you make a
+            list request and receive 100 objects, ending with `obj_foo`, your
+            subsequent call can include `starting_after=obj_foo` in order to
+            fetch the next page of the list.
+          in: query
+          name: starting_after
+          required: false
+          schema:
+            maxLength: 5000
+            type: string
+          style: form
+      requestBody:
+        content:
+          application/x-www-form-urlencoded:
+            encoding: {}
+            schema:
+              additionalProperties: false
+              properties: {}
+              type: object
+        required: false
+      responses:
+        '200':
+          content:
+            application/json:
+              schema:
+                description: ''
+                properties:
+                  data:
+                    items:
+                      $ref: '#/components/schemas/radar.value_list'
+                    type: array
+                  has_more:
+                    description: >-
+                      True if this list has another page of items after this one
+                      that can be fetched.
+                    type: boolean
+                  object:
+                    description: >-
+                      String representing the object's type. Objects of the same
+                      type share the same value. Always has the value `list`.
+                    enum:
+                      - list
+                    type: string
+                  url:
+                    description: The URL where this list can be accessed.
+                    maxLength: 5000
+                    pattern: ^/v1/radar/value_lists
+                    type: string
+                required:
+                  - data
+                  - has_more
+                  - object
+                  - url
+                title: RadarListListList
+                type: object
+                x-expandableFields:
+                  - data
+          description: Successful response.
+        default:
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/error'
+          description: Error response.
+      summary: Retrieve Value Lists
+      tags:
+        - Radar
+        - Values
+        - Lists
+    post:
+      description: >-
+        <p>Creates a new <code>ValueList</code> object, which can then be
+        referenced in rules.</p>
+      operationId: PostRadarValueLists
+      requestBody:
+        content:
+          application/x-www-form-urlencoded:
+            encoding:
+              expand:
+                explode: true
+                style: deepObject
+              metadata:
+                explode: true
+                style: deepObject
+            schema:
+              additionalProperties: false
+              properties:
+                alias:
+                  description: The name of the value list for use in rules.
+                  maxLength: 100
+                  type: string
+                expand:
+                  description: Specifies which fields in the response should be expanded.
+                  items:
+                    maxLength: 5000
+                    type: string
+                  type: array
+                item_type:
+                  description: >-
+                    Type of the items in the value list. One of
+                    `card_fingerprint`, `us_bank_account_fingerprint`,
+                    `sepa_debit_fingerprint`, `card_bin`, `email`, `ip_address`,
+                    `country`, `string`, `case_sensitive_string`, or
+                    `customer_id`. Use `string` if the item type is unknown or
+                    mixed.
+                  enum:
+                    - card_bin
+                    - card_fingerprint
+                    - case_sensitive_string
+                    - country
+                    - customer_id
+                    - email
+                    - ip_address
+                    - sepa_debit_fingerprint
+                    - string
+                    - us_bank_account_fingerprint
+                  maxLength: 5000
+                  type: string
+                metadata:
+                  additionalProperties:
+                    type: string
+                  description: >-
+                    Set of [key-value
+                    pairs](https://stripe.com/docs/api/metadata) that you can
+                    attach to an object. This can be useful for storing
+                    additional information about the object in a structured
+                    format. Individual keys can be unset by posting an empty
+                    value to them. All keys can be unset by posting an empty
+                    value to `metadata`.
+                  type: object
+                name:
+                  description: The human-readable name of the value list.
+                  maxLength: 100
+                  type: string
+              required:
+                - alias
+                - name
+              type: object
+        required: true
+      responses:
+        '200':
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/radar.value_list'
+          description: Successful response.
+        default:
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/error'
+          description: Error response.
+      summary: Create Value List
+      tags:
+        - Radar
+        - Values
+        - Lists
+  '/v1/radar/value_lists/{value_list}':
+    delete:
+      description: >-
+        <p>Deletes a <code>ValueList</code> object, also deleting any items
+        contained within the value list. To be deleted, a value list must not be
+        referenced in any rules.</p>
+      operationId: DeleteRadarValueListsValueList
+      parameters:
+        - in: path
+          name: value_list
+          required: true
+          schema:
+            maxLength: 5000
+            type: string
+          style: simple
+      requestBody:
+        content:
+          application/x-www-form-urlencoded:
+            encoding: {}
+            schema:
+              additionalProperties: false
+              properties: {}
+              type: object
+        required: false
+      responses:
+        '200':
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/deleted_radar.value_list'
+          description: Successful response.
+        default:
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/error'
+          description: Error response.
+      summary: Delete Value List
+      tags:
+        - Radar
+        - Values
+        - Lists
+    get:
+      description: <p>Retrieves a <code>ValueList</code> object.</p>
+      operationId: GetRadarValueListsValueList
+      parameters:
+        - description: Specifies which fields in the response should be expanded.
+          explode: true
+          in: query
+          name: expand
+          required: false
+          schema:
+            items:
+              maxLength: 5000
+              type: string
+            type: array
+          style: deepObject
+        - in: path
+          name: value_list
+          required: true
+          schema:
+            maxLength: 5000
+            type: string
+          style: simple
+      requestBody:
+        content:
+          application/x-www-form-urlencoded:
+            encoding: {}
+            schema:
+              additionalProperties: false
+              properties: {}
+              type: object
+        required: false
+      responses:
+        '200':
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/radar.value_list'
+          description: Successful response.
+        default:
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/error'
+          description: Error response.
+      summary: Retrieve Value List
+      tags:
+        - Radar
+        - Values
+        - Lists
+    post:
+      description: >-
+        <p>Updates a <code>ValueList</code> object by setting the values of the
+        parameters passed. Any parameters not provided will be left unchanged.
+        Note that <code>item_type</code> is immutable.</p>
+      operationId: PostRadarValueListsValueList
+      parameters:
+        - in: path
+          name: value_list
+          required: true
+          schema:
+            maxLength: 5000
+            type: string
+          style: simple
+      requestBody:
+        content:
+          application/x-www-form-urlencoded:
+            encoding:
+              expand:
+                explode: true
+                style: deepObject
+              metadata:
+                explode: true
+                style: deepObject
+            schema:
+              additionalProperties: false
+              properties:
+                alias:
+                  description: The name of the value list for use in rules.
+                  maxLength: 100
+                  type: string
+                expand:
+                  description: Specifies which fields in the response should be expanded.
+                  items:
+                    maxLength: 5000
+                    type: string
+                  type: array
+                metadata:
+                  additionalProperties:
+                    type: string
+                  description: >-
+                    Set of [key-value
+                    pairs](https://stripe.com/docs/api/metadata) that you can
+                    attach to an object. This can be useful for storing
+                    additional information about the object in a structured
+                    format. Individual keys can be unset by posting an empty
+                    value to them. All keys can be unset by posting an empty
+                    value to `metadata`.
+                  type: object
+                name:
+                  description: The human-readable name of the value list.
+                  maxLength: 100
+                  type: string
+              type: object
+        required: false
+      responses:
+        '200':
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/radar.value_list'
+          description: Successful response.
+        default:
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/error'
+          description: Error response.
+      summary: Update Value List
+      tags:
+        - Radar
+        - Values
+        - Lists
+components:
+  schemas:
+    error:
+      description: An error response from the Stripe API
+      properties:
+        error:
+          $ref: '#/components/schemas/api_errors'
+      required:
+        - error
+      type: object
+    radar.early_fraud_warning:
+      description: >-
+        An early fraud warning indicates that the card issuer has notified us
+        that a
+
+        charge may be fraudulent.
+
+
+        Related guide: [Early fraud
+        warnings](https://stripe.com/docs/disputes/measuring#early-fraud-warnings)
+      properties:
+        actionable:
+          description: >-
+            An EFW is actionable if it has not received a dispute and has not
+            been fully refunded. You may wish to proactively refund a charge
+            that receives an EFW, in order to avoid receiving a dispute later.
+          type: boolean
+        charge:
+          anyOf:
+            - maxLength: 5000
+              type: string
+            - $ref: '#/components/schemas/charge'
+          description: >-
+            ID of the charge this early fraud warning is for, optionally
+            expanded.
+          x-expansionResources:
+            oneOf:
+              - $ref: '#/components/schemas/charge'
+        created:
+          description: >-
+            Time at which the object was created. Measured in seconds since the
+            Unix epoch.
+          format: unix-time
+          type: integer
+        fraud_type:
+          description: >-
+            The type of fraud labelled by the issuer. One of
+            `card_never_received`, `fraudulent_card_application`,
+            `made_with_counterfeit_card`, `made_with_lost_card`,
+            `made_with_stolen_card`, `misc`, `unauthorized_use_of_card`.
+          maxLength: 5000
+          type: string
+        id:
+          description: Unique identifier for the object.
+          maxLength: 5000
+          type: string
+        livemode:
+          description: >-
+            Has the value `true` if the object exists in live mode or the value
+            `false` if the object exists in test mode.
+          type: boolean
+        object:
+          description: >-
+            String representing the object's type. Objects of the same type
+            share the same value.
+          enum:
+            - radar.early_fraud_warning
+          type: string
+        payment_intent:
+          anyOf:
+            - maxLength: 5000
+              type: string
+            - $ref: '#/components/schemas/payment_intent'
+          description: >-
+            ID of the Payment Intent this early fraud warning is for, optionally
+            expanded.
+          x-expansionResources:
+            oneOf:
+              - $ref: '#/components/schemas/payment_intent'
+      required:
+        - actionable
+        - charge
+        - created
+        - fraud_type
+        - id
+        - livemode
+        - object
+      title: RadarEarlyFraudWarning
+      type: object
+      x-expandableFields:
+        - charge
+        - payment_intent
+      x-resourceId: radar.early_fraud_warning
+    radar.value_list_item:
+      description: >-
+        Value list items allow you to add specific values to a given Radar value
+        list, which can then be used in rules.
+
+
+        Related guide: [Managing list
+        items](https://stripe.com/docs/radar/lists#managing-list-items)
+      properties:
+        created:
+          description: >-
+            Time at which the object was created. Measured in seconds since the
+            Unix epoch.
+          format: unix-time
+          type: integer
+        created_by:
+          description: >-
+            The name or email address of the user who added this item to the
+            value list.
+          maxLength: 5000
+          type: string
+        id:
+          description: Unique identifier for the object.
+          maxLength: 5000
+          type: string
+        livemode:
+          description: >-
+            Has the value `true` if the object exists in live mode or the value
+            `false` if the object exists in test mode.
+          type: boolean
+        object:
+          description: >-
+            String representing the object's type. Objects of the same type
+            share the same value.
+          enum:
+            - radar.value_list_item
+          type: string
+        value:
+          description: The value of the item.
+          maxLength: 5000
+          type: string
+        value_list:
+          description: The identifier of the value list this item belongs to.
+          maxLength: 5000
+          type: string
+      required:
+        - created
+        - created_by
+        - id
+        - livemode
+        - object
+        - value
+        - value_list
+      title: RadarListListItem
+      type: object
+      x-expandableFields: []
+      x-resourceId: radar.value_list_item
+    deleted_radar.value_list_item:
+      description: ''
+      properties:
+        deleted:
+          description: Always true for a deleted object
+          enum:
+            - true
+          type: boolean
+        id:
+          description: Unique identifier for the object.
+          maxLength: 5000
+          type: string
+        object:
+          description: >-
+            String representing the object's type. Objects of the same type
+            share the same value.
+          enum:
+            - radar.value_list_item
+          type: string
+      required:
+        - deleted
+        - id
+        - object
+      title: RadarListDeletedListItem
+      type: object
+      x-expandableFields: []
+      x-resourceId: deleted_radar.value_list_item
+    radar.value_list:
+      description: >-
+        Value lists allow you to group values together which can then be
+        referenced in rules.
+
+
+        Related guide: [Default Stripe
+        lists](https://stripe.com/docs/radar/lists#managing-list-items)
+      properties:
+        alias:
+          description: The name of the value list for use in rules.
+          maxLength: 5000
+          type: string
+        created:
+          description: >-
+            Time at which the object was created. Measured in seconds since the
+            Unix epoch.
+          format: unix-time
+          type: integer
+        created_by:
+          description: The name or email address of the user who created this value list.
+          maxLength: 5000
+          type: string
+        id:
+          description: Unique identifier for the object.
+          maxLength: 5000
+          type: string
+        item_type:
+          description: >-
+            The type of items in the value list. One of `card_fingerprint`,
+            `us_bank_account_fingerprint`, `sepa_debit_fingerprint`, `card_bin`,
+            `email`, `ip_address`, `country`, `string`, `case_sensitive_string`,
+            or `customer_id`.
+          enum:
+            - card_bin
+            - card_fingerprint
+            - case_sensitive_string
+            - country
+            - customer_id
+            - email
+            - ip_address
+            - sepa_debit_fingerprint
+            - string
+            - us_bank_account_fingerprint
+          type: string
+        list_items:
+          description: List of items contained within this value list.
+          properties:
+            data:
+              description: Details about each object.
+              items:
+                $ref: '#/components/schemas/radar.value_list_item'
+              type: array
+            has_more:
+              description: >-
+                True if this list has another page of items after this one that
+                can be fetched.
+              type: boolean
+            object:
+              description: >-
+                String representing the object's type. Objects of the same type
+                share the same value. Always has the value `list`.
+              enum:
+                - list
+              type: string
+            url:
+              description: The URL where this list can be accessed.
+              maxLength: 5000
+              type: string
+          required:
+            - data
+            - has_more
+            - object
+            - url
+          title: RadarListListItemList
+          type: object
+          x-expandableFields:
+            - data
+        livemode:
+          description: >-
+            Has the value `true` if the object exists in live mode or the value
+            `false` if the object exists in test mode.
+          type: boolean
+        metadata:
+          additionalProperties:
+            maxLength: 500
+            type: string
+          description: >-
+            Set of [key-value pairs](https://stripe.com/docs/api/metadata) that
+            you can attach to an object. This can be useful for storing
+            additional information about the object in a structured format.
+          type: object
+        name:
+          description: The name of the value list.
+          maxLength: 5000
+          type: string
+        object:
+          description: >-
+            String representing the object's type. Objects of the same type
+            share the same value.
+          enum:
+            - radar.value_list
+          type: string
+      required:
+        - alias
+        - created
+        - created_by
+        - id
+        - item_type
+        - list_items
+        - livemode
+        - metadata
+        - name
+        - object
+      title: RadarListList
+      type: object
+      x-expandableFields:
+        - list_items
+      x-resourceId: radar.value_list
+    deleted_radar.value_list:
+      description: ''
+      properties:
+        deleted:
+          description: Always true for a deleted object
+          enum:
+            - true
+          type: boolean
+        id:
+          description: Unique identifier for the object.
+          maxLength: 5000
+          type: string
+        object:
+          description: >-
+            String representing the object's type. Objects of the same type
+            share the same value.
+          enum:
+            - radar.value_list
+          type: string
+      required:
+        - deleted
+        - id
+        - object
+      title: RadarListDeletedList
+      type: object
+      x-expandableFields: []
+      x-resourceId: deleted_radar.value_list
+  securitySchemes:
+    basicAuth:
+      description: >-
+        Basic HTTP authentication. Allowed headers-- Authorization: Basic
+        <api_key> | Authorization: Basic <base64 hash of `api_key:`>
+      scheme: basic
+      type: http
+    bearerAuth:
+      bearerFormat: auth-scheme
+      description: >-
+        Bearer HTTP authentication. Allowed headers-- Authorization: Bearer
+        <api_key>
+      scheme: bearer
+      type: http
+tags:
+  - name: Radar
+    description: Needs a description.
+  - name: Early
+    description: Needs a description.
+  - name: Fraud
+    description: Needs a description.
+  - name: Warnings
+    description: Needs a description.
+  - name: Values
+    description: Needs a description.
+  - name: Lists
+    description: Needs a description.
+  - name: Items
+    description: Needs a description.
+---
