@@ -1,0 +1,81 @@
+info:
+  title: Twilio Content API
+  license:
+    name: Apache 2.0
+    url: https://www.apache.org/licenses/LICENSE-2.0.html
+openapi: 3.0.1
+paths:
+  /v1/Content/{Sid}/ApprovalRequests:
+    description: >-
+      An Approval Fetch resource represents the approval status of a Content
+      resource.
+    get:
+      description: Fetch a Content resource's approval status by its unique Content Sid
+      tags:
+        - Content
+        - Approval Requests
+        - Approval
+        - Status
+      summary: Retrieve Content Approval Status
+  /v1/Content/{Sid}:
+    description: A Content resource represents rich messaging content.
+    get:
+      description: Fetch a Content resource by its unique Content Sid
+      tags:
+        - Content
+      summary: Retrieve Content
+    delete:
+      description: Deletes a Content resource
+      tags:
+        - Content
+      summary: Delete Content
+  /v1/Content:
+    description: A Content resource represents rich messaging content.
+    get:
+      description: >-
+        Retrieve a list of Contents belonging to the account used to make the
+        request
+      tags:
+        - Content
+      summary: Retrieve Contents
+  /v1/ContentAndApprovals:
+    description: >-
+      A Content resource represents rich messaging content and its respective
+      approval request status.
+    get:
+      description: >-
+        Retrieve a list of Contents with approval statuses belonging to the
+        account used to make the request
+      tags:
+        - Content
+        - Approval Requests
+        - Approval
+        - Status
+      summary: Content Approval Statuses
+  /v1/LegacyContent:
+    description: A Legacy Content resource represents legacy rich messaging content.
+    get:
+      description: >-
+        Retrieve a list of Legacy Contents belonging to the account used to make
+        the request
+      tags:
+        - Content
+        - Legacy
+      summary: Legacy Content
+tags:
+  - name: Content
+    description: Needs a description.
+  - name: Approval Requests
+    description: Needs a description.
+  - name: Approval
+    description: Needs a description.
+  - name: Status
+    description: Needs a description.
+  - name: Legacy
+    description: Needs a description.
+x-maturity:
+  - name: Preview
+    description: >-
+      PLEASE NOTE that this is a Preview product that is subject to change. Use
+      it with caution. If you currently do not have developer preview access,
+      please contact https://www.twilio.com/help/contact.

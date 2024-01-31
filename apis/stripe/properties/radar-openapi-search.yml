@@ -1,0 +1,132 @@
+openapi: 3.0.0
+info:
+  title: Stripe Radar API
+paths:
+  /v1/radar/early_fraud_warnings:
+    get:
+      description: <p>Returns a list of early fraud warnings.</p>
+      summary: Retrieve Early Fraud Warnings
+      tags:
+        - Radar
+        - Early
+        - Fraud
+        - Warnings
+  /v1/radar/early_fraud_warnings/{early_fraud_warning}:
+    get:
+      description: >-
+        <p>Retrieves the details of an early fraud warning that has previously
+        been created. </p>
+
+
+        <p>Please refer to the <a href="#early_fraud_warning_object">early fraud
+        warning</a> object reference for more details.</p>
+      summary: Retrieve Early Fraud Warning
+      tags:
+        - Radar
+        - Early
+        - Fraud
+        - Warnings
+  /v1/radar/value_list_items:
+    get:
+      description: >-
+        <p>Returns a list of <code>ValueListItem</code> objects. The objects are
+        sorted in descending order by creation date, with the most recently
+        created object appearing first.</p>
+      summary: Retrieve Value List Items
+      tags:
+        - Radar
+        - Values
+        - Lists
+        - Items
+    post:
+      description: >-
+        <p>Creates a new <code>ValueListItem</code> object, which is added to
+        the specified parent value list.</p>
+      summary: Create Value List Items
+      tags:
+        - Radar
+        - Values
+        - Lists
+        - Items
+  /v1/radar/value_list_items/{item}:
+    delete:
+      description: >-
+        <p>Deletes a <code>ValueListItem</code> object, removing it from its
+        parent value list.</p>
+      summary: Delete Value List Item
+      tags:
+        - Radar
+        - Values
+        - Lists
+        - Items
+    get:
+      description: <p>Retrieves a <code>ValueListItem</code> object.</p>
+      summary: Retrieve Value List Item
+      tags:
+        - Radar
+        - Values
+        - Lists
+        - Items
+  /v1/radar/value_lists:
+    get:
+      description: >-
+        <p>Returns a list of <code>ValueList</code> objects. The objects are
+        sorted in descending order by creation date, with the most recently
+        created object appearing first.</p>
+      summary: Retrieve Value Lists
+      tags:
+        - Radar
+        - Values
+        - Lists
+    post:
+      description: >-
+        <p>Creates a new <code>ValueList</code> object, which can then be
+        referenced in rules.</p>
+      summary: Create Value List
+      tags:
+        - Radar
+        - Values
+        - Lists
+  /v1/radar/value_lists/{value_list}:
+    delete:
+      description: >-
+        <p>Deletes a <code>ValueList</code> object, also deleting any items
+        contained within the value list. To be deleted, a value list must not be
+        referenced in any rules.</p>
+      summary: Delete Value List
+      tags:
+        - Radar
+        - Values
+        - Lists
+    get:
+      description: <p>Retrieves a <code>ValueList</code> object.</p>
+      summary: Retrieve Value List
+      tags:
+        - Radar
+        - Values
+        - Lists
+    post:
+      description: >-
+        <p>Updates a <code>ValueList</code> object by setting the values of the
+        parameters passed. Any parameters not provided will be left unchanged.
+        Note that <code>item_type</code> is immutable.</p>
+      summary: Update Value List
+      tags:
+        - Radar
+        - Values
+        - Lists
+tags:
+  - name: Radar
+    description: Needs a description.
+  - name: Early
+    description: Needs a description.
+  - name: Fraud
+    description: Needs a description.
+  - name: Warnings
+    description: Needs a description.
+  - name: Values
+    description: Needs a description.
+  - name: Lists
+    description: Needs a description.
+  - name: Items
+    description: Needs a description.

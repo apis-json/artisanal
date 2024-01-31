@@ -1,0 +1,919 @@
+openapi: 3.0.0
+info:
+  title: Stripe Link API
+  description: Needs description.
+  contact:
+    email: dev-platform@stripe.com
+    name: Stripe Dev Platform Team
+    url: 'https://stripe.com'
+  termsOfService: 'https://stripe.com/us/terms/'
+  version: '2023-10-16'
+  x-stripeSpecFilename: spec3
+security:
+  - basicAuth: []
+  - bearerAuth: []
+servers:
+  - url: 'https://api.stripe.com/'
+paths:
+  /v1/link_account_sessions:
+    post:
+      description: >-
+        <p>To launch the Financial Connections authorization flow, create a
+        <code>Session</code>. The session’s <code>client_secret</code> can be
+        used to launch the flow using Stripe.js.</p>
+      operationId: PostLinkAccountSessions
+      requestBody:
+        content:
+          application/x-www-form-urlencoded:
+            encoding:
+              account_holder:
+                explode: true
+                style: deepObject
+              expand:
+                explode: true
+                style: deepObject
+              filters:
+                explode: true
+                style: deepObject
+              permissions:
+                explode: true
+                style: deepObject
+              prefetch:
+                explode: true
+                style: deepObject
+            schema:
+              additionalProperties: false
+              $ref: '#/components/schemas/PostLinkAccountSessionsRequest'
+        required: true
+      responses:
+        '200':
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/financial_connections.session'
+          description: Successful response.
+        default:
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/error'
+          description: Error response.
+  '/v1/link_account_sessions/{session}':
+    get:
+      description: >-
+        <p>Retrieves the details of a Financial Connections
+        <code>Session</code></p>
+      operationId: GetLinkAccountSessionsSession
+      parameters:
+        - description: Specifies which fields in the response should be expanded.
+          explode: true
+          in: query
+          name: expand
+          required: false
+          schema:
+            items:
+              maxLength: 5000
+              type: string
+            type: array
+          style: deepObject
+        - in: path
+          name: session
+          required: true
+          schema:
+            maxLength: 5000
+            type: string
+          style: simple
+      requestBody:
+        content:
+          application/x-www-form-urlencoded:
+            encoding: {}
+            schema:
+              additionalProperties: false
+              $ref: '#/components/schemas/GetLinkAccountSessionsSessionRequest'
+        required: false
+      responses:
+        '200':
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/financial_connections.session'
+          description: Successful response.
+        default:
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/error'
+          description: Error response.
+  /v1/linked_accounts:
+    get:
+      description: >-
+        <p>Returns a list of Financial Connections <code>Account</code>
+        objects.</p>
+      operationId: GetLinkedAccounts
+      parameters:
+        - description: >-
+            If present, only return accounts that belong to the specified
+            account holder. `account_holder[customer]` and
+            `account_holder[account]` are mutually exclusive.
+          explode: true
+          in: query
+          name: account_holder
+          required: false
+          schema:
+            properties:
+              account:
+                maxLength: 5000
+                type: string
+              customer:
+                maxLength: 5000
+                type: string
+            title: accountholder_params
+            type: object
+          style: deepObject
+        - description: >-
+            A cursor for use in pagination. `ending_before` is an object ID that
+            defines your place in the list. For instance, if you make a list
+            request and receive 100 objects, starting with `obj_bar`, your
+            subsequent call can include `ending_before=obj_bar` in order to
+            fetch the previous page of the list.
+          in: query
+          name: ending_before
+          required: false
+          schema:
+            maxLength: 5000
+            type: string
+          style: form
+        - description: Specifies which fields in the response should be expanded.
+          explode: true
+          in: query
+          name: expand
+          required: false
+          schema:
+            items:
+              maxLength: 5000
+              type: string
+            type: array
+          style: deepObject
+        - description: >-
+            A limit on the number of objects to be returned. Limit can range
+            between 1 and 100, and the default is 10.
+          in: query
+          name: limit
+          required: false
+          schema:
+            type: integer
+          style: form
+        - description: >-
+            If present, only return accounts that were collected as part of the
+            given session.
+          in: query
+          name: session
+          required: false
+          schema:
+            maxLength: 5000
+            type: string
+          style: form
+        - description: >-
+            A cursor for use in pagination. `starting_after` is an object ID
+            that defines your place in the list. For instance, if you make a
+            list request and receive 100 objects, ending with `obj_foo`, your
+            subsequent call can include `starting_after=obj_foo` in order to
+            fetch the next page of the list.
+          in: query
+          name: starting_after
+          required: false
+          schema:
+            maxLength: 5000
+            type: string
+          style: form
+      requestBody:
+        content:
+          application/x-www-form-urlencoded:
+            encoding: {}
+            schema:
+              additionalProperties: false
+              $ref: '#/components/schemas/GetLinkedAccountsRequest'
+        required: false
+      responses:
+        '200':
+          content:
+            application/json:
+              schema:
+                description: ''
+                x-expandableFields:
+                  - data
+                $ref: '#/components/schemas/BankConnectionsResourceLinkedAccountList'
+          description: Successful response.
+        default:
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/error'
+          description: Error response.
+  '/v1/linked_accounts/{account}':
+    get:
+      description: >-
+        <p>Retrieves the details of an Financial Connections
+        <code>Account</code>.</p>
+      operationId: GetLinkedAccountsAccount
+      parameters:
+        - in: path
+          name: account
+          required: true
+          schema:
+            maxLength: 5000
+            type: string
+          style: simple
+        - description: Specifies which fields in the response should be expanded.
+          explode: true
+          in: query
+          name: expand
+          required: false
+          schema:
+            items:
+              maxLength: 5000
+              type: string
+            type: array
+          style: deepObject
+      requestBody:
+        content:
+          application/x-www-form-urlencoded:
+            encoding: {}
+            schema:
+              additionalProperties: false
+              $ref: '#/components/schemas/GetLinkedAccountsAccountRequest'
+        required: false
+      responses:
+        '200':
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/financial_connections.account'
+          description: Successful response.
+        default:
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/error'
+          description: Error response.
+  '/v1/linked_accounts/{account}/disconnect':
+    post:
+      description: >-
+        <p>Disables your access to a Financial Connections <code>Account</code>.
+        You will no longer be able to access data associated with the account
+        (e.g. balances, transactions).</p>
+      operationId: PostLinkedAccountsAccountDisconnect
+      parameters:
+        - in: path
+          name: account
+          required: true
+          schema:
+            maxLength: 5000
+            type: string
+          style: simple
+      requestBody:
+        content:
+          application/x-www-form-urlencoded:
+            encoding:
+              expand:
+                explode: true
+                style: deepObject
+            schema:
+              additionalProperties: false
+              $ref: '#/components/schemas/PostLinkedAccountsAccountDisconnectRequest'
+        required: false
+      responses:
+        '200':
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/financial_connections.account'
+          description: Successful response.
+        default:
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/error'
+          description: Error response.
+  '/v1/linked_accounts/{account}/owners':
+    get:
+      description: <p>Lists all owners for a given <code>Account</code></p>
+      operationId: GetLinkedAccountsAccountOwners
+      parameters:
+        - in: path
+          name: account
+          required: true
+          schema:
+            maxLength: 5000
+            type: string
+          style: simple
+        - description: >-
+            A cursor for use in pagination. `ending_before` is an object ID that
+            defines your place in the list. For instance, if you make a list
+            request and receive 100 objects, starting with `obj_bar`, your
+            subsequent call can include `ending_before=obj_bar` in order to
+            fetch the previous page of the list.
+          in: query
+          name: ending_before
+          required: false
+          schema:
+            maxLength: 5000
+            type: string
+          style: form
+        - description: Specifies which fields in the response should be expanded.
+          explode: true
+          in: query
+          name: expand
+          required: false
+          schema:
+            items:
+              maxLength: 5000
+              type: string
+            type: array
+          style: deepObject
+        - description: >-
+            A limit on the number of objects to be returned. Limit can range
+            between 1 and 100, and the default is 10.
+          in: query
+          name: limit
+          required: false
+          schema:
+            type: integer
+          style: form
+        - description: The ID of the ownership object to fetch owners from.
+          in: query
+          name: ownership
+          required: true
+          schema:
+            maxLength: 5000
+            type: string
+          style: form
+        - description: >-
+            A cursor for use in pagination. `starting_after` is an object ID
+            that defines your place in the list. For instance, if you make a
+            list request and receive 100 objects, ending with `obj_foo`, your
+            subsequent call can include `starting_after=obj_foo` in order to
+            fetch the next page of the list.
+          in: query
+          name: starting_after
+          required: false
+          schema:
+            maxLength: 5000
+            type: string
+          style: form
+      requestBody:
+        content:
+          application/x-www-form-urlencoded:
+            encoding: {}
+            schema:
+              additionalProperties: false
+              $ref: '#/components/schemas/GetLinkedAccountsAccountOwnersRequest'
+        required: false
+      responses:
+        '200':
+          content:
+            application/json:
+              schema:
+                description: ''
+                x-expandableFields:
+                  - data
+                $ref: '#/components/schemas/BankConnectionsResourceOwnerList'
+          description: Successful response.
+        default:
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/error'
+          description: Error response.
+  '/v1/linked_accounts/{account}/refresh':
+    post:
+      description: >-
+        <p>Refreshes the data associated with a Financial Connections
+        <code>Account</code>.</p>
+      operationId: PostLinkedAccountsAccountRefresh
+      parameters:
+        - in: path
+          name: account
+          required: true
+          schema:
+            maxLength: 5000
+            type: string
+          style: simple
+      requestBody:
+        content:
+          application/x-www-form-urlencoded:
+            encoding:
+              expand:
+                explode: true
+                style: deepObject
+              features:
+                explode: true
+                style: deepObject
+            schema:
+              additionalProperties: false
+              $ref: '#/components/schemas/PostLinkedAccountsAccountRefreshRequest'
+        required: true
+      responses:
+        '200':
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/financial_connections.account'
+          description: Successful response.
+        default:
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/error'
+          description: Error response.
+components:
+  schemas:
+    financial_connections.session:
+      description: >-
+        A Financial Connections Session is the secure way to programmatically
+        launch the client-side Stripe.js modal that lets your users link their
+        accounts.
+      properties:
+        account_holder:
+          anyOf:
+            - $ref: '#/components/schemas/bank_connections_resource_accountholder'
+          description: The account holder for whom accounts are collected in this session.
+          nullable: true
+        accounts:
+          description: The accounts that were collected as part of this Session.
+          properties:
+            data:
+              description: Details about each object.
+              items:
+                $ref: '#/components/schemas/financial_connections.account'
+              type: array
+            has_more:
+              description: >-
+                True if this list has another page of items after this one that
+                can be fetched.
+              type: boolean
+            object:
+              description: >-
+                String representing the object's type. Objects of the same type
+                share the same value. Always has the value `list`.
+              enum:
+                - list
+              type: string
+            url:
+              description: The URL where this list can be accessed.
+              maxLength: 5000
+              pattern: ^/v1/financial_connections/accounts
+              type: string
+          required:
+            - data
+            - has_more
+            - object
+            - url
+          title: BankConnectionsResourceLinkedAccountList
+          type: object
+          x-expandableFields:
+            - data
+        client_secret:
+          description: >-
+            A value that will be passed to the client to launch the
+            authentication flow.
+          maxLength: 5000
+          type: string
+        filters:
+          $ref: >-
+            #/components/schemas/bank_connections_resource_link_account_session_filters
+        id:
+          description: Unique identifier for the object.
+          maxLength: 5000
+          type: string
+        livemode:
+          description: >-
+            Has the value `true` if the object exists in live mode or the value
+            `false` if the object exists in test mode.
+          type: boolean
+        object:
+          description: >-
+            String representing the object's type. Objects of the same type
+            share the same value.
+          enum:
+            - financial_connections.session
+          type: string
+        permissions:
+          description: Permissions requested for accounts collected during this session.
+          items:
+            enum:
+              - balances
+              - ownership
+              - payment_method
+              - transactions
+            type: string
+            x-stripeBypassValidation: true
+          type: array
+        prefetch:
+          description: Data features requested to be retrieved upon account creation.
+          items:
+            enum:
+              - balances
+              - ownership
+              - transactions
+            type: string
+            x-stripeBypassValidation: true
+          nullable: true
+          type: array
+        return_url:
+          description: >-
+            For webview integrations only. Upon completing OAuth login in the
+            native browser, the user will be redirected to this URL to return to
+            your app.
+          maxLength: 5000
+          type: string
+      required:
+        - accounts
+        - client_secret
+        - id
+        - livemode
+        - object
+        - permissions
+      title: BankConnectionsResourceLinkAccountSession
+      type: object
+      x-expandableFields:
+        - account_holder
+        - accounts
+        - filters
+      x-resourceId: financial_connections.session
+    error:
+      description: An error response from the Stripe API
+      properties:
+        error:
+          $ref: '#/components/schemas/api_errors'
+      required:
+        - error
+      type: object
+    financial_connections.account:
+      description: >-
+        A Financial Connections Account represents an account that exists
+        outside of Stripe, to which you have been granted some degree of access.
+      properties:
+        account_holder:
+          anyOf:
+            - $ref: '#/components/schemas/bank_connections_resource_accountholder'
+          description: The account holder that this account belongs to.
+          nullable: true
+        balance:
+          anyOf:
+            - $ref: '#/components/schemas/bank_connections_resource_balance'
+          description: The most recent information about the account's balance.
+          nullable: true
+        balance_refresh:
+          anyOf:
+            - $ref: '#/components/schemas/bank_connections_resource_balance_refresh'
+          description: The state of the most recent attempt to refresh the account balance.
+          nullable: true
+        category:
+          description: >-
+            The type of the account. Account category is further divided in
+            `subcategory`.
+          enum:
+            - cash
+            - credit
+            - investment
+            - other
+          type: string
+        created:
+          description: >-
+            Time at which the object was created. Measured in seconds since the
+            Unix epoch.
+          format: unix-time
+          type: integer
+        display_name:
+          description: >-
+            A human-readable name that has been assigned to this account, either
+            by the account holder or by the institution.
+          maxLength: 5000
+          nullable: true
+          type: string
+        id:
+          description: Unique identifier for the object.
+          maxLength: 5000
+          type: string
+        institution_name:
+          description: The name of the institution that holds this account.
+          maxLength: 5000
+          type: string
+        last4:
+          description: >-
+            The last 4 digits of the account number. If present, this will be 4
+            numeric characters.
+          maxLength: 5000
+          nullable: true
+          type: string
+        livemode:
+          description: >-
+            Has the value `true` if the object exists in live mode or the value
+            `false` if the object exists in test mode.
+          type: boolean
+        object:
+          description: >-
+            String representing the object's type. Objects of the same type
+            share the same value.
+          enum:
+            - financial_connections.account
+          type: string
+        ownership:
+          anyOf:
+            - maxLength: 5000
+              type: string
+            - $ref: '#/components/schemas/financial_connections.account_ownership'
+          description: The most recent information about the account's owners.
+          nullable: true
+          x-expansionResources:
+            oneOf:
+              - $ref: '#/components/schemas/financial_connections.account_ownership'
+        ownership_refresh:
+          anyOf:
+            - $ref: '#/components/schemas/bank_connections_resource_ownership_refresh'
+          description: The state of the most recent attempt to refresh the account owners.
+          nullable: true
+        permissions:
+          description: The list of permissions granted by this account.
+          items:
+            enum:
+              - balances
+              - ownership
+              - payment_method
+              - transactions
+            type: string
+          nullable: true
+          type: array
+        status:
+          description: The status of the link to the account.
+          enum:
+            - active
+            - disconnected
+            - inactive
+          type: string
+        subcategory:
+          description: |-
+            If `category` is `cash`, one of:
+
+             - `checking`
+             - `savings`
+             - `other`
+
+            If `category` is `credit`, one of:
+
+             - `mortgage`
+             - `line_of_credit`
+             - `credit_card`
+             - `other`
+
+            If `category` is `investment` or `other`, this will be `other`.
+          enum:
+            - checking
+            - credit_card
+            - line_of_credit
+            - mortgage
+            - other
+            - savings
+          type: string
+        subscriptions:
+          description: The list of data refresh subscriptions requested on this account.
+          items:
+            enum:
+              - transactions
+            type: string
+            x-stripeBypassValidation: true
+          nullable: true
+          type: array
+        supported_payment_method_types:
+          description: >-
+            The [PaymentMethod
+            type](https://stripe.com/docs/api/payment_methods/object#payment_method_object-type)(s)
+            that can be created from this account.
+          items:
+            enum:
+              - link
+              - us_bank_account
+            type: string
+          type: array
+        transaction_refresh:
+          anyOf:
+            - $ref: >-
+                #/components/schemas/bank_connections_resource_transaction_refresh
+          description: >-
+            The state of the most recent attempt to refresh the account
+            transactions.
+          nullable: true
+      required:
+        - category
+        - created
+        - id
+        - institution_name
+        - livemode
+        - object
+        - status
+        - subcategory
+        - supported_payment_method_types
+      title: BankConnectionsResourceLinkedAccount
+      type: object
+      x-expandableFields:
+        - account_holder
+        - balance
+        - balance_refresh
+        - ownership
+        - ownership_refresh
+        - transaction_refresh
+      x-resourceId: financial_connections.account
+    PostLinkAccountSessionsRequest:
+      type: object
+      required:
+        - account_holder
+        - permissions
+      properties:
+        account_holder:
+          description: The account holder to link accounts for.
+          properties:
+            account:
+              maxLength: 5000
+              type: string
+            customer:
+              maxLength: 5000
+              type: string
+            type:
+              enum:
+                - account
+                - customer
+              type: string
+          required:
+            - type
+          title: accountholder_params
+          type: object
+        expand:
+          description: Specifies which fields in the response should be expanded.
+          items:
+            maxLength: 5000
+            type: string
+          type: array
+        filters:
+          description: Filters to restrict the kinds of accounts to collect.
+          properties:
+            countries:
+              items:
+                maxLength: 5000
+                type: string
+              type: array
+          required:
+            - countries
+          title: filters_params
+          type: object
+        permissions:
+          description: >-
+            List of data features that you would like to request access to.
+
+
+            Possible values are `balances`, `transactions`, `ownership`, and
+            `payment_method`.
+          items:
+            enum:
+              - balances
+              - ownership
+              - payment_method
+              - transactions
+            maxLength: 5000
+            type: string
+            x-stripeBypassValidation: true
+          type: array
+        prefetch:
+          description: >-
+            List of data features that you would like to retrieve upon account
+            creation.
+          items:
+            enum:
+              - balances
+              - ownership
+              - transactions
+            type: string
+            x-stripeBypassValidation: true
+          type: array
+        return_url:
+          description: >-
+            For webview integrations only. Upon completing OAuth login in the
+            native browser, the user will be redirected to this URL to return to
+            your app.
+          maxLength: 5000
+          type: string
+    GetLinkAccountSessionsSessionRequest:
+      type: object
+      properties: {}
+    GetLinkedAccountsRequest:
+      type: object
+      properties: {}
+    BankConnectionsResourceLinkedAccountList:
+      type: object
+      required:
+        - data
+        - has_more
+        - object
+        - url
+      properties:
+        data:
+          description: Details about each object.
+          items:
+            $ref: '#/components/schemas/financial_connections.account'
+          type: array
+        has_more:
+          description: >-
+            True if this list has another page of items after this one that can
+            be fetched.
+          type: boolean
+        object:
+          description: >-
+            String representing the object's type. Objects of the same type
+            share the same value. Always has the value `list`.
+          enum:
+            - list
+          type: string
+        url:
+          description: The URL where this list can be accessed.
+          maxLength: 5000
+          pattern: ^/v1/financial_connections/accounts
+          type: string
+    GetLinkedAccountsAccountRequest:
+      type: object
+      properties: {}
+    PostLinkedAccountsAccountDisconnectRequest:
+      type: object
+      properties:
+        expand:
+          description: Specifies which fields in the response should be expanded.
+          items:
+            maxLength: 5000
+            type: string
+          type: array
+    GetLinkedAccountsAccountOwnersRequest:
+      type: object
+      properties: {}
+    BankConnectionsResourceOwnerList:
+      type: object
+      required:
+        - data
+        - has_more
+        - object
+        - url
+      properties:
+        data:
+          description: Details about each object.
+          items:
+            $ref: '#/components/schemas/financial_connections.account_owner'
+          type: array
+        has_more:
+          description: >-
+            True if this list has another page of items after this one that can
+            be fetched.
+          type: boolean
+        object:
+          description: >-
+            String representing the object's type. Objects of the same type
+            share the same value. Always has the value `list`.
+          enum:
+            - list
+          type: string
+        url:
+          description: The URL where this list can be accessed.
+          maxLength: 5000
+          type: string
+    PostLinkedAccountsAccountRefreshRequest:
+      type: object
+      required:
+        - features
+      properties:
+        expand:
+          description: Specifies which fields in the response should be expanded.
+          items:
+            maxLength: 5000
+            type: string
+          type: array
+        features:
+          description: The list of account features that you would like to refresh.
+          items:
+            enum:
+              - balance
+              - ownership
+              - transactions
+            type: string
+            x-stripeBypassValidation: true
+          type: array
+  securitySchemes:
+    basicAuth:
+      description: >-
+        Basic HTTP authentication. Allowed headers-- Authorization: Basic
+        <api_key> | Authorization: Basic <base64 hash of `api_key:`>
+      scheme: basic
+      type: http
+    bearerAuth:
+      bearerFormat: auth-scheme
+      description: >-
+        Bearer HTTP authentication. Allowed headers-- Authorization: Bearer
+        <api_key>
+      scheme: bearer
+      type: http

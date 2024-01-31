@@ -1,0 +1,190 @@
+openapi: 3.0.0
+info:
+  title: Stripe Terminal API
+paths:
+  /v1/terminal/configurations:
+    get:
+      description: <p>Returns a list of <code>Configuration</code> objects.</p>
+      summary: Retrieve Terminal Configurations
+      tags:
+        - Terminal
+        - Configurations
+    post:
+      description: <p>Creates a new <code>Configuration</code> object.</p>
+      summary: Create Terminal Configuration
+      tags:
+        - Terminal
+        - Configurations
+  /v1/terminal/configurations/{configuration}:
+    delete:
+      description: <p>Deletes a <code>Configuration</code> object.</p>
+      summary: Delete Terminal Configuration
+      tags:
+        - Terminal
+        - Configurations
+    get:
+      description: <p>Retrieves a <code>Configuration</code> object.</p>
+      summary: Retrieve Terminal Configuration
+      tags:
+        - Terminal
+        - Configurations
+    post:
+      description: <p>Updates a new <code>Configuration</code> object.</p>
+      summary: Update Terminal Configuration
+      tags:
+        - Terminal
+        - Configurations
+  /v1/terminal/connection_tokens:
+    post:
+      description: >-
+        <p>To connect to a reader the Stripe Terminal SDK needs to retrieve a
+        short-lived connection token from Stripe, proxied through your server.
+        On your backend, add an endpoint that creates and returns a connection
+        token.</p>
+      summary: Create Terminal Connection Token
+      tags:
+        - Terminal
+        - Connections
+        - Tokens
+  /v1/terminal/locations:
+    get:
+      description: <p>Returns a list of <code>Location</code> objects.</p>
+      summary: Retrieve Terminal Locations
+      tags:
+        - Terminal
+        - Locations
+    post:
+      description: >-
+        <p>Creates a new <code>Location</code> object.
+
+        For further details, including which address fields are required in each
+        country, see the <a href="/docs/terminal/fleet/locations">Manage
+        locations</a> guide.</p>
+      summary: Create Terminal Location
+      tags:
+        - Terminal
+        - Locations
+  /v1/terminal/locations/{location}:
+    delete:
+      description: <p>Deletes a <code>Location</code> object.</p>
+      summary: Delete Terminal Location
+      tags:
+        - Terminal
+        - Locations
+    get:
+      description: <p>Retrieves a <code>Location</code> object.</p>
+      summary: Retrieve Terminal Location
+      tags:
+        - Terminal
+        - Locations
+    post:
+      description: >-
+        <p>Updates a <code>Location</code> object by setting the values of the
+        parameters passed. Any parameters not provided will be left
+        unchanged.</p>
+      summary: Update Terminal Location
+      tags:
+        - Terminal
+        - Locations
+  /v1/terminal/readers:
+    get:
+      description: <p>Returns a list of <code>Reader</code> objects.</p>
+      summary: Retrieve Terminal Readers
+      tags:
+        - Terminal
+        - Readers
+    post:
+      description: <p>Creates a new <code>Reader</code> object.</p>
+      summary: Create Terminal Reader
+      tags:
+        - Terminal
+        - Readers
+  /v1/terminal/readers/{reader}:
+    delete:
+      description: <p>Deletes a <code>Reader</code> object.</p>
+      summary: Delete Terminal Reader
+      tags:
+        - Terminal
+        - Readers
+    get:
+      description: <p>Retrieves a <code>Reader</code> object.</p>
+      summary: Retrieve Terminal Reader
+      tags:
+        - Terminal
+        - Readers
+    post:
+      description: >-
+        <p>Updates a <code>Reader</code> object by setting the values of the
+        parameters passed. Any parameters not provided will be left
+        unchanged.</p>
+      summary: Update Terminal Reader
+      tags:
+        - Terminal
+        - Readers
+  /v1/terminal/readers/{reader}/cancel_action:
+    post:
+      description: <p>Cancels the current reader action.</p>
+      summary: Cancel Terminal Reader Action
+      tags:
+        - Terminal
+        - Readers
+        - Actions
+  /v1/terminal/readers/{reader}/process_payment_intent:
+    post:
+      description: <p>Initiates a payment flow on a Reader.</p>
+      summary: Initiate Terminal Reader Flow
+      tags:
+        - Payments
+        - Terminal
+        - Readers
+        - Flows
+  /v1/terminal/readers/{reader}/process_setup_intent:
+    post:
+      description: <p>Initiates a setup intent flow on a Reader.</p>
+      summary: Retrieve Terminal Reader Setup Intent
+      tags:
+        - Terminal
+        - Readers
+        - Setup
+        - Intent
+  /v1/terminal/readers/{reader}/refund_payment:
+    post:
+      description: <p>Initiates a refund on a Reader</p>
+      summary: Refund Terminal Reader Payment
+      tags:
+        - Terminal
+        - Readers
+        - Payments
+  /v1/terminal/readers/{reader}/set_reader_display:
+    post:
+      description: <p>Sets reader display to show cart details.</p>
+      summary: Set Terminal Reader Display
+      tags:
+        - Terminal
+        - Readers
+        - Display
+tags:
+  - name: Terminal
+    description: Needs a description.
+  - name: Configurations
+    description: Needs a description.
+  - name: Connections
+    description: Needs a description.
+  - name: Tokens
+    description: Needs a description.
+  - name: Locations
+    description: Needs a description.
+  - name: Readers
+    description: Needs a description.
+  - name: Actions
+    description: Needs a description.
+  - name: Payments
+    description: Needs a description.
+  - name: Flows
+    description: Needs a description.
+  - name: Setup
+    description: Needs a description.
+  - name: Intent
+    description: Needs a description.
+  - name: Display
+    description: Needs a description.

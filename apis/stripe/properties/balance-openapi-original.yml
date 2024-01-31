@@ -1,0 +1,849 @@
+openapi: 3.0.0
+info:
+  title: Stripe Balance API
+  description: Needs description.
+  contact:
+    email: dev-platform@stripe.com
+    name: Stripe Dev Platform Team
+    url: 'https://stripe.com'
+  termsOfService: 'https://stripe.com/us/terms/'
+  version: '2023-10-16'
+  x-stripeSpecFilename: spec3
+security:
+  - basicAuth: []
+  - bearerAuth: []
+servers:
+  - url: 'https://api.stripe.com/'
+paths:
+  /v1/balance:
+    get:
+      description: >-
+        <p>Retrieves the current account balance, based on the authentication
+        that was used to make the request.
+         For a sample request, see <a href="/docs/connect/account-balances#accounting-for-negative-balances">Accounting for negative balances</a>.</p>
+      operationId: GetBalance
+      parameters:
+        - description: Specifies which fields in the response should be expanded.
+          explode: true
+          in: query
+          name: expand
+          required: false
+          schema:
+            items:
+              maxLength: 5000
+              type: string
+            type: array
+          style: deepObject
+      requestBody:
+        content:
+          application/x-www-form-urlencoded:
+            encoding: {}
+            schema:
+              additionalProperties: false
+              $ref: '#/components/schemas/GetBalanceRequest'
+        required: false
+      responses:
+        '200':
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/balance'
+          description: Successful response.
+        default:
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/error'
+          description: Error response.
+  /v1/balance/history:
+    get:
+      description: >-
+        <p>Returns a list of transactions that have contributed to the Stripe
+        account balance (e.g., charges, transfers, and so forth). The
+        transactions are returned in sorted order, with the most recent
+        transactions appearing first.</p>
+
+
+        <p>Note that this endpoint was previously called “Balance history” and
+        used the path <code>/v1/balance/history</code>.</p>
+      operationId: GetBalanceHistory
+      parameters:
+        - explode: true
+          in: query
+          name: created
+          required: false
+          schema:
+            anyOf:
+              - properties:
+                  gt:
+                    type: integer
+                  gte:
+                    type: integer
+                  lt:
+                    type: integer
+                  lte:
+                    type: integer
+                title: range_query_specs
+                type: object
+              - type: integer
+          style: deepObject
+        - description: >-
+            Only return transactions in a certain currency. Three-letter [ISO
+            currency code](https://www.iso.org/iso-4217-currency-codes.html), in
+            lowercase. Must be a [supported
+            currency](https://stripe.com/docs/currencies).
+          in: query
+          name: currency
+          required: false
+          schema:
+            type: string
+          style: form
+        - description: >-
+            A cursor for use in pagination. `ending_before` is an object ID that
+            defines your place in the list. For instance, if you make a list
+            request and receive 100 objects, starting with `obj_bar`, your
+            subsequent call can include `ending_before=obj_bar` in order to
+            fetch the previous page of the list.
+          in: query
+          name: ending_before
+          required: false
+          schema:
+            maxLength: 5000
+            type: string
+          style: form
+        - description: Specifies which fields in the response should be expanded.
+          explode: true
+          in: query
+          name: expand
+          required: false
+          schema:
+            items:
+              maxLength: 5000
+              type: string
+            type: array
+          style: deepObject
+        - description: >-
+            A limit on the number of objects to be returned. Limit can range
+            between 1 and 100, and the default is 10.
+          in: query
+          name: limit
+          required: false
+          schema:
+            type: integer
+          style: form
+        - description: >-
+            For automatic Stripe payouts only, only returns transactions that
+            were paid out on the specified payout ID.
+          in: query
+          name: payout
+          required: false
+          schema:
+            maxLength: 5000
+            type: string
+          style: form
+        - description: Only returns the original transaction.
+          in: query
+          name: source
+          required: false
+          schema:
+            maxLength: 5000
+            type: string
+          style: form
+        - description: >-
+            A cursor for use in pagination. `starting_after` is an object ID
+            that defines your place in the list. For instance, if you make a
+            list request and receive 100 objects, ending with `obj_foo`, your
+            subsequent call can include `starting_after=obj_foo` in order to
+            fetch the next page of the list.
+          in: query
+          name: starting_after
+          required: false
+          schema:
+            maxLength: 5000
+            type: string
+          style: form
+        - description: >-
+            Only returns transactions of the given type. One of: `adjustment`,
+            `advance`, `advance_funding`, `anticipation_repayment`,
+            `application_fee`, `application_fee_refund`, `charge`,
+            `climate_order_purchase`, `climate_order_refund`,
+            `connect_collection_transfer`, `contribution`,
+            `issuing_authorization_hold`, `issuing_authorization_release`,
+            `issuing_dispute`, `issuing_transaction`, `obligation_inbound`,
+            `obligation_outbound`, `obligation_reversal_inbound`,
+            `obligation_reversal_outbound`, `obligation_payout`,
+            `obligation_payout_failure`, `payment`, `payment_failure_refund`,
+            `payment_network_reserve_hold`, `payment_network_reserve_release`,
+            `payment_refund`, `payment_reversal`, `payment_unreconciled`,
+            `payout`, `payout_cancel`, `payout_failure`, `refund`,
+            `refund_failure`, `reserve_transaction`, `reserved_funds`,
+            `stripe_fee`, `stripe_fx_fee`, `tax_fee`, `topup`, `topup_reversal`,
+            `transfer`, `transfer_cancel`, `transfer_failure`, or
+            `transfer_refund`.
+          in: query
+          name: type
+          required: false
+          schema:
+            maxLength: 5000
+            type: string
+          style: form
+      requestBody:
+        content:
+          application/x-www-form-urlencoded:
+            encoding: {}
+            schema:
+              additionalProperties: false
+              $ref: '#/components/schemas/GetBalanceHistoryRequest'
+        required: false
+      responses:
+        '200':
+          content:
+            application/json:
+              schema:
+                description: ''
+                x-expandableFields:
+                  - data
+                $ref: '#/components/schemas/BalanceTransactionsList'
+          description: Successful response.
+        default:
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/error'
+          description: Error response.
+  '/v1/balance/history/{id}':
+    get:
+      description: >-
+        <p>Retrieves the balance transaction with the given ID.</p>
+
+
+        <p>Note that this endpoint previously used the path
+        <code>/v1/balance/history/:id</code>.</p>
+      operationId: GetBalanceHistoryId
+      parameters:
+        - description: Specifies which fields in the response should be expanded.
+          explode: true
+          in: query
+          name: expand
+          required: false
+          schema:
+            items:
+              maxLength: 5000
+              type: string
+            type: array
+          style: deepObject
+        - in: path
+          name: id
+          required: true
+          schema:
+            maxLength: 5000
+            type: string
+          style: simple
+      requestBody:
+        content:
+          application/x-www-form-urlencoded:
+            encoding: {}
+            schema:
+              additionalProperties: false
+              $ref: '#/components/schemas/GetBalanceHistoryIdRequest'
+        required: false
+      responses:
+        '200':
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/balance_transaction'
+          description: Successful response.
+        default:
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/error'
+          description: Error response.
+  /v1/balance_transactions:
+    get:
+      description: >-
+        <p>Returns a list of transactions that have contributed to the Stripe
+        account balance (e.g., charges, transfers, and so forth). The
+        transactions are returned in sorted order, with the most recent
+        transactions appearing first.</p>
+
+
+        <p>Note that this endpoint was previously called “Balance history” and
+        used the path <code>/v1/balance/history</code>.</p>
+      operationId: GetBalanceTransactions
+      parameters:
+        - explode: true
+          in: query
+          name: created
+          required: false
+          schema:
+            anyOf:
+              - properties:
+                  gt:
+                    type: integer
+                  gte:
+                    type: integer
+                  lt:
+                    type: integer
+                  lte:
+                    type: integer
+                title: range_query_specs
+                type: object
+              - type: integer
+          style: deepObject
+        - description: >-
+            Only return transactions in a certain currency. Three-letter [ISO
+            currency code](https://www.iso.org/iso-4217-currency-codes.html), in
+            lowercase. Must be a [supported
+            currency](https://stripe.com/docs/currencies).
+          in: query
+          name: currency
+          required: false
+          schema:
+            type: string
+          style: form
+        - description: >-
+            A cursor for use in pagination. `ending_before` is an object ID that
+            defines your place in the list. For instance, if you make a list
+            request and receive 100 objects, starting with `obj_bar`, your
+            subsequent call can include `ending_before=obj_bar` in order to
+            fetch the previous page of the list.
+          in: query
+          name: ending_before
+          required: false
+          schema:
+            maxLength: 5000
+            type: string
+          style: form
+        - description: Specifies which fields in the response should be expanded.
+          explode: true
+          in: query
+          name: expand
+          required: false
+          schema:
+            items:
+              maxLength: 5000
+              type: string
+            type: array
+          style: deepObject
+        - description: >-
+            A limit on the number of objects to be returned. Limit can range
+            between 1 and 100, and the default is 10.
+          in: query
+          name: limit
+          required: false
+          schema:
+            type: integer
+          style: form
+        - description: >-
+            For automatic Stripe payouts only, only returns transactions that
+            were paid out on the specified payout ID.
+          in: query
+          name: payout
+          required: false
+          schema:
+            maxLength: 5000
+            type: string
+          style: form
+        - description: Only returns the original transaction.
+          in: query
+          name: source
+          required: false
+          schema:
+            maxLength: 5000
+            type: string
+          style: form
+        - description: >-
+            A cursor for use in pagination. `starting_after` is an object ID
+            that defines your place in the list. For instance, if you make a
+            list request and receive 100 objects, ending with `obj_foo`, your
+            subsequent call can include `starting_after=obj_foo` in order to
+            fetch the next page of the list.
+          in: query
+          name: starting_after
+          required: false
+          schema:
+            maxLength: 5000
+            type: string
+          style: form
+        - description: >-
+            Only returns transactions of the given type. One of: `adjustment`,
+            `advance`, `advance_funding`, `anticipation_repayment`,
+            `application_fee`, `application_fee_refund`, `charge`,
+            `climate_order_purchase`, `climate_order_refund`,
+            `connect_collection_transfer`, `contribution`,
+            `issuing_authorization_hold`, `issuing_authorization_release`,
+            `issuing_dispute`, `issuing_transaction`, `obligation_inbound`,
+            `obligation_outbound`, `obligation_reversal_inbound`,
+            `obligation_reversal_outbound`, `obligation_payout`,
+            `obligation_payout_failure`, `payment`, `payment_failure_refund`,
+            `payment_network_reserve_hold`, `payment_network_reserve_release`,
+            `payment_refund`, `payment_reversal`, `payment_unreconciled`,
+            `payout`, `payout_cancel`, `payout_failure`, `refund`,
+            `refund_failure`, `reserve_transaction`, `reserved_funds`,
+            `stripe_fee`, `stripe_fx_fee`, `tax_fee`, `topup`, `topup_reversal`,
+            `transfer`, `transfer_cancel`, `transfer_failure`, or
+            `transfer_refund`.
+          in: query
+          name: type
+          required: false
+          schema:
+            maxLength: 5000
+            type: string
+          style: form
+      requestBody:
+        content:
+          application/x-www-form-urlencoded:
+            encoding: {}
+            schema:
+              additionalProperties: false
+              $ref: '#/components/schemas/GetBalanceTransactionsRequest'
+        required: false
+      responses:
+        '200':
+          content:
+            application/json:
+              schema:
+                description: ''
+                x-expandableFields:
+                  - data
+                $ref: '#/components/schemas/BalanceTransactionsList'
+          description: Successful response.
+        default:
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/error'
+          description: Error response.
+  '/v1/balance_transactions/{id}':
+    get:
+      description: >-
+        <p>Retrieves the balance transaction with the given ID.</p>
+
+
+        <p>Note that this endpoint previously used the path
+        <code>/v1/balance/history/:id</code>.</p>
+      operationId: GetBalanceTransactionsId
+      parameters:
+        - description: Specifies which fields in the response should be expanded.
+          explode: true
+          in: query
+          name: expand
+          required: false
+          schema:
+            items:
+              maxLength: 5000
+              type: string
+            type: array
+          style: deepObject
+        - in: path
+          name: id
+          required: true
+          schema:
+            maxLength: 5000
+            type: string
+          style: simple
+      requestBody:
+        content:
+          application/x-www-form-urlencoded:
+            encoding: {}
+            schema:
+              additionalProperties: false
+              $ref: '#/components/schemas/GetBalanceTransactionsIdRequest'
+        required: false
+      responses:
+        '200':
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/balance_transaction'
+          description: Successful response.
+        default:
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/error'
+          description: Error response.
+components:
+  schemas:
+    balance:
+      description: >-
+        This is an object representing your Stripe balance. You can retrieve it
+        to see
+
+        the balance currently on your Stripe account.
+
+
+        You can also retrieve the balance history, which contains a list of
+
+        [transactions](https://stripe.com/docs/reporting/balance-transaction-types)
+        that contributed to the balance
+
+        (charges, payouts, and so forth).
+
+
+        The available and pending amounts for each currency are broken down
+        further by
+
+        payment source types.
+
+
+        Related guide: [Understanding Connect account
+        balances](https://stripe.com/docs/connect/account-balances)
+      properties:
+        available:
+          description: >-
+            Available funds that you can transfer or pay out automatically by
+            Stripe or explicitly through the [Transfers
+            API](https://stripe.com/docs/api#transfers) or [Payouts
+            API](https://stripe.com/docs/api#payouts). You can find the
+            available balance for each currency and payment type in the
+            `source_types` property.
+          items:
+            $ref: '#/components/schemas/balance_amount'
+          type: array
+        connect_reserved:
+          description: >-
+            Funds held due to negative balances on connected Custom accounts.
+            You can find the connect reserve balance for each currency and
+            payment type in the `source_types` property.
+          items:
+            $ref: '#/components/schemas/balance_amount'
+          type: array
+        instant_available:
+          description: Funds that you can pay out using Instant Payouts.
+          items:
+            $ref: '#/components/schemas/balance_amount_net'
+          type: array
+        issuing:
+          $ref: '#/components/schemas/balance_detail'
+        livemode:
+          description: >-
+            Has the value `true` if the object exists in live mode or the value
+            `false` if the object exists in test mode.
+          type: boolean
+        object:
+          description: >-
+            String representing the object's type. Objects of the same type
+            share the same value.
+          enum:
+            - balance
+          type: string
+        pending:
+          description: >-
+            Funds that aren't available in the balance yet. You can find the
+            pending balance for each currency and each payment type in the
+            `source_types` property.
+          items:
+            $ref: '#/components/schemas/balance_amount'
+          type: array
+      required:
+        - available
+        - livemode
+        - object
+        - pending
+      title: Balance
+      type: object
+      x-expandableFields:
+        - available
+        - connect_reserved
+        - instant_available
+        - issuing
+        - pending
+      x-resourceId: balance
+    error:
+      description: An error response from the Stripe API
+      properties:
+        error:
+          $ref: '#/components/schemas/api_errors'
+      required:
+        - error
+      type: object
+    balance_transaction:
+      description: >-
+        Balance transactions represent funds moving through your Stripe account.
+
+        Stripe creates them for every type of transaction that enters or leaves
+        your Stripe account balance.
+
+
+        Related guide: [Balance transaction
+        types](https://stripe.com/docs/reports/balance-transaction-types)
+      properties:
+        amount:
+          description: >-
+            Gross amount of this transaction (in cents (or local equivalent)). A
+            positive value represents funds charged to another party, and a
+            negative value represents funds sent to another party.
+          type: integer
+        available_on:
+          description: >-
+            The date that the transaction's net funds become available in the
+            Stripe balance.
+          format: unix-time
+          type: integer
+        created:
+          description: >-
+            Time at which the object was created. Measured in seconds since the
+            Unix epoch.
+          format: unix-time
+          type: integer
+        currency:
+          description: >-
+            Three-letter [ISO currency
+            code](https://www.iso.org/iso-4217-currency-codes.html), in
+            lowercase. Must be a [supported
+            currency](https://stripe.com/docs/currencies).
+          type: string
+        description:
+          description: >-
+            An arbitrary string attached to the object. Often useful for
+            displaying to users.
+          maxLength: 5000
+          nullable: true
+          type: string
+        exchange_rate:
+          description: >-
+            If applicable, this transaction uses an exchange rate. If money
+            converts from currency A to currency B, then the `amount` in
+            currency A, multipled by the `exchange_rate`, equals the `amount` in
+            currency B. For example, if you charge a customer 10.00 EUR, the
+            PaymentIntent's `amount` is `1000` and `currency` is `eur`. If this
+            converts to 12.34 USD in your Stripe account, the
+            BalanceTransaction's `amount` is `1234`, its `currency` is `usd`,
+            and the `exchange_rate` is `1.234`.
+          nullable: true
+          type: number
+        fee:
+          description: >-
+            Fees (in cents (or local equivalent)) paid for this transaction.
+            Represented as a positive integer when assessed.
+          type: integer
+        fee_details:
+          description: >-
+            Detailed breakdown of fees (in cents (or local equivalent)) paid for
+            this transaction.
+          items:
+            $ref: '#/components/schemas/fee'
+          type: array
+        id:
+          description: Unique identifier for the object.
+          maxLength: 5000
+          type: string
+        net:
+          description: >-
+            Net impact to a Stripe balance (in cents (or local equivalent)). A
+            positive value represents incrementing a Stripe balance, and a
+            negative value decrementing a Stripe balance. You can calculate the
+            net impact of a transaction on a balance by `amount` - `fee`
+          type: integer
+        object:
+          description: >-
+            String representing the object's type. Objects of the same type
+            share the same value.
+          enum:
+            - balance_transaction
+          type: string
+        reporting_category:
+          description: >-
+            Learn more about how [reporting
+            categories](https://stripe.com/docs/reports/reporting-categories)
+            can help you understand balance transactions from an accounting
+            perspective.
+          maxLength: 5000
+          type: string
+        source:
+          anyOf:
+            - maxLength: 5000
+              type: string
+            - $ref: '#/components/schemas/application_fee'
+            - $ref: '#/components/schemas/charge'
+            - $ref: '#/components/schemas/connect_collection_transfer'
+            - $ref: '#/components/schemas/customer_cash_balance_transaction'
+            - $ref: '#/components/schemas/dispute'
+            - $ref: '#/components/schemas/fee_refund'
+            - $ref: '#/components/schemas/issuing.authorization'
+            - $ref: '#/components/schemas/issuing.dispute'
+            - $ref: '#/components/schemas/issuing.transaction'
+            - $ref: '#/components/schemas/payout'
+            - $ref: '#/components/schemas/platform_tax_fee'
+            - $ref: '#/components/schemas/refund'
+            - $ref: '#/components/schemas/reserve_transaction'
+            - $ref: '#/components/schemas/tax_deducted_at_source'
+            - $ref: '#/components/schemas/topup'
+            - $ref: '#/components/schemas/transfer'
+            - $ref: '#/components/schemas/transfer_reversal'
+          description: This transaction relates to the Stripe object.
+          nullable: true
+          x-expansionResources:
+            oneOf:
+              - $ref: '#/components/schemas/application_fee'
+              - $ref: '#/components/schemas/charge'
+              - $ref: '#/components/schemas/connect_collection_transfer'
+              - $ref: '#/components/schemas/customer_cash_balance_transaction'
+              - $ref: '#/components/schemas/dispute'
+              - $ref: '#/components/schemas/fee_refund'
+              - $ref: '#/components/schemas/issuing.authorization'
+              - $ref: '#/components/schemas/issuing.dispute'
+              - $ref: '#/components/schemas/issuing.transaction'
+              - $ref: '#/components/schemas/payout'
+              - $ref: '#/components/schemas/platform_tax_fee'
+              - $ref: '#/components/schemas/refund'
+              - $ref: '#/components/schemas/reserve_transaction'
+              - $ref: '#/components/schemas/tax_deducted_at_source'
+              - $ref: '#/components/schemas/topup'
+              - $ref: '#/components/schemas/transfer'
+              - $ref: '#/components/schemas/transfer_reversal'
+          x-stripeBypassValidation: true
+        status:
+          description: >-
+            The transaction's net funds status in the Stripe balance, which are
+            either `available` or `pending`.
+          maxLength: 5000
+          type: string
+        type:
+          description: >-
+            Transaction type: `adjustment`, `advance`, `advance_funding`,
+            `anticipation_repayment`, `application_fee`,
+            `application_fee_refund`, `charge`, `climate_order_purchase`,
+            `climate_order_refund`, `connect_collection_transfer`,
+            `contribution`, `issuing_authorization_hold`,
+            `issuing_authorization_release`, `issuing_dispute`,
+            `issuing_transaction`, `obligation_inbound`, `obligation_outbound`,
+            `obligation_reversal_inbound`, `obligation_reversal_outbound`,
+            `obligation_payout`, `obligation_payout_failure`, `payment`,
+            `payment_failure_refund`, `payment_network_reserve_hold`,
+            `payment_network_reserve_release`, `payment_refund`,
+            `payment_reversal`, `payment_unreconciled`, `payout`,
+            `payout_cancel`, `payout_failure`, `refund`, `refund_failure`,
+            `reserve_transaction`, `reserved_funds`, `stripe_fee`,
+            `stripe_fx_fee`, `tax_fee`, `topup`, `topup_reversal`, `transfer`,
+            `transfer_cancel`, `transfer_failure`, or `transfer_refund`. Learn
+            more about [balance transaction types and what they
+            represent](https://stripe.com/docs/reports/balance-transaction-types).
+            To classify transactions for accounting purposes, consider
+            `reporting_category` instead.
+          enum:
+            - adjustment
+            - advance
+            - advance_funding
+            - anticipation_repayment
+            - application_fee
+            - application_fee_refund
+            - charge
+            - climate_order_purchase
+            - climate_order_refund
+            - connect_collection_transfer
+            - contribution
+            - issuing_authorization_hold
+            - issuing_authorization_release
+            - issuing_dispute
+            - issuing_transaction
+            - obligation_inbound
+            - obligation_outbound
+            - obligation_payout
+            - obligation_payout_failure
+            - obligation_reversal_inbound
+            - obligation_reversal_outbound
+            - payment
+            - payment_failure_refund
+            - payment_network_reserve_hold
+            - payment_network_reserve_release
+            - payment_refund
+            - payment_reversal
+            - payment_unreconciled
+            - payout
+            - payout_cancel
+            - payout_failure
+            - refund
+            - refund_failure
+            - reserve_transaction
+            - reserved_funds
+            - stripe_fee
+            - stripe_fx_fee
+            - tax_fee
+            - topup
+            - topup_reversal
+            - transfer
+            - transfer_cancel
+            - transfer_failure
+            - transfer_refund
+          type: string
+      required:
+        - amount
+        - available_on
+        - created
+        - currency
+        - fee
+        - fee_details
+        - id
+        - net
+        - object
+        - reporting_category
+        - status
+        - type
+      title: BalanceTransaction
+      type: object
+      x-expandableFields:
+        - fee_details
+        - source
+      x-resourceId: balance_transaction
+    GetBalanceRequest:
+      type: object
+      properties: {}
+    GetBalanceHistoryRequest:
+      type: object
+      properties: {}
+    BalanceTransactionsList:
+      type: object
+      required:
+        - data
+        - has_more
+        - object
+        - url
+      properties:
+        data:
+          items:
+            $ref: '#/components/schemas/balance_transaction'
+          type: array
+        has_more:
+          description: >-
+            True if this list has another page of items after this one that can
+            be fetched.
+          type: boolean
+        object:
+          description: >-
+            String representing the object's type. Objects of the same type
+            share the same value. Always has the value `list`.
+          enum:
+            - list
+          type: string
+        url:
+          description: The URL where this list can be accessed.
+          maxLength: 5000
+          pattern: ^/v1/balance_transactions
+          type: string
+    GetBalanceHistoryIdRequest:
+      type: object
+      properties: {}
+    GetBalanceTransactionsRequest:
+      type: object
+      properties: {}
+    GetBalanceTransactionsIdRequest:
+      type: object
+      properties: {}
+  securitySchemes:
+    basicAuth:
+      description: >-
+        Basic HTTP authentication. Allowed headers-- Authorization: Basic
+        <api_key> | Authorization: Basic <base64 hash of `api_key:`>
+      scheme: basic
+      type: http
+    bearerAuth:
+      bearerFormat: auth-scheme
+      description: >-
+        Bearer HTTP authentication. Allowed headers-- Authorization: Bearer
+        <api_key>
+      scheme: bearer
+      type: http

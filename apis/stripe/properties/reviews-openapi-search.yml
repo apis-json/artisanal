@@ -1,0 +1,31 @@
+openapi: 3.0.0
+info:
+  title: Stripe Reviews API
+paths:
+  /v1/reviews:
+    get:
+      description: >-
+        <p>Returns a list of <code>Review</code> objects that have
+        <code>open</code> set to <code>true</code>. The objects are sorted in
+        descending order by creation date, with the most recently created object
+        appearing first.</p>
+      summary: Retrieve Reviews
+      tags:
+        - Reviews
+  /v1/reviews/{review}:
+    get:
+      description: <p>Retrieves a <code>Review</code> object.</p>
+      summary: Retrieve Review
+      tags:
+        - Reviews
+  /v1/reviews/{review}/approve:
+    post:
+      description: >-
+        <p>Approves a <code>Review</code> object, closing it and removing it
+        from the list of reviews.</p>
+      summary: Approve Review
+      tags:
+        - Reviews
+tags:
+  - name: Reviews
+    description: Needs a description.

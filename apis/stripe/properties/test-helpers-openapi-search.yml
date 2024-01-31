@@ -1,0 +1,381 @@
+openapi: 3.0.0
+info:
+  title: Stripe Test Helpers API
+paths:
+  /v1/test_helpers/customers/{customer}/fund_cash_balance:
+    post:
+      description: <p>Create an incoming testmode bank transfer</p>
+      summary: Create Incoming Bank Transfer
+      tags:
+        - Tests
+        - Incoming
+        - Bank
+        - Transfers
+  /v1/test_helpers/issuing/authorizations:
+    post:
+      description: <p>Create a test-mode authorization.</p>
+      summary: Create Autorization
+      tags:
+        - Tests
+        - Authorization
+  /v1/test_helpers/issuing/authorizations/{authorization}/capture:
+    post:
+      description: <p>Capture a test-mode authorization.</p>
+      summary: Capture Authorization
+      tags:
+        - Tests
+        - Capture
+        - Authorization
+  /v1/test_helpers/issuing/authorizations/{authorization}/expire:
+    post:
+      description: <p>Expire a test-mode Authorization.</p>
+      summary: Expire Authorization
+      tags:
+        - Tests
+        - Expires
+        - Authorization
+  /v1/test_helpers/issuing/authorizations/{authorization}/increment:
+    post:
+      description: <p>Increment a test-mode Authorization.</p>
+      summary: Increment Authorization
+      tags:
+        - Tests
+        - Increments
+        - Authorization
+  /v1/test_helpers/issuing/authorizations/{authorization}/reverse:
+    post:
+      description: <p>Reverse a test-mode Authorization.</p>
+      summary: Reverse Authorization
+      tags:
+        - Tests
+        - Reverse
+        - Authorization
+  /v1/test_helpers/issuing/cards/{card}/shipping/deliver:
+    post:
+      description: >-
+        <p>Updates the shipping status of the specified Issuing
+        <code>Card</code> object to <code>delivered</code>.</p>
+      summary: Update Shipping Status to Deliver
+      tags:
+        - Tests
+        - Shipping
+        - Status
+        - Delivers
+  /v1/test_helpers/issuing/cards/{card}/shipping/fail:
+    post:
+      description: >-
+        <p>Updates the shipping status of the specified Issuing
+        <code>Card</code> object to <code>failure</code>.</p>
+      summary: Update Shipping Status to Fail
+      tags:
+        - Tests
+        - Shipping
+        - Status
+        - Fails
+  /v1/test_helpers/issuing/cards/{card}/shipping/return:
+    post:
+      description: >-
+        <p>Updates the shipping status of the specified Issuing
+        <code>Card</code> object to <code>returned</code>.</p>
+      summary: Update Shipping Status to Return
+      tags:
+        - Tests
+        - Shipping
+        - Status
+        - Return
+  /v1/test_helpers/issuing/cards/{card}/shipping/ship:
+    post:
+      description: >-
+        <p>Updates the shipping status of the specified Issuing
+        <code>Card</code> object to <code>shipped</code>.</p>
+      summary: Update Shipping Status to Ship
+      tags:
+        - Tests
+        - Shipping
+        - Status
+        - Ship
+  /v1/test_helpers/issuing/transactions/create_force_capture:
+    post:
+      description: >-
+        <p>Allows the user to capture an arbitrary amount, also known as a
+        forced capture.</p>
+      summary: Create Force Capture
+      tags:
+        - Tests
+        - Force
+        - Capture
+  /v1/test_helpers/issuing/transactions/create_unlinked_refund:
+    post:
+      description: >-
+        <p>Allows the user to refund an arbitrary amount, also known as a
+        unlinked refund.</p>
+      summary: Create Unlinked Refund
+      tags:
+        - Tests
+        - Unlinked
+        - Refunds
+  /v1/test_helpers/issuing/transactions/{transaction}/refund:
+    post:
+      description: <p>Refund a test-mode Transaction.</p>
+      summary: Refund Transaction
+      tags:
+        - Tests
+        - Refunds
+        - Transactions
+  /v1/test_helpers/refunds/{refund}/expire:
+    post:
+      description: <p>Expire a refund with a status of <code>requires_action</code>.</p>
+      summary: Expire Refund
+      tags:
+        - Tests
+        - Expires
+        - Refunds
+  /v1/test_helpers/terminal/readers/{reader}/present_payment_method:
+    post:
+      description: >-
+        <p>Presents a payment method on a simulated reader. Can be used to
+        simulate accepting a payment, saving a card or refunding a
+        transaction.</p>
+      summary: Present Payment Method on Reader
+      tags:
+        - Tests
+        - Presents
+        - Payments
+        - Methods
+        - Readers
+  /v1/test_helpers/test_clocks:
+    get:
+      description: <p>Returns a list of your test clocks.</p>
+      summary: Retrieve Test Clocks
+      tags:
+        - Tests
+        - Clocks
+    post:
+      description: >-
+        <p>Creates a new test clock that can be attached to new customers and
+        quotes.</p>
+      summary: Create Test Clock
+      tags:
+        - Tests
+        - Clocks
+  /v1/test_helpers/test_clocks/{test_clock}:
+    delete:
+      description: <p>Deletes a test clock.</p>
+      summary: Delete Test Clock
+      tags:
+        - Tests
+        - Clocks
+    get:
+      description: <p>Retrieves a test clock.</p>
+      summary: Retrieve Test Clock
+      tags:
+        - Tests
+        - Clocks
+  /v1/test_helpers/test_clocks/{test_clock}/advance:
+    post:
+      description: >-
+        <p>Starts advancing a test clock to a specified time in the future.
+        Advancement is done when status changes to <code>Ready</code>.</p>
+      summary: Advance Test Clock
+      tags:
+        - Advance
+        - Tests
+        - Clocks
+  /v1/test_helpers/treasury/inbound_transfers/{id}/fail:
+    post:
+      description: >-
+        <p>Transitions a test mode created InboundTransfer to the
+        <code>failed</code> status. The InboundTransfer must already be in the
+        <code>processing</code> state.</p>
+      summary: Fail Inbound Transfer
+      tags:
+        - Fails
+        - Inbound
+        - Transfer
+        - Tests
+  /v1/test_helpers/treasury/inbound_transfers/{id}/return:
+    post:
+      description: >-
+        <p>Marks the test mode InboundTransfer object as returned and links the
+        InboundTransfer to a ReceivedDebit. The InboundTransfer must already be
+        in the <code>succeeded</code> state.</p>
+      summary: Return Inbound Transfer
+      tags:
+        - Tests
+        - Inbound
+        - Transfers
+  /v1/test_helpers/treasury/inbound_transfers/{id}/succeed:
+    post:
+      description: >-
+        <p>Transitions a test mode created InboundTransfer to the
+        <code>succeeded</code> status. The InboundTransfer must already be in
+        the <code>processing</code> state.</p>
+      summary: Succeed Inbound Transfer
+      tags:
+        - Tests
+        - Succeed
+        - Inbound
+        - Transfers
+  /v1/test_helpers/treasury/outbound_payments/{id}/fail:
+    post:
+      description: >-
+        <p>Transitions a test mode created OutboundPayment to the
+        <code>failed</code> status. The OutboundPayment must already be in the
+        <code>processing</code> state.</p>
+      summary: Fail Outbound Payment
+      tags:
+        - Tests
+        - Fails
+        - Outbound
+        - Payments
+  /v1/test_helpers/treasury/outbound_payments/{id}/post:
+    post:
+      description: >-
+        <p>Transitions a test mode created OutboundPayment to the
+        <code>posted</code> status. The OutboundPayment must already be in the
+        <code>processing</code> state.</p>
+      summary: Transition Outbound Payment
+      tags:
+        - Tests
+        - Transitions
+        - Outbound
+        - Payments
+  /v1/test_helpers/treasury/outbound_payments/{id}/return:
+    post:
+      description: >-
+        <p>Transitions a test mode created OutboundPayment to the
+        <code>returned</code> status. The OutboundPayment must already be in the
+        <code>processing</code> state.</p>
+      summary: Return Outbound Payment
+      tags:
+        - Tests
+        - Outbound
+        - Payments
+  /v1/test_helpers/treasury/outbound_transfers/{outbound_transfer}/fail:
+    post:
+      description: >-
+        <p>Transitions a test mode created OutboundTransfer to the
+        <code>failed</code> status. The OutboundTransfer must already be in the
+        <code>processing</code> state.</p>
+      summary: Fail Outbound Transfer
+      tags:
+        - Tests
+        - Fails
+        - Outbound
+        - Transfers
+  /v1/test_helpers/treasury/outbound_transfers/{outbound_transfer}/post:
+    post:
+      description: >-
+        <p>Transitions a test mode created OutboundTransfer to the
+        <code>posted</code> status. The OutboundTransfer must already be in the
+        <code>processing</code> state.</p>
+      summary: Transition Outbound Transfer
+      tags:
+        - Tests
+        - Transitions
+        - Outbound
+        - Transfers
+  /v1/test_helpers/treasury/outbound_transfers/{outbound_transfer}/return:
+    post:
+      description: >-
+        <p>Transitions a test mode created OutboundTransfer to the
+        <code>returned</code> status. The OutboundTransfer must already be in
+        the <code>processing</code> state.</p>
+      summary: Return Outbound Transfer
+      tags:
+        - Tests
+        - Outbound
+        - Transfers
+  /v1/test_helpers/treasury/received_credits:
+    post:
+      description: >-
+        <p>Use this endpoint to simulate a test mode ReceivedCredit initiated by
+        a third party. In live mode, you can’t directly create ReceivedCredits
+        initiated by third parties.</p>
+      summary: Received Credit
+      tags:
+        - Tests
+        - Received
+        - Credits
+  /v1/test_helpers/treasury/received_debits:
+    post:
+      description: >-
+        <p>Use this endpoint to simulate a test mode ReceivedDebit initiated by
+        a third party. In live mode, you can’t directly create ReceivedDebits
+        initiated by third parties.</p>
+      summary: Received Debit
+      tags:
+        - Tests
+        - Received
+        - Debits
+tags:
+  - name: Tests
+    description: Needs a description.
+  - name: Incoming
+    description: Needs a description.
+  - name: Bank
+    description: Needs a description.
+  - name: Transfers
+    description: Needs a description.
+  - name: Autorization
+    description: Needs a description.
+  - name: Capture
+    description: Needs a description.
+  - name: Authorization
+    description: Needs a description.
+  - name: Expires
+    description: Needs a description.
+  - name: Increments
+    description: Needs a description.
+  - name: Reverse
+    description: Needs a description.
+  - name: Shipping
+    description: Needs a description.
+  - name: Status
+    description: Needs a description.
+  - name: Delivers
+    description: Needs a description.
+  - name: Fail
+    description: Needs a description.
+  - name: Return
+    description: Needs a description.
+  - name: Ship
+    description: Needs a description.
+  - name: Force
+    description: Needs a description.
+  - name: Unlinked
+    description: Needs a description.
+  - name: Refunds
+    description: Needs a description.
+  - name: Transactions
+    description: Needs a description.
+  - name: Presents
+    description: Needs a description.
+  - name: Payments
+    description: Needs a description.
+  - name: Methods
+    description: Needs a description.
+  - name: Readers
+    description: Needs a description.
+  - name: Clocks
+    description: Needs a description.
+  - name: Advance
+    description: Needs a description.
+  - name: Fails
+    description: Needs a description.
+  - name: Inbound
+    description: Needs a description.
+  - name: Transfer
+    description: Needs a description.
+  - name: Succeed
+    description: Needs a description.
+  - name: Outbound
+    description: Needs a description.
+  - name: Transitions
+    description: Needs a description.
+  - name: Received
+    description: Needs a description.
+  - name: Credits
+    description: Needs a description.
+  - name: Debit
+    description: Needs a description.

@@ -1,0 +1,278 @@
+openapi: 3.0.0
+info:
+  title: Stripe Invoice API
+paths:
+  /v1/invoiceitems:
+    get:
+      description: >-
+        <p>Returns a list of your invoice items. Invoice items are returned
+        sorted by creation date, with the most recently created invoice items
+        appearing first.</p>
+      summary: Retrieve Invoice Items
+      tags:
+        - Invoices
+        - Items
+    post:
+      description: >-
+        <p>Creates an item to be added to a draft invoice (up to 250 items per
+        invoice). If no invoice is specified, the item will be on the next
+        invoice created for the customer specified.</p>
+      summary: Create Invoice Item
+      tags:
+        - Invoices
+        - Items
+  /v1/invoiceitems/{invoiceitem}:
+    delete:
+      description: >-
+        <p>Deletes an invoice item, removing it from an invoice. Deleting
+        invoice items is only possible when they’re not attached to invoices, or
+        if it’s attached to a draft invoice.</p>
+      summary: Delete Invoice Item
+      tags:
+        - Invoices
+        - Items
+    get:
+      description: <p>Retrieves the invoice item with the given ID.</p>
+      summary: Retrieve Invoice Item
+      tags:
+        - Invoices
+        - Items
+    post:
+      description: >-
+        <p>Updates the amount or description of an invoice item on an upcoming
+        invoice. Updating an invoice item is only possible before the invoice
+        it’s attached to is closed.</p>
+      summary: Update Invoice Item
+      tags:
+        - Invoices
+        - Items
+  /v1/invoices:
+    get:
+      description: >-
+        <p>You can list all invoices, or list the invoices for a specific
+        customer. The invoices are returned sorted by creation date, with the
+        most recently created invoices appearing first.</p>
+      summary: Retrieve Invoices
+      tags:
+        - Invoices
+    post:
+      description: >-
+        <p>This endpoint creates a draft invoice for a given customer. The
+        invoice remains a draft until you <a
+        href="#finalize_invoice">finalize</a> the invoice, which allows you to
+        <a href="#pay_invoice">pay</a> or <a href="#send_invoice">send</a> the
+        invoice to your customers.</p>
+      summary: Create Invoice
+      tags:
+        - Invoices
+  /v1/invoices/search:
+    get:
+      description: >-
+        <p>Search for invoices you’ve previously created using Stripe’s <a
+        href="/docs/search#search-query-language">Search Query Language</a>.
+
+        Don’t use search in read-after-write flows where strict consistency is
+        necessary. Under normal operating
+
+        conditions, data is searchable in less than a minute. Occasionally,
+        propagation of new or updated data can be up
+
+        to an hour behind during outages. Search functionality is not available
+        to merchants in India.</p>
+      summary: Search Invoices
+      tags:
+        - Search
+        - Invoices
+  /v1/invoices/upcoming:
+    get:
+      description: >-
+        <p>At any time, you can preview the upcoming invoice for a customer.
+        This will show you all the charges that are pending, including
+        subscription renewal charges, invoice item charges, etc. It will also
+        show you any discounts that are applicable to the invoice.</p>
+
+
+        <p>Note that when you are viewing an upcoming invoice, you are simply
+        viewing a preview – the invoice has not yet been created. As such, the
+        upcoming invoice will not show up in invoice listing calls, and you
+        cannot use the API to pay or edit the invoice. If you want to change the
+        amount that your customer will be billed, you can add, remove, or update
+        pending invoice items, or update the customer’s discount.</p>
+
+
+        <p>You can preview the effects of updating a subscription, including a
+        preview of what proration will take place. To ensure that the actual
+        proration is calculated exactly the same as the previewed proration, you
+        should pass a <code>proration_date</code> parameter when doing the
+        actual subscription update. The value passed in should be the same as
+        the <code>subscription_proration_date</code> returned on the upcoming
+        invoice resource. The recommended way to get only the prorations being
+        previewed is to consider only proration line items where
+        <code>period[start]</code> is equal to the
+        <code>subscription_proration_date</code> on the upcoming invoice
+        resource.</p>
+      summary: Retrieve Upcoming Invoices
+      tags:
+        - Upcoming
+        - Invoices
+  /v1/invoices/upcoming/lines:
+    get:
+      description: >-
+        <p>When retrieving an upcoming invoice, you’ll get a
+        <strong>lines</strong> property containing the total count of line items
+        and the first handful of those items. There is also a URL where you can
+        retrieve the full (paginated) list of line items.</p>
+      summary: Retrieve Upcoming Invoice Lines
+      tags:
+        - Upcoming
+        - Invoices
+        - Lines
+  /v1/invoices/{invoice}:
+    delete:
+      description: >-
+        <p>Permanently deletes a one-off invoice draft. This cannot be undone.
+        Attempts to delete invoices that are no longer in a draft state will
+        fail; once an invoice has been finalized or if an invoice is for a
+        subscription, it must be <a href="#void_invoice">voided</a>.</p>
+      summary: Delete Invoice
+      tags:
+        - Invoices
+    get:
+      description: <p>Retrieves the invoice with the given ID.</p>
+      summary: Retrieve Invoice
+      tags:
+        - Invoices
+    post:
+      description: >-
+        <p>Draft invoices are fully editable. Once an invoice is <a
+        href="/docs/billing/invoices/workflow#finalized">finalized</a>,
+
+        monetary values, as well as <code>collection_method</code>, become
+        uneditable.</p>
+
+
+        <p>If you would like to stop the Stripe Billing engine from
+        automatically finalizing, reattempting payments on,
+
+        sending reminders for, or <a
+        href="/docs/billing/invoices/reconciliation">automatically
+        reconciling</a> invoices, pass
+
+        <code>auto_advance=false</code>.</p>
+      summary: Update Invoice
+      tags:
+        - Invoices
+  /v1/invoices/{invoice}/finalize:
+    post:
+      description: >-
+        <p>Stripe automatically finalizes drafts before sending and attempting
+        payment on invoices. However, if you’d like to finalize a draft invoice
+        manually, you can do so using this method.</p>
+      summary: Finalize Invoice
+      tags:
+        - Finalize
+        - Invoices
+  /v1/invoices/{invoice}/lines:
+    get:
+      description: >-
+        <p>When retrieving an invoice, you’ll get a <strong>lines</strong>
+        property containing the total count of line items and the first handful
+        of those items. There is also a URL where you can retrieve the full
+        (paginated) list of line items.</p>
+      summary: Retrieve Invoice Lines
+      tags:
+        - Invoices
+        - Lines
+  /v1/invoices/{invoice}/lines/{line_item_id}:
+    post:
+      description: >-
+        <p>Updates an invoice’s line item. Some fields, such as
+        <code>tax_amounts</code>, only live on the invoice line item,
+
+        so they can only be updated through this endpoint. Other fields, such as
+        <code>amount</code>, live on both the invoice
+
+        item and the invoice line item, so updates on this endpoint will
+        propagate to the invoice item as well.
+
+        Updating an invoice’s line item is only possible before the invoice is
+        finalized.</p>
+      summary: Retrieve Invoice Line
+      tags:
+        - Invoices
+        - Lines
+  /v1/invoices/{invoice}/mark_uncollectible:
+    post:
+      description: >-
+        <p>Marking an invoice as uncollectible is useful for keeping track of
+        bad debts that can be written off for accounting purposes.</p>
+      summary: Mark Invoice Uncollectable
+      tags:
+        - Mark
+        - Invoices
+        - Uncollectable
+  /v1/invoices/{invoice}/pay:
+    post:
+      description: >-
+        <p>Stripe automatically creates and then attempts to collect payment on
+        invoices for customers on subscriptions according to your <a
+        href="https://dashboard.stripe.com/account/billing/automatic">subscriptions
+        settings</a>. However, if you’d like to attempt payment on an invoice
+        out of the normal collection schedule or for some other reason, you can
+        do so.</p>
+      summary: Pay Invoice
+      tags:
+        - Pay
+        - Invoices
+  /v1/invoices/{invoice}/send:
+    post:
+      description: >-
+        <p>Stripe will automatically send invoices to customers according to
+        your <a
+        href="https://dashboard.stripe.com/account/billing/automatic">subscriptions
+        settings</a>. However, if you’d like to manually send an invoice to your
+        customer out of the normal schedule, you can do so. When sending
+        invoices that have already been paid, there will be no reference to the
+        payment in the email.</p>
+
+
+        <p>Requests made in test-mode result in no emails being sent, despite
+        sending an <code>invoice.sent</code> event.</p>
+      summary: Send Invoice
+      tags:
+        - Send
+        - Invoices
+  /v1/invoices/{invoice}/void:
+    post:
+      description: >-
+        <p>Mark a finalized invoice as void. This cannot be undone. Voiding an
+        invoice is similar to <a href="#delete_invoice">deletion</a>, however it
+        only applies to finalized invoices and maintains a papertrail where the
+        invoice can still be found.</p>
+      summary: Void Invoice
+      tags:
+        - Void
+        - Invoices
+tags:
+  - name: Invoices
+    description: Needs a description.
+  - name: Items
+    description: Needs a description.
+  - name: Search
+    description: Needs a description.
+  - name: Upcoming
+    description: Needs a description.
+  - name: Lines
+    description: Needs a description.
+  - name: Finalize
+    description: Needs a description.
+  - name: Mark
+    description: Needs a description.
+  - name: Uncollectable
+    description: Needs a description.
+  - name: Pay
+    description: Needs a description.
+  - name: Send
+    description: Needs a description.
+  - name: Void
+    description: Needs a description.

@@ -1,0 +1,145 @@
+info:
+  title: Twilio Media API
+  license:
+    name: Apache 2.0
+    url: https://www.apache.org/licenses/LICENSE-2.0.html
+openapi: 3.0.1
+paths:
+  /v1/MediaProcessors:
+    description: >-
+      A MediaProcessor resource provides the ability to capture content from a
+      web application with a Twilio Media Extension to create a livestream.
+    post:
+      description: ''
+      tags:
+        - Media
+        - Processors
+      summary: Create Media Processors
+    get:
+      description: Returns a list of MediaProcessors.
+      tags:
+        - Media
+        - Processors
+      summary: Retrieve Media Processors
+  /v1/MediaProcessors/{Sid}:
+    description: >-
+      A MediaProcessor resource provides the ability to capture content from a
+      web application with a Twilio Media Extension to create a livestream.
+    get:
+      description: Returns a single MediaProcessor resource identified by a SID.
+      tags:
+        - Media
+        - Processors
+      summary: Retrieve Media Processor
+    post:
+      description: Updates a MediaProcessor resource identified by a SID.
+      tags:
+        - Media
+        - Processors
+      summary: Update Media Processor
+  /v1/MediaRecordings/{Sid}:
+    description: >-
+      A MediaRecording resource exposes recording metadata and allows the
+      deletion of a particular recording.
+    delete:
+      description: Deletes a MediaRecording resource identified by a SID.
+      tags:
+        - Media
+        - Recordings
+      summary: Delete Media Processor
+    get:
+      description: Returns a single MediaRecording resource identified by a SID.
+      tags:
+        - Media
+        - Recordings
+      summary: Retrieve Media Processor
+  /v1/MediaRecordings:
+    description: >-
+      A MediaRecording resource exposes recording metadata and allows the
+      deletion of a particular recording.
+    get:
+      description: Returns a list of MediaRecordings.
+      tags:
+        - Media
+        - Recordings
+      summary: Retrieve Media Recordings
+  /v1/PlayerStreamers/{Sid}:
+    description: >-
+      A PlayerStreamer resource provides the ability to send a livestream to a
+      JavaScript, iOS, or Android Player SDK.
+    get:
+      description: Returns a single PlayerStreamer resource identified by a SID.
+      tags:
+        - Media
+        - ' Players'
+        - ' Streaming'
+      summary: Retrieve Player Streamer
+    post:
+      description: Updates a PlayerStreamer resource identified by a SID.
+      tags:
+        - Media
+        - ' Players'
+        - ' Streaming'
+      summary: Update Player Streamer
+  /v1/PlayerStreamers:
+    description: >-
+      A PlayerStreamer resource provides the ability to send a livestream to a
+      JavaScript, iOS, or Android Player SDK.
+    post:
+      description: ''
+      tags:
+        - Media
+        - ' Players'
+        - ' Streaming'
+      summary: Create Player Streamers
+    get:
+      description: Returns a list of PlayerStreamers.
+      tags:
+        - Media
+        - ' Players'
+        - ' Streaming'
+      summary: Retrieve Player Streamers
+  /v1/PlayerStreamers/{Sid}/PlaybackGrant:
+    description: >-
+      A PlaybackGrant resource allows developers to generate a grant to
+      initialize the Twilio Live Player SDK and connect to a livestream.
+    post:
+      description: ''
+      tags:
+        - Media
+        - Playback
+        - Grants
+      summary: Create Player Streamer Playback Grant
+    get:
+      description: >-
+        **This method is not enabled.** Returns a single PlaybackGrant resource
+        identified by a SID.
+      tags:
+        - Media
+        - Playback
+        - Grants
+      summary: Retrieve Player Streamer Playback Grant
+tags:
+  - name: Tag
+  - name: Media
+    description: Needs a description.
+  - name: Processors
+    description: Needs a description.
+  - name: Recordings
+    description: Needs a description.
+  - name: ' Players'
+    description: Needs a description.
+  - name: ' Streaming'
+    description: Needs a description.
+  - name: Playback
+    description: Needs a description.
+  - name: Grants
+    description: Needs a description.
+x-maturity:
+  - name: GA
+    description: This product is Generally Available.
+  - name: Preview
+    description: >-
+      PLEASE NOTE that this is a Preview product that is subject to change. Use
+      it with caution. If you currently do not have developer preview access,
+      please contact https://www.twilio.com/help/contact.

@@ -1,0 +1,348 @@
+openapi: 3.0.0
+info:
+  title: Stripe Accounts API
+paths:
+  /v1/account:
+    get:
+      description: <p>Retrieves the details of an account.</p>
+      summary: Retrieve Account
+      tags:
+        - Accounts
+  /v1/account_links:
+    post:
+      description: >-
+        <p>Creates an AccountLink object that includes a single-use Stripe URL
+        that the platform can redirect their user to in order to take them
+        through the Connect Onboarding flow.</p>
+      summary: Create Account Link
+      tags:
+        - Accounts
+        - Links
+  /v1/account_sessions:
+    post:
+      description: >-
+        <p>Creates a AccountSession object that includes a single-use token that
+        the platform can use on their front-end to grant client-side API
+        access.</p>
+      summary: Create Account Sessions
+      tags:
+        - Accounts
+        - Sessions
+  /v1/accounts:
+    get:
+      description: >-
+        <p>Returns a list of accounts connected to your platform via <a
+        href="/docs/connect">Connect</a>. If you’re not a platform, the list is
+        empty.</p>
+      summary: Retrieve Accounts
+      tags:
+        - Accounts
+    post:
+      description: >-
+        <p>With <a href="/docs/connect">Connect</a>, you can create Stripe
+        accounts for your users.
+
+        To do this, you’ll first need to <a
+        href="https://dashboard.stripe.com/account/applications/settings">register
+        your platform</a>.</p>
+
+
+        <p>If you’ve already collected information for your connected accounts,
+        you <a href="/docs/connect/best-practices#onboarding">can prefill that
+        information</a> when
+
+        creating the account. Connect Onboarding won’t ask for the prefilled
+        information during account onboarding.
+
+        You can prefill any information on the account.</p>
+      summary: Create Account
+      tags:
+        - Accounts
+  /v1/accounts/{account}:
+    delete:
+      description: >-
+        <p>With <a href="/docs/connect">Connect</a>, you can delete accounts you
+        manage.</p>
+
+
+        <p>Accounts created using test-mode keys can be deleted at any time.
+        Standard accounts created using live-mode keys cannot be deleted. Custom
+        or Express accounts created using live-mode keys can only be deleted
+        once all balances are zero.</p>
+
+
+        <p>If you want to delete your own account, use the <a
+        href="https://dashboard.stripe.com/settings/account">account information
+        tab in your account settings</a> instead.</p>
+      summary: Delete Account
+      tags:
+        - Accounts
+    get:
+      description: <p>Retrieves the details of an account.</p>
+      summary: Retrieve Accounts
+      tags:
+        - Accounts
+    post:
+      description: >-
+        <p>Updates a <a href="/docs/connect/accounts">connected account</a> by
+        setting the values of the parameters passed. Any parameters not provided
+        are
+
+        left unchanged.</p>
+
+
+        <p>For Custom accounts, you can update any information on the account.
+        For other accounts, you can update all information until that
+
+        account has started to go through Connect Onboarding. Once you create an
+        <a href="/docs/api/account_links">Account Link</a>
+
+        for a Standard or Express account, some parameters can no longer be
+        changed. These are marked as <strong>Custom Only</strong> or
+        <strong>Custom and Express</strong>
+
+        below.</p>
+
+
+        <p>To update your own account, use the <a
+        href="https://dashboard.stripe.com/settings/account">Dashboard</a>.
+        Refer to our
+
+        <a href="/docs/connect/updating-accounts">Connect</a> documentation to
+        learn more about updating accounts.</p>
+      summary: Update Account
+      tags:
+        - Accounts
+  /v1/accounts/{account}/bank_accounts:
+    post:
+      description: <p>Create an external account for a given account.</p>
+      summary: Create Bank Account
+      tags:
+        - Banks
+        - Accounts
+  /v1/accounts/{account}/bank_accounts/{id}:
+    delete:
+      description: <p>Delete a specified external account for a given account.</p>
+      summary: Delete Bank Account
+      tags:
+        - Banks
+        - Accounts
+    get:
+      description: <p>Retrieve a specified external account for a given account.</p>
+      summary: Retrieve Bank Account
+      tags:
+        - Banks
+        - Accounts
+    post:
+      description: >-
+        <p>Updates the metadata, account holder name, account holder type of a
+        bank account belonging to a <a
+        href="/docs/connect/custom-accounts">Custom account</a>, and optionally
+        sets it as the default for its currency. Other bank account details are
+        not editable by design.</p>
+
+
+        <p>You can re-enable a disabled bank account by performing an update
+        call without providing any arguments or changes.</p>
+      summary: Update Bank Account
+      tags:
+        - Banks
+        - Accounts
+  /v1/accounts/{account}/capabilities:
+    get:
+      description: >-
+        <p>Returns a list of capabilities associated with the account. The
+        capabilities are returned sorted by creation date, with the most recent
+        capability appearing first.</p>
+      summary: Retrieve Account Capabilities
+      tags:
+        - Accounts
+        - Capabilities
+  /v1/accounts/{account}/capabilities/{capability}:
+    get:
+      description: <p>Retrieves information about the specified Account Capability.</p>
+      summary: Retrieve Account Capability
+      tags:
+        - Accounts
+        - Capabilities
+    post:
+      description: >-
+        <p>Updates an existing Account Capability. Request or remove a
+        capability by updating its <code>requested</code> parameter.</p>
+      summary: Update Account Capability
+      tags:
+        - Accounts
+        - Capabilities
+  /v1/accounts/{account}/external_accounts:
+    get:
+      description: <p>List external accounts for an account.</p>
+      summary: Retrieve External Accounts
+      tags:
+        - External
+        - Accounts
+    post:
+      description: <p>Create an external account for a given account.</p>
+      summary: Create External Accounts
+      tags:
+        - External
+        - Accounts
+  /v1/accounts/{account}/external_accounts/{id}:
+    delete:
+      description: <p>Delete a specified external account for a given account.</p>
+      summary: Delete External Account
+      tags:
+        - External
+        - Accounts
+    get:
+      description: <p>Retrieve a specified external account for a given account.</p>
+      summary: Retrieve External Account
+      tags:
+        - External
+        - Accounts
+    post:
+      description: >-
+        <p>Updates the metadata, account holder name, account holder type of a
+        bank account belonging to a <a
+        href="/docs/connect/custom-accounts">Custom account</a>, and optionally
+        sets it as the default for its currency. Other bank account details are
+        not editable by design.</p>
+
+
+        <p>You can re-enable a disabled bank account by performing an update
+        call without providing any arguments or changes.</p>
+      summary: Update External Account
+      tags:
+        - External
+        - Accounts
+  /v1/accounts/{account}/login_links:
+    post:
+      description: >-
+        <p>Creates a single-use login link for an Express account to access
+        their Stripe dashboard.</p>
+
+
+        <p><strong>You may only create login links for <a
+        href="/docs/connect/express-accounts">Express accounts</a> connected to
+        your platform</strong>.</p>
+      summary: Create Login Link
+      tags:
+        - Accounts
+        - Login
+        - Links
+  /v1/accounts/{account}/people:
+    get:
+      description: >-
+        <p>Returns a list of people associated with the account’s legal entity.
+        The people are returned sorted by creation date, with the most recent
+        people appearing first.</p>
+      summary: Retrieve Account Peoples
+      tags:
+        - Accounts
+        - People
+    post:
+      description: <p>Creates a new person.</p>
+      summary: Create Account People
+      tags:
+        - Accounts
+        - People
+  /v1/accounts/{account}/people/{person}:
+    delete:
+      description: >-
+        <p>Deletes an existing person’s relationship to the account’s legal
+        entity. Any person with a relationship for an account can be deleted
+        through the API, except if the person is the
+        <code>account_opener</code>. If your integration is using the
+        <code>executive</code> parameter, you cannot delete the only verified
+        <code>executive</code> on file.</p>
+      summary: Delete Account People
+      tags:
+        - Accounts
+        - People
+    get:
+      description: <p>Retrieves an existing person.</p>
+      summary: Retrieve Account People
+      tags:
+        - Accounts
+        - People
+    post:
+      description: <p>Updates an existing person.</p>
+      summary: Delete Account People
+      tags:
+        - Accounts
+        - People
+  /v1/accounts/{account}/persons:
+    get:
+      description: >-
+        <p>Returns a list of people associated with the account’s legal entity.
+        The people are returned sorted by creation date, with the most recent
+        people appearing first.</p>
+      summary: Retrieve Account Persons
+      tags:
+        - Accounts
+        - Persons
+    post:
+      description: <p>Creates a new person.</p>
+      summary: Create Account Person
+      tags:
+        - Accounts
+        - Persons
+  /v1/accounts/{account}/persons/{person}:
+    delete:
+      description: >-
+        <p>Deletes an existing person’s relationship to the account’s legal
+        entity. Any person with a relationship for an account can be deleted
+        through the API, except if the person is the
+        <code>account_opener</code>. If your integration is using the
+        <code>executive</code> parameter, you cannot delete the only verified
+        <code>executive</code> on file.</p>
+      summary: Delete Account Person
+      tags:
+        - Accounts
+        - Persons
+    get:
+      description: <p>Retrieves an existing person.</p>
+      summary: Retrieve Account Person
+      tags:
+        - Accounts
+        - Persons
+    post:
+      description: <p>Updates an existing person.</p>
+      summary: Update Account Person
+      tags:
+        - Accounts
+        - Persons
+  /v1/accounts/{account}/reject:
+    post:
+      description: >-
+        <p>With <a href="/docs/connect">Connect</a>, you may flag accounts as
+        suspicious.</p>
+
+
+        <p>Test-mode Custom and Express accounts can be rejected at any time.
+        Accounts created using live-mode keys may only be rejected once all
+        balances are zero.</p>
+      summary: Reject Account
+      tags:
+        - Accounts
+        - Rejects
+tags:
+  - name: Accounts
+    description: Needs a description.
+  - name: Links
+    description: Needs a description.
+  - name: Sessions
+    description: Needs a description.
+  - name: Banks
+    description: Needs a description.
+  - name: Capabilities
+    description: Needs a description.
+  - name: External
+    description: Needs a description.
+  - name: Login
+    description: Needs a description.
+  - name: People
+    description: Needs a description.
+  - name: Persons
+    description: Needs a description.
+  - name: Rejects
+    description: Needs a description.

@@ -1,0 +1,104 @@
+openapi: 3.0.0
+info:
+  title: Stripe Application Fees API
+paths:
+  /v1/application_fees:
+    get:
+      description: >-
+        <p>Returns a list of application fees you’ve previously collected. The
+        application fees are returned in sorted order, with the most recent fees
+        appearing first.</p>
+      summary: Retrieve Application Fees
+      tags:
+        - Applications
+        - Fees
+  /v1/application_fees/{fee}/refunds/{id}:
+    get:
+      description: >-
+        <p>By default, you can see the 10 most recent refunds stored directly on
+        the application fee object, but you can also retrieve details about a
+        specific refund stored on the application fee.</p>
+      summary: Retrieve Application Fees Refund
+      tags:
+        - Applications
+        - Fees
+        - Refunds
+    post:
+      description: >-
+        <p>Updates the specified application fee refund by setting the values of
+        the parameters passed. Any parameters not provided will be left
+        unchanged.</p>
+
+
+        <p>This request only accepts metadata as an argument.</p>
+      summary: Update Application Fees Refund
+      tags:
+        - Applications
+        - Fees
+        - Refunds
+  /v1/application_fees/{id}:
+    get:
+      description: >-
+        <p>Retrieves the details of an application fee that your account has
+        collected. The same information is returned when refunding the
+        application fee.</p>
+      summary: Retrieve Application Fee
+      tags:
+        - Applications
+        - Fees
+  /v1/application_fees/{id}/refund:
+    post:
+      description: ''
+      summary: Create Application Fee Refund
+      tags:
+        - Applications
+        - Fees
+        - Refunds
+  /v1/application_fees/{id}/refunds:
+    get:
+      description: >-
+        <p>You can see a list of the refunds belonging to a specific application
+        fee. Note that the 10 most recent refunds are always available by
+        default on the application fee object. If you need more than those 10,
+        you can use this API method and the <code>limit</code> and
+        <code>starting_after</code> parameters to page through additional
+        refunds.</p>
+      summary: Retrieve Application Fee Refunds
+      tags:
+        - Applications
+        - Fees
+        - Refunds
+    post:
+      description: >-
+        <p>Refunds an application fee that has previously been collected but not
+        yet refunded.
+
+        Funds will be refunded to the Stripe account from which the fee was
+        originally collected.</p>
+
+
+        <p>You can optionally refund only part of an application fee.
+
+        You can do so multiple times, until the entire fee has been
+        refunded.</p>
+
+
+        <p>Once entirely refunded, an application fee can’t be refunded again.
+
+        This method will raise an error when called on an already-refunded
+        application fee,
+
+        or when trying to refund more money than is left on an application
+        fee.</p>
+      summary: Refund Application Fee
+      tags:
+        - Applications
+        - Fees
+        - Refunds
+tags:
+  - name: Applications
+    description: Needs a description.
+  - name: Fees
+    description: Needs a description.
+  - name: Refunds
+    description: Needs a description.

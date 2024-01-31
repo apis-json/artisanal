@@ -1,0 +1,278 @@
+openapi: 3.0.0
+info:
+  title: Stripe Issuing API
+paths:
+  /v1/issuing/authorizations:
+    get:
+      description: >-
+        <p>Returns a list of Issuing <code>Authorization</code> objects. The
+        objects are sorted in descending order by creation date, with the most
+        recently created object appearing first.</p>
+      summary: Retrieve Issuing Authorizations
+      tags:
+        - Issuing
+        - Authorizations
+  /v1/issuing/authorizations/{authorization}:
+    get:
+      description: <p>Retrieves an Issuing <code>Authorization</code> object.</p>
+      summary: Retrieve Issuing Authorization
+      tags:
+        - Issuing
+        - Authorizations
+    post:
+      description: >-
+        <p>Updates the specified Issuing <code>Authorization</code> object by
+        setting the values of the parameters passed. Any parameters not provided
+        will be left unchanged.</p>
+      summary: Update Issuing Authorization
+      tags:
+        - Issuing
+        - Authorizations
+  /v1/issuing/authorizations/{authorization}/approve:
+    post:
+      description: >-
+        <p>[Deprecated] Approves a pending Issuing <code>Authorization</code>
+        object. This request should be made within the timeout window of the <a
+        href="/docs/issuing/controls/real-time-authorizations">real-time
+        authorization</a> flow. 
+
+        This method is deprecated. Instead, <a
+        href="/docs/issuing/controls/real-time-authorizations#authorization-handling">respond
+        directly to the webhook request to approve an authorization</a>.</p>
+      summary: Approve Issuing Authorization
+      tags:
+        - Approve
+        - Issuing
+        - Authorizations
+  /v1/issuing/authorizations/{authorization}/decline:
+    post:
+      description: >-
+        <p>[Deprecated] Declines a pending Issuing <code>Authorization</code>
+        object. This request should be made within the timeout window of the <a
+        href="/docs/issuing/controls/real-time-authorizations">real time
+        authorization</a> flow.
+
+        This method is deprecated. Instead, <a
+        href="/docs/issuing/controls/real-time-authorizations#authorization-handling">respond
+        directly to the webhook request to decline an authorization</a>.</p>
+      summary: Decline Issuing Authorization
+      tags:
+        - Decline
+        - Issuing
+        - Authorizations
+  /v1/issuing/cardholders:
+    get:
+      description: >-
+        <p>Returns a list of Issuing <code>Cardholder</code> objects. The
+        objects are sorted in descending order by creation date, with the most
+        recently created object appearing first.</p>
+      summary: Retrieve Issuing Cardholders
+      tags:
+        - Issuing
+        - Cardholders
+    post:
+      description: >-
+        <p>Creates a new Issuing <code>Cardholder</code> object that can be
+        issued cards.</p>
+      summary: Create Issuing Cardholder
+      tags:
+        - Issuing
+        - Cardholders
+  /v1/issuing/cardholders/{cardholder}:
+    get:
+      description: <p>Retrieves an Issuing <code>Cardholder</code> object.</p>
+      summary: Retrieve Issuing Cardholder
+      tags:
+        - Issuing
+        - Cardholders
+    post:
+      description: >-
+        <p>Updates the specified Issuing <code>Cardholder</code> object by
+        setting the values of the parameters passed. Any parameters not provided
+        will be left unchanged.</p>
+      summary: Update Issuing Cardholder
+      tags:
+        - Issuing
+        - Cardholders
+  /v1/issuing/cards:
+    get:
+      description: >-
+        <p>Returns a list of Issuing <code>Card</code> objects. The objects are
+        sorted in descending order by creation date, with the most recently
+        created object appearing first.</p>
+      summary: Retrieve Issuing Cards
+      tags:
+        - Issuing
+        - Cards
+    post:
+      description: <p>Creates an Issuing <code>Card</code> object.</p>
+      summary: Create Issuing Card
+      tags:
+        - Issuing
+        - Cards
+  /v1/issuing/cards/{card}:
+    get:
+      description: <p>Retrieves an Issuing <code>Card</code> object.</p>
+      summary: Retrieve Issuing Card
+      tags:
+        - Issuing
+        - Cards
+    post:
+      description: >-
+        <p>Updates the specified Issuing <code>Card</code> object by setting the
+        values of the parameters passed. Any parameters not provided will be
+        left unchanged.</p>
+      summary: Update Issuing Card
+      tags:
+        - Issuing
+        - Cards
+  /v1/issuing/disputes:
+    get:
+      description: >-
+        <p>Returns a list of Issuing <code>Dispute</code> objects. The objects
+        are sorted in descending order by creation date, with the most recently
+        created object appearing first.</p>
+      summary: Retrieve Issuing Disputes
+      tags:
+        - Issuing
+        - Disputes
+    post:
+      description: >-
+        <p>Creates an Issuing <code>Dispute</code> object. Individual pieces of
+        evidence within the <code>evidence</code> object are optional at this
+        point. Stripe only validates that required evidence is present during
+        submission. Refer to <a
+        href="/docs/issuing/purchases/disputes#dispute-reasons-and-evidence">Dispute
+        reasons and evidence</a> for more details about evidence
+        requirements.</p>
+      summary: Create Issuing Dispute
+      tags:
+        - Issuing
+        - Disputes
+  /v1/issuing/disputes/{dispute}:
+    get:
+      description: <p>Retrieves an Issuing <code>Dispute</code> object.</p>
+      summary: Retrieve Issuing Dispute
+      tags:
+        - Issuing
+        - Disputes
+    post:
+      description: >-
+        <p>Updates the specified Issuing <code>Dispute</code> object by setting
+        the values of the parameters passed. Any parameters not provided will be
+        left unchanged. Properties on the <code>evidence</code> object can be
+        unset by passing in an empty string.</p>
+      summary: Update Issuing Dispute
+      tags:
+        - Issuing
+        - Disputes
+  /v1/issuing/disputes/{dispute}/submit:
+    post:
+      description: >-
+        <p>Submits an Issuing <code>Dispute</code> to the card network. Stripe
+        validates that all evidence fields required for the dispute’s reason are
+        present. For more details, see <a
+        href="/docs/issuing/purchases/disputes#dispute-reasons-and-evidence">Dispute
+        reasons and evidence</a>.</p>
+      summary: Submit Issuing Dispute
+      tags:
+        - Submit
+        - Issuing
+        - Disputes
+  /v1/issuing/settlements:
+    get:
+      description: >-
+        <p>Returns a list of Issuing <code>Settlement</code> objects. The
+        objects are sorted in descending order by creation date, with the most
+        recently created object appearing first.</p>
+      summary: Retrieve Issuing Settlements
+      tags:
+        - Issuing
+        - Settlements
+  /v1/issuing/settlements/{settlement}:
+    get:
+      description: <p>Retrieves an Issuing <code>Settlement</code> object.</p>
+      summary: Retrieve Issuing Settlement
+      tags:
+        - Issuing
+        - Settlements
+    post:
+      description: >-
+        <p>Updates the specified Issuing <code>Settlement</code> object by
+        setting the values of the parameters passed. Any parameters not provided
+        will be left unchanged.</p>
+      summary: Create Issuing Settlement
+      tags:
+        - Issuing
+        - Settlements
+  /v1/issuing/tokens:
+    get:
+      description: <p>Lists all Issuing <code>Token</code> objects for a given card.</p>
+      summary: Retrieve Issuing Tokens
+      tags:
+        - Issuing
+        - Tokens
+  /v1/issuing/tokens/{token}:
+    get:
+      description: <p>Retrieves an Issuing <code>Token</code> object.</p>
+      summary: Retrieve Issuing Token
+      tags:
+        - Issuing
+        - Tokens
+    post:
+      description: >-
+        <p>Attempts to update the specified Issuing <code>Token</code> object to
+        the status specified.</p>
+      summary: Update Issuing Token
+      tags:
+        - Issuing
+        - Tokens
+  /v1/issuing/transactions:
+    get:
+      description: >-
+        <p>Returns a list of Issuing <code>Transaction</code> objects. The
+        objects are sorted in descending order by creation date, with the most
+        recently created object appearing first.</p>
+      summary: Retrieve Issuing Transactions
+      tags:
+        - Issuing
+        - Transactions
+  /v1/issuing/transactions/{transaction}:
+    get:
+      description: <p>Retrieves an Issuing <code>Transaction</code> object.</p>
+      summary: Retrieve Issuing Transaction
+      tags:
+        - Issuing
+        - Transactions
+    post:
+      description: >-
+        <p>Updates the specified Issuing <code>Transaction</code> object by
+        setting the values of the parameters passed. Any parameters not provided
+        will be left unchanged.</p>
+      summary: Update Issuing Transaction
+      tags:
+        - Issuing
+        - Transactions
+tags:
+  - name: Issuing
+    description: Needs a description.
+  - name: Authorizations
+    description: Needs a description.
+  - name: Approve
+    description: Needs a description.
+  - name: Decline
+    description: Needs a description.
+  - name: Cardholders
+    description: Needs a description.
+  - name: Cards
+    description: Needs a description.
+  - name: Disputes
+    description: Needs a description.
+  - name: Submit
+    description: Needs a description.
+  - name: Settlements
+    description: Needs a description.
+  - name: Tokens
+    description: Needs a description.
+  - name: Transactions
+    description: Needs a description.

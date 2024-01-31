@@ -1,0 +1,54 @@
+openapi: 3.0.0
+info:
+  title: Stripe Reporting API
+paths:
+  /v1/reporting/report_runs:
+    get:
+      description: >-
+        <p>Returns a list of Report Runs, with the most recent appearing
+        first.</p>
+      summary: Retrieve Report Runs
+      tags:
+        - Reports
+        - Runs
+    post:
+      description: >-
+        <p>Creates a new object and begin running the report. (Certain report
+        types require a <a
+        href="https://stripe.com/docs/keys#test-live-modes">live-mode API
+        key</a>.)</p>
+      summary: Create Report Run
+      tags:
+        - Reports
+        - Runs
+  /v1/reporting/report_runs/{report_run}:
+    get:
+      description: <p>Retrieves the details of an existing Report Run.</p>
+      summary: Retrieve Report Run
+      tags:
+        - Reports
+        - Runs
+  /v1/reporting/report_types:
+    get:
+      description: <p>Returns a full list of Report Types.</p>
+      summary: Retrieve Report Types
+      tags:
+        - Reports
+        - Types
+  /v1/reporting/report_types/{report_type}:
+    get:
+      description: >-
+        <p>Retrieves the details of a Report Type. (Certain report types require
+        a <a href="https://stripe.com/docs/keys#test-live-modes">live-mode API
+        key</a>.)</p>
+      summary: Retrieve Report Type
+      tags:
+        - Reports
+        - Types
+tags:
+  - name: Reports
+    description: Needs a description.
+  - name: Runs
+    description: Needs a description.
+  - name: Types
+    description: Needs a description.

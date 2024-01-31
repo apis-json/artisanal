@@ -1,0 +1,205 @@
+info:
+  title: Twilio Events API
+  license:
+    name: Apache 2.0
+    url: https://www.apache.org/licenses/LICENSE-2.0.html
+openapi: 3.0.1
+paths:
+  /v1/Types:
+    description: Event Types available
+    get:
+      description: Retrieve a paginated list of all the available Event Types.
+      tags:
+        - Events
+        - Event Types
+        - Types
+      summary: Retrieve Types
+  /v1/Types/{Type}:
+    description: Event Types available
+    get:
+      description: Fetch a specific Event Type.
+      tags:
+        - Events
+        - Event Types
+        - Types
+      summary: Retrieve Type
+  /v1/Schemas/{Id}:
+    description: Versioned Schema definitions for Event Types
+    get:
+      description: Fetch a specific schema with its nested versions.
+      tags:
+        - Events
+        - Schema
+      summary: Retrieve Schema
+  /v1/Schemas:
+    description: Versioned Schema definitions for Event Types
+  /v1/Schemas/{Id}/Versions:
+    description: Version of the Schema
+    get:
+      description: Retrieve a paginated list of versions of the schema.
+      tags:
+        - Events
+        - Schema
+        - Versions
+      summary: Retrieve Schema Versions
+  /v1/Schemas/{Id}/Versions/{SchemaVersion}:
+    description: Version of the Schema
+    get:
+      description: Fetch a specific schema and version.
+      tags:
+        - Events
+        - Schema
+        - Versions
+      summary: Retrieve Schema Version
+  /v1/Sinks/{Sid}:
+    description: Sink destination to send events to
+    get:
+      description: Fetch a specific Sink.
+      tags:
+        - Events
+        - Sinks
+      summary: Retrieve Sink
+    delete:
+      description: Delete a specific Sink.
+      tags:
+        - Events
+        - Sinks
+      summary: Delete Sink
+    post:
+      description: Update a specific Sink
+      tags:
+        - Events
+        - Sinks
+      summary: Update Sink
+  /v1/Sinks:
+    description: Sink destination to send events to
+    post:
+      description: Create a new Sink
+      tags:
+        - Events
+        - Sinks
+      summary: Create Sink
+    get:
+      description: >-
+        Retrieve a paginated list of Sinks belonging to the account used to make
+        the request.
+      tags:
+        - Events
+        - Sinks
+      summary: Retrieve Sinks
+  /v1/Sinks/{Sid}/Test:
+    description: Test sink
+    post:
+      description: Create a new Sink Test Event for the given Sink.
+      tags:
+        - Events
+        - Sinks
+        - Tests
+      summary: Create Sink Test
+  /v1/Sinks/{Sid}/Validate:
+    description: Validate sink
+    post:
+      description: Validate that a test event for a Sink was received.
+      tags:
+        - Events
+        - Sinks
+        - Validate
+      summary: Validate Sink Test
+  /v1/Subscriptions/{SubscriptionSid}/SubscribedEvents:
+    description: Event subscribed to in the parent Subscription
+    get:
+      description: Retrieve a list of all Subscribed Event types for a Subscription.
+      tags:
+        - Events
+        - Subscriptions
+      summary: Retrieve Subscription Events
+    post:
+      description: Add an event type to a Subscription.
+      tags:
+        - Events
+        - Subscriptions
+      summary: Add Subscription Event Type
+  /v1/Subscriptions/{SubscriptionSid}/SubscribedEvents/{Type}:
+    description: Event subscribed to in the parent Subscription
+    get:
+      description: Read an Event for a Subscription.
+      tags:
+        - Events
+        - Subscriptions
+        - Event Types
+        - Types
+      summary: Retrieve Subscription Event
+    post:
+      description: Update an Event for a Subscription.
+      tags:
+        - Events
+        - Subscriptions
+        - Event Types
+        - Types
+      summary: Update Subscription Event
+    delete:
+      description: Remove an event type from a Subscription.
+      tags:
+        - Events
+        - Subscriptions
+        - Event Types
+        - Types
+      summary: Delete Subscription Event
+  /v1/Subscriptions:
+    description: Subscription to send Event Types to a Sink
+    get:
+      description: >-
+        Retrieve a paginated list of Subscriptions belonging to the account used
+        to make the request.
+      tags:
+        - Events
+        - Subscriptions
+      summary: Retrieve Subscriptions
+    post:
+      description: Create a new Subscription.
+      tags:
+        - Events
+        - Subscriptions
+      summary: Create Subscription
+  /v1/Subscriptions/{Sid}:
+    description: Subscription to send Event Types to a Sink
+    get:
+      description: Fetch a specific Subscription.
+      tags:
+        - Events
+        - Subscriptions
+      summary: Retrieve Subscription
+    post:
+      description: Update a Subscription.
+      tags:
+        - Events
+        - Subscriptions
+      summary: Update Subscription
+    delete:
+      description: Delete a specific Subscription.
+      tags:
+        - Events
+        - Subscriptions
+      summary: Delete Subscription
+tags:
+  - name: Events
+    description: Needs a description.
+  - name: Event Types
+    description: Needs a description.
+  - name: Types
+    description: Needs a description.
+  - name: Schema
+    description: Needs a description.
+  - name: Versions
+    description: Needs a description.
+  - name: Sinks
+    description: Needs a description.
+  - name: Tests
+    description: Needs a description.
+  - name: Validate
+    description: Needs a description.
+  - name: Subscriptions
+    description: Needs a description.
+x-maturity:
+  - name: GA
+    description: This product is Generally Available.

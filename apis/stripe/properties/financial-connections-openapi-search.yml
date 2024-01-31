@@ -1,0 +1,140 @@
+openapi: 3.0.0
+info:
+  title: Stripe Financial Connections API
+paths:
+  /v1/financial_connections/accounts:
+    get:
+      description: >-
+        <p>Returns a list of Financial Connections <code>Account</code>
+        objects.</p>
+      summary: Retrieve Financial Connection Accounts
+      tags:
+        - Financial
+        - Connections
+        - Accounts
+  /v1/financial_connections/accounts/{account}:
+    get:
+      description: >-
+        <p>Retrieves the details of an Financial Connections
+        <code>Account</code>.</p>
+      summary: Retrieve Financial Connection Account
+      tags:
+        - Financial
+        - Connections
+        - Accounts
+  /v1/financial_connections/accounts/{account}/disconnect:
+    post:
+      description: >-
+        <p>Disables your access to a Financial Connections <code>Account</code>.
+        You will no longer be able to access data associated with the account
+        (e.g. balances, transactions).</p>
+      summary: Disconnect Financial Connection Account
+      tags:
+        - Disconnect
+        - Financial
+        - Connections
+        - Accounts
+  /v1/financial_connections/accounts/{account}/owners:
+    get:
+      description: <p>Lists all owners for a given <code>Account</code></p>
+      summary: Retrieve Financial Connection Accounts Owners
+      tags:
+        - Financial
+        - Connections
+        - Accounts
+        - Owners
+  /v1/financial_connections/accounts/{account}/refresh:
+    post:
+      description: >-
+        <p>Refreshes the data associated with a Financial Connections
+        <code>Account</code>.</p>
+      summary: Refresh Financial Connection Account
+      tags:
+        - Refresh
+        - Financial
+        - Connections
+        - Accounts
+  /v1/financial_connections/accounts/{account}/subscribe:
+    post:
+      description: >-
+        <p>Subscribes to periodic refreshes of data associated with a Financial
+        Connections <code>Account</code>.</p>
+      summary: Subscribe to Financial Connection Account
+      tags:
+        - Financial
+        - Connections
+        - Accounts
+        - Subscriptions
+  /v1/financial_connections/accounts/{account}/unsubscribe:
+    post:
+      description: >-
+        <p>Unsubscribes from periodic refreshes of data associated with a
+        Financial Connections <code>Account</code>.</p>
+      summary: Unsubscribe to Financial Connection Account
+      tags:
+        - Financial
+        - Connections
+        - Accounts
+        - Subscriptions
+  /v1/financial_connections/sessions:
+    post:
+      description: >-
+        <p>To launch the Financial Connections authorization flow, create a
+        <code>Session</code>. The session’s <code>client_secret</code> can be
+        used to launch the flow using Stripe.js.</p>
+      summary: Launch Financial Connection Session
+      tags:
+        - Financial
+        - Connections
+        - Sessions
+  /v1/financial_connections/sessions/{session}:
+    get:
+      description: >-
+        <p>Retrieves the details of a Financial Connections
+        <code>Session</code></p>
+      summary: Retrieve Financial Connection Session
+      tags:
+        - Financial
+        - Connections
+        - Sessions
+  /v1/financial_connections/transactions:
+    get:
+      description: >-
+        <p>Returns a list of Financial Connections <code>Transaction</code>
+        objects.</p>
+      summary: Retrieve Financial Connection Transactions
+      tags:
+        - Financial
+        - Connections
+        - Transactions
+  /v1/financial_connections/transactions/{transaction}:
+    get:
+      description: >-
+        <p>Retrieves the details of a Financial Connections
+        <code>Transaction</code></p>
+      summary: Retrieve Financial Connection Transaction
+      tags:
+        - Financial
+        - Connections
+        - Transactions
+tags:
+  - name: ''
+    description: Needs a description.
+  - name: Financial
+    description: Needs a description.
+  - name: Connections
+    description: Needs a description.
+  - name: Accounts
+    description: Needs a description.
+  - name: Disconnect
+    description: Needs a description.
+  - name: Owners
+    description: Needs a description.
+  - name: Refresh
+    description: Needs a description.
+  - name: Subscriptions
+    description: Needs a description.
+  - name: Sessions
+    description: Needs a description.
+  - name: Transactions
+    description: Needs a description.

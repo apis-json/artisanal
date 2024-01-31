@@ -1,0 +1,42 @@
+openapi: 3.0.0
+info:
+  title: Stripe Plans API
+paths:
+  /v1/plans:
+    get:
+      description: <p>Returns a list of your plans.</p>
+      summary: Retrieve Plans
+      tags:
+        - Plans
+    post:
+      description: >-
+        <p>You can now model subscriptions more flexibly using the <a
+        href="#prices">Prices API</a>. It replaces the Plans API and is
+        backwards compatible to simplify your migration.</p>
+      summary: Create Plan
+      tags:
+        - Plans
+  /v1/plans/{plan}:
+    delete:
+      description: >-
+        <p>Deleting plans means new subscribers can’t be added. Existing
+        subscribers aren’t affected.</p>
+      summary: Delete Plan
+      tags:
+        - Plans
+    get:
+      description: <p>Retrieves the plan with the given ID.</p>
+      summary: Retrieve Plan
+      tags:
+        - Plans
+    post:
+      description: >-
+        <p>Updates the specified plan by setting the values of the parameters
+        passed. Any parameters not provided are left unchanged. By design, you
+        cannot change a plan’s ID, amount, currency, or billing cycle.</p>
+      summary: Update Plan
+      tags:
+        - Plans
+tags:
+  - name: Plans
+    description: Needs a description.

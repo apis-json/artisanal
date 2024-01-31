@@ -1,0 +1,348 @@
+info:
+  title: Twilio Video API
+  license:
+    name: Apache 2.0
+    url: https://www.apache.org/licenses/LICENSE-2.0.html
+openapi: 3.0.1
+paths:
+  /v1/Compositions/{Sid}:
+    description: Recording compositions
+    get:
+      description: Returns a single Composition resource identified by a Composition SID.
+      tags:
+        - Videos
+        - Compositions
+      summary: Retrieve Composition
+    delete:
+      description: Delete a Recording Composition resource identified by a Composition SID.
+      tags:
+        - Videos
+        - Compositions
+      summary: Delete Composition
+  /v1/Compositions:
+    description: Recording compositions
+    get:
+      description: List of all Recording compositions.
+      tags:
+        - Videos
+        - Compositions
+      summary: Retrieve Compositions
+    post:
+      description: ''
+      tags:
+        - Videos
+        - Compositions
+      summary: Create Composition
+  /v1/CompositionHooks/{Sid}:
+    description: Recording composition hooks
+    get:
+      description: >-
+        Returns a single CompositionHook resource identified by a
+        CompositionHook SID.
+      tags:
+        - Videos
+        - Compositions
+        - Hooks
+      summary: Retrieve Composition Hook
+    delete:
+      description: >-
+        Delete a Recording CompositionHook resource identified by a
+        `CompositionHook SID`.
+      tags:
+        - Videos
+        - Compositions
+        - Hooks
+      summary: Delete Composition Hook
+    post:
+      description: ''
+      tags:
+        - Videos
+        - Compositions
+        - Hooks
+      summary: Update Composition Hook
+  /v1/CompositionHooks:
+    description: Recording composition hooks
+    get:
+      description: List of all Recording CompositionHook resources.
+      tags:
+        - Videos
+        - Compositions
+        - Hooks
+      summary: Retrieve Composition Hooks
+    post:
+      description: ''
+      tags:
+        - Videos
+        - Compositions
+        - Hooks
+      summary: Create Composition Hook
+  /v1/CompositionSettings/Default:
+    description: Recording composition settings
+    get:
+      description: ''
+      tags:
+        - Videos
+        - Compositions
+        - Settings
+        - Defaults
+      summary: Retrieve Composition Settings Default
+    post:
+      description: ''
+      tags:
+        - Videos
+        - Compositions
+        - Settings
+        - Defaults
+      summary: Update Composition Settings Default
+  /v1/Recordings/{Sid}:
+    description: Single-track, single-media recordings
+    get:
+      description: Returns a single Recording resource identified by a Recording SID.
+      tags:
+        - Videos
+        - Recordings
+      summary: Retrieve Recording
+    delete:
+      description: Delete a Recording resource identified by a Recording SID.
+      tags:
+        - Videos
+        - Recordings
+      summary: Delete Recording
+  /v1/Recordings:
+    description: Single-track, single-media recordings
+    get:
+      description: List of all Track recordings.
+      tags:
+        - Videos
+        - Recordings
+      summary: Update Recording
+  /v1/RecordingSettings/Default:
+    description: Recording settings
+    get:
+      description: ''
+      tags:
+        - Videos
+        - Recordings
+        - Settings
+        - Defaults
+      summary: Retrieve Recording Settings Default
+    post:
+      description: ''
+      tags:
+        - Videos
+        - Recordings
+        - Settings
+        - Defaults
+      summary: Update Recording Settings Default
+  /v1/Rooms/{Sid}:
+    description: Video rooms with one or more participants
+    get:
+      description: ''
+      tags:
+        - Defaults
+        - Rooms
+      summary: Retrieve Room
+    post:
+      description: ''
+      tags:
+        - Defaults
+        - Rooms
+      summary: Update Room
+  /v1/Rooms:
+    description: Video rooms with one or more participants
+    post:
+      description: ''
+      tags:
+        - Defaults
+        - Rooms
+      summary: Create Room
+    get:
+      description: ''
+      tags:
+        - Defaults
+        - Rooms
+      summary: Retrieve Rooms
+  /v1/Rooms/{RoomSid}/Participants/{Sid}:
+    description: Participants in video rooms
+    get:
+      description: ''
+      tags:
+        - Defaults
+        - Rooms
+        - Participants
+      summary: Retrieve Room Participant
+    post:
+      description: ''
+      tags:
+        - Defaults
+        - Rooms
+        - Participants
+      summary: Update Room Participant
+  /v1/Rooms/{RoomSid}/Participants:
+    description: Participants in video rooms
+    get:
+      description: ''
+      tags:
+        - Defaults
+        - Rooms
+        - Participants
+      summary: Retrieve Room Participants
+  /v1/Rooms/{RoomSid}/Participants/{Sid}/Anonymize:
+    description: 'TODO: Resource-level docs'
+    post:
+      description: ''
+      tags:
+        - Defaults
+        - Rooms
+        - Participants
+        - Anonymize
+      summary: Update Room Participant Anonymize
+  /v1/Rooms/{RoomSid}/Participants/{ParticipantSid}/PublishedTracks/{Sid}:
+    description: 'TODO: Resource-level docs'
+    get:
+      description: Returns a single Track resource represented by TrackName or SID.
+      tags:
+        - Defaults
+        - Rooms
+        - Participants
+        - Published
+        - Tracks
+      summary: Retrieve Room Participant Published Track
+  /v1/Rooms/{RoomSid}/Participants/{ParticipantSid}/PublishedTracks:
+    description: 'TODO: Resource-level docs'
+    get:
+      description: >-
+        Returns a list of tracks associated with a given Participant. Only
+        `currently` Published Tracks are in the list resource.
+      tags:
+        - Defaults
+        - Rooms
+        - Participants
+        - Published
+        - Tracks
+      summary: Retrieve Room Participant Published Tracks
+  /v1/Rooms/{RoomSid}/Participants/{ParticipantSid}/SubscribeRules:
+    description: 'TODO: Resource-level docs'
+    get:
+      description: Returns a list of Subscribe Rules for the Participant.
+      tags:
+        - Defaults
+        - Rooms
+        - Participants
+        - Subscriptions
+        - Rules
+      summary: Retrieve Room Participant Subscribe Rules
+    post:
+      description: Update the Subscribe Rules for the Participant
+      tags:
+        - Defaults
+        - Rooms
+        - Participants
+        - Subscriptions
+        - Rules
+      summary: Create Room Participant Subscribe Rules
+  /v1/Rooms/{RoomSid}/Participants/{ParticipantSid}/SubscribedTracks/{Sid}:
+    description: 'TODO: Resource-level docs'
+    get:
+      description: >-
+        Returns a single Track resource represented by `track_sid`.  Note: This
+        is one resource with the Video API that requires a SID, be Track Name on
+        the subscriber side is not guaranteed to be unique.
+      tags:
+        - Defaults
+        - Rooms
+        - Participants
+        - Subscriptions
+        - Track
+      summary: Retrieve Room Participant Subscribed Track
+  /v1/Rooms/{RoomSid}/Participants/{ParticipantSid}/SubscribedTracks:
+    description: 'TODO: Resource-level docs'
+    get:
+      description: Returns a list of tracks that are subscribed for the participant.
+      tags:
+        - Defaults
+        - Rooms
+        - Participants
+        - Subscriptions
+        - Tracks
+      summary: Retrieve Room Participant Subscribed Tracks
+  /v1/Rooms/{RoomSid}/Recordings/{Sid}:
+    description: Single-track, single-media room recordings
+    get:
+      description: ''
+      tags:
+        - Videos
+        - Rooms
+        - Recordings
+      summary: Retrieve Room Recording
+    delete:
+      description: ''
+      tags:
+        - Videos
+        - Rooms
+        - Recordings
+      summary: Delete Room Recording
+  /v1/Rooms/{RoomSid}/Recordings:
+    description: Single-track, single-media room recordings
+    get:
+      description: ''
+      tags:
+        - Videos
+        - Rooms
+        - Recordings
+      summary: Retrieve Room Recordings
+  /v1/Rooms/{RoomSid}/RecordingRules:
+    description: 'TODO: Resource-level docs'
+    get:
+      description: Returns a list of Recording Rules for the Room.
+      tags:
+        - Videos
+        - Rooms
+        - Recordings
+        - Rules
+      summary: Retrieve Room Recording Rules
+    post:
+      description: Update the Recording Rules for the Room
+      tags:
+        - Videos
+        - Rooms
+        - Recordings
+        - Rules
+      summary: Update Room Recording Rules
+tags:
+  - name: Tag
+  - name: Video
+    description: Needs a description.
+  - name: Compositions
+    description: Needs a description.
+  - name: Hooks
+    description: Needs a description.
+  - name: Settings
+    description: Needs a description.
+  - name: Defaults
+    description: Needs a description.
+  - name: Videos
+    description: Needs a description.
+  - name: Recordings
+    description: Needs a description.
+  - name: Rooms
+    description: Needs a description.
+  - name: Participants
+    description: Needs a description.
+  - name: Anonymize
+    description: Needs a description.
+  - name: Published
+    description: Needs a description.
+  - name: Tracks
+    description: Needs a description.
+  - name: Subscribiptions
+    description: Needs a description.
+  - name: Rules
+    description: Needs a description.
+  - name: Subscriptions
+    description: Needs a description.
+  - name: Track
+    description: Needs a description.
+x-maturity:
+  - name: GA
+    description: This product is Generally Available.

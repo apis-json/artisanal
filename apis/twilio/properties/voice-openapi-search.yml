@@ -1,0 +1,370 @@
+info:
+  title: Twilio Voice API
+  license:
+    name: Apache 2.0
+    url: https://www.apache.org/licenses/LICENSE-2.0.html
+openapi: 3.0.1
+paths:
+  /v1/Archives/{Date}/Calls/{Sid}:
+    description: 'TODO: Resource-level docs'
+    delete:
+      description: >-
+        Delete an archived call record from Bulk Export. Note: this does not
+        also delete the record from the Voice API.
+      tags:
+        - Voice
+        - Archives
+        - Calls
+      summary: Delete Archive Call
+  /v1/ByocTrunks:
+    description: >-
+      BYOC Trunks allow you to bring your own voice carrier to Twilio, enabling
+      your calls to use our Programmable Voice APIs.
+    post:
+      description: ''
+      tags:
+        - Voice
+        - BYOC
+        - Trunks
+      summary: Create BYOC Trunk
+    get:
+      description: ''
+      tags:
+        - Voice
+        - BYOC
+        - Trunks
+      summary: Retrieve BYOC Trunks
+  /v1/ByocTrunks/{Sid}:
+    description: >-
+      BYOC Trunks allow you to bring your own voice carrier to Twilio, enabling
+      your calls to use our Programmable Voice APIs.
+    get:
+      description: ''
+      tags:
+        - Voice
+        - BYOC
+        - Trunks
+      summary: Retrieve BYOC Trunk
+    post:
+      description: ''
+      tags:
+        - Voice
+        - BYOC
+        - Trunks
+      summary: Update BYOC Trunk
+    delete:
+      description: ''
+      tags:
+        - Voice
+        - BYOC
+        - Trunks
+      summary: Delete BYOC Trunk
+  /v1/ConnectionPolicies:
+    description: >-
+      Connection Policy for sending traffic to your communications
+      infrastructure.
+    post:
+      description: ''
+      tags:
+        - Voice
+        - Connections
+        - Policies
+      summary: Create Connection Policy
+    get:
+      description: ''
+      tags:
+        - Voice
+        - Connections
+        - Policies
+      summary: Retrieve Connection Policies
+  /v1/ConnectionPolicies/{Sid}:
+    description: >-
+      Connection Policy for sending traffic to your communications
+      infrastructure.
+    get:
+      description: ''
+      tags:
+        - Voice
+        - Connections
+        - Policies
+      summary: Retrieve Connection Policy
+    post:
+      description: ''
+      tags:
+        - Voice
+        - Connections
+        - Policies
+      summary: Update Connection Policy
+    delete:
+      description: ''
+      tags:
+        - Voice
+        - Connections
+        - Policies
+      summary: Delete Connection Policy
+  /v1/ConnectionPolicies/{ConnectionPolicySid}/Targets:
+    description: Network element entry points into your communications infrastructure
+    post:
+      description: ''
+      tags:
+        - Voice
+        - Connections
+        - Policies
+        - Targets
+      summary: Create Connection Policies Target
+    get:
+      description: ''
+      tags:
+        - Voice
+        - Connections
+        - Policies
+        - Targets
+      summary: Retrieve Connection Policies Targets
+  /v1/ConnectionPolicies/{ConnectionPolicySid}/Targets/{Sid}:
+    description: Network element entry points into your communications infrastructure
+    get:
+      description: ''
+      tags:
+        - Voice
+        - Connections
+        - Policies
+        - Targets
+      summary: Retrieve Connection Policies Target
+    post:
+      description: ''
+      tags:
+        - Voice
+        - Connections
+        - Policies
+        - Targets
+      summary: Update Connection Policies Target
+    delete:
+      description: ''
+      tags:
+        - Voice
+        - Connections
+        - Policies
+        - Targets
+      summary: Delete Connection Policies Target
+  /v1/DialingPermissions:
+    description: 'TODO: Resource-level docs'
+  /v1/DialingPermissions/Countries/{IsoCode}:
+    description: 'TODO: Resource-level docs'
+    get:
+      description: >-
+        Retrieve voice dialing country permissions identified by the given ISO
+        country code
+      tags:
+        - Voice
+        - Dialing
+        - Permissions
+        - Countries
+        - ISO
+      summary: Retrieve Dialing Permission Country
+  /v1/DialingPermissions/Countries:
+    description: 'TODO: Resource-level docs'
+    get:
+      description: Retrieve all voice dialing country permissions for this account
+      tags:
+        - Voice
+        - Dialing
+        - Permissions
+        - Countries
+        - ISO
+      summary: Retrieve Dialing Permission Countries
+  /v1/DialingPermissions/BulkCountryUpdates:
+    description: 'TODO: Resource-level docs'
+    post:
+      description: >-
+        Create a bulk update request to change voice dialing country permissions
+        of one or more countries identified by the corresponding [ISO country
+        code](https://en.wikipedia.org/wiki/ISO_3166-1_alpha-2)
+      tags:
+        - Voice
+        - Dialing
+        - Permissions
+        - Countries
+        - Bulk
+      summary: Update Dialing Permission Bulk Country
+  /v1/DialingPermissions/Countries/{IsoCode}/HighRiskSpecialPrefixes:
+    description: 'TODO: Resource-level docs'
+    get:
+      description: >-
+        Fetch the high-risk special services prefixes from the country resource
+        corresponding to the [ISO country
+        code](https://en.wikipedia.org/wiki/ISO_3166-1_alpha-2)
+      tags:
+        - Voice
+        - Dialing
+        - Permissions
+        - Countries
+        - High
+        - Risk
+      summary: Retrieve Dialing Permission Countries High Risk
+  /v1/Settings:
+    description: 'TODO: Resource-level docs'
+    get:
+      description: Retrieve voice dialing permissions inheritance for the sub-account
+      tags:
+        - Voice
+        - Settings
+      summary: Retrieve Settings
+    post:
+      description: Update voice dialing permissions inheritance for the sub-account
+      tags:
+        - Voice
+        - Settings
+      summary: Update Settings
+  /v1/IpRecords:
+    description: >-
+      IP Records hold information about the IP addresses and ranges
+      ([CIDR](https://tools.ietf.org/html/rfc4632) blocks) that your traffic
+      will be associated with.
+    post:
+      description: ''
+      tags:
+        - Voice
+        - IP Address
+        - Record
+      summary: Create IP Record
+    get:
+      description: ''
+      tags:
+        - Voice
+        - IP Address
+        - Record
+      summary: Retrieve IP Records
+  /v1/IpRecords/{Sid}:
+    description: >-
+      IP Records hold information about the IP addresses and ranges
+      ([CIDR](https://tools.ietf.org/html/rfc4632) blocks) that your traffic
+      will be associated with.
+    get:
+      description: ''
+      tags:
+        - Voice
+        - IP Address
+        - Record
+      summary: Retrieve IP Record
+    post:
+      description: ''
+      tags:
+        - Voice
+        - IP Address
+        - Record
+      summary: Update IP Record
+    delete:
+      description: ''
+      tags:
+        - Voice
+        - IP Address
+        - Record
+      summary: Delete IP Record
+  /v1/SourceIpMappings:
+    description: >-
+      With Source IP Mappings, Twilio can recognize your SIP requests based on
+      where they are sent from. The Request-URI no longer has to have the FQDN
+      (Fully Qualified Domain Name) of your SIP Domain.
+    post:
+      description: ''
+      tags:
+        - Voice
+        - IP Address
+        - Source
+        - Mapping
+      summary: Create Source IP Mapping
+    get:
+      description: ''
+      tags:
+        - Voice
+        - IP Address
+        - Source
+        - Mapping
+      summary: Retrieve Source IP Mappings
+  /v1/SourceIpMappings/{Sid}:
+    description: >-
+      With Source IP Mappings, Twilio can recognize your SIP requests based on
+      where they are sent from. The Request-URI no longer has to have the FQDN
+      (Fully Qualified Domain Name) of your SIP Domain.
+    get:
+      description: ''
+      tags:
+        - Voice
+        - IP Address
+        - Source
+        - Mapping
+      summary: Retrieve Source IP Mapping
+    post:
+      description: ''
+      tags:
+        - Voice
+        - IP Address
+        - Source
+        - Mapping
+      summary: Update Source IP Mapping
+    delete:
+      description: ''
+      tags:
+        - Voice
+        - IP Address
+        - Source
+        - Mapping
+      summary: Delete Source IP Mapping
+tags:
+  - name: Tag
+  - name: Voice
+    description: Needs a description.
+  - name: ''
+    description: Needs a description.
+  - name: Archives
+    description: Needs a description.
+  - name: Calls
+    description: Needs a description.
+  - name: BYOC
+    description: Needs a description.
+  - name: Trunks
+    description: Needs a description.
+  - name: Connections
+    description: Needs a description.
+  - name: Policies
+    description: Needs a description.
+  - name: Targets
+    description: Needs a description.
+  - name: Dialing
+    description: Needs a description.
+  - name: Permissions
+    description: Needs a description.
+  - name: Countries
+    description: Needs a description.
+  - name: ISO
+    description: Needs a description.
+  - name: Bulk
+    description: Needs a description.
+  - name: High
+    description: Needs a description.
+  - name: Risk
+    description: Needs a description.
+  - name: Settings
+    description: Needs a description.
+  - name: IP Address
+    description: Needs a description.
+  - name: Record
+    description: Needs a description.
+  - name: Records
+    description: Needs a description.
+  - name: Source
+    description: Needs a description.
+  - name: Mapping
+    description: Needs a description.
+x-maturity:
+  - name: GA
+    description: This product is Generally Available.
+  - name: Beta
+    description: >-
+      PLEASE NOTE that this is a Beta product that is subject to change. Use it
+      with caution.
+  - name: Preview
+    description: >-
+      PLEASE NOTE that this is a Preview product that is subject to change. Use
+      it with caution. If you currently do not have developer preview access,
+      please contact https://www.twilio.com/help/contact.

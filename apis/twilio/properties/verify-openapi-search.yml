@@ -1,0 +1,520 @@
+info:
+  title: Twilio Verify API
+  license:
+    name: Apache 2.0
+    url: https://www.apache.org/licenses/LICENSE-2.0.html
+openapi: 3.0.1
+paths:
+  /v2/Services/{ServiceSid}/AccessTokens:
+    description: 'TODO: Resource-level docs'
+    post:
+      description: Create a new enrollment Access Token for the Entity
+      tags:
+        - Verify
+        - Services
+        - Access
+        - Tokens
+      summary: Create Service Access Token
+  /v2/Services/{ServiceSid}/AccessTokens/{Sid}:
+    description: 'TODO: Resource-level docs'
+    get:
+      description: Fetch an Access Token for the Entity
+      tags:
+        - Verify
+        - Services
+        - Access
+        - Tokens
+      summary: Retrieve Service Access Token
+  /v2/Services/{ServiceSid}/RateLimits/{RateLimitSid}/Buckets:
+    description: 'TODO: Resource-level docs'
+    post:
+      description: Create a new Bucket for a Rate Limit
+      tags:
+        - Verify
+        - Services
+        - Rate Limits
+        - Buckets
+      summary: Create Service Rate Limit Bucket
+    get:
+      description: Retrieve a list of all Buckets for a Rate Limit.
+      tags:
+        - Verify
+        - Services
+        - Rate Limits
+        - Buckets
+      summary: Retrieve Service Rate Limit Buckets
+  /v2/Services/{ServiceSid}/RateLimits/{RateLimitSid}/Buckets/{Sid}:
+    description: 'TODO: Resource-level docs'
+    post:
+      description: Update a specific Bucket.
+      tags:
+        - Verify
+        - Services
+        - Rate Limits
+        - Buckets
+      summary: Update Service Rate Limit Bucket
+    get:
+      description: Fetch a specific Bucket.
+      tags:
+        - Verify
+        - Services
+        - Rate Limits
+        - Buckets
+      summary: Retrieve Service Rate Limit Bucket
+    delete:
+      description: Delete a specific Bucket.
+      tags:
+        - Verify
+        - Services
+        - Rate Limits
+        - Buckets
+      summary: Delete Service Rate Limit Bucket
+  /v2/Services/{ServiceSid}/Entities/{Identity}/Challenges:
+    description: 'TODO: Resource-level docs'
+    post:
+      description: Create a new Challenge for the Factor
+      tags:
+        - Verify
+        - Services
+        - Entities
+        - Challenges
+      summary: Create Service Entities Challenge
+    get:
+      description: Retrieve a list of all Challenges for a Factor.
+      tags:
+        - Verify
+        - Services
+        - Entities
+        - Challenges
+      summary: Retrieve Service Entities Challenges
+  /v2/Services/{ServiceSid}/Entities/{Identity}/Challenges/{Sid}:
+    description: 'TODO: Resource-level docs'
+    get:
+      description: Fetch a specific Challenge.
+      tags:
+        - Verify
+        - Services
+        - Entities
+        - Challenges
+      summary: Retrieve Service Entities Challenge
+    post:
+      description: Verify a specific Challenge.
+      tags:
+        - Verify
+        - Services
+        - Entities
+        - Challenges
+      summary: Update Service Entities Challenge
+  /v2/Services/{ServiceSid}/Entities:
+    description: 'TODO: Resource-level docs'
+    post:
+      description: Create a new Entity for the Service
+      tags:
+        - Verify
+        - Services
+        - Entities
+      summary: Create Service Entity
+    get:
+      description: Retrieve a list of all Entities for a Service.
+      tags:
+        - Verify
+        - Services
+        - Entities
+      summary: Retrieve Service Entities
+  /v2/Services/{ServiceSid}/Entities/{Identity}:
+    description: 'TODO: Resource-level docs'
+    delete:
+      description: Delete a specific Entity.
+      tags:
+        - Verify
+        - Services
+        - Entities
+      summary: Delete Service Entity
+    get:
+      description: Fetch a specific Entity.
+      tags:
+        - Verify
+        - Services
+        - Entities
+      summary: Retrieve Service Entity
+  /v2/Services/{ServiceSid}/Entities/{Identity}/Factors/{Sid}:
+    description: 'TODO: Resource-level docs'
+    delete:
+      description: Delete a specific Factor.
+      tags:
+        - Verify
+        - Services
+        - Entities
+        - Factors
+      summary: Delete Service Entities Factor
+    get:
+      description: Fetch a specific Factor.
+      tags:
+        - Verify
+        - Services
+        - Entities
+        - Factors
+      summary: Retrieve Service Entities Factor
+    post:
+      description: >-
+        Update a specific Factor. This endpoint can be used to Verify a Factor
+        if passed an `AuthPayload` param.
+      tags:
+        - Verify
+        - Services
+        - Entities
+        - Factors
+      summary: Update Service Entities Factor
+  /v2/Services/{ServiceSid}/Entities/{Identity}/Factors:
+    description: 'TODO: Resource-level docs'
+    get:
+      description: Retrieve a list of all Factors for an Entity.
+      tags:
+        - Verify
+        - Services
+        - Entities
+        - Factors
+      summary: Retrieve Service Entities Factors
+    post:
+      description: Create a new Factor for the Entity
+      tags:
+        - Verify
+        - Services
+        - Entities
+        - Factors
+      summary: Create Service Entities Factor
+  /v2/Forms/{FormType}:
+    description: 'TODO: Resource-level docs'
+    get:
+      description: Fetch the forms for a specific Form Type.
+      tags:
+        - Verify
+        - Forms
+      summary: Retrieve Forms
+  /v2/Services/{ServiceSid}/MessagingConfigurations:
+    description: 'TODO: Resource-level docs'
+    post:
+      description: Create a new MessagingConfiguration for a service.
+      tags:
+        - Verify
+        - Services
+        - Messaging
+        - Configurations
+      summary: Create Service Messaging Configuration
+    get:
+      description: Retrieve a list of all Messaging Configurations for a Service.
+      tags:
+        - Verify
+        - Services
+        - Messaging
+        - Configurations
+      summary: Retrieve Service Messaging Configurations
+  /v2/Services/{ServiceSid}/MessagingConfigurations/{Country}:
+    description: 'TODO: Resource-level docs'
+    post:
+      description: Update a specific MessagingConfiguration
+      tags:
+        - Verify
+        - Services
+        - Messaging
+        - Configurations
+      summary: Update Service Messaging Configuration
+    get:
+      description: Fetch a specific MessagingConfiguration.
+      tags:
+        - Verify
+        - Services
+        - Messaging
+        - Configurations
+      summary: Retrieve Service Messaging Configuration
+    delete:
+      description: Delete a specific MessagingConfiguration.
+      tags:
+        - Verify
+        - Services
+        - Messaging
+        - Configurations
+      summary: Delete Service Messaging Configuration
+  /v2/Services/{ServiceSid}/Entities/{Identity}/Challenges/{ChallengeSid}/Notifications:
+    description: 'TODO: Resource-level docs'
+    post:
+      description: Create a new Notification for the corresponding Challenge
+      tags:
+        - Verify
+        - Services
+        - Entities
+        - Challenges
+        - Notifications
+      summary: Create Service Entities Challenges Notification
+  /v2/Services/{ServiceSid}/RateLimits:
+    description: 'TODO: Resource-level docs'
+    post:
+      description: Create a new Rate Limit for a Service
+      tags:
+        - Verify
+        - Services
+        - Rate Limits
+      summary: Create Service Rate Limits
+    get:
+      description: Retrieve a list of all Rate Limits for a service.
+      tags:
+        - Verify
+        - Services
+        - Rate Limits
+      summary: Retrieve Service Rate Limits
+  /v2/Services/{ServiceSid}/RateLimits/{Sid}:
+    description: 'TODO: Resource-level docs'
+    post:
+      description: Update a specific Rate Limit.
+      tags:
+        - Verify
+        - Services
+        - Rate Limits
+      summary: Update Service Rate Limit
+    get:
+      description: Fetch a specific Rate Limit.
+      tags:
+        - Verify
+        - Services
+        - Rate Limits
+      summary: Retrieve Service Rate Limit
+    delete:
+      description: Delete a specific Rate Limit.
+      tags:
+        - Verify
+        - Services
+        - Rate Limits
+      summary: Delete Service Rate Limit
+  /v2/SafeList/Numbers:
+    description: 'TODO: Resource-level docs'
+    post:
+      description: Add a new phone number to SafeList.
+      tags:
+        - Verify
+        - Numbers
+        - Safety
+        - Lists
+        - Phone Numbers
+      summary: Create Safe List Number
+  /v2/SafeList/Numbers/{PhoneNumber}:
+    description: 'TODO: Resource-level docs'
+    get:
+      description: Check if a phone number exists in SafeList.
+      tags:
+        - Verify
+        - Numbers
+        - Safety
+        - Lists
+        - Phone Numbers
+      summary: Retrieve Safe List Number
+    delete:
+      description: Remove a phone number from SafeList.
+      tags:
+        - Verify
+        - Numbers
+        - Safety
+        - Lists
+        - Phone Numbers
+      summary: Delete Safe List Number
+  /v2/Services:
+    description: 'TODO: Resource-level docs'
+    post:
+      description: Create a new Verification Service.
+      tags:
+        - Verify
+        - Services
+      summary: Create Service
+    get:
+      description: Retrieve a list of all Verification Services for an account.
+      tags:
+        - Verify
+        - Services
+      summary: Retrieve Services
+  /v2/Services/{Sid}:
+    description: 'TODO: Resource-level docs'
+    get:
+      description: Fetch specific Verification Service Instance.
+      tags:
+        - Verify
+        - Services
+      summary: Retrieve Service
+    delete:
+      description: Delete a specific Verification Service Instance.
+      tags:
+        - Verify
+        - Services
+      summary: Delete Service
+    post:
+      description: Update a specific Verification Service.
+      tags:
+        - Verify
+        - Services
+      summary: Update Service
+  /v2/Services/{ServiceSid}/Verifications:
+    description: 'TODO: Resource-level docs'
+    post:
+      description: Create a new Verification using a Service
+      tags:
+        - Verify
+        - Services
+        - Verification
+      summary: Create Service Verification
+  /v2/Services/{ServiceSid}/Verifications/{Sid}:
+    description: 'TODO: Resource-level docs'
+    post:
+      description: Update a Verification status
+      tags:
+        - Verify
+        - Services
+        - Verification
+      summary: Update Service Verification
+    get:
+      description: Fetch a specific Verification
+      tags:
+        - Verify
+        - Services
+        - Verification
+      summary: Retrieve Service Verification
+  /v2/Attempts:
+    description: 'TODO: Resource-level docs'
+    get:
+      description: List all the verification attempts for a given Account.
+      tags:
+        - Verify
+        - Attempts
+      summary: Retrieve Attempts
+  /v2/Attempts/{Sid}:
+    description: 'TODO: Resource-level docs'
+    get:
+      description: Fetch a specific verification attempt.
+      tags:
+        - Verify
+        - Attempts
+      summary: Retrieve Attempt
+  /v2/Attempts/Summary:
+    description: 'TODO: Resource-level docs'
+    get:
+      description: >-
+        Get a summary of how many attempts were made and how many were
+        converted.
+      tags:
+        - Verify
+        - Attempts
+        - Summary
+      summary: Retrieve Attempt Summary
+  /v2/Services/{ServiceSid}/VerificationCheck:
+    description: 'TODO: Resource-level docs'
+    post:
+      description: challenge a specific Verification Check.
+      tags:
+        - Verify
+        - Services
+        - Verification
+        - Checks
+      summary: Create Service Verification Check
+  /v2/Templates:
+    description: 'TODO: Resource-level docs'
+    get:
+      description: List all the available templates for a given Account.
+      tags:
+        - Verify
+        - Templates
+      summary: Retrieve Template
+  /v2/Services/{ServiceSid}/Webhooks:
+    description: 'TODO: Resource-level docs'
+    post:
+      description: Create a new Webhook for the Service
+      tags:
+        - Verify
+        - Services
+        - Webhooks
+      summary: Create Service Webhook
+    get:
+      description: Retrieve a list of all Webhooks for a Service.
+      tags:
+        - Verify
+        - Services
+        - Webhooks
+      summary: Retrieve Service Webhooks
+  /v2/Services/{ServiceSid}/Webhooks/{Sid}:
+    description: 'TODO: Resource-level docs'
+    post:
+      description: ''
+      tags:
+        - Verify
+        - Services
+        - Webhooks
+      summary: Update Service Webhook
+    delete:
+      description: Delete a specific Webhook.
+      tags:
+        - Verify
+        - Services
+        - Webhooks
+      summary: Delete Service Webhook
+    get:
+      description: Fetch a specific Webhook.
+      tags:
+        - Verify
+        - Services
+        - Webhooks
+      summary: Retrieve Service Webhook
+tags:
+  - name: Tag
+  - name: Verify
+    description: Needs a description.
+  - name: Services
+    description: Needs a description.
+  - name: Access
+    description: Needs a description.
+  - name: Tokens
+    description: Needs a description.
+  - name: Rate Limits
+    description: Needs a description.
+  - name: Buckets
+    description: Needs a description.
+  - name: Entities
+    description: Needs a description.
+  - name: Challenges
+    description: Needs a description.
+  - name: Factors
+    description: Needs a description.
+  - name: Forms
+    description: Needs a description.
+  - name: Messaging
+    description: Needs a description.
+  - name: Configurations
+    description: Needs a description.
+  - name: Notifications
+    description: Needs a description.
+  - name: Numbers
+    description: Needs a description.
+  - name: Safety
+    description: Needs a description.
+  - name: Lists
+    description: Needs a description.
+  - name: Phone Numbers
+    description: Needs a description.
+  - name: Verification
+    description: Needs a description.
+  - name: Attempts
+    description: Needs a description.
+  - name: Summary
+    description: Needs a description.
+  - name: Checks
+    description: Needs a description.
+  - name: vi
+    description: Needs a description.
+  - name: Template
+    description: Needs a description.
+  - name: Templates
+    description: Needs a description.
+  - name: Webhooks
+    description: Needs a description.
+x-maturity:
+  - name: GA
+    description: This product is Generally Available.
+  - name: Beta
+    description: >-
+      PLEASE NOTE that this is a Beta product that is subject to change. Use it
+      with caution.

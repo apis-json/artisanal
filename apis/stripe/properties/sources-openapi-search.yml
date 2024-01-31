@@ -1,0 +1,76 @@
+openapi: 3.0.0
+info:
+  title: Stripe Sources API
+paths:
+  /v1/sources:
+    post:
+      description: <p>Creates a new source object.</p>
+      summary: Create Source
+      tags:
+        - Sources
+  /v1/sources/{source}:
+    get:
+      description: >-
+        <p>Retrieves an existing source object. Supply the unique source ID from
+        a source creation request and Stripe will return the corresponding
+        up-to-date source object information.</p>
+      summary: Retrieve Source
+      tags:
+        - Sources
+    post:
+      description: >-
+        <p>Updates the specified source by setting the values of the parameters
+        passed. Any parameters not provided will be left unchanged.</p>
+
+
+        <p>This request accepts the <code>metadata</code> and <code>owner</code>
+        as arguments. It is also possible to update type specific information
+        for selected payment methods. Please refer to our <a
+        href="/docs/sources">payment method guides</a> for more detail.</p>
+      summary: Update Source
+      tags:
+        - Sources
+  /v1/sources/{source}/mandate_notifications/{mandate_notification}:
+    get:
+      description: <p>Retrieves a new Source MandateNotification.</p>
+      summary: Retrieve Source Mandate Notification
+      tags:
+        - Sources
+        - Mandates
+        - Notifications
+  /v1/sources/{source}/source_transactions:
+    get:
+      description: <p>List source transactions for a given source.</p>
+      summary: Retrieve Source Transactions
+      tags:
+        - Sources
+        - Transactions
+  /v1/sources/{source}/source_transactions/{source_transaction}:
+    get:
+      description: >-
+        <p>Retrieve an existing source transaction object. Supply the unique
+        source ID from a source creation request and the source transaction ID
+        and Stripe will return the corresponding up-to-date source object
+        information.</p>
+      summary: Retrieve Source Transaction
+      tags:
+        - Sources
+        - Transactions
+  /v1/sources/{source}/verify:
+    post:
+      description: <p>Verify a given source.</p>
+      summary: Verify Source
+      tags:
+        - Verify
+        - Sources
+tags:
+  - name: Sources
+    description: Needs a description.
+  - name: Mandates
+    description: Needs a description.
+  - name: Notifications
+    description: Needs a description.
+  - name: Transactions
+    description: Needs a description.
+  - name: Verify
+    description: Needs a description.

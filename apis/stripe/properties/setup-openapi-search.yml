@@ -1,0 +1,139 @@
+openapi: 3.0.0
+info:
+  title: Stripe Setup API
+paths:
+  /v1/setup_attempts:
+    get:
+      description: >-
+        <p>Returns a list of SetupAttempts that associate with a provided
+        SetupIntent.</p>
+      summary: Retrieve Setup Attempts
+      tags:
+        - Setup
+        - Attempts
+  /v1/setup_intents:
+    get:
+      description: <p>Returns a list of SetupIntents.</p>
+      summary: Retrieve Setup Intents
+      tags:
+        - Setup
+        - Intents
+    post:
+      description: >-
+        <p>Creates a SetupIntent object.</p>
+
+
+        <p>After you create the SetupIntent, attach a payment method and <a
+        href="/docs/api/setup_intents/confirm">confirm</a>
+
+        it to collect any required permissions to charge the payment method
+        later.</p>
+      summary: Create Setup Intent
+      tags:
+        - Setup
+        - Intents
+  /v1/setup_intents/{intent}:
+    get:
+      description: >-
+        <p>Retrieves the details of a SetupIntent that has previously been
+        created. </p>
+
+
+        <p>Client-side retrieval using a publishable key is allowed when the
+        <code>client_secret</code> is provided in the query string. </p>
+
+
+        <p>When retrieved with a publishable key, only a subset of properties
+        will be returned. Please refer to the <a
+        href="#setup_intent_object">SetupIntent</a> object reference for more
+        details.</p>
+      summary: Retrieve Setup Intent
+      tags:
+        - Setup
+        - Intents
+    post:
+      description: <p>Updates a SetupIntent object.</p>
+      summary: Update Setup Intent
+      tags:
+        - Setup
+        - Intents
+  /v1/setup_intents/{intent}/cancel:
+    post:
+      description: >-
+        <p>You can cancel a SetupIntent object when it’s in one of these
+        statuses: <code>requires_payment_method</code>,
+        <code>requires_confirmation</code>, or <code>requires_action</code>.
+        </p>
+
+
+        <p>After you cancel it, setup is abandoned and any operations on the
+        SetupIntent fail with an error.</p>
+      summary: Cancel Setup Intent
+      tags:
+        - Cancel
+        - Setup
+        - Intent
+  /v1/setup_intents/{intent}/confirm:
+    post:
+      description: >-
+        <p>Confirm that your customer intends to set up the current or
+
+        provided payment method. For example, you would confirm a SetupIntent
+
+        when a customer hits the “Save” button on a payment method management
+
+        page on your website.</p>
+
+
+        <p>If the selected payment method does not require any additional
+
+        steps from the customer, the SetupIntent will transition to the
+
+        <code>succeeded</code> status.</p>
+
+
+        <p>Otherwise, it will transition to the <code>requires_action</code>
+        status and
+
+        suggest additional actions via <code>next_action</code>. If setup fails,
+
+        the SetupIntent will transition to the
+
+        <code>requires_payment_method</code> status or the <code>canceled</code>
+        status if the
+
+        confirmation limit is reached.</p>
+      summary: Confirm Setup Intent
+      tags:
+        - Confirm
+        - Setup
+        - Intent
+  /v1/setup_intents/{intent}/verify_microdeposits:
+    post:
+      description: <p>Verifies microdeposits on a SetupIntent object.</p>
+      summary: Verify Setup Intent Microdeposit
+      tags:
+        - Verify
+        - Setup
+        - Intents
+        - Micro
+        - Deposits
+tags:
+  - name: Setup
+    description: Needs a description.
+  - name: Attempts
+    description: Needs a description.
+  - name: Intents
+    description: Needs a description.
+  - name: Cancel
+    description: Needs a description.
+  - name: Intent
+    description: Needs a description.
+  - name: Confirm
+    description: Needs a description.
+  - name: Verify
+    description: Needs a description.
+  - name: Micro
+    description: Needs a description.
+  - name: Deposits
+    description: Needs a description.

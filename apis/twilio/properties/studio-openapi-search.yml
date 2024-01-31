@@ -1,0 +1,189 @@
+info:
+  title: Twilio Studio API
+  license:
+    name: Apache 2.0
+    url: https://www.apache.org/licenses/LICENSE-2.0.html
+openapi: 3.0.1
+paths:
+  /v2/Flows/{FlowSid}/Executions:
+    description: Executions of Studio flows
+    get:
+      description: Retrieve a list of all Executions for the Flow.
+      tags:
+        - Studio
+        - Flows
+        - Executions
+      summary: Retrieve Flow Executions
+    post:
+      description: Triggers a new Execution for the Flow
+      tags:
+        - Studio
+        - Flows
+        - Executions
+      summary: Create Flow Execution
+  /v2/Flows/{FlowSid}/Executions/{Sid}:
+    description: Executions of Studio flows
+    get:
+      description: Retrieve an Execution
+      tags:
+        - Studio
+        - Flows
+        - Executions
+      summary: Retrieve Flow Execution
+    delete:
+      description: Delete the Execution and all Steps relating to it.
+      tags:
+        - Studio
+        - Flows
+        - Executions
+      summary: Delete Flow Execution
+    post:
+      description: Update the status of an Execution to `ended`.
+      tags:
+        - Studio
+        - Flows
+        - Executions
+      summary: Update Flow Execution
+  /v2/Flows/{FlowSid}/Executions/{ExecutionSid}/Context:
+    description: JSON context for executions
+    get:
+      description: Retrieve the most recent context for an Execution.
+      tags:
+        - Studio
+        - Flows
+        - Executions
+        - Context
+      summary: Retrieve Flow Execution Context
+  /v2/Flows/{FlowSid}/Executions/{ExecutionSid}/Steps:
+    description: Individual steps within an execution
+    get:
+      description: Retrieve a list of all Steps for an Execution.
+      tags:
+        - Studio
+        - Flows
+        - Executions
+        - Steps
+      summary: Retrieve Flow Execution Steps
+  /v2/Flows/{FlowSid}/Executions/{ExecutionSid}/Steps/{Sid}:
+    description: Individual steps within an execution
+    get:
+      description: Retrieve a Step.
+      tags:
+        - Studio
+        - Flows
+        - Executions
+        - Steps
+      summary: Retrieve Flow Execution Step
+  /v2/Flows/{FlowSid}/Executions/{ExecutionSid}/Steps/{StepSid}/Context:
+    description: JSON context for an individual step within an execution
+    get:
+      description: Retrieve the context for an Execution Step.
+      tags:
+        - Studio
+        - Flows
+        - Executions
+        - Steps
+        - Context
+      summary: Retrieve Flow Execution Step Context
+  /v2/Flows:
+    description: Studio flows
+    post:
+      description: Create a Flow.
+      tags:
+        - Studio
+        - Flows
+      summary: Create Flow
+    get:
+      description: Retrieve a list of all Flows.
+      tags:
+        - Studio
+        - Flows
+      summary: Retrieve Flows
+  /v2/Flows/{Sid}:
+    description: Studio flows
+    post:
+      description: Update a Flow.
+      tags:
+        - Studio
+        - Flows
+      summary: Update Flow
+    get:
+      description: Retrieve a specific Flow.
+      tags:
+        - Studio
+        - Flows
+      summary: Retrieve Flow
+    delete:
+      description: Delete a specific Flow.
+      tags:
+        - Studio
+        - Flows
+      summary: Delete Flow
+  /v2/Flows/{Sid}/Revisions:
+    description: Studio flows revisions
+    get:
+      description: Retrieve a list of all Flows revisions.
+      tags:
+        - Studio
+        - Flows
+        - Revisions
+      summary: Retrieve Flow Revisions
+  /v2/Flows/{Sid}/Revisions/{Revision}:
+    description: Studio flows revisions
+    get:
+      description: Retrieve a specific Flow revision.
+      tags:
+        - Studio
+        - Flows
+        - Revisions
+      summary: Retrieve Flow Revision
+  /v2/Flows/Validate:
+    description: Flow definition validator
+    post:
+      description: Validate flow JSON definition
+      tags:
+        - Studio
+        - Flows
+        - Validate
+      summary: Retrieve Flow Validate
+  /v2/Flows/{Sid}/TestUsers:
+    description: Test users of a flow
+    get:
+      description: Fetch flow test users
+      tags:
+        - Studio
+        - Flows
+        - Tests
+        - Users
+      summary: Retrieve Flow Test Users
+    post:
+      description: Update flow test users
+      tags:
+        - Studio
+        - Flows
+        - Tests
+        - Users
+      summary: Update Flow Test Users
+tags:
+  - name: Tag
+  - name: Studio
+    description: Needs a description.
+  - name: Flows
+    description: Needs a description.
+  - name: Executions
+    description: Needs a description.
+  - name: Context
+    description: Needs a description.
+  - name: Steps
+    description: Needs a description.
+  - name: Revisions
+    description: Needs a description.
+  - name: Validate
+    description: Needs a description.
+  - name: Tests
+    description: Needs a description.
+  - name: Users
+    description: Needs a description.
+x-maturity:
+  - name: GA
+    description: This product is Generally Available.

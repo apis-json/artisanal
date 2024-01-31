@@ -1,0 +1,56 @@
+openapi: 3.0.0
+info:
+  title: Stripe Webhook API
+paths:
+  /v1/webhook_endpoints:
+    get:
+      description: <p>Returns a list of your webhook endpoints.</p>
+      summary: Retrieve Webhook Endpoints
+      tags:
+        - Webhooks
+        - Endpoints
+    post:
+      description: >-
+        <p>A webhook endpoint must have a <code>url</code> and a list of
+        <code>enabled_events</code>. You may optionally specify the Boolean
+        <code>connect</code> parameter. If set to true, then a Connect webhook
+        endpoint that notifies the specified <code>url</code> about events from
+        all connected accounts is created; otherwise an account webhook endpoint
+        that notifies the specified <code>url</code> only about events from your
+        account is created. You can also create webhook endpoints in the <a
+        href="https://dashboard.stripe.com/account/webhooks">webhooks
+        settings</a> section of the Dashboard.</p>
+      summary: Create Webhook Endpoint
+      tags:
+        - Webhooks
+        - Endpoints
+  /v1/webhook_endpoints/{webhook_endpoint}:
+    delete:
+      description: >-
+        <p>You can also delete webhook endpoints via the <a
+        href="https://dashboard.stripe.com/account/webhooks">webhook endpoint
+        management</a> page of the Stripe dashboard.</p>
+      summary: Delete Webhook Endpoint
+      tags:
+        - Webhooks
+        - Endpoints
+    get:
+      description: <p>Retrieves the webhook endpoint with the given ID.</p>
+      summary: Retrieve Webhook Endpoint
+      tags:
+        - Webhooks
+        - Endpoints
+    post:
+      description: >-
+        <p>Updates the webhook endpoint. You may edit the <code>url</code>, the
+        list of <code>enabled_events</code>, and the status of your
+        endpoint.</p>
+      summary: Update Webhook Endpoint
+      tags:
+        - Webhooks
+        - Endpoints
+tags:
+  - name: Webhooks
+    description: Needs a description.
+  - name: Endpoints
+    description: Needs a description.

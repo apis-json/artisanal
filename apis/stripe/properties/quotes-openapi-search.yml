@@ -1,0 +1,105 @@
+openapi: 3.0.0
+info:
+  title: Stripe Quotes API
+paths:
+  /v1/quotes:
+    get:
+      description: <p>Returns a list of your quotes.</p>
+      summary: Retrieve Quotes
+      tags:
+        - Quotes
+    post:
+      description: >-
+        <p>A quote models prices and services for a customer. Default options
+        for <code>header</code>, <code>description</code>, <code>footer</code>,
+        and <code>expires_at</code> can be set in the dashboard via the <a
+        href="https://dashboard.stripe.com/settings/billing/quote">quote
+        template</a>.</p>
+      summary: Create Quote
+      tags:
+        - Quotes
+  /v1/quotes/{quote}:
+    get:
+      description: <p>Retrieves the quote with the given ID.</p>
+      summary: Retrieve Quote
+      tags:
+        - Quotes
+    post:
+      description: <p>A quote models prices and services for a customer.</p>
+      summary: Update Quote
+      tags:
+        - Quotes
+  /v1/quotes/{quote}/accept:
+    post:
+      description: <p>Accepts the specified quote.</p>
+      summary: Accept Quote
+      tags:
+        - Accept
+        - Quotes
+  /v1/quotes/{quote}/cancel:
+    post:
+      description: <p>Cancels the quote.</p>
+      summary: Cancel Quote
+      tags:
+        - Cancel
+        - Quotes
+  /v1/quotes/{quote}/computed_upfront_line_items:
+    get:
+      description: >-
+        <p>When retrieving a quote, there is an includable <a
+        href="https://stripe.com/docs/api/quotes/object#quote_object-computed-upfront-line_items"><strong>computed.upfront.line_items</strong></a>
+        property containing the first handful of those items. There is also a
+        URL where you can retrieve the full (paginated) list of upfront line
+        items.</p>
+      summary: Retrieve Quote Computed Upfront Line Items
+      tags:
+        - Quotes
+        - Computed
+        - Upfront
+        - Lines
+        - Items
+  /v1/quotes/{quote}/finalize:
+    post:
+      description: <p>Finalizes the quote.</p>
+      summary: Finalize Quote
+      tags:
+        - Quotes
+        - Finalize
+  /v1/quotes/{quote}/line_items:
+    get:
+      description: >-
+        <p>When retrieving a quote, there is an includable
+        <strong>line_items</strong> property containing the first handful of
+        those items. There is also a URL where you can retrieve the full
+        (paginated) list of line items.</p>
+      summary: Retrieve Quote Line Items
+      tags:
+        - Quotes
+        - Lines
+        - Items
+  /v1/quotes/{quote}/pdf:
+    get:
+      description: <p>Download the PDF for a finalized quote</p>
+      summary: Retrieve Quote PDF
+      tags:
+        - Quotes
+        - PDF
+tags:
+  - name: Quotes
+    description: Needs a description.
+  - name: Accept
+    description: Needs a description.
+  - name: Cancel
+    description: Needs a description.
+  - name: Computed
+    description: Needs a description.
+  - name: Upfront
+    description: Needs a description.
+  - name: Lines
+    description: Needs a description.
+  - name: Items
+    description: Needs a description.
+  - name: Finalize
+    description: Needs a description.
+  - name: PDF
+    description: Needs a description.

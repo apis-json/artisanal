@@ -1,0 +1,839 @@
+openapi: 3.0.0
+info:
+  title: Stripe Application Fees API
+  description: Needs description.
+  contact:
+    email: dev-platform@stripe.com
+    name: Stripe Dev Platform Team
+    url: 'https://stripe.com'
+  termsOfService: 'https://stripe.com/us/terms/'
+  version: '2023-10-16'
+  x-stripeSpecFilename: spec3
+security:
+  - basicAuth: []
+  - bearerAuth: []
+servers:
+  - url: 'https://api.stripe.com/'
+paths:
+  /v1/application_fees:
+    get:
+      description: >-
+        <p>Returns a list of application fees you’ve previously collected. The
+        application fees are returned in sorted order, with the most recent fees
+        appearing first.</p>
+      operationId: GetApplicationFees
+      parameters:
+        - description: >-
+            Only return application fees for the charge specified by this charge
+            ID.
+          in: query
+          name: charge
+          required: false
+          schema:
+            maxLength: 5000
+            type: string
+          style: form
+        - explode: true
+          in: query
+          name: created
+          required: false
+          schema:
+            anyOf:
+              - properties:
+                  gt:
+                    type: integer
+                  gte:
+                    type: integer
+                  lt:
+                    type: integer
+                  lte:
+                    type: integer
+                title: range_query_specs
+                type: object
+              - type: integer
+          style: deepObject
+        - description: >-
+            A cursor for use in pagination. `ending_before` is an object ID that
+            defines your place in the list. For instance, if you make a list
+            request and receive 100 objects, starting with `obj_bar`, your
+            subsequent call can include `ending_before=obj_bar` in order to
+            fetch the previous page of the list.
+          in: query
+          name: ending_before
+          required: false
+          schema:
+            maxLength: 5000
+            type: string
+          style: form
+        - description: Specifies which fields in the response should be expanded.
+          explode: true
+          in: query
+          name: expand
+          required: false
+          schema:
+            items:
+              maxLength: 5000
+              type: string
+            type: array
+          style: deepObject
+        - description: >-
+            A limit on the number of objects to be returned. Limit can range
+            between 1 and 100, and the default is 10.
+          in: query
+          name: limit
+          required: false
+          schema:
+            type: integer
+          style: form
+        - description: >-
+            A cursor for use in pagination. `starting_after` is an object ID
+            that defines your place in the list. For instance, if you make a
+            list request and receive 100 objects, ending with `obj_foo`, your
+            subsequent call can include `starting_after=obj_foo` in order to
+            fetch the next page of the list.
+          in: query
+          name: starting_after
+          required: false
+          schema:
+            maxLength: 5000
+            type: string
+          style: form
+      requestBody:
+        content:
+          application/x-www-form-urlencoded:
+            encoding: {}
+            schema:
+              additionalProperties: false
+              properties: {}
+              type: object
+        required: false
+      responses:
+        '200':
+          content:
+            application/json:
+              schema:
+                description: ''
+                properties:
+                  data:
+                    items:
+                      $ref: '#/components/schemas/application_fee'
+                    type: array
+                  has_more:
+                    description: >-
+                      True if this list has another page of items after this one
+                      that can be fetched.
+                    type: boolean
+                  object:
+                    description: >-
+                      String representing the object's type. Objects of the same
+                      type share the same value. Always has the value `list`.
+                    enum:
+                      - list
+                    type: string
+                  url:
+                    description: The URL where this list can be accessed.
+                    maxLength: 5000
+                    pattern: ^/v1/application_fees
+                    type: string
+                required:
+                  - data
+                  - has_more
+                  - object
+                  - url
+                title: PlatformEarningList
+                type: object
+                x-expandableFields:
+                  - data
+          description: Successful response.
+        default:
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/error'
+          description: Error response.
+  '/v1/application_fees/{fee}/refunds/{id}':
+    get:
+      description: >-
+        <p>By default, you can see the 10 most recent refunds stored directly on
+        the application fee object, but you can also retrieve details about a
+        specific refund stored on the application fee.</p>
+      operationId: GetApplicationFeesFeeRefundsId
+      parameters:
+        - description: Specifies which fields in the response should be expanded.
+          explode: true
+          in: query
+          name: expand
+          required: false
+          schema:
+            items:
+              maxLength: 5000
+              type: string
+            type: array
+          style: deepObject
+        - in: path
+          name: fee
+          required: true
+          schema:
+            maxLength: 5000
+            type: string
+          style: simple
+        - in: path
+          name: id
+          required: true
+          schema:
+            maxLength: 5000
+            type: string
+          style: simple
+      requestBody:
+        content:
+          application/x-www-form-urlencoded:
+            encoding: {}
+            schema:
+              additionalProperties: false
+              properties: {}
+              type: object
+        required: false
+      responses:
+        '200':
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/fee_refund'
+          description: Successful response.
+        default:
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/error'
+          description: Error response.
+    post:
+      description: >-
+        <p>Updates the specified application fee refund by setting the values of
+        the parameters passed. Any parameters not provided will be left
+        unchanged.</p>
+
+
+        <p>This request only accepts metadata as an argument.</p>
+      operationId: PostApplicationFeesFeeRefundsId
+      parameters:
+        - in: path
+          name: fee
+          required: true
+          schema:
+            maxLength: 5000
+            type: string
+          style: simple
+        - in: path
+          name: id
+          required: true
+          schema:
+            maxLength: 5000
+            type: string
+          style: simple
+      requestBody:
+        content:
+          application/x-www-form-urlencoded:
+            encoding:
+              expand:
+                explode: true
+                style: deepObject
+              metadata:
+                explode: true
+                style: deepObject
+            schema:
+              additionalProperties: false
+              properties:
+                expand:
+                  description: Specifies which fields in the response should be expanded.
+                  items:
+                    maxLength: 5000
+                    type: string
+                  type: array
+                metadata:
+                  anyOf:
+                    - additionalProperties:
+                        type: string
+                      type: object
+                    - enum:
+                        - ''
+                      type: string
+                  description: >-
+                    Set of [key-value
+                    pairs](https://stripe.com/docs/api/metadata) that you can
+                    attach to an object. This can be useful for storing
+                    additional information about the object in a structured
+                    format. Individual keys can be unset by posting an empty
+                    value to them. All keys can be unset by posting an empty
+                    value to `metadata`.
+              type: object
+        required: false
+      responses:
+        '200':
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/fee_refund'
+          description: Successful response.
+        default:
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/error'
+          description: Error response.
+  '/v1/application_fees/{id}':
+    get:
+      description: >-
+        <p>Retrieves the details of an application fee that your account has
+        collected. The same information is returned when refunding the
+        application fee.</p>
+      operationId: GetApplicationFeesId
+      parameters:
+        - description: Specifies which fields in the response should be expanded.
+          explode: true
+          in: query
+          name: expand
+          required: false
+          schema:
+            items:
+              maxLength: 5000
+              type: string
+            type: array
+          style: deepObject
+        - in: path
+          name: id
+          required: true
+          schema:
+            maxLength: 5000
+            type: string
+          style: simple
+      requestBody:
+        content:
+          application/x-www-form-urlencoded:
+            encoding: {}
+            schema:
+              additionalProperties: false
+              properties: {}
+              type: object
+        required: false
+      responses:
+        '200':
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/application_fee'
+          description: Successful response.
+        default:
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/error'
+          description: Error response.
+  '/v1/application_fees/{id}/refund':
+    post:
+      description: ''
+      operationId: PostApplicationFeesIdRefund
+      parameters:
+        - in: path
+          name: id
+          required: true
+          schema:
+            maxLength: 5000
+            type: string
+          style: simple
+      requestBody:
+        content:
+          application/x-www-form-urlencoded:
+            encoding:
+              expand:
+                explode: true
+                style: deepObject
+            schema:
+              additionalProperties: false
+              properties:
+                amount:
+                  type: integer
+                directive:
+                  maxLength: 5000
+                  type: string
+                expand:
+                  description: Specifies which fields in the response should be expanded.
+                  items:
+                    maxLength: 5000
+                    type: string
+                  type: array
+              type: object
+        required: false
+      responses:
+        '200':
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/application_fee'
+          description: Successful response.
+        default:
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/error'
+          description: Error response.
+  '/v1/application_fees/{id}/refunds':
+    get:
+      description: >-
+        <p>You can see a list of the refunds belonging to a specific application
+        fee. Note that the 10 most recent refunds are always available by
+        default on the application fee object. If you need more than those 10,
+        you can use this API method and the <code>limit</code> and
+        <code>starting_after</code> parameters to page through additional
+        refunds.</p>
+      operationId: GetApplicationFeesIdRefunds
+      parameters:
+        - description: >-
+            A cursor for use in pagination. `ending_before` is an object ID that
+            defines your place in the list. For instance, if you make a list
+            request and receive 100 objects, starting with `obj_bar`, your
+            subsequent call can include `ending_before=obj_bar` in order to
+            fetch the previous page of the list.
+          in: query
+          name: ending_before
+          required: false
+          schema:
+            maxLength: 5000
+            type: string
+          style: form
+        - description: Specifies which fields in the response should be expanded.
+          explode: true
+          in: query
+          name: expand
+          required: false
+          schema:
+            items:
+              maxLength: 5000
+              type: string
+            type: array
+          style: deepObject
+        - in: path
+          name: id
+          required: true
+          schema:
+            maxLength: 5000
+            type: string
+          style: simple
+        - description: >-
+            A limit on the number of objects to be returned. Limit can range
+            between 1 and 100, and the default is 10.
+          in: query
+          name: limit
+          required: false
+          schema:
+            type: integer
+          style: form
+        - description: >-
+            A cursor for use in pagination. `starting_after` is an object ID
+            that defines your place in the list. For instance, if you make a
+            list request and receive 100 objects, ending with `obj_foo`, your
+            subsequent call can include `starting_after=obj_foo` in order to
+            fetch the next page of the list.
+          in: query
+          name: starting_after
+          required: false
+          schema:
+            maxLength: 5000
+            type: string
+          style: form
+      requestBody:
+        content:
+          application/x-www-form-urlencoded:
+            encoding: {}
+            schema:
+              additionalProperties: false
+              properties: {}
+              type: object
+        required: false
+      responses:
+        '200':
+          content:
+            application/json:
+              schema:
+                description: ''
+                properties:
+                  data:
+                    description: Details about each object.
+                    items:
+                      $ref: '#/components/schemas/fee_refund'
+                    type: array
+                  has_more:
+                    description: >-
+                      True if this list has another page of items after this one
+                      that can be fetched.
+                    type: boolean
+                  object:
+                    description: >-
+                      String representing the object's type. Objects of the same
+                      type share the same value. Always has the value `list`.
+                    enum:
+                      - list
+                    type: string
+                  url:
+                    description: The URL where this list can be accessed.
+                    maxLength: 5000
+                    type: string
+                required:
+                  - data
+                  - has_more
+                  - object
+                  - url
+                title: FeeRefundList
+                type: object
+                x-expandableFields:
+                  - data
+          description: Successful response.
+        default:
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/error'
+          description: Error response.
+    post:
+      description: >-
+        <p>Refunds an application fee that has previously been collected but not
+        yet refunded.
+
+        Funds will be refunded to the Stripe account from which the fee was
+        originally collected.</p>
+
+
+        <p>You can optionally refund only part of an application fee.
+
+        You can do so multiple times, until the entire fee has been
+        refunded.</p>
+
+
+        <p>Once entirely refunded, an application fee can’t be refunded again.
+
+        This method will raise an error when called on an already-refunded
+        application fee,
+
+        or when trying to refund more money than is left on an application
+        fee.</p>
+      operationId: PostApplicationFeesIdRefunds
+      parameters:
+        - in: path
+          name: id
+          required: true
+          schema:
+            maxLength: 5000
+            type: string
+          style: simple
+      requestBody:
+        content:
+          application/x-www-form-urlencoded:
+            encoding:
+              expand:
+                explode: true
+                style: deepObject
+              metadata:
+                explode: true
+                style: deepObject
+            schema:
+              additionalProperties: false
+              properties:
+                amount:
+                  description: >-
+                    A positive integer, in _cents (or local equivalent)_,
+                    representing how much of this fee to refund. Can refund only
+                    up to the remaining unrefunded amount of the fee.
+                  type: integer
+                expand:
+                  description: Specifies which fields in the response should be expanded.
+                  items:
+                    maxLength: 5000
+                    type: string
+                  type: array
+                metadata:
+                  additionalProperties:
+                    type: string
+                  description: >-
+                    Set of [key-value
+                    pairs](https://stripe.com/docs/api/metadata) that you can
+                    attach to an object. This can be useful for storing
+                    additional information about the object in a structured
+                    format. Individual keys can be unset by posting an empty
+                    value to them. All keys can be unset by posting an empty
+                    value to `metadata`.
+                  type: object
+              type: object
+        required: false
+      responses:
+        '200':
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/fee_refund'
+          description: Successful response.
+        default:
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/error'
+          description: Error response.
+components:
+  schemas:
+    error:
+      description: An error response from the Stripe API
+      properties:
+        error:
+          $ref: '#/components/schemas/api_errors'
+      required:
+        - error
+      type: object
+    fee_refund:
+      description: >-
+        `Application Fee Refund` objects allow you to refund an application fee
+        that
+
+        has previously been created but not yet refunded. Funds will be refunded
+        to
+
+        the Stripe account from which the fee was originally collected.
+
+
+        Related guide: [Refunding application
+        fees](https://stripe.com/docs/connect/destination-charges#refunding-app-fee)
+      properties:
+        amount:
+          description: 'Amount, in cents (or local equivalent).'
+          type: integer
+        balance_transaction:
+          anyOf:
+            - maxLength: 5000
+              type: string
+            - $ref: '#/components/schemas/balance_transaction'
+          description: >-
+            Balance transaction that describes the impact on your account
+            balance.
+          nullable: true
+          x-expansionResources:
+            oneOf:
+              - $ref: '#/components/schemas/balance_transaction'
+        created:
+          description: >-
+            Time at which the object was created. Measured in seconds since the
+            Unix epoch.
+          format: unix-time
+          type: integer
+        currency:
+          description: >-
+            Three-letter [ISO currency
+            code](https://www.iso.org/iso-4217-currency-codes.html), in
+            lowercase. Must be a [supported
+            currency](https://stripe.com/docs/currencies).
+          type: string
+        fee:
+          anyOf:
+            - maxLength: 5000
+              type: string
+            - $ref: '#/components/schemas/application_fee'
+          description: ID of the application fee that was refunded.
+          x-expansionResources:
+            oneOf:
+              - $ref: '#/components/schemas/application_fee'
+        id:
+          description: Unique identifier for the object.
+          maxLength: 5000
+          type: string
+        metadata:
+          additionalProperties:
+            maxLength: 500
+            type: string
+          description: >-
+            Set of [key-value pairs](https://stripe.com/docs/api/metadata) that
+            you can attach to an object. This can be useful for storing
+            additional information about the object in a structured format.
+          nullable: true
+          type: object
+        object:
+          description: >-
+            String representing the object's type. Objects of the same type
+            share the same value.
+          enum:
+            - fee_refund
+          type: string
+      required:
+        - amount
+        - created
+        - currency
+        - fee
+        - id
+        - object
+      title: FeeRefund
+      type: object
+      x-expandableFields:
+        - balance_transaction
+        - fee
+      x-resourceId: fee_refund
+    application_fee:
+      description: ''
+      properties:
+        account:
+          anyOf:
+            - maxLength: 5000
+              type: string
+            - $ref: '#/components/schemas/account'
+          description: ID of the Stripe account this fee was taken from.
+          x-expansionResources:
+            oneOf:
+              - $ref: '#/components/schemas/account'
+        amount:
+          description: 'Amount earned, in cents (or local equivalent).'
+          type: integer
+        amount_refunded:
+          description: >-
+            Amount in cents (or local equivalent) refunded (can be less than the
+            amount attribute on the fee if a partial refund was issued)
+          type: integer
+        application:
+          anyOf:
+            - maxLength: 5000
+              type: string
+            - $ref: '#/components/schemas/application'
+          description: ID of the Connect application that earned the fee.
+          x-expansionResources:
+            oneOf:
+              - $ref: '#/components/schemas/application'
+        balance_transaction:
+          anyOf:
+            - maxLength: 5000
+              type: string
+            - $ref: '#/components/schemas/balance_transaction'
+          description: >-
+            Balance transaction that describes the impact of this collected
+            application fee on your account balance (not including refunds).
+          nullable: true
+          x-expansionResources:
+            oneOf:
+              - $ref: '#/components/schemas/balance_transaction'
+        charge:
+          anyOf:
+            - maxLength: 5000
+              type: string
+            - $ref: '#/components/schemas/charge'
+          description: ID of the charge that the application fee was taken from.
+          x-expansionResources:
+            oneOf:
+              - $ref: '#/components/schemas/charge'
+        created:
+          description: >-
+            Time at which the object was created. Measured in seconds since the
+            Unix epoch.
+          format: unix-time
+          type: integer
+        currency:
+          description: >-
+            Three-letter [ISO currency
+            code](https://www.iso.org/iso-4217-currency-codes.html), in
+            lowercase. Must be a [supported
+            currency](https://stripe.com/docs/currencies).
+          type: string
+        id:
+          description: Unique identifier for the object.
+          maxLength: 5000
+          type: string
+        livemode:
+          description: >-
+            Has the value `true` if the object exists in live mode or the value
+            `false` if the object exists in test mode.
+          type: boolean
+        object:
+          description: >-
+            String representing the object's type. Objects of the same type
+            share the same value.
+          enum:
+            - application_fee
+          type: string
+        originating_transaction:
+          anyOf:
+            - maxLength: 5000
+              type: string
+            - $ref: '#/components/schemas/charge'
+          description: >-
+            ID of the corresponding charge on the platform account, if this fee
+            was the result of a charge using the `destination` parameter.
+          nullable: true
+          x-expansionResources:
+            oneOf:
+              - $ref: '#/components/schemas/charge'
+        refunded:
+          description: >-
+            Whether the fee has been fully refunded. If the fee is only
+            partially refunded, this attribute will still be false.
+          type: boolean
+        refunds:
+          description: A list of refunds that have been applied to the fee.
+          properties:
+            data:
+              description: Details about each object.
+              items:
+                $ref: '#/components/schemas/fee_refund'
+              type: array
+            has_more:
+              description: >-
+                True if this list has another page of items after this one that
+                can be fetched.
+              type: boolean
+            object:
+              description: >-
+                String representing the object's type. Objects of the same type
+                share the same value. Always has the value `list`.
+              enum:
+                - list
+              type: string
+            url:
+              description: The URL where this list can be accessed.
+              maxLength: 5000
+              type: string
+          required:
+            - data
+            - has_more
+            - object
+            - url
+          title: FeeRefundList
+          type: object
+          x-expandableFields:
+            - data
+      required:
+        - account
+        - amount
+        - amount_refunded
+        - application
+        - charge
+        - created
+        - currency
+        - id
+        - livemode
+        - object
+        - refunded
+        - refunds
+      title: PlatformFee
+      type: object
+      x-expandableFields:
+        - account
+        - application
+        - balance_transaction
+        - charge
+        - originating_transaction
+        - refunds
+      x-resourceId: application_fee
+  securitySchemes:
+    basicAuth:
+      description: >-
+        Basic HTTP authentication. Allowed headers-- Authorization: Basic
+        <api_key> | Authorization: Basic <base64 hash of `api_key:`>
+      scheme: basic
+      type: http
+    bearerAuth:
+      bearerFormat: auth-scheme
+      description: >-
+        Bearer HTTP authentication. Allowed headers-- Authorization: Bearer
+        <api_key>
+      scheme: bearer
+      type: http

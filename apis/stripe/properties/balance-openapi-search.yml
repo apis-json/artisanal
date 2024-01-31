@@ -1,0 +1,76 @@
+openapi: 3.0.0
+info:
+  title: Stripe Balance API
+paths:
+  /v1/balance:
+    get:
+      description: >-
+        <p>Retrieves the current account balance, based on the authentication
+        that was used to make the request.
+         For a sample request, see <a href="/docs/connect/account-balances#accounting-for-negative-balances">Accounting for negative balances</a>.</p>
+      summary: Retrieve Balance
+      tags:
+        - Balances
+  /v1/balance/history:
+    get:
+      description: >-
+        <p>Returns a list of transactions that have contributed to the Stripe
+        account balance (e.g., charges, transfers, and so forth). The
+        transactions are returned in sorted order, with the most recent
+        transactions appearing first.</p>
+
+
+        <p>Note that this endpoint was previously called “Balance history” and
+        used the path <code>/v1/balance/history</code>.</p>
+      summary: Retrieve Balance Histories
+      tags:
+        - Balances
+        - History
+  /v1/balance/history/{id}:
+    get:
+      description: >-
+        <p>Retrieves the balance transaction with the given ID.</p>
+
+
+        <p>Note that this endpoint previously used the path
+        <code>/v1/balance/history/:id</code>.</p>
+      summary: Retrieve Balance History
+      tags:
+        - Balances
+        - History
+  /v1/balance_transactions:
+    get:
+      description: >-
+        <p>Returns a list of transactions that have contributed to the Stripe
+        account balance (e.g., charges, transfers, and so forth). The
+        transactions are returned in sorted order, with the most recent
+        transactions appearing first.</p>
+
+
+        <p>Note that this endpoint was previously called “Balance history” and
+        used the path <code>/v1/balance/history</code>.</p>
+      summary: Retrieve Balance Transactions
+      tags:
+        - Balances
+        - Transactions
+  /v1/balance_transactions/{id}:
+    get:
+      description: >-
+        <p>Retrieves the balance transaction with the given ID.</p>
+
+
+        <p>Note that this endpoint previously used the path
+        <code>/v1/balance/history/:id</code>.</p>
+      summary: Retrieve Balance Transaction
+      tags:
+        - Balances
+        - Transactions
+tags:
+  - name: Balances
+    description: Needs a description.
+  - name: Histories
+    description: Needs a description.
+  - name: History
+    description: Needs a description.
+  - name: Transactions
+    description: Needs a description.

@@ -1,0 +1,168 @@
+info:
+  title: Twilio - Accounts
+  license:
+    name: Apache 2.0
+    url: https://www.apache.org/licenses/LICENSE-2.0.html
+openapi: 3.0.1
+paths:
+  /v1/AuthTokens/Promote:
+    description: Auth Token promotion
+    post:
+      description: >-
+        Promote the secondary Auth Token to primary. After promoting the new
+        token, all requests to Twilio using your old primary Auth Token will
+        result in an error.
+      tags:
+        - Authentication
+        - Promotions
+        - Tokens
+      summary: Promote Auth Token
+  /v1/Credentials:
+    description: 'TODO: Resource-level docs'
+  /v1/Credentials/AWS:
+    description: User provided AWS keys
+    get:
+      description: >-
+        Retrieves a collection of AWS Credentials belonging to the account used
+        to make the request
+      tags:
+        - Credentials
+        - AWS
+      summary: Retrieve AWS Credentials
+    post:
+      description: Create a new AWS Credential
+      tags:
+        - Credentials
+        - AWS
+      summary: Create AWS Credential
+  /v1/Credentials/AWS/{Sid}:
+    description: User provided AWS keys
+    get:
+      description: Fetch the AWS credentials specified by the provided Credential Sid
+      tags:
+        - Credentials
+        - AWS
+      summary: Retrieve AWS Credential
+    post:
+      description: Modify the properties of a given Account
+      tags:
+        - Credentials
+        - AWS
+      summary: Modify AWS Account
+    delete:
+      description: Delete a Credential from your account
+      tags:
+        - Credentials
+        - AWS
+      summary: Delete AWS Account
+  /v1/Credentials/PublicKeys:
+    description: User provided public keys
+    get:
+      description: >-
+        Retrieves a collection of Public Key Credentials belonging to the
+        account used to make the request
+      tags:
+        - Credentials
+        - Public Keys
+        - Keys
+      summary: Retrieve Public Keys
+    post:
+      description: Create a new Public Key Credential
+      tags:
+        - Credentials
+        - Public Keys
+        - Keys
+      summary: Create Public Key
+  /v1/Credentials/PublicKeys/{Sid}:
+    description: User provided public keys
+    get:
+      description: Fetch the public key specified by the provided Credential Sid
+      tags:
+        - Credentials
+        - Public Keys
+        - Keys
+      summary: Retrieve Public Key
+    post:
+      description: Modify the properties of a given Account
+      tags:
+        - Credentials
+        - Public Keys
+        - Keys
+      summary: Update Public Key
+    delete:
+      description: Delete a Credential from your account
+      tags:
+        - Credentials
+        - Public Keys
+        - Keys
+      summary: Delete Public Key
+  /v1/SafeList/Numbers:
+    description: 'TODO: Resource-level docs'
+    post:
+      description: Add a new phone number to SafeList.
+      tags:
+        - Lists
+        - Numbers
+        - Phone Numbers
+        - Safety
+      summary: Add SafeList Phone Number
+    get:
+      description: Check if a phone number exists in SafeList.
+      tags:
+        - Lists
+        - Numbers
+        - Phone Numbers
+        - Safety
+      summary: Get SafeList Phone Number
+    delete:
+      description: Remove a phone number from SafeList.
+      tags:
+        - Lists
+        - Numbers
+        - Phone Numbers
+        - Safety
+      summary: Delete SafeList Phone Number
+  /v1/AuthTokens/Secondary:
+    description: Secondary Auth Token
+    post:
+      description: Create a new secondary Auth Token
+      tags:
+        - Authentication
+        - Tokens
+      summary: Create Auth Token
+    delete:
+      description: Delete the secondary Auth Token from your account
+      tags:
+        - Authentication
+        - Tokens
+      summary: Delete Auth Token
+tags:
+  - name: Authentication
+    description: Needs a description.
+  - name: Promotion
+    description: Needs a description.
+  - name: Tokens
+    description: Needs a description.
+  - name: Credentials
+    description: Needs a description.
+  - name: AWS
+    description: Needs a description.
+  - name: Public Keys
+    description: Needs a description.
+  - name: Keys
+    description: Needs a description.
+  - name: Lists
+    description: Needs a description.
+  - name: Numbers
+    description: Needs a description.
+  - name: Phone Numbers
+    description: Needs a description.
+  - name: Safety
+    description: Needs a description.
+x-maturity:
+  - name: GA
+    description: This product is Generally Available.
+  - name: Beta
+    description: >-
+      PLEASE NOTE that this is a Beta product that is subject to change. Use it
+      with caution.

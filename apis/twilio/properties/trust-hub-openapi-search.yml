@@ -1,0 +1,534 @@
+info:
+  title: Twilio Trust Hub API
+  license:
+    name: Apache 2.0
+    url: https://www.apache.org/licenses/LICENSE-2.0.html
+openapi: 3.0.1
+paths:
+  /v1/ComplianceInquiries/Customers/Initialize:
+    description: 'TODO: Resource-level docs'
+    post:
+      description: >-
+        Create a new Compliance Inquiry for the authenticated account. This is
+        necessary to start a new embedded session.
+      tags:
+        - Trust Hubs
+        - Compliance
+        - Inquiries
+        - Customers
+        - Initialize
+      summary: Create Compliance Inquiry Customers Initialize
+  /v1/ComplianceInquiries/Customers/{CustomerId}/Initialize:
+    description: 'TODO: Resource-level docs'
+    post:
+      description: >-
+        Resume a specific Compliance Inquiry that has expired, or re-open a
+        rejected Compliance Inquiry for editing.
+      tags:
+        - Trust Hubs
+        - Compliance
+        - Inquiries
+        - Customers
+        - Initialize
+      summary: Create Compliance Inquiry Customer Initialize
+  /v1/ComplianceInquiries/Tollfree/Initialize:
+    description: 'TODO: Resource-level docs'
+    post:
+      description: >-
+        Create a new Compliance Tollfree Verification Inquiry for the
+        authenticated account. This is necessary to start a new embedded
+        session.
+      tags:
+        - Trust Hubs
+        - Compliance
+        - Inquiries
+        - Toll
+        - Free
+        - Initialize
+      summary: Create Compliance Inquiry Toll Free Initialize
+  /v1/CustomerProfiles:
+    description: 'TODO: Resource-level docs'
+    post:
+      description: Create a new Customer-Profile.
+      tags:
+        - Trust Hubs
+        - Customer Profiles
+        - Profiles
+      summary: Create Customer Profile
+    get:
+      description: Retrieve a list of all Customer-Profiles for an account.
+      tags:
+        - Trust Hubs
+        - Customer Profiles
+        - Profiles
+      summary: Retrieve Customer Profiles
+  /v1/CustomerProfiles/{Sid}:
+    description: 'TODO: Resource-level docs'
+    get:
+      description: Fetch a specific Customer-Profile instance.
+      tags:
+        - Trust Hubs
+        - Customer Profiles
+        - Profiles
+      summary: Retrieve Customer Profile
+    post:
+      description: Updates a Customer-Profile in an account.
+      tags:
+        - Trust Hubs
+        - Customer Profiles
+        - Profiles
+      summary: Update Customer Profile
+    delete:
+      description: Delete a specific Customer-Profile.
+      tags:
+        - Trust Hubs
+        - Customer Profiles
+        - Profiles
+      summary: Delete Customer Profile
+  /v1/CustomerProfiles/{CustomerProfileSid}/ChannelEndpointAssignments:
+    description: 'TODO: Resource-level docs'
+    post:
+      description: Create a new Assigned Item.
+      tags:
+        - Trust Hubs
+        - Customer Profiles
+        - Profiles
+        - Channels
+        - Endpoints
+        - Assignments
+      summary: Create Customer Profile Channel Endpoint Assignment
+    get:
+      description: Retrieve a list of all Assigned Items for an account.
+      tags:
+        - Trust Hubs
+        - Customer Profiles
+        - Profiles
+        - Channels
+        - Endpoints
+        - Assignments
+      summary: Retrieve Customer Profile Channel Endpoint Assignments
+  /v1/CustomerProfiles/{CustomerProfileSid}/ChannelEndpointAssignments/{Sid}:
+    description: 'TODO: Resource-level docs'
+    get:
+      description: Fetch specific Assigned Item Instance.
+      tags:
+        - Trust Hubs
+        - Customer Profiles
+        - Profiles
+        - Channels
+        - Endpoints
+        - Assignments
+      summary: Retrieve Customer Profile Channel Endpoint Assignment
+    delete:
+      description: Remove an Assignment Item Instance.
+      tags:
+        - Trust Hubs
+        - Customer Profiles
+        - Profiles
+        - Channels
+        - Endpoints
+        - Assignments
+      summary: Delete Customer Profile Channel Endpoint Assignment
+  /v1/CustomerProfiles/{CustomerProfileSid}/EntityAssignments:
+    description: 'TODO: Resource-level docs'
+    post:
+      description: Create a new Assigned Item.
+      tags:
+        - Trust Hubs
+        - Customer Profiles
+        - Profiles
+        - Entities
+        - Assignments
+      summary: Create Customer Profile Entity Assignment
+    get:
+      description: Retrieve a list of all Assigned Items for an account.
+      tags:
+        - Trust Hubs
+        - Customer Profiles
+        - Profiles
+        - Entities
+        - Assignments
+      summary: Retrieve Customer Profile Entity Assignments
+  /v1/CustomerProfiles/{CustomerProfileSid}/EntityAssignments/{Sid}:
+    description: 'TODO: Resource-level docs'
+    get:
+      description: Fetch specific Assigned Item Instance.
+      tags:
+        - Trust Hubs
+        - Customer Profiles
+        - Profiles
+        - Entities
+        - Assignments
+      summary: Retrieve Customer Profile Entity Assignment
+    delete:
+      description: Remove an Assignment Item Instance.
+      tags:
+        - Trust Hubs
+        - Customer Profiles
+        - Profiles
+        - Entities
+        - Assignments
+      summary: Delete Customer Profile Entity Assignment
+  /v1/CustomerProfiles/{CustomerProfileSid}/Evaluations:
+    description: 'TODO: Resource-level docs'
+    post:
+      description: Create a new Evaluation
+      tags:
+        - Trust Hubs
+        - Customer Profiles
+        - Profiles
+        - Evaluations
+      summary: Create Customer Profile Evaluation
+    get:
+      description: >-
+        Retrieve a list of Evaluations associated to the customer_profile
+        resource.
+      tags:
+        - Trust Hubs
+        - Customer Profiles
+        - Profiles
+        - Evaluations
+      summary: Retrieve Customer Profile Evaluations
+  /v1/CustomerProfiles/{CustomerProfileSid}/Evaluations/{Sid}:
+    description: 'TODO: Resource-level docs'
+    get:
+      description: Fetch specific Evaluation Instance.
+      tags:
+        - Trust Hubs
+        - Customer Profiles
+        - Profiles
+        - Evaluations
+      summary: Retrieve Customer Profile Evaluation
+  /v1/EndUsers:
+    description: 'TODO: Resource-level docs'
+    post:
+      description: Create a new End User.
+      tags:
+        - Trust Hubs
+        - Users
+      summary: Create End User
+    get:
+      description: Retrieve a list of all End User for an account.
+      tags:
+        - Trust Hubs
+        - Users
+      summary: Retrieve End Users
+  /v1/EndUsers/{Sid}:
+    description: 'TODO: Resource-level docs'
+    get:
+      description: Fetch specific End User Instance.
+      tags:
+        - Trust Hubs
+        - Users
+      summary: Retrieve End User
+    post:
+      description: Update an existing End User.
+      tags:
+        - Trust Hubs
+        - Users
+      summary: Update End User
+    delete:
+      description: Delete a specific End User.
+      tags:
+        - Trust Hubs
+        - Users
+      summary: Delete End User
+  /v1/EndUserTypes:
+    description: 'TODO: Resource-level docs'
+    get:
+      description: Retrieve a list of all End-User Types.
+      tags:
+        - Trust Hubs
+        - Users
+        - User Types
+        - Types
+      summary: Retrieve End User Types
+  /v1/EndUserTypes/{Sid}:
+    description: 'TODO: Resource-level docs'
+    get:
+      description: Fetch a specific End-User Type Instance.
+      tags:
+        - Trust Hubs
+        - Users
+        - User Types
+        - Types
+      summary: Retrieve End User Type
+  /v1/Policies:
+    description: 'TODO: Resource-level docs'
+    get:
+      description: Retrieve a list of all Policys.
+      tags:
+        - Trust Hubs
+        - Policies
+      summary: Retrieve Policies
+  /v1/Policies/{Sid}:
+    description: 'TODO: Resource-level docs'
+    get:
+      description: Fetch specific Policy Instance.
+      tags:
+        - Trust Hubs
+        - Policies
+      summary: Retrieve Policy
+  /v1/SupportingDocuments:
+    description: 'TODO: Resource-level docs'
+    post:
+      description: Create a new Supporting Document.
+      tags:
+        - Trust Hubs
+        - Supporting Documents
+        - Documents
+      summary: Create Supporting Document
+    get:
+      description: Retrieve a list of all Supporting Document for an account.
+      tags:
+        - Trust Hubs
+        - Supporting Documents
+        - Documents
+      summary: Retrieve Supporting Documents
+  /v1/SupportingDocuments/{Sid}:
+    description: 'TODO: Resource-level docs'
+    get:
+      description: Fetch specific Supporting Document Instance.
+      tags:
+        - Trust Hubs
+        - Supporting Documents
+        - Documents
+      summary: Retrieve Supporting Document
+    post:
+      description: Update an existing Supporting Document.
+      tags:
+        - Trust Hubs
+        - Supporting Documents
+        - Documents
+      summary: Update Supporting Document
+    delete:
+      description: Delete a specific Supporting Document.
+      tags:
+        - Trust Hubs
+        - Supporting Documents
+        - Documents
+      summary: Delete Supporting Document
+  /v1/SupportingDocumentTypes:
+    description: 'TODO: Resource-level docs'
+    get:
+      description: Retrieve a list of all Supporting Document Types.
+      tags:
+        - Trust Hubs
+        - Supporting Documents
+        - Documents
+        - Document Types
+        - Types
+      summary: Retrieve Supporting Document Types
+  /v1/SupportingDocumentTypes/{Sid}:
+    description: 'TODO: Resource-level docs'
+    get:
+      description: Fetch a specific Supporting Document Type Instance.
+      tags:
+        - Trust Hubs
+        - Supporting Documents
+        - Documents
+        - Document Types
+        - Types
+      summary: Retrieve Supporting Document Type
+  /v1/TrustProducts:
+    description: 'TODO: Resource-level docs'
+    post:
+      description: Create a new Customer-Profile.
+      tags:
+        - Trust Hubs
+        - Trust
+        - Products
+      summary: Create Trust Product
+    get:
+      description: Retrieve a list of all Customer-Profiles for an account.
+      tags:
+        - Trust Hubs
+        - Trust
+        - Products
+      summary: Retrieve Trust Products
+  /v1/TrustProducts/{Sid}:
+    description: 'TODO: Resource-level docs'
+    get:
+      description: Fetch a specific Customer-Profile instance.
+      tags:
+        - Trust Hubs
+        - Trust
+        - Products
+      summary: Retrieve Trust Product
+    post:
+      description: Updates a Customer-Profile in an account.
+      tags:
+        - Trust Hubs
+        - Trust
+        - Products
+      summary: Update Trust Product
+    delete:
+      description: Delete a specific Customer-Profile.
+      tags:
+        - Trust Hubs
+        - Trust
+        - Products
+      summary: Delete Trust Product
+  /v1/TrustProducts/{TrustProductSid}/ChannelEndpointAssignments:
+    description: 'TODO: Resource-level docs'
+    post:
+      description: Create a new Assigned Item.
+      tags:
+        - Trust Hubs
+        - Trust
+        - Products
+        - Channels
+        - Endpoints
+        - Assignments
+      summary: Create Trust Product Channel Endpoint Assignment
+    get:
+      description: Retrieve a list of all Assigned Items for an account.
+      tags:
+        - Trust Hubs
+        - Trust
+        - Products
+        - Channels
+        - Endpoints
+        - Assignments
+      summary: Retrieve Trust Product Channel Endpoint Assignments
+  /v1/TrustProducts/{TrustProductSid}/ChannelEndpointAssignments/{Sid}:
+    description: 'TODO: Resource-level docs'
+    get:
+      description: Fetch specific Assigned Item Instance.
+      tags:
+        - Trust Hubs
+        - Trust
+        - Products
+        - Channels
+        - Endpoints
+        - Assignments
+      summary: Retrieve Trust Product Channel Endpoint Assignment
+    delete:
+      description: Remove an Assignment Item Instance.
+      tags:
+        - Trust Hubs
+        - Trust
+        - Products
+        - Channels
+        - Endpoints
+        - Assignments
+      summary: Delete Trust Product Channel Endpoint Assignment
+  /v1/TrustProducts/{TrustProductSid}/EntityAssignments:
+    description: 'TODO: Resource-level docs'
+    post:
+      description: Create a new Assigned Item.
+      tags:
+        - Trust Hubs
+        - Trust
+        - Products
+        - Entities
+        - Assignments
+      summary: Create Trust Product Entity Assignment
+    get:
+      description: Retrieve a list of all Assigned Items for an account.
+      tags:
+        - Trust Hubs
+        - Trust
+        - Products
+        - Entities
+        - Assignments
+      summary: Retrieve Trust Product Entity Assignments
+  /v1/TrustProducts/{TrustProductSid}/EntityAssignments/{Sid}:
+    description: 'TODO: Resource-level docs'
+    get:
+      description: Fetch specific Assigned Item Instance.
+      tags:
+        - Trust Hubs
+        - Trust
+        - Products
+        - Entities
+        - Assignments
+      summary: Retrieve Trust Product Entity Assignment
+    delete:
+      description: Remove an Assignment Item Instance.
+      tags:
+        - Trust Hubs
+        - Trust
+        - Products
+        - Entities
+        - Assignments
+      summary: Delete Trust Product Entity Assignment
+  /v1/TrustProducts/{TrustProductSid}/Evaluations:
+    description: 'TODO: Resource-level docs'
+    post:
+      description: Create a new Evaluation
+      tags:
+        - Trust Hubs
+        - Trust
+        - Products
+        - Evaluations
+      summary: Create Trust Product Evaluation
+    get:
+      description: Retrieve a list of Evaluations associated to the trust_product resource.
+      tags:
+        - Trust Hubs
+        - Trust
+        - Products
+        - Evaluations
+      summary: Retrieve Trust Product Evaluations
+  /v1/TrustProducts/{TrustProductSid}/Evaluations/{Sid}:
+    description: 'TODO: Resource-level docs'
+    get:
+      description: Fetch specific Evaluation Instance.
+      tags:
+        - Trust Hubs
+        - Trust
+        - Products
+        - Evaluations
+      summary: Retrieve Trust Product Evaluation
+tags:
+  - name: Tag
+  - name: Trust Hubs
+    description: Needs a description.
+  - name: Compliance
+    description: Needs a description.
+  - name: Inquiries
+    description: Needs a description.
+  - name: Customers
+    description: Needs a description.
+  - name: Initialize
+    description: Needs a description.
+  - name: Toll
+    description: Needs a description.
+  - name: Free
+    description: Needs a description.
+  - name: Customer Profiles
+    description: Needs a description.
+  - name: Profiles
+    description: Needs a description.
+  - name: Channels
+    description: Needs a description.
+  - name: Endpoints
+    description: Needs a description.
+  - name: Assignments
+    description: Needs a description.
+  - name: Entities
+    description: Needs a description.
+  - name: Evaluations
+    description: Needs a description.
+  - name: Users
+    description: Needs a description.
+  - name: User Types
+    description: Needs a description.
+  - name: Types
+    description: Needs a description.
+  - name: Policies
+    description: Needs a description.
+  - name: Supporting Documents
+    description: Needs a description.
+  - name: Documents
+    description: Needs a description.
+  - name: Document Types
+    description: Needs a description.
+  - name: Trust
+    description: Needs a description.
+  - name: Products
+    description: Needs a description.
+x-maturity:
+  - name: GA
+    description: This product is Generally Available.

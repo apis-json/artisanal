@@ -1,0 +1,62 @@
+openapi: 3.0.0
+info:
+  title: Stripe Checkout API
+paths:
+  /v1/checkout/sessions:
+    get:
+      description: <p>Returns a list of Checkout Sessions.</p>
+      summary: Retrieve Checkout Sessions
+      tags:
+        - Checkout
+        - Sessions
+    post:
+      description: <p>Creates a Session object.</p>
+      summary: Create Checkout Session
+      tags:
+        - Checkout
+        - Sessions
+  /v1/checkout/sessions/{session}:
+    get:
+      description: <p>Retrieves a Session object.</p>
+      summary: Retrieve Checkout Session
+      tags:
+        - Checkout
+        - Sessions
+  /v1/checkout/sessions/{session}/expire:
+    post:
+      description: >-
+        <p>A Session can be expired when it is in one of these statuses:
+        <code>open</code> </p>
+
+
+        <p>After it expires, a customer can’t complete a Session and customers
+        loading the Session see a message saying the Session is expired.</p>
+      summary: Expire Checkout Session
+      tags:
+        - Checkout
+        - Sessions
+        - Expires
+  /v1/checkout/sessions/{session}/line_items:
+    get:
+      description: >-
+        <p>When retrieving a Checkout Session, there is an includable
+        <strong>line_items</strong> property containing the first handful of
+        those items. There is also a URL where you can retrieve the full
+        (paginated) list of line items.</p>
+      summary: Retrieve Checkout Session Line Items
+      tags:
+        - Checkout
+        - Sessions
+        - Lines
+        - Items
+tags:
+  - name: Checkout
+    description: Needs a description.
+  - name: Sessions
+    description: Needs a description.
+  - name: Expires
+    description: Needs a description.
+  - name: Line
+    description: Needs a description.
+  - name: Items
+    description: Needs a description.
