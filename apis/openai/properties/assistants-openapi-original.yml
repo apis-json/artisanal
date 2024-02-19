@@ -1,8 +1,8 @@
 ---
 openapi: 3.0.0
 info:
-  title: ' assistants'
-  description: Needs description.
+  title: 'OpenAI Assistants'
+  description: The Assistants API allows you to build AI assistants within your own applications. An Assistant has instructions and can leverage models, tools, and knowledge to respond to user queries. The Assistants API currently supports three types of tools - Code Interpreter, Retrieval, and Function calling. In the future, we plan to release more OpenAI-built tools, and allow you to provide your own tools on our platform.
   version: 2.0.0
   termsOfService: 'https://openai.com/policies/terms-of-use'
   contact:
@@ -16,35 +16,6 @@ servers:
 tags:
   - name: Assistants
     description: Build Assistants that can call models and use tools.
-  - name: Audio
-    description: Learn how to turn audio into text or text into audio.
-  - name: Chat
-    description: >-
-      Given a list of messages comprising a conversation, the model will return
-      a response.
-  - name: Completions
-    description: >-
-      Given a prompt, the model will return one or more predicted completions,
-      and can also return the probabilities of alternative tokens at each
-      position.
-  - name: Embeddings
-    description: >-
-      Get a vector representation of a given input that can be easily consumed
-      by machine learning models and algorithms.
-  - name: Fine-tuning
-    description: Manage fine-tuning jobs to tailor a model to your specific training data.
-  - name: Files
-    description: >-
-      Files are used to upload documents that can be used with features like
-      Assistants and Fine-tuning.
-  - name: Images
-    description: 'Given a prompt and/or an input image, the model will generate a new image.'
-  - name: Models
-    description: List and describe the various models available in the API.
-  - name: Moderations
-    description: >-
-      Given a input text, outputs if the model classifies it as violating
-      OpenAI's content policy.
 paths:
   /assistants:
     get:
@@ -895,6 +866,161 @@ components:
       type: http
       scheme: bearer
   schemas:
+    FunctionObject:
+      type: object
+      properties:
+        description:
+          type: string
+          description: A description of what the function does, used by the model to choose when and how to call the function.
+        name:
+          type: string
+          description: The name of the function to be called. Must be a-z, A-Z, 0-9, or contain underscores and dashes, with a maximum length of 64.
+        parameters:
+          $ref: "#/components/schemas/FunctionParameters"
+      required:
+        - name  
+    FunctionParameters:
+      type: object
+      description: "The parameters the functions accepts, described as a JSON Schema object. See the [guide](/docs/guides/text-generation/function-calling) for examples, and the [JSON Schema reference](https://json-schema.org/understanding-json-schema/) for documentation about the format. \n\nOmitting `parameters` defines a function with an empty parameter list."
+      additionalProperties: true        
+    AssistantToolsCode:
+      type: object
+      title: Code interpreter tool
+      properties:
+        type:
+          type: string
+          description: "The type of tool being defined: `code_interpreter`"
+          enum: ["code_interpreter"]
+      required:
+        - type
+    AssistantToolsRetrieval:
+      type: object
+      title: Retrieval tool
+      properties:
+        type:
+          type: string
+          description: "The type of tool being defined: `retrieval`"
+          enum: ["retrieval"]
+      required:
+        - type
+
+    AssistantToolsFunction:
+      type: object
+      title: Function tool
+      properties:
+        type:
+          type: string
+          description: "The type of tool being defined: `function`"
+          enum: ["function"]
+        function:
+          $ref: "#/components/schemas/FunctionObject"
+      required:
+        - type
+        - function  
+    CreateAssistantFileRequest:
+      type: object
+      additionalProperties: false
+      properties:
+        file_id:
+          description: A [File](/docs/api-reference/files) ID (with `purpose="assistants"`) that the assistant should use. Useful for tools like `retrieval` and `code_interpreter` that can access files.
+          type: string
+      required:
+        - file_id  
+    ModifyAssistantRequest:
+      type: object
+      additionalProperties: false
+      properties:
+        model:
+          description: model_description
+          anyOf:
+            - type: string
+        name:
+          description: assistant_name_param_description
+          type: string
+          nullable: true
+          maxLength: 256
+        description:
+          description: assistant_description_param_description
+          type: string
+          nullable: true
+          maxLength: 512
+        instructions:
+          description: assistant_instructions_param_description
+          type: string
+          nullable: true
+          maxLength: 32768
+        tools:
+          description: assistant_tools_param_description
+          default: []
+          type: array
+          maxItems: 128
+          items:
+            oneOf:
+              - $ref: "#/components/schemas/AssistantToolsCode"
+              - $ref: "#/components/schemas/AssistantToolsRetrieval"
+              - $ref: "#/components/schemas/AssistantToolsFunction"
+            x-oaiExpandable: true
+        file_ids:
+          description: |
+            A list of [File](/docs/api-reference/files) IDs attached to this assistant. There can be a maximum of 20 files attached to the assistant. Files are ordered by their creation date in ascending order. If a file was previously attached to the list but does not show up in the list, it will be deleted from the assistant.
+          default: []
+          type: array
+          maxItems: 20
+          items:
+            type: string
+        metadata:
+          description: metadata_description
+          type: object
+          x-oaiTypeLabel: map
+          nullable: true  
+    CreateAssistantRequest:
+      type: object
+      additionalProperties: false
+      properties:
+        model:
+          description: model_description
+          anyOf:
+            - type: string
+        name:
+          description: assistant_name_param_description
+          type: string
+          nullable: true
+          maxLength: 256
+        description:
+          description: assistant_description_param_description
+          type: string
+          nullable: true
+          maxLength: 512
+        instructions:
+          description: assistant_instructions_param_description
+          type: string
+          nullable: true
+          maxLength: 32768
+        tools:
+          description: assistant_tools_param_description
+          default: []
+          type: array
+          maxItems: 128
+          items:
+            oneOf:
+              - $ref: "#/components/schemas/AssistantToolsCode"
+              - $ref: "#/components/schemas/AssistantToolsRetrieval"
+              - $ref: "#/components/schemas/AssistantToolsFunction"
+            x-oaiExpandable: true
+        file_ids:
+          description: assistant_file_param_description
+          default: []
+          maxItems: 20
+          type: array
+          items:
+            type: string
+        metadata:
+          description: metadata_description
+          type: object
+          x-oaiTypeLabel: map
+          nullable: true
+      required:
+        - model  
     ListAssistantsResponse:
       type: object
       properties:
