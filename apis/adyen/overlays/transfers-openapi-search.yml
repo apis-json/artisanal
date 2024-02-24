@@ -1,0 +1,89 @@
+info:
+  title: Transfers API
+paths:
+  /grants:
+    get:
+      tags:
+        - Capital
+      summary: Get a capital account
+      description: Returns a list of grants with status and outstanding balances.
+    post:
+      tags:
+        - Capital
+      summary: Request a grant payout
+      description: Requests the payout of the selected grant offer.
+  '/grants/{id}':
+    get:
+      tags:
+        - Capital
+      summary: Get grant reference details
+      description: Returns the details of a capital account specified in the path.
+  /transactions:
+    get:
+      tags:
+        - Transactions
+      summary: Get all transactions
+      description: >+
+        >Versions 1 and 2 of the Transfers API are deprecated. If you are just
+        starting your implementation, use the latest version.
+
+
+        Returns all the transactions related to a balance account, account
+        holder, or balance platform.
+
+
+        When making this request, you must include at least one of the
+        following:
+
+        - `balanceAccountId`
+
+        - `accountHolderId`
+
+        - `balancePlatform`.
+
+
+        This endpoint supports cursor-based pagination. The response returns the
+        first page of results, and returns links to the next and previous pages
+        when applicable. You can use the links to page through the results.
+
+  '/transactions/{id}':
+    get:
+      tags:
+        - Transactions
+      summary: Get a transaction
+      description: >-
+        >Versions 1 and 2 of the Transfers API are deprecated. If you are just
+        starting your implementation, use the latest version.
+
+
+        Returns a transaction.
+  /transfers:
+    post:
+      tags:
+        - Transfers
+      summary: Transfer funds
+      description: >-
+        >Versions 1 and 2 of the Transfers API are deprecated. If you are just
+        starting your implementation, use the latest version.
+
+
+        Starts a request to transfer funds to [balance
+        accounts](https://docs.adyen.com/api-explorer/#/balanceplatform/latest/post/balanceAccounts),
+        [transfer
+        instruments](https://docs.adyen.com/api-explorer/#/legalentity/latest/post/transferInstruments),
+        or third-party bank accounts. Adyen sends the outcome of the transfer
+        request through webhooks.
+
+
+        To use this endpoint, you need an additional role for your API
+        credential and transfers must be enabled for the source balance account.
+        Your Adyen contact will set these up for you.
+  '/transfers/{transferId}/returns':
+    post:
+      tags:
+        - Transfers
+      summary: Return a transfer
+      description: >-
+        Returns previously transferred funds without creating a new
+        `transferId`.
+components: {}
