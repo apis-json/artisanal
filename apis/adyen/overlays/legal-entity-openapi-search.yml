@@ -1,0 +1,251 @@
+info:
+  title: Legal Entity Management API
+paths:
+  /businessLines:
+    post:
+      tags:
+        - Business lines
+      summary: Create a business line
+      description: >+
+        Creates a business line. 
+
+
+        This resource contains information about your user's line of business,
+        including their industry and their source of funds. Adyen uses this
+        information to verify your users as required by payment industry
+        regulations. Adyen informs you of the verification results through
+        webhooks or API responses.
+
+
+        >If you are using hosted onboarding and just beginning your integration,
+        use v3 for your API requests. Otherwise, use v2.
+
+  '/businessLines/{id}':
+    delete:
+      tags:
+        - Business lines
+      summary: Delete a business line
+      description: |-
+        Deletes a business line.
+
+         >If you delete a business line linked to a [payment method](https://docs.adyen.com/development-resources/paymentmethodvariant#management-api), it can affect your merchant account's ability to use the [payment method](https://docs.adyen.com/api-explorer/Management/latest/post/merchants/_merchantId_/paymentMethodSettings). The business line is removed from all linked merchant accounts.
+    get:
+      tags:
+        - Business lines
+      summary: Get a business line
+      description: Returns the detail of a business line.
+    patch:
+      tags:
+        - Business lines
+      summary: Update a business line
+      description: Updates a business line.
+  /documents:
+    post:
+      tags:
+        - Documents
+      summary: Upload a document for verification checks
+      description: |-
+        Uploads a document for verification checks.
+
+         Adyen uses the information from the [legal entity](https://docs.adyen.com/api-explorer/#/legalentity/latest/post/legalEntities) to run automated verification checks. If these checks fail, you will be notified to provide additional documents.
+
+         You should only upload documents when Adyen requests additional information for the legal entity.
+
+         >You can upload a maximum of 15 pages for photo IDs.
+  '/documents/{id}':
+    delete:
+      tags:
+        - Documents
+      summary: Delete a document
+      description: Deletes a document.
+    get:
+      tags:
+        - Documents
+      summary: Get a document
+      description: Returns a document.
+    patch:
+      tags:
+        - Documents
+      summary: Update a document
+      description: |-
+        Updates a document.
+
+         >You can upload a maximum of 15 pages for photo IDs.
+  /legalEntities:
+    post:
+      tags:
+        - Legal entities
+      summary: Create a legal entity
+      description: >+
+        Creates a legal entity. 
+
+
+        This resource contains information about the user that will be onboarded
+        in your platform. Adyen uses this information to perform verification
+        checks as required by payment industry regulations. Adyen informs you of
+        the verification results through webhooks or API responses. 
+
+
+        >If you are using hosted onboarding and just beginning your integration,
+        use v3 for your API requests. Otherwise, use v2.
+
+  '/legalEntities/{id}':
+    get:
+      tags:
+        - Legal entities
+      summary: Get a legal entity
+      description: Returns a legal entity.
+    patch:
+      tags:
+        - Legal entities
+      summary: Update a legal entity
+      description: |-
+        Updates a legal entity.
+
+         >To change the legal entity type, include only the new `type` in your request. To update the `entityAssociations` array, you need to replace the entire array. For example, if the array has 3 entries and you want to remove 1 entry, you need to PATCH the resource with the remaining 2 entries.
+  '/legalEntities/{id}/businessLines':
+    get:
+      tags:
+        - Legal entities
+      summary: Get all business lines under a legal entity
+      description: Returns the business lines owned by a legal entity.
+  '/legalEntities/{id}/checkVerificationErrors':
+    post:
+      tags:
+        - Legal entities
+      summary: Check a legal entity's verification errors
+      description: >-
+        Returns the verification errors for a legal entity and its supporting
+        entities.
+  '/legalEntities/{id}/confirmDataReview':
+    post:
+      tags:
+        - Legal entities
+      summary: Confirm data review
+      description: >-
+        Confirms that your user has reviewed the data for the legal entity
+        specified in the path. Call this endpoint to inform Adyen that your user
+        reviewed and verified that the data is up-to-date. The endpoint returns
+        the timestamp of when Adyen received the request.
+  '/legalEntities/{id}/onboardingLinks':
+    post:
+      tags:
+        - Hosted Onboarding
+      summary: Get a link to an Adyen-hosted onboarding page
+      description: >+
+        Returns a link to an Adyen-hosted onboarding page where you need to
+        redirect your user.
+
+
+        >If you are using hosted onboarding and just beginning your integration,
+        use v3 for your API requests. Otherwise, use v2.
+
+  '/legalEntities/{id}/pciQuestionnaires':
+    get:
+      tags:
+        - PCI questionnaires
+      summary: Get PCI questionnaire details
+      description: Get a list of signed PCI questionnaires.
+  '/legalEntities/{id}/pciQuestionnaires/generatePciTemplates':
+    post:
+      tags:
+        - PCI questionnaires
+      summary: Generate PCI questionnaire
+      description: >-
+        Generates the required PCI questionnaires based on the user's
+        [salesChannel](https://docs.adyen.com/api-explorer/#/legalentity/latest/post/businessLines__reqParam_salesChannels).
+  '/legalEntities/{id}/pciQuestionnaires/signPciTemplates':
+    post:
+      tags:
+        - PCI questionnaires
+      summary: Sign PCI questionnaire
+      description: Signs the required PCI questionnaire.
+  '/legalEntities/{id}/pciQuestionnaires/{pciid}':
+    get:
+      tags:
+        - PCI questionnaires
+      summary: Get PCI questionnaire
+      description: Returns the signed PCI questionnaire.
+  '/legalEntities/{id}/termsOfService':
+    post:
+      tags:
+        - Terms of Service
+      summary: Get Terms of Service document
+      description: Returns the Terms of Service document for a legal entity.
+  '/legalEntities/{id}/termsOfService/{termsofservicedocumentid}':
+    patch:
+      tags:
+        - Terms of Service
+      summary: Accept Terms of Service
+      description: Accepts Terms of Service.
+  '/legalEntities/{id}/termsOfServiceAcceptanceInfos':
+    get:
+      tags:
+        - Terms of Service
+      summary: Get Terms of Service information for a legal entity
+      description: Returns Terms of Service information for a legal entity.
+  '/legalEntities/{id}/termsOfServiceStatus':
+    get:
+      tags:
+        - Terms of Service
+      summary: Get Terms of Service status
+      description: >-
+        Returns the required types of Terms of Service that need to be accepted
+        by a legal entity.
+  /themes:
+    get:
+      tags:
+        - Hosted Onboarding
+      summary: Get a list of hosted onboarding page themes
+      description: >+
+        Returns a list of hosted onboarding page themes.
+
+
+        >If you are using hosted onboarding and just beginning your integration,
+        use v3 for your API requests. Otherwise, use v2.
+
+  '/themes/{id}':
+    get:
+      tags:
+        - Hosted Onboarding
+      summary: Get an onboarding link theme
+      description: >+
+        Returns the details of the theme identified in the path.>If you are
+        using hosted onboarding and just beginning your integration, use v3 for
+        your API requests. Otherwise, use v2.
+
+  /transferInstruments:
+    post:
+      tags:
+        - Transfer instruments
+      summary: Create a transfer instrument
+      description: >-
+        Creates a transfer instrument. 
+
+
+        A transfer instrument is a bank account that a legal entity owns. Adyen
+        performs verification checks on the transfer instrument as required by
+        payment industry regulations. We inform you of the verification results
+        through webhooks or API responses.
+
+
+        When the transfer instrument passes the verification checks, you can
+        start sending funds from the balance platform to the transfer instrument
+        (such as payouts).
+  '/transferInstruments/{id}':
+    delete:
+      tags:
+        - Transfer instruments
+      summary: Delete a transfer instrument
+      description: Deletes a transfer instrument.
+    get:
+      tags:
+        - Transfer instruments
+      summary: Get a transfer instrument
+      description: Returns the details of a transfer instrument.
+    patch:
+      tags:
+        - Transfer instruments
+      summary: Update a transfer instrument
+      description: Updates a transfer instrument.
+components: {}
