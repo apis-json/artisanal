@@ -1,0 +1,49 @@
+info:
+  title: POS Terminal Management API
+paths:
+  /assignTerminals:
+    post:
+      tags:
+        - General
+      summary: Assign terminals
+      description: >-
+        Assigns one or more payment terminals to a merchant account or a store.
+        You can also use this endpoint to reassign terminals between merchant
+        accounts or stores, and to unassign a terminal and return it to company
+        inventory.
+  /findTerminal:
+    post:
+      tags:
+        - General
+      summary: Get the account or store of a terminal
+      description: >-
+        Returns the company account, merchant account, or store that a payment
+        terminal is assigned to.
+  /getStoresUnderAccount:
+    post:
+      tags:
+        - General
+      summary: Get the stores of an account
+      description: >-
+        Returns a list of stores associated with a company account or a merchant
+        account, including the status of each store.
+  /getTerminalDetails:
+    post:
+      tags:
+        - General
+      summary: Get the details of a terminal
+      description: >-
+        Returns the details of a payment terminal, including where the terminal
+        is assigned to. The response returns the same details that are provided
+        in the terminal list in your Customer Area and in the Terminal Fleet
+        report.
+  /getTerminalsUnderAccount:
+    post:
+      tags:
+        - General
+      summary: Get the list of terminals
+      description: >-
+        Returns a list of payment terminals associated with a company account,
+        merchant account, or store. The response shows whether the terminals are
+        in the inventory, or in-store (ready for boarding or already boarded).
+components: {}
