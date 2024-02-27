@@ -9,169 +9,151 @@ info:
     detailed information about CloudFront features, see the <i>Amazon CloudFront
     Developer Guide</i>.</p>
 paths:
-  /2017-10-30/origin-access-identity/cloudfront:
+  /2020-05-31/distribution/{TargetDistributionId}/associate-alias:
+    PUT:
+      summary: AssociateAlias
+      description: >-
+        <p>Associates an alias (also known as a CNAME or an alternate domain
+        name) with a CloudFront distribution.</p> <p>With this operation you can
+        move an alias that's already in use on a CloudFront distribution to a
+        different distribution in one step. This prevents the downtime that
+        could occur if you first remove the alias from one distribution and then
+        separately add the alias to another distribution.</p> <p>To use this
+        operation to associate an alias with a distribution, you provide the
+        alias and the ID of the target distribution for the alias. For more
+        information, including how to set up the target distribution,
+        prerequisites that you must complete, and other restrictions, see <a
+        href="https://docs.aws.amazon.com/AmazonCloudFront/latest/DeveloperGuide/CNAMEs.html#alternate-domain-names-move">Moving
+        an alternate domain name to a different distribution</a> in the
+        <i>Amazon CloudFront Developer Guide</i>.</p>
+  /2020-05-31/distribution/{PrimaryDistributionId}/copy:
+    POST:
+      summary: CopyDistribution
+      description: >-
+        <p>Creates a staging distribution using the configuration of the
+        provided primary distribution. A staging distribution is a copy of an
+        existing distribution (called the primary distribution) that you can use
+        in a continuous deployment workflow.</p> <p>After you create a staging
+        distribution, you can use <code>UpdateDistribution</code> to modify the
+        staging distribution's configuration. Then you can use
+        <code>CreateContinuousDeploymentPolicy</code> to incrementally move
+        traffic to the staging distribution.</p> <p>This API operation requires
+        the following IAM permissions:</p> <ul> <li> <p> <a
+        href="https://docs.aws.amazon.com/cloudfront/latest/APIReference/API_GetDistribution.html">GetDistribution</a>
+        </p> </li> <li> <p> <a
+        href="https://docs.aws.amazon.com/cloudfront/latest/APIReference/API_CreateDistribution.html">CreateDistribution</a>
+        </p> </li> <li> <p> <a
+        href="https://docs.aws.amazon.com/cloudfront/latest/APIReference/API_CopyDistribution.html">CopyDistribution</a>
+        </p> </li> </ul>
+  /2020-05-31/cache-policy:
+    GET:
+      summary: ListCachePolicies
+      description: >-
+        <p>Gets a list of cache policies.</p> <p>You can optionally apply a
+        filter to return only the managed policies created by Amazon Web
+        Services, or only the custom policies created in your Amazon Web
+        Services account.</p> <p>You can optionally specify the maximum number
+        of items to receive in the response. If the total number of items in the
+        list exceeds the maximum that you specify, or the default maximum, the
+        response is paginated. To get the next page of items, send a subsequent
+        request that specifies the <code>NextMarker</code> value from the
+        current response as the <code>Marker</code> value in the subsequent
+        request.</p>
+  /2020-05-31/origin-access-identity/cloudfront:
     GET:
       summary: ListCloudFrontOriginAccessIdentities
       description: <p>Lists origin access identities.</p>
-  /2017-10-30/distribution:
+  /2020-05-31/continuous-deployment-policy:
+    GET:
+      summary: ListContinuousDeploymentPolicies
+      description: >-
+        <p>Gets a list of the continuous deployment policies in your Amazon Web
+        Services account.</p> <p>You can optionally specify the maximum number
+        of items to receive in the response. If the total number of items in the
+        list exceeds the maximum that you specify, or the default maximum, the
+        response is paginated. To get the next page of items, send a subsequent
+        request that specifies the <code>NextMarker</code> value from the
+        current response as the <code>Marker</code> value in the subsequent
+        request.</p>
+  /2020-05-31/distribution:
     GET:
       summary: ListDistributions
-      description: <p>List distributions. </p>
-  /2017-10-30/distribution?WithTags:
+      description: <p>List CloudFront distributions.</p>
+  /2020-05-31/distribution?WithTags:
     POST:
       summary: CreateDistributionWithTags
-      description: <p>Create a new distribution with tags.</p>
-  /2017-10-30/field-level-encryption:
+      description: >-
+        <p>Create a new distribution with tags. This API operation requires the
+        following IAM permissions:</p> <ul> <li> <p> <a
+        href="https://docs.aws.amazon.com/cloudfront/latest/APIReference/API_CreateDistribution.html">CreateDistribution</a>
+        </p> </li> <li> <p> <a
+        href="https://docs.aws.amazon.com/cloudfront/latest/APIReference/API_TagResource.html">TagResource</a>
+        </p> </li> </ul>
+  /2020-05-31/field-level-encryption:
     GET:
       summary: ListFieldLevelEncryptionConfigs
       description: >-
         <p>List all field-level encryption configurations that have been created
         in CloudFront for this account.</p>
-  /2017-10-30/field-level-encryption-profile:
+  /2020-05-31/field-level-encryption-profile:
     GET:
       summary: ListFieldLevelEncryptionProfiles
       description: >-
         <p>Request a list of field-level encryption profiles that have been
         created in CloudFront for this account.</p>
-  /2017-10-30/distribution/{DistributionId}/invalidation:
+  /2020-05-31/function:
+    GET:
+      summary: ListFunctions
+      description: >-
+        <p>Gets a list of all CloudFront functions in your Amazon Web Services
+        account.</p> <p>You can optionally apply a filter to return only the
+        functions that are in the specified stage, either
+        <code>DEVELOPMENT</code> or <code>LIVE</code>.</p> <p>You can optionally
+        specify the maximum number of items to receive in the response. If the
+        total number of items in the list exceeds the maximum that you specify,
+        or the default maximum, the response is paginated. To get the next page
+        of items, send a subsequent request that specifies the
+        <code>NextMarker</code> value from the current response as the
+        <code>Marker</code> value in the subsequent request.</p>
+  /2020-05-31/distribution/{DistributionId}/invalidation:
     GET:
       summary: ListInvalidations
-      description: <p>Lists invalidation batches. </p>
-  /2017-10-30/public-key:
+      description: <p>Lists invalidation batches.</p>
+  /2020-05-31/key-group:
     GET:
-      summary: ListPublicKeys
+      summary: ListKeyGroups
       description: >-
-        <p>List all public keys that have been added to CloudFront for this
-        account.</p>
-  /2017-10-30/streaming-distribution:
-    GET:
-      summary: ListStreamingDistributions
-      description: <p>List streaming distributions. </p>
-  /2017-10-30/streaming-distribution?WithTags:
+        <p>Gets a list of key groups.</p> <p>You can optionally specify the
+        maximum number of items to receive in the response. If the total number
+        of items in the list exceeds the maximum that you specify, or the
+        default maximum, the response is paginated. To get the next page of
+        items, send a subsequent request that specifies the
+        <code>NextMarker</code> value from the current response as the
+        <code>Marker</code> value in the subsequent request.</p>
+  /2020-05-31/key-value-store/:
     POST:
-      summary: CreateStreamingDistributionWithTags
-      description: <p>Create a new streaming distribution with tags.</p>
-  /2017-10-30/origin-access-identity/cloudfront/{Id}:
-    GET:
-      summary: GetCloudFrontOriginAccessIdentity
-      description: <p>Get the information about an origin access identity. </p>
-  /2017-10-30/distribution/{Id}:
-    GET:
-      summary: GetDistribution
-      description: <p>Get the information about a distribution. </p>
-  /2017-10-30/field-level-encryption/{Id}:
-    GET:
-      summary: GetFieldLevelEncryption
-      description: <p>Get the field-level encryption configuration information.</p>
-  /2017-10-30/field-level-encryption-profile/{Id}:
-    GET:
-      summary: GetFieldLevelEncryptionProfile
-      description: <p>Get the field-level encryption profile information.</p>
-  /2017-10-30/public-key/{Id}:
-    GET:
-      summary: GetPublicKey
-      description: <p>Get the public key information.</p>
-  /2017-10-30/streaming-distribution/{Id}:
-    GET:
-      summary: GetStreamingDistribution
+      summary: CreateKeyValueStore
       description: >-
-        <p>Gets information about a specified RTMP distribution, including the
-        distribution configuration.</p>
-  /2017-10-30/origin-access-identity/cloudfront/{Id}/config:
-    PUT:
-      summary: UpdateCloudFrontOriginAccessIdentity
-      description: <p>Update an origin access identity. </p>
-  /2017-10-30/distribution/{Id}/config:
-    PUT:
-      summary: UpdateDistribution
-      description: >-
-        <p>Updates the configuration for a web distribution. Perform the
-        following steps.</p> <p>For information about updating a distribution
-        using the CloudFront console, see <a
-        href="http://docs.aws.amazon.com/AmazonCloudFront/latest/DeveloperGuide/distribution-web-creating-console.html">Creating
-        or Updating a Web Distribution Using the CloudFront Console </a> in the
-        <i>Amazon CloudFront Developer Guide</i>.</p> <p> <b>To update a web
-        distribution using the CloudFront API</b> </p> <ol> <li> <p>Submit a
-        <a>GetDistributionConfig</a> request to get the current configuration
-        and an <code>Etag</code> header for the distribution.</p> <note> <p>If
-        you update the distribution again, you need to get a new
-        <code>Etag</code> header.</p> </note> </li> <li> <p>Update the XML
-        document that was returned in the response to your
-        <code>GetDistributionConfig</code> request to include the desired
-        changes. You can't change the value of <code>CallerReference</code>. If
-        you try to change this value, CloudFront returns an
-        <code>IllegalUpdate</code> error.</p> <important> <p>The new
-        configuration replaces the existing configuration; the values that you
-        specify in an <code>UpdateDistribution</code> request are not merged
-        into the existing configuration. When you add, delete, or replace values
-        in an element that allows multiple values (for example,
-        <code>CNAME</code>), you must specify all of the values that you want to
-        appear in the updated distribution. In addition, you must update the
-        corresponding <code>Quantity</code> element.</p> </important> </li> <li>
-        <p>Submit an <code>UpdateDistribution</code> request to update the
-        configuration for your distribution:</p> <ul> <li> <p>In the request
-        body, include the XML document that you updated in Step 2. The request
-        body must include an XML document with a <code>DistributionConfig</code>
-        element.</p> </li> <li> <p>Set the value of the HTTP
-        <code>If-Match</code> header to the value of the <code>ETag</code>
-        header that CloudFront returned when you submitted the
-        <code>GetDistributionConfig</code> request in Step 1.</p> </li> </ul>
-        </li> <li> <p>Review the response to the <code>UpdateDistribution</code>
-        request to confirm that the configuration was successfully updated.</p>
-        </li> <li> <p>Optional: Submit a <a>GetDistribution</a> request to
-        confirm that your changes have propagated. When propagation is complete,
-        the value of <code>Status</code> is <code>Deployed</code>.</p>
-        <important> <p>Beginning with the 2012-05-05 version of the CloudFront
-        API, we made substantial changes to the format of the XML document that
-        you include in the request body when you create or update a
-        distribution. With previous versions of the API, we discovered that it
-        was too easy to accidentally delete one or more values for an element
-        that accepts multiple values, for example, CNAMEs and trusted signers.
-        Our changes for the 2012-05-05 release are intended to prevent these
-        accidental deletions and to notify you when there's a mismatch between
-        the number of values you say you're specifying in the
-        <code>Quantity</code> element and the number of values you're actually
-        specifying.</p> </important> </li> </ol>
-  /2017-10-30/field-level-encryption/{Id}/config:
-    PUT:
-      summary: UpdateFieldLevelEncryptionConfig
-      description: <p>Update a field-level encryption configuration. </p>
-  /2017-10-30/field-level-encryption-profile/{Id}/config:
-    PUT:
-      summary: UpdateFieldLevelEncryptionProfile
-      description: <p>Update a field-level encryption profile. </p>
-  /2017-10-30/distribution/{DistributionId}/invalidation/{Id}:
+        <p>Specifies the Key Value Store resource to add to your account. In
+        your account, the Key Value Store names must be unique. You can also
+        import Key Value Store data in JSON format from an S3 bucket by
+        providing a valid <code>ImportSource</code> that you own.</p>
+  /2020-05-31/distributions/{DistributionId}/monitoring-subscription/:
     GET:
-      summary: GetInvalidation
-      description: <p>Get the information about an invalidation. </p>
-  /2017-10-30/public-key/{Id}/config:
-    PUT:
-      summary: UpdatePublicKey
+      summary: GetMonitoringSubscription
       description: >-
-        <p>Update public key information. Note that the only value you can
-        change is the comment.</p>
-  /2017-10-30/streaming-distribution/{Id}/config:
-    PUT:
-      summary: UpdateStreamingDistribution
-      description: <p>Update a streaming distribution. </p>
-  /2017-10-30/distributionsByWebACLId/{WebACLId}:
+        <p>Gets information about whether additional CloudWatch metrics are
+        enabled for the specified CloudFront distribution.</p>
+  /2020-05-31/origin-access-control:
     GET:
-      summary: ListDistributionsByWebACLId
+      summary: ListOriginAccessControls
       description: >-
-        <p>List the distributions that are associated with a specified AWS WAF
-        web ACL. </p>
-  /2017-10-30/tagging:
-    GET:
-      summary: ListTagsForResource
-      description: <p>List tags for a CloudFront resource.</p>
-  /2017-10-30/tagging?Operation=Tag:
-    POST:
-      summary: TagResource
-      description: <p>Add tags to a CloudFront resource.</p>
-  /2017-10-30/tagging?Operation=Untag:
-    POST:
-      summary: UntagResource
-      description: <p>Remove tags from a CloudFront resource.</p>value from the
+        <p>Gets the list of CloudFront origin access controls in this Amazon Web
+        Services account.</p> <p>You can optionally specify the maximum number
+        of items to receive in the response. If the total number of items in the
+        list exceeds the maximum that you specify, or the default maximum, the
+        response is paginated. To get the next page of items, send another
+        request that specifies the <code>NextMarker</code> value from the
         current response as the <code>Marker</code> value in the next
         request.</p>
   /2020-05-31/origin-request-policy:
