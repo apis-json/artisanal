@@ -29,11 +29,13 @@ paths:
         - Regions
   /enableRegion:
     POST:
-      summary: EnableRegion
+      summary: Enable Region
       description: <p>Enables (opts-in) a particular Region for an account.</p>
+      tags:
+        - Regions
   /getAlternateContact:
     POST:
-      summary: GetAlternateContact
+      summary: Get Alternate Contact
       description: >-
         <p>Retrieves the specified alternate contact attached to an Amazon Web
         Services account.</p> <p>For complete details about how to use the
@@ -47,29 +49,40 @@ paths:
         href="https://docs.aws.amazon.com/accounts/latest/reference/using-orgs-trusted-access.html">Enabling
         trusted access for Amazon Web Services Account Management</a>.</p>
         </note>
+      tags:
+        - Alternate
+        - ' Contacts'
   /getContactInformation:
     POST:
-      summary: GetContactInformation
+      summary: Get Contact Information
       description: >-
         <p>Retrieves the primary contact information of an Amazon Web Services
         account.</p> <p>For complete details about how to use the primary
         contact operations, see <a
         href="https://docs.aws.amazon.com/accounts/latest/reference/manage-acct-update-contact.html">Update
         the primary and alternate contact information</a>.</p>
+      tags:
+        - Contacts
   /getRegionOptStatus:
     POST:
-      summary: GetRegionOptStatus
+      summary: Get Region Opt Status
       description: <p>Retrieves the opt-in status of a particular Region.</p>
+      tags:
+        - Regions
+        - Status
+        - ' Opt-In'
   /listRegions:
     POST:
-      summary: ListRegions
+      summary: List Regions
       description: >-
         <p>Lists all the Regions for a given account and their respective opt-in
         statuses. Optionally, this list can be filtered by the
         <code>region-opt-status-contains</code> parameter. </p>
+      tags:
+        - Regions
   /putAlternateContact:
     POST:
-      summary: PutAlternateContact
+      summary: Put Alternate Contact
       description: >-
         <p>Modifies the specified alternate contact attached to an Amazon Web
         Services account.</p> <p>For complete details about how to use the
@@ -83,13 +96,18 @@ paths:
         href="https://docs.aws.amazon.com/accounts/latest/reference/using-orgs-trusted-access.html">Enabling
         trusted access for Amazon Web Services Account Management</a>.</p>
         </note>
+      tags:
+        - Alternate
+        - Contacts
   /putContactInformation:
     POST:
-      summary: PutContactInformation
+      summary: Put Contact Information
       description: >-
         <p>Updates the primary contact information of an Amazon Web Services
         account.</p> <p>For complete details about how to use the primary
         contact operations, see <a
         href="https://docs.aws.amazon.com/accounts/latest/reference/manage-acct-update-contact.html">Update
         the primary and alternate contact information</a>.</p>
+      tags:
+        - Contacts
 components: {}
