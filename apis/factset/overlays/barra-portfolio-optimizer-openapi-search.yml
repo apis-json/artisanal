@@ -1,0 +1,2034 @@
+openapi: 3.0.1
+info:
+  title: Barra Portfolio Optimizer API
+  license:
+    name: Apache License 2.0
+    url: http://www.apache.org/licenses/LICENSE-2.0.txt
+paths:
+  /analytics/lookups/v3/accounts/{path}:
+    get:
+      tags:
+        - Accounts
+      summary: Get accounts and sub-directories in a directory
+      description: >-
+        This endpoint looks up all ACCT and ACTM files and sub-directories in a
+        given directory.
+  /analytics/engines/bpm/v3/optimizations:
+    post:
+      tags:
+        - BPM Optimizer
+      summary: Create and Run BPM optimization
+      description: "This endpoint creates and runs BPM optimization specified in the POST body parameters.\r\n            \r\nRemarks:\r\n            \r\n*\tAny settings in POST body will act as a one-time override over the settings saved in the strategy document."
+  /analytics/engines/bpm/v3/optimizations/{id}:
+    put:
+      tags:
+        - BPM Optimizer
+      summary: Create or Update BPM optimization and run it.
+      description: >-
+        This endpoint updates and run the BPM optimization specified in the PUT
+        body parameters. It also allows the creation of new BPM optimization
+        with custom id.
+    get:
+      tags:
+        - BPM Optimizer
+      summary: Get BPM optimization parameters by id
+      description: >-
+        This is the endpoint that returns the optimization parameters passed for
+        an optimization.
+    delete:
+      tags:
+        - BPM Optimizer
+      summary: Cancel BPM optimization by id
+      description: This is the endpoint to cancel a previously submitted optimization.
+  /analytics/engines/bpm/v3/optimizations/{id}/status:
+    get:
+      tags:
+        - BPM Optimizer
+      summary: Get BPM optimization status by id
+      description: "This is the endpoint to check on the progress of a previously requested optimization.\r\nIf the optimization has finished computing, the body of the response will contain result in JSON.\r\nOtherwise, the optimization is still running and the X-FactSet-Api-PickUp-Progress header will contain a progress percentage."
+  /analytics/engines/bpm/v3/optimizations/{id}/result:
+    get:
+      tags:
+        - BPM Optimizer
+      summary: Get BPM optimization result by id
+      description: >-
+        This is the endpoint to get the result of a previously requested
+        optimization.
+  /analytics/lookups/v3/currencies:
+    get:
+      tags:
+        - Currencies
+      summary: Get currencies
+      description: >-
+        This endpoint lists all the currencies that can be applied to any
+        calculation.
+      operationId: getCurrencies
+      responses:
+        '200':
+          description: Expected response, returns a list of currencies.
+          headers:
+            X-DataDirect-Request-Key:
+              description: FactSet's request key header.
+              schema:
+                type: string
+                description: FactSet's request key header.
+            X-FactSet-Api-Request-Key:
+              description: >-
+                Key to uniquely identify an Analytics API request. Only
+                available after successful authentication.
+              schema:
+                type: string
+                description: >-
+                  Key to uniquely identify an Analytics API request. Only
+                  available after successful authentication.
+            X-FactSet-Api-RateLimit-Limit:
+              description: Number of allowed requests for the time window.
+              schema:
+                type: string
+            X-FactSet-Api-RateLimit-Remaining:
+              description: Number of requests left for the time window.
+              schema:
+                type: string
+            X-FactSet-Api-RateLimit-Reset:
+              description: Number of seconds remaining till rate limit resets.
+              schema:
+                type: string
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/CurrencyRoot'
+        '401':
+          description: Missing or invalid authentication.
+          headers:
+            X-DataDirect-Request-Key:
+              description: FactSet's request key header.
+              schema:
+                type: string
+                description: FactSet's request key header.
+            X-FactSet-Api-Request-Key:
+              description: >-
+                Key to uniquely identify an Analytics API request. Only
+                available after successful authentication.
+              schema:
+                type: string
+                description: >-
+                  Key to uniquely identify an Analytics API request. Only
+                  available after successful authentication.
+        '403':
+          description: User is forbidden with current credentials
+          headers:
+            X-DataDirect-Request-Key:
+              description: FactSet's request key header.
+              schema:
+                type: string
+                description: FactSet's request key header.
+            X-FactSet-Api-Request-Key:
+              description: >-
+                Key to uniquely identify an Analytics API request. Only
+                available after successful authentication.
+              schema:
+                type: string
+                description: >-
+                  Key to uniquely identify an Analytics API request. Only
+                  available after successful authentication.
+            X-FactSet-Api-RateLimit-Limit:
+              description: Number of allowed requests for the time window.
+              schema:
+                type: string
+            X-FactSet-Api-RateLimit-Remaining:
+              description: Number of requests left for the time window.
+              schema:
+                type: string
+            X-FactSet-Api-RateLimit-Reset:
+              description: Number of seconds remaining till rate limit resets.
+              schema:
+                type: string
+        '406':
+          description: >-
+            Unsupported Accept header. Header needs to be set to
+            application/json.
+          headers:
+            X-DataDirect-Request-Key:
+              description: FactSet's request key header.
+              schema:
+                type: string
+                description: FactSet's request key header.
+            X-FactSet-Api-Request-Key:
+              description: >-
+                Key to uniquely identify an Analytics API request. Only
+                available after successful authentication.
+              schema:
+                type: string
+                description: >-
+                  Key to uniquely identify an Analytics API request. Only
+                  available after successful authentication.
+            X-FactSet-Api-RateLimit-Limit:
+              description: Number of allowed requests for the time window.
+              schema:
+                type: string
+            X-FactSet-Api-RateLimit-Remaining:
+              description: Number of requests left for the time window.
+              schema:
+                type: string
+            X-FactSet-Api-RateLimit-Reset:
+              description: Number of seconds remaining till rate limit resets.
+              schema:
+                type: string
+        '429':
+          description: >-
+            Rate limit reached. Wait till the time specified in Retry-After
+            header value to make further requests.
+          headers:
+            X-DataDirect-Request-Key:
+              description: FactSet's request key header.
+              schema:
+                type: string
+                description: FactSet's request key header.
+            X-FactSet-Api-Request-Key:
+              description: >-
+                Key to uniquely identify an Analytics API request. Only
+                available after successful authentication.
+              schema:
+                type: string
+                description: >-
+                  Key to uniquely identify an Analytics API request. Only
+                  available after successful authentication.
+            Retry-After:
+              description: >-
+                Time to wait in seconds before making a new request as the rate
+                limit has reached.
+              schema:
+                type: string
+        '500':
+          description: >-
+            Server error. Log the X-DataDirect-Request-Key header to assist in
+            troubleshooting.
+          headers:
+            X-DataDirect-Request-Key:
+              description: FactSet's request key header.
+              schema:
+                type: string
+                description: FactSet's request key header.
+            X-FactSet-Api-Request-Key:
+              description: >-
+                Key to uniquely identify an Analytics API request. Only
+                available after successful authentication.
+              schema:
+                type: string
+                description: >-
+                  Key to uniquely identify an Analytics API request. Only
+                  available after successful authentication.
+        '503':
+          description: Request timed out. Retry the request in sometime.
+          headers:
+            X-DataDirect-Request-Key:
+              description: FactSet's request key header.
+              schema:
+                type: string
+                description: FactSet's request key header.
+            X-FactSet-Api-Request-Key:
+              description: >-
+                Key to uniquely identify an Analytics API request. Only
+                available after successful authentication.
+              schema:
+                type: string
+                description: >-
+                  Key to uniquely identify an Analytics API request. Only
+                  available after successful authentication.
+  /analytics/engines/bpm/v3/strategies/{path}:
+    get:
+      tags:
+        - StrategyDocuments
+      summary: Get Barra strategy documents and sub-directories in a directory
+      description: >-
+        This endpoint looks up all Barra strategy documents and sub-directories
+        in a given directory.
+      operationId: getBarraStrategyDocuments
+      parameters:
+        - name: path
+          in: path
+          description: The directory to get the strategy documents and sub-directories in
+          required: true
+          schema:
+            type: string
+            description: The directory to get the strategy documents and sub-directories in
+            default: Client:folder1/folder2
+      responses:
+        '200':
+          description: >-
+            Expected response, returns a list of Barra strategy documents and
+            directories
+          headers:
+            X-DataDirect-Request-Key:
+              description: FactSet's request key header.
+              schema:
+                type: string
+                description: FactSet's request key header.
+            X-FactSet-Api-Request-Key:
+              description: >-
+                Key to uniquely identify an Analytics API request. Only
+                available after successful authentication.
+              schema:
+                type: string
+                description: >-
+                  Key to uniquely identify an Analytics API request. Only
+                  available after successful authentication.
+            X-FactSet-Api-RateLimit-Limit:
+              description: Number of allowed requests for the time window.
+              schema:
+                type: string
+            X-FactSet-Api-RateLimit-Remaining:
+              description: Number of requests left for the time window.
+              schema:
+                type: string
+            X-FactSet-Api-RateLimit-Reset:
+              description: Number of seconds remaining till rate limit resets.
+              schema:
+                type: string
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/DocumentDirectoriesRoot'
+        '400':
+          description: Invalid query parameter or value provided
+          headers:
+            X-DataDirect-Request-Key:
+              description: FactSet's request key header.
+              schema:
+                type: string
+                description: FactSet's request key header.
+            X-FactSet-Api-Request-Key:
+              description: >-
+                Key to uniquely identify an Analytics API request. Only
+                available after successful authentication.
+              schema:
+                type: string
+                description: >-
+                  Key to uniquely identify an Analytics API request. Only
+                  available after successful authentication.
+            X-FactSet-Api-RateLimit-Limit:
+              description: Number of allowed requests for the time window.
+              schema:
+                type: string
+            X-FactSet-Api-RateLimit-Remaining:
+              description: Number of requests left for the time window.
+              schema:
+                type: string
+            X-FactSet-Api-RateLimit-Reset:
+              description: Number of seconds remaining till rate limit resets.
+              schema:
+                type: string
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ClientErrorResponse'
+        '401':
+          description: Missing or invalid authentication
+          headers:
+            X-DataDirect-Request-Key:
+              description: FactSet's request key header.
+              schema:
+                type: string
+                description: FactSet's request key header.
+            X-FactSet-Api-Request-Key:
+              description: >-
+                Key to uniquely identify an Analytics API request. Only
+                available after successful authentication.
+              schema:
+                type: string
+                description: >-
+                  Key to uniquely identify an Analytics API request. Only
+                  available after successful authentication.
+        '403':
+          description: User is forbidden with current credentials
+          headers:
+            X-DataDirect-Request-Key:
+              description: FactSet's request key header.
+              schema:
+                type: string
+                description: FactSet's request key header.
+            X-FactSet-Api-Request-Key:
+              description: >-
+                Key to uniquely identify an Analytics API request. Only
+                available after successful authentication.
+              schema:
+                type: string
+                description: >-
+                  Key to uniquely identify an Analytics API request. Only
+                  available after successful authentication.
+            X-FactSet-Api-RateLimit-Limit:
+              description: Number of allowed requests for the time window.
+              schema:
+                type: string
+            X-FactSet-Api-RateLimit-Remaining:
+              description: Number of requests left for the time window.
+              schema:
+                type: string
+            X-FactSet-Api-RateLimit-Reset:
+              description: Number of seconds remaining till rate limit resets.
+              schema:
+                type: string
+        '404':
+          description: Path not found
+          headers:
+            X-DataDirect-Request-Key:
+              description: FactSet's request key header.
+              schema:
+                type: string
+                description: FactSet's request key header.
+            X-FactSet-Api-Request-Key:
+              description: >-
+                Key to uniquely identify an Analytics API request. Only
+                available after successful authentication.
+              schema:
+                type: string
+                description: >-
+                  Key to uniquely identify an Analytics API request. Only
+                  available after successful authentication.
+            X-FactSet-Api-RateLimit-Limit:
+              description: Number of allowed requests for the time window.
+              schema:
+                type: string
+            X-FactSet-Api-RateLimit-Remaining:
+              description: Number of requests left for the time window.
+              schema:
+                type: string
+            X-FactSet-Api-RateLimit-Reset:
+              description: Number of seconds remaining till rate limit resets.
+              schema:
+                type: string
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ClientErrorResponse'
+        '406':
+          description: >-
+            Unsupported Accept header.  Header needs to be set to
+            application/json
+          headers:
+            X-DataDirect-Request-Key:
+              description: FactSet's request key header.
+              schema:
+                type: string
+                description: FactSet's request key header.
+            X-FactSet-Api-Request-Key:
+              description: >-
+                Key to uniquely identify an Analytics API request. Only
+                available after successful authentication.
+              schema:
+                type: string
+                description: >-
+                  Key to uniquely identify an Analytics API request. Only
+                  available after successful authentication.
+            X-FactSet-Api-RateLimit-Limit:
+              description: Number of allowed requests for the time window.
+              schema:
+                type: string
+            X-FactSet-Api-RateLimit-Remaining:
+              description: Number of requests left for the time window.
+              schema:
+                type: string
+            X-FactSet-Api-RateLimit-Reset:
+              description: Number of seconds remaining till rate limit resets.
+              schema:
+                type: string
+        '429':
+          description: >-
+            Rate limit reached. Wait till the time specified in Retry-After
+            header value to make further requests.
+          headers:
+            X-DataDirect-Request-Key:
+              description: FactSet's request key header.
+              schema:
+                type: string
+                description: FactSet's request key header.
+            X-FactSet-Api-Request-Key:
+              description: >-
+                Key to uniquely identify an Analytics API request. Only
+                available after successful authentication.
+              schema:
+                type: string
+                description: >-
+                  Key to uniquely identify an Analytics API request. Only
+                  available after successful authentication.
+            Retry-After:
+              description: >-
+                Time to wait in seconds before making a new request as the rate
+                limit has reached.
+              schema:
+                type: string
+        '500':
+          description: >-
+            Server error. Log the X-DataDirect-Request-Key header to assist in
+            troubleshooting
+          headers:
+            X-DataDirect-Request-Key:
+              description: FactSet's request key header.
+              schema:
+                type: string
+                description: FactSet's request key header.
+            X-FactSet-Api-Request-Key:
+              description: >-
+                Key to uniquely identify an Analytics API request. Only
+                available after successful authentication.
+              schema:
+                type: string
+                description: >-
+                  Key to uniquely identify an Analytics API request. Only
+                  available after successful authentication.
+        '503':
+          description: Request timed out. Retry the request in some time
+          headers:
+            X-DataDirect-Request-Key:
+              description: FactSet's request key header.
+              schema:
+                type: string
+                description: FactSet's request key header.
+            X-FactSet-Api-Request-Key:
+              description: >-
+                Key to uniquely identify an Analytics API request. Only
+                available after successful authentication.
+              schema:
+                type: string
+                description: >-
+                  Key to uniquely identify an Analytics API request. Only
+                  available after successful authentication.
+iquely identify an Analytics API request. Only
+                available after successful authentication.
+              schema:
+                type: string
+                description: >-
+                  Key to uniquely identify an Analytics API request. Only
+                  available after successful authentication.
+            X-FactSet-Api-RateLimit-Limit:
+              description: Number of allowed requests for the time window.
+              schema:
+                type: string
+            X-FactSet-Api-RateLimit-Remaining:
+              description: Number of requests left for the time window.
+              schema:
+                type: string
+            X-FactSet-Api-RateLimit-Reset:
+              description: Number of seconds remaining till rate limit resets.
+              schema:
+                type: string
+        '404':
+          description: One or more optimization settings were unavailable.
+          headers:
+            X-DataDirect-Request-Key:
+              description: FactSet's request key header.
+              schema:
+                type: string
+                description: FactSet's request key header.
+            X-FactSet-Api-Request-Key:
+              description: >-
+                Key to uniquely identify an Analytics API request. Only
+                available after successful authentication.
+              schema:
+                type: string
+                description: >-
+                  Key to uniquely identify an Analytics API request. Only
+                  available after successful authentication.
+            X-FactSet-Api-RateLimit-Limit:
+              description: Number of allowed requests for the time window.
+              schema:
+                type: string
+            X-FactSet-Api-RateLimit-Remaining:
+              description: Number of requests left for the time window.
+              schema:
+                type: string
+            X-FactSet-Api-RateLimit-Reset:
+              description: Number of seconds remaining till rate limit resets.
+              schema:
+                type: string
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ClientErrorResponse'
+        '409':
+          description: Duplicate optimization exists with same parameters.
+          headers:
+            X-DataDirect-Request-Key:
+              description: FactSet's request key header.
+              schema:
+                type: string
+                description: FactSet's request key header.
+            X-FactSet-Api-Request-Key:
+              description: >-
+                Key to uniquely identify an Analytics API request. Only
+                available after successful authentication.
+              schema:
+                type: string
+                description: >-
+                  Key to uniquely identify an Analytics API request. Only
+                  available after successful authentication.
+            X-FactSet-Api-RateLimit-Limit:
+              description: Number of allowed requests for the time window.
+              schema:
+                type: string
+            X-FactSet-Api-RateLimit-Remaining:
+              description: Number of requests left for the time window.
+              schema:
+                type: string
+            X-FactSet-Api-RateLimit-Reset:
+              description: Number of seconds remaining till rate limit resets.
+              schema:
+                type: string
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ClientErrorResponse'
+        '415':
+          description: >-
+            Missing/Invalid Content-Type header. Header needs to be set to
+            application/json.
+          headers:
+            X-DataDirect-Request-Key:
+              description: FactSet's request key header.
+              schema:
+                type: string
+                description: FactSet's request key header.
+            X-FactSet-Api-Request-Key:
+              description: >-
+                Key to uniquely identify an Analytics API request. Only
+                available after successful authentication.
+              schema:
+                type: string
+                description: >-
+                  Key to uniquely identify an Analytics API request. Only
+                  available after successful authentication.
+            X-FactSet-Api-RateLimit-Limit:
+              description: Number of allowed requests for the time window.
+              schema:
+                type: string
+            X-FactSet-Api-RateLimit-Remaining:
+              description: Number of requests left for the time window.
+              schema:
+                type: string
+            X-FactSet-Api-RateLimit-Reset:
+              description: Number of seconds remaining till rate limit resets.
+              schema:
+                type: string
+        '429':
+          description: >-
+            Rate limit reached. Cancel older requests using Cancel optimization
+            endpoint or wait for older requests to finish/expire.
+          headers:
+            X-DataDirect-Request-Key:
+              description: FactSet's request key header.
+              schema:
+                type: string
+                description: FactSet's request key header.
+            X-FactSet-Api-Request-Key:
+              description: >-
+                Key to uniquely identify an Analytics API request. Only
+                available after successful authentication.
+              schema:
+                type: string
+                description: >-
+                  Key to uniquely identify an Analytics API request. Only
+                  available after successful authentication.
+            X-FactSet-Api-RateLimit-Limit:
+              description: Number of allowed requests for the time window.
+              schema:
+                type: string
+            X-FactSet-Api-RateLimit-Remaining:
+              description: Number of requests left for the time window.
+              schema:
+                type: string
+            X-FactSet-Api-RateLimit-Reset:
+              description: Number of seconds remaining till rate limit resets.
+              schema:
+                type: string
+            Retry-After:
+              description: >-
+                Time to wait in seconds before making a new request as the rate
+                limit has reached.
+              schema:
+                type: string
+        '500':
+          description: >-
+            Server error. Log the X-DataDirect-Request-Key header to assist in
+            troubleshooting.
+          headers:
+            X-DataDirect-Request-Key:
+              description: FactSet's request key header.
+              schema:
+                type: string
+                description: FactSet's request key header.
+            X-FactSet-Api-Request-Key:
+              description: >-
+                Key to uniquely identify an Analytics API request. Only
+                available after successful authentication.
+              schema:
+                type: string
+                description: >-
+                  Key to uniquely identify an Analytics API request. Only
+                  available after successful authentication.
+        '503':
+          description: Request timed out. Retry the request in sometime.
+          headers:
+            X-DataDirect-Request-Key:
+              description: FactSet's request key header.
+              schema:
+                type: string
+                description: FactSet's request key header.
+            X-FactSet-Api-Request-Key:
+              description: >-
+                Key to uniquely identify an Analytics API request. Only
+                available after successful authentication.
+              schema:
+                type: string
+                description: >-
+                  Key to uniquely identify an Analytics API request. Only
+                  available after successful authentication.
+    get:
+      tags:
+        - BPM Optimizer
+      summary: Get BPM optimization parameters by id
+      description: >-
+        This is the endpoint that returns the optimization parameters passed for
+        an optimization.
+      operationId: getOptimizationParameters
+      parameters:
+        - name: id
+          in: path
+          description: >-
+            from url, provided from the location header in the Create and Run
+            BPM optimization endpoint
+          required: true
+          schema:
+            type: string
+            description: >-
+              from url, provided from the location header in the Create and Run
+              BPM optimization endpoint
+      responses:
+        '200':
+          description: Expected response, returns the BPM optimization parameters.
+          headers:
+            Content-Encoding:
+              description: >-
+                Standard HTTP header. Header value based on Accept-Encoding
+                Request header.
+              schema:
+                type: string
+                description: >-
+                  Standard HTTP header. Header value based on Accept-Encoding
+                  Request header.
+            Content-Type:
+              description: Standard HTTP header.
+              schema:
+                type: string
+                description: Standard HTTP header.
+            Transfer-Encoding:
+              description: >-
+                Standard HTTP header. Header value will be set to Chunked if
+                Accept-Encoding header is specified.
+              schema:
+                type: string
+                description: >-
+                  Standard HTTP header. Header value will be set to Chunked if
+                  Accept-Encoding header is specified.
+            X-DataDirect-Request-Key:
+              description: FactSet's request key header.
+              schema:
+                type: string
+                description: FactSet's request key header.
+            X-FactSet-Api-Request-Key:
+              description: >-
+                Key to uniquely identify an Analytics API request. Only
+                available after successful authentication.
+              schema:
+                type: string
+                description: >-
+                  Key to uniquely identify an Analytics API request. Only
+                  available after successful authentication.
+            X-FactSet-Api-RateLimit-Limit:
+              description: Number of allowed requests for the time window.
+              schema:
+                type: string
+            X-FactSet-Api-RateLimit-Remaining:
+              description: Number of requests left for the time window.
+              schema:
+                type: string
+            X-FactSet-Api-RateLimit-Reset:
+              description: Number of seconds remaining till rate limit resets.
+              schema:
+                type: string
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/BPMOptimizationParametersRoot'
+        '400':
+          description: Invalid identifier provided.
+          headers:
+            X-DataDirect-Request-Key:
+              description: FactSet's request key header.
+              schema:
+                type: string
+                description: FactSet's request key header.
+            X-FactSet-Api-Request-Key:
+              description: >-
+                Key to uniquely identify an Analytics API request. Only
+                available after successful authentication.
+              schema:
+                type: string
+                description: >-
+                  Key to uniquely identify an Analytics API request. Only
+                  available after successful authentication.
+            X-FactSet-Api-RateLimit-Limit:
+              description: Number of allowed requests for the time window.
+              schema:
+                type: string
+            X-FactSet-Api-RateLimit-Remaining:
+              description: Number of requests left for the time window.
+              schema:
+                type: string
+            X-FactSet-Api-RateLimit-Reset:
+              description: Number of seconds remaining till rate limit resets.
+              schema:
+                type: string
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ClientErrorResponse'
+        '401':
+          description: Missing or invalid authentication.
+          headers:
+            X-DataDirect-Request-Key:
+              description: FactSet's request key header.
+              schema:
+                type: string
+                description: FactSet's request key header.
+            X-FactSet-Api-Request-Key:
+              description: >-
+                Key to uniquely identify an Analytics API request. Only
+                available after successful authentication.
+              schema:
+                type: string
+                description: >-
+                  Key to uniquely identify an Analytics API request. Only
+                  available after successful authentication.
+        '403':
+          description: User is forbidden with current credentials
+          headers:
+            X-DataDirect-Request-Key:
+              description: FactSet's request key header.
+              schema:
+                type: string
+                description: FactSet's request key header.
+            X-FactSet-Api-Request-Key:
+              description: >-
+                Key to uniquely identify an Analytics API request. Only
+                available after successful authentication.
+              schema:
+                type: string
+                description: >-
+                  Key to uniquely identify an Analytics API request. Only
+                  available after successful authentication.
+            X-FactSet-Api-RateLimit-Limit:
+              description: Number of allowed requests for the time window.
+              schema:
+                type: string
+            X-FactSet-Api-RateLimit-Remaining:
+              description: Number of requests left for the time window.
+              schema:
+                type: string
+            X-FactSet-Api-RateLimit-Reset:
+              description: Number of seconds remaining till rate limit resets.
+              schema:
+                type: string
+        '404':
+          description: Optimization id not found
+          headers:
+            X-DataDirect-Request-Key:
+              description: FactSet's request key header.
+              schema:
+                type: string
+                description: FactSet's request key header.
+            X-FactSet-Api-Request-Key:
+              description: >-
+                Key to uniquely identify an Analytics API request. Only
+                available after successful authentication.
+              schema:
+                type: string
+                description: >-
+                  Key to uniquely identify an Analytics API request. Only
+                  available after successful authentication.
+            X-FactSet-Api-RateLimit-Limit:
+              description: Number of allowed requests for the time window.
+              schema:
+                type: string
+            X-FactSet-Api-RateLimit-Remaining:
+              description: Number of requests left for the time window.
+              schema:
+                type: string
+            X-FactSet-Api-RateLimit-Reset:
+              description: Number of seconds remaining till rate limit resets.
+              schema:
+                type: string
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ClientErrorResponse'
+        '500':
+          description: >-
+            Server error. Log the X-DataDirect-Request-Key header to assist in
+            troubleshooting
+          headers:
+            X-DataDirect-Request-Key:
+              description: FactSet's request key header.
+              schema:
+                type: string
+                description: FactSet's request key header.
+            X-FactSet-Api-Request-Key:
+              description: >-
+                Key to uniquely identify an Analytics API request. Only
+                available after successful authentication.
+              schema:
+                type: string
+                description: >-
+                  Key to uniquely identify an Analytics API request. Only
+                  available after successful authentication.
+        '503':
+          description: Request timed out. Retry the request in sometime.
+          headers:
+            X-DataDirect-Request-Key:
+              description: FactSet's request key header.
+              schema:
+                type: string
+                description: FactSet's request key header.
+            X-FactSet-Api-Request-Key:
+              description: >-
+                Key to uniquely identify an Analytics API request. Only
+                available after successful authentication.
+              schema:
+                type: string
+                description: >-
+                  Key to uniquely identify an Analytics API request. Only
+                  available after successful authentication.
+    delete:
+      tags:
+        - BPM Optimizer
+      summary: Cancel BPM optimization by id
+      description: This is the endpoint to cancel a previously submitted optimization.
+      operationId: cancelOptimizationById
+      parameters:
+        - name: id
+          in: path
+          description: >-
+            from url, provided from the location header in the Create and Run
+            BPM optimization endpoint
+          required: true
+          schema:
+            type: string
+            description: >-
+              from url, provided from the location header in the Create and Run
+              BPM optimization endpoint
+      responses:
+        '204':
+          description: Expected response, optimization was canceled successfully.
+          headers:
+            X-DataDirect-Request-Key:
+              description: FactSet's request key header.
+              schema:
+                type: string
+                description: FactSet's request key header.
+            X-FactSet-Api-Request-Key:
+              description: >-
+                Key to uniquely identify an Analytics API request. Only
+                available after successful authentication.
+              schema:
+                type: string
+                description: >-
+                  Key to uniquely identify an Analytics API request. Only
+                  available after successful authentication.
+            X-FactSet-Api-RateLimit-Limit:
+              description: Number of allowed requests for the time window.
+              schema:
+                type: string
+            X-FactSet-Api-RateLimit-Remaining:
+              description: Number of requests left for the time window.
+              schema:
+                type: string
+            X-FactSet-Api-RateLimit-Reset:
+              description: Number of seconds remaining till rate limit resets.
+              schema:
+                type: string
+        '400':
+          description: Invalid identifier provided.
+          headers:
+            X-DataDirect-Request-Key:
+              description: FactSet's request key header.
+              schema:
+                type: string
+                description: FactSet's request key header.
+            X-FactSet-Api-Request-Key:
+              description: >-
+                Key to uniquely identify an Analytics API request. Only
+                available after successful authentication.
+              schema:
+                type: string
+                description: >-
+                  Key to uniquely identify an Analytics API request. Only
+                  available after successful authentication.
+            X-FactSet-Api-RateLimit-Limit:
+              description: Number of allowed requests for the time window.
+              schema:
+                type: string
+            X-FactSet-Api-RateLimit-Remaining:
+              description: Number of requests left for the time window.
+              schema:
+                type: string
+            X-FactSet-Api-RateLimit-Reset:
+              description: Number of seconds remaining till rate limit resets.
+              schema:
+                type: string
+          content:
+            text/plain:
+              schema:
+                $ref: '#/components/schemas/ClientErrorResponse'
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ClientErrorResponse'
+            text/json:
+              schema:
+                $ref: '#/components/schemas/ClientErrorResponse'
+        '401':
+          description: Missing or invalid authentication.
+          headers:
+            X-DataDirect-Request-Key:
+              description: FactSet's request key header.
+              schema:
+                type: string
+                description: FactSet's request key header.
+            X-FactSet-Api-Request-Key:
+              description: >-
+                Key to uniquely identify an Analytics API request. Only
+                available after successful authentication.
+              schema:
+                type: string
+                description: >-
+                  Key to uniquely identify an Analytics API request. Only
+                  available after successful authentication.
+        '403':
+          description: User is forbidden with current credentials
+          headers:
+            X-DataDirect-Request-Key:
+              description: FactSet's request key header.
+              schema:
+                type: string
+                description: FactSet's request key header.
+            X-FactSet-Api-Request-Key:
+              description: >-
+                Key to uniquely identify an Analytics API request. Only
+                available after successful authentication.
+              schema:
+                type: string
+                description: >-
+                  Key to uniquely identify an Analytics API request. Only
+                  available after successful authentication.
+            X-FactSet-Api-RateLimit-Limit:
+              description: Number of allowed requests for the time window.
+              schema:
+                type: string
+            X-FactSet-Api-RateLimit-Remaining:
+              description: Number of requests left for the time window.
+              schema:
+                type: string
+            X-FactSet-Api-RateLimit-Reset:
+              description: Number of seconds remaining till rate limit resets.
+              schema:
+                type: string
+        '404':
+          description: >-
+            There was no request for the optimization identifier provided, or
+            the request was already canceled for the provided identifier.
+          headers:
+            X-DataDirect-Request-Key:
+              description: FactSet's request key header.
+              schema:
+                type: string
+                description: FactSet's request key header.
+            X-FactSet-Api-Request-Key:
+              description: >-
+                Key to uniquely identify an Analytics API request. Only
+                available after successful authentication.
+              schema:
+                type: string
+                description: >-
+                  Key to uniquely identify an Analytics API request. Only
+                  available after successful authentication.
+            X-FactSet-Api-RateLimit-Limit:
+              description: Number of allowed requests for the time window.
+              schema:
+                type: string
+            X-FactSet-Api-RateLimit-Remaining:
+              description: Number of requests left for the time window.
+              schema:
+                type: string
+            X-FactSet-Api-RateLimit-Reset:
+              description: Number of seconds remaining till rate limit resets.
+              schema:
+                type: string
+          content:
+            text/plain:
+              schema:
+                $ref: '#/components/schemas/ClientErrorResponse'
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ClientErrorResponse'
+            text/json:
+              schema:
+                $ref: '#/components/schemas/ClientErrorResponse'
+        '500':
+          description: >-
+            Server error. Log the X-DataDirect-Request-Key header to assist in
+            troubleshooting.
+          headers:
+            X-DataDirect-Request-Key:
+              description: FactSet's request key header.
+              schema:
+                type: string
+                description: FactSet's request key header.
+            X-FactSet-Api-Request-Key:
+              description: >-
+                Key to uniquely identify an Analytics API request. Only
+                available after successful authentication.
+              schema:
+                type: string
+                description: >-
+                  Key to uniquely identify an Analytics API request. Only
+                  available after successful authentication.
+        '503':
+          description: Request timed out. Retry the request in sometime.
+          headers:
+            X-DataDirect-Request-Key:
+              description: FactSet's request key header.
+              schema:
+                type: string
+                description: FactSet's request key header.
+            X-FactSet-Api-Request-Key:
+              description: >-
+                Key to uniquely identify an Analytics API request. Only
+                available after successful authentication.
+              schema:
+                type: string
+                description: >-
+                  Key to uniquely identify an Analytics API request. Only
+                  available after successful authentication.
+  /analytics/engines/bpm/v3/optimizations/{id}/status:
+    get:
+      tags:
+        - BPM Optimizer
+      summary: Get BPM optimization status by id
+      description: "This is the endpoint to check on the progress of a previously requested optimization.\r\nIf the optimization has finished computing, the body of the response will contain result in JSON.\r\nOtherwise, the optimization is still running and the X-FactSet-Api-PickUp-Progress header will contain a progress percentage."
+      operationId: getOptimizationStatusById
+      parameters:
+        - name: id
+          in: path
+          description: >-
+            from url, provided from the location header in the Create and Run
+            BPM optimization endpoint
+          required: true
+          schema:
+            type: string
+            description: >-
+              from url, provided from the location header in the Create and Run
+              BPM optimization endpoint
+      responses:
+        '201':
+          description: Expected response once optimization is completed, returns JSON.
+          headers:
+            X-DataDirect-Request-Key:
+              description: FactSet's request key header.
+              schema:
+                type: string
+                description: FactSet's request key header.
+            X-FactSet-Api-Request-Key:
+              description: >-
+                Key to uniquely identify an Analytics API request. Only
+                available after successful authentication.
+              schema:
+                type: string
+                description: >-
+                  Key to uniquely identify an Analytics API request. Only
+                  available after successful authentication.
+            X-FactSet-Api-RateLimit-Limit:
+              description: Number of allowed requests for the time window.
+              schema:
+                type: string
+            X-FactSet-Api-RateLimit-Remaining:
+              description: Number of requests left for the time window.
+              schema:
+                type: string
+            X-FactSet-Api-RateLimit-Reset:
+              description: Number of seconds remaining till rate limit resets.
+              schema:
+                type: string
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ObjectRoot'
+        '202':
+          description: >-
+            Expected response returned if the optimization is not yet completed,
+            should contain X-FactSet-Api-PickUp-Progress header.
+          headers:
+            X-FactSet-Api-PickUp-Progress:
+              description: FactSet's progress header.
+              schema:
+                type: string
+                description: FactSet's progress header.
+            Cache-Control:
+              description: >-
+                Standard HTTP header. Header will specify max-age in seconds.
+                Polling can be adjusted based on the max-age value.
+              schema:
+                type: integer
+                description: >-
+                  Standard HTTP header. Header will specify max-age in seconds.
+                  Polling can be adjusted based on the max-age value.
+            X-DataDirect-Request-Key:
+              description: FactSet's request key header.
+              schema:
+                type: string
+                description: FactSet's request key header.
+            X-FactSet-Api-Request-Key:
+              description: >-
+                Key to uniquely identify an Analytics API request. Only
+                available after successful authentication.
+              schema:
+                type: string
+                description: >-
+                  Key to uniquely identify an Analytics API request. Only
+                  available after successful authentication.
+            X-FactSet-Api-RateLimit-Limit:
+              description: Number of allowed requests for the time window.
+              schema:
+                type: string
+            X-FactSet-Api-RateLimit-Remaining:
+              description: Number of requests left for the time window.
+              schema:
+                type: string
+            X-FactSet-Api-RateLimit-Reset:
+              description: Number of seconds remaining till rate limit resets.
+              schema:
+                type: string
+        '400':
+          description: Invalid identifier provided.
+          headers:
+            X-DataDirect-Request-Key:
+              description: FactSet's request key header.
+              schema:
+                type: string
+                description: FactSet's request key header.
+            X-FactSet-Api-Request-Key:
+              description: >-
+                Key to uniquely identify an Analytics API request. Only
+                available after successful authentication.
+              schema:
+                type: string
+                description: >-
+                  Key to uniquely identify an Analytics API request. Only
+                  available after successful authentication.
+            X-FactSet-Api-RateLimit-Limit:
+              description: Number of allowed requests for the time window.
+              schema:
+                type: string
+            X-FactSet-Api-RateLimit-Remaining:
+              description: Number of requests left for the time window.
+              schema:
+                type: string
+            X-FactSet-Api-RateLimit-Reset:
+              description: Number of seconds remaining till rate limit resets.
+              schema:
+                type: string
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ClientErrorResponse'
+        '401':
+          description: Missing or invalid authentication.
+          headers:
+            X-DataDirect-Request-Key:
+              description: FactSet's request key header.
+              schema:
+                type: string
+                description: FactSet's request key header.
+            X-FactSet-Api-Request-Key:
+              description: >-
+                Key to uniquely identify an Analytics API request. Only
+                available after successful authentication.
+              schema:
+                type: string
+                description: >-
+                  Key to uniquely identify an Analytics API request. Only
+                  available after successful authentication.
+        '403':
+          description: User is forbidden with current credentials
+          headers:
+            X-DataDirect-Request-Key:
+              description: FactSet's request key header.
+              schema:
+                type: string
+                description: FactSet's request key header.
+            X-FactSet-Api-Request-Key:
+              description: >-
+                Key to uniquely identify an Analytics API request. Only
+                available after successful authentication.
+              schema:
+                type: string
+                description: >-
+                  Key to uniquely identify an Analytics API request. Only
+                  available after successful authentication.
+            X-FactSet-Api-RateLimit-Limit:
+              description: Number of allowed requests for the time window.
+              schema:
+                type: string
+            X-FactSet-Api-RateLimit-Remaining:
+              description: Number of requests left for the time window.
+              schema:
+                type: string
+            X-FactSet-Api-RateLimit-Reset:
+              description: Number of seconds remaining till rate limit resets.
+              schema:
+                type: string
+        '404':
+          description: >-
+            Optimization result was already returned, provided id was not a
+            requested optimization, or the optimization was cancelled
+          headers:
+            X-DataDirect-Request-Key:
+              description: FactSet's request key header.
+              schema:
+                type: string
+                description: FactSet's request key header.
+            X-FactSet-Api-Request-Key:
+              description: >-
+                Key to uniquely identify an Analytics API request. Only
+                available after successful authentication.
+              schema:
+                type: string
+                description: >-
+                  Key to uniquely identify an Analytics API request. Only
+                  available after successful authentication.
+            X-FactSet-Api-RateLimit-Limit:
+              description: Number of allowed requests for the time window.
+              schema:
+                type: string
+            X-FactSet-Api-RateLimit-Remaining:
+              description: Number of requests left for the time window.
+              schema:
+                type: string
+            X-FactSet-Api-RateLimit-Reset:
+              description: Number of seconds remaining till rate limit resets.
+              schema:
+                type: string
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ClientErrorResponse'
+        '500':
+          description: >-
+            Server error. Log the X-DataDirect-Request-Key header to assist in
+            troubleshooting
+          headers:
+            X-DataDirect-Request-Key:
+              description: FactSet's request key header.
+              schema:
+                type: string
+                description: FactSet's request key header.
+            X-FactSet-Api-Request-Key:
+              description: >-
+                Key to uniquely identify an Analytics API request. Only
+                available after successful authentication.
+              schema:
+                type: string
+                description: >-
+                  Key to uniquely identify an Analytics API request. Only
+                  available after successful authentication.
+        '503':
+          description: Request timed out. Retry the request in sometime.
+          headers:
+            X-DataDirect-Request-Key:
+              description: FactSet's request key header.
+              schema:
+                type: string
+                description: FactSet's request key header.
+            X-FactSet-Api-Request-Key:
+              description: >-
+                Key to uniquely identify an Analytics API request. Only
+                available after successful authentication.
+              schema:
+                type: string
+                description: >-
+                  Key to uniquely identify an Analytics API request. Only
+                  available after successful authentication.
+  /analytics/engines/bpm/v3/optimizations/{id}/result:
+    get:
+      tags:
+        - BPM Optimizer
+      summary: Get BPM optimization result by id
+      description: >-
+        This is the endpoint to get the result of a previously requested
+        optimization.
+      operationId: getOptimizationResult
+      parameters:
+        - name: id
+          in: path
+          description: >-
+            from url, provided from the location header in the Get BPM
+            optimization status by id endpoint
+          required: true
+          schema:
+            type: string
+            description: >-
+              from url, provided from the location header in the Get BPM
+              optimization status by id endpoint
+      responses:
+        '200':
+          description: Expected response once optimization is completed, returns JSON.
+          headers:
+            Content-Encoding:
+              description: >-
+                Standard HTTP header. Header value based on Accept-Encoding
+                Request header.
+              schema:
+                type: string
+                description: >-
+                  Standard HTTP header. Header value based on Accept-Encoding
+                  Request header.
+            Content-Type:
+              description: Standard HTTP header.
+              schema:
+                type: string
+                description: Standard HTTP header.
+            Transfer-Encoding:
+              description: >-
+                Standard HTTP header. Header value will be set to Chunked if
+                Accept-Encoding header is specified.
+              schema:
+                type: string
+                description: >-
+                  Standard HTTP header. Header value will be set to Chunked if
+                  Accept-Encoding header is specified.
+            X-DataDirect-Request-Key:
+              description: FactSet's request key header.
+              schema:
+                type: string
+                description: FactSet's request key header.
+            X-FactSet-Api-Request-Key:
+              description: >-
+                Key to uniquely identify an Analytics API request. Only
+                available after successful authentication.
+              schema:
+                type: string
+                description: >-
+                  Key to uniquely identify an Analytics API request. Only
+                  available after successful authentication.
+            X-FactSet-Api-RateLimit-Limit:
+              description: Number of allowed requests for the time window.
+              schema:
+                type: string
+            X-FactSet-Api-RateLimit-Remaining:
+              description: Number of requests left for the time window.
+              schema:
+                type: string
+            X-FactSet-Api-RateLimit-Reset:
+              description: Number of seconds remaining till rate limit resets.
+              schema:
+                type: string
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ObjectRoot'
+        '400':
+          description: Invalid identifier provided.
+          headers:
+            X-DataDirect-Request-Key:
+              description: FactSet's request key header.
+              schema:
+                type: string
+                description: FactSet's request key header.
+            X-FactSet-Api-Request-Key:
+              description: >-
+                Key to uniquely identify an Analytics API request. Only
+                available after successful authentication.
+              schema:
+                type: string
+                description: >-
+                  Key to uniquely identify an Analytics API request. Only
+                  available after successful authentication.
+            X-FactSet-Api-RateLimit-Limit:
+              description: Number of allowed requests for the time window.
+              schema:
+                type: string
+            X-FactSet-Api-RateLimit-Remaining:
+              description: Number of requests left for the time window.
+              schema:
+                type: string
+            X-FactSet-Api-RateLimit-Reset:
+              description: Number of seconds remaining till rate limit resets.
+              schema:
+                type: string
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ClientErrorResponse'
+        '401':
+          description: Missing or invalid authentication.
+          headers:
+            X-DataDirect-Request-Key:
+              description: FactSet's request key header.
+              schema:
+                type: string
+                description: FactSet's request key header.
+            X-FactSet-Api-Request-Key:
+              description: >-
+                Key to uniquely identify an Analytics API request. Only
+                available after successful authentication.
+              schema:
+                type: string
+                description: >-
+                  Key to uniquely identify an Analytics API request. Only
+                  available after successful authentication.
+        '403':
+          description: User is forbidden with current credentials
+          headers:
+            X-DataDirect-Request-Key:
+              description: FactSet's request key header.
+              schema:
+                type: string
+                description: FactSet's request key header.
+            X-FactSet-Api-Request-Key:
+              description: >-
+                Key to uniquely identify an Analytics API request. Only
+                available after successful authentication.
+              schema:
+                type: string
+                description: >-
+                  Key to uniquely identify an Analytics API request. Only
+                  available after successful authentication.
+            X-FactSet-Api-RateLimit-Limit:
+              description: Number of allowed requests for the time window.
+              schema:
+                type: string
+            X-FactSet-Api-RateLimit-Remaining:
+              description: Number of requests left for the time window.
+              schema:
+                type: string
+            X-FactSet-Api-RateLimit-Reset:
+              description: Number of seconds remaining till rate limit resets.
+              schema:
+                type: string
+        '404':
+          description: >-
+            Optimization result was already returned, provided id was not a
+            requested optimization, or the optimization was cancelled
+          headers:
+            X-DataDirect-Request-Key:
+              description: FactSet's request key header.
+              schema:
+                type: string
+                description: FactSet's request key header.
+            X-FactSet-Api-Request-Key:
+              description: >-
+                Key to uniquely identify an Analytics API request. Only
+                available after successful authentication.
+              schema:
+                type: string
+                description: >-
+                  Key to uniquely identify an Analytics API request. Only
+                  available after successful authentication.
+            X-FactSet-Api-RateLimit-Limit:
+              description: Number of allowed requests for the time window.
+              schema:
+                type: string
+            X-FactSet-Api-RateLimit-Remaining:
+              description: Number of requests left for the time window.
+              schema:
+                type: string
+            X-FactSet-Api-RateLimit-Reset:
+              description: Number of seconds remaining till rate limit resets.
+              schema:
+                type: string
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ClientErrorResponse'
+        '500':
+          description: >-
+            Server error. Log the X-DataDirect-Request-Key header to assist in
+            troubleshooting
+          headers:
+            X-DataDirect-Request-Key:
+              description: FactSet's request key header.
+              schema:
+                type: string
+                description: FactSet's request key header.
+            X-FactSet-Api-Request-Key:
+              description: >-
+                Key to uniquely identify an Analytics API request. Only
+                available after successful authentication.
+              schema:
+                type: string
+                description: >-
+                  Key to uniquely identify an Analytics API request. Only
+                  available after successful authentication.
+        '503':
+          description: Request timed out. Retry the request in sometime.
+          headers:
+            X-DataDirect-Request-Key:
+              description: FactSet's request key header.
+              schema:
+                type: string
+                description: FactSet's request key header.
+            X-FactSet-Api-Request-Key:
+              description: >-
+                Key to uniquely identify an Analytics API request. Only
+                available after successful authentication.
+              schema:
+                type: string
+                description: >-
+                  Key to uniquely identify an Analytics API request. Only
+                  available after successful authentication.
+  /analytics/lookups/v3/currencies:
+    get:
+      tags:
+        - Currencies
+      summary: Get currencies
+      description: >-
+        This endpoint lists all the currencies that can be applied to any
+        calculation.
+      operationId: getCurrencies
+      responses:
+        '200':
+          description: Expected response, returns a list of currencies.
+          headers:
+            X-DataDirect-Request-Key:
+              description: FactSet's request key header.
+              schema:
+                type: string
+                description: FactSet's request key header.
+            X-FactSet-Api-Request-Key:
+              description: >-
+                Key to uniquely identify an Analytics API request. Only
+                available after successful authentication.
+              schema:
+                type: string
+                description: >-
+                  Key to uniquely identify an Analytics API request. Only
+                  available after successful authentication.
+            X-FactSet-Api-RateLimit-Limit:
+              description: Number of allowed requests for the time window.
+              schema:
+                type: string
+            X-FactSet-Api-RateLimit-Remaining:
+              description: Number of requests left for the time window.
+              schema:
+                type: string
+            X-FactSet-Api-RateLimit-Reset:
+              description: Number of seconds remaining till rate limit resets.
+              schema:
+                type: string
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/CurrencyRoot'
+        '401':
+          description: Missing or invalid authentication.
+          headers:
+            X-DataDirect-Request-Key:
+              description: FactSet's request key header.
+              schema:
+                type: string
+                description: FactSet's request key header.
+            X-FactSet-Api-Request-Key:
+              description: >-
+                Key to uniquely identify an Analytics API request. Only
+                available after successful authentication.
+              schema:
+                type: string
+                description: >-
+                  Key to uniquely identify an Analytics API request. Only
+                  available after successful authentication.
+        '403':
+          description: User is forbidden with current credentials
+          headers:
+            X-DataDirect-Request-Key:
+              description: FactSet's request key header.
+              schema:
+                type: string
+                description: FactSet's request key header.
+            X-FactSet-Api-Request-Key:
+              description: >-
+                Key to uniquely identify an Analytics API request. Only
+                available after successful authentication.
+              schema:
+                type: string
+                description: >-
+                  Key to uniquely identify an Analytics API request. Only
+                  available after successful authentication.
+            X-FactSet-Api-RateLimit-Limit:
+              description: Number of allowed requests for the time window.
+              schema:
+                type: string
+            X-FactSet-Api-RateLimit-Remaining:
+              description: Number of requests left for the time window.
+              schema:
+                type: string
+            X-FactSet-Api-RateLimit-Reset:
+              description: Number of seconds remaining till rate limit resets.
+              schema:
+                type: string
+        '406':
+          description: >-
+            Unsupported Accept header. Header needs to be set to
+            application/json.
+          headers:
+            X-DataDirect-Request-Key:
+              description: FactSet's request key header.
+              schema:
+                type: string
+                description: FactSet's request key header.
+            X-FactSet-Api-Request-Key:
+              description: >-
+                Key to uniquely identify an Analytics API request. Only
+                available after successful authentication.
+              schema:
+                type: string
+                description: >-
+                  Key to uniquely identify an Analytics API request. Only
+                  available after successful authentication.
+            X-FactSet-Api-RateLimit-Limit:
+              description: Number of allowed requests for the time window.
+              schema:
+                type: string
+            X-FactSet-Api-RateLimit-Remaining:
+              description: Number of requests left for the time window.
+              schema:
+                type: string
+            X-FactSet-Api-RateLimit-Reset:
+              description: Number of seconds remaining till rate limit resets.
+              schema:
+                type: string
+        '429':
+          description: >-
+            Rate limit reached. Wait till the time specified in Retry-After
+            header value to make further requests.
+          headers:
+            X-DataDirect-Request-Key:
+              description: FactSet's request key header.
+              schema:
+                type: string
+                description: FactSet's request key header.
+            X-FactSet-Api-Request-Key:
+              description: >-
+                Key to uniquely identify an Analytics API request. Only
+                available after successful authentication.
+              schema:
+                type: string
+                description: >-
+                  Key to uniquely identify an Analytics API request. Only
+                  available after successful authentication.
+            Retry-After:
+              description: >-
+                Time to wait in seconds before making a new request as the rate
+                limit has reached.
+              schema:
+                type: string
+        '500':
+          description: >-
+            Server error. Log the X-DataDirect-Request-Key header to assist in
+            troubleshooting.
+          headers:
+            X-DataDirect-Request-Key:
+              description: FactSet's request key header.
+              schema:
+                type: string
+                description: FactSet's request key header.
+            X-FactSet-Api-Request-Key:
+              description: >-
+                Key to uniquely identify an Analytics API request. Only
+                available after successful authentication.
+              schema:
+                type: string
+                description: >-
+                  Key to uniquely identify an Analytics API request. Only
+                  available after successful authentication.
+        '503':
+          description: Request timed out. Retry the request in sometime.
+          headers:
+            X-DataDirect-Request-Key:
+              description: FactSet's request key header.
+              schema:
+                type: string
+                description: FactSet's request key header.
+            X-FactSet-Api-Request-Key:
+              description: >-
+                Key to uniquely identify an Analytics API request. Only
+                available after successful authentication.
+              schema:
+                type: string
+                description: >-
+                  Key to uniquely identify an Analytics API request. Only
+                  available after successful authentication.
+  /analytics/engines/bpm/v3/strategies/{path}:
+    get:
+      tags:
+        - StrategyDocuments
+      summary: Get Barra strategy documents and sub-directories in a directory
+      description: >-
+        This endpoint looks up all Barra strategy documents and sub-directories
+        in a given directory.
+      operationId: getBarraStrategyDocuments
+      parameters:
+        - name: path
+          in: path
+          description: The directory to get the strategy documents and sub-directories in
+          required: true
+          schema:
+            type: string
+            description: The directory to get the strategy documents and sub-directories in
+            default: Client:folder1/folder2
+      responses:
+        '200':
+          description: >-
+            Expected response, returns a list of Barra strategy documents and
+            directories
+          headers:
+            X-DataDirect-Request-Key:
+              description: FactSet's request key header.
+              schema:
+                type: string
+                description: FactSet's request key header.
+            X-FactSet-Api-Request-Key:
+              description: >-
+                Key to uniquely identify an Analytics API request. Only
+                available after successful authentication.
+              schema:
+                type: string
+                description: >-
+                  Key to uniquely identify an Analytics API request. Only
+                  available after successful authentication.
+            X-FactSet-Api-RateLimit-Limit:
+              description: Number of allowed requests for the time window.
+              schema:
+                type: string
+            X-FactSet-Api-RateLimit-Remaining:
+              description: Number of requests left for the time window.
+              schema:
+                type: string
+            X-FactSet-Api-RateLimit-Reset:
+              description: Number of seconds remaining till rate limit resets.
+              schema:
+                type: string
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/DocumentDirectoriesRoot'
+        '400':
+          description: Invalid query parameter or value provided
+          headers:
+            X-DataDirect-Request-Key:
+              description: FactSet's request key header.
+              schema:
+                type: string
+                description: FactSet's request key header.
+            X-FactSet-Api-Request-Key:
+              description: >-
+                Key to uniquely identify an Analytics API request. Only
+                available after successful authentication.
+              schema:
+                type: string
+                description: >-
+                  Key to uniquely identify an Analytics API request. Only
+                  available after successful authentication.
+            X-FactSet-Api-RateLimit-Limit:
+              description: Number of allowed requests for the time window.
+              schema:
+                type: string
+            X-FactSet-Api-RateLimit-Remaining:
+              description: Number of requests left for the time window.
+              schema:
+                type: string
+            X-FactSet-Api-RateLimit-Reset:
+              description: Number of seconds remaining till rate limit resets.
+              schema:
+                type: string
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ClientErrorResponse'
+        '401':
+          description: Missing or invalid authentication
+          headers:
+            X-DataDirect-Request-Key:
+              description: FactSet's request key header.
+              schema:
+                type: string
+                description: FactSet's request key header.
+            X-FactSet-Api-Request-Key:
+              description: >-
+                Key to uniquely identify an Analytics API request. Only
+                available after successful authentication.
+              schema:
+                type: string
+                description: >-
+                  Key to uniquely identify an Analytics API request. Only
+                  available after successful authentication.
+        '403':
+          description: User is forbidden with current credentials
+          headers:
+            X-DataDirect-Request-Key:
+              description: FactSet's request key header.
+              schema:
+                type: string
+                description: FactSet's request key header.
+            X-FactSet-Api-Request-Key:
+              description: >-
+                Key to uniquely identify an Analytics API request. Only
+                available after successful authentication.
+              schema:
+                type: string
+                description: >-
+                  Key to uniquely identify an Analytics API request. Only
+                  available after successful authentication.
+            X-FactSet-Api-RateLimit-Limit:
+              description: Number of allowed requests for the time window.
+              schema:
+                type: string
+            X-FactSet-Api-RateLimit-Remaining:
+              description: Number of requests left for the time window.
+              schema:
+                type: string
+            X-FactSet-Api-RateLimit-Reset:
+              description: Number of seconds remaining till rate limit resets.
+              schema:
+                type: string
+        '404':
+          description: Path not found
+          headers:
+            X-DataDirect-Request-Key:
+              description: FactSet's request key header.
+              schema:
+                type: string
+                description: FactSet's request key header.
+            X-FactSet-Api-Request-Key:
+              description: >-
+                Key to uniquely identify an Analytics API request. Only
+                available after successful authentication.
+              schema:
+                type: string
+                description: >-
+                  Key to uniquely identify an Analytics API request. Only
+                  available after successful authentication.
+            X-FactSet-Api-RateLimit-Limit:
+              description: Number of allowed requests for the time window.
+              schema:
+                type: string
+            X-FactSet-Api-RateLimit-Remaining:
+              description: Number of requests left for the time window.
+              schema:
+                type: string
+            X-FactSet-Api-RateLimit-Reset:
+              description: Number of seconds remaining till rate limit resets.
+              schema:
+                type: string
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ClientErrorResponse'
+        '406':
+          description: >-
+            Unsupported Accept header.  Header needs to be set to
+            application/json
+          headers:
+            X-DataDirect-Request-Key:
+              description: FactSet's request key header.
+              schema:
+                type: string
+                description: FactSet's request key header.
+            X-FactSet-Api-Request-Key:
+              description: >-
+                Key to uniquely identify an Analytics API request. Only
+                available after successful authentication.
+              schema:
+                type: string
+                description: >-
+                  Key to uniquely identify an Analytics API request. Only
+                  available after successful authentication.
+            X-FactSet-Api-RateLimit-Limit:
+              description: Number of allowed requests for the time window.
+              schema:
+                type: string
+            X-FactSet-Api-RateLimit-Remaining:
+              description: Number of requests left for the time window.
+              schema:
+                type: string
+            X-FactSet-Api-RateLimit-Reset:
+              description: Number of seconds remaining till rate limit resets.
+              schema:
+                type: string
+        '429':
+          description: >-
+            Rate limit reached. Wait till the time specified in Retry-After
+            header value to make further requests.
+          headers:
+            X-DataDirect-Request-Key:
+              description: FactSet's request key header.
+              schema:
+                type: string
+                description: FactSet's request key header.
+            X-FactSet-Api-Request-Key:
+              description: >-
+                Key to uniquely identify an Analytics API request. Only
+                available after successful authentication.
+              schema:
+                type: string
+                description: >-
+                  Key to uniquely identify an Analytics API request. Only
+                  available after successful authentication.
+            Retry-After:
+              description: >-
+                Time to wait in seconds before making a new request as the rate
+                limit has reached.
+              schema:
+                type: string
+        '500':
+          description: >-
+            Server error. Log the X-DataDirect-Request-Key header to assist in
+            troubleshooting
+          headers:
+            X-DataDirect-Request-Key:
+              description: FactSet's request key header.
+              schema:
+                type: string
+                description: FactSet's request key header.
+            X-FactSet-Api-Request-Key:
+              description: >-
+                Key to uniquely identify an Analytics API request. Only
+                available after successful authentication.
+              schema:
+                type: string
+                description: >-
+                  Key to uniquely identify an Analytics API request. Only
+                  available after successful authentication.
+        '503':
+          description: Request timed out. Retry the request in some time
+          headers:
+            X-DataDirect-Request-Key:
+              description: FactSet's request key header.
+              schema:
+                type: string
+                description: FactSet's request key header.
+            X-FactSet-Api-Request-Key:
+              description: >-
+                Key to uniquely identify an Analytics API request. Only
+                available after successful authentication.
+              schema:
+                type: string
+                description: >-
+                  Key to uniquely identify an Analytics API request. Only
+                  available after successful authentication.

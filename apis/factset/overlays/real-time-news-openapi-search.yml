@@ -1,0 +1,649 @@
+openapi: 3.0.0
+info:
+  title: News API For Digital Portals
+  license:
+    name: Apache License, Version 2.0
+    url: https://www.apache.org/licenses/LICENSE-2.0
+paths:
+  /news/article/get:
+    get:
+      tags:
+        - news
+      x-supportsOffsetBasedPaging: false
+      x-supportsOffsetBasedPagingWithoutTotal: false
+      x-supportsCursorBasedPaging: false
+      x-supportsCursorBasedPagingWithoutTotal: false
+      x-supportsPush: false
+      x-requiresUser: false
+      x-requiresInternalClient: false
+      x-disallowUser: false
+      x-no-merge: false
+      x-maxSortParameterCount: 10
+      x-supportsPermissionDeniedResponse: false
+      summary: Details for a news article.
+      description: Details for a news article.
+  /news/article/list:
+    post:
+      tags:
+        - news
+      x-supportsOffsetBasedPaging: false
+      x-supportsOffsetBasedPagingWithoutTotal: false
+      x-supportsCursorBasedPaging: false
+      x-supportsCursorBasedPagingWithoutTotal: true
+      x-supportsPush: true
+      x-requiresUser: false
+      x-requiresInternalClient: false
+      x-disallowUser: false
+      x-no-merge: false
+      x-maxSortParameterCount: 10
+      x-supportsPermissionDeniedResponse: false
+      summary: List of news articles.
+      description: List of news articles.
+  /news/article/listByChain:
+    post:
+      tags:
+        - news
+      x-supportsOffsetBasedPaging: false
+      x-supportsOffsetBasedPagingWithoutTotal: false
+      x-supportsCursorBasedPaging: false
+      x-supportsCursorBasedPagingWithoutTotal: true
+      x-supportsPush: true
+      x-requiresUser: false
+      x-requiresInternalClient: false
+      x-disallowUser: false
+      x-no-merge: false
+      x-maxSortParameterCount: 10
+      x-supportsPermissionDeniedResponse: false
+      summary: List news articles of an article chain.
+      description: List news articles of an article chain.
+  /news/article/listByIndex:
+    post:
+      tags:
+        - news
+      x-supportsOffsetBasedPaging: false
+      x-supportsOffsetBasedPagingWithoutTotal: false
+      x-supportsCursorBasedPaging: false
+      x-supportsCursorBasedPagingWithoutTotal: true
+      x-supportsPush: true
+      x-requiresUser: false
+      x-requiresInternalClient: false
+      x-disallowUser: false
+      x-no-merge: false
+      x-maxSortParameterCount: 10
+      x-supportsPermissionDeniedResponse: false
+      summary: >-
+        News articles for instruments that are constituents of the given
+        indices.
+      description: >-
+        News articles for instruments that are constituents of the given
+        indices.
+  /news/article/listByInstrument:
+    post:
+      tags:
+        - news
+      x-supportsOffsetBasedPaging: false
+      x-supportsOffsetBasedPagingWithoutTotal: false
+      x-supportsCursorBasedPaging: false
+      x-supportsCursorBasedPagingWithoutTotal: true
+      x-supportsPush: true
+      x-requiresUser: false
+      x-requiresInternalClient: false
+      x-disallowUser: false
+      x-no-merge: false
+      x-maxSortParameterCount: 10
+      x-supportsPermissionDeniedResponse: false
+      summary: News articles for instruments.
+      description: News articles for instruments.
+  /news/article/listByMediaKind:
+    post:
+      tags:
+        - news
+      x-supportsOffsetBasedPaging: false
+      x-supportsOffsetBasedPagingWithoutTotal: false
+      x-supportsCursorBasedPaging: false
+      x-supportsCursorBasedPagingWithoutTotal: true
+      x-supportsPush: true
+      x-requiresUser: false
+      x-requiresInternalClient: false
+      x-disallowUser: false
+      x-no-merge: false
+      x-maxSortParameterCount: 10
+      x-supportsPermissionDeniedResponse: false
+      summary: List news articles which contain media of specific media kinds.
+      description: List news articles which contain media of specific media kinds.
+  /news/article/searchByText:
+    post:
+      tags:
+        - news
+      x-supportsOffsetBasedPaging: false
+      x-supportsOffsetBasedPagingWithoutTotal: false
+      x-supportsCursorBasedPaging: false
+      x-supportsCursorBasedPagingWithoutTotal: true
+      x-supportsPush: true
+      x-requiresUser: false
+      x-requiresInternalClient: false
+      x-disallowUser: false
+      x-no-merge: false
+      x-maxSortParameterCount: 10
+      x-supportsPermissionDeniedResponse: false
+      summary: Search for news articles using a fulltext search.
+      description: >-
+        Search for news articles using a fulltext search. All specified criteria
+        need to be fulfilled for an article to match. Each criterion is handled
+        according to its selectionType; "include" requires the criterion to
+        evaluate to true, "exclude" requires the criterion to evaluate to false.
+        A criterion is fulfilled when at least one of its values is found.
+  /news/article/type/get:
+    get:
+      tags:
+        - news
+      x-supportsOffsetBasedPaging: false
+      x-supportsOffsetBasedPagingWithoutTotal: false
+      x-supportsCursorBasedPaging: false
+      x-supportsCursorBasedPagingWithoutTotal: false
+      x-supportsPush: false
+      x-requiresUser: false
+      x-requiresInternalClient: false
+      x-disallowUser: false
+      x-no-merge: false
+      x-maxSortParameterCount: 10
+      x-supportsPermissionDeniedResponse: false
+      summary: Details for a news article type.
+      description: Details for a news article type.
+  /news/article/type/list:
+    get:
+      tags:
+        - news
+      x-supportsOffsetBasedPaging: false
+      x-supportsOffsetBasedPagingWithoutTotal: false
+      x-supportsCursorBasedPaging: false
+      x-supportsCursorBasedPagingWithoutTotal: false
+      x-supportsPush: false
+      x-requiresUser: false
+      x-requiresInternalClient: false
+      x-disallowUser: false
+      x-no-merge: false
+      x-maxSortParameterCount: 10
+      x-supportsPermissionDeniedResponse: false
+      summary: List of news article types.
+      description: List of news article types.
+  /news/distributor/get:
+    get:
+      tags:
+        - news
+      x-supportsOffsetBasedPaging: false
+      x-supportsOffsetBasedPagingWithoutTotal: false
+      x-supportsCursorBasedPaging: false
+      x-supportsCursorBasedPagingWithoutTotal: false
+      x-supportsPush: false
+      x-requiresUser: false
+      x-requiresInternalClient: false
+      x-disallowUser: false
+      x-no-merge: false
+      x-maxSortParameterCount: 10
+      x-supportsPermissionDeniedResponse: false
+      summary: Details of a distributor.
+      description: Details of a distributor.
+  /news/distributor/list:
+    get:
+      tags:
+        - news
+      x-supportsOffsetBasedPaging: false
+      x-supportsOffsetBasedPagingWithoutTotal: false
+      x-supportsCursorBasedPaging: false
+      x-supportsCursorBasedPagingWithoutTotal: false
+      x-supportsPush: false
+      x-requiresUser: false
+      x-requiresInternalClient: false
+      x-disallowUser: false
+      x-no-merge: false
+      x-maxSortParameterCount: 1
+      x-supportsPermissionDeniedResponse: false
+      summary: List of distributors.
+      description: List of distributors.
+  /news/publisher/get:
+    get:
+      tags:
+        - news
+      x-supportsOffsetBasedPaging: false
+      x-supportsOffsetBasedPagingWithoutTotal: false
+      x-supportsCursorBasedPaging: false
+      x-supportsCursorBasedPagingWithoutTotal: false
+      x-supportsPush: false
+      x-requiresUser: false
+      x-requiresInternalClient: false
+      x-disallowUser: false
+      x-no-merge: false
+      x-maxSortParameterCount: 10
+      x-supportsPermissionDeniedResponse: false
+      summary: Details of a publisher.
+      description: Details of a publisher.
+  /news/publisher/list:
+    get:
+      tags:
+        - news
+      x-supportsOffsetBasedPaging: false
+      x-supportsOffsetBasedPagingWithoutTotal: true
+      x-supportsCursorBasedPaging: false
+      x-supportsCursorBasedPagingWithoutTotal: false
+      x-supportsPush: false
+      x-requiresUser: false
+      x-requiresInternalClient: false
+      x-disallowUser: false
+      x-no-merge: false
+      x-maxSortParameterCount: 1
+      x-supportsPermissionDeniedResponse: false
+      summary: List of publishers.
+      description: List of publishers.
+  /news/publisher/listByDistributor:
+    get:
+      tags:
+        - news
+      x-supportsOffsetBasedPaging: false
+      x-supportsOffsetBasedPagingWithoutTotal: false
+      x-supportsCursorBasedPaging: false
+      x-supportsCursorBasedPagingWithoutTotal: false
+      x-supportsPush: false
+      x-requiresUser: false
+      x-requiresInternalClient: false
+      x-disallowUser: false
+      x-no-merge: false
+      x-maxSortParameterCount: 1
+      x-supportsPermissionDeniedResponse: false
+      summary: List of publishers provided by the given distributor.
+      description: List of publishers provided by the given distributor.
+  /news/publisher/searchByName:
+    post:
+      tags:
+        - news
+      operationId: post/news/publisher/searchByName
+      x-supportsOffsetBasedPaging: false
+      x-supportsOffsetBasedPagingWithoutTotal: false
+      x-supportsCursorBasedPaging: false
+      x-supportsCursorBasedPagingWithoutTotal: false
+      x-supportsPush: false
+      x-requiresUser: false
+      x-requiresInternalClient: false
+      x-disallowUser: false
+      x-no-merge: false
+      x-maxSortParameterCount: 1
+      x-supportsPermissionDeniedResponse: false
+      summary: Search for publishers.
+      description: Search for publishers by the name of the publisher.
+      requestBody:
+        description: Request Body
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/PostNewsPublisherSearchByNameRequest'
+        required: true
+      responses:
+        '200':
+          $ref: '#/components/responses/PostNewsPublisherSearchByName200Response'
+      parameters: []
+tags:
+  - name: news
+    description: news endpoints
+externalDocs:
+  description: API Documentation
+  url: https://developer.factset.com/api-catalog/
+x-interface-version: 2
+x-documenter-version: 6.3.9
+x-api-version: 4.4.0
+mit
+          in: query
+          schema:
+            type: number
+            format: int32
+            minimum: 0
+            exclusiveMinimum: false
+            maximum: 500
+            exclusiveMaximum: false
+            default: 20
+      responses:
+        '200':
+          $ref: '#/components/responses/GetNewsPublisherList200Response'
+  /news/publisher/listByDistributor:
+    get:
+      tags:
+        - news
+      operationId: get/news/publisher/listByDistributor
+      x-supportsOffsetBasedPaging: false
+      x-supportsOffsetBasedPagingWithoutTotal: false
+      x-supportsCursorBasedPaging: false
+      x-supportsCursorBasedPagingWithoutTotal: false
+      x-supportsPush: false
+      x-requiresUser: false
+      x-requiresInternalClient: false
+      x-disallowUser: false
+      x-no-merge: false
+      x-maxSortParameterCount: 1
+      x-supportsPermissionDeniedResponse: false
+      summary: List of publishers provided by the given distributor.
+      description: List of publishers provided by the given distributor.
+      parameters:
+        - name: id
+          in: query
+          schema:
+            type: number
+            format: id32
+            x-positive: true
+            description: Identifier of a distributor.
+          required: true
+        - name: _attributes
+          in: query
+          schema:
+            type: array
+            items:
+              type: string
+              maxLength: 100
+              exclusiveMaximum: false
+            uniqueItems: true
+            maxItems: 50
+          style: form
+          explode: false
+          description: Limit the attributes returned in the response to the specified set.
+        - description: >-
+            Sortable attributes. The sort order is ascending unless it is
+            prefixed with a minus sign, in which case it is descending. A list
+            of at most 1 (possibly prefixed) attribute name(s) is allowed.
+          schema:
+            type: array
+            items:
+              type: string
+              enum:
+                - id
+                - '-id'
+                - name
+                - '-name'
+            maxItems: 1
+            uniqueItems: true
+            default:
+              - name
+          style: form
+          explode: false
+          name: _sort
+          in: query
+      responses:
+        '200':
+          $ref: '#/components/responses/GetNewsPublisherListByDistributor200Response'
+  /news/publisher/searchByName:
+    post:
+      tags:
+        - news
+      operationId: post/news/publisher/searchByName
+      x-supportsOffsetBasedPaging: false
+      x-supportsOffsetBasedPagingWithoutTotal: false
+      x-supportsCursorBasedPaging: false
+      x-supportsCursorBasedPagingWithoutTotal: false
+      x-supportsPush: false
+      x-requiresUser: false
+      x-requiresInternalClient: false
+      x-disallowUser: false
+      x-no-merge: false
+      x-maxSortParameterCount: 1
+      x-supportsPermissionDeniedResponse: false
+      summary: Search for publishers.
+      description: Search for publishers by the name of the publisher.
+      requestBody:
+        description: Request Body
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/PostNewsPublisherSearchByNameRequest'
+        required: true
+      responses:
+        '200':
+          $ref: '#/components/responses/PostNewsPublisherSearchByName200Response'
+      parameters: []
+tags:
+  - name: news
+    description: news endpoints
+externalDocs:
+  description: API Documentation
+  url: https://developer.factset.com/api-catalog/
+x-interface-version: 2
+x-documenter-version: 6.3.9
+x-api-version: 4.4.0
+
+      x-supportsOffsetBasedPagingWithoutTotal: true
+      x-supportsCursorBasedPaging: false
+      x-supportsCursorBasedPagingWithoutTotal: false
+      x-supportsPush: false
+      x-requiresUser: false
+      x-requiresInternalClient: false
+      x-disallowUser: false
+      x-no-merge: false
+      x-maxSortParameterCount: 1
+      x-supportsPermissionDeniedResponse: false
+      summary: List of publishers.
+      description: List of publishers.
+      parameters:
+        - name: ids
+          in: query
+          schema:
+            type: array
+            nullable: false
+            items:
+              type: number
+              format: id32
+              x-positive: true
+            maxItems: 100
+            uniqueItems: true
+            description: Identifiers of publishers.
+          style: form
+          explode: false
+        - name: _attributes
+          in: query
+          schema:
+            type: array
+            items:
+              type: string
+              maxLength: 100
+              exclusiveMaximum: false
+            uniqueItems: true
+            maxItems: 50
+          style: form
+          explode: false
+          description: Limit the attributes returned in the response to the specified set.
+        - description: >-
+            Sortable attributes. The sort order is ascending unless it is
+            prefixed with a minus sign, in which case it is descending. A list
+            of at most 1 (possibly prefixed) attribute name(s) is allowed.
+          schema:
+            type: array
+            items:
+              type: string
+              enum:
+                - id
+                - '-id'
+                - name
+                - '-name'
+            maxItems: 1
+            uniqueItems: true
+            default:
+              - name
+          style: form
+          explode: false
+          name: _sort
+          in: query
+        - description: Non-negative number of entries to skip, or 0 (default).
+          name: _paginationOffset
+          in: query
+          schema:
+            type: number
+            format: int32
+            minimum: 0
+            exclusiveMinimum: false
+            default: 0
+        - description: Non-negative maximum number of entries to return.
+          name: _paginationLimit
+          in: query
+          schema:
+            type: number
+            format: int32
+            minimum: 0
+            exclusiveMinimum: false
+            maximum: 500
+            exclusiveMaximum: false
+            default: 20
+      responses:
+        '200':
+          $ref: '#/components/responses/GetNewsPublisherList200Response'
+  /news/publisher/listByDistributor:
+    get:
+      tags:
+        - news
+      operationId: get/news/publisher/listByDistributor
+      x-supportsOffsetBasedPaging: false
+      x-supportsOffsetBasedPagingWithoutTotal: false
+      x-supportsCursorBasedPaging: false
+      x-supportsCursorBasedPagingWithoutTotal: false
+      x-supportsPush: false
+      x-requiresUser: false
+      x-requiresInternalClient: false
+      x-disallowUser: false
+      x-no-merge: false
+      x-maxSortParameterCount: 1
+      x-supportsPermissionDeniedResponse: false
+      summary: List of publishers provided by the given distributor.
+      description: List of publishers provided by the given distributor.
+      parameters:
+        - name: id
+          in: query
+          schema:
+            type: number
+            format: id32
+            x-positive: true
+            description: Identifier of a distributor.
+          required: true
+        - name: _attributes
+          in: query
+          schema:
+            type: array
+            items:
+              type: string
+              maxLength: 100
+              exclusiveMaximum: false
+            uniqueItems: true
+            maxItems: 50
+          style: form
+          explode: false
+          description: Limit the attributes returned in the response to the specified set.
+        - description: >-
+            Sortable attributes. The sort order is ascending unless it is
+            prefixed with a minus sign, in which case it is descending. A list
+            of at most 1 (possibly prefixed) attribute name(s) is allowed.
+          schema:
+            type: array
+            items:
+              type: string
+              enum:
+                - id
+                - '-id'
+                - name
+                - '-name'
+            maxItems: 1
+            uniqueItems: true
+            default:
+              - name
+          style: form
+          explode: false
+          name: _sort
+          in: query
+      responses:
+        '200':
+          $ref: '#/components/responses/GetNewsPublisherListByDistributor200Response'
+  /news/publisher/searchByName:
+    post:
+      tags:
+        - news
+      operationId: post/news/publisher/searchByName
+      x-supportsOffsetBasedPaging: false
+      x-supportsOffsetBasedPagingWithoutTotal: false
+      x-supportsCursorBasedPaging: false
+      x-supportsCursorBasedPagingWithoutTotal: false
+      x-supportsPush: false
+      x-requiresUser: false
+      x-requiresInternalClient: false
+      x-disallowUser: false
+      x-no-merge: false
+      x-maxSortParameterCount: 1
+      x-supportsPermissionDeniedResponse: false
+      summary: Search for publishers.
+      description: Search for publishers by the name of the publisher.
+      requestBody:
+        description: Request Body
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/PostNewsPublisherSearchByNameRequest'
+        required: true
+      responses:
+        '200':
+          $ref: '#/components/responses/PostNewsPublisherSearchByName200Response'
+      parameters: []
+tags:
+  - name: news
+    description: news endpoints
+externalDocs:
+  description: API Documentation
+  url: https://developer.factset.com/api-catalog/
+x-interface-version: 2
+x-documenter-version: 6.3.9
+x-api-version: 4.4.0
+-disallowUser: false
+      x-no-merge: false
+      x-maxSortParameterCount: 1
+      x-supportsPermissionDeniedResponse: false
+      summary: Search for publishers.
+      description: Search for publishers by the name of the publisher.
+      requestBody:
+        description: Request Body
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/PostNewsPublisherSearchByNameRequest'
+        required: true
+      responses:
+        '200':
+          $ref: '#/components/responses/PostNewsPublisherSearchByName200Response'
+      parameters: []
+tags:
+  - name: news
+    description: news endpoints
+externalDocs:
+  description: API Documentation
+  url: https://developer.factset.com/api-catalog/
+x-interface-version: 2
+x-documenter-version: 6.3.9
+x-api-version: 4.4.0
+archByNameRequest'
+        required: true
+      responses:
+        '200':
+          $ref: '#/components/responses/PostNewsPublisherSearchByName200Response'
+      parameters: []
+tags:
+  - name: news
+    description: news endpoints
+externalDocs:
+  description: API Documentation
+  url: https://developer.factset.com/api-catalog/
+x-interface-version: 2
+x-documenter-version: 6.3.9
+x-api-version: 4.4.0
+       required: true
+      responses:
+        '200':
+          $ref: '#/components/responses/PostNewsPublisherSearchByName200Response'
+      parameters: []
+tags:
+  - name: news
+    description: news endpoints
+externalDocs:
+  description: API Documentation
+  url: https://developer.factset.com/api-catalog/
+x-interface-version: 2
+x-documenter-version: 6.3.9
+x-api-version: 4.4.0

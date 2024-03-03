@@ -1,0 +1,406 @@
+openapi: 3.0.0
+info:
+  title: Time Series API For Digital Portals
+  license:
+    name: Apache License, Version 2.0
+    url: https://www.apache.org/licenses/LICENSE-2.0
+paths:
+  /vendor/chartIQ/timeSeries/eod/list:
+    post:
+      tags:
+        - vendor
+      x-supportsOffsetBasedPaging: false
+      x-supportsOffsetBasedPagingWithoutTotal: false
+      x-supportsCursorBasedPaging: false
+      x-supportsCursorBasedPagingWithoutTotal: true
+      x-supportsPush: false
+      x-requiresUser: false
+      x-requiresInternalClient: false
+      x-disallowUser: false
+      x-no-merge: false
+      x-maxSortParameterCount: 10
+      x-supportsPermissionDeniedResponse: false
+      summary: End-of-day time series data for a notation.
+      description: >-
+        End-of-day time series data for a notation. The resulting time series is
+        always adjusted for currency changes.<br><br>Pagination to a previous
+        page is not supported and `pagination.previous` is always `null`.
+  /vendor/chartIQ/timeSeries/eod/subsample/get:
+    post:
+      tags:
+        - vendor
+      x-supportsOffsetBasedPaging: false
+      x-supportsOffsetBasedPagingWithoutTotal: false
+      x-supportsCursorBasedPaging: false
+      x-supportsCursorBasedPagingWithoutTotal: false
+      x-supportsPush: false
+      x-requiresUser: false
+      x-requiresInternalClient: false
+      x-disallowUser: false
+      x-no-merge: false
+      x-maxSortParameterCount: 10
+      x-supportsPermissionDeniedResponse: false
+      summary: Single subsample end-of-day data for a notation.
+      description: >-
+        Single subsample end-of-day data for a notation. The sample is always
+        adjusted for currency changes. The subsample may exceed the entitled
+        date range, but will be based only on days that are in the entitled
+        range.
+  /vendor/chartIQ/timeSeries/eod/subsample/list:
+    post:
+      tags:
+        - vendor
+      x-supportsOffsetBasedPaging: false
+      x-supportsOffsetBasedPagingWithoutTotal: false
+      x-supportsCursorBasedPaging: false
+      x-supportsCursorBasedPagingWithoutTotal: true
+      x-supportsPush: false
+      x-requiresUser: false
+      x-requiresInternalClient: false
+      x-disallowUser: false
+      x-no-merge: false
+      x-maxSortParameterCount: 10
+      x-supportsPermissionDeniedResponse: false
+      summary: Subsampled end-of-day time series data for a notation.
+      description: >-
+        Subsampled end-of-day time series data for a notation. The resulting
+        time series is always adjusted for currency changes. If a subsample's
+        date range is not entirely within the maximally entitled date range, the
+        subsample is excluded from the response.<br><br>Pagination to a previous
+        page is not supported and `pagination.previous` is always `null`.
+  /vendor/chartIQ/timeSeries/intraday/subsample/get:
+    post:
+      tags:
+        - vendor
+      x-supportsOffsetBasedPaging: false
+      x-supportsOffsetBasedPagingWithoutTotal: false
+      x-supportsCursorBasedPaging: false
+      x-supportsCursorBasedPagingWithoutTotal: false
+      x-supportsPush: false
+      x-requiresUser: false
+      x-requiresInternalClient: false
+      x-disallowUser: false
+      x-no-merge: false
+      x-maxSortParameterCount: 10
+      x-supportsPermissionDeniedResponse: false
+      summary: Single subsample intraday data for a notation.
+      description: >-
+        Single subsample intraday data for a notation. The subsample may exceed
+        the entitled time range, but will be based only on ticks that are in the
+        entitled range.
+  /vendor/chartIQ/timeSeries/intraday/subsample/list:
+    post:
+      tags:
+        - vendor
+      x-supportsOffsetBasedPaging: false
+      x-supportsOffsetBasedPagingWithoutTotal: false
+      x-supportsCursorBasedPaging: false
+      x-supportsCursorBasedPagingWithoutTotal: true
+      x-supportsPush: false
+      x-requiresUser: false
+      x-requiresInternalClient: false
+      x-disallowUser: false
+      x-no-merge: false
+      x-maxSortParameterCount: 10
+      x-supportsPermissionDeniedResponse: false
+      summary: Subsampled intraday time series data for a notation.
+      description: >-
+        Subsampled intraday time series data for a notation. If a subsample's
+        time range is not entirely within the maximally entitled time range, the
+        subsample is excluded from the response.<br><br>Pagination to a previous
+        page is not supported and `pagination.previous` is always `null`.
+  /prices/timeSeries/eod/list:
+    post:
+      tags:
+        - prices
+      x-supportsOffsetBasedPaging: false
+      x-supportsOffsetBasedPagingWithoutTotal: false
+      x-supportsCursorBasedPaging: false
+      x-supportsCursorBasedPagingWithoutTotal: true
+      x-supportsPush: false
+      x-requiresUser: false
+      x-requiresInternalClient: false
+      x-disallowUser: false
+      x-no-merge: false
+      x-maxSortParameterCount: 10
+      x-supportsPermissionDeniedResponse: false
+      summary: End-of-day time series data for a notation.
+      description: >-
+        End-of-day time series data for a notation. The resulting time series is
+        always adjusted for currency changes.<br><br>Pagination to a previous
+        page is not supported and `pagination.previous` is always `null`.
+  /prices/timeSeries/eod/subsample/get:
+    post:
+      tags:
+        - prices
+      x-supportsOffsetBasedPaging: false
+      x-supportsOffsetBasedPagingWithoutTotal: false
+      x-supportsCursorBasedPaging: false
+      x-supportsCursorBasedPagingWithoutTotal: false
+      x-supportsPush: false
+      x-requiresUser: false
+      x-requiresInternalClient: false
+      x-disallowUser: false
+      x-no-merge: false
+      x-maxSortParameterCount: 10
+      x-supportsPermissionDeniedResponse: false
+      summary: Single subsample end-of-day data for a notation.
+      description: >-
+        Single subsample end-of-day data for a notation. The sample is always
+        adjusted for currency changes. The subsample may exceed the entitled
+        date range, but will be based only on days that are in the entitled
+        range.
+  /prices/timeSeries/eod/subsample/list:
+    post:
+      tags:
+        - prices
+      x-supportsOffsetBasedPaging: false
+      x-supportsOffsetBasedPagingWithoutTotal: false
+      x-supportsCursorBasedPaging: false
+      x-supportsCursorBasedPagingWithoutTotal: true
+      x-supportsPush: false
+      x-requiresUser: false
+      x-requiresInternalClient: false
+      x-disallowUser: false
+      x-no-merge: false
+      x-maxSortParameterCount: 10
+      x-supportsPermissionDeniedResponse: false
+      summary: Subsampled end-of-day time series data for a notation.
+      description: >-
+        Subsampled end-of-day time series data for a notation. The resulting
+        time series is always adjusted for currency changes. If a subsample's
+        date range is not entirely within the maximally entitled date range, the
+        subsample is excluded from the response.<br><br>Pagination to a previous
+        page is not supported and `pagination.previous` is always `null`.
+  /prices/timeSeries/intraday/list:
+    post:
+      tags:
+        - prices
+      operationId: post/prices/timeSeries/intraday/list
+      x-supportsOffsetBasedPaging: false
+      x-supportsOffsetBasedPagingWithoutTotal: false
+      x-supportsCursorBasedPaging: false
+      x-supportsCursorBasedPagingWithoutTotal: true
+      x-supportsPush: false
+      x-requiresUser: false
+      x-requiresInternalClient: false
+      x-disallowUser: false
+      x-no-merge: false
+      x-maxSortParameterCount: 10
+      x-supportsPermissionDeniedResponse: false
+      summary: Intraday time series data for a notation.
+      description: >-
+        Intraday time series data for a notation.<br><br>Pagination to a
+        previous page is not supported and `pagination.previous` is always
+        `null`.
+      requestBody:
+        description: Request Body
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/PostPricesTimeSeriesIntradayListRequest'
+        required: true
+      responses:
+        '200':
+          $ref: '#/components/responses/PostPricesTimeSeriesIntradayList200Response'
+      parameters: []
+  /prices/timeSeries/intraday/subsample/get:
+    post:
+      tags:
+        - prices
+      operationId: post/prices/timeSeries/intraday/subsample/get
+      x-supportsOffsetBasedPaging: false
+      x-supportsOffsetBasedPagingWithoutTotal: false
+      x-supportsCursorBasedPaging: false
+      x-supportsCursorBasedPagingWithoutTotal: false
+      x-supportsPush: false
+      x-requiresUser: false
+      x-requiresInternalClient: false
+      x-disallowUser: false
+      x-no-merge: false
+      x-maxSortParameterCount: 10
+      x-supportsPermissionDeniedResponse: false
+      summary: Single subsample intraday data for a notation.
+      description: >-
+        Single subsample intraday data for a notation. The subsample may exceed
+        the entitled time range, but will be based only on ticks that are in the
+        entitled range.
+      requestBody:
+        description: Request Body
+        content:
+          application/json:
+            schema:
+              $ref: >-
+                #/components/schemas/PostPricesTimeSeriesIntradaySubsampleGetRequest
+        required: true
+      responses:
+        '200':
+          $ref: >-
+            #/components/responses/PostPricesTimeSeriesIntradaySubsampleGet200Response
+      parameters: []
+  /prices/timeSeries/intraday/subsample/list:
+    post:
+      tags:
+        - prices
+      operationId: post/prices/timeSeries/intraday/subsample/list
+      x-supportsOffsetBasedPaging: false
+      x-supportsOffsetBasedPagingWithoutTotal: false
+      x-supportsCursorBasedPaging: false
+      x-supportsCursorBasedPagingWithoutTotal: true
+      x-supportsPush: false
+      x-requiresUser: false
+      x-requiresInternalClient: false
+      x-disallowUser: false
+      x-no-merge: false
+      x-maxSortParameterCount: 10
+      x-supportsPermissionDeniedResponse: false
+      summary: Subsampled intraday time series data for a notation.
+      description: >-
+        Subsampled intraday time series data for a notation. If a subsample's
+        time range is not entirely within the maximally entitled time range, the
+        subsample is excluded from the response.<br><br>Pagination to a previous
+        page is not supported and `pagination.previous` is always `null`.
+      requestBody:
+        description: Request Body
+        content:
+          application/json:
+            schema:
+              $ref: >-
+                #/components/schemas/PostPricesTimeSeriesIntradaySubsampleListRequest
+        required: true
+      responses:
+        '200':
+          $ref: >-
+            #/components/responses/PostPricesTimeSeriesIntradaySubsampleList200Response
+      parameters: []
+tags:
+  - name: prices
+    description: prices endpoints
+  - name: vendor
+    description: vendor endpoints
+externalDocs:
+  description: API Documentation
+  url: https://developer.factset.com/api-catalog/
+x-interface-version: 2
+x-documenter-version: 6.3.9
+x-api-version: 4.4.0
+: true
+      responses:
+        '200':
+          $ref: >-
+            #/components/responses/PostPricesTimeSeriesIntradaySubsampleList200Response
+      parameters: []
+tags:
+  - name: prices
+    description: prices endpoints
+  - name: vendor
+    description: vendor endpoints
+externalDocs:
+  description: API Documentation
+  url: https://developer.factset.com/api-catalog/
+x-interface-version: 2
+x-documenter-version: 6.3.9
+x-api-version: 4.4.0
+rue
+      responses:
+        '200':
+          $ref: >-
+            #/components/responses/PostPricesTimeSeriesIntradaySubsampleList200Response
+      parameters: []
+tags:
+  - name: prices
+    description: prices endpoints
+  - name: vendor
+    description: vendor endpoints
+externalDocs:
+  description: API Documentation
+  url: https://developer.factset.com/api-catalog/
+x-interface-version: 2
+x-documenter-version: 6.3.9
+x-api-version: 4.4.0
+        $ref: >-
+            #/components/responses/PostPricesTimeSeriesIntradaySubsampleList200Response
+      parameters: []
+tags:
+  - name: prices
+    description: prices endpoints
+  - name: vendor
+    description: vendor endpoints
+externalDocs:
+  description: API Documentation
+  url: https://developer.factset.com/api-catalog/
+x-interface-version: 2
+x-documenter-version: 6.3.9
+x-api-version: 4.4.0
+imeSeriesIntradaySubsampleListRequest
+        required: true
+      responses:
+        '200':
+          $ref: >-
+            #/components/responses/PostPricesTimeSeriesIntradaySubsampleList200Response
+      parameters: []
+tags:
+  - name: prices
+    description: prices endpoints
+  - name: vendor
+    description: vendor endpoints
+externalDocs:
+  description: API Documentation
+  url: https://developer.factset.com/api-catalog/
+x-interface-version: 2
+x-documenter-version: 6.3.9
+x-api-version: 4.4.0
+SeriesIntradaySubsampleListRequest
+        required: true
+      responses:
+        '200':
+          $ref: >-
+            #/components/responses/PostPricesTimeSeriesIntradaySubsampleList200Response
+      parameters: []
+tags:
+  - name: prices
+    description: prices endpoints
+  - name: vendor
+    description: vendor endpoints
+externalDocs:
+  description: API Documentation
+  url: https://developer.factset.com/api-catalog/
+x-interface-version: 2
+x-documenter-version: 6.3.9
+x-api-version: 4.4.0
+aySubsampleListRequest
+        required: true
+      responses:
+        '200':
+          $ref: >-
+            #/components/responses/PostPricesTimeSeriesIntradaySubsampleList200Response
+      parameters: []
+tags:
+  - name: prices
+    description: prices endpoints
+  - name: vendor
+    description: vendor endpoints
+externalDocs:
+  description: API Documentation
+  url: https://developer.factset.com/api-catalog/
+x-interface-version: 2
+x-documenter-version: 6.3.9
+x-api-version: 4.4.0
+ubsampleListRequest
+        required: true
+      responses:
+        '200':
+          $ref: >-
+            #/components/responses/PostPricesTimeSeriesIntradaySubsampleList200Response
+      parameters: []
+tags:
+  - name: prices
+    description: prices endpoints
+  - name: vendor
+    description: vendor endpoints
+externalDocs:
+  description: API Documentation
+  url: https://developer.factset.com/api-catalog/
+x-interface-version: 2
+x-documenter-version: 6.3.9
+x-api-version: 4.4.0

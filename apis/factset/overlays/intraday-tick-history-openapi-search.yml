@@ -1,0 +1,722 @@
+openapi: 3.0.1
+info:
+  title: Tick History
+  license:
+    name: Apache 3.0
+    url: http://www.apache.org/licenses/LICENSE-2.0.html
+externalDocs:
+  description: Data Service Manual
+  url: >-
+    https://www.factset.com/hubfs/Website_Downloads/Exchange%20DataFeed/data%20service%20manual%202.0b.pdf
+paths:
+  /TickHistory/history:
+    get:
+      tags:
+        - Tick History
+      summary: >-
+        Tick History service returns trade data and associated quotes for a
+        client specified interval and time period
+      description: >-
+        When using an HTTP GET request, the seach criteria is sent via the query
+        string in the URL. Please make sure that all requests contain a date
+        within the past trailing year. Fields are added using ampersands, with
+        enumerations seperated by commas. <p>**Try it Out** - references a
+        sandbox environment to simulate live reponses. Available `id` is limited
+        to
+        BABA-USA,WALMEX-MX,7203-TKS,VOD-LON,NPN-JSE,MABAX,NZF,SPY-USA,AGG-USA,GLD-USA,AOR-USA,MNA-USA,UUP-USA,SP50-SPX,ESX-STX,XAO-ASX,WD-MSX,NG00-USA,GC00-USA,CC00-USA,C00-USA,FC00-USA,ER00-USA,EURUSD-FX1,USDMXN-FX1,AUDJPY-FX1,EURCZK-FX1,USDILS-FX1,USDZAR-FX1,US10YY-TU1,FDS#190621C00145000-USA,FDS#190621P00145000-USA.
+        Current day data is not available.</p>
+  /TickHistory/firsttrade:
+    get:
+      tags:
+        - First Trade
+      summary: >-
+        Request returns data for the first trade (official and unofficial) after
+        the specified time
+      description: ''
+  /TickHistory/lasttrade:
+    get:
+      tags:
+        - Last Trade
+      summary: >-
+        Request returns data for the last trade and associated quotes before the
+        specified time
+      description: ''
+  /TickHistory/qat:
+    get:
+      tags:
+        - Quote at Time
+      summary: Request returns a quote at the specified time
+      description: ''
+      parameters:
+        - name: id
+          in: query
+          description: >-
+            Requested symbol or security. The symbol can be a FactSet exchange
+            symbol, CUSIP, or SEDOL. **NOTE**: Only one identifier can be
+            requested per request.<P>**TRY IT OUT** - Choose One from -
+            BABA-USA,WALMEX-MX,7203-TKS,VOD-LON,NPN-JSE,MABAX,NZF,SPY-USA,AGG-USA,GLD-USA,AOR-USA,MNA-USA,UUP-USA,SP50-SPX,ESX-STX,XAO-ASX,WD-MSX,NG00-USA,GC00-USA,CC00-USA,C00-USA,FC00-USA,ER00-USA,EURUSD-FX1,USDMXN-FX1,AUDJPY-FX1,EURCZK-FX1,USDILS-FX1,USDZAR-FX1,US10YY-TU1,FDS#190621C00145000-USA,FDS#190621P00145000-USA
+          required: true
+          schema:
+            type: string
+        - name: date
+          in: query
+          description: >-
+            Request should be made in the format **YYYYMMDD**. The initial
+            release only supports requests from completed trading days
+          schema:
+            type: string
+        - name: time
+          in: query
+          description: >-
+            Request should be made in the format **HHMMSSS**.HH- Hour, MM-
+            Minutes, SS- Seconds
+          schema:
+            type: string
+        - name: format
+          in: query
+          description: >-
+            The format of the output file. TRY IT OUT Choose from JSON, CSV,
+            CSV_NO_HEADER
+          schema:
+            type: string
+            default: XML
+            enum:
+              - XML
+              - JSON
+              - CSV
+              - CSV_NO_HEADER
+      responses:
+        '200':
+          description: OK  x
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/tickhistory_response'
+              example:
+                Request ID: ''
+                Requested Symbol: IBM-USA
+                Requested Fields: LAST_1,LAST_TIME_1,LAST_VOL_1
+                Request Key: 5C8926159C36F315
+                Error Code: 0
+                Error Description: ''
+                Field Names:
+                  - LAST_1
+                  - LAST_TIME_1
+                  - LAST_VOL_1
+                Field IDs:
+                  - 300
+                  - 302
+                  - 304
+                Key: IBM-USA:D
+                Values:
+                  - - 139.59
+                    - 105955785
+                    - 326658
+                  - - 138.1872
+                    - 115957067
+                    - 444631
+                  - - 137.4711
+                    - 125957913
+                    - 477766
+                  - - 137.7599
+                    - 135956519
+                    - 252993
+                  - - 137.81
+                    - 140059812
+                    - 4595
+            application/xml:
+              schema:
+                $ref: '#/components/schemas/tickhistory_response'
+              example: >-
+                <Response><Request
+                id=""><RequestedSymbol>IBM-USA</RequestedSymbol><RequestedFields>LAST_1,LAST_TIME_1,LAST_VOL_1</RequestedFields><RequestKey>5C89235E1E3D65AE</RequestKey></Request><Error
+                code="0" description=""/><Records req_sym="IBM-USA"
+                key="IBM-USA:D" stale=""><Record><Fields><Field id="300"
+                name="LAST_1" value="145.96"/><Field id="302" name="LAST_TIME_1"
+                value="105959029"/><Field id="304" name="LAST_VOL_1"
+                value="638559"/></Fields></Record><Record><Fields><Field
+                id="300" name="LAST_1" value="145.95"/><Field id="302"
+                name="LAST_TIME_1" value="115956985"/><Field id="304"
+                name="LAST_VOL_1"
+                value="359625"/></Fields></Record><Record><Fields><Field
+                id="300" name="LAST_1" value="145.82"/><Field id="302"
+                name="LAST_TIME_1" value="125955145"/><Field id="304"
+                name="LAST_VOL_1"
+                value="280630"/></Fields></Record><Record><Fields><Field
+                id="300" name="LAST_1" value="145.74"/><Field id="302"
+                name="LAST_TIME_1" value="135955094"/><Field id="304"
+                name="LAST_VOL_1"
+                value="256692"/></Fields></Record><Record><Fields><Field
+                id="300" name="LAST_1" value="145.815"/><Field id="302"
+                name="LAST_TIME_1" value="140055430"/><Field id="304"
+                name="LAST_VOL_1"
+                value="12274"/></Fields></Record></Records></Response>
+            text/csv:
+              schema:
+                $ref: '#/components/schemas/tickhistory_response'
+              example: >
+                LAST_1,LAST_TIME_1,LAST_VOL_1 139.59,105955785,326658
+                138.1872,115957067,444631 137.4711,125957913,477766
+                137.7599,135956519,252993 137.81,140059812,4595
+        '401':
+          description: >-
+            Access Denied. The user is not authorized to view the data
+            requested. Contact FactSet Consulting Services for assistance.
+          content:
+            application/json:
+              schema:
+                type: object
+            application/xml:
+              schema:
+                type: object
+            text/csv:
+              schema:
+                type: object
+        '403':
+          description: >-
+            Invalid HTTP URL. Necessary query parameters are missing in the
+            request. The description field will indicate the exact reason.
+          content:
+            application/json:
+              schema:
+                type: object
+            application/xml:
+              schema:
+                type: object
+            text/csv:
+              schema:
+                type: object
+        '405':
+          description: >-
+            Invalid HTTP method. Either the method is not GET or exceeds the
+            maximum request lenght (currently set at 5000 bytes. The description
+            field will indicate the exact reason.
+          content:
+            application/json:
+              schema:
+                type: object
+            application/xml:
+              schema:
+                type: object
+            text/csv:
+              schema:
+                type: object
+  /TickHistory/tradesattime:
+    get:
+      tags:
+        - Trades at Time
+      summary: >-
+        Request returns the before and after trade data along with the
+        associated quotes for the specified time
+      description: ''
+      parameters:
+        - name: id
+          in: query
+          description: >-
+            Requested symbol or security. The symbol can be a FactSet exchange
+            symbol, CUSIP, or SEDOL. **NOTE**: Only one identifier can be
+            requested per request.<P>**TRY IT OUT** - Choose One from -
+            BABA-USA,WALMEX-MX,7203-TKS,VOD-LON,NPN-JSE,MABAX,NZF,SPY-USA,AGG-USA,GLD-USA,AOR-USA,MNA-USA,UUP-USA,SP50-SPX,ESX-STX,XAO-ASX,WD-MSX,NG00-USA,GC00-USA,CC00-USA,C00-USA,FC00-USA,ER00-USA,EURUSD-FX1,USDMXN-FX1,AUDJPY-FX1,EURCZK-FX1,USDILS-FX1,USDZAR-FX1,US10YY-TU1,FDS#190621C00145000-USA,FDS#190621P00145000-USA
+          required: true
+          schema:
+            type: string
+        - name: req_id
+          in: query
+          description: >-
+            Request Identification String. Can be used by the application to
+            keep track of requests. The id is not used by this service, however,
+            it is included in the XML response.
+          required: false
+          schema:
+            type: string
+        - name: format
+          in: query
+          description: >-
+            The format of the output file. TRY IT OUT Choose from JSON, CSV,
+            CSV_NO_HEADER
+          schema:
+            type: string
+            default: XML
+            enum:
+              - XML
+              - JSON
+              - CSV
+              - CSV_NO_HEADER
+        - name: date
+          in: query
+          description: >-
+            Request should be made in the format **YYYYMMDD**. The initial
+            release only supports requests from completed trading days
+          schema:
+            type: string
+        - name: time
+          in: query
+          description: >-
+            Request should be made in the format **HHMMSSS**.HH- Hour, MM-
+            Minutes, SS- Seconds
+          schema:
+            type: string
+      responses:
+        '200':
+          description: OK  x
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/tickhistory_response'
+              example:
+                Request ID: ''
+                Requested Symbol: IBM-USA
+                Requested Fields: LAST_1,LAST_TIME_1,LAST_VOL_1
+                Request Key: 5C8926159C36F315
+                Error Code: 0
+                Error Description: ''
+                Field Names:
+                  - LAST_1
+                  - LAST_TIME_1
+                  - LAST_VOL_1
+                Field IDs:
+                  - 300
+                  - 302
+                  - 304
+                Key: IBM-USA:D
+                Values:
+                  - - 139.59
+                    - 105955785
+                    - 326658
+                  - - 138.1872
+                    - 115957067
+                    - 444631
+                  - - 137.4711
+                    - 125957913
+                    - 477766
+                  - - 137.7599
+                    - 135956519
+                    - 252993
+                  - - 137.81
+                    - 140059812
+                    - 4595
+            application/xml:
+              schema:
+                $ref: '#/components/schemas/tickhistory_response'
+              example: >-
+                <Response><Request
+                id=""><RequestedSymbol>IBM-USA</RequestedSymbol><RequestedFields>LAST_1,LAST_TIME_1,LAST_VOL_1</RequestedFields><RequestKey>5C89235E1E3D65AE</RequestKey></Request><Error
+                code="0" description=""/><Records req_sym="IBM-USA"
+                key="IBM-USA:D" stale=""><Record><Fields><Field id="300"
+                name="LAST_1" value="145.96"/><Field id="302" name="LAST_TIME_1"
+                value="105959029"/><Field id="304" name="LAST_VOL_1"
+                value="638559"/></Fields></Record><Record><Fields><Field
+                id="300" name="LAST_1" value="145.95"/><Field id="302"
+                name="LAST_TIME_1" value="115956985"/><Field id="304"
+                name="LAST_VOL_1"
+                value="359625"/></Fields></Record><Record><Fields><Field
+                id="300" name="LAST_1" value="145.82"/><Field id="302"
+                name="LAST_TIME_1" value="125955145"/><Field id="304"
+                name="LAST_VOL_1"
+                value="280630"/></Fields></Record><Record><Fields><Field
+                id="300" name="LAST_1" value="145.74"/><Field id="302"
+                name="LAST_TIME_1" value="135955094"/><Field id="304"
+                name="LAST_VOL_1"
+                value="256692"/></Fields></Record><Record><Fields><Field
+                id="300" name="LAST_1" value="145.815"/><Field id="302"
+                name="LAST_TIME_1" value="140055430"/><Field id="304"
+                name="LAST_VOL_1"
+                value="12274"/></Fields></Record></Records></Response>
+            text/csv:
+              schema:
+                $ref: '#/components/schemas/tickhistory_response'
+              example: >
+                LAST_1,LAST_TIME_1,LAST_VOL_1 139.59,105955785,326658
+                138.1872,115957067,444631 137.4711,125957913,477766
+                137.7599,135956519,252993 137.81,140059812,4595
+        '401':
+          description: >-
+            Access Denied. The user is not authorized to view the data
+            requested. Contact FactSet Consulting Services for assistance.
+          content:
+            application/json:
+              schema:
+                type: object
+            application/xml:
+              schema:
+                type: object
+            text/csv:
+              schema:
+                type: object
+        '403':
+          description: >-
+            Invalid HTTP URL. Necessary query parameters are missing in the
+            request. The description field will indicate the exact reason.
+          content:
+            application/json:
+              schema:
+                type: object
+            application/xml:
+              schema:
+                type: object
+            text/csv:
+              schema:
+                type: object
+        '405':
+          description: >-
+            Invalid HTTP method. Either the method is not GET or exceeds the
+            maximum request lenght (currently set at 5000 bytes. The description
+            field will indicate the exact reason.
+          content:
+            application/json:
+              schema:
+                type: object
+            application/xml:
+              schema:
+                type: object
+            text/csv:
+              schema:
+                type: object
+TKS,VOD-LON,NPN-JSE,MABAX,NZF,SPY-USA,AGG-USA,GLD-USA,AOR-USA,MNA-USA,UUP-USA,SP50-SPX,ESX-STX,XAO-ASX,WD-MSX,NG00-USA,GC00-USA,CC00-USA,C00-USA,FC00-USA,ER00-USA,EURUSD-FX1,USDMXN-FX1,AUDJPY-FX1,EURCZK-FX1,USDILS-FX1,USDZAR-FX1,US10YY-TU1,FDS#190621C00145000-USA,FDS#190621P00145000-USA
+          required: true
+          schema:
+            type: string
+        - name: req_id
+          in: query
+          description: >-
+            Request Identification String. Can be used by the application to
+            keep track of requests. The id is not used by this service, however,
+            it is included in the XML response.
+          required: false
+          schema:
+            type: string
+        - name: format
+          in: query
+          description: >-
+            The format of the output file. TRY IT OUT Choose from JSON, CSV,
+            CSV_NO_HEADER
+          schema:
+            type: string
+            default: XML
+            enum:
+              - XML
+              - JSON
+              - CSV
+              - CSV_NO_HEADER
+        - name: date
+          in: query
+          description: >-
+            Request should be made in the format **YYYYMMDD**. The initial
+            release only supports requests from completed trading days
+          schema:
+            type: string
+        - name: time
+          in: query
+          description: >-
+            Request should be made in the format **HHMMSSS**.HH- Hour, MM-
+            Minutes, SS- Seconds
+          schema:
+            type: string
+      responses:
+        '200':
+          description: OK  x
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/tickhistory_response'
+              example:
+                Request ID: ''
+                Requested Symbol: IBM-USA
+                Requested Fields: LAST_1,LAST_TIME_1,LAST_VOL_1
+                Request Key: 5C8926159C36F315
+                Error Code: 0
+                Error Description: ''
+                Field Names:
+                  - LAST_1
+                  - LAST_TIME_1
+                  - LAST_VOL_1
+                Field IDs:
+                  - 300
+                  - 302
+                  - 304
+                Key: IBM-USA:D
+                Values:
+                  - - 139.59
+                    - 105955785
+                    - 326658
+                  - - 138.1872
+                    - 115957067
+                    - 444631
+                  - - 137.4711
+                    - 125957913
+                    - 477766
+                  - - 137.7599
+                    - 135956519
+                    - 252993
+                  - - 137.81
+                    - 140059812
+                    - 4595
+            application/xml:
+              schema:
+                $ref: '#/components/schemas/tickhistory_response'
+              example: >-
+                <Response><Request
+                id=""><RequestedSymbol>IBM-USA</RequestedSymbol><RequestedFields>LAST_1,LAST_TIME_1,LAST_VOL_1</RequestedFields><RequestKey>5C89235E1E3D65AE</RequestKey></Request><Error
+                code="0" description=""/><Records req_sym="IBM-USA"
+                key="IBM-USA:D" stale=""><Record><Fields><Field id="300"
+                name="LAST_1" value="145.96"/><Field id="302" name="LAST_TIME_1"
+                value="105959029"/><Field id="304" name="LAST_VOL_1"
+                value="638559"/></Fields></Record><Record><Fields><Field
+                id="300" name="LAST_1" value="145.95"/><Field id="302"
+                name="LAST_TIME_1" value="115956985"/><Field id="304"
+                name="LAST_VOL_1"
+                value="359625"/></Fields></Record><Record><Fields><Field
+                id="300" name="LAST_1" value="145.82"/><Field id="302"
+                name="LAST_TIME_1" value="125955145"/><Field id="304"
+                name="LAST_VOL_1"
+                value="280630"/></Fields></Record><Record><Fields><Field
+                id="300" name="LAST_1" value="145.74"/><Field id="302"
+                name="LAST_TIME_1" value="135955094"/><Field id="304"
+                name="LAST_VOL_1"
+                value="256692"/></Fields></Record><Record><Fields><Field
+                id="300" name="LAST_1" value="145.815"/><Field id="302"
+                name="LAST_TIME_1" value="140055430"/><Field id="304"
+                name="LAST_VOL_1"
+                value="12274"/></Fields></Record></Records></Response>
+            text/csv:
+              schema:
+                $ref: '#/components/schemas/tickhistory_response'
+              example: >
+                LAST_1,LAST_TIME_1,LAST_VOL_1 139.59,105955785,326658
+                138.1872,115957067,444631 137.4711,125957913,477766
+                137.7599,135956519,252993 137.81,140059812,4595
+        '401':
+          description: >-
+            Access Denied. The user is not authorized to view the data
+            requested. Contact FactSet Consulting Services for assistance.
+          content:
+            application/json:
+              schema:
+                type: object
+            application/xml:
+              schema:
+                type: object
+            text/csv:
+              schema:
+                type: object
+        '403':
+          description: >-
+            Invalid HTTP URL. Necessary query parameters are missing in the
+            request. The description field will indicate the exact reason.
+          content:
+            application/json:
+              schema:
+                type: object
+            application/xml:
+              schema:
+                type: object
+            text/csv:
+              schema:
+                type: object
+        '405':
+          description: >-
+            Invalid HTTP method. Either the method is not GET or exceeds the
+            maximum request lenght (currently set at 5000 bytes. The description
+            field will indicate the exact reason.
+          content:
+            application/json:
+              schema:
+                type: object
+            application/xml:
+              schema:
+                type: object
+            text/csv:
+              schema:
+                type: object
+          application/xml:
+              schema:
+                type: object
+            text/csv:
+              schema:
+                type: object
+        '405':
+          description: >-
+            Invalid HTTP method. Either the method is not GET or exceeds the
+            maximum request lenght (currently set at 5000 bytes. The description
+            field will indicate the exact reason.
+          content:
+            application/json:
+              schema:
+                type: object
+            application/xml:
+              schema:
+                type: object
+            text/csv:
+              schema:
+                type: object
+  /TickHistory/tradesattime:
+    get:
+      tags:
+        - Trades at Time
+      summary: >-
+        Request returns the before and after trade data along with the
+        associated quotes for the specified time
+      description: ''
+      parameters:
+        - name: id
+          in: query
+          description: >-
+            Requested symbol or security. The symbol can be a FactSet exchange
+            symbol, CUSIP, or SEDOL. **NOTE**: Only one identifier can be
+            requested per request.<P>**TRY IT OUT** - Choose One from -
+            BABA-USA,WALMEX-MX,7203-TKS,VOD-LON,NPN-JSE,MABAX,NZF,SPY-USA,AGG-USA,GLD-USA,AOR-USA,MNA-USA,UUP-USA,SP50-SPX,ESX-STX,XAO-ASX,WD-MSX,NG00-USA,GC00-USA,CC00-USA,C00-USA,FC00-USA,ER00-USA,EURUSD-FX1,USDMXN-FX1,AUDJPY-FX1,EURCZK-FX1,USDILS-FX1,USDZAR-FX1,US10YY-TU1,FDS#190621C00145000-USA,FDS#190621P00145000-USA
+          required: true
+          schema:
+            type: string
+        - name: req_id
+          in: query
+          description: >-
+            Request Identification String. Can be used by the application to
+            keep track of requests. The id is not used by this service, however,
+            it is included in the XML response.
+          required: false
+          schema:
+            type: string
+        - name: format
+          in: query
+          description: >-
+            The format of the output file. TRY IT OUT Choose from JSON, CSV,
+            CSV_NO_HEADER
+          schema:
+            type: string
+            default: XML
+            enum:
+              - XML
+              - JSON
+              - CSV
+              - CSV_NO_HEADER
+        - name: date
+          in: query
+          description: >-
+            Request should be made in the format **YYYYMMDD**. The initial
+            release only supports requests from completed trading days
+          schema:
+            type: string
+        - name: time
+          in: query
+          description: >-
+            Request should be made in the format **HHMMSSS**.HH- Hour, MM-
+            Minutes, SS- Seconds
+          schema:
+            type: string
+      responses:
+        '200':
+          description: OK  x
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/tickhistory_response'
+              example:
+                Request ID: ''
+                Requested Symbol: IBM-USA
+                Requested Fields: LAST_1,LAST_TIME_1,LAST_VOL_1
+                Request Key: 5C8926159C36F315
+                Error Code: 0
+                Error Description: ''
+                Field Names:
+                  - LAST_1
+                  - LAST_TIME_1
+                  - LAST_VOL_1
+                Field IDs:
+                  - 300
+                  - 302
+                  - 304
+                Key: IBM-USA:D
+                Values:
+                  - - 139.59
+                    - 105955785
+                    - 326658
+                  - - 138.1872
+                    - 115957067
+                    - 444631
+                  - - 137.4711
+                    - 125957913
+                    - 477766
+                  - - 137.7599
+                    - 135956519
+                    - 252993
+                  - - 137.81
+                    - 140059812
+                    - 4595
+            application/xml:
+              schema:
+                $ref: '#/components/schemas/tickhistory_response'
+              example: >-
+                <Response><Request
+                id=""><RequestedSymbol>IBM-USA</RequestedSymbol><RequestedFields>LAST_1,LAST_TIME_1,LAST_VOL_1</RequestedFields><RequestKey>5C89235E1E3D65AE</RequestKey></Request><Error
+                code="0" description=""/><Records req_sym="IBM-USA"
+                key="IBM-USA:D" stale=""><Record><Fields><Field id="300"
+                name="LAST_1" value="145.96"/><Field id="302" name="LAST_TIME_1"
+                value="105959029"/><Field id="304" name="LAST_VOL_1"
+                value="638559"/></Fields></Record><Record><Fields><Field
+                id="300" name="LAST_1" value="145.95"/><Field id="302"
+                name="LAST_TIME_1" value="115956985"/><Field id="304"
+                name="LAST_VOL_1"
+                value="359625"/></Fields></Record><Record><Fields><Field
+                id="300" name="LAST_1" value="145.82"/><Field id="302"
+                name="LAST_TIME_1" value="125955145"/><Field id="304"
+                name="LAST_VOL_1"
+                value="280630"/></Fields></Record><Record><Fields><Field
+                id="300" name="LAST_1" value="145.74"/><Field id="302"
+                name="LAST_TIME_1" value="135955094"/><Field id="304"
+                name="LAST_VOL_1"
+                value="256692"/></Fields></Record><Record><Fields><Field
+                id="300" name="LAST_1" value="145.815"/><Field id="302"
+                name="LAST_TIME_1" value="140055430"/><Field id="304"
+                name="LAST_VOL_1"
+                value="12274"/></Fields></Record></Records></Response>
+            text/csv:
+              schema:
+                $ref: '#/components/schemas/tickhistory_response'
+              example: >
+                LAST_1,LAST_TIME_1,LAST_VOL_1 139.59,105955785,326658
+                138.1872,115957067,444631 137.4711,125957913,477766
+                137.7599,135956519,252993 137.81,140059812,4595
+        '401':
+          description: >-
+            Access Denied. The user is not authorized to view the data
+            requested. Contact FactSet Consulting Services for assistance.
+          content:
+            application/json:
+              schema:
+                type: object
+            application/xml:
+              schema:
+                type: object
+            text/csv:
+              schema:
+                type: object
+        '403':
+          description: >-
+            Invalid HTTP URL. Necessary query parameters are missing in the
+            request. The description field will indicate the exact reason.
+          content:
+            application/json:
+              schema:
+                type: object
+            application/xml:
+              schema:
+                type: object
+            text/csv:
+              schema:
+                type: object
+        '405':
+          description: >-
+            Invalid HTTP method. Either the method is not GET or exceeds the
+            maximum request lenght (currently set at 5000 bytes. The description
+            field will indicate the exact reason.
+          content:
+            application/json:
+              schema:
+                type: object
+            application/xml:
+              schema:
+                type: object
+            text/csv:
+              schema:
+                type: object

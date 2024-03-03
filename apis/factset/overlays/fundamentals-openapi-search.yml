@@ -1,0 +1,313 @@
+openapi: 3.0.0
+info:
+  title: FactSet Fundamentals API
+  license:
+    name: Apache License, Version 2.0
+    url: https://www.apache.org/licenses/LICENSE-2.0
+externalDocs:
+  description: API Documentation
+  url: https://developer.factset.com/api-catalog/factset-fundamentals-api
+paths:
+  /fundamentals:
+    get:
+      tags:
+        - FactSet Fundamentals
+      summary: Returns Company Fundamental Data.
+      x-factset-sdk-ignore: true
+      description: >
+        Retrieves FactSet Fundamental standardized data for specified
+        securities. Use the ```/metrics``` endpoint to retrieve a full list of
+        valid metrics or data items.
+
+
+
+        The ```/fundamentals``` endpoint currently supports Long Running
+        asynchronous requests up to **20 minutes** via batch parameter. Id
+        limits are increased to 2000 ids per request when using batch
+        capability. This 2000 id limit has been derived based on single metric
+        for one day. This feature is available for all users.       
+    post:
+      tags:
+        - FactSet Fundamentals
+      summary: Returns Company Fundamental Data.
+      description: >
+        Retrieves FactSet Fundamental standardized data for specified
+        securities. Use the ```/metrics``` endpoint to retrieve a full list of
+        valid metrics or data items.
+
+
+
+        The ```/fundamentals``` endpoint currently supports Long Running
+        asynchronous requests up to **20 minutes** via batch parameter. Id
+        limits are increased to 30000 ids per request when using batch
+        capability. This 30000 id limit has been derived based on single metric
+        for one day. This feature is available for all users. 
+  /segments:
+    get:
+      tags:
+        - Segments
+      summary: Returns Company Segments data.
+      x-factset-sdk-ignore: true
+      description: >
+        Retrieves Fundamentals Metrics data for individual companies.
+
+
+        The ```/segments``` endpoint currently supports Long Running
+        asynchronous requests up to **20 minutes** via batch parameter. Id
+        limits are increased to 2000 ids per request when using batch
+        capability.This 2000 id limit has been derived based on single metric
+        for one day. This feature is available for all users.
+    post:
+      tags:
+        - Segments
+      summary: Returns Company Segment Data.
+      description: >
+        Retrieves Sales Metrics data for specified companies.
+
+
+        The ```/segments``` endpoint currently supports Long Running
+        asynchronous requests up to **20 minutes** via batch parameter. Id
+        limits are increased to 30000 ids per request when using batch
+        capability.This 30000 id limit has been derived based on single metric
+        for one day. This feature is available for all users.
+  /metrics:
+    get:
+      summary: Returns available FactSet Fundamental metrics and ratios.
+      tags:
+        - Metrics
+      description: >
+        Returns list of available FF_* metrics that can be used in the `metrics`
+        parameter of related endpoints. These are related to FactSet
+        Fundamentals standardized data. As Reported will be available in future
+        endpoints. Leave Category and Subcategory blank to request all available
+        items. The Endpoint Data model is optimized for time-series data with
+        periodicity. Some items in this list are non-time series.
+
+        **For methodology definitions, reference the `OApageID` or `OAurl`
+        response items to launch the available methodology page.**
+  /batch-status:
+    get:
+      tags:
+        - Batch Processing
+      summary: |
+        Returns the status for a Batch Request
+      description: >-
+        Return the status for the underlying batch request that is specified by
+        the id.
+      deprecated: false
+  /batch-result:
+    get:
+      tags:
+        - Batch Processing
+      summary: |
+        Returns the response for a Batch Request
+      description: >
+        Returns the response data for the underlying batch request that is
+        specified by the id.
+
+
+        By default, this endpoint will return data as JSON. If you wish to
+        receive your data in CSV format, you can edit the header to have the
+        "accept" parameter as "text/csv" instead of "application/json".
+      deprecated: false
+tchData
+      parameters:
+        - $ref: '#/components/parameters/batchId'
+      responses:
+        '200':
+          description: >-
+            Request Response Object when the batch request has been completed
+            and the response is created
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/batchResultResponse'
+              examples:
+                Fundamentals endpoint response of Single Company (FDS-US), and Multiple Metrics (FF_SALES, FF_PE):
+                  $ref: '#/components/examples/resultOfSingleIdwithMultipleMetricItem'
+                Segments endpoint response of Single Company (AAPL-US), sales(SALES) details for the given period:
+                  $ref: >-
+                    #/components/examples/resultOfSingleIdwithSingleMetricItemSegment
+        '202':
+          description: >-
+            The batch Request has not finished and the result has NOT been
+            created.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/BatchStatusResponse'
+              examples:
+                Batch Request Queued:
+                  $ref: '#/components/examples/BatchStatusQueuedResponse'
+                Batch Request Executing:
+                  $ref: '#/components/examples/BatchStatusExecutingResponse'
+        '404':
+          $ref: '#/components/responses/404'
+      deprecated: false
+     parameters:
+        - $ref: '#/components/parameters/batchId'
+      responses:
+        '200':
+          description: >-
+            Request Response Object when the batch request has been completed
+            and the response is created
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/batchResultResponse'
+              examples:
+                Fundamentals endpoint response of Single Company (FDS-US), and Multiple Metrics (FF_SALES, FF_PE):
+                  $ref: '#/components/examples/resultOfSingleIdwithMultipleMetricItem'
+                Segments endpoint response of Single Company (AAPL-US), sales(SALES) details for the given period:
+                  $ref: >-
+                    #/components/examples/resultOfSingleIdwithSingleMetricItemSegment
+        '202':
+          description: >-
+            The batch Request has not finished and the result has NOT been
+            created.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/BatchStatusResponse'
+              examples:
+                Batch Request Queued:
+                  $ref: '#/components/examples/BatchStatusQueuedResponse'
+                Batch Request Executing:
+                  $ref: '#/components/examples/BatchStatusExecutingResponse'
+        '404':
+          $ref: '#/components/responses/404'
+      deprecated: false
+the given period:
+                  $ref: >-
+                    #/components/examples/resultOfSingleIdwithSingleMetricItemSegment
+        '202':
+          description: >-
+            The batch Request has not finished and the result has NOT been
+            created.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/BatchStatusResponse'
+              examples:
+                Batch Request Queued:
+                  $ref: '#/components/examples/BatchStatusQueuedResponse'
+                Batch Request Executing:
+                  $ref: '#/components/examples/BatchStatusExecutingResponse'
+        '404':
+          $ref: '#/components/responses/404'
+      deprecated: false
+tegory'
+        - $ref: '#/components/parameters/metricDataType'
+      responses:
+        '200':
+          description: Fundamental data metric items
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/metricsResponse'
+        '400':
+          $ref: '#/components/responses/400'
+        '401':
+          $ref: '#/components/responses/401'
+        '403':
+          $ref: '#/components/responses/403'
+        '415':
+          $ref: '#/components/responses/415'
+        '500':
+          $ref: '#/components/responses/500'
+  /batch-status:
+    get:
+      tags:
+        - Batch Processing
+      summary: |
+        Returns the status for a Batch Request
+      description: >-
+        Return the status for the underlying batch request that is specified by
+        the id.
+      operationId: getBatchStatus
+      parameters:
+        - $ref: '#/components/parameters/batchId'
+      responses:
+        '201':
+          description: >-
+            The batch Request has been completed and the response has been
+            created.
+          headers:
+            Location:
+              description: Path to Batch Request result.
+              schema:
+                type: string
+              example: batch-result?id=2df43e85-ea0f-45c6-bf4a-2baf4d1eaa3c
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/BatchStatusResponse'
+              examples:
+                Batch Status Done:
+                  $ref: '#/components/examples/BatchStatusDoneResponse'
+        '202':
+          description: >-
+            The batch Request has not finished and the result has NOT been
+            created.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/BatchStatusResponse'
+              examples:
+                Batch Status Queued:
+                  $ref: '#/components/examples/BatchStatusQueuedResponse'
+                Batch Status Executing:
+                  $ref: '#/components/examples/BatchStatusExecutingResponse'
+                Batch Status Failed:
+                  $ref: '#/components/examples/BatchStatusFailedResponse'
+        '404':
+          $ref: '#/components/responses/404'
+      deprecated: false
+  /batch-result:
+    get:
+      tags:
+        - Batch Processing
+      summary: |
+        Returns the response for a Batch Request
+      description: >
+        Returns the response data for the underlying batch request that is
+        specified by the id.
+
+
+        By default, this endpoint will return data as JSON. If you wish to
+        receive your data in CSV format, you can edit the header to have the
+        "accept" parameter as "text/csv" instead of "application/json".
+      operationId: getBatchData
+      parameters:
+        - $ref: '#/components/parameters/batchId'
+      responses:
+        '200':
+          description: >-
+            Request Response Object when the batch request has been completed
+            and the response is created
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/batchResultResponse'
+              examples:
+                Fundamentals endpoint response of Single Company (FDS-US), and Multiple Metrics (FF_SALES, FF_PE):
+                  $ref: '#/components/examples/resultOfSingleIdwithMultipleMetricItem'
+                Segments endpoint response of Single Company (AAPL-US), sales(SALES) details for the given period:
+                  $ref: >-
+                    #/components/examples/resultOfSingleIdwithSingleMetricItemSegment
+        '202':
+          description: >-
+            The batch Request has not finished and the result has NOT been
+            created.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/BatchStatusResponse'
+              examples:
+                Batch Request Queued:
+                  $ref: '#/components/examples/BatchStatusQueuedResponse'
+                Batch Request Executing:
+                  $ref: '#/components/examples/BatchStatusExecutingResponse'
+        '404':
+          $ref: '#/components/responses/404'
+      deprecated: false

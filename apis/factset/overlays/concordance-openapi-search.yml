@@ -1,0 +1,1044 @@
+openapi: 3.0.0
+info:
+  title: FactSet Concordance API
+tags:
+  - name: Entity Match
+    description: Retrieve a list of Entity Matches and Candidates for up to 25 names.
+  - name: Entity Match - Bulk
+    description: >-
+      Submit a file with a large list of entity names and attributes and
+      retrieve decisions once mapped.
+  - name: Universes
+    description: Create, View, and Manage Universes where mappings are saved.
+  - name: Mappings
+    description: >-
+      View all Saved Mappings in a Universe or update and save mappings made of
+      ClientIds and Names to FactSet Entity Ids
+  - name: Snowflake
+    description: >-
+      The response is formatted specifically for Snowflake environment and not
+      used by consumers outside of Snowflake.
+  - name: People Match
+    description: Retrieve a list of People Matches.
+  - name: People Mapping
+    description: Used to save a single People Mapping to a given universe
+paths:
+  /factset-concordance/v2/entity-match:
+    get:
+      summary: Get Entity Candidates and Matches for a single name and attributes.
+      description: >
+        Finds the best candidate entities matching the given entity name.
+        Additional attributes can be supplied to narrow the search, such as
+        State, URL, and Entity Types. <p>**Max of 1 Name permitted in a single
+        GET request.** Use the POST method for /entity-match to fetch up to 25
+        names. Otherwise, use the "Entity Match - Bulk" workflow to submit
+        larger universes of names to be concorded via a file.</p><p>
+      tags:
+        - Entity Match
+    post:
+      summary: >-
+        Get a list of Entity Candidates and Matches for a requested list of up
+        to 25 names and attributes.
+      description: >
+        Finds the best candidate entities matching the given entity name. If a
+        `universeId` is provided, any match for an input including a `clientId`
+        will be saved to that universe. Additional attributes can be supplied to
+        narrow the search, such as State, URL, and Entity Types. Finds the best
+        candidate entities matching the given company name. Additional
+        attributes can be supplied to narrow the search.  <p>**Max of 25 Names
+        inputted.** Use the "Entity Match - Bulk" workflow to submit larger
+        universes of names to be concorded via a file.</p><p> Supported types of
+        Entities in which the names can match to include -
+          * Corporations, Joint Ventures, and Holding Companies
+          * Fund Managers and various Fund Types (Open-end, Closed End, Hedge, Soverign Wealth, Pension, Exchange Traded, and more).</p>
+      tags:
+        - Entity Match
+  /factset-concordance/v2/entity-task:
+    post:
+      summary: Input a file with names and attributes, creating a taskId.
+      description: >
+        Upload a Comma-Separated List file (.csv / UTF-8 encoding) with a list
+        of names and attributes and receive a `taskId`. The taskId is then used
+        for reference in the */entity-task-status* and */entity-decisions*
+        endpoints to receive results once the task is successful.<p>This is the
+        first step in the overall "Bulk" workflow. Use the /entity-task-status
+        endpoint to check the status.</p> <p> A universeId must be included in
+        request. If you do not have a universe created, reference the
+        `/universe` endpoint.
+      tags:
+        - Entity Match - Bulk
+  /factset-concordance/v2/entity-task-status:
+    get:
+      summary: Gets the status of the requested taskId or all tasks for a User
+      description: >
+        Pulls the **status** for ALL the Entity Tasks submitted by a client
+        within the last 30 days, and related details such as task duration and
+        decision rates. Specific Tasks can also be retrieved by using the
+        _taskId_ parameter.<p>Status types include -
+          * PENDING - The task has not yet started.
+          * IN_PROGRESS - The task is submitted and decisions are in progress.
+          * SUCCESS - The task was successful! Move to the /entity-decisions endpoint to retrieve decisions.
+          * FAILURE - The task failed. Reach out to FactSet Support for assistance.
+          * BAD_REQUEST - The task creation was unsuccesfull. Typically occurs with an incorrect input file format or column headers.
+          * ABORTED - The task was aborted.
+      tags:
+        - Entity Match - Bulk
+  /factset-concordance/v2/entity-decisions:
+    get:
+      summary: Get the decisions of matches for the requested taskId.
+      description: >
+        Retrieves the `Decision` objects for an Entity Task (taskId). The
+        decisions do not include all candidates, but rather the results of
+        concording the requested list of names included in the input file.
+        Mapped entities will include a FactSet Entity Identifier (-E). Results
+        will be saved to the `universeId` specified in the input file.
+      tags:
+        - Entity Match - Bulk
+  /factset-concordance/v2/universe:
+    post:
+      summary: Create a new universe
+      description: |
+        Create a new universe that is distinct from any existing universe
+      tags:
+        - Universes
+  /factset-concordance/v2/entity-universe:
+    get:
+      summary: Retrieve all saved mappings within a requested universe
+      description: |
+        Retrieves all entity mappings within a requested universe.
+      tags:
+        - Mappings
+    post:
+      summary: >-
+        Retrieve all saved mappings within a requested universe or large list of
+        client ids
+      description: >
+        Retrieves all entity mappings that were saved in a given universe.
+        Supports filtering by a large number of `clientId`s
+      tags:
+        - Mappings
+  /factset-concordance/v2/people-universe:
+    get:
+      summary: Retrieve all saved mappings within a requested universe
+      description: |
+        Retrieves all people mappings within a requested universe.
+      tags:
+        - People Mapping
+    post:
+      summary: >-
+        Retrieve all saved mappings within a requested universe or large list of
+        client ids
+      description: >
+        Retrieves all people mappings that were saved in a given universe.
+        Supports filtering by a large number of `clientId`s
+      tags:
+        - People Mapping
+  /factset-concordance/v2/update-universe:
+    post:
+      summary: Update metadata for an existing universe
+      description: |
+        Update metadata for an existing universe
+      tags:
+        - Universes
+  /factset-concordance/v2/universes:
+    get:
+      summary: Fetch metadata for universes
+      description: >
+        Fetch information on active universes for the current user. Optionally
+        filter for a specific universe given a `universeId`
+      tags:
+        - Universes
+  /factset-concordance/v2/entity-universe-statistics:
+    get:
+      summary: Get statistics on a given universe
+      description: >
+        Get the total number of mappings in a universe, as well as the number of
+        mapped, unmapped and indeterminate mappings
+      tags:
+        - Universes
+  /factset-concordance/v2/universe-statistics:
+    get:
+      summary: Get statistics on a given universe
+      description: >
+        Get the total number of mappings in a universe, as well as the number of
+        mapped, unmapped and indeterminate mappings
+      tags:
+        - Universes
+  /factset-concordance/v2/entity-mapping:
+    post:
+      summary: Saves a single-mapping specified by the client.
+      description: >
+        Saves a Concordance Mapping to the client universe. When making a post,
+        all exiting values are overwritten in the database with the values
+        passed in the request. clientId and clientName are required.
+      tags:
+        - Mappings
+  /factset-concordance/v2/people-mapping:
+    post:
+      summary: Saves a single-mapping specified by the client.
+      description: >
+        Saves a single Concordance People Mapping to a given universe. When
+        making a post, all exiting values are overwritten in the database with
+        the values passed in the request. clientId and clientName are required.
+      tags:
+        - People Mapping
+  /factset-concordance/v2/entity-mapping-delete:
+    post:
+      summary: Deletes mapping specified by the client.
+      description: >
+        Delete a Concordance Mapping to the client universe. When making a post,
+        all exiting values are overwritten in the database with the values
+        passed in the request. clientId and universeId are required.
+      tags:
+        - Mappings
+      operationId: getEntityMappingDeleteForList
+      requestBody:
+        $ref: '#/components/requestBodies/EntityMappingDeleteRequestV2'
+      responses:
+        '200':
+          $ref: '#/components/responses/EntityMappingDeleteResponse'
+        '400':
+          $ref: '#/components/responses/400'
+        '401':
+          $ref: '#/components/responses/401'
+        '403':
+          $ref: '#/components/responses/403'
+        '415':
+          $ref: '#/components/responses/415'
+        '500':
+          $ref: '#/components/responses/500'
+  /factset-concordance/v2/people-mapping-delete:
+    post:
+      summary: Deletes mapping specified by the client.
+      description: >
+        Delete a Concordance Mapping to the client universe. When making a post,
+        all exiting values are overwritten in the database with the values
+        passed in the request. clientId and universeId are required.
+      tags:
+        - People Mapping
+      operationId: getPeopleMappingDeleteForList
+      requestBody:
+        $ref: '#/components/requestBodies/PeopleMappingDeleteRequestV2'
+      responses:
+        '200':
+          $ref: '#/components/responses/PeopleMappingDeleteResponse'
+        '400':
+          $ref: '#/components/responses/400'
+        '401':
+          $ref: '#/components/responses/401'
+        '403':
+          $ref: '#/components/responses/403'
+        '415':
+          $ref: '#/components/responses/415'
+        '500':
+          $ref: '#/components/responses/500'
+  /factset-concordance/v2/snowflake-entity-match:
+    post:
+      summary: >-
+        Perform an entity search and return a snowflake-friendly response. Up to
+        25 Names per request.
+      description: >
+        Finds the best candidate entities matching the given company name.
+        Additional attributes can be supplied to narrow the search. *This
+        endpoint is used natively within Snowflake and is not to be consumed
+        directly by users. Reach out to your FactSet Account team to learn more
+        about Concordance in Snowflake.*
+      tags:
+        - Snowflake
+      operationId: getSnowflakeEntityMatchForList
+      requestBody:
+        $ref: '#/components/requestBodies/SnowflakeEntityMatchRequest'
+      responses:
+        '200':
+          $ref: '#/components/responses/SnowflakeEntityMatchResponse'
+  /factset-concordance/v2/snowflake-entity-mapping:
+    post:
+      summary: Save entity mappings to a universe
+      description: Manually save or update entity mappings with metadata
+      tags:
+        - Snowflake
+      operationId: snowflakeEntityMappingPost
+      requestBody:
+        $ref: '#/components/requestBodies/SnowflakeEntityMappingRequest'
+      responses:
+        default:
+          $ref: '#/components/responses/SnowflakeEntityMappingResponse'
+  /factset-concordance/v2/people-match:
+    get:
+      summary: >-
+        Find potential people matches given a person's name.People matches can
+        be retrieved using person's name and other attributes like firstname,
+        middlename and lastname.
+      description: >
+        Finds the best people candidates matching the given name. <p>**Max of 1
+        Name permitted in a single GET request.** Use the POST method for
+        /people-match to fetch up to 25 names. Otherwise, use the "People Match
+        - Bulk" workflow to submit larger universes of names to be concorded via
+        a file.</p><p>
+      tags:
+        - People Match
+      operationId: getPeopleMatch
+      parameters:
+        - $ref: '#/components/parameters/personName'
+        - $ref: '#/components/parameters/salutation'
+        - $ref: '#/components/parameters/firstName'
+        - $ref: '#/components/parameters/middleName'
+        - $ref: '#/components/parameters/lastName'
+        - $ref: '#/components/parameters/suffix'
+        - $ref: '#/components/parameters/entity'
+      responses:
+        '200':
+          $ref: '#/components/responses/PeopleMatchResponse'
+        '400':
+          $ref: '#/components/responses/400'
+        '401':
+          $ref: '#/components/responses/401'
+        '403':
+          $ref: '#/components/responses/403'
+        '415':
+          $ref: '#/components/responses/415'
+        '500':
+          $ref: '#/components/responses/500'
+    post:
+      summary: Find potential people matches given a person's name.
+      description: >
+        Finds the best candidate people matching the given people names.
+        Additional attributes can be supplied to narrow the search. If a
+        `universeId` is provided, any match for an input including a `clientId`
+        will be saved to that universe.
+      tags:
+        - People Match
+      operationId: getPeopleMatchForList
+      requestBody:
+        $ref: '#/components/requestBodies/PeopleMatchRequestV2'
+      responses:
+        '200':
+          $ref: '#/components/responses/PeopleMatchResponse'
+        '400':
+          $ref: '#/components/responses/400'
+        '401':
+          $ref: '#/components/responses/401'
+        '403':
+          $ref: '#/components/responses/403'
+        '415':
+          $ref: '#/components/responses/415'
+        '500':
+          $ref: '#/components/responses/500'
+  /factset-concordance/v2/people-task:
+    post:
+      summary: Create a People Concordance Task.
+      description: >
+        The "Bulk" workflow allows the user to create a People Concordance Task.
+        Uploading of a Comma-Separated List file (.csv / UTF-8 encoding) with a
+        list of names and attributes and creation of a task id is mandatory to
+        start the process.
+           The taskId is then used for reference in the /people-task-status and /people-decisions endpoints to receive results once the task is successful.The /people-task-status endpoint is to check the status of the Tasks as per the ids.
+            A universeId must be included in request. If you do not have a universe created, reference the /universe endpoint.The bulk workflow supports a two way approach for the user.
+          **The user can use these parameters in the following ways.**
+            1.Filling all the required fields including the `personNameColumn`.(do not include `firstNameColumn`,`lastNameColumn` & `middleNameColumn`)
+            2.Filling all the required fields excluding the `personNameColumn`.(Ensure atleast the `lastNameColumn` is filled)
+      tags:
+        - People Match - Bulk
+      operationId: getPeopleTaskForList
+      requestBody:
+        description: People Request object. Used to create an People Task.
+        content:
+          multipart/form-data:
+            schema:
+              type: object
+              properties:
+                universeId:
+                  description: >-
+                    The id of the universe that entities should be mapped to.
+                    Reference the `/universe` endpoint to create a universe, or
+                    view available universes via `/universes`.
+                  type: integer
+                  example: 1
+                taskName:
+                  description: >-
+                    User defined name for the task that will be used to name the
+                    output files.
+                  type: string
+                  example: test31
+                inputFile:
+                  description: >
+                    The UTF-8 encoded CSV File containing the entity names to be
+                    concorded to a FactSet Entity Identifier. The files first
+                    row **MUST** include headers as defined in the *Column
+                    parameters. Be mindful of casing and spacing in column
+                    headers. The input file is posted as a file object in the
+                    form. For this reason, the mime type of this post request
+                    must be multipart/form-data.
+                  type: string
+                  format: binary
+                  example: Name,Country\nFactSet,US\n
+                clientIdColumn:
+                  description: >
+                    Header Name of the column in the input file that contains a
+                    unique identifier supplied by the user referred to as a
+                    "clientId". This clientId can be used to create custom
+                    mappings or references.
+                  type: string
+                  example: ClientId
+                additionalContextColumns:
+                  description: >
+                    Comma separated list of any additional column names in the
+                    input file.  To be used by Managed Service for any unmapped
+                    records.
+                  type: array
+                  maxItems: 5
+                  items:
+                    type: string
+                    example: Address
+                entityColumn:
+                  description: >
+                    Header name of the column in the input file that contains
+                    the Entity Name to be matched.
+                  type: string
+                  example: Microsoft
+                firstNameColumn:
+                  description: >
+                    First name of the person.**Do not include with
+                    `personNameColumn`**. 
+                  type: string
+                  example: Bill
+                lastNameColumn:
+                  description: >
+                    Lat name of the person.**Do not include with
+                    `personNameColumn`**.
+                  type: string
+                  example: Gates
+                middleNameColumn:
+                  description: >
+                    Middle name of the person.**Do not include within
+                    `personNameColumn`**.
+                  type: string
+                  example: Henry
+                personNameColumn:
+                  description: >
+                    Header name of the column in the input file that contains
+                    the name of the person to be matched. **Do not include with
+                    `firstNameColumn` and `lastNameColumn`.**
+                  type: string
+                  example: Bill Gates
+                priorityColumn:
+                  description: >
+                    Priority associated to the clientId. Used for manual
+                    mapping.
+                  type: string
+                  example: HIGH
+                salutationColumn:
+                  description: >
+                    The salutation of the person.**Do not include with
+                    `personNameColumn`**.
+                  type: string
+                  example: Mr.
+                suffixColumn:
+                  description: >
+                    A name suffix, that follows a person's full name and
+                    provides additional information about the person.**Do not
+                    include with `personNameColumn`**.
+                  type: string
+                  example: HIGH
+              required:
+                - universeId
+                - taskName
+                - inputFile
+                - entityColumn
+                - clientIdColumn
+      responses:
+        '200':
+          $ref: '#/components/responses/PeopleTaskResponse'
+        '400':
+          $ref: '#/components/responses/400'
+        '401':
+          $ref: '#/components/responses/401'
+        '403':
+          $ref: '#/components/responses/403'
+        '415':
+          $ref: '#/components/responses/415'
+        '500':
+          $ref: '#/components/responses/500'
+  /factset-concordance/v2/people-task-status:
+    get:
+      summary: Get the Status of the People Tasks.
+      description: >
+        Pulls the **status** for ALL the People Tasks submitted by a client
+        within the last 30 days, and related details such as task duration and
+        decision rates. Specific Tasks can also be retrieved by using the
+        _taskId_ parameter.<p>Status types include -
+          * PENDING - The task has not yet started.
+          * IN_PROGRESS - The task is submitted and decisions are in progress.
+          * SUCCESS - The task was successful! Move to the /people-decisions endpoint to retrieve decisions.
+          * FAILURE - The task failed. Reach out to FactSet Support for assistance.
+          * BAD_REQUEST - The task creation was unsuccesfull. Typically occurs with an incorrect input file format or column headers.
+          * ABORTED - The task was aborted.
+      tags:
+        - People Match - Bulk
+      operationId: getPeopleTaskStatus
+      parameters:
+        - $ref: '#/components/parameters/peopleTaskStatusId'
+        - $ref: '#/components/parameters/peopleOffset'
+        - $ref: '#/components/parameters/peopleLimit'
+        - $ref: '#/components/parameters/peopleStatus'
+      responses:
+        '200':
+          $ref: '#/components/responses/PeopleTaskStatusResponse'
+        '400':
+          $ref: '#/components/responses/400'
+        '401':
+          $ref: '#/components/responses/401'
+        '403':
+          $ref: '#/components/responses/403'
+        '415':
+          $ref: '#/components/responses/415'
+        '500':
+          $ref: '#/components/responses/500'
+  /factset-concordance/v2/people-decisions:
+    get:
+      summary: Get the decisions of matches for the requested taskId.
+      description: >
+        Retrieves the `Decision` objects for an People Task (taskId). The
+        decisions do not include all candidates, but rather the results of
+        concording the requested list of names included in the input file.
+        Mapped entities will include a FactSet Entity Identifier (-E). Results
+        will be saved to the `universeId` specified in the input file.
+      tags:
+        - People Match - Bulk
+      operationId: getPeopleDecisions
+      parameters:
+        - $ref: '#/components/parameters/peopleTaskDecisionId'
+        - $ref: '#/components/parameters/peopleOffset'
+        - $ref: '#/components/parameters/peopleLimit'
+      responses:
+        '200':
+          $ref: '#/components/responses/PeopleDecisionsResponse'
+        '400':
+          $ref: '#/components/responses/400'
+        '401':
+          $ref: '#/components/responses/401'
+        '403':
+          $ref: '#/components/responses/403'
+        '415':
+          $ref: '#/components/responses/415'
+        '500':
+          $ref: '#/components/responses/500'
+mit'
+        - $ref: '#/components/parameters/peopleStatus'
+      responses:
+        '200':
+          $ref: '#/components/responses/PeopleTaskStatusResponse'
+        '400':
+          $ref: '#/components/responses/400'
+        '401':
+          $ref: '#/components/responses/401'
+        '403':
+          $ref: '#/components/responses/403'
+        '415':
+          $ref: '#/components/responses/415'
+        '500':
+          $ref: '#/components/responses/500'
+  /factset-concordance/v2/people-decisions:
+    get:
+      summary: Get the decisions of matches for the requested taskId.
+      description: >
+        Retrieves the `Decision` objects for an People Task (taskId). The
+        decisions do not include all candidates, but rather the results of
+        concording the requested list of names included in the input file.
+        Mapped entities will include a FactSet Entity Identifier (-E). Results
+        will be saved to the `universeId` specified in the input file.
+      tags:
+        - People Match - Bulk
+      operationId: getPeopleDecisions
+      parameters:
+        - $ref: '#/components/parameters/peopleTaskDecisionId'
+        - $ref: '#/components/parameters/peopleOffset'
+        - $ref: '#/components/parameters/peopleLimit'
+      responses:
+        '200':
+          $ref: '#/components/responses/PeopleDecisionsResponse'
+        '400':
+          $ref: '#/components/responses/400'
+        '401':
+          $ref: '#/components/responses/401'
+        '403':
+          $ref: '#/components/responses/403'
+        '415':
+          $ref: '#/components/responses/415'
+        '500':
+          $ref: '#/components/responses/500'
+leDecisionsResponse'
+        '400':
+          $ref: '#/components/responses/400'
+        '401':
+          $ref: '#/components/responses/401'
+        '403':
+          $ref: '#/components/responses/403'
+        '415':
+          $ref: '#/components/responses/415'
+        '500':
+          $ref: '#/components/responses/500'
+isions
+      parameters:
+        - $ref: '#/components/parameters/peopleTaskDecisionId'
+        - $ref: '#/components/parameters/peopleOffset'
+        - $ref: '#/components/parameters/peopleLimit'
+      responses:
+        '200':
+          $ref: '#/components/responses/PeopleDecisionsResponse'
+        '400':
+          $ref: '#/components/responses/400'
+        '401':
+          $ref: '#/components/responses/401'
+        '403':
+          $ref: '#/components/responses/403'
+        '415':
+          $ref: '#/components/responses/415'
+        '500':
+          $ref: '#/components/responses/500'
+ame of the column in the input file that contains
+                    the name of the person to be matched. **Do not include with
+                    `firstNameColumn` and `lastNameColumn`.**
+                  type: string
+                  example: Bill Gates
+                priorityColumn:
+                  description: >
+                    Priority associated to the clientId. Used for manual
+                    mapping.
+                  type: string
+                  example: HIGH
+                salutationColumn:
+                  description: >
+                    The salutation of the person.**Do not include with
+                    `personNameColumn`**.
+                  type: string
+                  example: Mr.
+                suffixColumn:
+                  description: >
+                    A name suffix, that follows a person's full name and
+                    provides additional information about the person.**Do not
+                    include with `personNameColumn`**.
+                  type: string
+                  example: HIGH
+              required:
+                - universeId
+                - taskName
+                - inputFile
+                - entityColumn
+                - clientIdColumn
+      responses:
+        '200':
+          $ref: '#/components/responses/PeopleTaskResponse'
+        '400':
+          $ref: '#/components/responses/400'
+        '401':
+          $ref: '#/components/responses/401'
+        '403':
+          $ref: '#/components/responses/403'
+        '415':
+          $ref: '#/components/responses/415'
+        '500':
+          $ref: '#/components/responses/500'
+  /factset-concordance/v2/people-task-status:
+    get:
+      summary: Get the Status of the People Tasks.
+      description: >
+        Pulls the **status** for ALL the People Tasks submitted by a client
+        within the last 30 days, and related details such as task duration and
+        decision rates. Specific Tasks can also be retrieved by using the
+        _taskId_ parameter.<p>Status types include -
+          * PENDING - The task has not yet started.
+          * IN_PROGRESS - The task is submitted and decisions are in progress.
+          * SUCCESS - The task was successful! Move to the /people-decisions endpoint to retrieve decisions.
+          * FAILURE - The task failed. Reach out to FactSet Support for assistance.
+          * BAD_REQUEST - The task creation was unsuccesfull. Typically occurs with an incorrect input file format or column headers.
+          * ABORTED - The task was aborted.
+      tags:
+        - People Match - Bulk
+      operationId: getPeopleTaskStatus
+      parameters:
+        - $ref: '#/components/parameters/peopleTaskStatusId'
+        - $ref: '#/components/parameters/peopleOffset'
+        - $ref: '#/components/parameters/peopleLimit'
+        - $ref: '#/components/parameters/peopleStatus'
+      responses:
+        '200':
+          $ref: '#/components/responses/PeopleTaskStatusResponse'
+        '400':
+          $ref: '#/components/responses/400'
+        '401':
+          $ref: '#/components/responses/401'
+        '403':
+          $ref: '#/components/responses/403'
+        '415':
+          $ref: '#/components/responses/415'
+        '500':
+          $ref: '#/components/responses/500'
+  /factset-concordance/v2/people-decisions:
+    get:
+      summary: Get the decisions of matches for the requested taskId.
+      description: >
+        Retrieves the `Decision` objects for an People Task (taskId). The
+        decisions do not include all candidates, but rather the results of
+        concording the requested list of names included in the input file.
+        Mapped entities will include a FactSet Entity Identifier (-E). Results
+        will be saved to the `universeId` specified in the input file.
+      tags:
+        - People Match - Bulk
+      operationId: getPeopleDecisions
+      parameters:
+        - $ref: '#/components/parameters/peopleTaskDecisionId'
+        - $ref: '#/components/parameters/peopleOffset'
+        - $ref: '#/components/parameters/peopleLimit'
+      responses:
+        '200':
+          $ref: '#/components/responses/PeopleDecisionsResponse'
+        '400':
+          $ref: '#/components/responses/400'
+        '401':
+          $ref: '#/components/responses/401'
+        '403':
+          $ref: '#/components/responses/403'
+        '415':
+          $ref: '#/components/responses/415'
+        '500':
+          $ref: '#/components/responses/500'
+mary: Deletes mapping specified by the client.
+      description: >
+        Delete a Concordance Mapping to the client universe. When making a post,
+        all exiting values are overwritten in the database with the values
+        passed in the request. clientId and universeId are required.
+      tags:
+        - Mappings
+      operationId: getEntityMappingDeleteForList
+      requestBody:
+        $ref: '#/components/requestBodies/EntityMappingDeleteRequestV2'
+      responses:
+        '200':
+          $ref: '#/components/responses/EntityMappingDeleteResponse'
+        '400':
+          $ref: '#/components/responses/400'
+        '401':
+          $ref: '#/components/responses/401'
+        '403':
+          $ref: '#/components/responses/403'
+        '415':
+          $ref: '#/components/responses/415'
+        '500':
+          $ref: '#/components/responses/500'
+  /factset-concordance/v2/people-mapping-delete:
+    post:
+      summary: Deletes mapping specified by the client.
+      description: >
+        Delete a Concordance Mapping to the client universe. When making a post,
+        all exiting values are overwritten in the database with the values
+        passed in the request. clientId and universeId are required.
+      tags:
+        - People Mapping
+      operationId: getPeopleMappingDeleteForList
+      requestBody:
+        $ref: '#/components/requestBodies/PeopleMappingDeleteRequestV2'
+      responses:
+        '200':
+          $ref: '#/components/responses/PeopleMappingDeleteResponse'
+        '400':
+          $ref: '#/components/responses/400'
+        '401':
+          $ref: '#/components/responses/401'
+        '403':
+          $ref: '#/components/responses/403'
+        '415':
+          $ref: '#/components/responses/415'
+        '500':
+          $ref: '#/components/responses/500'
+  /factset-concordance/v2/snowflake-entity-match:
+    post:
+      summary: >-
+        Perform an entity search and return a snowflake-friendly response. Up to
+        25 Names per request.
+      description: >
+        Finds the best candidate entities matching the given company name.
+        Additional attributes can be supplied to narrow the search. *This
+        endpoint is used natively within Snowflake and is not to be consumed
+        directly by users. Reach out to your FactSet Account team to learn more
+        about Concordance in Snowflake.*
+      tags:
+        - Snowflake
+      operationId: getSnowflakeEntityMatchForList
+      requestBody:
+        $ref: '#/components/requestBodies/SnowflakeEntityMatchRequest'
+      responses:
+        '200':
+          $ref: '#/components/responses/SnowflakeEntityMatchResponse'
+  /factset-concordance/v2/snowflake-entity-mapping:
+    post:
+      summary: Save entity mappings to a universe
+      description: Manually save or update entity mappings with metadata
+      tags:
+        - Snowflake
+      operationId: snowflakeEntityMappingPost
+      requestBody:
+        $ref: '#/components/requestBodies/SnowflakeEntityMappingRequest'
+      responses:
+        default:
+          $ref: '#/components/responses/SnowflakeEntityMappingResponse'
+  /factset-concordance/v2/people-match:
+    get:
+      summary: >-
+        Find potential people matches given a person's name.People matches can
+        be retrieved using person's name and other attributes like firstname,
+        middlename and lastname.
+      description: >
+        Finds the best people candidates matching the given name. <p>**Max of 1
+        Name permitted in a single GET request.** Use the POST method for
+        /people-match to fetch up to 25 names. Otherwise, use the "People Match
+        - Bulk" workflow to submit larger universes of names to be concorded via
+        a file.</p><p>
+      tags:
+        - People Match
+      operationId: getPeopleMatch
+      parameters:
+        - $ref: '#/components/parameters/personName'
+        - $ref: '#/components/parameters/salutation'
+        - $ref: '#/components/parameters/firstName'
+        - $ref: '#/components/parameters/middleName'
+        - $ref: '#/components/parameters/lastName'
+        - $ref: '#/components/parameters/suffix'
+        - $ref: '#/components/parameters/entity'
+      responses:
+        '200':
+          $ref: '#/components/responses/PeopleMatchResponse'
+        '400':
+          $ref: '#/components/responses/400'
+        '401':
+          $ref: '#/components/responses/401'
+        '403':
+          $ref: '#/components/responses/403'
+        '415':
+          $ref: '#/components/responses/415'
+        '500':
+          $ref: '#/components/responses/500'
+    post:
+      summary: Find potential people matches given a person's name.
+      description: >
+        Finds the best candidate people matching the given people names.
+        Additional attributes can be supplied to narrow the search. If a
+        `universeId` is provided, any match for an input including a `clientId`
+        will be saved to that universe.
+      tags:
+        - People Match
+      operationId: getPeopleMatchForList
+      requestBody:
+        $ref: '#/components/requestBodies/PeopleMatchRequestV2'
+      responses:
+        '200':
+          $ref: '#/components/responses/PeopleMatchResponse'
+        '400':
+          $ref: '#/components/responses/400'
+        '401':
+          $ref: '#/components/responses/401'
+        '403':
+          $ref: '#/components/responses/403'
+        '415':
+          $ref: '#/components/responses/415'
+        '500':
+          $ref: '#/components/responses/500'
+  /factset-concordance/v2/people-task:
+    post:
+      summary: Create a People Concordance Task.
+      description: >
+        The "Bulk" workflow allows the user to create a People Concordance Task.
+        Uploading of a Comma-Separated List file (.csv / UTF-8 encoding) with a
+        list of names and attributes and creation of a task id is mandatory to
+        start the process.
+           The taskId is then used for reference in the /people-task-status and /people-decisions endpoints to receive results once the task is successful.The /people-task-status endpoint is to check the status of the Tasks as per the ids.
+            A universeId must be included in request. If you do not have a universe created, reference the /universe endpoint.The bulk workflow supports a two way approach for the user.
+          **The user can use these parameters in the following ways.**
+            1.Filling all the required fields including the `personNameColumn`.(do not include `firstNameColumn`,`lastNameColumn` & `middleNameColumn`)
+            2.Filling all the required fields excluding the `personNameColumn`.(Ensure atleast the `lastNameColumn` is filled)
+      tags:
+        - People Match - Bulk
+      operationId: getPeopleTaskForList
+      requestBody:
+        description: People Request object. Used to create an People Task.
+        content:
+          multipart/form-data:
+            schema:
+              type: object
+              properties:
+                universeId:
+                  description: >-
+                    The id of the universe that entities should be mapped to.
+                    Reference the `/universe` endpoint to create a universe, or
+                    view available universes via `/universes`.
+                  type: integer
+                  example: 1
+                taskName:
+                  description: >-
+                    User defined name for the task that will be used to name the
+                    output files.
+                  type: string
+                  example: test31
+                inputFile:
+                  description: >
+                    The UTF-8 encoded CSV File containing the entity names to be
+                    concorded to a FactSet Entity Identifier. The files first
+                    row **MUST** include headers as defined in the *Column
+                    parameters. Be mindful of casing and spacing in column
+                    headers. The input file is posted as a file object in the
+                    form. For this reason, the mime type of this post request
+                    must be multipart/form-data.
+                  type: string
+                  format: binary
+                  example: Name,Country\nFactSet,US\n
+                clientIdColumn:
+                  description: >
+                    Header Name of the column in the input file that contains a
+                    unique identifier supplied by the user referred to as a
+                    "clientId". This clientId can be used to create custom
+                    mappings or references.
+                  type: string
+                  example: ClientId
+                additionalContextColumns:
+                  description: >
+                    Comma separated list of any additional column names in the
+                    input file.  To be used by Managed Service for any unmapped
+                    records.
+                  type: array
+                  maxItems: 5
+                  items:
+                    type: string
+                    example: Address
+                entityColumn:
+                  description: >
+                    Header name of the column in the input file that contains
+                    the Entity Name to be matched.
+                  type: string
+                  example: Microsoft
+                firstNameColumn:
+                  description: >
+                    First name of the person.**Do not include with
+                    `personNameColumn`**. 
+                  type: string
+                  example: Bill
+                lastNameColumn:
+                  description: >
+                    Lat name of the person.**Do not include with
+                    `personNameColumn`**.
+                  type: string
+                  example: Gates
+                middleNameColumn:
+                  description: >
+                    Middle name of the person.**Do not include within
+                    `personNameColumn`**.
+                  type: string
+                  example: Henry
+                personNameColumn:
+                  description: >
+                    Header name of the column in the input file that contains
+                    the name of the person to be matched. **Do not include with
+                    `firstNameColumn` and `lastNameColumn`.**
+                  type: string
+                  example: Bill Gates
+                priorityColumn:
+                  description: >
+                    Priority associated to the clientId. Used for manual
+                    mapping.
+                  type: string
+                  example: HIGH
+                salutationColumn:
+                  description: >
+                    The salutation of the person.**Do not include with
+                    `personNameColumn`**.
+                  type: string
+                  example: Mr.
+                suffixColumn:
+                  description: >
+                    A name suffix, that follows a person's full name and
+                    provides additional information about the person.**Do not
+                    include with `personNameColumn`**.
+                  type: string
+                  example: HIGH
+              required:
+                - universeId
+                - taskName
+                - inputFile
+                - entityColumn
+                - clientIdColumn
+      responses:
+        '200':
+          $ref: '#/components/responses/PeopleTaskResponse'
+        '400':
+          $ref: '#/components/responses/400'
+        '401':
+          $ref: '#/components/responses/401'
+        '403':
+          $ref: '#/components/responses/403'
+        '415':
+          $ref: '#/components/responses/415'
+        '500':
+          $ref: '#/components/responses/500'
+  /factset-concordance/v2/people-task-status:
+    get:
+      summary: Get the Status of the People Tasks.
+      description: >
+        Pulls the **status** for ALL the People Tasks submitted by a client
+        within the last 30 days, and related details such as task duration and
+        decision rates. Specific Tasks can also be retrieved by using the
+        _taskId_ parameter.<p>Status types include -
+          * PENDING - The task has not yet started.
+          * IN_PROGRESS - The task is submitted and decisions are in progress.
+          * SUCCESS - The task was successful! Move to the /people-decisions endpoint to retrieve decisions.
+          * FAILURE - The task failed. Reach out to FactSet Support for assistance.
+          * BAD_REQUEST - The task creation was unsuccesfull. Typically occurs with an incorrect input file format or column headers.
+          * ABORTED - The task was aborted.
+      tags:
+        - People Match - Bulk
+      operationId: getPeopleTaskStatus
+      parameters:
+        - $ref: '#/components/parameters/peopleTaskStatusId'
+        - $ref: '#/components/parameters/peopleOffset'
+        - $ref: '#/components/parameters/peopleLimit'
+        - $ref: '#/components/parameters/peopleStatus'
+      responses:
+        '200':
+          $ref: '#/components/responses/PeopleTaskStatusResponse'
+        '400':
+          $ref: '#/components/responses/400'
+        '401':
+          $ref: '#/components/responses/401'
+        '403':
+          $ref: '#/components/responses/403'
+        '415':
+          $ref: '#/components/responses/415'
+        '500':
+          $ref: '#/components/responses/500'
+  /factset-concordance/v2/people-decisions:
+    get:
+      summary: Get the decisions of matches for the requested taskId.
+      description: >
+        Retrieves the `Decision` objects for an People Task (taskId). The
+        decisions do not include all candidates, but rather the results of
+        concording the requested list of names included in the input file.
+        Mapped entities will include a FactSet Entity Identifier (-E). Results
+        will be saved to the `universeId` specified in the input file.
+      tags:
+        - People Match - Bulk
+      operationId: getPeopleDecisions
+      parameters:
+        - $ref: '#/components/parameters/peopleTaskDecisionId'
+        - $ref: '#/components/parameters/peopleOffset'
+        - $ref: '#/components/parameters/peopleLimit'
+      responses:
+        '200':
+          $ref: '#/components/responses/PeopleDecisionsResponse'
+        '400':
+          $ref: '#/components/responses/400'
+        '401':
+          $ref: '#/components/responses/401'
+        '403':
+          $ref: '#/components/responses/403'
+        '415':
+          $ref: '#/components/responses/415'
+        '500':
+          $ref: '#/components/responses/500'

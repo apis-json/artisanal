@@ -1,0 +1,79 @@
+openapi: 3.0.3
+info:
+  title: FactSet Fundamentals Report Builder
+  description: ''
+  license:
+    name: Apache 2.0
+    url: https://www.apache.org/licenses/LICENSE-2.0
+externalDocs:
+  description: Read more about STACH 2.0's row organized schema
+  url: https://factset.github.io/stachschema/#/v2/RowOrganized
+tags:
+  - name: Financials
+paths:
+  /income-statement:
+    get:
+      tags:
+        - Financials
+      summary: Income Statement
+      description: Returns a standardized Income Statement based on industry.
+  /balance-sheet:
+    get:
+      tags:
+        - Financials
+      summary: Balance Sheet
+      description: Returns a standardized Balance Sheet based on industry.
+  /cash-flow:
+    get:
+      tags:
+        - Financials
+      summary: Cash Flow
+      description: Returns a standardized Cash Flow based on industry.
+tandardized Cash Flow based on industry.
+      parameters:
+        - $ref: '#/components/parameters/idParameter'
+        - $ref: '#/components/parameters/periodicityParameter'
+        - $ref: '#/components/parameters/schemaParameter'
+        - $ref: '#/components/parameters/reportStatusParameter'
+        - $ref: '#/components/parameters/currencyParameter'
+      responses:
+        '200':
+          $ref: '#/components/responses/200OKStach'
+        '400':
+          $ref: '#/components/responses/400BadRequest'
+        '401':
+          $ref: '#/components/responses/401Unauthorized'
+        '403':
+          $ref: '#/components/responses/403Forbidden'
+        '404':
+          $ref: '#/components/responses/404NotFound'
+        '429':
+          $ref: '#/components/responses/429TooManyRequests'
+        '500':
+          $ref: '#/components/responses/500InternalServerError'
+        '503':
+          $ref: '#/components/responses/503ServiceUnavailable'
+ a standardized Cash Flow based on industry.
+      parameters:
+        - $ref: '#/components/parameters/idParameter'
+        - $ref: '#/components/parameters/periodicityParameter'
+        - $ref: '#/components/parameters/schemaParameter'
+        - $ref: '#/components/parameters/reportStatusParameter'
+        - $ref: '#/components/parameters/currencyParameter'
+      responses:
+        '200':
+          $ref: '#/components/responses/200OKStach'
+        '400':
+          $ref: '#/components/responses/400BadRequest'
+        '401':
+          $ref: '#/components/responses/401Unauthorized'
+        '403':
+          $ref: '#/components/responses/403Forbidden'
+        '404':
+          $ref: '#/components/responses/404NotFound'
+        '429':
+          $ref: '#/components/responses/429TooManyRequests'
+        '500':
+          $ref: '#/components/responses/500InternalServerError'
+        '503':
+          $ref: '#/components/responses/503ServiceUnavailable'

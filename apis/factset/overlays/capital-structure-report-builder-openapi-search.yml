@@ -1,0 +1,99 @@
+openapi: 3.0.3
+info:
+  title: FactSet Capital Structure Report Builder API
+  description: ''
+  license:
+    name: Apache 2.0
+    url: https://www.apache.org/licenses/LICENSE-2.0
+externalDocs:
+  description: Read more about STACH 2.0's row organized schema
+  url: https://factset.github.io/stachschema/#/v2/RowOrganized
+tags:
+  - name: Capital Structure
+paths:
+  /dcs-detail:
+    get:
+      tags:
+        - Capital Structure
+      summary: Debt Capital Structure (DCS)
+  /source-of-capital:
+    get:
+      tags:
+        - Capital Structure
+      summary: Source of Capital
+  /dcs-summary:
+    get:
+      tags:
+        - Capital Structure
+      summary: Debt Capital Structure (DCS) Summary
+ Capital Structure (DCS) Summary
+      parameters:
+        - name: id
+          in: query
+          description: Company ticker
+          required: true
+          schema:
+            type: string
+            example: FDS
+        - name: schema
+          in: query
+          description: >
+            The schema that the data is returned as. The following are
+            descriptions for the accepted values:
+
+            - table_group_level - STACH 2.0 row organized package format with
+            parent-child relationships represented using STACH group level cell
+            metadata
+
+            - table_parent_child_columns - STACH 2.0 row organized package
+            format with parent-child relationships represented using STACH
+            parent-child columns
+          required: false
+          schema:
+            type: string
+            enum:
+              - table_group_level
+              - table_parent_child_columns
+            default: table_parent_child_columns
+      responses:
+        '200':
+          $ref: '#/components/responses/200OKStachDcsSummary'
+        '400':
+          $ref: '#/components/responses/400BadRequest'
+        '401':
+          $ref: '#/components/responses/401Unauthorized'
+        '403':
+          $ref: '#/components/responses/403Forbidden'
+        '404':
+          $ref: '#/components/responses/404NotFound'
+        '429':
+          $ref: '#/components/responses/429TooManyRequests'
+        '500':
+          $ref: '#/components/responses/500InternalServerError'
+        '503':
+          $ref: '#/components/responses/503ServiceUnavailable'
+rent-child columns
+          required: false
+          schema:
+            type: string
+            enum:
+              - table_group_level
+              - table_parent_child_columns
+            default: table_parent_child_columns
+      responses:
+        '200':
+          $ref: '#/components/responses/200OKStachDcsSummary'
+        '400':
+          $ref: '#/components/responses/400BadRequest'
+        '401':
+          $ref: '#/components/responses/401Unauthorized'
+        '403':
+          $ref: '#/components/responses/403Forbidden'
+        '404':
+          $ref: '#/components/responses/404NotFound'
+        '429':
+          $ref: '#/components/responses/429TooManyRequests'
+        '500':
+          $ref: '#/components/responses/500InternalServerError'
+        '503':
+          $ref: '#/components/responses/503ServiceUnavailable'

@@ -1,0 +1,585 @@
+openapi: 3.0.2
+info:
+  title: Signals API
+tags:
+  - name: Events
+    description: >-
+      Fetch signal events. Please note that FactSet Cognitive signals and
+      signals contributed by third parties are excluded from the response for
+      limited API access.
+  - name: Metadata
+    description: Fetch signal metadata
+paths:
+  /events/headlines:
+    get:
+      tags:
+        - Events
+      x-factset-sdk-ignore: true
+      description: >-
+        Fetch Signals event headlines based on at least one of the following
+        filtering parameters: `ids`, `portfolios`
+    post:
+      tags:
+        - Events
+      description: >-
+        Fetch Signals event headlines based on the filtering criteria for up to
+        1000 identifiers and at least one of the following filtering parameters:
+        `ids`, `portfolios`
+  /events/details:
+    get:
+      tags:
+        - Events
+      x-factset-sdk-ignore: true
+      description: >-
+        Fetch Signals event headlines plus all additional event details based on
+        at least one of the following filtering parameters: `ids`, `portfolios`
+    post:
+      tags:
+        - Events
+      description: >-
+        Fetch Signals event headlines plus all additional event details for up
+        to 1000 identifiers and at least one of the following filtering
+        parameters: `ids`, `portfolios`
+  /events/details/{eventId}:
+    get:
+      tags:
+        - Events
+      description: >-
+        Fetch Signals event headlines plus all additional event details for a
+        single requested Signal event
+  /events/adaptive-cards:
+    get:
+      tags:
+        - Events
+      x-factset-sdk-ignore: true
+      description: >-
+        Fetch Microsoft's Adaptive Cards, which includes headlines and event
+        details data plus hyperlinks to FactSet reports, based on at least one
+        of the following filtering parameters: `ids`, `portfolios`
+    post:
+      tags:
+        - Events
+      description: >-
+        Fetch Microsoft's Adaptive Cards, which includes headlines and event
+        details data plus hyperlinks to FactSet reports, based on at least one
+        of the following filtering parameters: `ids`, `portfolios`
+  /events/adaptive-cards/{eventId}:
+    get:
+      tags:
+        - Events
+      operationId: getEventAdaptiveCardById
+      description: >-
+        Fetch Microsoft's Adaptive Cards, which includes headlines and event
+        details data plus hyperlinks to FactSet reports, for a single requested
+        Signal event
+      parameters:
+        - $ref: '#/components/parameters/eventIdParam'
+      responses:
+        '200':
+          description: OK
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/eventAdaptiveCard'
+        '404':
+          description: Not Found
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/errorResponse'
+        '429':
+          description: API Rate Limit Exceeded
+          headers:
+            Api-Version:
+              $ref: '#/components/headers/Api-Version'
+            Api-Supported-Versions:
+              $ref: '#/components/headers/Api-Supported-Versions'
+            RateLimit-Limit:
+              $ref: '#/components/headers/RateLimit-Limit'
+            RateLimit-Remaining:
+              $ref: '#/components/headers/RateLimit-Remaining'
+            RateLimit-Reset:
+              $ref: '#/components/headers/RateLimit-Reset'
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/rateLimitResponse'
+        '500':
+          description: Internal Server Error
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/errorResponse'
+  /events/entities:
+    get:
+      tags:
+        - Events
+      x-factset-sdk-ignore: true
+      operationId: getEventEntities
+      description: Fetch FactSet entity IDs for events that match the filtering criteria
+      parameters:
+        - $ref: '#/components/parameters/createdParam'
+        - $ref: '#/components/parameters/updatedParam'
+        - $ref: '#/components/parameters/signalIdsParam'
+        - $ref: '#/components/parameters/themesParam'
+        - $ref: '#/components/parameters/categoriesParam'
+        - $ref: '#/components/parameters/relevanceScoreParam'
+      responses:
+        '200':
+          description: OK
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/eventsEntities'
+        '400':
+          description: Bad Request
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/errorResponse'
+        '429':
+          description: API Rate Limit Exceeded
+          headers:
+            Api-Version:
+              $ref: '#/components/headers/Api-Version'
+            Api-Supported-Versions:
+              $ref: '#/components/headers/Api-Supported-Versions'
+            RateLimit-Limit:
+              $ref: '#/components/headers/RateLimit-Limit'
+            RateLimit-Remaining:
+              $ref: '#/components/headers/RateLimit-Remaining'
+            RateLimit-Reset:
+              $ref: '#/components/headers/RateLimit-Reset'
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/rateLimitResponse'
+        '500':
+          description: Internal Server Error
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/errorResponse'
+    post:
+      tags:
+        - Events
+      operationId: postEventEntities
+      description: Fetch FactSet entity IDs for events that match the filtering criteria
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/eventsEntitiesPost'
+      responses:
+        '200':
+          description: OK
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/eventsEntities'
+        '400':
+          description: Bad Request
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/errorResponse'
+        '429':
+          description: API Rate Limit Exceeded
+          headers:
+            Api-Version:
+              $ref: '#/components/headers/Api-Version'
+            Api-Supported-Versions:
+              $ref: '#/components/headers/Api-Supported-Versions'
+            RateLimit-Limit:
+              $ref: '#/components/headers/RateLimit-Limit'
+            RateLimit-Remaining:
+              $ref: '#/components/headers/RateLimit-Remaining'
+            RateLimit-Reset:
+              $ref: '#/components/headers/RateLimit-Reset'
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/rateLimitResponse'
+        '500':
+          description: Internal Server Error
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/errorResponse'
+  /data-dictionary:
+    get:
+      tags:
+        - Metadata
+      operationId: getDataDictionary
+      description: Fetch a list of all active signals
+      responses:
+        '200':
+          description: OK
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/signalMetaData'
+        '429':
+          description: API Rate Limit Exceeded
+          headers:
+            Api-Version:
+              $ref: '#/components/headers/Api-Version'
+            Api-Supported-Versions:
+              $ref: '#/components/headers/Api-Supported-Versions'
+            RateLimit-Limit:
+              $ref: '#/components/headers/RateLimit-Limit'
+            RateLimit-Remaining:
+              $ref: '#/components/headers/RateLimit-Remaining'
+            RateLimit-Reset:
+              $ref: '#/components/headers/RateLimit-Reset'
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/rateLimitResponse'
+        '500':
+          description: Internal Server Error
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/errorResponse'
+  /data-dictionary/{signalId}:
+    get:
+      tags:
+        - Metadata
+      operationId: getDataDictionaryById
+      description: Fetch the metadata and contract for the requested signal
+      parameters:
+        - $ref: '#/components/parameters/signalIdParam'
+      responses:
+        '200':
+          description: OK
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/signalDefinition'
+        '404':
+          description: Not found
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/errorResponse'
+        '429':
+          description: API Rate Limit Exceeded
+          headers:
+            Api-Version:
+              $ref: '#/components/headers/Api-Version'
+            Api-Supported-Versions:
+              $ref: '#/components/headers/Api-Supported-Versions'
+            RateLimit-Limit:
+              $ref: '#/components/headers/RateLimit-Limit'
+            RateLimit-Remaining:
+              $ref: '#/components/headers/RateLimit-Remaining'
+            RateLimit-Reset:
+              $ref: '#/components/headers/RateLimit-Reset'
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/rateLimitResponse'
+        '500':
+          description: Internal Server Error
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/errorResponse'
+  /themes:
+    get:
+      tags:
+        - Metadata
+      operationId: getThemes
+      description: Fetch a list of available signal themes
+      responses:
+        '200':
+          description: OK
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/signalMetaData'
+        '429':
+          description: API Rate Limit Exceeded
+          headers:
+            Api-Version:
+              $ref: '#/components/headers/Api-Version'
+            Api-Supported-Versions:
+              $ref: '#/components/headers/Api-Supported-Versions'
+            RateLimit-Limit:
+              $ref: '#/components/headers/RateLimit-Limit'
+            RateLimit-Remaining:
+              $ref: '#/components/headers/RateLimit-Remaining'
+            RateLimit-Reset:
+              $ref: '#/components/headers/RateLimit-Reset'
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/rateLimitResponse'
+        '500':
+          description: Internal Server Error
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/errorResponse'
+  /categories:
+    get:
+      tags:
+        - Metadata
+      operationId: getCategories
+      description: Fetch a list of available signal categories
+      responses:
+        '200':
+          description: OK
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/signalMetaData'
+        '429':
+          description: API Rate Limit Exceeded
+          headers:
+            Api-Version:
+              $ref: '#/components/headers/Api-Version'
+            Api-Supported-Versions:
+              $ref: '#/components/headers/Api-Supported-Versions'
+            RateLimit-Limit:
+              $ref: '#/components/headers/RateLimit-Limit'
+            RateLimit-Remaining:
+              $ref: '#/components/headers/RateLimit-Remaining'
+            RateLimit-Reset:
+              $ref: '#/components/headers/RateLimit-Reset'
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/rateLimitResponse'
+        '500':
+          description: Internal Server Error
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/errorResponse'
+            $ref: '#/components/schemas/errorResponse'
+        '429':
+          description: API Rate Limit Exceeded
+          headers:
+            Api-Version:
+              $ref: '#/components/headers/Api-Version'
+            Api-Supported-Versions:
+              $ref: '#/components/headers/Api-Supported-Versions'
+            RateLimit-Limit:
+              $ref: '#/components/headers/RateLimit-Limit'
+            RateLimit-Remaining:
+              $ref: '#/components/headers/RateLimit-Remaining'
+            RateLimit-Reset:
+              $ref: '#/components/headers/RateLimit-Reset'
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/rateLimitResponse'
+        '500':
+          description: Internal Server Error
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/errorResponse'
+  /themes:
+    get:
+      tags:
+        - Metadata
+      operationId: getThemes
+      description: Fetch a list of available signal themes
+      responses:
+        '200':
+          description: OK
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/signalMetaData'
+        '429':
+          description: API Rate Limit Exceeded
+          headers:
+            Api-Version:
+              $ref: '#/components/headers/Api-Version'
+            Api-Supported-Versions:
+              $ref: '#/components/headers/Api-Supported-Versions'
+            RateLimit-Limit:
+              $ref: '#/components/headers/RateLimit-Limit'
+            RateLimit-Remaining:
+              $ref: '#/components/headers/RateLimit-Remaining'
+            RateLimit-Reset:
+              $ref: '#/components/headers/RateLimit-Reset'
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/rateLimitResponse'
+        '500':
+          description: Internal Server Error
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/errorResponse'
+  /categories:
+    get:
+      tags:
+        - Metadata
+      operationId: getCategories
+      description: Fetch a list of available signal categories
+      responses:
+        '200':
+          description: OK
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/signalMetaData'
+        '429':
+          description: API Rate Limit Exceeded
+          headers:
+            Api-Version:
+              $ref: '#/components/headers/Api-Version'
+            Api-Supported-Versions:
+              $ref: '#/components/headers/Api-Supported-Versions'
+            RateLimit-Limit:
+              $ref: '#/components/headers/RateLimit-Limit'
+            RateLimit-Remaining:
+              $ref: '#/components/headers/RateLimit-Remaining'
+            RateLimit-Reset:
+              $ref: '#/components/headers/RateLimit-Reset'
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/rateLimitResponse'
+        '500':
+          description: Internal Server Error
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/errorResponse'
+rror
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/errorResponse'
+  /categories:
+    get:
+      tags:
+        - Metadata
+      operationId: getCategories
+      description: Fetch a list of available signal categories
+      responses:
+        '200':
+          description: OK
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/signalMetaData'
+        '429':
+          description: API Rate Limit Exceeded
+          headers:
+            Api-Version:
+              $ref: '#/components/headers/Api-Version'
+            Api-Supported-Versions:
+              $ref: '#/components/headers/Api-Supported-Versions'
+            RateLimit-Limit:
+              $ref: '#/components/headers/RateLimit-Limit'
+            RateLimit-Remaining:
+              $ref: '#/components/headers/RateLimit-Remaining'
+            RateLimit-Reset:
+              $ref: '#/components/headers/RateLimit-Reset'
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/rateLimitResponse'
+        '500':
+          description: Internal Server Error
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/errorResponse'
+imit-Limit'
+            RateLimit-Remaining:
+              $ref: '#/components/headers/RateLimit-Remaining'
+            RateLimit-Reset:
+              $ref: '#/components/headers/RateLimit-Reset'
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/rateLimitResponse'
+        '500':
+          description: Internal Server Error
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/errorResponse'
+  /themes:
+    get:
+      tags:
+        - Metadata
+      operationId: getThemes
+      description: Fetch a list of available signal themes
+      responses:
+        '200':
+          description: OK
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/signalMetaData'
+        '429':
+          description: API Rate Limit Exceeded
+          headers:
+            Api-Version:
+              $ref: '#/components/headers/Api-Version'
+            Api-Supported-Versions:
+              $ref: '#/components/headers/Api-Supported-Versions'
+            RateLimit-Limit:
+              $ref: '#/components/headers/RateLimit-Limit'
+            RateLimit-Remaining:
+              $ref: '#/components/headers/RateLimit-Remaining'
+            RateLimit-Reset:
+              $ref: '#/components/headers/RateLimit-Reset'
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/rateLimitResponse'
+        '500':
+          description: Internal Server Error
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/errorResponse'
+  /categories:
+    get:
+      tags:
+        - Metadata
+      operationId: getCategories
+      description: Fetch a list of available signal categories
+      responses:
+        '200':
+          description: OK
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/signalMetaData'
+        '429':
+          description: API Rate Limit Exceeded
+          headers:
+            Api-Version:
+              $ref: '#/components/headers/Api-Version'
+            Api-Supported-Versions:
+              $ref: '#/components/headers/Api-Supported-Versions'
+            RateLimit-Limit:
+              $ref: '#/components/headers/RateLimit-Limit'
+            RateLimit-Remaining:
+              $ref: '#/components/headers/RateLimit-Remaining'
+            RateLimit-Reset:
+              $ref: '#/components/headers/RateLimit-Reset'
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/rateLimitResponse'
+        '500':
+          description: Internal Server Error
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/errorResponse'

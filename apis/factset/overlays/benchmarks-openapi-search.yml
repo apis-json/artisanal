@@ -1,0 +1,444 @@
+openapi: 3.0.0
+info:
+  title: FactSet Benchmarks API
+paths:
+  /factset-benchmarks/v1/constituents:
+    get:
+      tags:
+        - Benchmark Constituents
+      summary: >-
+        Returns the requested Benchmark Constituents and respective Weights,
+        Price and Market Value.
+      description: >
+        Returns the requested Benchmark Constituents and respective Weights,
+        Price and Market Value. You must be authorized for the `ids` requested.
+        Use the helper endpoint **/id-list** for valid identifiers.  
+    post:
+      tags:
+        - Benchmark Constituents
+      summary: >-
+        Returns the requested Benchmark Constituents and respective Weights,
+        Price and Market Value.
+      description: >
+        Returns the requested Benchmark Constituents and respective Weights,
+        Price and Market Value. You must be authorized for the `ids` requested.
+        Use the helper endpoint **/id-list** for valid identifiers.
+  /factset-benchmarks/v1/fixed-income-constituents:
+    get:
+      tags:
+        - Benchmark Constituents
+      summary: >-
+        Returns the requested Fixed Income Benchmark Constituents and respective
+        Weights, Price and Market Value.
+      operationId: getFIBenchmarkConstituents
+      description: >
+        Returns the requested Fixed Income Benchmark Constituents and respective
+        Weights, Price and Market Value. You must be authorized for the `ids`
+        requested.
+      parameters:
+        - $ref: '#/components/parameters/fIConstituentIds'
+        - $ref: '#/components/parameters/requestedDate'
+        - $ref: '#/components/parameters/currency'
+      responses:
+        '200':
+          description: Fixed Income Constituent data items
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/fixedIncomeBenchmarkConstituentsResponse'
+        '400':
+          $ref: '#/components/responses/400'
+        '401':
+          $ref: '#/components/responses/401'
+        '403':
+          $ref: '#/components/responses/403'
+        '415':
+          $ref: '#/components/responses/415'
+        '500':
+          $ref: '#/components/responses/500'
+    post:
+      tags:
+        - Benchmark Constituents
+      summary: >-
+        Returns the requested Benchmark Constituents and respective Weights,
+        Price and Market Value.
+      description: >
+        Returns the requested Fixed Income Benchmark Constituents and respective
+        Weights, Price and Market Value. You must be authorized for the `ids`
+        requested.
+      operationId: getFIBenchmarkConstituentsForList
+      requestBody:
+        required: true
+        description: >-
+          Requests Fixed Income Benchmark Constituents for the given identifier
+          and date.
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/fixedIncomeBenchmarkConstituentsRequest'
+      responses:
+        '200':
+          description: Fixed Income Constituent data items
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/fixedIncomeBenchmarkConstituentsResponse'
+        '400':
+          $ref: '#/components/responses/400'
+        '401':
+          $ref: '#/components/responses/401'
+        '403':
+          $ref: '#/components/responses/403'
+        '415':
+          $ref: '#/components/responses/415'
+        '500':
+          $ref: '#/components/responses/500'
+  /factset-benchmarks/v1/index-snapshot:
+    get:
+      summary: >-
+        Index Level Prices, Returns, and related information as of a single
+        date.
+      operationId: getIndexSnapshot
+      tags:
+        - Index Level
+      description: >
+        Retrieves Index Level Prices and Returns information as of a specific
+        date. Simply submit a valid Benchmark ID (you can use the /id-list
+        endpoint for a sample list of ids), and date and retrieve Index Level
+        Prices, Returns, and related information.
+      parameters:
+        - $ref: '#/components/parameters/indexIds'
+        - $ref: '#/components/parameters/requestedDate'
+        - $ref: '#/components/parameters/returnType'
+        - $ref: '#/components/parameters/currency'
+        - $ref: '#/components/parameters/calendar'
+      responses:
+        '200':
+          description: >-
+            An array of Index Level Prices and Returns information as of a
+            single date
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/indexSnapshotResponse'
+              examples:
+                Index Level Prices and Returns snapshot for S&P 500 and Russell 3000 as of 2020-08-06:
+                  $ref: '#/components/examples/resultofIndexSnapshotMultiple'
+        '400':
+          $ref: '#/components/responses/400'
+        '401':
+          $ref: '#/components/responses/401'
+        '403':
+          $ref: '#/components/responses/403'
+        '415':
+          $ref: '#/components/responses/415'
+        '500':
+          $ref: '#/components/responses/500'
+    post:
+      summary: >-
+        Retrieves the Index Level Snapshot of Prices and Returns information for
+        a given identifier and single date.
+      operationId: getIndexSnapshotForList
+      tags:
+        - Index Level
+      description: >
+        Retrieves Index Level Prices and Returns information as aligned with
+        FactSet's Benchmark Data Feed solution. Simply submit a valid Benchmark
+        ID (you can use the /id-list endpoint for a sample list of ids), and
+        date and retrieve Index Level Prices, Returns, and related information.
+      requestBody:
+        required: true
+        description: >-
+          Requests the Index Level Snapshot for a requested list of identifiers
+          and specified date.
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/indexSnapshotRequest'
+      responses:
+        '200':
+          description: >-
+            An array of Index Level Prices and Returns information as of a
+            single date.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/indexSnapshotResponse'
+              examples:
+                Index Level Prices and Returns snapshot for S&P 500 and Russell 3000 as of 2020-08-06:
+                  $ref: '#/components/examples/resultofIndexSnapshotMultiple'
+        '400':
+          $ref: '#/components/responses/400'
+        '401':
+          $ref: '#/components/responses/401'
+        '403':
+          $ref: '#/components/responses/403'
+        '415':
+          $ref: '#/components/responses/415'
+        '500':
+          $ref: '#/components/responses/500'
+  /factset-benchmarks/v1/index-history:
+    get:
+      summary: >-
+        Retrieves Index Level Prices and Returns information for a list of
+        identifiers and historical date range.
+      operationId: getIndexHistory
+      tags:
+        - Index Level
+      description: >
+        Retrieves Index Level Prices and Returns information as of a date range
+        requested. Simply submit a valid Benchmark ID (you can use the /id-list
+        endpoint for a sample list of ids), and date range to retrieve Index
+        Level Prices, Returns, and related information.
+      parameters:
+        - $ref: '#/components/parameters/indexIds'
+        - $ref: '#/components/parameters/startDate'
+        - $ref: '#/components/parameters/endDate'
+        - $ref: '#/components/parameters/frequency'
+        - $ref: '#/components/parameters/returnType'
+        - $ref: '#/components/parameters/hedgeType'
+        - $ref: '#/components/parameters/currency'
+        - $ref: '#/components/parameters/calendar'
+        - $ref: '#/components/parameters/impliedDate'
+      responses:
+        '200':
+          description: >-
+            An array of Index Level Prices and Returns information for a
+            requested date range.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/indexHistoryResponse'
+              examples:
+                Index Level Prices and Returns snapshot for S&P 500 and Russell 3000 from 2020-08-05 to 2020-08-06:
+                  $ref: '#/components/examples/resultofIndexHistoryMultiple'
+        '400':
+          $ref: '#/components/responses/400'
+        '401':
+          $ref: '#/components/responses/401'
+        '403':
+          $ref: '#/components/responses/403'
+        '415':
+          $ref: '#/components/responses/415'
+        '500':
+          $ref: '#/components/responses/500'
+    post:
+      summary: >-
+        Retrieves Index Level Prices and Returns information for a list of
+        identifiers and historical date range.
+      operationId: getIndexHistoryForList
+      tags:
+        - Index Level
+      description: >
+        Retrieves Index Level Prices and Returns information as aligned with
+        FactSet's Benchmark Data Feed solution. Simply submit a valid Benchmark
+        ID (you can use the /id-list endpoint for a sample list of ids), and
+        date and retrieve Index Level Prices, Returns, and related information.
+      requestBody:
+        required: true
+        description: >-
+          Requests Index Level History Prices and Returns for a list of
+          identifiers and specified date range.
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/indexHistoryRequest'
+      responses:
+        '200':
+          description: >-
+            An array of Index Level Prices and Returns information for a
+            requested date range.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/indexHistoryResponse'
+              examples:
+                Index Level Prices and Returns snapshot for S&P 500 and Russell 3000 from 2020-08-05 to 2020-08-06:
+                  $ref: '#/components/examples/resultofIndexHistoryMultiple'
+        '400':
+          $ref: '#/components/responses/400'
+        '401':
+          $ref: '#/components/responses/401'
+        '403':
+          $ref: '#/components/responses/403'
+        '415':
+          $ref: '#/components/responses/415'
+        '500':
+          $ref: '#/components/responses/500'
+  /factset-benchmarks/v1/ratios:
+    get:
+      tags:
+        - Index Level
+      summary: Returns the aggregated ratios of a requested benchmark
+      operationId: getBenchmarkRatios
+      description: >
+        Retrieves the index level ratios for a requested benchmark. Ratios
+        supported are expressed through metrics parameter, and include
+        Categories of Profitability, Valuation, Coverage, and Leverage. <p>
+        Using FactSet Market Aggregates, the service combines fundamental,
+        estimates, and pricing content to derive ratios and per share values for
+        global equity market indexes and commercial benchmark vendors. The
+        constituents of the index are fetched on rolling basis over time period
+        requested, and then the metric requested is aggregated up to the index
+        level. To learn more about FMA, visit [OA
+        15778](https://my.apps.factset.com/oa/pages/15778).</p>
+      parameters:
+        - $ref: '#/components/parameters/indexIds'
+        - $ref: '#/components/parameters/metrics'
+        - $ref: '#/components/parameters/startDate'
+        - $ref: '#/components/parameters/endDate'
+        - $ref: '#/components/parameters/frequency'
+        - $ref: '#/components/parameters/periodicity'
+        - $ref: '#/components/parameters/currency'
+      responses:
+        '200':
+          description: Benchmark Ratio data items
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/benchmarkRatiosResponse'
+              examples:
+                All Index Level Ratios for S&P 500 as of latest year end:
+                  $ref: '#/components/examples/allRatiosSP50'
+        '400':
+          $ref: '#/components/responses/400'
+        '401':
+          $ref: '#/components/responses/401'
+        '403':
+          $ref: '#/components/responses/403'
+        '415':
+          $ref: '#/components/responses/415'
+        '500':
+          $ref: '#/components/responses/500'
+    post:
+      tags:
+        - Index Level
+      summary: Returns the aggregated ratios of a requested benchmark
+      description: >
+        Retrieves the index level ratios for a requested benchmark. Ratios
+        supported are expressed through metrics parameter, and include
+        Categories of Profitability, Valuation, Coverage, and Leverage. <p>
+        Using FactSet Market Aggregates, the service combines FactSet
+        Fundamental, FactSet Estimates, and FactSet Pricing content to derive
+        ratios and per share values for global equity market indexes and
+        commercial benchmark vendors. The constituents of the index are fetched
+        on rolling basis over time period requested, and then the metric
+        requested is aggregated up to the index level. To learn more about FMA,
+        visit [OA 15778](https://my.apps.factset.com/oa/pages/15778).</p>
+      operationId: getBenchmarkRatiosForList
+      requestBody:
+        required: true
+        description: Requests benchmark ratios for a given id
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/benchmarkRatiosRequest'
+            examples:
+              Requesting all Index Level Ratios:
+                $ref: '#/components/examples/allRatiosRequest'
+      responses:
+        '200':
+          description: Benchmark Ratio Response Items
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/benchmarkRatiosResponse'
+              examples:
+                All Index Level Ratios for S&P 500 as of latest year end:
+                  $ref: '#/components/examples/allRatiosSP50'
+        '400':
+          $ref: '#/components/responses/400'
+        '401':
+          $ref: '#/components/responses/401'
+        '403':
+          $ref: '#/components/responses/403'
+        '415':
+          $ref: '#/components/responses/415'
+        '500':
+          $ref: '#/components/responses/500'
+  /factset-benchmarks/v1/id-list:
+    get:
+      summary: >-
+        Returns a sample list of Benchmark Identifiers and the benchmark
+        categorization to use in other Benchmark API endpoints.
+      operationId: getBenchmarkIds
+      tags:
+        - Helper
+      description: >-
+        Returns a **sample** list of Benchmark Identifiers to use in other
+        Benchmark API endpoints. This is a supporting API to be use alongside
+        the other Benchmark API endpoints. For example, use the fsymID value
+        returned in this response as the input to your `ids` parameter in the
+        /constituents endpoint to return constituents for that id.<p> *This is
+        not the full list of benchmark ids allowed in this service, but rather a
+        representation of the most commonly requested. For complete assistance
+        with ID lookup or concordance services, please reach out to FactSet
+        Support. *</p>
+      parameters:
+        - $ref: '#/components/parameters/familyFilter'
+      responses:
+        '200':
+          description: List of sample Benchmark Ids
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/benchmarkIdListResponse'
+              examples:
+                Result of Benchmark Constituent SPY-US:
+                  $ref: '#/components/examples/resultofBenchmarkID-TOPIX'
+        '400':
+          $ref: '#/components/responses/400'
+        '401':
+          $ref: '#/components/responses/401'
+        '403':
+          $ref: '#/components/responses/403'
+        '415':
+          $ref: '#/components/responses/415'
+        '500':
+          $ref: '#/components/responses/500'
+    post:
+      summary: >-
+        Returns a sample list of Benchmark Identifiers and the benchmark
+        categorization to use in other Benchmark API endpoints.
+      operationId: getBenchmarkIdsForList
+      tags:
+        - Helper
+      description: >-
+        Returns a **sample** list of Benchmark Identifiers to use in other
+        Benchmark API endpoints. This is a supporting API to be use alongside
+        the other Benchmark API endpoints. For example, use the fsymID value
+        returned in this response as the input to your `ids` parameter in the
+        /constituents endpoint to return constituents for that id.<p> *This is
+        not the full list of benchmark ids allowed in this service, but rather a
+        representation of the most commonly requested. For complete assistance
+        with ID lookup or concordance services, please reach out to FactSet
+        Support.*</p>
+      requestBody:
+        required: true
+        description: >-
+          Requests a sample list of identifiers that can be used in other
+          Benchmarks API endpoints.
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/benchmarkIdListRequest'
+      responses:
+        '200':
+          description: List of sample Benchmark Ids
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/benchmarkIdListResponse'
+              examples:
+                Result of Benchmark Constituent SPY-US:
+                  $ref: '#/components/examples/resultofBenchmarkID-TOPIX'
+        '400':
+          $ref: '#/components/responses/400'
+        '401':
+          $ref: '#/components/responses/401'
+        '403':
+          $ref: '#/components/responses/403'
+        '415':
+          $ref: '#/components/responses/415'
+        '500':
+          $ref: '#/components/responses/500'

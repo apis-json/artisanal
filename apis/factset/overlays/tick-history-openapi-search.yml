@@ -1,0 +1,899 @@
+openapi: 3.0.0
+info:
+  title: Tick History
+  license:
+    name: Apache License, Version 2.0
+    url: https://www.apache.org/licenses/LICENSE-2.0
+externalDocs:
+  description: API Documentation
+  url: https://developer.factset.com/api-catalog/factset-tick-history-api
+paths:
+  /level1/coverage:
+    get:
+      tags:
+        - Level 1
+      summary: >-
+        Returns the coverage for the requested ticker/isin along with other
+        response fields for Level1 data.
+      description: Returns coverage for specified tickers for Level1 Data
+  /level1/files/create:
+    post:
+      tags:
+        - Level 1
+      summary: Requests the creation of tick-by-tick file
+      description: Data available from 20120101 to previous day.
+  /level1/files/status:
+    get:
+      tags:
+        - Level 1
+      summary: Returns the status of the ID
+      description: Need to plug-in the id get from /create endpoint into /status endpoint
+  /level1/files/get:
+    get:
+      tags:
+        - Level 1
+      summary: Returns the tick-by-tick data in files requested in the /create endpoint
+      description: Returns the files from tickhistory endpoint
+  /level1/files/minute-bars/create:
+    post:
+      tags:
+        - Level 1
+      summary: Requests the creation of Minute bars file
+      description: >-
+        1-minute bars available from 20120101 to previous day. Per request able
+        to fetch upto 6 months of data.
+  /level1/files/minute-bars/status:
+    get:
+      tags:
+        - Level 1
+      summary: Returns the status of the ID
+      description: Need to plug-in the id get from /create endpoint into /status endpoint
+  /level1/files/minute-bars/get:
+    get:
+      tags:
+        - Level 1
+      summary: Returns the Minute bars data in files requested in the /create endpoint
+      description: Returns the files from tickhistory endpoint
+  /level2/files/create:
+    post:
+      tags:
+        - Level 2
+      summary: Returns the ID for the requested data.
+      description: Data available from past 6 years to previous day.
+  /level2/files/status:
+    get:
+      tags:
+        - Level 2
+      summary: Returns the status of the ID
+      description: Need to plug-in the id get from /create endpoint into /status endpoint
+  /level2/files/get:
+    get:
+      tags:
+        - Level 2
+      summary: Returns the tick history files requested in the /create endpoint
+      description: Returns the files from tickhistory endpoint
+tags:
+  - name: Level 1
+    description: >-
+      API provides access to check coverage and retrieve Level 1 historical tick
+      data
+  - name: Level 2
+    description: API provides access to the  historical tick data up to 10 levels of depth
+e:
+                  $ref: '#/components/examples/sampleFilesResponseQueued'
+                ExecutingExample:
+                  $ref: '#/components/examples/sampleFilesResponseExecuting'
+                FailedExample:
+                  $ref: '#/components/examples/sampleFilesResponseFailed'
+                CancelledExample:
+                  $ref: '#/components/examples/sampleFilesResponseCancelled'
+          headers:
+            Location:
+              description: Relative location to poll for status.
+              schema:
+                type: string
+        '401':
+          description: >-
+            Unauthenticated USERNAME-SERIAL. Ensure you are logged in and have
+            successfully generated an API KEY for the IP range you are
+            connecting from. For more help, select the Report Issue in the top
+            right corner of this Developer Portal specification card and choose
+            Connectivity 401 or 403 Responses.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/status'
+              examples:
+                default400ResponseExample:
+                  $ref: '#/components/examples/401Example'
+        '403':
+          description: >-
+            The USERNAME-SERIAL attempted to request the endpoint is not
+            authorized to access. The request was a legal request, but the
+            server is refusing to respond. Please reach out to FactSet Account
+            Team for assistance with authorization.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/status'
+              examples:
+                default400ResponseExample:
+                  $ref: '#/components/examples/403Example'
+        '404':
+          description: id not found
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/status'
+              examples:
+                default400ResponseExample:
+                  $ref: '#/components/examples/404Example'
+        '500':
+          description: Internal Error
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/status'
+              examples:
+                default400ResponseExample:
+                  $ref: '#/components/examples/500Example'
+  /level1/files/minute-bars/get:
+    get:
+      tags:
+        - Level 1
+      summary: Returns the Minute bars data in files requested in the /create endpoint
+      operationId: getMinutebarsFiles
+      description: Returns the files from tickhistory endpoint
+      parameters:
+        - $ref: '#/components/parameters/requestId'
+        - $ref: '#/components/parameters/_paginationLimit'
+        - $ref: '#/components/parameters/_paginationOffset'
+      responses:
+        '200':
+          description: >-
+            Success</p> **To download the output file copy the response url in a
+            browser**
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Get-FilesMinuteResponse'
+              examples:
+                default200ResponseExample:
+                  $ref: '#/components/examples/sampleMinGet-FilesResponse'
+        '202':
+          description: |
+            The Request has not finished and the result has NOT been created.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/submittedResponse'
+              examples:
+                QueuedExample:
+                  $ref: '#/components/examples/sampleFilesResponseQueued'
+                ExecutingExample:
+                  $ref: '#/components/examples/sampleFilesResponseExecuting'
+          headers:
+            Location:
+              description: Relative location to poll for status.
+              schema:
+                type: string
+        '400':
+          description: Bad request
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/status'
+              examples:
+                default400ResponseExample:
+                  $ref: '#/components/examples/400Example'
+        '401':
+          description: >-
+            Unauthenticated USERNAME-SERIAL. Ensure you are logged in and have
+            successfully generated an API KEY for the IP range you are
+            connecting from. For more help, select the Report Issue in the top
+            right corner of this Developer Portal specification card and choose
+            Connectivity 401 or 403 Responses.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/status'
+              examples:
+                default400ResponseExample:
+                  $ref: '#/components/examples/401Example'
+        '403':
+          description: >-
+            The USERNAME-SERIAL attempted to request the endpoint is not
+            authorized to access. The request was a legal request, but the
+            server is refusing to respond. Please reach out to FactSet Account
+            Team for assistance with authorization.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/status'
+              examples:
+                default400ResponseExample:
+                  $ref: '#/components/examples/403Example'
+        '404':
+          description: id not found
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/status'
+              examples:
+                default400ResponseExample:
+                  $ref: '#/components/examples/404Example'
+        '500':
+          description: Internal Error
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/status'
+              examples:
+                default400ResponseExample:
+                  $ref: '#/components/examples/500Example'
+  /level2/files/create:
+    post:
+      tags:
+        - Level 2
+      summary: Returns the ID for the requested data.
+      operationId: requestTickHistoryLeve2Files
+      description: Data available from past 6 years to previous day.
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/levelTwoRequest'
+            examples:
+              Single ticker for the given period:
+                $ref: '#/components/examples/postBodyOfSingleTickerLevel2'
+              Multiple tickers for the given period:
+                $ref: '#/components/examples/postBodyMultipleTickerLevel2'
+      responses:
+        '202':
+          description: |
+            The Request has been Accepted.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/submittedResponse'
+              examples:
+                default202ResponseExample:
+                  $ref: '#/components/examples/sampleFilesResponse'
+          headers:
+            Location:
+              description: Relative location to poll for status
+              schema:
+                type: string
+            X-FactSet-Api-RateLimit-Limit:
+              description: Number of allowed requests for the time window.
+              schema:
+                type: string
+            X-FactSet-Api-RateLimit-Remaining:
+              description: Number of requests left for the time window.
+              schema:
+                type: string
+            X-FactSet-Api-RateLimit-Reset:
+              description: Number of seconds remaining till rate limit resets.
+              schema:
+                type: string
+        '400':
+          description: Bad request
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/status'
+              examples:
+                default400ResponseExample:
+                  $ref: '#/components/examples/400Example'
+        '401':
+          description: >-
+            Unauthenticated USERNAME-SERIAL. Ensure you are logged in and have
+            successfully generated an API KEY for the IP range you are
+            connecting from. For more help, select the Report Issue in the top
+            right corner of this Developer Portal specification card and choose
+            Connectivity 401 or 403 Responses.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/status'
+              examples:
+                default400ResponseExample:
+                  $ref: '#/components/examples/401Example'
+        '403':
+          description: >-
+            The USERNAME-SERIAL attempted to request the endpoint is not
+            authorized to access. The request was a legal request, but the
+            server is refusing to respond. Please reach out to FactSet Account
+            Team for assistance with authorization.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/status'
+              examples:
+                default400ResponseExample:
+                  $ref: '#/components/examples/403Example'
+        '429':
+          description: Too many requests.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/status'
+              examples:
+                default400ResponseExample:
+                  $ref: '#/components/examples/429Example'
+        '500':
+          description: Internal Error
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/status'
+              examples:
+                default400ResponseExample:
+                  $ref: '#/components/examples/500Example'
+  /level2/files/status:
+    get:
+      tags:
+        - Level 2
+      summary: Returns the status of the ID
+      operationId: getLevel2FileStatus
+      description: Need to plug-in the id get from /create endpoint into /status endpoint
+      parameters:
+        - $ref: '#/components/parameters/requestIdStatus'
+      responses:
+        '201':
+          description: |
+            The Request has been created and the response has been created.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/completedResponse'
+              examples:
+                default200ResponseExample:
+                  $ref: '#/components/examples/sampleCompletedResponse'
+          headers:
+            Location:
+              description: Relative location to pick up results
+              schema:
+                type: string
+              example: get?id=2df43e85-ea0f-45c6-bf4a-2baf4d1eaa3c
+        '202':
+          description: |
+            The Request has not finished and the result has NOT been created.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/submittedResponse'
+              examples:
+                QueuedExample:
+                  $ref: '#/components/examples/sampleFilesResponseQueued'
+                ExecutingExample:
+                  $ref: '#/components/examples/sampleFilesResponseExecuting'
+                FailedExample:
+                  $ref: '#/components/examples/sampleFilesResponseFailed'
+                CancelledExample:
+                  $ref: '#/components/examples/sampleFilesResponseCancelled'
+          headers:
+            Location:
+              description: Relative location to poll for status.
+              schema:
+                type: string
+        '401':
+          description: >-
+            Unauthenticated USERNAME-SERIAL. Ensure you are logged in and have
+            successfully generated an API KEY for the IP range you are
+            connecting from. For more help, select the Report Issue in the top
+            right corner of this Developer Portal specification card and choose
+            Connectivity 401 or 403 Responses.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/status'
+              examples:
+                default400ResponseExample:
+                  $ref: '#/components/examples/401Example'
+        '403':
+          description: >-
+            The USERNAME-SERIAL attempted to request the endpoint is not
+            authorized to access. The request was a legal request, but the
+            server is refusing to respond. Please reach out to FactSet Account
+            Team for assistance with authorization.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/status'
+              examples:
+                default400ResponseExample:
+                  $ref: '#/components/examples/403Example'
+        '404':
+          description: id not found
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/status'
+              examples:
+                default400ResponseExample:
+                  $ref: '#/components/examples/404Example'
+        '500':
+          description: Internal Error
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/status'
+              examples:
+                default400ResponseExample:
+                  $ref: '#/components/examples/500Example'
+  /level2/files/get:
+    get:
+      tags:
+        - Level 2
+      summary: Returns the tick history files requested in the /create endpoint
+      operationId: getTickHistoryLevel2Files
+      description: Returns the files from tickhistory endpoint
+      parameters:
+        - $ref: '#/components/parameters/requestId'
+        - $ref: '#/components/parameters/_paginationLimit'
+        - $ref: '#/components/parameters/_paginationOffset'
+      responses:
+        '200':
+          description: >-
+            Success</p> **To download the output file copy the response url in a
+            browser**
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/leveltwoGet-FilesResponse'
+              examples:
+                default200ResponseExample:
+                  $ref: '#/components/examples/sampleGet-FilesResponseLevel2'
+        '202':
+          description: |
+
+            The Request has not finished and the result has NOT been created.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/submittedResponse'
+              examples:
+                QueuedExample:
+                  $ref: '#/components/examples/sampleFilesResponseQueued'
+                ExecutingExample:
+                  $ref: '#/components/examples/sampleFilesResponseExecuting'
+          headers:
+            Location:
+              description: Relative location to poll for status.
+              schema:
+                type: string
+        '400':
+          description: Bad request
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/status'
+              examples:
+                default400ResponseExample:
+                  $ref: '#/components/examples/400Example'
+        '401':
+          description: >-
+            Unauthenticated USERNAME-SERIAL. Ensure you are logged in and have
+            successfully generated an API KEY for the IP range you are
+            connecting from. For more help, select the Report Issue in the top
+            right corner of this Developer Portal specification card and choose
+            Connectivity 401 or 403 Responses.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/status'
+              examples:
+                default400ResponseExample:
+                  $ref: '#/components/examples/401Example'
+        '403':
+          description: >-
+            The USERNAME-SERIAL attempted to request the endpoint is not
+            authorized to access. The request was a legal request, but the
+            server is refusing to respond. Please reach out to FactSet Account
+            Team for assistance with authorization.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/status'
+              examples:
+                default400ResponseExample:
+                  $ref: '#/components/examples/403Example'
+        '404':
+          description: id not found
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/status'
+              examples:
+                default400ResponseExample:
+                  $ref: '#/components/examples/404Example'
+        '500':
+          description: Internal Error
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/status'
+              examples:
+                default400ResponseExample:
+                  $ref: '#/components/examples/500Example'
+tags:
+  - name: Level 1
+    description: >-
+      API provides access to check coverage and retrieve Level 1 historical tick
+      data
+  - name: Level 2
+    description: API provides access to the  historical tick data up to 10 levels of depth
+arameters/requestId'
+        - $ref: '#/components/parameters/_paginationLimit'
+        - $ref: '#/components/parameters/_paginationOffset'
+      responses:
+        '200':
+          description: >-
+            Success</p> **To download the output file copy the response url in a
+            browser**
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/leveltwoGet-FilesResponse'
+              examples:
+                default200ResponseExample:
+                  $ref: '#/components/examples/sampleGet-FilesResponseLevel2'
+        '202':
+          description: |
+
+            The Request has not finished and the result has NOT been created.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/submittedResponse'
+              examples:
+                QueuedExample:
+                  $ref: '#/components/examples/sampleFilesResponseQueued'
+                ExecutingExample:
+                  $ref: '#/components/examples/sampleFilesResponseExecuting'
+          headers:
+            Location:
+              description: Relative location to poll for status.
+              schema:
+                type: string
+        '400':
+          description: Bad request
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/status'
+              examples:
+                default400ResponseExample:
+                  $ref: '#/components/examples/400Example'
+        '401':
+          description: >-
+            Unauthenticated USERNAME-SERIAL. Ensure you are logged in and have
+            successfully generated an API KEY for the IP range you are
+            connecting from. For more help, select the Report Issue in the top
+            right corner of this Developer Portal specification card and choose
+            Connectivity 401 or 403 Responses.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/status'
+              examples:
+                default400ResponseExample:
+                  $ref: '#/components/examples/401Example'
+        '403':
+          description: >-
+            The USERNAME-SERIAL attempted to request the endpoint is not
+            authorized to access. The request was a legal request, but the
+            server is refusing to respond. Please reach out to FactSet Account
+            Team for assistance with authorization.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/status'
+              examples:
+                default400ResponseExample:
+                  $ref: '#/components/examples/403Example'
+        '404':
+          description: id not found
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/status'
+              examples:
+                default400ResponseExample:
+                  $ref: '#/components/examples/404Example'
+        '500':
+          description: Internal Error
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/status'
+              examples:
+                default400ResponseExample:
+                  $ref: '#/components/examples/500Example'
+tags:
+  - name: Level 1
+    description: >-
+      API provides access to check coverage and retrieve Level 1 historical tick
+      data
+  - name: Level 2
+    description: API provides access to the  historical tick data up to 10 levels of depth
+200':
+          description: >-
+            Success</p> **To download the output file copy the response url in a
+            browser**
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/leveltwoGet-FilesResponse'
+              examples:
+                default200ResponseExample:
+                  $ref: '#/components/examples/sampleGet-FilesResponseLevel2'
+        '202':
+          description: |
+
+            The Request has not finished and the result has NOT been created.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/submittedResponse'
+              examples:
+                QueuedExample:
+                  $ref: '#/components/examples/sampleFilesResponseQueued'
+                ExecutingExample:
+                  $ref: '#/components/examples/sampleFilesResponseExecuting'
+          headers:
+            Location:
+              description: Relative location to poll for status.
+              schema:
+                type: string
+        '400':
+          description: Bad request
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/status'
+              examples:
+                default400ResponseExample:
+                  $ref: '#/components/examples/400Example'
+        '401':
+          description: >-
+            Unauthenticated USERNAME-SERIAL. Ensure you are logged in and have
+            successfully generated an API KEY for the IP range you are
+            connecting from. For more help, select the Report Issue in the top
+            right corner of this Developer Portal specification card and choose
+            Connectivity 401 or 403 Responses.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/status'
+              examples:
+                default400ResponseExample:
+                  $ref: '#/components/examples/401Example'
+        '403':
+          description: >-
+            The USERNAME-SERIAL attempted to request the endpoint is not
+            authorized to access. The request was a legal request, but the
+            server is refusing to respond. Please reach out to FactSet Account
+            Team for assistance with authorization.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/status'
+              examples:
+                default400ResponseExample:
+                  $ref: '#/components/examples/403Example'
+        '404':
+          description: id not found
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/status'
+              examples:
+                default400ResponseExample:
+                  $ref: '#/components/examples/404Example'
+        '500':
+          description: Internal Error
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/status'
+              examples:
+                default400ResponseExample:
+                  $ref: '#/components/examples/500Example'
+tags:
+  - name: Level 1
+    description: >-
+      API provides access to check coverage and retrieve Level 1 historical tick
+      data
+  - name: Level 2
+    description: API provides access to the  historical tick data up to 10 levels of depth
+
+          description: >-
+            Success</p> **To download the output file copy the response url in a
+            browser**
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/leveltwoGet-FilesResponse'
+              examples:
+                default200ResponseExample:
+                  $ref: '#/components/examples/sampleGet-FilesResponseLevel2'
+        '202':
+          description: |
+
+            The Request has not finished and the result has NOT been created.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/submittedResponse'
+              examples:
+                QueuedExample:
+                  $ref: '#/components/examples/sampleFilesResponseQueued'
+                ExecutingExample:
+                  $ref: '#/components/examples/sampleFilesResponseExecuting'
+          headers:
+            Location:
+              description: Relative location to poll for status.
+              schema:
+                type: string
+        '400':
+          description: Bad request
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/status'
+              examples:
+                default400ResponseExample:
+                  $ref: '#/components/examples/400Example'
+        '401':
+          description: >-
+            Unauthenticated USERNAME-SERIAL. Ensure you are logged in and have
+            successfully generated an API KEY for the IP range you are
+            connecting from. For more help, select the Report Issue in the top
+            right corner of this Developer Portal specification card and choose
+            Connectivity 401 or 403 Responses.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/status'
+              examples:
+                default400ResponseExample:
+                  $ref: '#/components/examples/401Example'
+        '403':
+          description: >-
+            The USERNAME-SERIAL attempted to request the endpoint is not
+            authorized to access. The request was a legal request, but the
+            server is refusing to respond. Please reach out to FactSet Account
+            Team for assistance with authorization.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/status'
+              examples:
+                default400ResponseExample:
+                  $ref: '#/components/examples/403Example'
+        '404':
+          description: id not found
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/status'
+              examples:
+                default400ResponseExample:
+                  $ref: '#/components/examples/404Example'
+        '500':
+          description: Internal Error
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/status'
+              examples:
+                default400ResponseExample:
+                  $ref: '#/components/examples/500Example'
+tags:
+  - name: Level 1
+    description: >-
+      API provides access to check coverage and retrieve Level 1 historical tick
+      data
+  - name: Level 2
+    description: API provides access to the  historical tick data up to 10 levels of depth
+history files requested in the /create endpoint
+      operationId: getTickHistoryLevel2Files
+      description: Returns the files from tickhistory endpoint
+      parameters:
+        - $ref: '#/components/parameters/requestId'
+        - $ref: '#/components/parameters/_paginationLimit'
+        - $ref: '#/components/parameters/_paginationOffset'
+      responses:
+        '200':
+          description: >-
+            Success</p> **To download the output file copy the response url in a
+            browser**
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/leveltwoGet-FilesResponse'
+              examples:
+                default200ResponseExample:
+                  $ref: '#/components/examples/sampleGet-FilesResponseLevel2'
+        '202':
+          description: |
+
+            The Request has not finished and the result has NOT been created.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/submittedResponse'
+              examples:
+                QueuedExample:
+                  $ref: '#/components/examples/sampleFilesResponseQueued'
+                ExecutingExample:
+                  $ref: '#/components/examples/sampleFilesResponseExecuting'
+          headers:
+            Location:
+              description: Relative location to poll for status.
+              schema:
+                type: string
+        '400':
+          description: Bad request
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/status'
+              examples:
+                default400ResponseExample:
+                  $ref: '#/components/examples/400Example'
+        '401':
+          description: >-
+            Unauthenticated USERNAME-SERIAL. Ensure you are logged in and have
+            successfully generated an API KEY for the IP range you are
+            connecting from. For more help, select the Report Issue in the top
+            right corner of this Developer Portal specification card and choose
+            Connectivity 401 or 403 Responses.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/status'
+              examples:
+                default400ResponseExample:
+                  $ref: '#/components/examples/401Example'
+        '403':
+          description: >-
+            The USERNAME-SERIAL attempted to request the endpoint is not
+            authorized to access. The request was a legal request, but the
+            server is refusing to respond. Please reach out to FactSet Account
+            Team for assistance with authorization.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/status'
+              examples:
+                default400ResponseExample:
+                  $ref: '#/components/examples/403Example'
+        '404':
+          description: id not found
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/status'
+              examples:
+                default400ResponseExample:
+                  $ref: '#/components/examples/404Example'
+        '500':
+          description: Internal Error
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/status'
+              examples:
+                default400ResponseExample:
+                  $ref: '#/components/examples/500Example'
+tags:
+  - name: Level 1
+    description: >-
+      API provides access to check coverage and retrieve Level 1 historical tick
+      data
+  - name: Level 2
+    description: API provides access to the  historical tick data up to 10 levels of depth

@@ -1,0 +1,417 @@
+openapi: 3.0.3
+info:
+  title: Conversational API Powered by FactSet Mercury
+  license:
+    name: Apache License, Version 2.0
+    url: https://www.apache.org/licenses/LICENSE-2.0
+paths:
+  /create:
+    post:
+      summary: Create a chat request for a given natural language query.
+      description: >
+        Returns a chat ID for polling the response to a natural language query
+        for financial data.
+
+          This endpoint is an interface for initializing a request for an answer from FactSet Mercury, our large language model for surfacing FactSet datasets through conversational natural language queries. Use the `/create` endpoint to start generating responses for one-off questions. Responses contain a chat ID and status for the chat process.
+      tags:
+        - Single Question Chat
+  /status:
+    post:
+      summary: Retrieve the status of a chat response process.
+      description: >
+        Returns the status of a chat response for a given chat conversation ID
+        (recevied from the `/create` endpoint). Poll the `/status` endpoint with
+        your conversation ID to confirm when your data is ready.
+
+        Answers may take minutes to generate, depending on the complexity of the
+        query.
+      tags:
+        - Single Question Chat
+  /result:
+    post:
+      summary: Retrieve the completed response for your query.
+      description: >
+        Returns FactSet content and data in response to the query provided to
+        the `/create` endpoint. This endpoint is the final step in the
+        single-question request process.
+
+        Responses contain a combination of Microsoft Adaptive Cards for
+        data/tables and markdown for text.
+      tags:
+        - Single Question Chat
+tags:
+  - name: Single Question Chat
+externalDocs:
+  description: API Documentation
+  url: >-
+    https://developer.factset.com/api-catalog/conversational-api-powered-factset-mercury
+json:
+            schema:
+              $ref: '#/components/schemas/ChatPollingRequest'
+            examples:
+              Example request:
+                $ref: '#/components/examples/ChatPollingRequestExample'
+      responses:
+        '200':
+          description: OK
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/QueryResponse'
+              examples:
+                Example question:
+                  $ref: '#/components/examples/QueryResponseExample'
+          headers:
+            Api-Supported-Versions:
+              description: Comma-separated list of supported major versions.
+              schema:
+                type: string
+              example: '0'
+            Api-Version:
+              description: Full semantic version of the API.
+              schema:
+                type: string
+              example: 0.1.0
+            RateLimit-Limit:
+              description: Request limit per second.
+              schema:
+                type: integer
+              example: 10
+            RateLimit-Remaining:
+              description: Number of available requests.
+              schema:
+                type: integer
+              example: 9
+            RateLimit-Reset:
+              description: Time remaining (in seconds) until request limit is reset.
+              schema:
+                type: integer
+              example: 1
+            X-RateLimit-Limit-minute:
+              description: Request limit per minute.
+              schema:
+                type: integer
+              example: 300
+            X-RateLimit-Remaining-minute:
+              description: Number of available requests in the current minute.
+              schema:
+                type: integer
+              example: 290
+            X-DataDirect-Request-Key:
+              description: FactSet request ID.
+              schema:
+                type: string
+              example: 65C6BC290A11FB4F
+        '400':
+          description: Bad Request
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Error'
+        '401':
+          description: >-
+            Unauthorized - You are not properly authenticated for use of this
+            API. Please make sure you are logged in to the developer portal or
+            using a valid API key (managed
+            [here](https://developer.factset.com/manage-api-keys)) for access.
+            If you believe you are seeing this message in error, please reach
+            out to your FactSet Support Team representative.
+          content:
+            text/plain:
+              schema:
+                $ref: '#/components/schemas/401UnauthorizedError'
+              examples:
+                Example error:
+                  $ref: '#/components/examples/401UnauthorizedErrorExample'
+        '403':
+          description: >-
+            Forbidden - You do not have the entitlements enabled for this
+            service. Please reach out to your FactSet Support Team
+            representative to receive the proper entitlements.
+          content:
+            text/plain:
+              schema:
+                $ref: '#/components/schemas/403ForbiddenError'
+              examples:
+                Example error:
+                  $ref: '#/components/examples/403ForbiddenErrorExample'
+        '429':
+          description: >-
+            Too Many Requests - The /result endpoint is currently rate-limited
+            to 10 requests per second for an individual organization. If you are
+            receiving an unexpected amount of these errors, please contact the
+            API team at
+            [genai.offplatform@factset.com](genai.offplatform@factset.com).
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/RateLimitExceededError'
+              examples:
+                Example error:
+                  $ref: '#/components/examples/RateLimitExceededErrorExample'
+          headers:
+            RateLimit-Limit:
+              description: Request limit per second.
+              schema:
+                type: integer
+              example: 10
+            RateLimit-Remaining:
+              description: Number of available requests.
+              schema:
+                type: integer
+              example: 9
+            RateLimit-Reset:
+              description: Time remaining (in seconds) until request limit is reset.
+              schema:
+                type: integer
+              example: 1
+            Retry-After:
+              description: >-
+                How long (in seconds) to wait before attempting to send a new
+                request.
+              schema:
+                type: integer
+              example: 1
+            X-RateLimit-Limit-minute:
+              description: Request limit per minute.
+              schema:
+                type: integer
+              example: 300
+            X-RateLimit-Remaining-minute:
+              description: Number of available requests in the current minute.
+              schema:
+                type: integer
+              example: 290
+            X-DataDirect-Request-Key:
+              description: FactSet request ID.
+              schema:
+                type: string
+              example: 65C6BC290A11FB4F
+        '500':
+          description: Internal Server Error
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Error'
+tags:
+  - name: Single Question Chat
+externalDocs:
+  description: API Documentation
+  url: >-
+    https://developer.factset.com/api-catalog/conversational-api-powered-factset-mercury
+/RateLimitExceededErrorExample'
+          headers:
+            RateLimit-Limit:
+              description: Request limit per second.
+              schema:
+                type: integer
+              example: 10
+            RateLimit-Remaining:
+              description: Number of available requests.
+              schema:
+                type: integer
+              example: 9
+            RateLimit-Reset:
+              description: Time remaining (in seconds) until request limit is reset.
+              schema:
+                type: integer
+              example: 1
+            Retry-After:
+              description: >-
+                How long (in seconds) to wait before attempting to send a new
+                request.
+              schema:
+                type: integer
+              example: 1
+            X-RateLimit-Limit-minute:
+              description: Request limit per minute.
+              schema:
+                type: integer
+              example: 300
+            X-RateLimit-Remaining-minute:
+              description: Number of available requests in the current minute.
+              schema:
+                type: integer
+              example: 290
+            X-DataDirect-Request-Key:
+              description: FactSet request ID.
+              schema:
+                type: string
+              example: 65C6BC290A11FB4F
+        '500':
+          description: Internal Server Error
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Error'
+  /result:
+    post:
+      operationId: getChatResult
+      summary: Retrieve the completed response for your query.
+      description: >
+        Returns FactSet content and data in response to the query provided to
+        the `/create` endpoint. This endpoint is the final step in the
+        single-question request process.
+
+        Responses contain a combination of Microsoft Adaptive Cards for
+        data/tables and markdown for text.
+      tags:
+        - Single Question Chat
+      requestBody:
+        description: ID representing the chat process for your query
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/ChatPollingRequest'
+            examples:
+              Example request:
+                $ref: '#/components/examples/ChatPollingRequestExample'
+      responses:
+        '200':
+          description: OK
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/QueryResponse'
+              examples:
+                Example question:
+                  $ref: '#/components/examples/QueryResponseExample'
+          headers:
+            Api-Supported-Versions:
+              description: Comma-separated list of supported major versions.
+              schema:
+                type: string
+              example: '0'
+            Api-Version:
+              description: Full semantic version of the API.
+              schema:
+                type: string
+              example: 0.1.0
+            RateLimit-Limit:
+              description: Request limit per second.
+              schema:
+                type: integer
+              example: 10
+            RateLimit-Remaining:
+              description: Number of available requests.
+              schema:
+                type: integer
+              example: 9
+            RateLimit-Reset:
+              description: Time remaining (in seconds) until request limit is reset.
+              schema:
+                type: integer
+              example: 1
+            X-RateLimit-Limit-minute:
+              description: Request limit per minute.
+              schema:
+                type: integer
+              example: 300
+            X-RateLimit-Remaining-minute:
+              description: Number of available requests in the current minute.
+              schema:
+                type: integer
+              example: 290
+            X-DataDirect-Request-Key:
+              description: FactSet request ID.
+              schema:
+                type: string
+              example: 65C6BC290A11FB4F
+        '400':
+          description: Bad Request
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Error'
+        '401':
+          description: >-
+            Unauthorized - You are not properly authenticated for use of this
+            API. Please make sure you are logged in to the developer portal or
+            using a valid API key (managed
+            [here](https://developer.factset.com/manage-api-keys)) for access.
+            If you believe you are seeing this message in error, please reach
+            out to your FactSet Support Team representative.
+          content:
+            text/plain:
+              schema:
+                $ref: '#/components/schemas/401UnauthorizedError'
+              examples:
+                Example error:
+                  $ref: '#/components/examples/401UnauthorizedErrorExample'
+        '403':
+          description: >-
+            Forbidden - You do not have the entitlements enabled for this
+            service. Please reach out to your FactSet Support Team
+            representative to receive the proper entitlements.
+          content:
+            text/plain:
+              schema:
+                $ref: '#/components/schemas/403ForbiddenError'
+              examples:
+                Example error:
+                  $ref: '#/components/examples/403ForbiddenErrorExample'
+        '429':
+          description: >-
+            Too Many Requests - The /result endpoint is currently rate-limited
+            to 10 requests per second for an individual organization. If you are
+            receiving an unexpected amount of these errors, please contact the
+            API team at
+            [genai.offplatform@factset.com](genai.offplatform@factset.com).
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/RateLimitExceededError'
+              examples:
+                Example error:
+                  $ref: '#/components/examples/RateLimitExceededErrorExample'
+          headers:
+            RateLimit-Limit:
+              description: Request limit per second.
+              schema:
+                type: integer
+              example: 10
+            RateLimit-Remaining:
+              description: Number of available requests.
+              schema:
+                type: integer
+              example: 9
+            RateLimit-Reset:
+              description: Time remaining (in seconds) until request limit is reset.
+              schema:
+                type: integer
+              example: 1
+            Retry-After:
+              description: >-
+                How long (in seconds) to wait before attempting to send a new
+                request.
+              schema:
+                type: integer
+              example: 1
+            X-RateLimit-Limit-minute:
+              description: Request limit per minute.
+              schema:
+                type: integer
+              example: 300
+            X-RateLimit-Remaining-minute:
+              description: Number of available requests in the current minute.
+              schema:
+                type: integer
+              example: 290
+            X-DataDirect-Request-Key:
+              description: FactSet request ID.
+              schema:
+                type: string
+              example: 65C6BC290A11FB4F
+        '500':
+          description: Internal Server Error
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Error'
+tags:
+  - name: Single Question Chat
+externalDocs:
+  description: API Documentation
+  url: >-
+    https://developer.factset.com/api-catalog/conversational-api-powered-factset-mercury

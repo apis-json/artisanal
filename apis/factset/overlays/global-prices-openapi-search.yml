@@ -1,0 +1,541 @@
+openapi: 3.0.0
+info:
+  title: FactSet Global Prices API
+tags:
+  - name: Prices
+    description: >-
+      Get Security Open, High, Low, Close, Volume for a list of ids and date
+      range
+  - name: Returns
+    description: Gets the returns data for the list of ids, date range and currency
+paths:
+  /factset-global-prices/v1/prices:
+    get:
+      tags:
+        - Prices
+      summary: Gets end-of-day Open, High, Low, Close for a list of securities.
+      description: >
+        Gets security prices', Open, High, Low, Close, Volume, VWAP, Trade
+        Count, and Turn Over for a specified list of securities, date range,
+        currency, and adjustment factors.
+    post:
+      tags:
+        - Prices
+      summary: >-
+        Requests end-of-day Open, High, Low, Close for a large list of
+        securities.
+      description: >-
+        Gets security prices', Open, High, Low, Close, Volume, VWAP, Trade
+        Count, and Turn Over for a specified list of securities, date range,
+        currency, and adjustment factors.
+  /factset-global-prices/v1/corporate-actions:
+    get:
+      tags:
+        - Corporate Actions
+      summary: Gets Corporate Actions information.
+      description: >
+        Gets the Corporate Actions amounts, dates, types, and flags over a
+        specified date range.
+
+        You may request future dates to receive information for declared events.
+
+
+        Event Categories:
+
+        * __Cash Dividends__ (CASH_DIVS)
+          * **DVC** - Dividend
+          * **DVCD** - Dividend with DRP Option
+          * **DRP** - Dividend Reinvestment
+        * __Stock Distributions__ (STOCK_DIST)
+          * **DVS** - Stock Dividend
+          * **DVSS** - Stock Dividend, Special
+          * **BNS** - Bonus Issue
+          * **BNSS** - Bonus Issue, Special
+        * __Spin Offs__ (SPINOFFS)
+          * **SPO** - Spin Off
+        * __Rights Issue__ (RIGHTS)
+          * **DSR** - Rights Issue
+        * __Splits__ (SPLITS)
+          * **FSP** - Forward Split
+          * **RSP** - Reverse Split
+          * **SPL** - Split
+          * **EXOS** - Exchange of Securities
+    post:
+      tags:
+        - Corporate Actions
+      summary: Requests Corporate Actions information.
+      description: >-
+        Gets the Corporate Actions amounts, dates, types, and flags over a
+        specified date range. You may request future dates to receive
+        information for declared events. <p>**_startDate and endDate are
+        required parameters. The input startDate must come before the input
+        endDate._**
+  /factset-global-prices/v1/annualized-dividends:
+    get:
+      tags:
+        - Corporate Actions
+      summary: Gets Indicated Annualized Dividend information.
+      description: >
+        Gets the Annualized dividend of the latest reported dividend.
+
+        The annualized dividend calculations does not involve cancelled
+        dividends.
+    post:
+      tags:
+        - Corporate Actions
+      summary: Gets Indicated Annualized Dividend information.
+      description: >-
+        Gets the Annualized dividend of the latest reported dividend. The
+        annualized dividend calculations does not involve cancelled dividends.
+  /factset-global-prices/v1/returns:
+    get:
+      tags:
+        - Returns
+      summary: Gets Returns for a list of `ids` as of given date range.
+      description: >
+        Returns for the requested ids and currency for the given dates.
+        Depending on the input parameters the return data is provided. 
+    post:
+      tags:
+        - Returns
+      summary: Gets Returns for a list of `ids` as of given date range.
+      description: >-
+        Returns for the requested ids and currency for the given dates.
+        Depending on the input parameters the return data is provided.
+  /factset-global-prices/v1/security-shares:
+    get:
+      tags:
+        - Shares Outstanding
+      summary: Gets Shares Outstanding information for securities.
+      operationId: getSharesOutstanding
+      description: >-
+        Returns security level shares outstanding data for the given ids and
+        dates. At this time, all values returned are split adjusted.
+      parameters:
+        - $ref: '#/components/parameters/idsBatchMax1000'
+        - $ref: '#/components/parameters/startDateSS'
+        - $ref: '#/components/parameters/endDate'
+        - $ref: '#/components/parameters/frequency'
+        - $ref: '#/components/parameters/calendar'
+        - $ref: '#/components/parameters/batch'
+      responses:
+        '200':
+          description: >-
+            Array of security shares outstanding information for a given date
+            range and list of securities
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/sharesOutstandingResponse'
+              examples:
+                Shares Outstanding:
+                  $ref: '#/components/examples/sharesOutstanding'
+        '202':
+          description: Batch request has been accepted.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/BatchStatusResponse'
+              examples:
+                Batch Request Accepted:
+                  $ref: '#/components/examples/BatchStatusAcceptedResponse'
+          headers:
+            Location:
+              description: Path to Batch Request status.
+              schema:
+                type: string
+              example: batch-status?id=2df43e85-ea0f-45c6-bf4a-2baf4d1eaa3c
+        '400':
+          $ref: '#/components/responses/SO400'
+        '401':
+          $ref: '#/components/responses/SO401'
+        '403':
+          $ref: '#/components/responses/SO403'
+        '415':
+          $ref: '#/components/responses/SO415'
+        '500':
+          $ref: '#/components/responses/SO500'
+    post:
+      tags:
+        - Shares Outstanding
+      summary: Gets Shares Outstanding information for securities.
+      description: >-
+        Returns security level shares outstanding data for the given ids and
+        dates. At this time, all values returned are split adjusted.
+      operationId: postSharesOutstanding
+      requestBody:
+        required: true
+        description: Request object for `Shares Outstanding`.
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/sharesOutstandingRequest'
+      responses:
+        '200':
+          description: Array of shares outstanding
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/sharesOutstandingResponse'
+        '202':
+          description: Batch request has been accepted.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/BatchStatusResponse'
+              examples:
+                Batch Request Accepted:
+                  $ref: '#/components/examples/BatchStatusAcceptedResponse'
+          headers:
+            Location:
+              description: Path to Batch Request status.
+              schema:
+                type: string
+              example: batch-status?id=2df43e85-ea0f-45c6-bf4a-2baf4d1eaa3c
+        '400':
+          $ref: '#/components/responses/SO400'
+        '401':
+          $ref: '#/components/responses/SO401'
+        '403':
+          $ref: '#/components/responses/SO403'
+        '415':
+          $ref: '#/components/responses/SO415'
+        '500':
+          $ref: '#/components/responses/SO500'
+  /factset-global-prices/v1/batch-status:
+    get:
+      tags:
+        - Batch Processing
+      summary: |
+        Returns the status for a Batch Request
+      description: >-
+        Return the status for the underlying batch request that is specified by
+        the id.
+      operationId: getBatchStatus
+      parameters:
+        - $ref: '#/components/parameters/batchId'
+      responses:
+        '201':
+          description: >-
+            The batch Request has been completed and the response has been
+            created.
+          headers:
+            Location:
+              description: Path to Batch Request result.
+              schema:
+                type: string
+              example: batch-result?id=2df43e85-ea0f-45c6-bf4a-2baf4d1eaa3c
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/BatchStatusResponse'
+              examples:
+                Batch Status Done:
+                  $ref: '#/components/examples/BatchStatusDoneResponse'
+        '202':
+          description: >-
+            The batch Request has not finished and the result has NOT been
+            created.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/BatchStatusResponse'
+              examples:
+                Batch Status Queued:
+                  $ref: '#/components/examples/BatchStatusQueuedResponse'
+                Batch Status Executing:
+                  $ref: '#/components/examples/BatchStatusExecutingResponse'
+                Batch Status Failed:
+                  $ref: '#/components/examples/BatchStatusFailedResponse'
+        '404':
+          $ref: '#/components/responses/batch404'
+      deprecated: false
+  /factset-global-prices/v1/batch-result:
+    get:
+      tags:
+        - Batch Processing
+      summary: |
+        Returns the response for a Batch Request
+      description: >
+        Returns the response data for the underlying batch request that is
+        specified by the id.
+
+
+        By default, this endpoint will return data as JSON. If you wish to
+        receive your data in CSV format, you can edit the header to have the
+        "accept" parameter as "text/csv" instead of "application/json".
+      operationId: getBatchData
+      parameters:
+        - $ref: '#/components/parameters/batchId'
+      responses:
+        '200':
+          description: >-
+            Request Response Object when the batch request has been completed
+            and the response is created
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/batchResultResponse'
+              examples:
+                One Week Prices for Two Securities Filtered Fields:
+                  $ref: '#/components/examples/GlobalPricesResponsePricesOnly'
+                Returns:
+                  $ref: '#/components/examples/returnsResponseAll'
+                Corporate Actions Ordinary Dividends:
+                  $ref: '#/components/examples/OrdinaryDividends'
+                Annualized Dividends:
+                  $ref: '#/components/examples/annualizedDividendsResponse'
+                Security Shares:
+                  $ref: '#/components/examples/sharesOutstanding'
+        '202':
+          description: >-
+            The batch Request has not finished and the result has NOT been
+            created.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/BatchStatusResponse'
+              examples:
+                Batch Request Queued:
+                  $ref: '#/components/examples/BatchStatusQueuedResponse'
+                Batch Request Executing:
+                  $ref: '#/components/examples/BatchStatusExecutingResponse'
+        '404':
+          $ref: '#/components/responses/batch404'
+      deprecated: false
+      Batch Status Done:
+                  $ref: '#/components/examples/BatchStatusDoneResponse'
+        '202':
+          description: >-
+            The batch Request has not finished and the result has NOT been
+            created.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/BatchStatusResponse'
+              examples:
+                Batch Status Queued:
+                  $ref: '#/components/examples/BatchStatusQueuedResponse'
+                Batch Status Executing:
+                  $ref: '#/components/examples/BatchStatusExecutingResponse'
+                Batch Status Failed:
+                  $ref: '#/components/examples/BatchStatusFailedResponse'
+        '404':
+          $ref: '#/components/responses/batch404'
+      deprecated: false
+  /factset-global-prices/v1/batch-result:
+    get:
+      tags:
+        - Batch Processing
+      summary: |
+        Returns the response for a Batch Request
+      description: >
+        Returns the response data for the underlying batch request that is
+        specified by the id.
+
+
+        By default, this endpoint will return data as JSON. If you wish to
+        receive your data in CSV format, you can edit the header to have the
+        "accept" parameter as "text/csv" instead of "application/json".
+      operationId: getBatchData
+      parameters:
+        - $ref: '#/components/parameters/batchId'
+      responses:
+        '200':
+          description: >-
+            Request Response Object when the batch request has been completed
+            and the response is created
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/batchResultResponse'
+              examples:
+                One Week Prices for Two Securities Filtered Fields:
+                  $ref: '#/components/examples/GlobalPricesResponsePricesOnly'
+                Returns:
+                  $ref: '#/components/examples/returnsResponseAll'
+                Corporate Actions Ordinary Dividends:
+                  $ref: '#/components/examples/OrdinaryDividends'
+                Annualized Dividends:
+                  $ref: '#/components/examples/annualizedDividendsResponse'
+                Security Shares:
+                  $ref: '#/components/examples/sharesOutstanding'
+        '202':
+          description: >-
+            The batch Request has not finished and the result has NOT been
+            created.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/BatchStatusResponse'
+              examples:
+                Batch Request Queued:
+                  $ref: '#/components/examples/BatchStatusQueuedResponse'
+                Batch Request Executing:
+                  $ref: '#/components/examples/BatchStatusExecutingResponse'
+        '404':
+          $ref: '#/components/responses/batch404'
+      deprecated: false
+    content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/BatchStatusResponse'
+              examples:
+                Batch Status Queued:
+                  $ref: '#/components/examples/BatchStatusQueuedResponse'
+                Batch Status Executing:
+                  $ref: '#/components/examples/BatchStatusExecutingResponse'
+                Batch Status Failed:
+                  $ref: '#/components/examples/BatchStatusFailedResponse'
+        '404':
+          $ref: '#/components/responses/batch404'
+      deprecated: false
+  /factset-global-prices/v1/batch-result:
+    get:
+      tags:
+        - Batch Processing
+      summary: |
+        Returns the response for a Batch Request
+      description: >
+        Returns the response data for the underlying batch request that is
+        specified by the id.
+
+
+        By default, this endpoint will return data as JSON. If you wish to
+        receive your data in CSV format, you can edit the header to have the
+        "accept" parameter as "text/csv" instead of "application/json".
+      operationId: getBatchData
+      parameters:
+        - $ref: '#/components/parameters/batchId'
+      responses:
+        '200':
+          description: >-
+            Request Response Object when the batch request has been completed
+            and the response is created
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/batchResultResponse'
+              examples:
+                One Week Prices for Two Securities Filtered Fields:
+                  $ref: '#/components/examples/GlobalPricesResponsePricesOnly'
+                Returns:
+                  $ref: '#/components/examples/returnsResponseAll'
+                Corporate Actions Ordinary Dividends:
+                  $ref: '#/components/examples/OrdinaryDividends'
+                Annualized Dividends:
+                  $ref: '#/components/examples/annualizedDividendsResponse'
+                Security Shares:
+                  $ref: '#/components/examples/sharesOutstanding'
+        '202':
+          description: >-
+            The batch Request has not finished and the result has NOT been
+            created.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/BatchStatusResponse'
+              examples:
+                Batch Request Queued:
+                  $ref: '#/components/examples/BatchStatusQueuedResponse'
+                Batch Request Executing:
+                  $ref: '#/components/examples/BatchStatusExecutingResponse'
+        '404':
+          $ref: '#/components/responses/batch404'
+      deprecated: false
+ status for a Batch Request
+      description: >-
+        Return the status for the underlying batch request that is specified by
+        the id.
+      operationId: getBatchStatus
+      parameters:
+        - $ref: '#/components/parameters/batchId'
+      responses:
+        '201':
+          description: >-
+            The batch Request has been completed and the response has been
+            created.
+          headers:
+            Location:
+              description: Path to Batch Request result.
+              schema:
+                type: string
+              example: batch-result?id=2df43e85-ea0f-45c6-bf4a-2baf4d1eaa3c
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/BatchStatusResponse'
+              examples:
+                Batch Status Done:
+                  $ref: '#/components/examples/BatchStatusDoneResponse'
+        '202':
+          description: >-
+            The batch Request has not finished and the result has NOT been
+            created.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/BatchStatusResponse'
+              examples:
+                Batch Status Queued:
+                  $ref: '#/components/examples/BatchStatusQueuedResponse'
+                Batch Status Executing:
+                  $ref: '#/components/examples/BatchStatusExecutingResponse'
+                Batch Status Failed:
+                  $ref: '#/components/examples/BatchStatusFailedResponse'
+        '404':
+          $ref: '#/components/responses/batch404'
+      deprecated: false
+  /factset-global-prices/v1/batch-result:
+    get:
+      tags:
+        - Batch Processing
+      summary: |
+        Returns the response for a Batch Request
+      description: >
+        Returns the response data for the underlying batch request that is
+        specified by the id.
+
+
+        By default, this endpoint will return data as JSON. If you wish to
+        receive your data in CSV format, you can edit the header to have the
+        "accept" parameter as "text/csv" instead of "application/json".
+      operationId: getBatchData
+      parameters:
+        - $ref: '#/components/parameters/batchId'
+      responses:
+        '200':
+          description: >-
+            Request Response Object when the batch request has been completed
+            and the response is created
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/batchResultResponse'
+              examples:
+                One Week Prices for Two Securities Filtered Fields:
+                  $ref: '#/components/examples/GlobalPricesResponsePricesOnly'
+                Returns:
+                  $ref: '#/components/examples/returnsResponseAll'
+                Corporate Actions Ordinary Dividends:
+                  $ref: '#/components/examples/OrdinaryDividends'
+                Annualized Dividends:
+                  $ref: '#/components/examples/annualizedDividendsResponse'
+                Security Shares:
+                  $ref: '#/components/examples/sharesOutstanding'
+        '202':
+          description: >-
+            The batch Request has not finished and the result has NOT been
+            created.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/BatchStatusResponse'
+              examples:
+                Batch Request Queued:
+                  $ref: '#/components/examples/BatchStatusQueuedResponse'
+                Batch Request Executing:
+                  $ref: '#/components/examples/BatchStatusExecutingResponse'
+        '404':
+          $ref: '#/components/responses/batch404'
+      deprecated: false

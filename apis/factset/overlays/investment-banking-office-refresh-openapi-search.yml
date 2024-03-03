@@ -1,0 +1,144 @@
+openapi: 3.0.3
+info:
+  title: Investment Banking Office Refresh API
+  license:
+    name: Apache License, Version 2.0
+    url: https://www.apache.org/licenses/LICENSE-2.0
+externalDocs:
+  description: API Documentation
+  url: https://developer.factset.com/api-catalog/
+paths:
+  /refresh/calculate:
+    post:
+      summary: Upload a spreadsheet file
+      description: >-
+        Upload a spreadsheet file (in the Open Office XML format) for FactSet to
+        refresh.
+      tags:
+        - Refresh Operations
+  /refresh/{id}/status:
+    get:
+      summary: Get the status of the refresh job with the given resource ID
+      description: Check the status of the given job by the resource ID
+      tags:
+        - Refresh Operations
+  /refresh/{id}:
+    get:
+      summary: Retrieve a calculated file by resource ID.
+      description: If the requested job is complete, the calculated file will be returned.
+      tags:
+        - Refresh Operations
+      operationId: getFileById
+      parameters:
+        - $ref: '#/components/parameters/ResourceId'
+      responses:
+        '200':
+          description: Expected response; body will contain calculated file
+          content:
+            application/vnd.openxmlformats-officedocument.spreadsheetml.sheet:
+              schema:
+                $ref: '#/components/schemas/SpreadsheetFile'
+          headers:
+            Content-Disposition:
+              description: >-
+                Standard HTTP header. Content is expected to be displayed as an
+                attachment.
+              schema:
+                type: string
+            Content-Type:
+              description: Standard HTTP header. The file format type.
+              schema:
+                type: string
+            Transfer-Encoding:
+              description: >-
+                Standard HTTP header. Header value will be set to Chunked if
+                Accept-Encoding header is specified.
+              schema:
+                type: string
+        '202':
+          description: Accepted (resource not ready yet)
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/JobStatus'
+          headers:
+            Location:
+              description: Relative URL to check status of the request.
+              schema:
+                type: string
+        '400':
+          description: Bad Request
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Errors'
+        '404':
+          description: Not Found
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Errors'
+        '422':
+          description: Failed to refresh file
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Errors'
+        '500':
+          description: Server Error
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Errors'
+tags:
+  - name: Refresh Operations
+           attachment.
+              schema:
+                type: string
+            Content-Type:
+              description: Standard HTTP header. The file format type.
+              schema:
+                type: string
+            Transfer-Encoding:
+              description: >-
+                Standard HTTP header. Header value will be set to Chunked if
+                Accept-Encoding header is specified.
+              schema:
+                type: string
+        '202':
+          description: Accepted (resource not ready yet)
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/JobStatus'
+          headers:
+            Location:
+              description: Relative URL to check status of the request.
+              schema:
+                type: string
+        '400':
+          description: Bad Request
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Errors'
+        '404':
+          description: Not Found
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Errors'
+        '422':
+          description: Failed to refresh file
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Errors'
+        '500':
+          description: Server Error
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Errors'
+tags:
+  - name: Refresh Operations

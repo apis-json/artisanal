@@ -1,0 +1,456 @@
+openapi: 3.0.1
+info:
+  title: Natural Language Processing API
+  license:
+    name: Apache License, Version 2.0
+    url: https://www.apache.org/licenses/LICENSE-2.0
+tags:
+  - name: AI Text Summarization
+  - name: AI Themes
+  - name: Named Entity Recognition
+  - name: Question & Answer
+paths:
+  /themes:
+    post:
+      description: >-
+        Endpoint to extract themes from provided text. Optionally, can include
+        sentiment for each theme extracted. Please check the schema(s) for each
+        of the status codes for more details.
+      summary: Endpoint to begin theme extraction job
+      tags:
+        - AI Themes
+  /themes/{id}:
+    get:
+      description: >-
+        Endpoint to obtain the results from the original themes task request.
+        The `id` parameter represents the identifier of the task generated from
+        the POST request which created the task. Once the task is complete, the
+        result can be fetched with this endpoint.
+      summary: Endpoint to get a theme (and sentiments if requested) job result
+      tags:
+        - AI Themes
+  /themes/{id}/status:
+    get:
+      description: >-
+        Endpoint to obtain the completion status of the themes task request. The
+        `id` parameter represents the task.
+      summary: Endpoint to get the completion status of a themes job
+      tags:
+        - AI Themes
+  /summarization/headline:
+    post:
+      parameters: []
+      operationId: summarizationHeadline
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/SummarizationRequest'
+      responses:
+        '201':
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/SummarizationResultID'
+          description: Unique Result ID
+        '400':
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ValidationError'
+          description: Bad Request
+        '401':
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/SummarizationHTTPError'
+          description: Access Denied
+        '500':
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/SummarizationHTTPError'
+          description: Internal Server Error
+      summary: Endpoint to generate a headline from text
+      description: Generate a headline-length summary of plain text
+      tags:
+        - AI Text Summarization
+  /summarization/headline-and-summary:
+    post:
+      parameters: []
+      operationId: summarizationHeadlineAndSummary
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/SummarizationRequest'
+      responses:
+        '201':
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/SummarizationResultID'
+          description: Unique Result ID
+        '400':
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ValidationError'
+          description: Bad Request
+        '401':
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/SummarizationHTTPError'
+          description: Access Denied
+        '500':
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/SummarizationHTTPError'
+          description: Internal Server Error
+      summary: Endpoint to summarize and generate a headline from text
+      description: >-
+        Generate both a paragraph-length, and headline-length summary of plain
+        text
+      tags:
+        - AI Text Summarization
+  /summarization/summary:
+    post:
+      parameters: []
+      operationId: summarizationSummary
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/SummarizationRequest'
+      responses:
+        '201':
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/SummarizationResultID'
+          description: Unique Result ID
+        '400':
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ValidationError'
+          description: Bad Request
+        '401':
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/SummarizationHTTPError'
+          description: Access Denied
+        '500':
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/SummarizationHTTPError'
+          description: Internal Server Error
+      summary: Endpoint to summarize text
+      description: Generate a paragraph-length summary of plain text
+      tags:
+        - AI Text Summarization
+  /ner/entities:
+    post:
+      parameters: []
+      operationId: nerEntities
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/NERInputSchema'
+      responses:
+        '200':
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/NERResponseSchema'
+          description: Successful response
+        '400':
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/NERResponseSchema'
+          description: Validation error
+      summary: Endpoint to detect entities from text
+      description: Detect entities (People, Places, Organizations, etc.) in plain text
+      tags:
+        - Named Entity Recognition
+  /summarization/result/{resultId}:
+    get:
+      operationId: summarizationResult
+      parameters:
+        - in: path
+          name: resultId
+          required: true
+          schema:
+            type: string
+      responses:
+        '200':
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/SummarizationResult'
+          description: Successful response
+        '400':
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/HTTPError'
+          description: Bad Request
+        '401':
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/HTTPError'
+          description: Access Denied
+        '404':
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/HTTPError'
+          description: Not found
+        '500':
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/HTTPError'
+          description: Internal Server Error
+      summary: Endpoint to obtain result of a particular summarization job
+      description: >-
+        Retrieve the summarization result from a job started with the other
+        summarization endpoints
+      tags:
+        - AI Text Summarization
+  /qna/answers:
+    post:
+      description: >-
+        Endpoint to create a task submission by providing plain text and
+        question(s). The underlying model will answer the question. The created
+        task needs to be polled to obtain the results. Please check the
+        schema(s) for each of the status codes for more details about the task.
+      operationId: qnaPostQuestion
+      parameters: []
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/QnAAnswerParametersRoot'
+        required: true
+      responses:
+        '202':
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/TaskRoot'
+          description: Accepted
+          headers:
+            Location:
+              description: >-
+                The `Location` response header indicates the URL to redirect a
+                page to.
+              required: true
+              schema:
+                type: string
+        '400':
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/HTTPErrorRoot'
+          description: >-
+            The browser (or proxy) sent a request that this server could not
+            understand.
+        '401':
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/HTTPErrorRoot'
+          description: >-
+            The server could not verify that you are authorized to access the
+            URL requested. You either supplied the wrong credentials (e.g. a bad
+            password), or your browser doesn't understand how to supply the
+            credentials required.
+        '500':
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/HTTPErrorRoot'
+          description: >-
+            The server encountered an internal error and was unable to complete
+            your request. Either the server is overloaded or there is an error
+            in the application.
+      summary: Endpoint to submit a question for answer(s)
+      tags:
+        - Question & Answer
+  /qna/answers/{id}:
+    get:
+      description: >-
+        Endpoint to obtain the results from the original Q&A task request. The
+        `id` parameter represents the identifier from the task and comes from
+        the POST request which created the task. Once the task is complete, the
+        result can be fetched with this endpoint.
+      operationId: qnaGetAnswers
+      parameters:
+        - description: >-
+            Identifier from the Question & Answer task and comes from the POST
+            request which created the task
+          in: path
+          name: id
+          required: true
+          schema:
+            type: string
+      responses:
+        '200':
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/QnAAnswerRoot'
+          description: OK
+        '202':
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/TaskRoot'
+          description: Accepted
+          headers:
+            Location:
+              description: >-
+                The `Location` response header indicates the URL to redirect a
+                page to.
+              required: true
+              schema:
+                type: string
+        '401':
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/HTTPErrorRoot'
+          description: >-
+            The server could not verify that you are authorized to access the
+            URL requested. You either supplied the wrong credentials (e.g. a bad
+            password), or your browser doesn't understand how to supply the
+            credentials required.
+        '404':
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/HTTPErrorRoot'
+          description: >-
+            The requested URL was not found on the server. If you entered the
+            URL manually please check your spelling and try again.
+        '500':
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/HTTPErrorRoot'
+          description: >-
+            The server encountered an internal error and was unable to complete
+            your request. Either the server is overloaded or there is an error
+            in the application.
+      summary: Endpoint to get the answer(s)
+      tags:
+        - Question & Answer
+  /qna/answers/{id}/status:
+    get:
+      description: >-
+        Endpoint to obtain the status of the Q&A task request. The `id`
+        parameter represents the identifier of the task created and comes from
+        the POST request which created the task.
+      operationId: qnaGetStatus
+      parameters:
+        - description: >-
+            Identifier from the Question & Answer task and comes from the POST
+            request which created the task
+          in: path
+          name: id
+          required: true
+          schema:
+            type: string
+      responses:
+        '201':
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/TaskRoot'
+          description: Created
+          headers:
+            Location:
+              description: >-
+                The `Location` response header indicates the URL to redirect a
+                page to.
+              required: true
+              schema:
+                type: string
+        '202':
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/TaskRoot'
+          description: Accepted
+          headers:
+            Location:
+              description: >-
+                The `Location` response header indicates the URL to redirect a
+                page to.
+              required: true
+              schema:
+                type: string
+        '401':
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/HTTPErrorRoot'
+          description: >-
+            The server could not verify that you are authorized to access the
+            URL requested. You either supplied the wrong credentials (e.g. a bad
+            password), or your browser doesn't understand how to supply the
+            credentials required.
+        '404':
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/HTTPErrorRoot'
+          description: >-
+            The requested URL was not found on the server. If you entered the
+            URL manually please check your spelling and try again.
+        '500':
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/HTTPErrorRoot'
+          description: >-
+            The server encountered an internal error and was unable to complete
+            your request. Either the server is overloaded or there is an error
+            in the application.
+      summary: Endpoint to get the completion status for a Q&A request
+      tags:
+        - Question & Answer
+If you entered the
+            URL manually please check your spelling and try again.
+        '500':
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/HTTPErrorRoot'
+          description: >-
+            The server encountered an internal error and was unable to complete
+            your request. Either the server is overloaded or there is an error
+            in the application.
+      summary: Endpoint to get the completion status for a Q&A request
+      tags:
+        - Question & Answer
+       '500':
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/HTTPErrorRoot'
+          description: >-
+            The server encountered an internal error and was unable to complete
+            your request. Either the server is overloaded or there is an error
+            in the application.
+      summary: Endpoint to get the completion status for a Q&A request
+      tags:
+        - Question & Answer
