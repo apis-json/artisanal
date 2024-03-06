@@ -1189,33 +1189,3 @@ components:
             message:
               description: Error message
               type: string
-  responses:
-    '402':
-      description: >-
-        Invalid HTTP method. Either the method is not POST or GET or exceeds the
-        maximum request length (currently set at 5000 bytes). The description
-        field will indicate the exact reason.
-      content:
-        application/json:
-          schema:
-            $ref: '#/components/schemas/errorResponse'
-        application/xml:
-          schema:
-            $ref: '#/components/schemas/errorResponse'
-        text/csv:
-          schema:
-            $ref: '#/components/schemas/errorResponse'
-    '403':
-      description: >-
-        Invalid HTTP URL. Necessary query parameters are missing in the request.
-        The description field will indicate the exact reason.
-      content:
-        application/json:
-          schema:
-            $ref: '#/components/schemas/errorResponse'
-        application/xml:
-          schema:
-            $ref: '#/components/schemas/errorResponse'
-        text/csv:
-          schema:
-            $ref: '#/components/schemas/errorResponse'

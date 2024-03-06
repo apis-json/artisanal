@@ -1,0 +1,69 @@
+openapi: 3.0.0
+info:
+  title: Documents Distributor - Documents API
+paths:
+  /global-filings/v1/list-files:
+    get:
+      tags:
+        - Global Filings API
+      summary: Retrieve filings within FactSet coverage
+      description: Parameters can be used to get the filings
+  /asynch/streetaccount/v1/request-files:
+    get:
+      tags:
+        - StreetAccount XML API
+      summary: Returns the jobID
+      description: >-
+        Give the startDate and endDate parameters as request parameters in the
+        /request-files endpoint, it returns the jobID. startDate and endDate
+        should be in YYYY-MM-DDTHH:MM:SSZ format
+
+
+        This API only supports adhoc requests to retrieve historical files and
+        does not support real-time       files and if you interested in require
+        real-time push should consider the other three methods         (pushed
+        via SFTP, to QNT account, or your Azure Storage). Per API request able
+        to query till 2 years of data
+  /asynch/streetaccount/v1/check-status:
+    get:
+      tags:
+        - StreetAccount XML API
+      summary: Returns the status and percentDone of the requested jobID
+      description: >-
+        Need to plug-in the jobID got from /request-files into /check-status
+        endpoint
+  /asynch/streetaccount/v1/get-files:
+    get:
+      tags:
+        - StreetAccount XML API
+      summary: Returns the SA XML files for the specified daterange
+      description: >-
+        Need to plug-in the jobID got from /request-files into /check-status
+        endpoint
+  /asynch/news/v1/request-files:
+    get:
+      tags:
+        - News API
+      summary: Returns the jobID
+      description: >-
+        Give the startDate,endDate and source parameters as request parameters
+        in the /request-files endpoint, it returns the jobID. startDate and
+        endDate should be in YYYY-MM-DDTHH:MM:SSZ format
+
+        This API only supports adhoc requests to retrieve historical files
+  /asynch/news/v1/check-status:
+    get:
+      tags:
+        - News API
+      summary: Returns the status and percentDone of the requested jobID and source
+      description: >-
+        Need to plug-in the jobID got from /request-files into /check-status
+        endpoint
+  /asynch/news/v1/get-files:
+    get:
+      tags:
+        - News API
+      summary: Returns the news filings for the specified daterange and source
+      description: >-
+        Need to plug-in the source and jobID got from /request-files into
+        /get-files endpoint
