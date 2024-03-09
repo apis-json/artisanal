@@ -10,6 +10,9 @@ paths:
         transfers appearing first.</p>
       summary: Retrieve Transfers
       tags:
+        - Retrieve
+        - Transfers
+        - V1
         - Transfers
     post:
       description: >-
@@ -19,6 +22,9 @@ paths:
         “Insufficient Funds” error.</p>
       summary: Create Transfer
       tags:
+        - Create
+        - Transfer
+        - V1
         - Transfers
   /v1/transfers/{id}/reversals:
     get:
@@ -30,7 +36,12 @@ paths:
         parameters to page through additional reversals.</p>
       summary: Retrieve Transfer Reversals
       tags:
+        - Retrieve
+        - Transfer
+        - Reversals
+        - V1
         - Transfers
+        - Id
         - Reversals
     post:
       description: >-
@@ -48,8 +59,13 @@ paths:
         or when trying to reverse more money than is left on a transfer.</p>
       summary: Update Transfer Reversal
       tags:
-        - Transfers
+        - Update
+        - Transfer
         - Reversal
+        - V1
+        - Transfers
+        - Id
+        - Reversals
   /v1/transfers/{transfer}:
     get:
       description: >-
@@ -58,7 +74,13 @@ paths:
         list, and Stripe will return the corresponding transfer information.</p>
       summary: Retrieve Transfer
       tags:
+        - Retrieve
+        - Transfer
+        - V1
         - Transfers
+        - Id
+        - Reversals
+        - Transfer
     post:
       description: >-
         <p>Updates the specified transfer by setting the values of the
@@ -69,7 +91,13 @@ paths:
         <p>This request accepts only metadata as an argument.</p>
       summary: Update Transfer
       tags:
+        - Update
+        - Transfer
+        - V1
         - Transfers
+        - Id
+        - Reversals
+        - Transfer
   /v1/transfers/{transfer}/reversals/{id}:
     get:
       description: >-
@@ -78,8 +106,14 @@ paths:
         specific reversal stored on the transfer.</p>
       summary: Retrieve Transfer Reversal
       tags:
+        - Retrieve
+        - Transfer
+        - Reversal
+        - V1
         - Transfers
+        - Id
         - Reversals
+        - Transfer
     post:
       description: >-
         <p>Updates the specified reversal by setting the values of the
@@ -90,12 +124,18 @@ paths:
         <p>This request only accepts metadata and description as arguments.</p>
       summary: Update Transfer Reversal
       tags:
+        - Update
+        - Transfer
+        - Reversal
+        - V1
         - Transfers
+        - Id
         - Reversals
+        - Transfer
 tags:
   - name: Transfers
     description: Needs a description.
   - name: Reversals
     description: Needs a description.
   - name: Reversal
-    description: Needs a description.
+    description: Needs a descriptio

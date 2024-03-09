@@ -1,0 +1,923 @@
+openapi: 3.1.0
+info:
+  title: apigatewayv2
+paths:
+  /v2/apis:
+    PUT:
+      summary: ImportApi
+      description: <p>Imports an API.</p>
+      tags:
+        - Import
+        - Api
+        - V2
+        - Apis
+  /v2/domainnames/{domainName}/apimappings:
+    GET:
+      summary: GetApiMappings
+      description: <p>Gets API mappings.</p>
+      tags:
+        - Get
+        - Api
+        - Mappings
+        - V2
+        - Apis
+        - Name
+        - Apimappings
+  /v2/apis/{apiId}/authorizers:
+    GET:
+      summary: GetAuthorizers
+      description: <p>Gets the Authorizers for an API.</p>
+      tags:
+        - Get
+        - Authorizers
+        - V2
+        - Apis
+        - Name
+        - Apimappings
+        - Id
+        - Authorizers
+  /v2/apis/{apiId}/deployments:
+    GET:
+      summary: GetDeployments
+      description: <p>Gets the Deployments for an API.</p>
+      tags:
+        - Get
+        - Deployments
+        - V2
+        - Apis
+        - Name
+        - Apimappings
+        - Id
+        - Authorizers
+        - Deployments
+  /v2/domainnames:
+    GET:
+      summary: GetDomainNames
+      description: <p>Gets the domain names for an AWS account.</p>
+      tags:
+        - Get
+        - Domain
+        - Names
+        - V2
+        - Apis
+        - Name
+        - Apimappings
+        - Id
+        - Authorizers
+        - Deployments
+        - Domainnames
+  /v2/apis/{apiId}/integrations:
+    GET:
+      summary: GetIntegrations
+      description: <p>Gets the Integrations for an API.</p>
+      tags:
+        - Get
+        - Integrations
+        - V2
+        - Apis
+        - Name
+        - Apimappings
+        - Id
+        - Authorizers
+        - Deployments
+        - Domainnames
+        - Integrations
+  /v2/apis/{apiId}/integrations/{integrationId}/integrationresponses:
+    GET:
+      summary: GetIntegrationResponses
+      description: <p>Gets the IntegrationResponses for an Integration.</p>
+      tags:
+        - Get
+        - Integration
+        - Responses
+        - V2
+        - Apis
+        - Name
+        - Apimappings
+        - Id
+        - Authorizers
+        - Deployments
+        - Domainnames
+        - Integrations
+        - Integration
+        - Integrationresponses
+  /v2/apis/{apiId}/models:
+    GET:
+      summary: GetModels
+      description: <p>Gets the Models for an API.</p>
+      tags:
+        - Get
+        - Models
+        - V2
+        - Apis
+        - Name
+        - Apimappings
+        - Id
+        - Authorizers
+        - Deployments
+        - Domainnames
+        - Integrations
+        - Integration
+        - Integrationresponses
+        - Models
+  /v2/apis/{apiId}/routes:
+    GET:
+      summary: GetRoutes
+      description: <p>Gets the Routes for an API.</p>
+      tags:
+        - Get
+        - Routes
+        - V2
+        - Apis
+        - Name
+        - Apimappings
+        - Id
+        - Authorizers
+        - Deployments
+        - Domainnames
+        - Integrations
+        - Integration
+        - Integrationresponses
+        - Models
+        - Routes
+  /v2/apis/{apiId}/routes/{routeId}/routeresponses:
+    GET:
+      summary: GetRouteResponses
+      description: <p>Gets the RouteResponses for a Route.</p>
+      tags:
+        - Get
+        - Route
+        - Responses
+        - V2
+        - Apis
+        - Name
+        - Apimappings
+        - Id
+        - Authorizers
+        - Deployments
+        - Domainnames
+        - Integrations
+        - Integration
+        - Integrationresponses
+        - Models
+        - Routes
+        - Route
+        - Routeresponses
+  /v2/apis/{apiId}/stages:
+    GET:
+      summary: GetStages
+      description: <p>Gets the Stages for an API.</p>
+      tags:
+        - Get
+        - Stages
+        - V2
+        - Apis
+        - Name
+        - Apimappings
+        - Id
+        - Authorizers
+        - Deployments
+        - Domainnames
+        - Integrations
+        - Integration
+        - Integrationresponses
+        - Models
+        - Routes
+        - Route
+        - Routeresponses
+        - Stages
+  /v2/vpclinks:
+    GET:
+      summary: GetVpcLinks
+      description: <p>Gets a collection of VPC links.</p>
+      tags:
+        - Get
+        - Vpc
+        - Links
+        - V2
+        - Apis
+        - Name
+        - Apimappings
+        - Id
+        - Authorizers
+        - Deployments
+        - Domainnames
+        - Integrations
+        - Integration
+        - Integrationresponses
+        - Models
+        - Routes
+        - Route
+        - Routeresponses
+        - Stages
+        - Vpclinks
+  /v2/apis/{apiId}/stages/{stageName}/accesslogsettings:
+    DELETE:
+      summary: DeleteAccessLogSettings
+      description: >-
+        <p>Deletes the AccessLogSettings for a Stage. To disable access logging
+        for a Stage, delete its AccessLogSettings.</p>
+      tags:
+        - Delete
+        - Access
+        - Log
+        - Settings
+        - V2
+        - Apis
+        - Name
+        - Apimappings
+        - Id
+        - Authorizers
+        - Deployments
+        - Domainnames
+        - Integrations
+        - Integration
+        - Integrationresponses
+        - Models
+        - Routes
+        - Route
+        - Routeresponses
+        - Stages
+        - Vpclinks
+        - Stage
+        - Accesslogsettings
+  /v2/apis/{apiId}:
+    PATCH:
+      summary: UpdateApi
+      description: <p>Updates an Api resource.</p>
+      tags:
+        - Update
+        - Api
+        - V2
+        - Apis
+        - Name
+        - Apimappings
+        - Id
+        - Authorizers
+        - Deployments
+        - Domainnames
+        - Integrations
+        - Integration
+        - Integrationresponses
+        - Models
+        - Routes
+        - Route
+        - Routeresponses
+        - Stages
+        - Vpclinks
+        - Stage
+        - Accesslogsettings
+  /v2/domainnames/{domainName}/apimappings/{apiMappingId}:
+    PATCH:
+      summary: UpdateApiMapping
+      description: <p>The API mapping.</p>
+      tags:
+        - Update
+        - Api
+        - Mapping
+        - V2
+        - Apis
+        - Name
+        - Apimappings
+        - Id
+        - Authorizers
+        - Deployments
+        - Domainnames
+        - Integrations
+        - Integration
+        - Integrationresponses
+        - Models
+        - Routes
+        - Route
+        - Routeresponses
+        - Stages
+        - Vpclinks
+        - Stage
+        - Accesslogsettings
+        - Api
+        - Mapping
+  /v2/apis/{apiId}/authorizers/{authorizerId}:
+    PATCH:
+      summary: UpdateAuthorizer
+      description: <p>Updates an Authorizer.</p>
+      tags:
+        - Update
+        - Authorizer
+        - V2
+        - Apis
+        - Name
+        - Apimappings
+        - Id
+        - Authorizers
+        - Deployments
+        - Domainnames
+        - Integrations
+        - Integration
+        - Integrationresponses
+        - Models
+        - Routes
+        - Route
+        - Routeresponses
+        - Stages
+        - Vpclinks
+        - Stage
+        - Accesslogsettings
+        - Api
+        - Mapping
+        - Authorizer
+  /v2/apis/{apiId}/cors:
+    DELETE:
+      summary: DeleteCorsConfiguration
+      description: <p>Deletes a CORS configuration.</p>
+      tags:
+        - Delete
+        - Cors
+        - Configuration
+        - V2
+        - Apis
+        - Name
+        - Apimappings
+        - Id
+        - Authorizers
+        - Deployments
+        - Domainnames
+        - Integrations
+        - Integration
+        - Integrationresponses
+        - Models
+        - Routes
+        - Route
+        - Routeresponses
+        - Stages
+        - Vpclinks
+        - Stage
+        - Accesslogsettings
+        - Api
+        - Mapping
+        - Authorizer
+        - Cors
+  /v2/apis/{apiId}/deployments/{deploymentId}:
+    PATCH:
+      summary: UpdateDeployment
+      description: <p>Updates a Deployment.</p>
+      tags:
+        - Update
+        - Deployment
+        - V2
+        - Apis
+        - Name
+        - Apimappings
+        - Id
+        - Authorizers
+        - Deployments
+        - Domainnames
+        - Integrations
+        - Integration
+        - Integrationresponses
+        - Models
+        - Routes
+        - Route
+        - Routeresponses
+        - Stages
+        - Vpclinks
+        - Stage
+        - Accesslogsettings
+        - Api
+        - Mapping
+        - Authorizer
+        - Cors
+        - Deployment
+  /v2/domainnames/{domainName}:
+    PATCH:
+      summary: UpdateDomainName
+      description: <p>Updates a domain name.</p>
+      tags:
+        - Update
+        - Domain
+        - Name
+        - V2
+        - Apis
+        - Name
+        - Apimappings
+        - Id
+        - Authorizers
+        - Deployments
+        - Domainnames
+        - Integrations
+        - Integration
+        - Integrationresponses
+        - Models
+        - Routes
+        - Route
+        - Routeresponses
+        - Stages
+        - Vpclinks
+        - Stage
+        - Accesslogsettings
+        - Api
+        - Mapping
+        - Authorizer
+        - Cors
+        - Deployment
+  /v2/apis/{apiId}/integrations/{integrationId}:
+    PATCH:
+      summary: UpdateIntegration
+      description: <p>Updates an Integration.</p>
+      tags:
+        - Update
+        - Integration
+        - V2
+        - Apis
+        - Name
+        - Apimappings
+        - Id
+        - Authorizers
+        - Deployments
+        - Domainnames
+        - Integrations
+        - Integration
+        - Integrationresponses
+        - Models
+        - Routes
+        - Route
+        - Routeresponses
+        - Stages
+        - Vpclinks
+        - Stage
+        - Accesslogsettings
+        - Api
+        - Mapping
+        - Authorizer
+        - Cors
+        - Deployment
+  /v2/apis/{apiId}/integrations/{integrationId}/integrationresponses/{integrationResponseId}:
+    PATCH:
+      summary: UpdateIntegrationResponse
+      description: <p>Updates an IntegrationResponses.</p>
+      tags:
+        - Update
+        - Integration
+        - Response
+        - V2
+        - Apis
+        - Name
+        - Apimappings
+        - Id
+        - Authorizers
+        - Deployments
+        - Domainnames
+        - Integrations
+        - Integration
+        - Integrationresponses
+        - Models
+        - Routes
+        - Route
+        - Routeresponses
+        - Stages
+        - Vpclinks
+        - Stage
+        - Accesslogsettings
+        - Api
+        - Mapping
+        - Authorizer
+        - Cors
+        - Deployment
+        - Response
+  /v2/apis/{apiId}/models/{modelId}:
+    PATCH:
+      summary: UpdateModel
+      description: <p>Updates a Model.</p>
+      tags:
+        - Update
+        - Model
+        - V2
+        - Apis
+        - Name
+        - Apimappings
+        - Id
+        - Authorizers
+        - Deployments
+        - Domainnames
+        - Integrations
+        - Integration
+        - Integrationresponses
+        - Models
+        - Routes
+        - Route
+        - Routeresponses
+        - Stages
+        - Vpclinks
+        - Stage
+        - Accesslogsettings
+        - Api
+        - Mapping
+        - Authorizer
+        - Cors
+        - Deployment
+        - Response
+        - Model
+  /v2/apis/{apiId}/routes/{routeId}:
+    PATCH:
+      summary: UpdateRoute
+      description: <p>Updates a Route.</p>
+      tags:
+        - Update
+        - Route
+        - V2
+        - Apis
+        - Name
+        - Apimappings
+        - Id
+        - Authorizers
+        - Deployments
+        - Domainnames
+        - Integrations
+        - Integration
+        - Integrationresponses
+        - Models
+        - Routes
+        - Route
+        - Routeresponses
+        - Stages
+        - Vpclinks
+        - Stage
+        - Accesslogsettings
+        - Api
+        - Mapping
+        - Authorizer
+        - Cors
+        - Deployment
+        - Response
+        - Model
+  /v2/apis/{apiId}/routes/{routeId}/requestparameters/{requestParameterKey}:
+    DELETE:
+      summary: DeleteRouteRequestParameter
+      description: <p>Deletes a route request parameter.</p>
+      tags:
+        - Delete
+        - Route
+        - Request
+        - Parameter
+        - V2
+        - Apis
+        - Name
+        - Apimappings
+        - Id
+        - Authorizers
+        - Deployments
+        - Domainnames
+        - Integrations
+        - Integration
+        - Integrationresponses
+        - Models
+        - Routes
+        - Route
+        - Routeresponses
+        - Stages
+        - Vpclinks
+        - Stage
+        - Accesslogsettings
+        - Api
+        - Mapping
+        - Authorizer
+        - Cors
+        - Deployment
+        - Response
+        - Model
+        - Requestparameters
+        - Request
+        - Parameter
+        - Key
+  /v2/apis/{apiId}/routes/{routeId}/routeresponses/{routeResponseId}:
+    PATCH:
+      summary: UpdateRouteResponse
+      description: <p>Updates a RouteResponse.</p>
+      tags:
+        - Update
+        - Route
+        - Response
+        - V2
+        - Apis
+        - Name
+        - Apimappings
+        - Id
+        - Authorizers
+        - Deployments
+        - Domainnames
+        - Integrations
+        - Integration
+        - Integrationresponses
+        - Models
+        - Routes
+        - Route
+        - Routeresponses
+        - Stages
+        - Vpclinks
+        - Stage
+        - Accesslogsettings
+        - Api
+        - Mapping
+        - Authorizer
+        - Cors
+        - Deployment
+        - Response
+        - Model
+        - Requestparameters
+        - Request
+        - Parameter
+        - Key
+  /v2/apis/{apiId}/stages/{stageName}/routesettings/{routeKey}:
+    DELETE:
+      summary: DeleteRouteSettings
+      description: <p>Deletes the RouteSettings for a stage.</p>
+      tags:
+        - Delete
+        - Route
+        - Settings
+        - V2
+        - Apis
+        - Name
+        - Apimappings
+        - Id
+        - Authorizers
+        - Deployments
+        - Domainnames
+        - Integrations
+        - Integration
+        - Integrationresponses
+        - Models
+        - Routes
+        - Route
+        - Routeresponses
+        - Stages
+        - Vpclinks
+        - Stage
+        - Accesslogsettings
+        - Api
+        - Mapping
+        - Authorizer
+        - Cors
+        - Deployment
+        - Response
+        - Model
+        - Requestparameters
+        - Request
+        - Parameter
+        - Key
+        - Routesettings
+  /v2/apis/{apiId}/stages/{stageName}:
+    PATCH:
+      summary: UpdateStage
+      description: <p>Updates a Stage.</p>
+      tags:
+        - Update
+        - Stage
+        - V2
+        - Apis
+        - Name
+        - Apimappings
+        - Id
+        - Authorizers
+        - Deployments
+        - Domainnames
+        - Integrations
+        - Integration
+        - Integrationresponses
+        - Models
+        - Routes
+        - Route
+        - Routeresponses
+        - Stages
+        - Vpclinks
+        - Stage
+        - Accesslogsettings
+        - Api
+        - Mapping
+        - Authorizer
+        - Cors
+        - Deployment
+        - Response
+        - Model
+        - Requestparameters
+        - Request
+        - Parameter
+        - Key
+        - Routesettings
+  /v2/vpclinks/{vpcLinkId}:
+    PATCH:
+      summary: UpdateVpcLink
+      description: <p>Updates a VPC link.</p>
+      tags:
+        - Update
+        - Vpc
+        - Link
+        - V2
+        - Apis
+        - Name
+        - Apimappings
+        - Id
+        - Authorizers
+        - Deployments
+        - Domainnames
+        - Integrations
+        - Integration
+        - Integrationresponses
+        - Models
+        - Routes
+        - Route
+        - Routeresponses
+        - Stages
+        - Vpclinks
+        - Stage
+        - Accesslogsettings
+        - Api
+        - Mapping
+        - Authorizer
+        - Cors
+        - Deployment
+        - Response
+        - Model
+        - Requestparameters
+        - Request
+        - Parameter
+        - Key
+        - Routesettings
+        - Link
+  /v2/apis/{apiId}/exports/{specification}:
+    GET:
+      summary: ExportApi
+      description: >-
+        <p>Exports a definition of an API in a particular output format and
+        specification.</p>
+      tags:
+        - Export
+        - Api
+        - V2
+        - Apis
+        - Name
+        - Apimappings
+        - Id
+        - Authorizers
+        - Deployments
+        - Domainnames
+        - Integrations
+        - Integration
+        - Integrationresponses
+        - Models
+        - Routes
+        - Route
+        - Routeresponses
+        - Stages
+        - Vpclinks
+        - Stage
+        - Accesslogsettings
+        - Api
+        - Mapping
+        - Authorizer
+        - Cors
+        - Deployment
+        - Response
+        - Model
+        - Requestparameters
+        - Request
+        - Parameter
+        - Key
+        - Routesettings
+        - Link
+        - Exports
+        - Specification
+  /v2/apis/{apiId}/stages/{stageName}/cache/authorizers:
+    DELETE:
+      summary: ResetAuthorizersCache
+      description: >-
+        <p>Resets all authorizer cache entries for the specified stage.
+        Supported only for HTTP API Lambda authorizers.</p>
+      tags:
+        - Reset
+        - Authorizers
+        - Cache
+        - V2
+        - Apis
+        - Name
+        - Apimappings
+        - Id
+        - Authorizers
+        - Deployments
+        - Domainnames
+        - Integrations
+        - Integration
+        - Integrationresponses
+        - Models
+        - Routes
+        - Route
+        - Routeresponses
+        - Stages
+        - Vpclinks
+        - Stage
+        - Accesslogsettings
+        - Api
+        - Mapping
+        - Authorizer
+        - Cors
+        - Deployment
+        - Response
+        - Model
+        - Requestparameters
+        - Request
+        - Parameter
+        - Key
+        - Routesettings
+        - Link
+        - Exports
+        - Specification
+        - Cache
+  /v2/apis/{apiId}/models/{modelId}/template:
+    GET:
+      summary: GetModelTemplate
+      description: <p>Gets a model template.</p>
+      tags:
+        - Get
+        - Model
+        - Template
+        - V2
+        - Apis
+        - Name
+        - Apimappings
+        - Id
+        - Authorizers
+        - Deployments
+        - Domainnames
+        - Integrations
+        - Integration
+        - Integrationresponses
+        - Models
+        - Routes
+        - Route
+        - Routeresponses
+        - Stages
+        - Vpclinks
+        - Stage
+        - Accesslogsettings
+        - Api
+        - Mapping
+        - Authorizer
+        - Cors
+        - Deployment
+        - Response
+        - Model
+        - Requestparameters
+        - Request
+        - Parameter
+        - Key
+        - Routesettings
+        - Link
+        - Exports
+        - Specification
+        - Cache
+        - Template
+  /v2/tags/{resource-arn}:
+    DELETE:
+      summary: UntagResource
+      description: <p>Deletes a Tag.</
+      tags:
+        - Untag
+        - Resource
+        - V2
+        - Apis
+        - Name
+        - Apimappings
+        - Id
+        - Authorizers
+        - Deployments
+        - Domainnames
+        - Integrations
+        - Integration
+        - Integrationresponses
+        - Models
+        - Routes
+        - Route
+        - Routeresponses
+        - Stages
+        - Vpclinks
+        - Stage
+        - Accesslogsettings
+        - Api
+        - Mapping
+        - Authorizer
+        - Cors
+        - Deployment
+        - Response
+        - Model
+        - Requestparameters
+        - Request
+        - Parameter
+        - Key
+        - Routesettings
+        - Link
+        - Exports
+        - Specification
+        - Cache
+        - Template
+        - Tags
+        - Resource
+        - Arn

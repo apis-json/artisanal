@@ -4,7 +4,10 @@ paths:
   /checkAccountHolder:
     post:
       tags:
+        - Trigger
         - Verification
+        - Account
+        - Holder
       summary: Trigger verification
       description: >-
         Triggers the verification of an account holder even if the checks are
@@ -12,7 +15,11 @@ paths:
   /closeAccount:
     post:
       tags:
-        - Accounts
+        - Close
+        - An
+        - Account
+        - Account
+        - Holder
       summary: Close an account
       description: >-
         Closes an account. If an account is closed, you cannot process
@@ -21,7 +28,12 @@ paths:
   /closeAccountHolder:
     post:
       tags:
-        - Account holders
+        - Close
+        - An
+        - Account
+        - Holder
+        - Account
+        - Holder
       summary: Close an account holder
       description: >-
         Changes the [status of an account
@@ -34,13 +46,22 @@ paths:
   /closeStores:
     post:
       tags:
-        - Account holders
+        - Close
+        - Stores
+        - Account
+        - Holder
+        - Stores
       summary: Close stores
       description: Closes stores associated with an account holder.
   /createAccount:
     post:
       tags:
-        - Accounts
+        - Create
+        - An
+        - Account
+        - Account
+        - Holder
+        - Stores
       summary: Create an account
       description: >-
         Creates an account under an account holder. An account holder can have
@@ -49,7 +70,13 @@ paths:
   /createAccountHolder:
     post:
       tags:
-        - Account holders
+        - Create
+        - An
+        - Account
+        - Holder
+        - Account
+        - Holder
+        - Stores
       summary: Create an account holder
       description: >-
         Creates an account holder that [represents the sub-merchant's
@@ -61,13 +88,29 @@ paths:
   /deleteBankAccounts:
     post:
       tags:
-        - Verification
+        - Delete
+        - Bank
+        - Accounts
+        - Account
+        - Holder
+        - Stores
+        - Bank
+        - Accounts
       summary: Delete bank accounts
       description: 'Deletes bank accounts associated with an account holder. '
   /deleteLegalArrangements:
     post:
       tags:
-        - Verification
+        - Delete
+        - Legal
+        - Arrangements
+        - Account
+        - Holder
+        - Stores
+        - Bank
+        - Accounts
+        - Legal
+        - Arrangements
       summary: Delete legal arrangements
       description: >-
         Deletes legal arrangements and/or legal arrangement entities associated
@@ -75,31 +118,94 @@ paths:
   /deletePayoutMethods:
     post:
       tags:
-        - Verification
+        - Delete
+        - Payout
+        - Methods
+        - Account
+        - Holder
+        - Stores
+        - Bank
+        - Accounts
+        - Legal
+        - Arrangements
+        - Payout
+        - Methods
       summary: Delete payout methods
       description: Deletes payout methods associated with an account holder.
   /deleteShareholders:
     post:
       tags:
-        - Verification
+        - Delete
+        - Shareholders
+        - Account
+        - Holder
+        - Stores
+        - Bank
+        - Accounts
+        - Legal
+        - Arrangements
+        - Payout
+        - Methods
+        - Shareholders
       summary: Delete shareholders
       description: Deletes shareholders associated with an account holder.
   /deleteSignatories:
     post:
       tags:
-        - Verification
+        - Delete
+        - Signatories
+        - Account
+        - Holder
+        - Stores
+        - Bank
+        - Accounts
+        - Legal
+        - Arrangements
+        - Payout
+        - Methods
+        - Shareholders
+        - Signatories
       summary: Delete signatories
       description: Deletes signatories associated with an account holder.
   /getAccountHolder:
     post:
       tags:
-        - Account holders
+        - Get
+        - An
+        - Account
+        - Holder
+        - Account
+        - Holder
+        - Stores
+        - Bank
+        - Accounts
+        - Legal
+        - Arrangements
+        - Payout
+        - Methods
+        - Shareholders
+        - Signatories
       summary: Get an account holder
       description: Returns the details of an account holder.
   /getTaxForm:
     post:
       tags:
-        - Account holders
+        - Get
+        - Tax
+        - Form
+        - Account
+        - Holder
+        - Stores
+        - Bank
+        - Accounts
+        - Legal
+        - Arrangements
+        - Payout
+        - Methods
+        - Shareholders
+        - Signatories
+        - Tax
+        - Form
       summary: Get a tax form
       description: >-
         Generates a tax form for account holders operating in the US. For more
@@ -108,7 +214,23 @@ paths:
   /getUploadedDocuments:
     post:
       tags:
-        - Verification
+        - Get
+        - Documents
+        - Account
+        - Holder
+        - Stores
+        - Bank
+        - Accounts
+        - Legal
+        - Arrangements
+        - Payout
+        - Methods
+        - Shareholders
+        - Signatories
+        - Tax
+        - Form
+        - Uploaded
+        - Documents
       summary: Get documents
       description: >
         Returns documents that were previously uploaded for an account holder.
@@ -117,7 +239,25 @@ paths:
   /suspendAccountHolder:
     post:
       tags:
-        - Account holders
+        - Suspend
+        - An
+        - Account
+        - Holder
+        - Account
+        - Holder
+        - Stores
+        - Bank
+        - Accounts
+        - Legal
+        - Arrangements
+        - Payout
+        - Methods
+        - Shareholders
+        - Signatories
+        - Tax
+        - Form
+        - Uploaded
+        - Documents
       summary: Suspend an account holder
       description: >-
         Changes the [status of an account
@@ -126,7 +266,26 @@ paths:
   /unSuspendAccountHolder:
     post:
       tags:
-        - Account holders
+        - Unsuspend
+        - An
+        - Account
+        - Holder
+        - Account
+        - Holder
+        - Stores
+        - Bank
+        - Accounts
+        - Legal
+        - Arrangements
+        - Payout
+        - Methods
+        - Shareholders
+        - Signatories
+        - Tax
+        - Form
+        - Uploaded
+        - Documents
+        - Suspend
       summary: Unsuspend an account holder
       description: >-
         Changes the [status of an account
@@ -146,13 +305,50 @@ paths:
   /updateAccount:
     post:
       tags:
+        - Update
+        - An
+        - Account
+        - Account
+        - Holder
+        - Stores
+        - Bank
         - Accounts
+        - Legal
+        - Arrangements
+        - Payout
+        - Methods
+        - Shareholders
+        - Signatories
+        - Tax
+        - Form
+        - Uploaded
+        - Documents
+        - Suspend
       summary: Update an account
       description: Updates the description or payout schedule of an account.
   /updateAccountHolder:
     post:
       tags:
-        - Account holders
+        - Update
+        - An
+        - Account
+        - Holder
+        - Account
+        - Holder
+        - Stores
+        - Bank
+        - Accounts
+        - Legal
+        - Arrangements
+        - Payout
+        - Methods
+        - Shareholders
+        - Signatories
+        - Tax
+        - Form
+        - Uploaded
+        - Documents
+        - Suspend
       summary: Update an account holder
       description: >+
         Updates the `accountHolderDetails` and `processingTier` of an account
@@ -189,16 +385,56 @@ paths:
   /updateAccountHolderState:
     post:
       tags:
-        - Account holders
+        - Update
+        - Payout
+        - Or
+        - Processing
+        - State
+        - Account
+        - Holder
+        - Stores
+        - Bank
+        - Accounts
+        - Legal
+        - Arrangements
+        - Payout
+        - Methods
+        - Shareholders
+        - Signatories
+        - Tax
+        - Form
+        - Uploaded
+        - Documents
+        - Suspend
+        - State
       summary: Update payout or processing state
       description: Disables or enables the processing or payout state of an account holder.
   /uploadDocument:
     post:
       tags:
-        - Verification
+        - Upload
+        - Document
+        - Account
+        - Holder
+        - Stores
+        - Bank
+        - Accounts
+        - Legal
+        - Arrangements
+        - Payout
+        - Methods
+        - Shareholders
+        - Signatories
+        - Tax
+        - Form
+        - Uploaded
+        - Documents
+        - Suspend
+        - State
+        - Document
       summary: Upload a document
       description: >-
         Uploads a document for an account holder. Adyen uses the documents
         during the [verification
         process](https://docs.adyen.com/marketplaces-and-platforms/classic/verification-process).
-components: {}
+components: null

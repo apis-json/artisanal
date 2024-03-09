@@ -1,0 +1,332 @@
+openapi: 3.1.0
+info:
+  title: migrationhuborchestrator
+paths:
+  /migrationworkflow/:
+    POST:
+      summary: CreateWorkflow
+      description: <p>Create a workflow to orchestrate your migrations.</p>
+      tags:
+        - Create
+        - Workflow
+        - Migrationworkflow
+  /workflowstep:
+    POST:
+      summary: CreateWorkflowStep
+      description: <p>Create a step in the migration workflow.</p>
+      tags:
+        - Create
+        - Workflow
+        - Step
+        - Migrationworkflow
+        - Workflowstep
+  /workflowstepgroups:
+    GET:
+      summary: ListWorkflowStepGroups
+      description: <p>List the step groups in a migration workflow.</p>
+      tags:
+        - List
+        - Workflow
+        - Step
+        - Groups
+        - Migrationworkflow
+        - Workflowstep
+        - Workflowstepgroups
+  /migrationworkflow/{id}:
+    POST:
+      summary: UpdateWorkflow
+      description: <p>Update a migration workflow.</p>
+      tags:
+        - Update
+        - Workflow
+        - Migrationworkflow
+        - Workflowstep
+        - Workflowstepgroups
+        - Id
+  /workflowstep/{id}:
+    POST:
+      summary: UpdateWorkflowStep
+      description: <p>Update a step in a migration workflow.</p>
+      tags:
+        - Update
+        - Workflow
+        - Step
+        - Migrationworkflow
+        - Workflowstep
+        - Workflowstepgroups
+        - Id
+  /workflowstepgroup/{id}:
+    POST:
+      summary: UpdateWorkflowStepGroup
+      description: <p>Update the step group in a migration workflow.</p>
+      tags:
+        - Update
+        - Workflow
+        - Step
+        - Group
+        - Migrationworkflow
+        - Workflowstep
+        - Workflowstepgroups
+        - Id
+        - Workflowstepgroup
+  /migrationworkflowtemplate/{id}:
+    GET:
+      summary: GetTemplate
+      description: >-
+        <p>Get the template you want to use for creating a migration
+        workflow.</p>
+      tags:
+        - Get
+        - Template
+        - Migrationworkflow
+        - Workflowstep
+        - Workflowstepgroups
+        - Id
+        - Workflowstepgroup
+        - Migrationworkflowtemplate
+  /templatestep/{id}:
+    GET:
+      summary: GetTemplateStep
+      description: <p>Get a specific step in a template.</p>
+      tags:
+        - Get
+        - Template
+        - Step
+        - Migrationworkflow
+        - Workflowstep
+        - Workflowstepgroups
+        - Id
+        - Workflowstepgroup
+        - Migrationworkflowtemplate
+        - Templatestep
+  /templates/{templateId}/stepgroups/{id}:
+    GET:
+      summary: GetTemplateStepGroup
+      description: <p>Get a step group in a template.</p>
+      tags:
+        - Get
+        - Template
+        - Step
+        - Group
+        - Migrationworkflow
+        - Workflowstep
+        - Workflowstepgroups
+        - Id
+        - Workflowstepgroup
+        - Migrationworkflowtemplate
+        - Templatestep
+        - Stepgroups
+  /plugins:
+    GET:
+      summary: ListPlugins
+      description: <p>List AWS Migration Hub Orchestrator plugins.</p>
+      tags:
+        - List
+        - Plugins
+        - Migrationworkflow
+        - Workflowstep
+        - Workflowstepgroups
+        - Id
+        - Workflowstepgroup
+        - Migrationworkflowtemplate
+        - Templatestep
+        - Stepgroups
+        - Plugins
+  /tags/{resourceArn}:
+    DELETE:
+      summary: UntagResource
+      description: <p>Deletes the tags for a resource.</p>
+      tags:
+        - Untag
+        - Resource
+        - Migrationworkflow
+        - Workflowstep
+        - Workflowstepgroups
+        - Id
+        - Workflowstepgroup
+        - Migrationworkflowtemplate
+        - Templatestep
+        - Stepgroups
+        - Plugins
+        - Arn
+  /templatestepgroups/{templateId}:
+    GET:
+      summary: ListTemplateStepGroups
+      description: <p>List the step groups in a template.</p>
+      tags:
+        - List
+        - Template
+        - Step
+        - Groups
+        - Migrationworkflow
+        - Workflowstep
+        - Workflowstepgroups
+        - Id
+        - Workflowstepgroup
+        - Migrationworkflowtemplate
+        - Templatestep
+        - Stepgroups
+        - Plugins
+        - Arn
+  /templatesteps:
+    GET:
+      summary: ListTemplateSteps
+      description: <p>List the steps in a template.</p>
+      tags:
+        - List
+        - Template
+        - Steps
+        - Migrationworkflow
+        - Workflowstep
+        - Workflowstepgroups
+        - Id
+        - Workflowstepgroup
+        - Migrationworkflowtemplate
+        - Templatestep
+        - Stepgroups
+        - Plugins
+        - Arn
+        - Templatesteps
+  /migrationworkflowtemplates:
+    GET:
+      summary: ListTemplates
+      description: >-
+        <p>List the templates available in Migration Hub Orchestrator to create
+        a migration workflow.</p>
+      tags:
+        - List
+        - Templates
+        - Migrationworkflow
+        - Workflowstep
+        - Workflowstepgroups
+        - Id
+        - Workflowstepgroup
+        - Migrationworkflowtemplate
+        - Templatestep
+        - Stepgroups
+        - Plugins
+        - Arn
+        - Templatesteps
+        - Migrationworkflowtemplates
+  /workflow/{workflowId}/workflowstepgroups/{stepGroupId}/workflowsteps:
+    GET:
+      summary: ListWorkflowSteps
+      description: <p>List the steps in a workflow.</p>
+      tags:
+        - List
+        - Workflow
+        - Steps
+        - Migrationworkflow
+        - Workflowstep
+        - Workflowstepgroups
+        - Id
+        - Workflowstepgroup
+        - Migrationworkflowtemplate
+        - Templatestep
+        - Stepgroups
+        - Plugins
+        - Arn
+        - Templatesteps
+        - Migrationworkflowtemplates
+        - Step
+        - Group
+        - Workflowsteps
+  /migrationworkflows:
+    GET:
+      summary: ListWorkflows
+      description: <p>List the migration workflows.</p>
+      tags:
+        - List
+        - Workflows
+        - Migrationworkflow
+        - Workflowstep
+        - Workflowstepgroups
+        - Id
+        - Workflowstepgroup
+        - Migrationworkflowtemplate
+        - Templatestep
+        - Stepgroups
+        - Plugins
+        - Arn
+        - Templatesteps
+        - Migrationworkflowtemplates
+        - Step
+        - Group
+        - Workflowsteps
+        - Migrationworkflows
+  /retryworkflowstep/{id}:
+    POST:
+      summary: RetryWorkflowStep
+      description: <p>Retry a failed step in a migration workflow.</p>
+      tags:
+        - Retry
+        - Workflow
+        - Step
+        - Migrationworkflow
+        - Workflowstep
+        - Workflowstepgroups
+        - Id
+        - Workflowstepgroup
+        - Migrationworkflowtemplate
+        - Templatestep
+        - Stepgroups
+        - Plugins
+        - Arn
+        - Templatesteps
+        - Migrationworkflowtemplates
+        - Step
+        - Group
+        - Workflowsteps
+        - Migrationworkflows
+        - Retryworkflowstep
+  /migrationworkflow/{id}/start:
+    POST:
+      summary: StartWorkflow
+      description: <p>Start a migration workflow.</p>
+      tags:
+        - Start
+        - Workflow
+        - Migrationworkflow
+        - Workflowstep
+        - Workflowstepgroups
+        - Id
+        - Workflowstepgroup
+        - Migrationworkflowtemplate
+        - Templatestep
+        - Stepgroups
+        - Plugins
+        - Arn
+        - Templatesteps
+        - Migrationworkflowtemplates
+        - Step
+        - Group
+        - Workflowsteps
+        - Migrationworkflows
+        - Retryworkflowstep
+        - Start
+  /migrationworkflow/{id}/stop:
+    POST:
+      summary: StopWorkflow
+      description: <p>Stop an ongoing migration workflow.</
+      tags:
+        - Stop
+        - Workflow
+        - Migrationworkflow
+        - Workflowstep
+        - Workflowstepgroups
+        - Id
+        - Workflowstepgroup
+        - Migrationworkflowtemplate
+        - Templatestep
+        - Stepgroups
+        - Plugins
+        - Arn
+        - Templatesteps
+        - Migrationworkflowtemplates
+        - Step
+        - Group
+        - Workflowsteps
+        - Migrationworkflows
+        - Retryworkflowstep
+        - Start
+        - Stop

@@ -1,0 +1,103 @@
+openapi: 3.1.0
+info:
+  title: docdb-elastic
+paths:
+  /cluster:
+    POST:
+      summary: CreateCluster
+      description: >-
+        <p>Creates a new Elastic DocumentDB cluster and returns its Cluster
+        structure.</p>
+      tags:
+        - Create
+        - Cluster
+        - Cluster
+  /cluster-snapshot:
+    POST:
+      summary: CreateClusterSnapshot
+      description: <p>Creates a snapshot of a cluster.</p>
+      tags:
+        - Create
+        - Cluster
+        - Snapshot
+        - Cluster
+        - Snapshot
+  /cluster/{clusterArn}:
+    PUT:
+      summary: UpdateCluster
+      description: >-
+        <p>Modifies a Elastic DocumentDB cluster. This includes updating
+        admin-username/password, upgrading API version setting up a backup
+        window and maintenance window</p>
+      tags:
+        - Update
+        - Cluster
+        - Cluster
+        - Snapshot
+        - Arn
+  /cluster-snapshot/{snapshotArn}:
+    GET:
+      summary: GetClusterSnapshot
+      description: <p>Returns information about a specific Elastic DocumentDB snapshot</p>
+      tags:
+        - Get
+        - Cluster
+        - Snapshot
+        - Cluster
+        - Snapshot
+        - Arn
+  /cluster-snapshots:
+    GET:
+      summary: ListClusterSnapshots
+      description: >-
+        <p>Returns information about Elastic DocumentDB snapshots for a
+        specified cluster.</p>
+      tags:
+        - List
+        - Cluster
+        - Snapshots
+        - Cluster
+        - Snapshot
+        - Arn
+        - Snapshots
+  /clusters:
+    GET:
+      summary: ListClusters
+      description: >-
+        <p>Returns information about provisioned Elastic DocumentDB
+        clusters.</p>
+      tags:
+        - List
+        - Clusters
+        - Cluster
+        - Snapshot
+        - Arn
+        - Snapshots
+        - Clusters
+  /tags/{resourceArn}:
+    DELETE:
+      summary: UntagResource
+      description: <p>Removes metadata tags to a Elastic DocumentDB resource</p>
+      tags:
+        - Untag
+        - Resource
+        - Cluster
+        - Snapshot
+        - Arn
+        - Snapshots
+        - Clusters
+  /cluster-snapshot/{snapshotArn}/restore:
+    POST:
+      summary: RestoreClusterFromSnapshot
+      description: <p>Restores a Elastic DocumentDB cluster from a snapshot.</
+      tags:
+        - Restore
+        - Cluster
+        - From
+        - Snapshot
+        - Cluster
+        - Snapshot
+        - Arn
+        - Snapshots
+        - Clusters
+        - Restore

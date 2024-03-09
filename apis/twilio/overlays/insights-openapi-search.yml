@@ -10,14 +10,18 @@ paths:
     get:
       description: Get the Voice Insights Settings.
       tags:
-        - Insights
+        - Retrieve
+        - Voice
+        - Settings
         - Voice
         - Settings
       summary: Retrieve Voice Settings
     post:
       description: Update a specific Voice Insights Setting.
       tags:
-        - Insights
+        - Update
+        - Voice
+        - Settings
         - Voice
         - Settings
       summary: Update Voice Settings
@@ -26,32 +30,53 @@ paths:
     post:
       description: Update an Annotation for a specific Call.
       tags:
-        - Insights
+        - Update
         - Voice
-        - Annotations
+        - Annotation
+        - Voice
+        - Settings
+        - Call
+        - Sid
+        - Annotation
       summary: Update Voice Annotation
     get:
       description: Get the Annotation for a specific Call.
       tags:
-        - Insights
+        - Retrieve
         - Voice
-        - Annotations
+        - Annotation
+        - Voice
+        - Settings
+        - Call
+        - Sid
+        - Annotation
       summary: Retrieve Voice Annotation
   /v1/Voice/{Sid}:
     description: 'TODO: Resource-level docs'
     get:
       description: ''
       tags:
-        - Insights
+        - Retrieve
         - Voice
+        - Voice
+        - Settings
+        - Call
+        - Sid
+        - Annotation
       summary: Retrieve Voice
   /v1/Voice/Summaries:
     description: 'TODO: Resource-level docs'
     get:
       description: Get a list of Call Summaries.
       tags:
-        - Insights
+        - Retrieve
         - Voice
+        - Summaries
+        - Voice
+        - Settings
+        - Call
+        - Sid
+        - Annotation
         - Summaries
       summary: Retrieve Voice Summaries
   /v1/Conferences/{ConferenceSid}:
@@ -59,41 +84,89 @@ paths:
     get:
       description: Get a specific Conference Summary.
       tags:
-        - Insights
+        - Retrieve
+        - Conference
+        - Voice
+        - Settings
+        - Call
+        - Sid
+        - Annotation
+        - Summaries
         - Conferences
+        - Conference
       summary: Retrieve Conference
   /v1/Conferences:
     description: 'TODO: Resource-level docs'
     get:
       description: Get a list of Conference Summaries.
       tags:
-        - Insights
+        - Retrieve
         - Conferences
+        - Voice
+        - Settings
+        - Call
+        - Sid
+        - Annotation
+        - Summaries
+        - Conferences
+        - Conference
       summary: Retrieve Conferences
   /v1/Conferences/{ConferenceSid}/Participants/{ParticipantSid}:
     description: 'TODO: Resource-level docs'
     get:
       description: Get a specific Conference Participant Summary for a Conference.
       tags:
-        - Insights
+        - Retrieve
+        - Conference
+        - Participant
+        - Voice
+        - Settings
+        - Call
+        - Sid
+        - Annotation
+        - Summaries
         - Conferences
+        - Conference
+        - Participants
+        - Participant
       summary: Retrieve Conference Participant
   /v1/Conferences/{ConferenceSid}/Participants:
     description: 'TODO: Resource-level docs'
     get:
       description: Get a list of Conference Participants Summaries for a Conference.
       tags:
-        - Insights
-        - Conferences
+        - Retrieve
+        - Conference
         - Participants
+        - Voice
+        - Settings
+        - Call
+        - Sid
+        - Annotation
+        - Summaries
+        - Conferences
+        - Conference
+        - Participants
+        - Participant
       summary: Retrieve Conference Participants
   /v1/Voice/{CallSid}/Events:
     description: 'TODO: Resource-level docs'
     get:
       description: Get a list of Call Insight Events for a Call.
       tags:
-        - Insights
+        - Retrieve
         - Voice
+        - Events
+        - Voice
+        - Settings
+        - Call
+        - Sid
+        - Annotation
+        - Summaries
+        - Conferences
+        - Conference
+        - Participants
+        - Participant
         - Events
       summary: Retrieve Voice Events
   /v1/Voice/{CallSid}/Metrics:
@@ -101,8 +174,20 @@ paths:
     get:
       description: Get a list of Call Metrics for a Call.
       tags:
-        - Insights
+        - Retrieve
         - Voice
+        - Metrics
+        - Voice
+        - Settings
+        - Call
+        - Sid
+        - Annotation
+        - Summaries
+        - Conferences
+        - Conference
+        - Participants
+        - Participant
+        - Events
         - Metrics
       summary: Retrieve Voice Metrics
   /v1/Voice/{CallSid}/Summary:
@@ -110,47 +195,124 @@ paths:
     get:
       description: Get a specific Call Summary.
       tags:
-        - Insights
+        - Retrieve
         - Voice
+        - Summary
+        - Voice
+        - Settings
+        - Call
+        - Sid
+        - Annotation
         - Summaries
+        - Conferences
+        - Conference
+        - Participants
+        - Participant
+        - Events
+        - Metrics
+        - Summary
       summary: Retrieve Voice Summary
   /v1/Video/Rooms/{RoomSid}/Participants/{ParticipantSid}:
     description: 'TODO: Resource-level docs'
     get:
       description: Get Video Log Analyzer data for a Room Participant.
       tags:
-        - Insights
-        - Videos
-        - Rooms
+        - Retrieve
+        - Video
+        - Room
+        - Participant
+        - Voice
+        - Settings
+        - Call
+        - Sid
+        - Annotation
+        - Summaries
+        - Conferences
+        - Conference
         - Participants
+        - Participant
+        - Events
+        - Metrics
+        - Summary
+        - Video
+        - Rooms
+        - Room
       summary: Retrieve Video Room Participant
   /v1/Video/Rooms/{RoomSid}/Participants:
     description: 'TODO: Resource-level docs'
     get:
       description: Get a list of room participants.
       tags:
-        - Insights
-        - Videos
-        - Rooms
+        - Retrieve
+        - Video
+        - Room
         - Participants
+        - Voice
+        - Settings
+        - Call
+        - Sid
+        - Annotation
+        - Summaries
+        - Conferences
+        - Conference
+        - Participants
+        - Participant
+        - Events
+        - Metrics
+        - Summary
+        - Video
+        - Rooms
+        - Room
       summary: Retrieve Video Room Participants
   /v1/Video/Rooms/{RoomSid}:
     description: 'TODO: Resource-level docs'
     get:
       description: Get Video Log Analyzer data for a Room.
       tags:
-        - Insights
-        - Videos
+        - Retrieve
+        - Video
+        - Room
+        - Voice
+        - Settings
+        - Call
+        - Sid
+        - Annotation
+        - Summaries
+        - Conferences
+        - Conference
+        - Participants
+        - Participant
+        - Events
+        - Metrics
+        - Summary
+        - Video
         - Rooms
+        - Room
       summary: Retrieve Video Room
   /v1/Video/Rooms:
     description: 'TODO: Resource-level docs'
     get:
       description: Get a list of Programmable Video Rooms.
       tags:
-        - Insights
-        - Videos
+        - Retrieve
+        - Video
         - Rooms
+        - Voice
+        - Settings
+        - Call
+        - Sid
+        - Annotation
+        - Summaries
+        - Conferences
+        - Conference
+        - Participants
+        - Participant
+        - Events
+        - Metrics
+        - Summary
+        - Video
+        - Rooms
+        - Room
       summary: Retrieve Video Rooms
 tags:
   - name: Insights
@@ -190,4 +352,4 @@ x-maturity:
     description: >-
       PLEASE NOTE that this is a Preview product that is subject to change. Use
       it with caution. If you currently do not have developer preview access,
-      please contact https://www.twilio.com/help/contact.
+      please contact https://www.twilio.com/help/co

@@ -1,0 +1,259 @@
+openapi: 3.1.0
+info:
+  title: iotevents
+paths:
+  /alarm-models:
+    GET:
+      summary: ListAlarmModels
+      description: >-
+        <p>Lists the alarm models that you created. The operation returns only
+        the metadata associated with each alarm model.</p>
+      tags:
+        - List
+        - Alarm
+        - Models
+        - Alarm
+        - Models
+  /detector-models:
+    GET:
+      summary: ListDetectorModels
+      description: >-
+        <p>Lists the detector models you have created. Only the metadata
+        associated with each detector model is returned.</p>
+      tags:
+        - List
+        - Detector
+        - Models
+        - Alarm
+        - Models
+        - Detector
+  /inputs:
+    GET:
+      summary: ListInputs
+      description: <p>Lists the inputs you have created.</p>
+      tags:
+        - List
+        - Inputs
+        - Alarm
+        - Models
+        - Detector
+        - Inputs
+  /alarm-models/{alarmModelName}:
+    POST:
+      summary: UpdateAlarmModel
+      description: >-
+        <p>Updates an alarm model. Any alarms that were created based on the
+        previous version are deleted and then created again as new data
+        arrives.</p>
+      tags:
+        - Update
+        - Alarm
+        - Model
+        - Alarm
+        - Models
+        - Detector
+        - Inputs
+        - Model
+        - Name
+  /detector-models/{detectorModelName}:
+    POST:
+      summary: UpdateDetectorModel
+      description: >-
+        <p>Updates a detector model. Detectors (instances) spawned by the
+        previous version are deleted and then re-created as new inputs
+        arrive.</p>
+      tags:
+        - Update
+        - Detector
+        - Model
+        - Alarm
+        - Models
+        - Detector
+        - Inputs
+        - Model
+        - Name
+  /inputs/{inputName}:
+    PUT:
+      summary: UpdateInput
+      description: <p>Updates an input.</p>
+      tags:
+        - Update
+        - Input
+        - Alarm
+        - Models
+        - Detector
+        - Inputs
+        - Model
+        - Name
+  /analysis/detector-models/{analysisId}:
+    GET:
+      summary: DescribeDetectorModelAnalysis
+      description: >-
+        <p>Retrieves runtime information about a detector model analysis.</p>
+        <note> <p>After AWS IoT Events starts analyzing your detector model, you
+        have up to 24 hours to retrieve the analysis results.</p> </note>
+      tags:
+        - Describe
+        - Detector
+        - Model
+        - Analysis
+        - Alarm
+        - Models
+        - Detector
+        - Inputs
+        - Model
+        - Name
+        - Id
+  /logging:
+    PUT:
+      summary: PutLoggingOptions
+      description: >-
+        <p>Sets or updates the AWS IoT Events logging options.</p> <p>If you
+        update the value of any <code>loggingOptions</code> field, it takes up
+        to one minute for the change to take effect. If you change the policy
+        attached to the role you specified in the <code>roleArn</code> field
+        (for example, to correct an invalid policy), it takes up to five minutes
+        for that change to take effect.</p>
+      tags:
+        - Put
+        - Logging
+        - Options
+        - Alarm
+        - Models
+        - Detector
+        - Inputs
+        - Model
+        - Name
+        - Id
+        - Logging
+  /analysis/detector-models/{analysisId}/results:
+    GET:
+      summary: GetDetectorModelAnalysisResults
+      description: >-
+        <p>Retrieves one or more analysis results of the detector model.</p>
+        <note> <p>After AWS IoT Events starts analyzing your detector model, you
+        have up to 24 hours to retrieve the analysis results.</p> </note>
+      tags:
+        - Get
+        - Detector
+        - Model
+        - Analysis
+        - Results
+        - Alarm
+        - Models
+        - Detector
+        - Inputs
+        - Model
+        - Name
+        - Id
+        - Logging
+        - Results
+  /alarm-models/{alarmModelName}/versions:
+    GET:
+      summary: ListAlarmModelVersions
+      description: >-
+        <p>Lists all the versions of an alarm model. The operation returns only
+        the metadata associated with each alarm model version.</p>
+      tags:
+        - List
+        - Alarm
+        - Model
+        - Versions
+        - Alarm
+        - Models
+        - Detector
+        - Inputs
+        - Model
+        - Name
+        - Id
+        - Logging
+        - Results
+        - Versions
+  /detector-models/{detectorModelName}/versions:
+    GET:
+      summary: ListDetectorModelVersions
+      description: >-
+        <p>Lists all the versions of a detector model. Only the metadata
+        associated with each detector model version is returned.</p>
+      tags:
+        - List
+        - Detector
+        - Model
+        - Versions
+        - Alarm
+        - Models
+        - Detector
+        - Inputs
+        - Model
+        - Name
+        - Id
+        - Logging
+        - Results
+        - Versions
+  /input-routings:
+    POST:
+      summary: ListInputRoutings
+      description: <p> Lists one or more input routings. </p>
+      tags:
+        - List
+        - Input
+        - Routings
+        - Alarm
+        - Models
+        - Detector
+        - Inputs
+        - Model
+        - Name
+        - Id
+        - Logging
+        - Results
+        - Versions
+        - Input
+        - Routings
+  /tags:
+    DELETE:
+      summary: UntagResource
+      description: <p>Removes the given tags (metadata) from the resource.</p>
+      tags:
+        - Untag
+        - Resource
+        - Alarm
+        - Models
+        - Detector
+        - Inputs
+        - Model
+        - Name
+        - Id
+        - Logging
+        - Results
+        - Versions
+        - Input
+        - Routings
+        - Tags
+  /analysis/detector-models/:
+    POST:
+      summary: StartDetectorModelAnalysis
+      description: >-
+        <p>Performs an analysis of your detector model. For more information,
+        see <a
+        href="https://docs.aws.amazon.com/iotevents/latest/developerguide/iotevents-analyze-api.html">Troubleshooting
+        a detector model</a> in the <i>AWS IoT Events Developer Guide</i>.</
+      tags:
+        - Start
+        - Detector
+        - Model
+        - Analysis
+        - Alarm
+        - Models
+        - Detector
+        - Inputs
+        - Model
+        - Name
+        - Id
+        - Logging
+        - Results
+        - Versions
+        - Input
+        - Routings
+        - Tags
+        - Analysis

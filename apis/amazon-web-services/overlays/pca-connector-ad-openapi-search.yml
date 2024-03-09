@@ -1,0 +1,246 @@
+openapi: 3.1.0
+info:
+  title: pca-connector-ad
+paths:
+  /connectors:
+    GET:
+      summary: ListConnectors
+      description: >-
+        <p>Lists the connectors that you created by using the <a
+        href="https://docs.aws.amazon.com/pca-connector-ad/latest/APIReference/API_CreateConnector">https://docs.aws.amazon.com/pca-connector-ad/latest/APIReference/API_CreateConnector</a>
+        action.</p>
+      tags:
+        - List
+        - Connectors
+        - Connectors
+  /directoryRegistrations:
+    GET:
+      summary: ListDirectoryRegistrations
+      description: >-
+        <p>Lists the directory registrations that you created by using the <a
+        href="https://docs.aws.amazon.com/pca-connector-ad/latest/APIReference/API_CreateDirectoryRegistration">https://docs.aws.amazon.com/pca-connector-ad/latest/APIReference/API_CreateDirectoryRegistration</a>
+        action.</p>
+      tags:
+        - List
+        - Directory
+        - Registrations
+        - Connectors
+        - Registrations
+  /directoryRegistrations/{DirectoryRegistrationArn}/servicePrincipalNames/{ConnectorArn}:
+    GET:
+      summary: GetServicePrincipalName
+      description: >-
+        <p>Lists the service principal name that the connector uses to
+        authenticate with Active Directory.</p>
+      tags:
+        - Get
+        - Service
+        - Principal
+        - Name
+        - Connectors
+        - Registrations
+        - Directory
+        - Registration
+        - Arn
+        - Service
+        - Principal
+        - Names
+        - Connector
+  /templates:
+    GET:
+      summary: ListTemplates
+      description: >-
+        <p>Lists the templates, if any, that are associated with a
+        connector.</p>
+      tags:
+        - List
+        - Templates
+        - Connectors
+        - Registrations
+        - Directory
+        - Registration
+        - Arn
+        - Service
+        - Principal
+        - Names
+        - Connector
+        - Templates
+  /templates/{TemplateArn}/accessControlEntries:
+    GET:
+      summary: ListTemplateGroupAccessControlEntries
+      description: <p>Lists group access control entries you created. </p>
+      tags:
+        - List
+        - Template
+        - Group
+        - Access
+        - Control
+        - Entries
+        - Connectors
+        - Registrations
+        - Directory
+        - Registration
+        - Arn
+        - Service
+        - Principal
+        - Names
+        - Connector
+        - Templates
+        - Template
+        - Access
+        - Control
+        - Entries
+  /connectors/{ConnectorArn}:
+    GET:
+      summary: GetConnector
+      description: >-
+        <p>Lists information about your connector. You specify the connector on
+        input by its ARN (Amazon Resource Name). </p>
+      tags:
+        - Get
+        - Connector
+        - Connectors
+        - Registrations
+        - Directory
+        - Registration
+        - Arn
+        - Service
+        - Principal
+        - Names
+        - Connector
+        - Templates
+        - Template
+        - Access
+        - Control
+        - Entries
+  /directoryRegistrations/{DirectoryRegistrationArn}:
+    GET:
+      summary: GetDirectoryRegistration
+      description: >-
+        <p>A structure that contains information about your directory
+        registration.</p>
+      tags:
+        - Get
+        - Directory
+        - Registration
+        - Connectors
+        - Registrations
+        - Directory
+        - Registration
+        - Arn
+        - Service
+        - Principal
+        - Names
+        - Connector
+        - Templates
+        - Template
+        - Access
+        - Control
+        - Entries
+  /templates/{TemplateArn}:
+    PATCH:
+      summary: UpdateTemplate
+      description: >-
+        <p>Update template configuration to define the information included in
+        certificates.</p>
+      tags:
+        - Update
+        - Template
+        - Connectors
+        - Registrations
+        - Directory
+        - Registration
+        - Arn
+        - Service
+        - Principal
+        - Names
+        - Connector
+        - Templates
+        - Template
+        - Access
+        - Control
+        - Entries
+  /templates/{TemplateArn}/accessControlEntries/{GroupSecurityIdentifier}:
+    PATCH:
+      summary: UpdateTemplateGroupAccessControlEntry
+      description: >-
+        <p>Update a group access control entry you created using <a
+        href="https://docs.aws.amazon.com/pca-connector-ad/latest/APIReference/API_CreateTemplateGroupAccessControlEntry.html">CreateTemplateGroupAccessControlEntry</a>.
+        </p>
+      tags:
+        - Update
+        - Template
+        - Group
+        - Access
+        - Control
+        - Entry
+        - Connectors
+        - Registrations
+        - Directory
+        - Registration
+        - Arn
+        - Service
+        - Principal
+        - Names
+        - Connector
+        - Templates
+        - Template
+        - Access
+        - Control
+        - Entries
+        - Group
+        - Security
+        - Identifier
+  /directoryRegistrations/{DirectoryRegistrationArn}/servicePrincipalNames:
+    GET:
+      summary: ListServicePrincipalNames
+      description: >-
+        <p>Lists the service principal names that the connector uses to
+        authenticate with Active Directory.</p>
+      tags:
+        - List
+        - Service
+        - Principal
+        - Names
+        - Connectors
+        - Registrations
+        - Directory
+        - Registration
+        - Arn
+        - Service
+        - Principal
+        - Names
+        - Connector
+        - Templates
+        - Template
+        - Access
+        - Control
+        - Entries
+        - Group
+        - Security
+        - Identifier
+  /tags/{ResourceArn}:
+    DELETE:
+      summary: UntagResource
+      description: <p>Removes one or more tags from your resource.</
+      tags:
+        - Untag
+        - Resource
+        - Connectors
+        - Registrations
+        - Directory
+        - Registration
+        - Arn
+        - Service
+        - Principal
+        - Names
+        - Connector
+        - Templates
+        - Template
+        - Access
+        - Control
+        - Entries
+        - Group
+        - Security
+        - Identifier
+        - Resource

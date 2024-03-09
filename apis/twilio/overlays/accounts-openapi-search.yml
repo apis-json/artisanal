@@ -13,9 +13,12 @@ paths:
         token, all requests to Twilio using your old primary Auth Token will
         result in an error.
       tags:
-        - Authentication
-        - Promotions
+        - Promote
+        - Auth
+        - Token
+        - Auth
         - Tokens
+        - Promote
       summary: Promote Auth Token
   /v1/Credentials:
     description: 'TODO: Resource-level docs'
@@ -26,34 +29,57 @@ paths:
         Retrieves a collection of AWS Credentials belonging to the account used
         to make the request
       tags:
+        - Retrieve
         - Credentials
-        - AWS
+        - Auth
+        - Tokens
+        - Promote
+        - Credentials
       summary: Retrieve AWS Credentials
     post:
       description: Create a new AWS Credential
       tags:
+        - Create
+        - Credential
+        - Auth
+        - Tokens
+        - Promote
         - Credentials
-        - AWS
       summary: Create AWS Credential
   /v1/Credentials/AWS/{Sid}:
     description: User provided AWS keys
     get:
       description: Fetch the AWS credentials specified by the provided Credential Sid
       tags:
+        - Retrieve
+        - Credential
+        - Auth
+        - Tokens
+        - Promote
         - Credentials
-        - AWS
+        - Sid
       summary: Retrieve AWS Credential
     post:
       description: Modify the properties of a given Account
       tags:
+        - Modify
+        - Account
+        - Auth
+        - Tokens
+        - Promote
         - Credentials
-        - AWS
+        - Sid
       summary: Modify AWS Account
     delete:
       description: Delete a Credential from your account
       tags:
+        - Delete
+        - Account
+        - Auth
+        - Tokens
+        - Promote
         - Credentials
-        - AWS
+        - Sid
       summary: Delete AWS Account
   /v1/Credentials/PublicKeys:
     description: User provided public keys
@@ -62,15 +88,29 @@ paths:
         Retrieves a collection of Public Key Credentials belonging to the
         account used to make the request
       tags:
+        - Retrieve
+        - Public
+        - Keys
+        - Auth
+        - Tokens
+        - Promote
         - Credentials
-        - Public Keys
+        - Sid
+        - Public
         - Keys
       summary: Retrieve Public Keys
     post:
       description: Create a new Public Key Credential
       tags:
+        - Create
+        - Public
+        - Key
+        - Auth
+        - Tokens
+        - Promote
         - Credentials
-        - Public Keys
+        - Sid
+        - Public
         - Keys
       summary: Create Public Key
   /v1/Credentials/PublicKeys/{Sid}:
@@ -78,22 +118,43 @@ paths:
     get:
       description: Fetch the public key specified by the provided Credential Sid
       tags:
+        - Retrieve
+        - Public
+        - Key
+        - Auth
+        - Tokens
+        - Promote
         - Credentials
-        - Public Keys
+        - Sid
+        - Public
         - Keys
       summary: Retrieve Public Key
     post:
       description: Modify the properties of a given Account
       tags:
+        - Update
+        - Public
+        - Key
+        - Auth
+        - Tokens
+        - Promote
         - Credentials
-        - Public Keys
+        - Sid
+        - Public
         - Keys
       summary: Update Public Key
     delete:
       description: Delete a Credential from your account
       tags:
+        - Delete
+        - Public
+        - Key
+        - Auth
+        - Tokens
+        - Promote
         - Credentials
-        - Public Keys
+        - Sid
+        - Public
         - Keys
       summary: Delete Public Key
   /v1/SafeList/Numbers:
@@ -101,40 +162,97 @@ paths:
     post:
       description: Add a new phone number to SafeList.
       tags:
-        - Lists
+        - Add
+        - Safe
+        - List
+        - Phone
+        - Number
+        - Auth
+        - Tokens
+        - Promote
+        - Credentials
+        - Sid
+        - Public
+        - Keys
+        - Safe
+        - List
         - Numbers
-        - Phone Numbers
-        - Safety
       summary: Add SafeList Phone Number
     get:
       description: Check if a phone number exists in SafeList.
       tags:
-        - Lists
+        - Get
+        - Safe
+        - List
+        - Phone
+        - Number
+        - Auth
+        - Tokens
+        - Promote
+        - Credentials
+        - Sid
+        - Public
+        - Keys
+        - Safe
+        - List
         - Numbers
-        - Phone Numbers
-        - Safety
       summary: Get SafeList Phone Number
     delete:
       description: Remove a phone number from SafeList.
       tags:
-        - Lists
+        - Delete
+        - Safe
+        - List
+        - Phone
+        - Number
+        - Auth
+        - Tokens
+        - Promote
+        - Credentials
+        - Sid
+        - Public
+        - Keys
+        - Safe
+        - List
         - Numbers
-        - Phone Numbers
-        - Safety
       summary: Delete SafeList Phone Number
   /v1/AuthTokens/Secondary:
     description: Secondary Auth Token
     post:
       description: Create a new secondary Auth Token
       tags:
-        - Authentication
+        - Create
+        - Auth
+        - Token
+        - Auth
         - Tokens
+        - Promote
+        - Credentials
+        - Sid
+        - Public
+        - Keys
+        - Safe
+        - List
+        - Numbers
+        - Secondary
       summary: Create Auth Token
     delete:
       description: Delete the secondary Auth Token from your account
       tags:
-        - Authentication
+        - Delete
+        - Auth
+        - Token
+        - Auth
         - Tokens
+        - Promote
+        - Credentials
+        - Sid
+        - Public
+        - Keys
+        - Safe
+        - List
+        - Numbers
+        - Secondary
       summary: Delete Auth Token
 tags:
   - name: Authentication
@@ -165,4 +283,4 @@ x-maturity:
   - name: Beta
     description: >-
       PLEASE NOTE that this is a Beta product that is subject to change. Use it
-      with caution.
+      with ca

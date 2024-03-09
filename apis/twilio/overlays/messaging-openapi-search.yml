@@ -12,16 +12,26 @@ paths:
     post:
       description: ''
       tags:
-        - Messaging
+        - Create
+        - Service
+        - Alpha
+        - Sender
         - Services
+        - Service
+        - Sid
         - Alpha
         - Senders
       summary: Create Service Alpha Sender
     get:
       description: ''
       tags:
-        - Messaging
+        - Retrieve
+        - Service
+        - Alpha
+        - Senders
         - Services
+        - Service
+        - Sid
         - Alpha
         - Senders
       summary: Retrieve Service Alpha Senders
@@ -32,16 +42,26 @@ paths:
     get:
       description: ''
       tags:
-        - Messaging
+        - Retrieve
+        - Service
+        - Alpha
+        - Sender
         - Services
+        - Service
+        - Sid
         - Alpha
         - Senders
       summary: Retrieve Service Alpha Sender
     delete:
       description: ''
       tags:
-        - Messaging
+        - Delete
+        - Service
+        - Alpha
+        - Sender
         - Services
+        - Service
+        - Sid
         - Alpha
         - Senders
       summary: Delete Service Alpha Sender
@@ -52,61 +72,130 @@ paths:
     post:
       description: ''
       tags:
-        - Messaging
-        - Brands
+        - Create
+        - Brand
+        - Registration
+        - Services
+        - Service
+        - Sid
+        - Alpha
+        - Senders
+        - Brand
         - Registrations
-        - SMS
+        - Registration
+        - Sms
+        - Otp
       summary: Create Brand Registration SMS
   /v1/a2p/BrandRegistrations/{Sid}:
     description: A Messaging Service resource to add and fetch Brand Registrations.
     get:
       description: ''
       tags:
-        - Messaging
-        - Brands
+        - Retrieve
+        - Brand
+        - Registration
+        - Services
+        - Service
+        - Sid
+        - Alpha
+        - Senders
+        - Brand
         - Registrations
-        - SMS
+        - Registration
+        - Sms
+        - Otp
       summary: Retrieve Brand Registration
     post:
       description: ''
       tags:
-        - Messaging
-        - Brands
+        - Update
+        - Brand
+        - Registration
+        - Services
+        - Service
+        - Sid
+        - Alpha
+        - Senders
+        - Brand
         - Registrations
-        - SMS
+        - Registration
+        - Sms
+        - Otp
       summary: Update Brand Registration
   /v1/a2p/BrandRegistrations:
     description: A Messaging Service resource to add and fetch Brand Registrations.
     get:
       description: ''
       tags:
-        - Messaging
-        - Brands
+        - Retrieve
+        - Brand
         - Registrations
+        - Services
+        - Service
+        - Sid
+        - Alpha
+        - Senders
+        - Brand
+        - Registrations
+        - Registration
+        - Sms
+        - Otp
       summary: Retrieve Brand Registrations
     post:
       description: ''
       tags:
-        - Messaging
-        - Brands
+        - Create
+        - Brand
+        - Registration
+        - Services
+        - Service
+        - Sid
+        - Alpha
+        - Senders
+        - Brand
         - Registrations
+        - Registration
+        - Sms
+        - Otp
       summary: Create Brand Registration
   /v1/a2p/BrandRegistrations/{BrandSid}/Vettings:
     description: A Messaging Service resource to add and get Brand Vettings.
     post:
       description: ''
       tags:
-        - Messaging
-        - Brands
+        - Create
+        - Brand
+        - Registration
+        - Vetting
+        - Services
+        - Service
+        - Sid
+        - Alpha
+        - Senders
+        - Brand
         - Registrations
+        - Registration
+        - Sms
+        - Otp
         - Vettings
       summary: Create Brand Registration Vetting
     get:
       description: ''
       tags:
-        - Messaging
-        - Brands
+        - Retrieve
+        - Brand
+        - Registration
+        - Vettings
+        - Services
+        - Service
+        - Sid
+        - Alpha
+        - Senders
+        - Brand
         - Registrations
+        - Registration
+        - Sms
+        - Otp
         - Vettings
       summary: Retrieve Brand Registration Vettings
   /v1/a2p/BrandRegistrations/{BrandSid}/Vettings/{BrandVettingSid}:
@@ -114,10 +203,22 @@ paths:
     get:
       description: ''
       tags:
-        - Messaging
-        - Brands
+        - Retrieve
+        - Brand
+        - Registration
+        - Vetting
+        - Services
+        - Service
+        - Sid
+        - Alpha
+        - Senders
+        - Brand
         - Registrations
+        - Registration
+        - Sms
+        - Otp
         - Vettings
+        - Vetting
       summary: Retrieve Brand Registration Vetting
   /v1/Services/{MessagingServiceSid}/ChannelSenders:
     description: >-
@@ -126,10 +227,24 @@ paths:
     get:
       description: ''
       tags:
-        - Messaging
-        - Services
-        - Channels
+        - Retrieve
+        - Service
+        - Channel
         - Senders
+        - Services
+        - Service
+        - Sid
+        - Alpha
+        - Senders
+        - Brand
+        - Registrations
+        - Registration
+        - Sms
+        - Otp
+        - Vettings
+        - Vetting
+        - Messaging
+        - Channel
       summary: Retrieve Service Channel Senders
   /v1/Services/{MessagingServiceSid}/ChannelSenders/{Sid}:
     description: >-
@@ -138,10 +253,24 @@ paths:
     get:
       description: ''
       tags:
-        - Messaging
+        - Retrieve
+        - Service
+        - Channel
+        - Sender
         - Services
-        - Channels
+        - Service
+        - Sid
+        - Alpha
         - Senders
+        - Brand
+        - Registrations
+        - Registration
+        - Sms
+        - Otp
+        - Vettings
+        - Vetting
+        - Messaging
+        - Channel
       summary: Retrieve Service Channel Sender
   /v1/Deactivations:
     description: >-
@@ -152,7 +281,22 @@ paths:
         Fetch a list of all United States numbers that have been deactivated on
         a specific date.
       tags:
+        - Retrieve
+        - Deactivations
+        - Services
+        - Service
+        - Sid
+        - Alpha
+        - Senders
+        - Brand
+        - Registrations
+        - Registration
+        - Sms
+        - Otp
+        - Vettings
+        - Vetting
         - Messaging
+        - Channel
         - Deactivations
       summary: Retrieve Deactivations
   /v1/LinkShortening/Domains/{DomainSid}/Certificate:
@@ -160,92 +304,320 @@ paths:
     post:
       description: ''
       tags:
+        - Create
+        - Link
+        - Shortening
+        - Domain
+        - Certificate
+        - Services
+        - Service
+        - Sid
+        - Alpha
+        - Senders
+        - Brand
+        - Registrations
+        - Registration
+        - Sms
+        - Otp
+        - Vettings
+        - Vetting
         - Messaging
-        - Link Shortening
+        - Channel
+        - Deactivations
+        - Link
+        - Shortening
         - Domains
-        - Certificates
+        - Domain
+        - Certificate
       summary: Create Link Shortening Domain Certificate
     get:
       description: ''
       tags:
+        - Retrieve
+        - Link
+        - Shortening
+        - Domain
+        - Certificate
+        - Services
+        - Service
+        - Sid
+        - Alpha
+        - Senders
+        - Brand
+        - Registrations
+        - Registration
+        - Sms
+        - Otp
+        - Vettings
+        - Vetting
         - Messaging
-        - Link Shortening
+        - Channel
+        - Deactivations
+        - Link
+        - Shortening
         - Domains
-        - Certificates
+        - Domain
+        - Certificate
       summary: Retrieve Link Shortening Domain Certificate
     delete:
       description: ''
       tags:
+        - Create
+        - Link
+        - Shortening
+        - Domain
+        - Certificate
+        - Services
+        - Service
+        - Sid
+        - Alpha
+        - Senders
+        - Brand
+        - Registrations
+        - Registration
+        - Sms
+        - Otp
+        - Vettings
+        - Vetting
         - Messaging
-        - Link Shortening
+        - Channel
+        - Deactivations
+        - Link
+        - Shortening
         - Domains
-        - Certificates
+        - Domain
+        - Certificate
       summary: Create Link Shortening Domain Certificate
   /v1/LinkShortening/Domains/{DomainSid}/Config:
     description: 'TODO: Resource-level docs'
     post:
       description: ''
       tags:
+        - Create
+        - Link
+        - Shortening
+        - Domain
+        - Configuration
+        - Services
+        - Service
+        - Sid
+        - Alpha
+        - Senders
+        - Brand
+        - Registrations
+        - Registration
+        - Sms
+        - Otp
+        - Vettings
+        - Vetting
         - Messaging
-        - Link Shortening
+        - Channel
+        - Deactivations
+        - Link
+        - Shortening
         - Domains
-        - Configurations
+        - Domain
+        - Certificate
+        - Config
       summary: Create Link Shortening Domain Configuration
     get:
       description: ''
       tags:
+        - Retrieve
+        - Link
+        - Shortening
+        - Domain
+        - Configuration
+        - Services
+        - Service
+        - Sid
+        - Alpha
+        - Senders
+        - Brand
+        - Registrations
+        - Registration
+        - Sms
+        - Otp
+        - Vettings
+        - Vetting
         - Messaging
-        - Link Shortening
+        - Channel
+        - Deactivations
+        - Link
+        - Shortening
         - Domains
-        - Configurations
+        - Domain
+        - Certificate
+        - Config
       summary: Retrieve Link Shortening Domain Configuration
   /v1/LinkShortening/MessagingService/{MessagingServiceSid}/DomainConfig:
     description: 'TODO: Resource-level docs'
     get:
       description: ''
       tags:
+        - Retrieve
+        - Link
+        - Shortening
         - Messaging
-        - Link Shortening
+        - Service
+        - Domain
+        - Configuration
         - Services
+        - Service
+        - Sid
+        - Alpha
+        - Senders
+        - Brand
+        - Registrations
+        - Registration
+        - Sms
+        - Otp
+        - Vettings
+        - Vetting
+        - Messaging
+        - Channel
+        - Deactivations
+        - Link
+        - Shortening
         - Domains
-        - Configurations
+        - Domain
+        - Certificate
+        - Config
       summary: Retrieve Link Shortening  Messaging Service Domain Configuration
   /v1/Services/PreregisteredUsa2p:
     description: Resource to associate preregistered campaign with Messaging Service.
     post:
       description: ''
       tags:
-        - Messaging
+        - Create
+        - Service
+        - Pre-registered
         - Services
-        - Pre-Registered
+        - Service
+        - Sid
+        - Alpha
+        - Senders
+        - Brand
+        - Registrations
+        - Registration
+        - Sms
+        - Otp
+        - Vettings
+        - Vetting
+        - Messaging
+        - Channel
+        - Deactivations
+        - Link
+        - Shortening
+        - Domains
+        - Domain
+        - Certificate
+        - Config
+        - Preregistered
+        - Usa2p
       summary: Create Service Pre-registered USA 2P
   /v1/LinkShortening/Domains/{DomainSid}/MessagingServices/{MessagingServiceSid}:
     description: 'TODO: Resource-level docs'
     post:
       description: ''
       tags:
-        - Messaging
-        - Link Shortening
+        - Update
+        - Link
+        - Shortening
+        - Domain
+        - Message
+        - Service
         - Services
+        - Service
+        - Sid
+        - Alpha
+        - Senders
+        - Brand
+        - Registrations
+        - Registration
+        - Sms
+        - Otp
+        - Vettings
+        - Vetting
+        - Messaging
+        - Channel
+        - Deactivations
+        - Link
+        - Shortening
         - Domains
+        - Domain
+        - Certificate
+        - Config
+        - Preregistered
+        - Usa2p
       summary: Update Link Shortening Domain Message Service
     delete:
       description: ''
       tags:
-        - Messaging
-        - Link Shortening
+        - Delete
+        - Link
+        - Shortening
+        - Domain
+        - Message
+        - Service
         - Services
+        - Service
+        - Sid
+        - Alpha
+        - Senders
+        - Brand
+        - Registrations
+        - Registration
+        - Sms
+        - Otp
+        - Vettings
+        - Vetting
+        - Messaging
+        - Channel
+        - Deactivations
+        - Link
+        - Shortening
         - Domains
+        - Domain
+        - Certificate
+        - Config
+        - Preregistered
+        - Usa2p
       summary: Delete Link Shortening Domain Message Service
   /v1/LinkShortening/MessagingServices/{MessagingServiceSid}/Domain:
     description: 'TODO: Resource-level docs'
     get:
       description: ''
       tags:
+        - Retrieve
+        - Link
+        - Shortening
         - Messaging
-        - Link Shortening
+        - Service
+        - Domain
         - Services
+        - Service
+        - Sid
+        - Alpha
+        - Senders
+        - Brand
+        - Registrations
+        - Registration
+        - Sms
+        - Otp
+        - Vettings
+        - Vetting
+        - Messaging
+        - Channel
+        - Deactivations
+        - Link
+        - Shortening
         - Domains
+        - Domain
+        - Certificate
+        - Config
+        - Preregistered
+        - Usa2p
       summary: Retrieve Link Shortening Messaging Service Domain
   /v1/Services/{ServiceSid}/PhoneNumbers:
     description: >-
@@ -254,17 +626,67 @@ paths:
     post:
       description: ''
       tags:
-        - Messaging
+        - Create
+        - Service
+        - Phone
+        - Number
         - Services
-        - Phone Number
+        - Service
+        - Sid
+        - Alpha
+        - Senders
+        - Brand
+        - Registrations
+        - Registration
+        - Sms
+        - Otp
+        - Vettings
+        - Vetting
+        - Messaging
+        - Channel
+        - Deactivations
+        - Link
+        - Shortening
+        - Domains
+        - Domain
+        - Certificate
+        - Config
+        - Preregistered
+        - Usa2p
+        - Phone
         - Numbers
       summary: Create Service Phone Number
     get:
       description: ''
       tags:
-        - Messaging
+        - Retrieve
+        - Service
+        - Phone
+        - Numbers
         - Services
-        - Phone Number
+        - Service
+        - Sid
+        - Alpha
+        - Senders
+        - Brand
+        - Registrations
+        - Registration
+        - Sms
+        - Otp
+        - Vettings
+        - Vetting
+        - Messaging
+        - Channel
+        - Deactivations
+        - Link
+        - Shortening
+        - Domains
+        - Domain
+        - Certificate
+        - Config
+        - Preregistered
+        - Usa2p
+        - Phone
         - Numbers
       summary: Retrieve Service Phone Numbers
   /v1/Services/{ServiceSid}/PhoneNumbers/{Sid}:
@@ -274,17 +696,67 @@ paths:
     delete:
       description: ''
       tags:
-        - Messaging
+        - Delete
+        - Service
+        - Phone
+        - Number
         - Services
-        - Phone Number
+        - Service
+        - Sid
+        - Alpha
+        - Senders
+        - Brand
+        - Registrations
+        - Registration
+        - Sms
+        - Otp
+        - Vettings
+        - Vetting
+        - Messaging
+        - Channel
+        - Deactivations
+        - Link
+        - Shortening
+        - Domains
+        - Domain
+        - Certificate
+        - Config
+        - Preregistered
+        - Usa2p
+        - Phone
         - Numbers
       summary: Delete Service Phone Number
     get:
       description: ''
       tags:
-        - Messaging
+        - Retrieve
+        - Service
+        - Phone
+        - Numbers
         - Services
-        - Phone Number
+        - Service
+        - Sid
+        - Alpha
+        - Senders
+        - Brand
+        - Registrations
+        - Registration
+        - Sms
+        - Otp
+        - Vettings
+        - Vetting
+        - Messaging
+        - Channel
+        - Deactivations
+        - Link
+        - Shortening
+        - Domains
+        - Domain
+        - Certificate
+        - Config
+        - Preregistered
+        - Usa2p
+        - Phone
         - Numbers
       summary: Retrieve Service Phone Numbers
   /v1/Services:
@@ -294,14 +766,64 @@ paths:
     post:
       description: ''
       tags:
-        - Messaging
+        - Create
+        - Service
         - Services
+        - Service
+        - Sid
+        - Alpha
+        - Senders
+        - Brand
+        - Registrations
+        - Registration
+        - Sms
+        - Otp
+        - Vettings
+        - Vetting
+        - Messaging
+        - Channel
+        - Deactivations
+        - Link
+        - Shortening
+        - Domains
+        - Domain
+        - Certificate
+        - Config
+        - Preregistered
+        - Usa2p
+        - Phone
+        - Numbers
       summary: Create Service
     get:
       description: ''
       tags:
-        - Messaging
+        - Retrieve
         - Services
+        - Services
+        - Service
+        - Sid
+        - Alpha
+        - Senders
+        - Brand
+        - Registrations
+        - Registration
+        - Sms
+        - Otp
+        - Vettings
+        - Vetting
+        - Messaging
+        - Channel
+        - Deactivations
+        - Link
+        - Shortening
+        - Domains
+        - Domain
+        - Certificate
+        - Config
+        - Preregistered
+        - Usa2p
+        - Phone
+        - Numbers
       summary: Retrieve Services
   /v1/Services/{Sid}:
     description: >-
@@ -310,20 +832,95 @@ paths:
     post:
       description: ''
       tags:
-        - Messaging
+        - Update
+        - Service
         - Services
+        - Service
+        - Sid
+        - Alpha
+        - Senders
+        - Brand
+        - Registrations
+        - Registration
+        - Sms
+        - Otp
+        - Vettings
+        - Vetting
+        - Messaging
+        - Channel
+        - Deactivations
+        - Link
+        - Shortening
+        - Domains
+        - Domain
+        - Certificate
+        - Config
+        - Preregistered
+        - Usa2p
+        - Phone
+        - Numbers
       summary: Update Service
     get:
       description: ''
       tags:
-        - Messaging
+        - Retrieve
+        - Service
         - Services
+        - Service
+        - Sid
+        - Alpha
+        - Senders
+        - Brand
+        - Registrations
+        - Registration
+        - Sms
+        - Otp
+        - Vettings
+        - Vetting
+        - Messaging
+        - Channel
+        - Deactivations
+        - Link
+        - Shortening
+        - Domains
+        - Domain
+        - Certificate
+        - Config
+        - Preregistered
+        - Usa2p
+        - Phone
+        - Numbers
       summary: Retrieve Service
     delete:
       description: ''
       tags:
-        - Messaging
+        - Delete
+        - Service
         - Services
+        - Service
+        - Sid
+        - Alpha
+        - Senders
+        - Brand
+        - Registrations
+        - Registration
+        - Sms
+        - Otp
+        - Vettings
+        - Vetting
+        - Messaging
+        - Channel
+        - Deactivations
+        - Link
+        - Shortening
+        - Domains
+        - Domain
+        - Certificate
+        - Config
+        - Preregistered
+        - Usa2p
+        - Phone
+        - Numbers
       summary: Delete Service
   /v1/Services/{ServiceSid}/ShortCodes:
     description: >-
@@ -332,16 +929,72 @@ paths:
     post:
       description: ''
       tags:
-        - Messaging
+        - Create
+        - Service
+        - Short
+        - Codes
         - Services
-        - Short Codes
+        - Service
+        - Sid
+        - Alpha
+        - Senders
+        - Brand
+        - Registrations
+        - Registration
+        - Sms
+        - Otp
+        - Vettings
+        - Vetting
+        - Messaging
+        - Channel
+        - Deactivations
+        - Link
+        - Shortening
+        - Domains
+        - Domain
+        - Certificate
+        - Config
+        - Preregistered
+        - Usa2p
+        - Phone
+        - Numbers
+        - Short
+        - Codes
       summary: Create Service Short Codes
     get:
       description: ''
       tags:
-        - Messaging
+        - Retrieve
+        - Service
+        - Short
+        - Codes
         - Services
-        - Short Codes
+        - Service
+        - Sid
+        - Alpha
+        - Senders
+        - Brand
+        - Registrations
+        - Registration
+        - Sms
+        - Otp
+        - Vettings
+        - Vetting
+        - Messaging
+        - Channel
+        - Deactivations
+        - Link
+        - Shortening
+        - Domains
+        - Domain
+        - Certificate
+        - Config
+        - Preregistered
+        - Usa2p
+        - Phone
+        - Numbers
+        - Short
+        - Codes
       summary: Retrieve Service Short Codes
   /v1/Services/{ServiceSid}/ShortCodes/{Sid}:
     description: >-
@@ -350,38 +1003,184 @@ paths:
     delete:
       description: ''
       tags:
-        - Messaging
+        - Delete
+        - Service
+        - Short
+        - Code
         - Services
-        - Short Codes
+        - Service
+        - Sid
+        - Alpha
+        - Senders
+        - Brand
+        - Registrations
+        - Registration
+        - Sms
+        - Otp
+        - Vettings
+        - Vetting
+        - Messaging
+        - Channel
+        - Deactivations
+        - Link
+        - Shortening
+        - Domains
+        - Domain
+        - Certificate
+        - Config
+        - Preregistered
+        - Usa2p
+        - Phone
+        - Numbers
+        - Short
+        - Codes
       summary: Delete Service Short Code
     get:
       description: ''
       tags:
-        - Messaging
+        - Retrieve
+        - Service
+        - Short
+        - Code
         - Services
-        - Short Codes
+        - Service
+        - Sid
+        - Alpha
+        - Senders
+        - Brand
+        - Registrations
+        - Registration
+        - Sms
+        - Otp
+        - Vettings
+        - Vetting
+        - Messaging
+        - Channel
+        - Deactivations
+        - Link
+        - Shortening
+        - Domains
+        - Domain
+        - Certificate
+        - Config
+        - Preregistered
+        - Usa2p
+        - Phone
+        - Numbers
+        - Short
+        - Codes
       summary: Retrieve Service Short Code
   /v1/Tollfree/Verifications/{Sid}:
     description: A Messaging resource to add and fetch Tollfree Verifications.
     get:
       description: ''
       tags:
+        - Retrieve
+        - Toll
+        - Free
+        - Verification
+        - Services
+        - Service
+        - Sid
+        - Alpha
+        - Senders
+        - Brand
+        - Registrations
+        - Registration
+        - Sms
+        - Otp
+        - Vettings
+        - Vetting
         - Messaging
-        - Toll Free
+        - Channel
+        - Deactivations
+        - Link
+        - Shortening
+        - Domains
+        - Domain
+        - Certificate
+        - Config
+        - Preregistered
+        - Usa2p
+        - Phone
+        - Numbers
+        - Short
+        - Codes
+        - Tollfree
         - Verifications
       summary: Retrieve Toll Free Verification
     post:
       description: ''
       tags:
+        - Update
+        - Toll
+        - Free
+        - Verification
+        - Services
+        - Service
+        - Sid
+        - Alpha
+        - Senders
+        - Brand
+        - Registrations
+        - Registration
+        - Sms
+        - Otp
+        - Vettings
+        - Vetting
         - Messaging
-        - Toll Free
+        - Channel
+        - Deactivations
+        - Link
+        - Shortening
+        - Domains
+        - Domain
+        - Certificate
+        - Config
+        - Preregistered
+        - Usa2p
+        - Phone
+        - Numbers
+        - Short
+        - Codes
+        - Tollfree
         - Verifications
       summary: Update Toll Free Verification
     delete:
       description: ''
       tags:
+        - Delete
+        - Toll
+        - Free
+        - Verification
+        - Services
+        - Service
+        - Sid
+        - Alpha
+        - Senders
+        - Brand
+        - Registrations
+        - Registration
+        - Sms
+        - Otp
+        - Vettings
+        - Vetting
         - Messaging
-        - Toll Free
+        - Channel
+        - Deactivations
+        - Link
+        - Shortening
+        - Domains
+        - Domain
+        - Certificate
+        - Config
+        - Preregistered
+        - Usa2p
+        - Phone
+        - Numbers
+        - Short
+        - Codes
+        - Tollfree
         - Verifications
       summary: Delete Toll Free Verification
   /v1/Tollfree/Verifications:
@@ -389,15 +1188,75 @@ paths:
     get:
       description: ''
       tags:
+        - Retrieve
+        - Toll
+        - Free
+        - Verifications
+        - Services
+        - Service
+        - Sid
+        - Alpha
+        - Senders
+        - Brand
+        - Registrations
+        - Registration
+        - Sms
+        - Otp
+        - Vettings
+        - Vetting
         - Messaging
-        - Toll Free
+        - Channel
+        - Deactivations
+        - Link
+        - Shortening
+        - Domains
+        - Domain
+        - Certificate
+        - Config
+        - Preregistered
+        - Usa2p
+        - Phone
+        - Numbers
+        - Short
+        - Codes
+        - Tollfree
         - Verifications
       summary: Retrieve Toll Free Verifications
     post:
       description: ''
       tags:
+        - Create
+        - Toll
+        - Free
+        - Verification
+        - Services
+        - Service
+        - Sid
+        - Alpha
+        - Senders
+        - Brand
+        - Registrations
+        - Registration
+        - Sms
+        - Otp
+        - Vettings
+        - Vetting
         - Messaging
-        - Toll Free
+        - Channel
+        - Deactivations
+        - Link
+        - Shortening
+        - Domains
+        - Domain
+        - Certificate
+        - Config
+        - Preregistered
+        - Usa2p
+        - Phone
+        - Numbers
+        - Short
+        - Codes
+        - Tollfree
         - Verifications
       summary: Create Toll Free Verification
   /v1/Services/{MessagingServiceSid}/Compliance/Usa2p:
@@ -405,15 +1264,76 @@ paths:
     post:
       description: ''
       tags:
-        - Messaging
+        - Create
+        - Service
+        - Compliance
         - Services
+        - Service
+        - Sid
+        - Alpha
+        - Senders
+        - Brand
+        - Registrations
+        - Registration
+        - Sms
+        - Otp
+        - Vettings
+        - Vetting
+        - Messaging
+        - Channel
+        - Deactivations
+        - Link
+        - Shortening
+        - Domains
+        - Domain
+        - Certificate
+        - Config
+        - Preregistered
+        - Usa2p
+        - Phone
+        - Numbers
+        - Short
+        - Codes
+        - Tollfree
+        - Verifications
         - Compliance
       summary: Create Service Compliance USA 2P
     get:
       description: ''
       tags:
-        - Messaging
+        - Retrieve
+        - Service
+        - Compliance
+        - Ps
         - Services
+        - Service
+        - Sid
+        - Alpha
+        - Senders
+        - Brand
+        - Registrations
+        - Registration
+        - Sms
+        - Otp
+        - Vettings
+        - Vetting
+        - Messaging
+        - Channel
+        - Deactivations
+        - Link
+        - Shortening
+        - Domains
+        - Domain
+        - Certificate
+        - Config
+        - Preregistered
+        - Usa2p
+        - Phone
+        - Numbers
+        - Short
+        - Codes
+        - Tollfree
+        - Verifications
         - Compliance
       summary: Retrieve Service Compliance USA 2Ps
   /v1/Services/{MessagingServiceSid}/Compliance/Usa2p/{Sid}:
@@ -421,15 +1341,75 @@ paths:
     delete:
       description: ''
       tags:
-        - Messaging
+        - Delete
+        - Service
+        - Compliance
         - Services
+        - Service
+        - Sid
+        - Alpha
+        - Senders
+        - Brand
+        - Registrations
+        - Registration
+        - Sms
+        - Otp
+        - Vettings
+        - Vetting
+        - Messaging
+        - Channel
+        - Deactivations
+        - Link
+        - Shortening
+        - Domains
+        - Domain
+        - Certificate
+        - Config
+        - Preregistered
+        - Usa2p
+        - Phone
+        - Numbers
+        - Short
+        - Codes
+        - Tollfree
+        - Verifications
         - Compliance
       summary: Delete Service Compliance USA 2P
     get:
       description: ''
       tags:
-        - Messaging
+        - Retrieve
+        - Service
+        - Compliance
         - Services
+        - Service
+        - Sid
+        - Alpha
+        - Senders
+        - Brand
+        - Registrations
+        - Registration
+        - Sms
+        - Otp
+        - Vettings
+        - Vetting
+        - Messaging
+        - Channel
+        - Deactivations
+        - Link
+        - Shortening
+        - Domains
+        - Domain
+        - Certificate
+        - Config
+        - Preregistered
+        - Usa2p
+        - Phone
+        - Numbers
+        - Short
+        - Codes
+        - Tollfree
+        - Verifications
         - Compliance
       summary: Retrieve Service Compliance USA 2P
   /v1/Services/{MessagingServiceSid}/Compliance/Usa2p/Usecases:
@@ -442,20 +1422,83 @@ paths:
     get:
       description: ''
       tags:
-        - Messaging
-        - Services
+        - Retrieve
+        - Service
         - Compliance
-        - Use Cases
+        - Use
+        - Cases
+        - Services
+        - Service
+        - Sid
+        - Alpha
+        - Senders
+        - Brand
+        - Registrations
+        - Registration
+        - Sms
+        - Otp
+        - Vettings
+        - Vetting
+        - Messaging
+        - Channel
+        - Deactivations
+        - Link
+        - Shortening
+        - Domains
+        - Domain
+        - Certificate
+        - Config
+        - Preregistered
+        - Usa2p
+        - Phone
+        - Numbers
+        - Short
+        - Codes
+        - Tollfree
+        - Verifications
+        - Compliance
+        - Usecases
       summary: Retrieve Service Compliance USA 2P Use Cases
   /v1/Services/Usecases:
     description: Use Case resource. Fetch possible use cases for a Messaging Service.
     get:
       description: ''
       tags:
-        - Messaging
+        - Retrieve
+        - Service
+        - Use
+        - Cases
         - Services
+        - Service
+        - Sid
+        - Alpha
+        - Senders
+        - Brand
+        - Registrations
+        - Registration
+        - Sms
+        - Otp
+        - Vettings
+        - Vetting
+        - Messaging
+        - Channel
+        - Deactivations
+        - Link
+        - Shortening
+        - Domains
+        - Domain
+        - Certificate
+        - Config
+        - Preregistered
+        - Usa2p
+        - Phone
+        - Numbers
+        - Short
+        - Codes
+        - Tollfree
+        - Verifications
         - Compliance
-        - Use Cases
+        - Usecases
       summary: Retrieve Service Use Cases
 tags:
   - name: Messaging
@@ -514,4 +1557,4 @@ x-maturity:
   - name: Beta
     description: >-
       PLEASE NOTE that this is a Beta product that is subject to change. Use it
-      with caution.
+      with ca

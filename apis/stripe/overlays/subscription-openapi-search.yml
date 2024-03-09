@@ -9,16 +9,22 @@ paths:
         subscription.</p>
       summary: Retrieve Subscription Items
       tags:
-        - Subscriptions
+        - Retrieve
+        - Subscription
         - Items
+        - V1
+        - Subscription_items
     post:
       description: >-
         <p>Adds a new item to an existing subscription. No existing items will
         be changed or replaced.</p>
       summary: Create Subscription Item
       tags:
-        - Subscriptions
-        - Items
+        - Create
+        - Subscription
+        - Item
+        - V1
+        - Subscription_items
   /v1/subscription_items/{item}:
     delete:
       description: >-
@@ -26,22 +32,34 @@ paths:
         from a subscription will not cancel the subscription.</p>
       summary: Delete Subscription Item
       tags:
-        - Subscriptions
-        - Items
+        - Delete
+        - Subscription
+        - Item
+        - V1
+        - Subscription_items
+        - Item
     get:
       description: <p>Retrieves the subscription item with the given ID.</p>
       summary: Retrieve Subscription Item
       tags:
-        - Subscriptions
-        - Items
+        - Retrieve
+        - Subscription
+        - Item
+        - V1
+        - Subscription_items
+        - Item
     post:
       description: >-
         <p>Updates the plan or quantity of an item on a current
         subscription.</p>
       summary: Update Subscription Item
       tags:
-        - Subscriptions
-        - Items
+        - Update
+        - Subscription
+        - Item
+        - V1
+        - Subscription_items
+        - Item
   /v1/subscription_items/{subscription_item}/usage_record_summaries:
     get:
       description: >-
@@ -58,11 +76,17 @@ paths:
         unstable until the subscription billing period ends.</p>
       summary: Retrieve Subscription Item Usage Record Summaries
       tags:
-        - Subscriptions
-        - Items
+        - Retrieve
+        - Subscription
+        - Item
         - Usage
-        - Records
+        - Record
         - Summaries
+        - V1
+        - Subscription_items
+        - Item
+        - Subscription_item
+        - Usage_record_summaries
   /v1/subscription_items/{subscription_item}/usage_records:
     post:
       description: >-
@@ -97,25 +121,48 @@ paths:
         pricing</a> model.</p>
       summary: Create Subscription Item Usage Record
       tags:
-        - Subscriptions
-        - Items
+        - Create
+        - Subscription
+        - Item
         - Usage
-        - Records
+        - Record
+        - V1
+        - Subscription_items
+        - Item
+        - Subscription_item
+        - Usage_record_summaries
+        - Usage_records
   /v1/subscription_schedules:
     get:
       description: <p>Retrieves the list of your subscription schedules.</p>
       summary: Retrieve Subscription Schedules
       tags:
-        - Subscriptions
+        - Retrieve
+        - Subscription
         - Schedules
+        - V1
+        - Subscription_items
+        - Item
+        - Subscription_item
+        - Usage_record_summaries
+        - Usage_records
+        - Subscription_schedules
     post:
       description: >-
         <p>Creates a new subscription schedule object. Each customer can have up
         to 500 active or scheduled subscriptions.</p>
       summary: Create Subscription Schedule
       tags:
-        - Subscriptions
-        - Schedules
+        - Create
+        - Subscription
+        - Schedule
+        - V1
+        - Subscription_items
+        - Item
+        - Subscription_item
+        - Usage_record_summaries
+        - Usage_records
+        - Subscription_schedules
   /v1/subscription_schedules/{schedule}:
     get:
       description: >-
@@ -124,14 +171,32 @@ paths:
         returned upon subscription schedule creation.</p>
       summary: Retrieve Subscription Schedule
       tags:
-        - Subscriptions
-        - Schedules
+        - Retrieve
+        - Subscription
+        - Schedule
+        - V1
+        - Subscription_items
+        - Item
+        - Subscription_item
+        - Usage_record_summaries
+        - Usage_records
+        - Subscription_schedules
+        - Schedule
     post:
       description: <p>Updates an existing subscription schedule.</p>
       summary: Update Subscription Schedule
       tags:
-        - Subscriptions
-        - Schedules
+        - Update
+        - Subscription
+        - Schedule
+        - V1
+        - Subscription_items
+        - Item
+        - Subscription_item
+        - Usage_record_summaries
+        - Usage_records
+        - Subscription_schedules
+        - Schedule
   /v1/subscription_schedules/{schedule}/cancel:
     post:
       description: >-
@@ -142,8 +207,17 @@ paths:
       summary: Cancel Subscription Schedule
       tags:
         - Cancel
-        - Subscriptions
-        - Schedules
+        - Subscription
+        - Schedule
+        - V1
+        - Subscription_items
+        - Item
+        - Subscription_item
+        - Usage_record_summaries
+        - Usage_records
+        - Subscription_schedules
+        - Schedule
+        - Cancel
   /v1/subscription_schedules/{schedule}/release:
     post:
       description: >-
@@ -156,9 +230,19 @@ paths:
         ID to the <code>released_subscription</code> property.</p>
       summary: Release Subscription Schedule
       tags:
-        - Releases
-        - Subscriptions
-        - Schedules
+        - Release
+        - Subscription
+        - Schedule
+        - V1
+        - Subscription_items
+        - Item
+        - Subscription_item
+        - Usage_record_summaries
+        - Usage_records
+        - Subscription_schedules
+        - Schedule
+        - Cancel
+        - Release
   /v1/subscriptions:
     get:
       description: >-
@@ -167,6 +251,18 @@ paths:
         <code>status=canceled</code>.</p>
       summary: Retrieve Subscriptions
       tags:
+        - Retrieve
+        - Subscriptions
+        - V1
+        - Subscription_items
+        - Item
+        - Subscription_item
+        - Usage_record_summaries
+        - Usage_records
+        - Subscription_schedules
+        - Schedule
+        - Cancel
+        - Release
         - Subscriptions
     post:
       description: >-
@@ -191,6 +287,18 @@ paths:
         configurations that change over time.</p>
       summary: Create Subscription
       tags:
+        - Create
+        - Subscription
+        - V1
+        - Subscription_items
+        - Item
+        - Subscription_item
+        - Usage_record_summaries
+        - Usage_records
+        - Subscription_schedules
+        - Schedule
+        - Cancel
+        - Release
         - Subscriptions
   /v1/subscriptions/search:
     get:
@@ -210,6 +318,18 @@ paths:
       tags:
         - Search
         - Subscriptions
+        - V1
+        - Subscription_items
+        - Item
+        - Subscription_item
+        - Usage_record_summaries
+        - Usage_records
+        - Subscription_schedules
+        - Schedule
+        - Cancel
+        - Release
+        - Subscriptions
+        - Search
   /v1/subscriptions/{subscription_exposed_id}:
     delete:
       description: >-
@@ -235,12 +355,40 @@ paths:
         customer to cancel the subscription at all.</p>
       summary: Delete Subscription
       tags:
+        - Delete
+        - Subscription
+        - V1
+        - Subscription_items
+        - Item
+        - Subscription_item
+        - Usage_record_summaries
+        - Usage_records
+        - Subscription_schedules
+        - Schedule
+        - Cancel
+        - Release
         - Subscriptions
+        - Search
+        - Subscription_exposed_id
     get:
       description: <p>Retrieves the subscription with the given ID.</p>
       summary: Retrieve Subscription
       tags:
+        - Retrieve
+        - Subscription
+        - V1
+        - Subscription_items
+        - Item
+        - Subscription_item
+        - Usage_record_summaries
+        - Usage_records
+        - Subscription_schedules
+        - Schedule
+        - Cancel
+        - Release
         - Subscriptions
+        - Search
+        - Subscription_exposed_id
     post:
       description: >-
         <p>Updates an existing subscription to match the specified parameters.
@@ -311,14 +459,43 @@ paths:
         instead.</p>
       summary: Update Subscription
       tags:
+        - Update
+        - Subscription
+        - V1
+        - Subscription_items
+        - Item
+        - Subscription_item
+        - Usage_record_summaries
+        - Usage_records
+        - Subscription_schedules
+        - Schedule
+        - Cancel
+        - Release
         - Subscriptions
+        - Search
+        - Subscription_exposed_id
   /v1/subscriptions/{subscription_exposed_id}/discount:
     delete:
       description: <p>Removes the currently applied discount on a subscription.</p>
       summary: Remove Subscription Discount
       tags:
+        - Remove
+        - Subscription
+        - Discount
+        - V1
+        - Subscription_items
+        - Item
+        - Subscription_item
+        - Usage_record_summaries
+        - Usage_records
+        - Subscription_schedules
+        - Schedule
+        - Cancel
+        - Release
         - Subscriptions
-        - Discounts
+        - Search
+        - Subscription_exposed_id
+        - Discount
   /v1/subscriptions/{subscription}/resume:
     post:
       description: >-
@@ -332,7 +509,23 @@ paths:
       summary: Resume Subscription
       tags:
         - Resume
+        - Subscription
+        - V1
+        - Subscription_items
+        - Item
+        - Subscription_item
+        - Usage_record_summaries
+        - Usage_records
+        - Subscription_schedules
+        - Schedule
+        - Cancel
+        - Release
         - Subscriptions
+        - Search
+        - Subscription_exposed_id
+        - Discount
+        - Subscription
+        - Resume
 tags:
   - name: Subscriptions
     description: Needs a description.
@@ -355,4 +548,4 @@ tags:
   - name: Discounts
     description: Needs a description.
   - name: Resume
-    description: Needs a description.
+    description: Needs a descriptio

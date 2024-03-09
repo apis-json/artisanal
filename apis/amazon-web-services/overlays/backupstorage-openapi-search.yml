@@ -1,0 +1,131 @@
+openapi: 3.1.0
+info:
+  title: backupstorage
+paths:
+  /backup-jobs/{jobId}/object/{objectName}:
+    PUT:
+      summary: StartObject
+      description: Start upload containing one or many chunks.
+      tags:
+        - Start
+        - Object
+        - Id
+        - Object
+        - Name
+  /restore-jobs/{jobId}/chunk/{chunkToken}:
+    GET:
+      summary: GetChunk
+      description: Gets the specified object's chunk.
+      tags:
+        - Get
+        - Chunk
+        - Id
+        - Object
+        - Name
+        - Chunk
+        - Token
+  /restore-jobs/{jobId}/object/{objectToken}/metadata:
+    GET:
+      summary: GetObjectMetadata
+      description: Get metadata associated with an Object.
+      tags:
+        - Get
+        - Object
+        - Metadata
+        - Id
+        - Object
+        - Name
+        - Chunk
+        - Token
+        - Metadata
+  /restore-jobs/{jobId}/chunks/{objectToken}/list:
+    GET:
+      summary: ListChunks
+      description: List chunks in a given Object
+      tags:
+        - List
+        - Chunks
+        - Id
+        - Object
+        - Name
+        - Chunk
+        - Token
+        - Metadata
+        - Chunks
+        - List
+  /restore-jobs/{jobId}/objects/list:
+    GET:
+      summary: ListObjects
+      description: List all Objects in a given Backup.
+      tags:
+        - List
+        - Objects
+        - Id
+        - Object
+        - Name
+        - Chunk
+        - Token
+        - Metadata
+        - Chunks
+        - List
+        - Objects
+  /backup-jobs/{jobId}/object/{uploadId}/complete:
+    PUT:
+      summary: NotifyObjectComplete
+      description: Complete upload
+      tags:
+        - Notify
+        - Object
+        - Complete
+        - Id
+        - Object
+        - Name
+        - Chunk
+        - Token
+        - Metadata
+        - Chunks
+        - List
+        - Objects
+        - Upload
+        - Complete
+  /backup-jobs/{jobId}/chunk/{uploadId}/{chunkIndex}:
+    PUT:
+      summary: PutChunk
+      description: Upload chunk.
+      tags:
+        - Put
+        - Chunk
+        - Id
+        - Object
+        - Name
+        - Chunk
+        - Token
+        - Metadata
+        - Chunks
+        - List
+        - Objects
+        - Upload
+        - Complete
+        - Index
+  /backup-jobs/{jobId}/object/{objectName}/put-object:
+    PUT:
+      summary: PutObject
+      description: >-
+        Upload object that can store object metadata String and data blob in
+        single API call using inline chunk fiel
+      tags:
+        - Put
+        - Object
+        - Id
+        - Object
+        - Name
+        - Chunk
+        - Token
+        - Metadata
+        - Chunks
+        - List
+        - Objects
+        - Upload
+        - Complete
+        - Index
+        - Put

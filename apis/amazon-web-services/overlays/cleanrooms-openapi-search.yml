@@ -1,0 +1,1062 @@
+openapi: 3.1.0
+info:
+  title: cleanrooms
+paths:
+  /collaborations/{collaborationIdentifier}/batch-analysistemplates:
+    POST:
+      summary: BatchGetCollaborationAnalysisTemplate
+      description: >-
+        <p>Retrieves multiple analysis templates within a collaboration by their
+        Amazon Resource Names (ARNs).</p>
+      tags:
+        - Batch
+        - Get
+        - Collaboration
+        - Analysis
+        - Template
+        - Identifier
+        - Batch
+        - Analysistemplates
+  /collaborations/{collaborationIdentifier}/batch-schema:
+    POST:
+      summary: BatchGetSchema
+      description: <p>Retrieves multiple schemas by their identifiers.</p>
+      tags:
+        - Batch
+        - Get
+        - Schema
+        - Identifier
+        - Batch
+        - Analysistemplates
+        - Schema
+  /memberships/{membershipIdentifier}/analysistemplates:
+    GET:
+      summary: ListAnalysisTemplates
+      description: <p>Lists analysis templates that the caller owns.</p>
+      tags:
+        - List
+        - Analysis
+        - Templates
+        - Identifier
+        - Batch
+        - Analysistemplates
+        - Schema
+  /collaborations:
+    GET:
+      summary: ListCollaborations
+      description: >-
+        <p>Lists collaborations the caller owns, is active in, or has been
+        invited to.</p>
+      tags:
+        - List
+        - Collaborations
+        - Identifier
+        - Batch
+        - Analysistemplates
+        - Schema
+        - Collaborations
+  /memberships/{membershipIdentifier}/configuredaudiencemodelassociations:
+    GET:
+      summary: ListConfiguredAudienceModelAssociations
+      description: >-
+        <p>Lists information about requested configured audience model
+        associations.</p>
+      tags:
+        - List
+        - Configured
+        - Audience
+        - Model
+        - Associations
+        - Identifier
+        - Batch
+        - Analysistemplates
+        - Schema
+        - Collaborations
+        - Configuredaudiencemodelassociations
+  /configuredTables:
+    GET:
+      summary: ListConfiguredTables
+      description: <p>Lists configured tables.</p>
+      tags:
+        - List
+        - Configured
+        - Tables
+        - Identifier
+        - Batch
+        - Analysistemplates
+        - Schema
+        - Collaborations
+        - Configuredaudiencemodelassociations
+        - Tables
+  /configuredTables/{configuredTableIdentifier}/analysisRule:
+    POST:
+      summary: CreateConfiguredTableAnalysisRule
+      description: >-
+        <p>Creates a new analysis rule for a configured table. Currently, only
+        one analysis rule can be created for a given configured table.</p>
+      tags:
+        - Create
+        - Configured
+        - Table
+        - Analysis
+        - Rule
+        - Identifier
+        - Batch
+        - Analysistemplates
+        - Schema
+        - Collaborations
+        - Configuredaudiencemodelassociations
+        - Tables
+        - Configured
+        - Table
+        - Analysis
+        - Rule
+  /memberships/{membershipIdentifier}/configuredTableAssociations:
+    GET:
+      summary: ListConfiguredTableAssociations
+      description: <p>Lists configured table associations for a membership.</p>
+      tags:
+        - List
+        - Configured
+        - Table
+        - Associations
+        - Identifier
+        - Batch
+        - Analysistemplates
+        - Schema
+        - Collaborations
+        - Configuredaudiencemodelassociations
+        - Tables
+        - Configured
+        - Table
+        - Analysis
+        - Rule
+        - Associations
+  /memberships:
+    GET:
+      summary: ListMemberships
+      description: <p>Lists all memberships resources within the caller's account.</p>
+      tags:
+        - List
+        - Memberships
+        - Identifier
+        - Batch
+        - Analysistemplates
+        - Schema
+        - Collaborations
+        - Configuredaudiencemodelassociations
+        - Tables
+        - Configured
+        - Table
+        - Analysis
+        - Rule
+        - Associations
+        - Memberships
+  /memberships/{membershipIdentifier}/privacybudgettemplates:
+    GET:
+      summary: ListPrivacyBudgetTemplates
+      description: >-
+        <p>Returns detailed information about the privacy budget templates in a
+        specified membership.</p>
+      tags:
+        - List
+        - Privacy
+        - Budget
+        - Templates
+        - Identifier
+        - Batch
+        - Analysistemplates
+        - Schema
+        - Collaborations
+        - Configuredaudiencemodelassociations
+        - Tables
+        - Configured
+        - Table
+        - Analysis
+        - Rule
+        - Associations
+        - Memberships
+        - Privacybudgettemplates
+  /memberships/{membershipIdentifier}/analysistemplates/{analysisTemplateIdentifier}:
+    PATCH:
+      summary: UpdateAnalysisTemplate
+      description: <p>Updates the analysis template metadata.</p>
+      tags:
+        - Update
+        - Analysis
+        - Template
+        - Identifier
+        - Batch
+        - Analysistemplates
+        - Schema
+        - Collaborations
+        - Configuredaudiencemodelassociations
+        - Tables
+        - Configured
+        - Table
+        - Analysis
+        - Rule
+        - Associations
+        - Memberships
+        - Privacybudgettemplates
+        - Template
+  /collaborations/{collaborationIdentifier}:
+    PATCH:
+      summary: UpdateCollaboration
+      description: >-
+        <p>Updates collaboration metadata and can only be called by the
+        collaboration owner.</p>
+      tags:
+        - Update
+        - Collaboration
+        - Identifier
+        - Batch
+        - Analysistemplates
+        - Schema
+        - Collaborations
+        - Configuredaudiencemodelassociations
+        - Tables
+        - Configured
+        - Table
+        - Analysis
+        - Rule
+        - Associations
+        - Memberships
+        - Privacybudgettemplates
+        - Template
+  /memberships/{membershipIdentifier}/configuredaudiencemodelassociations/{configuredAudienceModelAssociationIdentifier}:
+    PATCH:
+      summary: UpdateConfiguredAudienceModelAssociation
+      description: >-
+        <p>Provides the details necessary to update a configured audience model
+        association.</p>
+      tags:
+        - Update
+        - Configured
+        - Audience
+        - Model
+        - Association
+        - Identifier
+        - Batch
+        - Analysistemplates
+        - Schema
+        - Collaborations
+        - Configuredaudiencemodelassociations
+        - Tables
+        - Configured
+        - Table
+        - Analysis
+        - Rule
+        - Associations
+        - Memberships
+        - Privacybudgettemplates
+        - Template
+        - Audience
+        - Model
+        - Association
+  /configuredTables/{configuredTableIdentifier}:
+    PATCH:
+      summary: UpdateConfiguredTable
+      description: <p>Updates a configured table.</p>
+      tags:
+        - Update
+        - Configured
+        - Table
+        - Identifier
+        - Batch
+        - Analysistemplates
+        - Schema
+        - Collaborations
+        - Configuredaudiencemodelassociations
+        - Tables
+        - Configured
+        - Table
+        - Analysis
+        - Rule
+        - Associations
+        - Memberships
+        - Privacybudgettemplates
+        - Template
+        - Audience
+        - Model
+        - Association
+  /configuredTables/{configuredTableIdentifier}/analysisRule/{analysisRuleType}:
+    PATCH:
+      summary: UpdateConfiguredTableAnalysisRule
+      description: <p>Updates a configured table analysis rule.</p>
+      tags:
+        - Update
+        - Configured
+        - Table
+        - Analysis
+        - Rule
+        - Identifier
+        - Batch
+        - Analysistemplates
+        - Schema
+        - Collaborations
+        - Configuredaudiencemodelassociations
+        - Tables
+        - Configured
+        - Table
+        - Analysis
+        - Rule
+        - Associations
+        - Memberships
+        - Privacybudgettemplates
+        - Template
+        - Audience
+        - Model
+        - Association
+        - Type
+  /memberships/{membershipIdentifier}/configuredTableAssociations/{configuredTableAssociationIdentifier}:
+    PATCH:
+      summary: UpdateConfiguredTableAssociation
+      description: <p>Updates a configured table association.</p>
+      tags:
+        - Update
+        - Configured
+        - Table
+        - Association
+        - Identifier
+        - Batch
+        - Analysistemplates
+        - Schema
+        - Collaborations
+        - Configuredaudiencemodelassociations
+        - Tables
+        - Configured
+        - Table
+        - Analysis
+        - Rule
+        - Associations
+        - Memberships
+        - Privacybudgettemplates
+        - Template
+        - Audience
+        - Model
+        - Association
+        - Type
+  /collaborations/{collaborationIdentifier}/member/{accountId}:
+    DELETE:
+      summary: DeleteMember
+      description: >-
+        <p>Removes the specified member from a collaboration. The removed member
+        is placed in the Removed status and can't interact with the
+        collaboration. The removed member's data is inaccessible to active
+        members of the collaboration.</p>
+      tags:
+        - Delete
+        - Member
+        - Identifier
+        - Batch
+        - Analysistemplates
+        - Schema
+        - Collaborations
+        - Configuredaudiencemodelassociations
+        - Tables
+        - Configured
+        - Table
+        - Analysis
+        - Rule
+        - Associations
+        - Memberships
+        - Privacybudgettemplates
+        - Template
+        - Audience
+        - Model
+        - Association
+        - Type
+        - Member
+        - Account
+        - Id
+  /memberships/{membershipIdentifier}:
+    PATCH:
+      summary: UpdateMembership
+      description: <p>Updates a membership.</p>
+      tags:
+        - Update
+        - Membership
+        - Identifier
+        - Batch
+        - Analysistemplates
+        - Schema
+        - Collaborations
+        - Configuredaudiencemodelassociations
+        - Tables
+        - Configured
+        - Table
+        - Analysis
+        - Rule
+        - Associations
+        - Memberships
+        - Privacybudgettemplates
+        - Template
+        - Audience
+        - Model
+        - Association
+        - Type
+        - Member
+        - Account
+        - Id
+  /memberships/{membershipIdentifier}/privacybudgettemplates/{privacyBudgetTemplateIdentifier}:
+    PATCH:
+      summary: UpdatePrivacyBudgetTemplate
+      description: <p>Updates the privacy budget template for the specified membership.</p>
+      tags:
+        - Update
+        - Privacy
+        - Budget
+        - Template
+        - Identifier
+        - Batch
+        - Analysistemplates
+        - Schema
+        - Collaborations
+        - Configuredaudiencemodelassociations
+        - Tables
+        - Configured
+        - Table
+        - Analysis
+        - Rule
+        - Associations
+        - Memberships
+        - Privacybudgettemplates
+        - Template
+        - Audience
+        - Model
+        - Association
+        - Type
+        - Member
+        - Account
+        - Id
+        - Privacy
+        - Budget
+  /collaborations/{collaborationIdentifier}/analysistemplates/{analysisTemplateArn}:
+    GET:
+      summary: GetCollaborationAnalysisTemplate
+      description: <p>Retrieves an analysis template within a collaboration.</p>
+      tags:
+        - Get
+        - Collaboration
+        - Analysis
+        - Template
+        - Identifier
+        - Batch
+        - Analysistemplates
+        - Schema
+        - Collaborations
+        - Configuredaudiencemodelassociations
+        - Tables
+        - Configured
+        - Table
+        - Analysis
+        - Rule
+        - Associations
+        - Memberships
+        - Privacybudgettemplates
+        - Template
+        - Audience
+        - Model
+        - Association
+        - Type
+        - Member
+        - Account
+        - Id
+        - Privacy
+        - Budget
+        - Arn
+  /collaborations/{collaborationIdentifier}/configuredaudiencemodelassociations/{configuredAudienceModelAssociationIdentifier}:
+    GET:
+      summary: GetCollaborationConfiguredAudienceModelAssociation
+      description: >-
+        <p>Retrieves a configured audience model association within a
+        collaboration.</p>
+      tags:
+        - Get
+        - Collaboration
+        - Configured
+        - Audience
+        - Model
+        - Association
+        - Identifier
+        - Batch
+        - Analysistemplates
+        - Schema
+        - Collaborations
+        - Configuredaudiencemodelassociations
+        - Tables
+        - Configured
+        - Table
+        - Analysis
+        - Rule
+        - Associations
+        - Memberships
+        - Privacybudgettemplates
+        - Template
+        - Audience
+        - Model
+        - Association
+        - Type
+        - Member
+        - Account
+        - Id
+        - Privacy
+        - Budget
+        - Arn
+  /collaborations/{collaborationIdentifier}/privacybudgettemplates/{privacyBudgetTemplateIdentifier}:
+    GET:
+      summary: GetCollaborationPrivacyBudgetTemplate
+      description: <p>Returns details about a specified privacy budget template.</p>
+      tags:
+        - Get
+        - Collaboration
+        - Privacy
+        - Budget
+        - Template
+        - Identifier
+        - Batch
+        - Analysistemplates
+        - Schema
+        - Collaborations
+        - Configuredaudiencemodelassociations
+        - Tables
+        - Configured
+        - Table
+        - Analysis
+        - Rule
+        - Associations
+        - Memberships
+        - Privacybudgettemplates
+        - Template
+        - Audience
+        - Model
+        - Association
+        - Type
+        - Member
+        - Account
+        - Id
+        - Privacy
+        - Budget
+        - Arn
+  /memberships/{membershipIdentifier}/protectedQueries/{protectedQueryIdentifier}:
+    PATCH:
+      summary: UpdateProtectedQuery
+      description: <p>Updates the processing of a currently running query.</p>
+      tags:
+        - Update
+        - Protected
+        - Query
+        - Identifier
+        - Batch
+        - Analysistemplates
+        - Schema
+        - Collaborations
+        - Configuredaudiencemodelassociations
+        - Tables
+        - Configured
+        - Table
+        - Analysis
+        - Rule
+        - Associations
+        - Memberships
+        - Privacybudgettemplates
+        - Template
+        - Audience
+        - Model
+        - Association
+        - Type
+        - Member
+        - Account
+        - Id
+        - Privacy
+        - Budget
+        - Arn
+        - Protected
+        - Queries
+        - Query
+  /collaborations/{collaborationIdentifier}/schemas/{name}:
+    GET:
+      summary: GetSchema
+      description: <p>Retrieves the schema for a relation within a collaboration.</p>
+      tags:
+        - Get
+        - Schema
+        - Identifier
+        - Batch
+        - Analysistemplates
+        - Schema
+        - Collaborations
+        - Configuredaudiencemodelassociations
+        - Tables
+        - Configured
+        - Table
+        - Analysis
+        - Rule
+        - Associations
+        - Memberships
+        - Privacybudgettemplates
+        - Template
+        - Audience
+        - Model
+        - Association
+        - Type
+        - Member
+        - Account
+        - Id
+        - Privacy
+        - Budget
+        - Arn
+        - Protected
+        - Queries
+        - Query
+        - Schemas
+        - Name
+  /collaborations/{collaborationIdentifier}/schemas/{name}/analysisRule/{type}:
+    GET:
+      summary: GetSchemaAnalysisRule
+      description: <p>Retrieves a schema analysis rule.</p>
+      tags:
+        - Get
+        - Schema
+        - Analysis
+        - Rule
+        - Identifier
+        - Batch
+        - Analysistemplates
+        - Schema
+        - Collaborations
+        - Configuredaudiencemodelassociations
+        - Tables
+        - Configured
+        - Table
+        - Analysis
+        - Rule
+        - Associations
+        - Memberships
+        - Privacybudgettemplates
+        - Template
+        - Audience
+        - Model
+        - Association
+        - Type
+        - Member
+        - Account
+        - Id
+        - Privacy
+        - Budget
+        - Arn
+        - Protected
+        - Queries
+        - Query
+        - Schemas
+        - Name
+  /collaborations/{collaborationIdentifier}/analysistemplates:
+    GET:
+      summary: ListCollaborationAnalysisTemplates
+      description: <p>Lists analysis templates within a collaboration.</p>
+      tags:
+        - List
+        - Collaboration
+        - Analysis
+        - Templates
+        - Identifier
+        - Batch
+        - Analysistemplates
+        - Schema
+        - Collaborations
+        - Configuredaudiencemodelassociations
+        - Tables
+        - Configured
+        - Table
+        - Analysis
+        - Rule
+        - Associations
+        - Memberships
+        - Privacybudgettemplates
+        - Template
+        - Audience
+        - Model
+        - Association
+        - Type
+        - Member
+        - Account
+        - Id
+        - Privacy
+        - Budget
+        - Arn
+        - Protected
+        - Queries
+        - Query
+        - Schemas
+        - Name
+  /collaborations/{collaborationIdentifier}/configuredaudiencemodelassociations:
+    GET:
+      summary: ListCollaborationConfiguredAudienceModelAssociations
+      description: >-
+        <p>Lists configured audience model associations within a
+        collaboration.</p>
+      tags:
+        - List
+        - Collaboration
+        - Configured
+        - Audience
+        - Model
+        - Associations
+        - Identifier
+        - Batch
+        - Analysistemplates
+        - Schema
+        - Collaborations
+        - Configuredaudiencemodelassociations
+        - Tables
+        - Configured
+        - Table
+        - Analysis
+        - Rule
+        - Associations
+        - Memberships
+        - Privacybudgettemplates
+        - Template
+        - Audience
+        - Model
+        - Association
+        - Type
+        - Member
+        - Account
+        - Id
+        - Privacy
+        - Budget
+        - Arn
+        - Protected
+        - Queries
+        - Query
+        - Schemas
+        - Name
+  /collaborations/{collaborationIdentifier}/privacybudgettemplates:
+    GET:
+      summary: ListCollaborationPrivacyBudgetTemplates
+      description: >-
+        <p>Returns an array that summarizes each privacy budget template in a
+        specified collaboration.</p>
+      tags:
+        - List
+        - Collaboration
+        - Privacy
+        - Budget
+        - Templates
+        - Identifier
+        - Batch
+        - Analysistemplates
+        - Schema
+        - Collaborations
+        - Configuredaudiencemodelassociations
+        - Tables
+        - Configured
+        - Table
+        - Analysis
+        - Rule
+        - Associations
+        - Memberships
+        - Privacybudgettemplates
+        - Template
+        - Audience
+        - Model
+        - Association
+        - Type
+        - Member
+        - Account
+        - Id
+        - Privacy
+        - Budget
+        - Arn
+        - Protected
+        - Queries
+        - Query
+        - Schemas
+        - Name
+  /collaborations/{collaborationIdentifier}/privacybudgets:
+    GET:
+      summary: ListCollaborationPrivacyBudgets
+      description: >-
+        <p>Returns an array that summarizes each privacy budget in a specified
+        collaboration. The summary includes the collaboration ARN, creation
+        time, creating account, and privacy budget details.</p>
+      tags:
+        - List
+        - Collaboration
+        - Privacy
+        - Budgets
+        - Identifier
+        - Batch
+        - Analysistemplates
+        - Schema
+        - Collaborations
+        - Configuredaudiencemodelassociations
+        - Tables
+        - Configured
+        - Table
+        - Analysis
+        - Rule
+        - Associations
+        - Memberships
+        - Privacybudgettemplates
+        - Template
+        - Audience
+        - Model
+        - Association
+        - Type
+        - Member
+        - Account
+        - Id
+        - Privacy
+        - Budget
+        - Arn
+        - Protected
+        - Queries
+        - Query
+        - Schemas
+        - Name
+        - Privacybudgets
+  /collaborations/{collaborationIdentifier}/members:
+    GET:
+      summary: ListMembers
+      description: <p>Lists all members within a collaboration.</p>
+      tags:
+        - List
+        - Members
+        - Identifier
+        - Batch
+        - Analysistemplates
+        - Schema
+        - Collaborations
+        - Configuredaudiencemodelassociations
+        - Tables
+        - Configured
+        - Table
+        - Analysis
+        - Rule
+        - Associations
+        - Memberships
+        - Privacybudgettemplates
+        - Template
+        - Audience
+        - Model
+        - Association
+        - Type
+        - Member
+        - Account
+        - Id
+        - Privacy
+        - Budget
+        - Arn
+        - Protected
+        - Queries
+        - Query
+        - Schemas
+        - Name
+        - Privacybudgets
+        - Members
+  /memberships/{membershipIdentifier}/privacybudgets:
+    GET:
+      summary: ListPrivacyBudgets
+      description: >-
+        <p>Returns detailed information about the privacy budgets in a specified
+        membership.</p>
+      tags:
+        - List
+        - Privacy
+        - Budgets
+        - Identifier
+        - Batch
+        - Analysistemplates
+        - Schema
+        - Collaborations
+        - Configuredaudiencemodelassociations
+        - Tables
+        - Configured
+        - Table
+        - Analysis
+        - Rule
+        - Associations
+        - Memberships
+        - Privacybudgettemplates
+        - Template
+        - Audience
+        - Model
+        - Association
+        - Type
+        - Member
+        - Account
+        - Id
+        - Privacy
+        - Budget
+        - Arn
+        - Protected
+        - Queries
+        - Query
+        - Schemas
+        - Name
+        - Privacybudgets
+        - Members
+  /memberships/{membershipIdentifier}/protectedQueries:
+    POST:
+      summary: StartProtectedQuery
+      description: <p>Creates a protected query that is started by Clean Rooms.</p>
+      tags:
+        - Start
+        - Protected
+        - Query
+        - Identifier
+        - Batch
+        - Analysistemplates
+        - Schema
+        - Collaborations
+        - Configuredaudiencemodelassociations
+        - Tables
+        - Configured
+        - Table
+        - Analysis
+        - Rule
+        - Associations
+        - Memberships
+        - Privacybudgettemplates
+        - Template
+        - Audience
+        - Model
+        - Association
+        - Type
+        - Member
+        - Account
+        - Id
+        - Privacy
+        - Budget
+        - Arn
+        - Protected
+        - Queries
+        - Query
+        - Schemas
+        - Name
+        - Privacybudgets
+        - Members
+  /collaborations/{collaborationIdentifier}/schemas:
+    GET:
+      summary: ListSchemas
+      description: <p>Lists the schemas for relations within a collaboration.</p>
+      tags:
+        - List
+        - Schemas
+        - Identifier
+        - Batch
+        - Analysistemplates
+        - Schema
+        - Collaborations
+        - Configuredaudiencemodelassociations
+        - Tables
+        - Configured
+        - Table
+        - Analysis
+        - Rule
+        - Associations
+        - Memberships
+        - Privacybudgettemplates
+        - Template
+        - Audience
+        - Model
+        - Association
+        - Type
+        - Member
+        - Account
+        - Id
+        - Privacy
+        - Budget
+        - Arn
+        - Protected
+        - Queries
+        - Query
+        - Schemas
+        - Name
+        - Privacybudgets
+        - Members
+  /tags/{resourceArn}:
+    DELETE:
+      summary: UntagResource
+      description: <p>Removes a tag or list of tags from a resource.</p>
+      tags:
+        - Untag
+        - Resource
+        - Identifier
+        - Batch
+        - Analysistemplates
+        - Schema
+        - Collaborations
+        - Configuredaudiencemodelassociations
+        - Tables
+        - Configured
+        - Table
+        - Analysis
+        - Rule
+        - Associations
+        - Memberships
+        - Privacybudgettemplates
+        - Template
+        - Audience
+        - Model
+        - Association
+        - Type
+        - Member
+        - Account
+        - Id
+        - Privacy
+        - Budget
+        - Arn
+        - Protected
+        - Queries
+        - Query
+        - Schemas
+        - Name
+        - Privacybudgets
+        - Members
+  /memberships/{membershipIdentifier}/previewprivacyimpact:
+    POST:
+      summary: PreviewPrivacyImpact
+      description: >-
+        <p>An estimate of the number of aggregation functions that the member
+        who can query can run given epsilon and noise parameters.</
+      tags:
+        - Preview
+        - Privacy
+        - Impact
+        - Identifier
+        - Batch
+        - Analysistemplates
+        - Schema
+        - Collaborations
+        - Configuredaudiencemodelassociations
+        - Tables
+        - Configured
+        - Table
+        - Analysis
+        - Rule
+        - Associations
+        - Memberships
+        - Privacybudgettemplates
+        - Template
+        - Audience
+        - Model
+        - Association
+        - Type
+        - Member
+        - Account
+        - Id
+        - Privacy
+        - Budget
+        - Arn
+        - Protected
+        - Queries
+        - Query
+        - Schemas
+        - Name
+        - Privacybudgets
+        - Members
+        - Previewprivacyimpact

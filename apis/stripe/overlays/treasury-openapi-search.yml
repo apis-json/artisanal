@@ -7,16 +7,22 @@ paths:
       description: <p>Returns a list of CreditReversals.</p>
       summary: Retrieve Credit Reversals
       tags:
-        - Treasury
-        - Credits
+        - Retrieve
+        - Credit
         - Reversals
+        - V1
+        - Treasury
+        - Credit_reversals
     post:
       description: <p>Reverses a ReceivedCredit and creates a CreditReversal object.</p>
       summary: Create Credit Reversal
       tags:
+        - Create
+        - Credit
+        - Reversal
+        - V1
         - Treasury
-        - Credits
-        - Reversals
+        - Credit_reversals
   /v1/treasury/credit_reversals/{credit_reversal}:
     get:
       description: >-
@@ -25,64 +31,114 @@ paths:
         or CreditReversal list</p>
       summary: Retrieve Credit Reversal
       tags:
+        - Retrieve
+        - Credit
+        - Reversal
+        - V1
         - Treasury
-        - Credits
-        - Reversals
+        - Credit_reversals
+        - Credit_reversal
   /v1/treasury/debit_reversals:
     get:
       description: <p>Returns a list of DebitReversals.</p>
       summary: Retrieve Debit Reversals
       tags:
-        - Treasury
-        - Debits
+        - Retrieve
+        - Debit
         - Reversals
+        - V1
+        - Treasury
+        - Credit_reversals
+        - Credit_reversal
+        - Debit_reversals
     post:
       description: <p>Reverses a ReceivedDebit and creates a DebitReversal object.</p>
       summary: Create Debit Reversal
       tags:
+        - Create
+        - Debit
+        - Reversal
+        - V1
         - Treasury
-        - Debits
-        - Reversals
+        - Credit_reversals
+        - Credit_reversal
+        - Debit_reversals
   /v1/treasury/debit_reversals/{debit_reversal}:
     get:
       description: <p>Retrieves a DebitReversal object.</p>
       summary: Retrieve Debit Reversal
       tags:
+        - Retrieve
+        - Debit
+        - Reversal
+        - V1
         - Treasury
-        - Debits
-        - Reversals
+        - Credit_reversals
+        - Credit_reversal
+        - Debit_reversals
+        - Debit_reversal
   /v1/treasury/financial_accounts:
     get:
       description: <p>Returns a list of FinancialAccounts.</p>
       summary: Retrieve Financial Accounts
       tags:
-        - Treasury
+        - Retrieve
         - Financial
         - Accounts
+        - V1
+        - Treasury
+        - Credit_reversals
+        - Credit_reversal
+        - Debit_reversals
+        - Debit_reversal
+        - Financial_accounts
     post:
       description: >-
         <p>Creates a new FinancialAccount. For now, each connected account can
         only have one FinancialAccount.</p>
       summary: Create Financial Account
       tags:
-        - Treasury
+        - Create
         - Financial
-        - Accounts
+        - Account
+        - V1
+        - Treasury
+        - Credit_reversals
+        - Credit_reversal
+        - Debit_reversals
+        - Debit_reversal
+        - Financial_accounts
   /v1/treasury/financial_accounts/{financial_account}:
     get:
       description: <p>Retrieves the details of a FinancialAccount.</p>
       summary: Retrieve Financial Account
       tags:
-        - Treasury
+        - Retrieve
         - Financial
-        - Accounts
+        - Account
+        - V1
+        - Treasury
+        - Credit_reversals
+        - Credit_reversal
+        - Debit_reversals
+        - Debit_reversal
+        - Financial_accounts
+        - Financial_account
     post:
       description: <p>Updates the details of a FinancialAccount.</p>
       summary: Update Financial Account
       tags:
-        - Treasury
+        - Update
         - Financial
-        - Accounts
+        - Account
+        - V1
+        - Treasury
+        - Credit_reversals
+        - Credit_reversal
+        - Debit_reversals
+        - Debit_reversal
+        - Financial_accounts
+        - Financial_account
   /v1/treasury/financial_accounts/{financial_account}/features:
     get:
       description: >-
@@ -90,17 +146,35 @@ paths:
         FinancialAccount.</p>
       summary: Retrieve Financial Account Features
       tags:
-        - Treasury
+        - Retrieve
         - Financial
-        - Accounts
+        - Account
+        - Features
+        - V1
+        - Treasury
+        - Credit_reversals
+        - Credit_reversal
+        - Debit_reversals
+        - Debit_reversal
+        - Financial_accounts
+        - Financial_account
         - Features
     post:
       description: <p>Updates the Features associated with a FinancialAccount.</p>
       summary: Update Financial Account Feature
       tags:
-        - Treasury
+        - Update
         - Financial
-        - Accounts
+        - Account
+        - Feature
+        - V1
+        - Treasury
+        - Credit_reversals
+        - Credit_reversal
+        - Debit_reversals
+        - Debit_reversal
+        - Financial_accounts
+        - Financial_account
         - Features
   /v1/treasury/inbound_transfers:
     get:
@@ -109,33 +183,76 @@ paths:
         FinancialAccount.</p>
       summary: Retrieve Inbound Transfers
       tags:
-        - Treasury
+        - Retrieve
         - Inbound
         - Transfers
+        - V1
+        - Treasury
+        - Credit_reversals
+        - Credit_reversal
+        - Debit_reversals
+        - Debit_reversal
+        - Financial_accounts
+        - Financial_account
+        - Features
+        - Inbound_transfers
     post:
       description: <p>Creates an InboundTransfer.</p>
       summary: Create Inbound Transfer
       tags:
-        - Treasury
+        - Create
         - Inbound
-        - Transfers
+        - Transfer
+        - V1
+        - Treasury
+        - Credit_reversals
+        - Credit_reversal
+        - Debit_reversals
+        - Debit_reversal
+        - Financial_accounts
+        - Financial_account
+        - Features
+        - Inbound_transfers
   /v1/treasury/inbound_transfers/{id}:
     get:
       description: <p>Retrieves the details of an existing InboundTransfer.</p>
       summary: Retrieve Inbound Transfer
       tags:
-        - Treasury
+        - Retrieve
         - Inbound
-        - Transfers
+        - Transfer
+        - V1
+        - Treasury
+        - Credit_reversals
+        - Credit_reversal
+        - Debit_reversals
+        - Debit_reversal
+        - Financial_accounts
+        - Financial_account
+        - Features
+        - Inbound_transfers
+        - Id
   /v1/treasury/inbound_transfers/{inbound_transfer}/cancel:
     post:
       description: <p>Cancels an InboundTransfer.</p>
       summary: Cancel Inbound Transfer
       tags:
         - Cancel
-        - Treasury
         - Inbound
-        - Transfers
+        - Transfer
+        - V1
+        - Treasury
+        - Credit_reversals
+        - Credit_reversal
+        - Debit_reversals
+        - Debit_reversal
+        - Financial_accounts
+        - Financial_account
+        - Features
+        - Inbound_transfers
+        - Id
+        - Inbound_transfer
+        - Cancel
   /v1/treasury/outbound_payments:
     get:
       description: >-
@@ -143,16 +260,44 @@ paths:
         FinancialAccount.</p>
       summary: Retrieve Outbound Payments
       tags:
-        - Treasury
+        - Retrieve
         - Outbound
         - Payments
+        - V1
+        - Treasury
+        - Credit_reversals
+        - Credit_reversal
+        - Debit_reversals
+        - Debit_reversal
+        - Financial_accounts
+        - Financial_account
+        - Features
+        - Inbound_transfers
+        - Id
+        - Inbound_transfer
+        - Cancel
+        - Outbound_payments
     post:
       description: <p>Creates an OutboundPayment.</p>
       summary: Create Outbound Payment
       tags:
-        - Treasury
+        - Create
         - Outbound
-        - Payments
+        - Payment
+        - V1
+        - Treasury
+        - Credit_reversals
+        - Credit_reversal
+        - Debit_reversals
+        - Debit_reversal
+        - Financial_accounts
+        - Financial_account
+        - Features
+        - Inbound_transfers
+        - Id
+        - Inbound_transfer
+        - Cancel
+        - Outbound_payments
   /v1/treasury/outbound_payments/{id}:
     get:
       description: >-
@@ -161,18 +306,45 @@ paths:
         request or OutboundPayment list.</p>
       summary: Retrieve Outbound Payment
       tags:
-        - Treasury
+        - Retrieve
         - Outbound
-        - Payments
+        - Payment
+        - V1
+        - Treasury
+        - Credit_reversals
+        - Credit_reversal
+        - Debit_reversals
+        - Debit_reversal
+        - Financial_accounts
+        - Financial_account
+        - Features
+        - Inbound_transfers
+        - Id
+        - Inbound_transfer
+        - Cancel
+        - Outbound_payments
   /v1/treasury/outbound_payments/{id}/cancel:
     post:
       description: <p>Cancel an OutboundPayment.</p>
       summary: Cacel Outbound Payment
       tags:
-        - Cancel
-        - Treasury
+        - Cacel
         - Outbound
-        - Payments
+        - Payment
+        - V1
+        - Treasury
+        - Credit_reversals
+        - Credit_reversal
+        - Debit_reversals
+        - Debit_reversal
+        - Financial_accounts
+        - Financial_account
+        - Features
+        - Inbound_transfers
+        - Id
+        - Inbound_transfer
+        - Cancel
+        - Outbound_payments
   /v1/treasury/outbound_transfers:
     get:
       description: >-
@@ -180,16 +352,46 @@ paths:
         FinancialAccount.</p>
       summary: Retrieve Outbound Transfers
       tags:
-        - Treasury
+        - Retrieve
         - Outbound
         - Transfers
+        - V1
+        - Treasury
+        - Credit_reversals
+        - Credit_reversal
+        - Debit_reversals
+        - Debit_reversal
+        - Financial_accounts
+        - Financial_account
+        - Features
+        - Inbound_transfers
+        - Id
+        - Inbound_transfer
+        - Cancel
+        - Outbound_payments
+        - Outbound_transfers
     post:
       description: <p>Creates an OutboundTransfer.</p>
       summary: Create Outbound Transfer
       tags:
-        - Treasury
+        - Create
         - Outbound
-        - Transfers
+        - Transfer
+        - V1
+        - Treasury
+        - Credit_reversals
+        - Credit_reversal
+        - Debit_reversals
+        - Debit_reversal
+        - Financial_accounts
+        - Financial_account
+        - Features
+        - Inbound_transfers
+        - Id
+        - Inbound_transfer
+        - Cancel
+        - Outbound_payments
+        - Outbound_transfers
   /v1/treasury/outbound_transfers/{outbound_transfer}:
     get:
       description: >-
@@ -198,9 +400,25 @@ paths:
         request or OutboundTransfer list.</p>
       summary: Retrieve Outbound Transfer
       tags:
-        - Treasury
+        - Retrieve
         - Outbound
-        - Transfers
+        - Transfer
+        - V1
+        - Treasury
+        - Credit_reversals
+        - Credit_reversal
+        - Debit_reversals
+        - Debit_reversal
+        - Financial_accounts
+        - Financial_account
+        - Features
+        - Inbound_transfers
+        - Id
+        - Inbound_transfer
+        - Cancel
+        - Outbound_payments
+        - Outbound_transfers
+        - Outbound_transfer
   /v1/treasury/outbound_transfers/{outbound_transfer}/cancel:
     post:
       description: >-
@@ -208,14 +426,50 @@ paths:
         paid out.</p>
       summary: Cancel Outbound Transfer
       tags:
-        - Treasury
-        - Outbound
-        - Transfers
         - Cancel
+        - Outbound
+        - Transfer
+        - V1
+        - Treasury
+        - Credit_reversals
+        - Credit_reversal
+        - Debit_reversals
+        - Debit_reversal
+        - Financial_accounts
+        - Financial_account
+        - Features
+        - Inbound_transfers
+        - Id
+        - Inbound_transfer
+        - Cancel
+        - Outbound_payments
+        - Outbound_transfers
+        - Outbound_transfer
   /v1/treasury/received_credits:
     get:
       description: <p>Returns a list of ReceivedCredits.</p>
       summary: Retrieve Received Credits
+      tags:
+        - Retrieve
+        - Received
+        - Credits
+        - V1
+        - Treasury
+        - Credit_reversals
+        - Credit_reversal
+        - Debit_reversals
+        - Debit_reversal
+        - Financial_accounts
+        - Financial_account
+        - Features
+        - Inbound_transfers
+        - Id
+        - Inbound_transfer
+        - Cancel
+        - Outbound_payments
+        - Outbound_transfers
+        - Outbound_transfer
+        - Received_credits
   /v1/treasury/received_credits/{id}:
     get:
       description: >-
@@ -223,17 +477,52 @@ paths:
         unique ReceivedCredit ID from the ReceivedCredit list.</p>
       summary: Retrieve Received Credit
       tags:
-        - Treasury
+        - Retrieve
         - Received
-        - Credits
+        - Credit
+        - V1
+        - Treasury
+        - Credit_reversals
+        - Credit_reversal
+        - Debit_reversals
+        - Debit_reversal
+        - Financial_accounts
+        - Financial_account
+        - Features
+        - Inbound_transfers
+        - Id
+        - Inbound_transfer
+        - Cancel
+        - Outbound_payments
+        - Outbound_transfers
+        - Outbound_transfer
+        - Received_credits
   /v1/treasury/received_debits:
     get:
       description: <p>Returns a list of ReceivedDebits.</p>
       summary: Retrieve Received Debits
       tags:
-        - Treasury
+        - Retrieve
         - Received
         - Debits
+        - V1
+        - Treasury
+        - Credit_reversals
+        - Credit_reversal
+        - Debit_reversals
+        - Debit_reversal
+        - Financial_accounts
+        - Financial_account
+        - Features
+        - Inbound_transfers
+        - Id
+        - Inbound_transfer
+        - Cancel
+        - Outbound_payments
+        - Outbound_transfers
+        - Outbound_transfer
+        - Received_credits
+        - Received_debits
   /v1/treasury/received_debits/{id}:
     get:
       description: >-
@@ -241,38 +530,134 @@ paths:
         unique ReceivedDebit ID from the ReceivedDebit list</p>
       summary: Retrieve Received Debit
       tags:
-        - Treasury
+        - Retrieve
         - Received
-        - Debits
+        - Debit
+        - V1
+        - Treasury
+        - Credit_reversals
+        - Credit_reversal
+        - Debit_reversals
+        - Debit_reversal
+        - Financial_accounts
+        - Financial_account
+        - Features
+        - Inbound_transfers
+        - Id
+        - Inbound_transfer
+        - Cancel
+        - Outbound_payments
+        - Outbound_transfers
+        - Outbound_transfer
+        - Received_credits
+        - Received_debits
   /v1/treasury/transaction_entries:
     get:
       description: <p>Retrieves a list of TransactionEntry objects.</p>
       summary: Retrieve Transaction Entries
       tags:
-        - Treasury
-        - Transactions
+        - Retrieve
+        - Transaction
         - Entries
+        - V1
+        - Treasury
+        - Credit_reversals
+        - Credit_reversal
+        - Debit_reversals
+        - Debit_reversal
+        - Financial_accounts
+        - Financial_account
+        - Features
+        - Inbound_transfers
+        - Id
+        - Inbound_transfer
+        - Cancel
+        - Outbound_payments
+        - Outbound_transfers
+        - Outbound_transfer
+        - Received_credits
+        - Received_debits
+        - Transaction_entries
   /v1/treasury/transaction_entries/{id}:
     get:
       description: <p>Retrieves a TransactionEntry object.</p>
       summary: Retrieve Transaction Entry
       tags:
+        - Retrieve
+        - Transaction
+        - Entry
+        - V1
         - Treasury
-        - Transactions
-        - Entries
+        - Credit_reversals
+        - Credit_reversal
+        - Debit_reversals
+        - Debit_reversal
+        - Financial_accounts
+        - Financial_account
+        - Features
+        - Inbound_transfers
+        - Id
+        - Inbound_transfer
+        - Cancel
+        - Outbound_payments
+        - Outbound_transfers
+        - Outbound_transfer
+        - Received_credits
+        - Received_debits
+        - Transaction_entries
   /v1/treasury/transactions:
     get:
       description: <p>Retrieves a list of Transaction objects.</p>
       summary: Retrieve Transactions
       tags:
+        - Retrieve
+        - Transactions
+        - V1
         - Treasury
+        - Credit_reversals
+        - Credit_reversal
+        - Debit_reversals
+        - Debit_reversal
+        - Financial_accounts
+        - Financial_account
+        - Features
+        - Inbound_transfers
+        - Id
+        - Inbound_transfer
+        - Cancel
+        - Outbound_payments
+        - Outbound_transfers
+        - Outbound_transfer
+        - Received_credits
+        - Received_debits
+        - Transaction_entries
         - Transactions
   /v1/treasury/transactions/{id}:
     get:
       description: <p>Retrieves the details of an existing Transaction.</p>
       summary: Retrieve Transaction
       tags:
+        - Retrieve
+        - Transaction
+        - V1
         - Treasury
+        - Credit_reversals
+        - Credit_reversal
+        - Debit_reversals
+        - Debit_reversal
+        - Financial_accounts
+        - Financial_account
+        - Features
+        - Inbound_transfers
+        - Id
+        - Inbound_transfer
+        - Cancel
+        - Outbound_payments
+        - Outbound_transfers
+        - Outbound_transfer
+        - Received_credits
+        - Received_debits
+        - Transaction_entries
         - Transactions
 tags:
   - name: Treasury
@@ -308,4 +693,4 @@ tags:
   - name: Entries
     description: Needs a description.
   - name: Transactions
-    description: Needs a description.
+    description: Needs a descriptio

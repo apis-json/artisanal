@@ -10,22 +10,34 @@ paths:
     get:
       description: ''
       tags:
-        - Sync
+        - Retrieve
+        - Service
+        - Document
         - Services
+        - Service
+        - Sid
         - Documents
       summary: Retrieve Service Document
     delete:
       description: ''
       tags:
-        - Sync
+        - Delete
+        - Service
+        - Document
         - Services
+        - Service
+        - Sid
         - Documents
       summary: Delete Service Document
     post:
       description: ''
       tags:
-        - Sync
+        - Update
+        - Service
+        - Document
         - Services
+        - Service
+        - Sid
         - Documents
       summary: Update Service Document
   /v1/Services/{ServiceSid}/Documents:
@@ -33,15 +45,23 @@ paths:
     post:
       description: ''
       tags:
-        - Sync
+        - Create
+        - Service
+        - Document
         - Services
+        - Service
+        - Sid
         - Documents
       summary: Create Service Document
     get:
       description: ''
       tags:
-        - Sync
+        - Retrieve
+        - Service
+        - Documents
         - Services
+        - Service
+        - Sid
         - Documents
       summary: Retrieve Service Documents
   /v1/Services/{ServiceSid}/Documents/{DocumentSid}/Permissions/{Identity}:
@@ -49,79 +69,152 @@ paths:
     get:
       description: Fetch a specific Sync Document Permission.
       tags:
-        - Sync
+        - Retrieve
+        - Service
+        - Document
+        - Permission
         - Services
+        - Service
+        - Sid
         - Documents
+        - Document
         - Permissions
+        - Identity
       summary: Retrieve Service Document Permission
     delete:
       description: Delete a specific Sync Document Permission.
       tags:
-        - Sync
+        - Delete
+        - Service
+        - Document
+        - Permission
         - Services
+        - Service
+        - Sid
         - Documents
+        - Document
         - Permissions
+        - Identity
       summary: Delete Service Document Permission
     post:
       description: Update an identity's access to a specific Sync Document.
       tags:
-        - Sync
+        - Update
+        - Service
+        - Document
+        - Permission
         - Services
+        - Service
+        - Sid
         - Documents
+        - Document
         - Permissions
+        - Identity
       summary: Update Service Document Permission
   /v1/Services/{ServiceSid}/Documents/{DocumentSid}/Permissions:
     description: Sync document permissions
     get:
       description: Retrieve a list of all Permissions applying to a Sync Document.
       tags:
-        - Sync
-        - Services
-        - Documents
+        - Retrieve
+        - Service
+        - Document
         - Permissions
+        - Services
+        - Service
+        - Sid
+        - Documents
+        - Document
+        - Permissions
+        - Identity
       summary: Retrieve Service Document Permissions
   /v1/Services/{Sid}:
     description: Containers for sync objects
     get:
       description: ''
       tags:
-        - Sync
+        - Retrieve
+        - Service
         - Services
+        - Service
+        - Sid
+        - Documents
+        - Document
+        - Permissions
+        - Identity
       summary: Retrieve Service
     delete:
       description: ''
       tags:
-        - Sync
+        - Delete
+        - Service
         - Services
+        - Service
+        - Sid
+        - Documents
+        - Document
+        - Permissions
+        - Identity
       summary: Delete Service
     post:
       description: ''
       tags:
-        - Sync
+        - Update
+        - Service
         - Services
+        - Service
+        - Sid
+        - Documents
+        - Document
+        - Permissions
+        - Identity
       summary: Update Service
   /v1/Services:
     description: Containers for sync objects
     post:
       description: ''
       tags:
-        - Sync
+        - Create
+        - Service
         - Services
+        - Service
+        - Sid
+        - Documents
+        - Document
+        - Permissions
+        - Identity
       summary: Create Service
     get:
       description: ''
       tags:
-        - Sync
+        - Retrieve
         - Services
+        - Services
+        - Service
+        - Sid
+        - Documents
+        - Document
+        - Permissions
+        - Identity
       summary: Retrieve Services
   /v1/Services/{ServiceSid}/Streams/{StreamSid}/Messages:
     description: 'TODO: Resource-level docs'
     post:
       description: Create a new Stream Message.
       tags:
-        - Sync
+        - Create
+        - Service
+        - Stream
+        - Message
         - Services
+        - Service
+        - Sid
+        - Documents
+        - Document
+        - Permissions
+        - Identity
         - Streams
+        - Stream
         - Messages
       summary: Create Service Stream Message
   /v1/Services/{ServiceSid}/Lists/{Sid}:
@@ -129,22 +222,55 @@ paths:
     get:
       description: ''
       tags:
-        - Sync
+        - Retrieve
+        - Service
+        - List
         - Services
+        - Service
+        - Sid
+        - Documents
+        - Document
+        - Permissions
+        - Identity
+        - Streams
+        - Stream
+        - Messages
         - Lists
       summary: Retrieve Service List
     delete:
       description: ''
       tags:
-        - Sync
+        - Delete
+        - Service
+        - List
         - Services
+        - Service
+        - Sid
+        - Documents
+        - Document
+        - Permissions
+        - Identity
+        - Streams
+        - Stream
+        - Messages
         - Lists
       summary: Delete Service List
     post:
       description: ''
       tags:
-        - Sync
+        - Update
+        - Service
+        - List
         - Services
+        - Service
+        - Sid
+        - Documents
+        - Document
+        - Permissions
+        - Identity
+        - Streams
+        - Stream
+        - Messages
         - Lists
       summary: Update Service List
   /v1/Services/{ServiceSid}/Lists:
@@ -152,15 +278,37 @@ paths:
     post:
       description: ''
       tags:
-        - Sync
+        - Create
+        - Service
+        - List
         - Services
+        - Service
+        - Sid
+        - Documents
+        - Document
+        - Permissions
+        - Identity
+        - Streams
+        - Stream
+        - Messages
         - Lists
       summary: Create Service List
     get:
       description: ''
       tags:
-        - Sync
+        - Retrieve
+        - Service
+        - Lists
         - Services
+        - Service
+        - Sid
+        - Documents
+        - Document
+        - Permissions
+        - Identity
+        - Streams
+        - Stream
+        - Messages
         - Lists
       summary: Retrieve Service Lists
   /v1/Services/{ServiceSid}/Lists/{ListSid}/Items/{Index}:
@@ -168,102 +316,273 @@ paths:
     get:
       description: ''
       tags:
-        - Sync
+        - Retrieve
+        - Service
+        - List
+        - Item
         - Services
+        - Service
+        - Sid
+        - Documents
+        - Document
+        - Permissions
+        - Identity
+        - Streams
+        - Stream
+        - Messages
         - Lists
+        - List
         - Items
+        - Index
       summary: Retrieve Service List Item
     delete:
       description: ''
       tags:
-        - Sync
+        - Delete
+        - Service
+        - List
+        - Item
         - Services
+        - Service
+        - Sid
+        - Documents
+        - Document
+        - Permissions
+        - Identity
+        - Streams
+        - Stream
+        - Messages
         - Lists
+        - List
         - Items
+        - Index
       summary: Delete Service List Item
     post:
       description: ''
       tags:
-        - Sync
+        - Update
+        - Service
+        - List
+        - Item
         - Services
+        - Service
+        - Sid
+        - Documents
+        - Document
+        - Permissions
+        - Identity
+        - Streams
+        - Stream
+        - Messages
         - Lists
+        - List
         - Items
+        - Index
       summary: Update Service List Item
   /v1/Services/{ServiceSid}/Lists/{ListSid}/Items:
     description: Items in a sync list
     post:
       description: ''
       tags:
-        - Sync
+        - Create
+        - Service
+        - List
+        - Item
         - Services
+        - Service
+        - Sid
+        - Documents
+        - Document
+        - Permissions
+        - Identity
+        - Streams
+        - Stream
+        - Messages
         - Lists
+        - List
         - Items
+        - Index
       summary: Create Service List Item
     get:
       description: ''
       tags:
-        - Sync
+        - Retrieve
+        - Service
+        - List
+        - Item
         - Services
+        - Service
+        - Sid
+        - Documents
+        - Document
+        - Permissions
+        - Identity
+        - Streams
+        - Stream
+        - Messages
         - Lists
+        - List
         - Items
+        - Index
       summary: Retrieve Service List Item
   /v1/Services/{ServiceSid}/Lists/{ListSid}/Permissions/{Identity}:
     description: Permissions for Sync list items
     get:
       description: Fetch a specific Sync List Permission.
       tags:
-        - Sync
+        - Retrieve
+        - Service
+        - List
+        - Permission
         - Services
-        - Lists
+        - Service
+        - Sid
+        - Documents
+        - Document
         - Permissions
+        - Identity
+        - Streams
+        - Stream
+        - Messages
+        - Lists
+        - List
+        - Items
+        - Index
       summary: Retrieve Service List Permission
     delete:
       description: Delete a specific Sync List Permission.
       tags:
-        - Sync
+        - Delete
+        - Service
+        - List
+        - Permission
         - Services
-        - Lists
+        - Service
+        - Sid
+        - Documents
+        - Document
         - Permissions
+        - Identity
+        - Streams
+        - Stream
+        - Messages
+        - Lists
+        - List
+        - Items
+        - Index
       summary: Delete Service List Permission
     post:
       description: Update an identity's access to a specific Sync List.
       tags:
-        - Sync
+        - Update
+        - Service
+        - List
+        - Permission
         - Services
-        - Lists
+        - Service
+        - Sid
+        - Documents
+        - Document
         - Permissions
+        - Identity
+        - Streams
+        - Stream
+        - Messages
+        - Lists
+        - List
+        - Items
+        - Index
       summary: Update Service List Permission
   /v1/Services/{ServiceSid}/Lists/{ListSid}/Permissions:
     description: Permissions for Sync list items
     get:
       description: Retrieve a list of all Permissions applying to a Sync List.
       tags:
-        - Sync
-        - Services
-        - Lists
+        - Retrieve
+        - Service
+        - List
         - Permissions
+        - Services
+        - Service
+        - Sid
+        - Documents
+        - Document
+        - Permissions
+        - Identity
+        - Streams
+        - Stream
+        - Messages
+        - Lists
+        - List
+        - Items
+        - Index
       summary: Retrieve Service List Permissions
   /v1/Services/{ServiceSid}/Maps/{Sid}:
     description: Sync map objects
     get:
       description: ''
       tags:
-        - Sync
+        - Retrieve
+        - Service
+        - Map
         - Services
+        - Service
+        - Sid
+        - Documents
+        - Document
+        - Permissions
+        - Identity
+        - Streams
+        - Stream
+        - Messages
+        - Lists
+        - List
+        - Items
+        - Index
         - Maps
       summary: Retrieve Service Map
     delete:
       description: ''
       tags:
-        - Sync
+        - Delete
+        - Service
+        - Map
         - Services
+        - Service
+        - Sid
+        - Documents
+        - Document
+        - Permissions
+        - Identity
+        - Streams
+        - Stream
+        - Messages
+        - Lists
+        - List
+        - Items
+        - Index
         - Maps
       summary: Delete Service Map
     post:
       description: ''
       tags:
-        - Sync
+        - Update
+        - Service
+        - Map
         - Services
+        - Service
+        - Sid
+        - Documents
+        - Document
+        - Permissions
+        - Identity
+        - Streams
+        - Stream
+        - Messages
+        - Lists
+        - List
+        - Items
+        - Index
         - Maps
       summary: Update Service Map
   /v1/Services/{ServiceSid}/Maps:
@@ -271,15 +590,45 @@ paths:
     post:
       description: ''
       tags:
-        - Sync
+        - Create
+        - Service
+        - Map
         - Services
+        - Service
+        - Sid
+        - Documents
+        - Document
+        - Permissions
+        - Identity
+        - Streams
+        - Stream
+        - Messages
+        - Lists
+        - List
+        - Items
+        - Index
         - Maps
       summary: Create Service Map
     get:
       description: ''
       tags:
-        - Sync
+        - Retrieve
+        - Service
+        - Map
         - Services
+        - Service
+        - Sid
+        - Documents
+        - Document
+        - Permissions
+        - Identity
+        - Streams
+        - Stream
+        - Messages
+        - Lists
+        - List
+        - Items
+        - Index
         - Maps
       summary: Retrieve Service Map
   /v1/Services/{ServiceSid}/Maps/{MapSid}/Items/{Key}:
@@ -287,117 +636,357 @@ paths:
     get:
       description: ''
       tags:
-        - Sync
+        - Retrieve
+        - Service
+        - Map
+        - Item
         - Services
-        - Maps
+        - Service
+        - Sid
+        - Documents
+        - Document
+        - Permissions
+        - Identity
+        - Streams
+        - Stream
+        - Messages
+        - Lists
+        - List
         - Items
+        - Index
+        - Maps
+        - Map
+        - Key
       summary: Retrieve Service Map Item
     delete:
       description: ''
       tags:
-        - Sync
+        - Delete
+        - Service
+        - Map
+        - Item
         - Services
-        - Maps
+        - Service
+        - Sid
+        - Documents
+        - Document
+        - Permissions
+        - Identity
+        - Streams
+        - Stream
+        - Messages
+        - Lists
+        - List
         - Items
+        - Index
+        - Maps
+        - Map
+        - Key
       summary: Delete Service Map Item
     post:
       description: ''
       tags:
-        - Sync
+        - Update
+        - Service
+        - Map
+        - Item
         - Services
-        - Maps
+        - Service
+        - Sid
+        - Documents
+        - Document
+        - Permissions
+        - Identity
+        - Streams
+        - Stream
+        - Messages
+        - Lists
+        - List
         - Items
+        - Index
+        - Maps
+        - Map
+        - Key
       summary: Update Service Map Item
   /v1/Services/{ServiceSid}/Maps/{MapSid}/Items:
     description: Keys in a sync map
     post:
       description: ''
       tags:
-        - Sync
+        - Create
+        - Service
+        - Map
+        - Item
         - Services
-        - Maps
+        - Service
+        - Sid
+        - Documents
+        - Document
+        - Permissions
+        - Identity
+        - Streams
+        - Stream
+        - Messages
+        - Lists
+        - List
         - Items
+        - Index
+        - Maps
+        - Map
+        - Key
       summary: Create Service Map Item
     get:
       description: ''
       tags:
-        - Sync
+        - Retrieve
+        - Service
+        - Map
+        - Item
         - Services
-        - Maps
+        - Service
+        - Sid
+        - Documents
+        - Document
+        - Permissions
+        - Identity
+        - Streams
+        - Stream
+        - Messages
+        - Lists
+        - List
         - Items
+        - Index
+        - Maps
+        - Map
+        - Key
       summary: Retrieve Service Map Item
   /v1/Services/{ServiceSid}/Maps/{MapSid}/Permissions/{Identity}:
     description: 'TODO: Resource-level docs'
     get:
       description: Fetch a specific Sync Map Permission.
       tags:
-        - Sync
+        - Retrieve
+        - Service
+        - Map
+        - Permission
         - Services
-        - Maps
+        - Service
+        - Sid
+        - Documents
+        - Document
         - Permissions
+        - Identity
+        - Streams
+        - Stream
+        - Messages
+        - Lists
+        - List
+        - Items
+        - Index
+        - Maps
+        - Map
+        - Key
       summary: Retrieve Service Map Permission
     delete:
       description: Delete a specific Sync Map Permission.
       tags:
-        - Sync
+        - Delete
+        - Service
+        - Map
+        - Permission
         - Services
-        - Maps
+        - Service
+        - Sid
+        - Documents
+        - Document
         - Permissions
+        - Identity
+        - Streams
+        - Stream
+        - Messages
+        - Lists
+        - List
+        - Items
+        - Index
+        - Maps
+        - Map
+        - Key
       summary: Delete Service Map Permission
     post:
       description: Update an identity's access to a specific Sync Map.
       tags:
-        - Sync
+        - Update
+        - Service
+        - Map
+        - Permission
         - Services
-        - Maps
+        - Service
+        - Sid
+        - Documents
+        - Document
         - Permissions
+        - Identity
+        - Streams
+        - Stream
+        - Messages
+        - Lists
+        - List
+        - Items
+        - Index
+        - Maps
+        - Map
+        - Key
       summary: Update Service Map Permission
   /v1/Services/{ServiceSid}/Maps/{MapSid}/Permissions:
     description: 'TODO: Resource-level docs'
     get:
       description: Retrieve a list of all Permissions applying to a Sync Map.
       tags:
-        - Sync
-        - Services
-        - Maps
+        - Retrieve
+        - Service
+        - Map
         - Permissions
+        - Services
+        - Service
+        - Sid
+        - Documents
+        - Document
+        - Permissions
+        - Identity
+        - Streams
+        - Stream
+        - Messages
+        - Lists
+        - List
+        - Items
+        - Index
+        - Maps
+        - Map
+        - Key
       summary: Retrieve Service Map Permissions
   /v1/Services/{ServiceSid}/Streams/{Sid}:
     description: 'TODO: Resource-level docs'
     get:
       description: Fetch a specific Stream.
       tags:
-        - SyncV1SyncStream
+        - Retrieve
+        - Service
+        - Stream
+        - Services
+        - Service
+        - Sid
+        - Documents
+        - Document
+        - Permissions
+        - Identity
+        - Streams
+        - Stream
+        - Messages
+        - Lists
+        - List
+        - Items
+        - Index
+        - Maps
+        - Map
+        - Key
       summary: Retrieve Service Stream
     delete:
       description: Delete a specific Stream.
       tags:
-        - Sync
+        - Delete
+        - Service
+        - Stream
         - Services
+        - Service
+        - Sid
+        - Documents
+        - Document
+        - Permissions
+        - Identity
         - Streams
+        - Stream
+        - Messages
+        - Lists
+        - List
+        - Items
+        - Index
+        - Maps
+        - Map
+        - Key
       summary: Delete Service Stream
     post:
       description: Update a specific Stream.
       tags:
-        - Sync
+        - Update
+        - Service
+        - Stream
         - Services
+        - Service
+        - Sid
+        - Documents
+        - Document
+        - Permissions
+        - Identity
         - Streams
+        - Stream
+        - Messages
+        - Lists
+        - List
+        - Items
+        - Index
+        - Maps
+        - Map
+        - Key
       summary: Update Service Stream
   /v1/Services/{ServiceSid}/Streams:
     description: 'TODO: Resource-level docs'
     post:
       description: Create a new Stream.
       tags:
-        - Sync
+        - Create
+        - Service
+        - Stream
         - Services
+        - Service
+        - Sid
+        - Documents
+        - Document
+        - Permissions
+        - Identity
         - Streams
+        - Stream
+        - Messages
+        - Lists
+        - List
+        - Items
+        - Index
+        - Maps
+        - Map
+        - Key
       summary: Create Service Stream
     get:
       description: Retrieve a list of all Streams in a Service Instance.
       tags:
-        - Sync
-        - Services
+        - Retrieve
+        - Service
         - Streams
+        - Services
+        - Service
+        - Sid
+        - Documents
+        - Document
+        - Permissions
+        - Identity
+        - Streams
+        - Stream
+        - Messages
+        - Lists
+        - List
+        - Items
+        - Index
+        - Maps
+        - Map
+        - Key
       summary: Retrieve Service Streams
 tags:
   - name: Tag
@@ -421,4 +1010,4 @@ tags:
     description: Needs a description.
 x-maturity:
   - name: GA
-    description: This product is Generally Available.
+    description: This product is Generally Avai

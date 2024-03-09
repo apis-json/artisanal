@@ -1,0 +1,94 @@
+openapi: 3.1.0
+info:
+  title: kafkaconnect
+paths:
+  /v1/connectors:
+    GET:
+      summary: ListConnectors
+      description: >-
+        <p>Returns a list of all the connectors in this account and Region. The
+        list is limited to connectors whose name starts with the specified
+        prefix. The response also includes a description of each of the listed
+        connectors.</p>
+      tags:
+        - List
+        - Connectors
+        - V1
+        - Connectors
+  /v1/custom-plugins:
+    GET:
+      summary: ListCustomPlugins
+      description: >-
+        <p>Returns a list of all of the custom plugins in this account and
+        Region.</p>
+      tags:
+        - List
+        - Custom
+        - Plugins
+        - V1
+        - Connectors
+        - Custom
+        - Plugins
+  /v1/worker-configurations:
+    GET:
+      summary: ListWorkerConfigurations
+      description: >-
+        <p>Returns a list of all of the worker configurations in this account
+        and Region.</p>
+      tags:
+        - List
+        - Worker
+        - Configurations
+        - V1
+        - Connectors
+        - Custom
+        - Plugins
+        - Worker
+        - Configurations
+  /v1/connectors/{connectorArn}:
+    PUT:
+      summary: UpdateConnector
+      description: <p>Updates the specified connector.</p>
+      tags:
+        - Update
+        - Connector
+        - V1
+        - Connectors
+        - Custom
+        - Plugins
+        - Worker
+        - Configurations
+        - Arn
+  /v1/custom-plugins/{customPluginArn}:
+    GET:
+      summary: DescribeCustomPlugin
+      description: <p>A summary description of the custom plugin.</p>
+      tags:
+        - Describe
+        - Custom
+        - Plugin
+        - V1
+        - Connectors
+        - Custom
+        - Plugins
+        - Worker
+        - Configurations
+        - Arn
+        - Plugin
+  /v1/worker-configurations/{workerConfigurationArn}:
+    GET:
+      summary: DescribeWorkerConfiguration
+      description: <p>Returns information about a worker configuration.</
+      tags:
+        - Describe
+        - Worker
+        - Configuration
+        - V1
+        - Connectors
+        - Custom
+        - Plugins
+        - Worker
+        - Configurations
+        - Arn
+        - Plugin
+        - Configuration

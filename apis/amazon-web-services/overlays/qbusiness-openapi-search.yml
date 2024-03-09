@@ -1,0 +1,752 @@
+openapi: 3.1.0
+info:
+  title: qbusiness
+paths:
+  /applications/{applicationId}/indices/{indexId}/documents/delete:
+    POST:
+      summary: BatchDeleteDocument
+      description: >-
+        <p>Asynchronously deletes one or more documents added using the
+        <code>BatchPutDocument</code> API from an Amazon Q index.</p> <p>You can
+        see the progress of the deletion, and any error messages related to the
+        process, by using CloudWatch.</p>
+      tags:
+        - Batch
+        - Delete
+        - Document
+        - Id
+        - Indices
+        - Index
+        - Documents
+        - Delete
+  /applications/{applicationId}/indices/{indexId}/documents:
+    POST:
+      summary: BatchPutDocument
+      description: >-
+        <p>Adds one or more documents to an Amazon Q index.</p> <p>You use this
+        API to:</p> <ul> <li> <p>ingest your structured and unstructured
+        documents and documents stored in an Amazon S3 bucket into an Amazon Q
+        index.</p> </li> <li> <p>add custom attributes to documents in an Amazon
+        Q index.</p> </li> <li> <p>attach an access control list to the
+        documents added to an Amazon Q index.</p> </li> </ul> <p>You can see the
+        progress of the deletion, and any error messages related to the process,
+        by using CloudWatch.</p>
+      tags:
+        - Batch
+        - Put
+        - Document
+        - Id
+        - Indices
+        - Index
+        - Documents
+        - Delete
+  /applications/{applicationId}/conversations?sync:
+    POST:
+      summary: ChatSync
+      description: <p>Starts or continues a non-streaming Amazon Q conversation.</p>
+      tags:
+        - Chat
+        - Sync
+        - Id
+        - Indices
+        - Index
+        - Documents
+        - Delete
+        - Conversations?sync
+  /applications:
+    GET:
+      summary: ListApplications
+      description: <p>Lists Amazon Q applications.</p>
+      tags:
+        - List
+        - Applications
+        - Id
+        - Indices
+        - Index
+        - Documents
+        - Delete
+        - Conversations?sync
+        - Applications
+  /applications/{applicationId}/indices/{indexId}/datasources:
+    GET:
+      summary: ListDataSources
+      description: <p>Lists the Amazon Q data source connectors that you have created.</p>
+      tags:
+        - List
+        - Data
+        - Sources
+        - Id
+        - Indices
+        - Index
+        - Documents
+        - Delete
+        - Conversations?sync
+        - Applications
+        - Datasources
+  /applications/{applicationId}/indices:
+    GET:
+      summary: ListIndices
+      description: <p>Lists the Amazon Q indices you have created.</p>
+      tags:
+        - List
+        - Indices
+        - Id
+        - Indices
+        - Index
+        - Documents
+        - Delete
+        - Conversations?sync
+        - Applications
+        - Datasources
+  /applications/{applicationId}/plugins:
+    GET:
+      summary: ListPlugins
+      description: <p>Lists configured Amazon Q plugins.</p>
+      tags:
+        - List
+        - Plugins
+        - Id
+        - Indices
+        - Index
+        - Documents
+        - Delete
+        - Conversations?sync
+        - Applications
+        - Datasources
+        - Plugins
+  /applications/{applicationId}/retrievers:
+    GET:
+      summary: ListRetrievers
+      description: <p>Lists the retriever used by an Amazon Q application.</p>
+      tags:
+        - List
+        - Retrievers
+        - Id
+        - Indices
+        - Index
+        - Documents
+        - Delete
+        - Conversations?sync
+        - Applications
+        - Datasources
+        - Plugins
+        - Retrievers
+  /applications/{applicationId}/users:
+    POST:
+      summary: CreateUser
+      description: >-
+        <p>Creates a universally unique identifier (UUID) mapped to a list of
+        local user ids within an application.</p>
+      tags:
+        - Create
+        - User
+        - Id
+        - Indices
+        - Index
+        - Documents
+        - Delete
+        - Conversations?sync
+        - Applications
+        - Datasources
+        - Plugins
+        - Retrievers
+        - Users
+  /applications/{applicationId}/experiences:
+    GET:
+      summary: ListWebExperiences
+      description: <p>Lists one or more Amazon Q Web Experiences.</p>
+      tags:
+        - List
+        - Web
+        - Experiences
+        - Id
+        - Indices
+        - Index
+        - Documents
+        - Delete
+        - Conversations?sync
+        - Applications
+        - Datasources
+        - Plugins
+        - Retrievers
+        - Users
+        - Experiences
+  /applications/{applicationId}:
+    PUT:
+      summary: UpdateApplication
+      description: <p>Updates an existing Amazon Q application.</p>
+      tags:
+        - Update
+        - Application
+        - Id
+        - Indices
+        - Index
+        - Documents
+        - Delete
+        - Conversations?sync
+        - Applications
+        - Datasources
+        - Plugins
+        - Retrievers
+        - Users
+        - Experiences
+  /applications/{applicationId}/chatcontrols:
+    PATCH:
+      summary: UpdateChatControlsConfiguration
+      description: >-
+        <p>Updates an set of chat controls configured for an existing Amazon Q
+        application.</p>
+      tags:
+        - Update
+        - Chat
+        - Controls
+        - Configuration
+        - Id
+        - Indices
+        - Index
+        - Documents
+        - Delete
+        - Conversations?sync
+        - Applications
+        - Datasources
+        - Plugins
+        - Retrievers
+        - Users
+        - Experiences
+        - Chatcontrols
+  /applications/{applicationId}/conversations/{conversationId}:
+    GET:
+      summary: ListMessages
+      description: >-
+        <p>Gets a list of messages associated with an Amazon Q web
+        experience.</p>
+      tags:
+        - List
+        - Messages
+        - Id
+        - Indices
+        - Index
+        - Documents
+        - Delete
+        - Conversations?sync
+        - Applications
+        - Datasources
+        - Plugins
+        - Retrievers
+        - Users
+        - Experiences
+        - Chatcontrols
+        - Conversations
+        - Conversation
+  /applications/{applicationId}/indices/{indexId}/datasources/{dataSourceId}:
+    PUT:
+      summary: UpdateDataSource
+      description: <p>Updates an existing Amazon Q data source connector.</p>
+      tags:
+        - Update
+        - Data
+        - Source
+        - Id
+        - Indices
+        - Index
+        - Documents
+        - Delete
+        - Conversations?sync
+        - Applications
+        - Datasources
+        - Plugins
+        - Retrievers
+        - Users
+        - Experiences
+        - Chatcontrols
+        - Conversations
+        - Conversation
+        - Data
+        - Source
+  /applications/{applicationId}/indices/{indexId}/groups/{groupName}:
+    GET:
+      summary: GetGroup
+      description: <p>Describes a group by group name.</p>
+      tags:
+        - Get
+        - Group
+        - Id
+        - Indices
+        - Index
+        - Documents
+        - Delete
+        - Conversations?sync
+        - Applications
+        - Datasources
+        - Plugins
+        - Retrievers
+        - Users
+        - Experiences
+        - Chatcontrols
+        - Conversations
+        - Conversation
+        - Data
+        - Source
+        - Groups
+        - Group
+        - Name
+  /applications/{applicationId}/indices/{indexId}:
+    PUT:
+      summary: UpdateIndex
+      description: <p>Updates an Amazon Q index.</p>
+      tags:
+        - Update
+        - Index
+        - Id
+        - Indices
+        - Index
+        - Documents
+        - Delete
+        - Conversations?sync
+        - Applications
+        - Datasources
+        - Plugins
+        - Retrievers
+        - Users
+        - Experiences
+        - Chatcontrols
+        - Conversations
+        - Conversation
+        - Data
+        - Source
+        - Groups
+        - Group
+        - Name
+  /applications/{applicationId}/plugins/{pluginId}:
+    PUT:
+      summary: UpdatePlugin
+      description: <p>Updates an Amazon Q plugin.</p>
+      tags:
+        - Update
+        - Plugin
+        - Id
+        - Indices
+        - Index
+        - Documents
+        - Delete
+        - Conversations?sync
+        - Applications
+        - Datasources
+        - Plugins
+        - Retrievers
+        - Users
+        - Experiences
+        - Chatcontrols
+        - Conversations
+        - Conversation
+        - Data
+        - Source
+        - Groups
+        - Group
+        - Name
+        - Plugin
+  /applications/{applicationId}/retrievers/{retrieverId}:
+    PUT:
+      summary: UpdateRetriever
+      description: <p>Updates the retriever used for your Amazon Q application.</p>
+      tags:
+        - Update
+        - Retriever
+        - Id
+        - Indices
+        - Index
+        - Documents
+        - Delete
+        - Conversations?sync
+        - Applications
+        - Datasources
+        - Plugins
+        - Retrievers
+        - Users
+        - Experiences
+        - Chatcontrols
+        - Conversations
+        - Conversation
+        - Data
+        - Source
+        - Groups
+        - Group
+        - Name
+        - Plugin
+        - Retriever
+  /applications/{applicationId}/users/{userId}:
+    PUT:
+      summary: UpdateUser
+      description: <p>Updates a information associated with a user id.</p>
+      tags:
+        - Update
+        - User
+        - Id
+        - Indices
+        - Index
+        - Documents
+        - Delete
+        - Conversations?sync
+        - Applications
+        - Datasources
+        - Plugins
+        - Retrievers
+        - Users
+        - Experiences
+        - Chatcontrols
+        - Conversations
+        - Conversation
+        - Data
+        - Source
+        - Groups
+        - Group
+        - Name
+        - Plugin
+        - Retriever
+        - User
+  /applications/{applicationId}/experiences/{webExperienceId}:
+    PUT:
+      summary: UpdateWebExperience
+      description: <p>Updates an Amazon Q web experience. </p>
+      tags:
+        - Update
+        - Web
+        - Experience
+        - Id
+        - Indices
+        - Index
+        - Documents
+        - Delete
+        - Conversations?sync
+        - Applications
+        - Datasources
+        - Plugins
+        - Retrievers
+        - Users
+        - Experiences
+        - Chatcontrols
+        - Conversations
+        - Conversation
+        - Data
+        - Source
+        - Groups
+        - Group
+        - Name
+        - Plugin
+        - Retriever
+        - User
+        - Web
+        - Experience
+  /applications/{applicationId}/conversations:
+    GET:
+      summary: ListConversations
+      description: <p>Lists one or more Amazon Q conversations.</p>
+      tags:
+        - List
+        - Conversations
+        - Id
+        - Indices
+        - Index
+        - Documents
+        - Delete
+        - Conversations?sync
+        - Applications
+        - Datasources
+        - Plugins
+        - Retrievers
+        - Users
+        - Experiences
+        - Chatcontrols
+        - Conversations
+        - Conversation
+        - Data
+        - Source
+        - Groups
+        - Group
+        - Name
+        - Plugin
+        - Retriever
+        - User
+        - Web
+        - Experience
+  /applications/{applicationId}/indices/{indexId}/datasources/{dataSourceId}/syncjobs:
+    GET:
+      summary: ListDataSourceSyncJobs
+      description: >-
+        <p>Get information about an Amazon Q data source connector
+        synchronization.</p>
+      tags:
+        - List
+        - Data
+        - Source
+        - Sync
+        - Jobs
+        - Id
+        - Indices
+        - Index
+        - Documents
+        - Delete
+        - Conversations?sync
+        - Applications
+        - Datasources
+        - Plugins
+        - Retrievers
+        - Users
+        - Experiences
+        - Chatcontrols
+        - Conversations
+        - Conversation
+        - Data
+        - Source
+        - Groups
+        - Group
+        - Name
+        - Plugin
+        - Retriever
+        - User
+        - Web
+        - Experience
+        - Syncjobs
+  /applications/{applicationId}/index/{indexId}/documents:
+    GET:
+      summary: ListDocuments
+      description: <p>A list of documents attached to an index.</p>
+      tags:
+        - List
+        - Documents
+        - Id
+        - Indices
+        - Index
+        - Documents
+        - Delete
+        - Conversations?sync
+        - Applications
+        - Datasources
+        - Plugins
+        - Retrievers
+        - Users
+        - Experiences
+        - Chatcontrols
+        - Conversations
+        - Conversation
+        - Data
+        - Source
+        - Groups
+        - Group
+        - Name
+        - Plugin
+        - Retriever
+        - User
+        - Web
+        - Experience
+        - Syncjobs
+  /applications/{applicationId}/indices/{indexId}/groups:
+    PUT:
+      summary: PutGroup
+      description: >-
+        <p>Create, or updates, a mapping of users—who have access to a
+        document—to groups.</p> <p>You can also map sub groups to groups. For
+        example, the group "Company Intellectual Property Teams" includes sub
+        groups "Research" and "Engineering". These sub groups include their own
+        list of users or people who work in these teams. Only users who work in
+        research and engineering, and therefore belong in the intellectual
+        property group, can see top-secret company documents in their Amazon Q
+        chat results.</p>
+      tags:
+        - Put
+        - Group
+        - Id
+        - Indices
+        - Index
+        - Documents
+        - Delete
+        - Conversations?sync
+        - Applications
+        - Datasources
+        - Plugins
+        - Retrievers
+        - Users
+        - Experiences
+        - Chatcontrols
+        - Conversations
+        - Conversation
+        - Data
+        - Source
+        - Groups
+        - Group
+        - Name
+        - Plugin
+        - Retriever
+        - User
+        - Web
+        - Experience
+        - Syncjobs
+  /v1/tags/{resourceARN}:
+    DELETE:
+      summary: UntagResource
+      description: <p>Removes a tag from an Amazon Q application or a data source.</p>
+      tags:
+        - Untag
+        - Resource
+        - Id
+        - Indices
+        - Index
+        - Documents
+        - Delete
+        - Conversations?sync
+        - Applications
+        - Datasources
+        - Plugins
+        - Retrievers
+        - Users
+        - Experiences
+        - Chatcontrols
+        - Conversations
+        - Conversation
+        - Data
+        - Source
+        - Groups
+        - Group
+        - Name
+        - Plugin
+        - Retriever
+        - User
+        - Web
+        - Experience
+        - Syncjobs
+        - V1
+        - Tags
+        - ResourceARN
+  /applications/{applicationId}/conversations/{conversationId}/messages/{messageId}/feedback:
+    POST:
+      summary: PutFeedback
+      description: >-
+        <p>Enables your end user to to provide feedback on their Amazon Q
+        generated chat responses.</p>
+      tags:
+        - Put
+        - Feedback
+        - Id
+        - Indices
+        - Index
+        - Documents
+        - Delete
+        - Conversations?sync
+        - Applications
+        - Datasources
+        - Plugins
+        - Retrievers
+        - Users
+        - Experiences
+        - Chatcontrols
+        - Conversations
+        - Conversation
+        - Data
+        - Source
+        - Groups
+        - Group
+        - Name
+        - Plugin
+        - Retriever
+        - User
+        - Web
+        - Experience
+        - Syncjobs
+        - V1
+        - Tags
+        - ResourceARN
+        - Messages
+        - Message
+        - Feedback
+  /applications/{applicationId}/indices/{indexId}/datasources/{dataSourceId}/startsync:
+    POST:
+      summary: StartDataSourceSyncJob
+      description: >-
+        <p>Starts a data source connector synchronization job. If a
+        synchronization job is already in progress, Amazon Q returns a
+        <code>ConflictException</code>.</p>
+      tags:
+        - Start
+        - Data
+        - Source
+        - Sync
+        - Job
+        - Id
+        - Indices
+        - Index
+        - Documents
+        - Delete
+        - Conversations?sync
+        - Applications
+        - Datasources
+        - Plugins
+        - Retrievers
+        - Users
+        - Experiences
+        - Chatcontrols
+        - Conversations
+        - Conversation
+        - Data
+        - Source
+        - Groups
+        - Group
+        - Name
+        - Plugin
+        - Retriever
+        - User
+        - Web
+        - Experience
+        - Syncjobs
+        - V1
+        - Tags
+        - ResourceARN
+        - Messages
+        - Message
+        - Feedback
+        - Startsync
+  /applications/{applicationId}/indices/{indexId}/datasources/{dataSourceId}/stopsync:
+    POST:
+      summary: StopDataSourceSyncJob
+      description: >-
+        <p>Stops an Amazon Q data source connector synchronization job already
+        in progress.</
+      tags:
+        - Stop
+        - Data
+        - Source
+        - Sync
+        - Job
+        - Id
+        - Indices
+        - Index
+        - Documents
+        - Delete
+        - Conversations?sync
+        - Applications
+        - Datasources
+        - Plugins
+        - Retrievers
+        - Users
+        - Experiences
+        - Chatcontrols
+        - Conversations
+        - Conversation
+        - Data
+        - Source
+        - Groups
+        - Group
+        - Name
+        - Plugin
+        - Retriever
+        - User
+        - Web
+        - Experience
+        - Syncjobs
+        - V1
+        - Tags
+        - ResourceARN
+        - Messages
+        - Message
+        - Feedback
+        - Startsync
+        - Stopsync

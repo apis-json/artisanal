@@ -7,8 +7,11 @@ paths:
       description: <p>Returns a list of PaymentIntents.</p>
       summary: Retrieve Payment Intents
       tags:
-        - Payments
+        - Retrieve
+        - Payment
         - Intents
+        - V1
+        - Payment_intents
     post:
       description: >-
         <p>Creates a PaymentIntent object.</p>
@@ -35,8 +38,11 @@ paths:
         <code>confirm=true</code>.</p>
       summary: Create Payment Intent
       tags:
-        - Payments
-        - Intents
+        - Create
+        - Payment
+        - Intent
+        - V1
+        - Payment_intents
   /v1/payment_intents/search:
     get:
       description: >-
@@ -54,8 +60,11 @@ paths:
       summary: Search Payment Intents
       tags:
         - Search
-        - Payments
+        - Payment
         - Intents
+        - V1
+        - Payment_intents
+        - Search
   /v1/payment_intents/{intent}:
     get:
       description: >-
@@ -73,8 +82,13 @@ paths:
         more details.</p>
       summary: Retrieve Payment Intent
       tags:
-        - Payments
-        - Intents
+        - Retrieve
+        - Payment
+        - Intent
+        - V1
+        - Payment_intents
+        - Search
+        - Intent
     post:
       description: >-
         <p>Updates properties on a PaymentIntent object without confirming.</p>
@@ -95,8 +109,13 @@ paths:
         instead.</p>
       summary: Update Payment Intent
       tags:
-        - Payments
-        - Intents
+        - Update
+        - Payment
+        - Intent
+        - V1
+        - Payment_intents
+        - Search
+        - Intent
   /v1/payment_intents/{intent}/apply_customer_balance:
     post:
       description: >-
@@ -104,10 +123,14 @@ paths:
         <code>customer_balance</code> PaymentIntent.</p>
       summary: Reconcile Payment Intent
       tags:
-        - Balances
         - Reconcile
-        - Payments
-        - Intents
+        - Payment
+        - Intent
+        - V1
+        - Payment_intents
+        - Search
+        - Intent
+        - Apply_customer_balance
   /v1/payment_intents/{intent}/cancel:
     post:
       description: >-
@@ -131,8 +154,14 @@ paths:
       summary: Cancel Payment Intent
       tags:
         - Cancel
-        - Payments
-        - Intents
+        - Payment
+        - Intent
+        - V1
+        - Payment_intents
+        - Search
+        - Intent
+        - Apply_customer_balance
+        - Cancel
   /v1/payment_intents/{intent}/capture:
     post:
       description: >-
@@ -149,8 +178,15 @@ paths:
       summary: Capture Payment Intent
       tags:
         - Capture
-        - Payments
-        - Intents
+        - Payment
+        - Intent
+        - V1
+        - Payment_intents
+        - Search
+        - Intent
+        - Apply_customer_balance
+        - Cancel
+        - Capture
   /v1/payment_intents/{intent}/confirm:
     post:
       description: >-
@@ -216,8 +252,16 @@ paths:
       summary: Confirm Payment Intent
       tags:
         - Confirm
-        - Payments
-        - Intents
+        - Payment
+        - Intent
+        - V1
+        - Payment_intents
+        - Search
+        - Intent
+        - Apply_customer_balance
+        - Cancel
+        - Capture
+        - Confirm
   /v1/payment_intents/{intent}/increment_authorization:
     post:
       description: >-
@@ -276,19 +320,37 @@ paths:
       summary: Increment Payment Intent Authorization
       tags:
         - Increment
-        - Payments
-        - Intents
+        - Payment
+        - Intent
         - Authorization
+        - V1
+        - Payment_intents
+        - Search
+        - Intent
+        - Apply_customer_balance
+        - Cancel
+        - Capture
+        - Confirm
+        - Increment_authorization
   /v1/payment_intents/{intent}/verify_microdeposits:
     post:
       description: <p>Verifies microdeposits on a PaymentIntent object.</p>
       summary: Verify Payment Intent Microdeposits
       tags:
         - Verify
-        - Payments
-        - Intents
-        - Micro
-        - Deposits
+        - Payment
+        - Intent
+        - Microdeposits
+        - V1
+        - Payment_intents
+        - Search
+        - Intent
+        - Apply_customer_balance
+        - Cancel
+        - Capture
+        - Confirm
+        - Increment_authorization
+        - Verify_microdeposits
 tags:
   - name: Payments
     description: Needs a description.
@@ -315,4 +377,4 @@ tags:
   - name: Micro
     description: Needs a description.
   - name: Deposits
-    description: Needs a description.
+    description: Needs a descriptio

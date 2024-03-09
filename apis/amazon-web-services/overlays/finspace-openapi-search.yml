@@ -1,0 +1,606 @@
+openapi: 3.1.0
+info:
+  title: finspace
+paths:
+  /environment:
+    GET:
+      summary: ListEnvironments
+      description: <p>A list of all of your FinSpace environments.</p>
+      tags:
+        - List
+        - Environments
+        - Environment
+  /kx/environments/{environmentId}/databases/{databaseName}/changesets:
+    GET:
+      summary: ListKxChangesets
+      description: <p>Returns a list of all the changesets for a database.</p>
+      tags:
+        - List
+        - Kx
+        - Changesets
+        - Environment
+        - Id
+        - Databases
+        - Database
+        - Name
+        - Changesets
+  /kx/environments/{environmentId}/clusters:
+    GET:
+      summary: ListKxClusters
+      description: <p>Returns a list of clusters.</p>
+      tags:
+        - List
+        - Kx
+        - Clusters
+        - Environment
+        - Id
+        - Databases
+        - Database
+        - Name
+        - Changesets
+        - Clusters
+  /kx/environments/{environmentId}/databases:
+    GET:
+      summary: ListKxDatabases
+      description: <p>Returns a list of all the databases in the kdb environment.</p>
+      tags:
+        - List
+        - Kx
+        - Databases
+        - Environment
+        - Id
+        - Databases
+        - Database
+        - Name
+        - Changesets
+        - Clusters
+  /kx/environments/{environmentId}/databases/{databaseName}/dataviews:
+    GET:
+      summary: ListKxDataviews
+      description: <p> Returns a list of all the dataviews in the database.</p>
+      tags:
+        - List
+        - Kx
+        - Dataviews
+        - Environment
+        - Id
+        - Databases
+        - Database
+        - Name
+        - Changesets
+        - Clusters
+        - Dataviews
+  /kx/environments:
+    GET:
+      summary: ListKxEnvironments
+      description: <p>Returns a list of kdb environments created in an account.</p>
+      tags:
+        - List
+        - Kx
+        - Environments
+        - Environment
+        - Id
+        - Databases
+        - Database
+        - Name
+        - Changesets
+        - Clusters
+        - Dataviews
+        - Kx
+        - Environments
+  /kx/environments/{environmentId}/scalingGroups:
+    GET:
+      summary: ListKxScalingGroups
+      description: <p> Returns a list of scaling groups in a kdb environment.</p>
+      tags:
+        - List
+        - Kx
+        - Scaling
+        - Groups
+        - Environment
+        - Id
+        - Databases
+        - Database
+        - Name
+        - Changesets
+        - Clusters
+        - Dataviews
+        - Kx
+        - Environments
+        - Scaling
+        - Groups
+  /kx/environments/{environmentId}/users:
+    GET:
+      summary: ListKxUsers
+      description: <p>Lists all the users in a kdb environment.</p>
+      tags:
+        - List
+        - Kx
+        - Users
+        - Environment
+        - Id
+        - Databases
+        - Database
+        - Name
+        - Changesets
+        - Clusters
+        - Dataviews
+        - Kx
+        - Environments
+        - Scaling
+        - Groups
+        - Users
+  /kx/environments/{environmentId}/kxvolumes:
+    GET:
+      summary: ListKxVolumes
+      description: <p> Lists all the volumes in a kdb environment. </p>
+      tags:
+        - List
+        - Kx
+        - Volumes
+        - Environment
+        - Id
+        - Databases
+        - Database
+        - Name
+        - Changesets
+        - Clusters
+        - Dataviews
+        - Kx
+        - Environments
+        - Scaling
+        - Groups
+        - Users
+        - Kxvolumes
+  /environment/{environmentId}:
+    PUT:
+      summary: UpdateEnvironment
+      description: <p>Update your FinSpace environment.</p>
+      tags:
+        - Update
+        - Environment
+        - Environment
+        - Id
+        - Databases
+        - Database
+        - Name
+        - Changesets
+        - Clusters
+        - Dataviews
+        - Kx
+        - Environments
+        - Scaling
+        - Groups
+        - Users
+        - Kxvolumes
+  /kx/environments/{environmentId}/clusters/{clusterName}:
+    GET:
+      summary: GetKxCluster
+      description: <p>Retrieves information about a kdb cluster.</p>
+      tags:
+        - Get
+        - Kx
+        - Cluster
+        - Environment
+        - Id
+        - Databases
+        - Database
+        - Name
+        - Changesets
+        - Clusters
+        - Dataviews
+        - Kx
+        - Environments
+        - Scaling
+        - Groups
+        - Users
+        - Kxvolumes
+        - Cluster
+  /kx/environments/{environmentId}/databases/{databaseName}:
+    PUT:
+      summary: UpdateKxDatabase
+      description: <p>Updates information for the given kdb database.</p>
+      tags:
+        - Update
+        - Kx
+        - Database
+        - Environment
+        - Id
+        - Databases
+        - Database
+        - Name
+        - Changesets
+        - Clusters
+        - Dataviews
+        - Kx
+        - Environments
+        - Scaling
+        - Groups
+        - Users
+        - Kxvolumes
+        - Cluster
+  /kx/environments/{environmentId}/databases/{databaseName}/dataviews/{dataviewName}:
+    PUT:
+      summary: UpdateKxDataview
+      description: >-
+        <p> Updates the specified dataview. The dataviews get automatically
+        updated when any new changesets are ingested. Each update of the
+        dataview creates a new version, including changeset details and cache
+        configurations</p>
+      tags:
+        - Update
+        - Kx
+        - Dataview
+        - Environment
+        - Id
+        - Databases
+        - Database
+        - Name
+        - Changesets
+        - Clusters
+        - Dataviews
+        - Kx
+        - Environments
+        - Scaling
+        - Groups
+        - Users
+        - Kxvolumes
+        - Cluster
+        - Dataview
+  /kx/environments/{environmentId}:
+    PUT:
+      summary: UpdateKxEnvironment
+      description: <p>Updates information for the given kdb environment.</p>
+      tags:
+        - Update
+        - Kx
+        - Environment
+        - Environment
+        - Id
+        - Databases
+        - Database
+        - Name
+        - Changesets
+        - Clusters
+        - Dataviews
+        - Kx
+        - Environments
+        - Scaling
+        - Groups
+        - Users
+        - Kxvolumes
+        - Cluster
+        - Dataview
+  /kx/environments/{environmentId}/scalingGroups/{scalingGroupName}:
+    GET:
+      summary: GetKxScalingGroup
+      description: <p> Retrieves details of a scaling group.</p>
+      tags:
+        - Get
+        - Kx
+        - Scaling
+        - Group
+        - Environment
+        - Id
+        - Databases
+        - Database
+        - Name
+        - Changesets
+        - Clusters
+        - Dataviews
+        - Kx
+        - Environments
+        - Scaling
+        - Groups
+        - Users
+        - Kxvolumes
+        - Cluster
+        - Dataview
+        - Group
+  /kx/environments/{environmentId}/users/{userName}:
+    PUT:
+      summary: UpdateKxUser
+      description: >-
+        <p>Updates the user details. You can only update the IAM role associated
+        with a user.</p>
+      tags:
+        - Update
+        - Kx
+        - User
+        - Environment
+        - Id
+        - Databases
+        - Database
+        - Name
+        - Changesets
+        - Clusters
+        - Dataviews
+        - Kx
+        - Environments
+        - Scaling
+        - Groups
+        - Users
+        - Kxvolumes
+        - Cluster
+        - Dataview
+        - Group
+        - User
+  /kx/environments/{environmentId}/kxvolumes/{volumeName}:
+    PATCH:
+      summary: UpdateKxVolume
+      description: >-
+        <p> Updates the throughput or capacity of a volume. During the update
+        process, the filesystem might be unavailable for a few minutes. You can
+        retry any operations after the update is complete. </p>
+      tags:
+        - Update
+        - Kx
+        - Volume
+        - Environment
+        - Id
+        - Databases
+        - Database
+        - Name
+        - Changesets
+        - Clusters
+        - Dataviews
+        - Kx
+        - Environments
+        - Scaling
+        - Groups
+        - Users
+        - Kxvolumes
+        - Cluster
+        - Dataview
+        - Group
+        - User
+        - Volume
+  /kx/environments/{environmentId}/databases/{databaseName}/changesets/{changesetId}:
+    GET:
+      summary: GetKxChangeset
+      description: <p>Returns information about a kdb changeset.</p>
+      tags:
+        - Get
+        - Kx
+        - Changeset
+        - Environment
+        - Id
+        - Databases
+        - Database
+        - Name
+        - Changesets
+        - Clusters
+        - Dataviews
+        - Kx
+        - Environments
+        - Scaling
+        - Groups
+        - Users
+        - Kxvolumes
+        - Cluster
+        - Dataview
+        - Group
+        - User
+        - Volume
+        - Changeset
+  /kx/environments/{environmentId}/connectionString:
+    GET:
+      summary: GetKxConnectionString
+      description: >-
+        <p>Retrieves a connection string for a user to connect to a kdb cluster.
+        You must call this API using the same role that you have defined while
+        creating a user. </p>
+      tags:
+        - Get
+        - Kx
+        - Connection
+        - String
+        - Environment
+        - Id
+        - Databases
+        - Database
+        - Name
+        - Changesets
+        - Clusters
+        - Dataviews
+        - Kx
+        - Environments
+        - Scaling
+        - Groups
+        - Users
+        - Kxvolumes
+        - Cluster
+        - Dataview
+        - Group
+        - User
+        - Volume
+        - Changeset
+        - Connection
+        - String
+  /kx/environments/{environmentId}/clusters/{clusterName}/nodes:
+    GET:
+      summary: ListKxClusterNodes
+      description: <p>Lists all the nodes in a kdb cluster.</p>
+      tags:
+        - List
+        - Kx
+        - Cluster
+        - Nodes
+        - Environment
+        - Id
+        - Databases
+        - Database
+        - Name
+        - Changesets
+        - Clusters
+        - Dataviews
+        - Kx
+        - Environments
+        - Scaling
+        - Groups
+        - Users
+        - Kxvolumes
+        - Cluster
+        - Dataview
+        - Group
+        - User
+        - Volume
+        - Changeset
+        - Connection
+        - String
+        - Nodes
+  /tags/{resourceArn}:
+    DELETE:
+      summary: UntagResource
+      description: <p>Removes metadata tags from a FinSpace resource.</p>
+      tags:
+        - Untag
+        - Resource
+        - Environment
+        - Id
+        - Databases
+        - Database
+        - Name
+        - Changesets
+        - Clusters
+        - Dataviews
+        - Kx
+        - Environments
+        - Scaling
+        - Groups
+        - Users
+        - Kxvolumes
+        - Cluster
+        - Dataview
+        - Group
+        - User
+        - Volume
+        - Changeset
+        - Connection
+        - String
+        - Nodes
+        - Arn
+  /kx/environments/{environmentId}/clusters/{clusterName}/configuration/code:
+    PUT:
+      summary: UpdateKxClusterCodeConfiguration
+      description: >-
+        <p> Allows you to update code configuration on a running cluster. By
+        using this API you can update the code, the initialization script path,
+        and the command line arguments for a specific cluster. The configuration
+        that you want to update will override any existing configurations on the
+        cluster. </p>
+      tags:
+        - Update
+        - Kx
+        - Cluster
+        - Code
+        - Configuration
+        - Environment
+        - Id
+        - Databases
+        - Database
+        - Name
+        - Changesets
+        - Clusters
+        - Dataviews
+        - Kx
+        - Environments
+        - Scaling
+        - Groups
+        - Users
+        - Kxvolumes
+        - Cluster
+        - Dataview
+        - Group
+        - User
+        - Volume
+        - Changeset
+        - Connection
+        - String
+        - Nodes
+        - Arn
+        - Configuration
+        - Code
+  /kx/environments/{environmentId}/clusters/{clusterName}/configuration/databases:
+    PUT:
+      summary: UpdateKxClusterDatabases
+      description: >-
+        <p>Updates the databases mounted on a kdb cluster, which includes the
+        <code>changesetId</code> and all the dbPaths to be cached. This API does
+        not allow you to change a database name or add a database if you created
+        a cluster without one. </p> <p>Using this API you can point a cluster to
+        a different changeset and modify a list of partitions being cached.</p>
+      tags:
+        - Update
+        - Kx
+        - Cluster
+        - Databases
+        - Environment
+        - Id
+        - Databases
+        - Database
+        - Name
+        - Changesets
+        - Clusters
+        - Dataviews
+        - Kx
+        - Environments
+        - Scaling
+        - Groups
+        - Users
+        - Kxvolumes
+        - Cluster
+        - Dataview
+        - Group
+        - User
+        - Volume
+        - Changeset
+        - Connection
+        - String
+        - Nodes
+        - Arn
+        - Configuration
+        - Code
+  /kx/environments/{environmentId}/network:
+    PUT:
+      summary: UpdateKxEnvironmentNetwork
+      description: >-
+        <p>Updates environment network to connect to your internal network by
+        using a transit gateway. This API supports request to create a transit
+        gateway attachment from FinSpace VPC to your transit gateway ID and
+        create a custom Route-53 outbound resolvers.</p> <p>Once you send a
+        request to update a network, you cannot change it again. Network update
+        might require termination of any clusters that are running in the
+        existing network.</
+      tags:
+        - Update
+        - Kx
+        - Environment
+        - Network
+        - Environment
+        - Id
+        - Databases
+        - Database
+        - Name
+        - Changesets
+        - Clusters
+        - Dataviews
+        - Kx
+        - Environments
+        - Scaling
+        - Groups
+        - Users
+        - Kxvolumes
+        - Cluster
+        - Dataview
+        - Group
+        - User
+        - Volume
+        - Changeset
+        - Connection
+        - String
+        - Nodes
+        - Arn
+        - Configuration
+        - Code
+        - Network

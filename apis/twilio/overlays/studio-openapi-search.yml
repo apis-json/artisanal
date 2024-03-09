@@ -10,15 +10,23 @@ paths:
     get:
       description: Retrieve a list of all Executions for the Flow.
       tags:
-        - Studio
+        - Retrieve
+        - Flow
+        - Executions
         - Flows
+        - Flow
+        - Sid
         - Executions
       summary: Retrieve Flow Executions
     post:
       description: Triggers a new Execution for the Flow
       tags:
-        - Studio
+        - Create
+        - Flow
+        - Execution
         - Flows
+        - Flow
+        - Sid
         - Executions
       summary: Create Flow Execution
   /v2/Flows/{FlowSid}/Executions/{Sid}:
@@ -26,22 +34,34 @@ paths:
     get:
       description: Retrieve an Execution
       tags:
-        - Studio
+        - Retrieve
+        - Flow
+        - Execution
         - Flows
+        - Flow
+        - Sid
         - Executions
       summary: Retrieve Flow Execution
     delete:
       description: Delete the Execution and all Steps relating to it.
       tags:
-        - Studio
+        - Delete
+        - Flow
+        - Execution
         - Flows
+        - Flow
+        - Sid
         - Executions
       summary: Delete Flow Execution
     post:
       description: Update the status of an Execution to `ended`.
       tags:
-        - Studio
+        - Update
+        - Flow
+        - Execution
         - Flows
+        - Flow
+        - Sid
         - Executions
       summary: Update Flow Execution
   /v2/Flows/{FlowSid}/Executions/{ExecutionSid}/Context:
@@ -49,9 +69,15 @@ paths:
     get:
       description: Retrieve the most recent context for an Execution.
       tags:
-        - Studio
+        - Retrieve
+        - Flow
+        - Execution
+        - Context
         - Flows
+        - Flow
+        - Sid
         - Executions
+        - Execution
         - Context
       summary: Retrieve Flow Execution Context
   /v2/Flows/{FlowSid}/Executions/{ExecutionSid}/Steps:
@@ -59,9 +85,16 @@ paths:
     get:
       description: Retrieve a list of all Steps for an Execution.
       tags:
-        - Studio
+        - Retrieve
+        - Flow
+        - Execution
+        - Steps
         - Flows
+        - Flow
+        - Sid
         - Executions
+        - Execution
+        - Context
         - Steps
       summary: Retrieve Flow Execution Steps
   /v2/Flows/{FlowSid}/Executions/{ExecutionSid}/Steps/{Sid}:
@@ -69,9 +102,16 @@ paths:
     get:
       description: Retrieve a Step.
       tags:
-        - Studio
+        - Retrieve
+        - Flow
+        - Execution
+        - Step
         - Flows
+        - Flow
+        - Sid
         - Executions
+        - Execution
+        - Context
         - Steps
       summary: Retrieve Flow Execution Step
   /v2/Flows/{FlowSid}/Executions/{ExecutionSid}/Steps/{StepSid}/Context:
@@ -79,53 +119,110 @@ paths:
     get:
       description: Retrieve the context for an Execution Step.
       tags:
-        - Studio
-        - Flows
-        - Executions
-        - Steps
+        - Retrieve
+        - Flow
+        - Execution
+        - Step
         - Context
+        - Flows
+        - Flow
+        - Sid
+        - Executions
+        - Execution
+        - Context
+        - Steps
+        - Step
       summary: Retrieve Flow Execution Step Context
   /v2/Flows:
     description: Studio flows
     post:
       description: Create a Flow.
       tags:
-        - Studio
+        - Create
+        - Flow
         - Flows
+        - Flow
+        - Sid
+        - Executions
+        - Execution
+        - Context
+        - Steps
+        - Step
       summary: Create Flow
     get:
       description: Retrieve a list of all Flows.
       tags:
-        - Studio
+        - Retrieve
         - Flows
+        - Flows
+        - Flow
+        - Sid
+        - Executions
+        - Execution
+        - Context
+        - Steps
+        - Step
       summary: Retrieve Flows
   /v2/Flows/{Sid}:
     description: Studio flows
     post:
       description: Update a Flow.
       tags:
-        - Studio
+        - Update
+        - Flow
         - Flows
+        - Flow
+        - Sid
+        - Executions
+        - Execution
+        - Context
+        - Steps
+        - Step
       summary: Update Flow
     get:
       description: Retrieve a specific Flow.
       tags:
-        - Studio
+        - Retrieve
+        - Flow
         - Flows
+        - Flow
+        - Sid
+        - Executions
+        - Execution
+        - Context
+        - Steps
+        - Step
       summary: Retrieve Flow
     delete:
       description: Delete a specific Flow.
       tags:
-        - Studio
+        - Delete
+        - Flow
         - Flows
+        - Flow
+        - Sid
+        - Executions
+        - Execution
+        - Context
+        - Steps
+        - Step
       summary: Delete Flow
   /v2/Flows/{Sid}/Revisions:
     description: Studio flows revisions
     get:
       description: Retrieve a list of all Flows revisions.
       tags:
-        - Studio
+        - Retrieve
+        - Flow
+        - Revisions
         - Flows
+        - Flow
+        - Sid
+        - Executions
+        - Execution
+        - Context
+        - Steps
+        - Step
         - Revisions
       summary: Retrieve Flow Revisions
   /v2/Flows/{Sid}/Revisions/{Revision}:
@@ -133,17 +230,38 @@ paths:
     get:
       description: Retrieve a specific Flow revision.
       tags:
-        - Studio
+        - Retrieve
+        - Flow
+        - Revision
         - Flows
+        - Flow
+        - Sid
+        - Executions
+        - Execution
+        - Context
+        - Steps
+        - Step
         - Revisions
+        - Revision
       summary: Retrieve Flow Revision
   /v2/Flows/Validate:
     description: Flow definition validator
     post:
       description: Validate flow JSON definition
       tags:
-        - Studio
+        - Retrieve
+        - Flow
+        - Validate
         - Flows
+        - Flow
+        - Sid
+        - Executions
+        - Execution
+        - Context
+        - Steps
+        - Step
+        - Revisions
+        - Revision
         - Validate
       summary: Retrieve Flow Validate
   /v2/Flows/{Sid}/TestUsers:
@@ -151,17 +269,43 @@ paths:
     get:
       description: Fetch flow test users
       tags:
-        - Studio
+        - Retrieve
+        - Flow
+        - Test
+        - Users
         - Flows
-        - Tests
+        - Flow
+        - Sid
+        - Executions
+        - Execution
+        - Context
+        - Steps
+        - Step
+        - Revisions
+        - Revision
+        - Validate
+        - Test
         - Users
       summary: Retrieve Flow Test Users
     post:
       description: Update flow test users
       tags:
-        - Studio
+        - Update
+        - Flow
+        - Test
+        - Users
         - Flows
-        - Tests
+        - Flow
+        - Sid
+        - Executions
+        - Execution
+        - Context
+        - Steps
+        - Step
+        - Revisions
+        - Revision
+        - Validate
+        - Test
         - Users
       summary: Update Flow Test Users
 tags:
@@ -186,4 +330,4 @@ tags:
     description: Needs a description.
 x-maturity:
   - name: GA
-    description: This product is Generally Available.
+    description: This product is Generally Avai

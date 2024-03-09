@@ -1,0 +1,1943 @@
+openapi: 3.0.0
+info:
+  title: Relay Delivery
+  description: ''
+  version: 1.0.0
+security:
+  - ApiKeyAuth: []
+tags:
+  - name: order
+    description: Manage delivery and pickup orders.
+  - name: quote
+    description: Manage delivery estimates and pricing before initiating a delivery.
+servers:
+  - url: https://dev-api.relay.delivery/v2
+    description: Dev
+  - url: https://api.relay.delivery/v2
+    description: Prod
+paths:
+  /order:
+    post:
+      tags:
+        - order
+      summary: Create a new delivery or pickup order.
+      description: ''
+      operationId: order-create
+      externalDocs:
+        description: See Request Schema Details
+        url: https://docs.relay.delivery/schemas/platform-order-request.html
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $id: http://relay.delivery/platform-order-request.json
+              type: object
+              required:
+                - order
+              properties:
+                order:
+                  type: object
+                  required:
+                    - externalId
+                    - consumer
+                    - producer
+                    - price
+                  properties:
+                    externalId:
+                      type: string
+                    quoteKey:
+                      type: string
+                      description: If you are using the quote service then you must provide the quoteKey here
+                    isCash:
+                      type: boolean
+                      default: false
+                    isPickup:
+                      type: boolean
+                      default: false
+                    isContactFree:
+                      type: boolean
+                      default: false
+                    requireReadyEvent:
+                      type: boolean
+                      default: false
+                      description: If you will be triggering a call to `order/ready` then set this field to true.
+                    consumer:
+                      type: object
+                      required:
+                        - name
+                        - phone
+                      properties:
+                        name:
+                          type: string
+                        phone:
+                          type: string
+                          us-phone: {}
+                        location:
+                          anyOf:
+                            - $id: http://relay.delivery/location-request.json
+                              type: object
+                              required:
+                                - address1
+                                - city
+                                - state
+                                - zip
+                              properties:
+                                address1:
+                                  type: string
+                                  format: not-empty
+                                apartment:
+                                  type:
+                                    - string
+                                    - 'null'
+                                  format: not-empty
+                                city:
+                                  type: string
+                                  format: not-empty
+                                state:
+                                  type: string
+                                  us-state: {}
+                                zip:
+                                  type: string
+                                  format: zip-code
+                            - $id: http://relay.delivery/coordinate-request.json
+                              type: object
+                              required:
+                                - text
+                                - coordinates
+                              properties:
+                                text:
+                                  type: string
+                                  format: not-empty
+                                coordinates:
+                                  type: object
+                                  required:
+                                    - latitude
+                                    - longitude
+                                  properties:
+                                    latitude:
+                                      type: number
+                                    longitude:
+                                      type: number
+                        specialInstructions:
+                          type: string
+                        proof:
+                          type: object
+                          description: Control the proof of delivery collected by the rider. It is not recommended that you require more than one POD as it can become bothersome to the consumer.
+                          properties:
+                            photo:
+                              type: boolean
+                              default: false
+                              description: Should the delivery rider collect a photo as proof of delivery
+                            signature:
+                              type: boolean
+                              description: Should the delivery rider collect a signature as proof of delivery
+                              default: false
+                            idScan:
+                              type: boolean
+                              description: Should the delivery rider require an ID as proof of alcohol delivery
+                              default: false
+                    producer:
+                      anyOf:
+                        - type: object
+                          required:
+                            - name
+                            - phone
+                            - location
+                          properties:
+                            name:
+                              type: string
+                            phone:
+                              type: string
+                              us-phone: {}
+                            location:
+                              anyOf:
+                                - $id: http://relay.delivery/location-request.json
+                                  type: object
+                                  required:
+                                    - address1
+                                    - city
+                                    - state
+                                    - zip
+                                  properties:
+                                    address1:
+                                      type: string
+                                      format: not-empty
+                                    apartment:
+                                      type:
+                                        - string
+                                        - 'null'
+                                      format: not-empty
+                                    city:
+                                      type: string
+                                      format: not-empty
+                                    state:
+                                      type: string
+                                      us-state: {}
+                                    zip:
+                                      type: string
+                                      format: zip-code
+                                - $id: http://relay.delivery/coordinate-request.json
+                                  type: object
+                                  required:
+                                    - text
+                                    - coordinates
+                                  properties:
+                                    text:
+                                      type: string
+                                      format: not-empty
+                                    coordinates:
+                                      type: object
+                                      required:
+                                        - latitude
+                                        - longitude
+                                      properties:
+                                        latitude:
+                                          type: number
+                                        longitude:
+                                          type: number
+                            specialInstructions:
+                              type: string
+                        - type: object
+                          required:
+                            - producerLocationKey
+                          properties:
+                            producerLocationKey:
+                              type: string
+                            specialInstructions:
+                              type: string
+                    source:
+                      type: object
+                      properties:
+                        orderSourceKey:
+                          type: string
+                          description: Optional source system of the order. orderSourceKey can be provided by relay.
+                    price:
+                      type: object
+                      required:
+                        - subTotal
+                        - tip
+                      properties:
+                        subTotal:
+                          type: number
+                          minimum: 0
+                        tip:
+                          type: number
+                          minimum: 0
+                        tax:
+                          type: number
+                          minimum: 0
+                        deliveryFee:
+                          type: number
+                          minimum: 0
+                        discount:
+                          type: number
+                          description: Always treated as negative. Only useful for cash orders or reporting purposes.
+                    time:
+                      type: object
+                      properties:
+                        isFutureOrder:
+                          type: boolean
+                          description: If this is a scheduled order. IE, non ASAP.
+                        placed:
+                          type: string
+                          format: date-time
+                          description: The time the consumer placed the order.
+                        lateDelivery:
+                          type: string
+                          format: date-time
+                          description: The time the consumer considers the order late.
+                        expectedReady:
+                          type: string
+                          format: date-time
+                          description: The time at which the order is estimated to be ready for pickup
+                    specialInstructions:
+                      type: string
+                    items:
+                      type: array
+                      items:
+                        type: object
+                        required:
+                          - name
+                        properties:
+                          name:
+                            type: string
+                          quantity:
+                            type: number
+                            format: int32
+                          price:
+                            type: number
+                          specialInstructions:
+                            type: string
+                          options:
+                            type: array
+                            items:
+                              type: object
+                              required:
+                                - name
+                              properties:
+                                name:
+                                  type: string
+                                quantity:
+                                  type: number
+                                  format: int32
+                                price:
+                                  type: number
+            examples:
+              simple-asap-delivery:
+                description: Creates an order to be delivered ASAP.
+                value:
+                  order:
+                    externalId: XJA-243
+                    consumer:
+                      name: Larry
+                      phone: '34755555555'
+                      location:
+                        address1: 245 west 25th Street
+                        city: New York
+                        state: New York
+                        zip: '10001'
+                    producer:
+                      name: Sandwich Store
+                      phone: '2125555555'
+                      location:
+                        address1: 14 east 15th Street
+                        city: New York
+                        state: New York
+                        zip: '10003'
+                    price:
+                      subTotal: 25
+                      tip: 4
+              simple-asap-delivery-with-photo-pod:
+                description: Creates an order to be delivered ASAP and ask the delivery person to take a photo proof of delivery.
+                value:
+                  order:
+                    externalId: XJA-243
+                    consumer:
+                      name: Larry
+                      phone: '34755555555'
+                      location:
+                        address1: 245 west 25th Street
+                        city: New York
+                        state: New York
+                        zip: '10001'
+                      proof:
+                        photo: true
+                    producer:
+                      name: Sandwich Store
+                      phone: '2125555555'
+                      location:
+                        address1: 14 east 15th Street
+                        city: New York
+                        state: New York
+                        zip: '10003'
+                    price:
+                      subTotal: 25
+                      tip: 4
+              simple-future-delivery:
+                value:
+                  order:
+                    externalId: XJB-743
+                    consumer:
+                      name: Larry
+                      phone: '34755555555'
+                      location:
+                        address1: 245 west 25th Street
+                        city: New York
+                        state: New York
+                        zip: '10001'
+                    producer:
+                      name: Sandwich Store
+                      phone: '2125555555'
+                      location:
+                        address1: 14 east 15th Street
+                        city: New York
+                        state: New York
+                        zip: '10003'
+                    time:
+                      isFutureOrder: true
+                      lateDelivery: '2022-03-17T15:50:00.000Z'
+                    price:
+                      subTotal: 25
+                      tip: 4
+              quoted-asap-delivery:
+                description: This order is gauranteed to be accepted because a valid quoteKey is being provided. The relay fee from the quote will be provided.
+                value:
+                  order:
+                    externalId: XJA-273
+                    quoteKey: fe38ca7e-8dca-4c72-9d1c-ef4ab3257015
+                    consumer:
+                      name: Larry
+                      phone: '3475555555'
+                      location:
+                        address1: 245 west 25th Street
+                        city: New York
+                        state: NY
+                        zip: '10001'
+                    producer:
+                      name: Sandwich Store
+                      phone: '2125555555'
+                      location:
+                        address1: 14 east 15th Street
+                        city: New York
+                        state: NY
+                        zip: '10003'
+                    price:
+                      subTotal: 25
+                      tip: 4
+              simple-pickup:
+                value:
+                  order:
+                    externalId: test-id-7
+                    isPickup: true
+                    producer:
+                      producerLocationKey: thecheesestore
+                    consumer:
+                      name: Strong Walker
+                      phone: '5558888888'
+                    price:
+                      subTotal: 20
+                    time:
+                      lateDelivery: '2020-07-30T00:30:00.000Z'
+              printable-delivery-order:
+                value:
+                  order:
+                    externalId: test-id-8
+                    producer:
+                      producerLocationKey: thecheesestore
+                    consumer:
+                      name: Important Customer
+                      phone: '5558889999'
+                      location:
+                        address1: 17 west 17th Street
+                        apartment: 1a
+                        city: New York
+                        state: NY
+                        zip: '10011'
+                    price:
+                      subTotal: 121.5
+                      tip: 7
+                      tax: 2.43
+                    time:
+                      lateDelivery: '2020-07-30T00:30:00.000Z'
+                    items:
+                      - name: Sushi Star Box | 52pcs
+                        quantity: 1
+                        price: 89
+                        options:
+                          - name: white rice
+                            quantity: 1
+                      - name: Edamame Catering
+                        price: 30
+                      - name: Carrots
+                        price: 2
+                        specialInstructions: Make sure not to overcook my carrots
+                        options:
+                          - name: Orange Carrots Cost Extra
+                            price: 0.5
+      responses:
+        '200':
+          description: OK - request was successfully evaluated, but the order was not accepted for delivery
+          content:
+            application/json:
+              schema:
+                $id: http://relay.delivery/no-quote-response.json
+                type: object
+                required:
+                  - message
+                properties:
+                  message:
+                    type: string
+              example:
+                message: Order not accepted. Provide a valid quoteKey or talk to your sales rep to get all your orders accepted.
+        '201':
+          description: OK - order created and accepted. <a href="/schemas/platform-order-response.html">Click here</a> for more details on the 201 schema response.
+          content:
+            application/json:
+              schema:
+                $id: http://relay.delivery/platform-order-response.json
+                type: object
+                required:
+                  - order
+                properties:
+                  order:
+                    type: object
+                    required:
+                      - orderKey
+                      - externalId
+                      - consumer
+                      - producer
+                      - price
+                    properties:
+                      orderKey:
+                        type: string
+                      quoteKey:
+                        type: string
+                      invoiceTarget:
+                        type: string
+                        enum:
+                          - ORDER_SOURCE
+                          - PRODUCER_LOCATION
+                      externalId:
+                        type: string
+                      isCash:
+                        type: boolean
+                        default: false
+                      isPickup:
+                        type: boolean
+                        default: false
+                      requireReadyEvent:
+                        type: boolean
+                      consumer:
+                        type: object
+                        required:
+                          - name
+                          - phone
+                        properties:
+                          name:
+                            type: string
+                          phone:
+                            type: string
+                          location:
+                            $id: http://relay.delivery/location-response.json
+                            type: object
+                            required:
+                              - address1
+                              - city
+                              - state
+                              - coordinates
+                            properties:
+                              address1:
+                                type: string
+                              address2:
+                                type: string
+                              apartment:
+                                type:
+                                  - string
+                                  - 'null'
+                              city:
+                                type: string
+                              state:
+                                type: string
+                              zip:
+                                type: string
+                                format: zip-code
+                              coordinates:
+                                $id: http://relay.delivery/coordinates.json
+                                type: object
+                                required:
+                                  - latitude
+                                  - longitude
+                                properties:
+                                  latitude:
+                                    type: number
+                                  longitude:
+                                    type: number
+                          specialInstructions:
+                            type: string
+                      producer:
+                        type: object
+                        required:
+                          - name
+                          - phone
+                          - location
+                          - producerLocationKey
+                        properties:
+                          name:
+                            type: string
+                          phone:
+                            type: string
+                          producerKey:
+                            type: string
+                          producerLocationKey:
+                            type: string
+                          producerLocationType:
+                            type: string
+                            enum:
+                              - STATIC
+                              - DYNAMIC
+                            description: A STATIC location is one that has an active restaurant users and those users can interact with/manage your order. A DYNAMIC restaurant has no users associated with it.
+                          location:
+                            $id: http://relay.delivery/location-response.json
+                            type: object
+                            required:
+                              - address1
+                              - city
+                              - state
+                              - coordinates
+                            properties:
+                              address1:
+                                type: string
+                              address2:
+                                type: string
+                              apartment:
+                                type:
+                                  - string
+                                  - 'null'
+                              city:
+                                type: string
+                              state:
+                                type: string
+                              zip:
+                                type: string
+                                format: zip-code
+                              coordinates:
+                                $id: http://relay.delivery/coordinates.json
+                                type: object
+                                required:
+                                  - latitude
+                                  - longitude
+                                properties:
+                                  latitude:
+                                    type: number
+                                  longitude:
+                                    type: number
+                          specialInstructions:
+                            type: string
+                      price:
+                        type: object
+                        required:
+                          - subTotal
+                          - tip
+                          - relayFee
+                        properties:
+                          subTotal:
+                            type: number
+                            minimum: 0
+                          tip:
+                            type: number
+                            minimum: 0
+                          tax:
+                            type: number
+                            minimum: 0
+                          relayFee:
+                            type: number
+                            minimum: 0
+                          deliveryFee:
+                            type: number
+                            minimum: 0
+                          discount:
+                            type: number
+                            description: Always treated as negative. Only useful for cash orders or reporting purposes.
+                      specialInstructions:
+                        type: string
+              example:
+                order:
+                  orderKey: 30ad234f-256a-47fa-af14-55889de64f03
+                  externalId: YWI-777
+                  producer:
+                    producerLocationKey: 9f18a28d-3290-49e7-9e62-428d2b3eedf7
+                    name: Larry's Pizza
+                    phone: '2125555555'
+                    location:
+                      address1: 47 west 47th Street
+                      city: New York
+                      state: NY
+                      zip: '10036'
+                      coordinates:
+                        latitude: 40.757683936110126
+                        longitude: -73.98083822680883
+                  consumer:
+                    name: Larry's Pizza
+                    phone: '2125555555'
+                    location:
+                      address1: 22 east 19th Street
+                      city: New York
+                      state: NY
+                      zip: ''
+                      coordinates:
+                        latitude: 40.73637971427497
+                        longitude: -73.98496996108848
+                  price:
+                    subTotal: 25
+                    tip: 5.25
+                    relayFee: 9.5
+        '400':
+          description: Invalid request. See validationErrors for more details
+          content:
+            application/json:
+              schema:
+                $id: http://relay.delivery/validation-errors-response.json
+                type: object
+                required:
+                  - message
+                  - validationErrors
+                properties:
+                  message:
+                    type: string
+                  validationErrors:
+                    type: array
+                    items:
+                      type: object
+                      required:
+                        - message
+                        - instancePath
+                      properties:
+                        instancePath:
+                          type: string
+                        message:
+                          type: string
+        '409':
+          description: Invalid configuration. Your account is not yet configured to accept orders.
+          content:
+            application/json:
+              schema:
+                $id: http://relay.delivery/no-quote-response.json
+                type: object
+                required:
+                  - message
+                properties:
+                  message:
+                    type: string
+              example:
+                message: Invalid configuration. Your account is not yet configured to accept orders.
+  /order/{orderKey}:
+    patch:
+      tags:
+        - order
+      summary: Make changes to an active order.
+      description: Some fields of the order may be updated. See /schemas/platform-order-update-request.html
+      operationId: order-update
+      externalDocs:
+        description: See Request Schema Details
+        url: https://docs.relay.delivery/schemas/platform-order-update-request.html
+      parameters:
+        - in: path
+          name: orderKey
+          required: true
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $id: http://relay.delivery/platform-order-update-request.json
+              type: object
+              required:
+                - order
+                - reason
+              properties:
+                order:
+                  type: object
+                  properties:
+                    price:
+                      type: object
+                      properties:
+                        subTotal:
+                          type: number
+                          minimum: 0
+                        tip:
+                          type: number
+                          minimum: 0
+                          description: Decreases in tips are not supported.
+                        tax:
+                          type: number
+                          minimum: 0
+                        delivery:
+                          type: number
+                          minimum: 0
+                    specialInstructions:
+                      type: string
+                    producer:
+                      type: object
+                      properties:
+                        name:
+                          type: string
+                          format: not-empty
+                        phone:
+                          type: string
+                          us-phone: {}
+                        specialInstructions:
+                          type: string
+                        location:
+                          type: object
+                          properties:
+                            apartment:
+                              type: string
+                    consumer:
+                      type: object
+                      properties:
+                        name:
+                          type: string
+                          format: not-empty
+                        phone:
+                          type: string
+                          us-phone: {}
+                        specialInstructions:
+                          type: string
+                        location:
+                          type: object
+                          properties:
+                            apartment:
+                              type: string
+                reason:
+                  type: string
+                  description: Let us know why this order needs an update.
+            examples:
+              changes:
+                value:
+                  order:
+                    price:
+                      subTotal: 33
+                      tax: 2.7
+                      tip: 7.5
+                    consumer:
+                      phone: '8885555555'
+                      specialInstructions: I'll be in the attic. Call me when you get here.
+                  reason: Customer service update. Customer got everything wrong.
+              change-consumer-phone:
+                value:
+                  order:
+                    consumer:
+                      phone: '7185555555'
+                  reason: Customer gave us the wrong phone number.
+              change-tip:
+                value:
+                  order:
+                    price:
+                      tip: 7.5
+                  reason: Excellent service. User increased tip.
+      responses:
+        '200':
+          description: OK. Order updated succesfully.
+          content:
+            application/json:
+              schema:
+                $id: http://relay.delivery/platform-order-response.json
+                type: object
+                required:
+                  - order
+                properties:
+                  order:
+                    type: object
+                    required:
+                      - orderKey
+                      - externalId
+                      - consumer
+                      - producer
+                      - price
+                    properties:
+                      orderKey:
+                        type: string
+                      quoteKey:
+                        type: string
+                      invoiceTarget:
+                        type: string
+                        enum:
+                          - ORDER_SOURCE
+                          - PRODUCER_LOCATION
+                      externalId:
+                        type: string
+                      isCash:
+                        type: boolean
+                        default: false
+                      isPickup:
+                        type: boolean
+                        default: false
+                      requireReadyEvent:
+                        type: boolean
+                      consumer:
+                        type: object
+                        required:
+                          - name
+                          - phone
+                        properties:
+                          name:
+                            type: string
+                          phone:
+                            type: string
+                          location:
+                            $id: http://relay.delivery/location-response.json
+                            type: object
+                            required:
+                              - address1
+                              - city
+                              - state
+                              - coordinates
+                            properties:
+                              address1:
+                                type: string
+                              address2:
+                                type: string
+                              apartment:
+                                type:
+                                  - string
+                                  - 'null'
+                              city:
+                                type: string
+                              state:
+                                type: string
+                              zip:
+                                type: string
+                                format: zip-code
+                              coordinates:
+                                $id: http://relay.delivery/coordinates.json
+                                type: object
+                                required:
+                                  - latitude
+                                  - longitude
+                                properties:
+                                  latitude:
+                                    type: number
+                                  longitude:
+                                    type: number
+                          specialInstructions:
+                            type: string
+                      producer:
+                        type: object
+                        required:
+                          - name
+                          - phone
+                          - location
+                          - producerLocationKey
+                        properties:
+                          name:
+                            type: string
+                          phone:
+                            type: string
+                          producerKey:
+                            type: string
+                          producerLocationKey:
+                            type: string
+                          producerLocationType:
+                            type: string
+                            enum:
+                              - STATIC
+                              - DYNAMIC
+                            description: A STATIC location is one that has an active restaurant users and those users can interact with/manage your order. A DYNAMIC restaurant has no users associated with it.
+                          location:
+                            $id: http://relay.delivery/location-response.json
+                            type: object
+                            required:
+                              - address1
+                              - city
+                              - state
+                              - coordinates
+                            properties:
+                              address1:
+                                type: string
+                              address2:
+                                type: string
+                              apartment:
+                                type:
+                                  - string
+                                  - 'null'
+                              city:
+                                type: string
+                              state:
+                                type: string
+                              zip:
+                                type: string
+                                format: zip-code
+                              coordinates:
+                                $id: http://relay.delivery/coordinates.json
+                                type: object
+                                required:
+                                  - latitude
+                                  - longitude
+                                properties:
+                                  latitude:
+                                    type: number
+                                  longitude:
+                                    type: number
+                          specialInstructions:
+                            type: string
+                      price:
+                        type: object
+                        required:
+                          - subTotal
+                          - tip
+                          - relayFee
+                        properties:
+                          subTotal:
+                            type: number
+                            minimum: 0
+                          tip:
+                            type: number
+                            minimum: 0
+                          tax:
+                            type: number
+                            minimum: 0
+                          relayFee:
+                            type: number
+                            minimum: 0
+                          deliveryFee:
+                            type: number
+                            minimum: 0
+                          discount:
+                            type: number
+                            description: Always treated as negative. Only useful for cash orders or reporting purposes.
+                      specialInstructions:
+                        type: string
+              example:
+                order:
+                  externalId: XJA-243
+                  consumer:
+                    name: Larry
+                    phone: '8885555555'
+                    specialInstructions: I'll be in the attic. Call me when you get here.
+                    location:
+                      address1: 245 west 25th Street
+                      city: New York
+                      state: New York
+                      zip: '10001'
+                  producer:
+                    name: Sandwich Store
+                    phone: '2125555555'
+                    location:
+                      address1: 14 east 15th Street
+                      city: New York
+                      state: New York
+                      zip: '10003'
+                  price:
+                    subTotal: 33
+                    tax: 2.7
+                    tip: 7.5
+        '400':
+          description: Invalid request. See validation errors for more info
+          content:
+            application/json:
+              schema:
+                $id: http://relay.delivery/validation-errors-response.json
+                type: object
+                required:
+                  - message
+                  - validationErrors
+                properties:
+                  message:
+                    type: string
+                  validationErrors:
+                    type: array
+                    items:
+                      type: object
+                      required:
+                        - message
+                        - instancePath
+                      properties:
+                        instancePath:
+                          type: string
+                        message:
+                          type: string
+              example:
+                validationErrors:
+                  - message: phone number must be valid
+        '404':
+          description: Order is not found or no longer avaiable for update.
+          content:
+            application/json:
+              schema:
+                $id: http://relay.delivery/no-quote-response.json
+                type: object
+                required:
+                  - message
+                properties:
+                  message:
+                    type: string
+              example:
+                message: not found
+    get:
+      tags:
+        - order
+      summary: Fetch an order.
+      description: Review order details and hooks. Polling this method is not expected. You should rely on the webhooks to recieve updates.
+      operationId: order-fetch
+      parameters:
+        - in: path
+          name: orderKey
+          required: true
+      responses:
+        '200':
+          description: OK. Order returned
+          content:
+            application/json:
+              schema:
+                $id: http://relay.delivery/get-platform-order-response.json
+                type: object
+                required:
+                  - order
+                  - hooks
+                properties:
+                  order:
+                    type: object
+                    required:
+                      - orderKey
+                      - externalId
+                      - consumer
+                      - producer
+                      - price
+                    properties:
+                      orderKey:
+                        type: string
+                      quoteKey:
+                        type: string
+                      invoiceTarget:
+                        type: string
+                        enum:
+                          - ORDER_SOURCE
+                          - PRODUCER_LOCATION
+                      externalId:
+                        type: string
+                      isCash:
+                        type: boolean
+                        default: false
+                      isPickup:
+                        type: boolean
+                        default: false
+                      requireReadyEvent:
+                        type: boolean
+                      consumer:
+                        type: object
+                        required:
+                          - name
+                          - phone
+                        properties:
+                          name:
+                            type: string
+                          phone:
+                            type: string
+                          location:
+                            $id: http://relay.delivery/location-response.json
+                            type: object
+                            required:
+                              - address1
+                              - city
+                              - state
+                              - coordinates
+                            properties:
+                              address1:
+                                type: string
+                              address2:
+                                type: string
+                              apartment:
+                                type:
+                                  - string
+                                  - 'null'
+                              city:
+                                type: string
+                              state:
+                                type: string
+                              zip:
+                                type: string
+                                format: zip-code
+                              coordinates:
+                                $id: http://relay.delivery/coordinates.json
+                                type: object
+                                required:
+                                  - latitude
+                                  - longitude
+                                properties:
+                                  latitude:
+                                    type: number
+                                  longitude:
+                                    type: number
+                          specialInstructions:
+                            type: string
+                      producer:
+                        type: object
+                        required:
+                          - name
+                          - phone
+                          - location
+                          - producerLocationKey
+                        properties:
+                          name:
+                            type: string
+                          phone:
+                            type: string
+                          producerKey:
+                            type: string
+                          producerLocationKey:
+                            type: string
+                          producerLocationType:
+                            type: string
+                            enum:
+                              - STATIC
+                              - DYNAMIC
+                            description: A STATIC location is one that has an active restaurant users and those users can interact with/manage your order. A DYNAMIC restaurant has no users associated with it.
+                          location:
+                            $id: http://relay.delivery/location-response.json
+                            type: object
+                            required:
+                              - address1
+                              - city
+                              - state
+                              - coordinates
+                            properties:
+                              address1:
+                                type: string
+                              address2:
+                                type: string
+                              apartment:
+                                type:
+                                  - string
+                                  - 'null'
+                              city:
+                                type: string
+                              state:
+                                type: string
+                              zip:
+                                type: string
+                                format: zip-code
+                              coordinates:
+                                $id: http://relay.delivery/coordinates.json
+                                type: object
+                                required:
+                                  - latitude
+                                  - longitude
+                                properties:
+                                  latitude:
+                                    type: number
+                                  longitude:
+                                    type: number
+                          specialInstructions:
+                            type: string
+                      price:
+                        type: object
+                        required:
+                          - subTotal
+                          - tip
+                          - relayFee
+                        properties:
+                          subTotal:
+                            type: number
+                            minimum: 0
+                          tip:
+                            type: number
+                            minimum: 0
+                          tax:
+                            type: number
+                            minimum: 0
+                          relayFee:
+                            type: number
+                            minimum: 0
+                          deliveryFee:
+                            type: number
+                            minimum: 0
+                          discount:
+                            type: number
+                            description: Always treated as negative. Only useful for cash orders or reporting purposes.
+                      specialInstructions:
+                        type: string
+                  hooks:
+                    type: array
+                    items:
+                      type: object
+                      properties:
+                        body:
+                          type: object
+                          description: Schema will match the corresponding webhook event (see https://docs.relay.delivery/schemas/v2-order.html)
+              example:
+                order:
+                  externalId: XJA-243
+                  orderKey: 44ba9482-04e8-41d0-867b-c9a7f6984e6e
+                  consumer:
+                    name: Larry
+                    phone: '8885555555'
+                    specialInstructions: I'll be in the attic. Call me when you get here.
+                    location:
+                      address1: 245 west 25th Street
+                      city: New York
+                      state: New York
+                      zip: '10001'
+                  producer:
+                    name: Sandwich Store
+                    phone: '2125555555'
+                    location:
+                      address1: 14 east 15th Street
+                      city: New York
+                      state: New York
+                      zip: '10003'
+                  price:
+                    subTotal: 33
+                    tax: 2.7
+                    tip: 7.5
+                hooks:
+                  - body:
+                      event: order_placed
+                      timestamp: '2022-09-13T14:37:56.025Z'
+                      orderKey: 44ba9482-04e8-41d0-867b-c9a7f6984e6e
+                  - body:
+                      timestamp: '2022-09-13T14:43:29.512Z'
+                      orderKey: 44ba9482-04e8-41d0-867b-c9a7f6984e6e
+                      externalId: XJA-243
+                      event: rider_accepted
+                      producerLocationKey: 10b09c3f-ecfa-4c3b-b5f6-acac002904c3
+        '404':
+          description: Order is not found or no longer avaiable.
+          content:
+            application/json:
+              schema:
+                $id: http://relay.delivery/no-quote-response.json
+                type: object
+                required:
+                  - message
+                properties:
+                  message:
+                    type: string
+              example:
+                message: not found
+  /quote:
+    post:
+      tags:
+        - quote
+      summary: Request a new quote
+      description: ''
+      operationId: quote-create
+      externalDocs:
+        description: See Request Schema Details
+        url: https://docs.relay.delivery/schemas/quote-request.html
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $id: http://relay.delivery/quote-request.json
+              type: object
+              required:
+                - quote
+              properties:
+                quote:
+                  type: object
+                  required:
+                    - producer
+                    - consumer
+                  properties:
+                    producer:
+                      anyOf:
+                        - type: object
+                          required:
+                            - location
+                          properties:
+                            location:
+                              anyOf:
+                                - $id: http://relay.delivery/location-request.json
+                                  type: object
+                                  required:
+                                    - address1
+                                    - city
+                                    - state
+                                    - zip
+                                  properties:
+                                    address1:
+                                      type: string
+                                      format: not-empty
+                                    apartment:
+                                      type:
+                                        - string
+                                        - 'null'
+                                      format: not-empty
+                                    city:
+                                      type: string
+                                      format: not-empty
+                                    state:
+                                      type: string
+                                      us-state: {}
+                                    zip:
+                                      type: string
+                                      format: zip-code
+                                - $id: http://relay.delivery/coordinate-request.json
+                                  type: object
+                                  required:
+                                    - text
+                                    - coordinates
+                                  properties:
+                                    text:
+                                      type: string
+                                      format: not-empty
+                                    coordinates:
+                                      type: object
+                                      required:
+                                        - latitude
+                                        - longitude
+                                      properties:
+                                        latitude:
+                                          type: number
+                                        longitude:
+                                          type: number
+                            constraints:
+                              type:
+                                - object
+                                - 'null'
+                              properties:
+                                before:
+                                  type: string
+                                  format: date-time
+                                after:
+                                  type: string
+                                  format: date-time
+                              before-after-constraint: {}
+                              errorMessage:
+                                before-after-constraint: contraints.after must be > constraints.before
+                        - type: object
+                          required:
+                            - producerLocationKey
+                          properties:
+                            producerLocationKey:
+                              type: string
+                              format: not-empty
+                            constraints:
+                              type:
+                                - object
+                                - 'null'
+                              properties:
+                                before:
+                                  type: string
+                                  format: date-time
+                                after:
+                                  type: string
+                                  format: date-time
+                              before-after-constraint: {}
+                              errorMessage:
+                                before-after-constraint: contraints.after must be > constraints.before
+                    consumer:
+                      type: object
+                      required:
+                        - location
+                      properties:
+                        location:
+                          anyOf:
+                            - $id: http://relay.delivery/location-request.json
+                              type: object
+                              required:
+                                - address1
+                                - city
+                                - state
+                                - zip
+                              properties:
+                                address1:
+                                  type: string
+                                  format: not-empty
+                                apartment:
+                                  type:
+                                    - string
+                                    - 'null'
+                                  format: not-empty
+                                city:
+                                  type: string
+                                  format: not-empty
+                                state:
+                                  type: string
+                                  us-state: {}
+                                zip:
+                                  type: string
+                                  format: zip-code
+                            - $id: http://relay.delivery/coordinate-request.json
+                              type: object
+                              required:
+                                - text
+                                - coordinates
+                              properties:
+                                text:
+                                  type: string
+                                  format: not-empty
+                                coordinates:
+                                  type: object
+                                  required:
+                                    - latitude
+                                    - longitude
+                                  properties:
+                                    latitude:
+                                      type: number
+                                    longitude:
+                                      type: number
+                        constraints:
+                          type:
+                            - object
+                            - 'null'
+                          properties:
+                            before:
+                              type: string
+                              format: date-time
+                            after:
+                              type: string
+                              format: date-time
+                          before-after-constraint: {}
+                          errorMessage:
+                            before-after-constraint: contraints.after must be > constraints.before
+                  v2-quote-constraints: {}
+                  errorMessage:
+                    v2-quote-constraints: Can have either producer.constraints or consumer.constraints, but not both. ASAP orders should have no constraints.
+            examples:
+              simple-asap-quote:
+                value:
+                  quote:
+                    producer:
+                      location:
+                        address1: 17 West 17th Street
+                        apartment: 3B
+                        city: New York
+                        state: NY
+                        zip: '10011'
+                    consumer:
+                      location:
+                        address1: 440 Park Ave South
+                        apartment: Suite 1701
+                        city: New York
+                        state: NY
+                        zip: '10016'
+              scheduled-dropoff-quote:
+                value:
+                  quote:
+                    producer:
+                      location:
+                        address1: 17 West 17th Street
+                        apartment: 3B
+                        city: New York
+                        state: NY
+                        zip: '10011'
+                    consumer:
+                      location:
+                        address1: 440 Park Ave South
+                        apartment: Suite 1701
+                        city: New York
+                        state: NY
+                        zip: '10016'
+                      constraints:
+                        before: '2022-03-15T14:35:00.000Z'
+              scheduled-pickup-quote:
+                value:
+                  quote:
+                    producer:
+                      location:
+                        address1: 17 West 17th Street
+                        apartment: 3B
+                        city: New York
+                        state: NY
+                        zip: '10011'
+                      constraints:
+                        before: '2022-03-15T14:35:00.000Z'
+                    consumer:
+                      location:
+                        address1: 440 Park Ave South
+                        apartment: Suite 1701
+                        city: New York
+                        state: NY
+                        zip: '10016'
+              pickup-window-quote:
+                value:
+                  quote:
+                    producer:
+                      location:
+                        address1: 17 West 17th Street
+                        apartment: 3B
+                        city: New York
+                        state: NY
+                        zip: '10011'
+                      constraints:
+                        after: '2022-03-15T14:20:00.000Z'
+                        before: '2022-03-15T14:35:00.000Z'
+                    consumer:
+                      location:
+                        address1: 440 Park Ave South
+                        apartment: Suite 1701
+                        city: New York
+                        state: NY
+                        zip: '10016'
+              dropoff-window-quote:
+                value:
+                  quote:
+                    producer:
+                      location:
+                        address1: 17 West 17th Street
+                        apartment: 3B
+                        city: New York
+                        state: NY
+                        zip: '10011'
+                    consumer:
+                      location:
+                        address1: 440 Park Ave South
+                        apartment: Suite 1701
+                        city: New York
+                        state: NY
+                        zip: '10016'
+                      constraints:
+                        after: '2022-03-15T14:20:00.000Z'
+                        before: '2022-03-15T14:35:00.000Z'
+      responses:
+        '200':
+          description: OK - quote request was successfully evaluated, but relay is not offering a quote at this time.
+          content:
+            application/json:
+              schema:
+                $id: http://relay.delivery/no-quote-response.json
+                type: object
+                required:
+                  - message
+                properties:
+                  message:
+                    type: string
+              example:
+                message: Quote not accepted.
+        '201':
+          description: OK - quote request was successfully evaluated and a quote has been created and returned
+          content:
+            application/json:
+              schema:
+                $id: http://relay.delivery/quote-response.json
+                type: object
+                required:
+                  - quote
+                properties:
+                  quote:
+                    type: object
+                    required:
+                      - quoteKey
+                      - quoteType
+                      - relayFee
+                      - validThrough
+                    properties:
+                      quoteKey:
+                        type: string
+                      quoteType:
+                        type: string
+                        enum:
+                          - ASAP
+                          - SCHEDULED_DROPOFF
+                          - SCHEDULED_PICKUP
+                      relayFee:
+                        type: number
+                      validThrough:
+                        type: string
+                        format: date-time
+                      estimates:
+                        type: object
+                        properties:
+                          reponse:
+                            type: number
+                            description: The expected seconds between delivery ready and rider arrival at the consumer's location.
+                          delivery:
+                            type: number
+                            description: The expected seconds between delivery pickup and delivery arrival at the consumer's location.
+              example:
+                quote:
+                  quoteKey: 642039e7-d39c-4be7-a994-e2d818abdfd9
+                  quoteType: ASAP
+                  relayFee: 9.5
+                  validThrough: '2022-08-03T19:07:58.623Z'
+                  estimates:
+                    response: 360
+                    delivery: 720
+        '400':
+          description: Invalid request. See validationErrors for more details
+          content:
+            application/json:
+              schema:
+                $id: http://relay.delivery/validation-errors-response.json
+                type: object
+                required:
+                  - message
+                  - validationErrors
+                properties:
+                  message:
+                    type: string
+                  validationErrors:
+                    type: array
+                    items:
+                      type: object
+                      required:
+                        - message
+                        - instancePath
+                      properties:
+                        instancePath:
+                          type: string
+                        message:
+                          type: string
+        '409':
+          description: Invalid configuration. Your account is not configured to accept quotes.
+          content:
+            application/json:
+              schema:
+                $id: http://relay.delivery/no-quote-response.json
+                type: object
+                required:
+                  - message
+                properties:
+                  message:
+                    type: string
+  /quote/{quoteKey}:
+    get:
+      tags:
+        - quote
+      summary: Fetch a previously created quote.
+      description: If you created a quote a in the past and you want to check if the quote is still valid then you can attempt to fetch it by the quote key. If the quote is no longer valid then it will not be found. If you are using your quotes right away then there is no need to call this route.
+      operationId: quote-fetch
+      parameters:
+        - in: path
+          name: quoteKey
+          required: true
+      responses:
+        '200':
+          description: OK. Valid quote found.
+          content:
+            application/json:
+              schema:
+                $id: http://relay.delivery/quote-response.json
+                type: object
+                required:
+                  - quote
+                properties:
+                  quote:
+                    type: object
+                    required:
+                      - quoteKey
+                      - quoteType
+                      - relayFee
+                      - validThrough
+                    properties:
+                      quoteKey:
+                        type: string
+                      quoteType:
+                        type: string
+                        enum:
+                          - ASAP
+                          - SCHEDULED_DROPOFF
+                          - SCHEDULED_PICKUP
+                      relayFee:
+                        type: number
+                      validThrough:
+                        type: string
+                        format: date-time
+                      estimates:
+                        type: object
+                        properties:
+                          reponse:
+                            type: number
+                            description: The expected seconds between delivery ready and rider arrival at the consumer's location.
+                          delivery:
+                            type: number
+                            description: The expected seconds between delivery pickup and delivery arrival at the consumer's location.
+              example:
+                quote:
+                  quoteKey: 642039e7-d39c-4be7-a994-e2d818abdfd9
+                  quoteType: ASAP
+                  relayFee: 9.5
+                  validThrough: '2022-08-03T19:07:58.623Z'
+                  estimates:
+                    response: 360
+                    delivery: 720
+        '404':
+          description: No valid quote found.
+          content:
+            application/json:
+              schema:
+                $id: http://relay.delivery/no-quote-response.json
+                type: object
+                required:
+                  - message
+                properties:
+                  message:
+                    type: string
+              example:
+                message: not found
+  /delivery-zone:
+    post:
+      tags:
+        - delivery-zone
+      summary: Retrieve the delivery zone for any address
+      description: Relay's maximum possible operating zone for a specific address. Orders outside of this range will never be accepted.
+      operationId: fetch-delivery-zone
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $id: http://relay.delivery/delivery-zone-request.json
+              type: object
+              oneOf:
+                - required:
+                    - address
+                  properties:
+                    address:
+                      $id: http://relay.delivery/location-request.json
+                      type: object
+                      required:
+                        - address1
+                        - city
+                        - state
+                        - zip
+                      properties:
+                        address1:
+                          type: string
+                          format: not-empty
+                        apartment:
+                          type:
+                            - string
+                            - 'null'
+                          format: not-empty
+                        city:
+                          type: string
+                          format: not-empty
+                        state:
+                          type: string
+                          us-state: {}
+                        zip:
+                          type: string
+                          format: zip-code
+                - required:
+                    - coordinates
+                  properties:
+                    coordinates:
+                      $id: http://relay.delivery/coordinates.json
+                      type: object
+                      required:
+                        - latitude
+                        - longitude
+                      properties:
+                        latitude:
+                          type: number
+                        longitude:
+                          type: number
+            examples:
+              simple-address:
+                description: ''
+                value:
+                  address:
+                    address1: 17 west 17th Street
+                    city: New York
+                    state: NY
+                    zip: '10011'
+              simple-coordinates:
+                description: ''
+                value:
+                  coordinates:
+                    latitude: 40.7385244
+                    longitude: -73.9932413
+      responses:
+        '200':
+          description: OK - request was successfully evaluated. A delivery zone is returned if we service the address and no delivery zone is returned if the address is outside of Relay's operating area.
+          content:
+            application/json:
+              schema:
+                $id: http://relay.delivery/delivery-zone-response.json
+                type: object
+                description: No delivery zone will be returned if the provided address is outside Relay's operating area.
+                required: []
+                properties:
+                  deliveryZone:
+                    $schema: http://json-schema.org/draft-07/schema#
+                    $id: http://relay.delivery/polygon.json
+                    title: GeoJSON Polygon
+                    type: object
+                    required:
+                      - type
+                      - coordinates
+                    properties:
+                      type:
+                        type: string
+                        enum:
+                          - Polygon
+                      coordinates:
+                        type: array
+                        items:
+                          type: array
+                          minItems: 4
+                          items:
+                            type: array
+                            minItems: 2
+                            items:
+                              type: number
+        '400':
+          description: Invalid request. See validationErrors for more details
+          content:
+            application/json:
+              schema:
+                $id: http://relay.delivery/validation-errors-response.json
+                type: object
+                required:
+                  - message
+                  - validationErrors
+                properties:
+                  message:
+                    type: string
+                  validationErrors:
+                    type: array
+                    items:
+                      type: object
+                      required:
+                        - message
+                        - instancePath
+                      properties:
+                        instancePath:
+                          type: string
+                        message:
+                          type: string
+  /order/ready:
+    post:
+      tags:
+        - order
+      summary: Toggle the ready status of an order.
+      description: If you have an event for when an order is ready to be picked up then you can use this route to dramatically improve the quality of service your orders receive on the Relay Platform. Be sure to set `requireReadyEvent` to true when creating the order if you intend to use this method.
+      operationId: order-ready
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $id: http://relay.delivery/order-ready-request.json
+              type: object
+              required:
+                - orderKey
+              properties:
+                orderKey:
+                  type: string
+                  description: The relay generated unique key.
+                isReady:
+                  type: boolean
+                  default: true
+      responses:
+        '200':
+          description: OK
+          content:
+            application/json:
+              schema:
+                $id: http://relay.delivery/order-key-request.json
+                type: object
+                required:
+                  - orderKey
+                properties:
+                  orderKey:
+                    type: string
+                    description: The relay generated unique key.
+  /order/void:
+    post:
+      tags:
+        - order
+      summary: Void/cancel an Order
+      description: Cancel an order when a customer no longer wants an order. Voiding an order should be extremely rare and excessive voiding is treated as abuse.
+      operationId: order-void
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $id: http://relay.delivery/order-key-request.json
+              type: object
+              required:
+                - orderKey
+              properties:
+                orderKey:
+                  type: string
+                  description: The relay generated unique key.
+      responses:
+        '200':
+          description: OK. Order voided or was already voided.
+          content:
+            application/json:
+              schema:
+                $id: http://relay.delivery/boolean-response.json
+                type: object
+                required:
+                  - success
+                properties:
+                  success:
+                    type: boolean
+        '400':
+          description: Invalid request
+        '409':
+          description: The order can no longer be voided
+components:
+  securitySchemes:
+    ApiKeyAuth:
+      type: apiKey
+      in: header
+      name: x-relay-auth
+  schemas: {}

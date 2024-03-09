@@ -12,15 +12,23 @@ paths:
     get:
       description: Retrieve a list of all Assets.
       tags:
-        - Serverless
+        - Retrieve
+        - Service
+        - Assets
         - Services
+        - Service
+        - Sid
         - Assets
       summary: Retrieve Service Assets
     post:
       description: Create a new Asset resource.
       tags:
-        - Serverless
+        - Create
+        - Service
+        - Asset
         - Services
+        - Service
+        - Sid
         - Assets
       summary: Create Service Asset
   /v1/Services/{ServiceSid}/Assets/{Sid}:
@@ -30,22 +38,34 @@ paths:
     get:
       description: Retrieve a specific Asset resource.
       tags:
-        - Serverless
+        - Retrieve
+        - Service
+        - Asset
         - Services
+        - Service
+        - Sid
         - Assets
       summary: Retrieve Service Asset
     delete:
       description: Delete an Asset resource.
       tags:
-        - Serverless
+        - Delete
+        - Service
+        - Asset
         - Services
+        - Service
+        - Sid
         - Assets
       summary: Delete Service Asset
     post:
       description: Update a specific Asset resource.
       tags:
-        - Serverless
+        - Update
+        - Service
+        - Asset
         - Services
+        - Service
+        - Sid
         - Assets
       summary: Update Service Asset
   /v1/Services/{ServiceSid}/Assets/{AssetSid}/Versions:
@@ -53,9 +73,15 @@ paths:
     get:
       description: Retrieve a list of all Asset Versions.
       tags:
-        - Serverless
+        - Retrieve
+        - Service
+        - Asset
+        - Versions
         - Services
+        - Service
+        - Sid
         - Assets
+        - Asset
         - Versions
       summary: Retrieve Service Asset Versions
   /v1/Services/{ServiceSid}/Assets/{AssetSid}/Versions/{Sid}:
@@ -63,9 +89,15 @@ paths:
     get:
       description: Retrieve a specific Asset Version.
       tags:
-        - Serverless
+        - Retrieve
+        - Service
+        - Asset
+        - Version
         - Services
+        - Service
+        - Sid
         - Assets
+        - Asset
         - Versions
       summary: Retrieve Service Asset Version
   /v1/Services/{ServiceSid}/Builds:
@@ -75,8 +107,15 @@ paths:
     get:
       description: Retrieve a list of all Builds.
       tags:
-        - Serverless
+        - Retrieve
+        - Service
+        - Builds
         - Services
+        - Service
+        - Sid
+        - Assets
+        - Asset
+        - Versions
         - Builds
       summary: Retrieve Service Builds
     post:
@@ -84,8 +123,15 @@ paths:
         Create a new Build resource. At least one function version or asset
         version is required.
       tags:
-        - Serverless
+        - Create
+        - Service
+        - Build
         - Services
+        - Service
+        - Sid
+        - Assets
+        - Asset
+        - Versions
         - Builds
       summary: Create Service Build
   /v1/Services/{ServiceSid}/Builds/{Sid}:
@@ -95,15 +141,29 @@ paths:
     get:
       description: Retrieve a specific Build resource.
       tags:
-        - Serverless
+        - Retrieve
+        - Service
+        - Build
         - Services
+        - Service
+        - Sid
+        - Assets
+        - Asset
+        - Versions
         - Builds
       summary: Retrieve Service Build
     delete:
       description: Delete a Build resource.
       tags:
-        - Serverless
+        - Delete
+        - Service
+        - Build
         - Services
+        - Service
+        - Sid
+        - Assets
+        - Asset
+        - Versions
         - Builds
       summary: Delete Service Build
   /v1/Services/{ServiceSid}/Builds/{Sid}/Status:
@@ -111,8 +171,16 @@ paths:
     get:
       description: Retrieve a specific Build resource.
       tags:
-        - Serverless
+        - Retrieve
+        - Service
+        - Build
+        - Status
         - Services
+        - Service
+        - Sid
+        - Assets
+        - Asset
+        - Versions
         - Builds
         - Status
       summary: Retrieve Service Build Status
@@ -123,18 +191,40 @@ paths:
     get:
       description: Retrieve a list of all Deployments.
       tags:
-        - Serverless
+        - Retrieve
+        - Service
+        - Environment
+        - Deployments
         - Services
+        - Service
+        - Sid
+        - Assets
+        - Asset
+        - Versions
         - Builds
         - Status
+        - Environments
+        - Environment
+        - Deployments
       summary: Retrieve Service Environment Deployments
     post:
       description: Create a new Deployment.
       tags:
-        - Serverless
+        - Create
+        - Service
+        - Environment
+        - Deployment
         - Services
+        - Service
+        - Sid
+        - Assets
+        - Asset
+        - Versions
         - Builds
         - Status
+        - Environments
+        - Environment
+        - Deployments
       summary: Create Service Environment Deployment
   /v1/Services/{ServiceSid}/Environments/{EnvironmentSid}/Deployments/{Sid}:
     description: >-
@@ -143,9 +233,20 @@ paths:
     get:
       description: Retrieve a specific Deployment.
       tags:
-        - Serverless
+        - Retrieve
+        - Service
+        - Environment
+        - Deployment
         - Services
+        - Service
+        - Sid
+        - Assets
+        - Asset
+        - Versions
+        - Builds
+        - Status
         - Environments
+        - Environment
         - Deployments
       summary: Retrieve Service Environment Deployment
   /v1/Services/{ServiceSid}/Environments:
@@ -155,17 +256,37 @@ paths:
     get:
       description: Retrieve a list of all environments.
       tags:
-        - Serverless
-        - Services
+        - Retrieve
+        - Service
         - Environments
+        - Services
+        - Service
+        - Sid
+        - Assets
+        - Asset
+        - Versions
+        - Builds
+        - Status
+        - Environments
+        - Environment
         - Deployments
       summary: Retrieve Service Environments
     post:
       description: Create a new environment.
       tags:
-        - Serverless
+        - Create
+        - Service
+        - Environment
         - Services
+        - Service
+        - Sid
+        - Assets
+        - Asset
+        - Versions
+        - Builds
+        - Status
         - Environments
+        - Environment
         - Deployments
       summary: Create Service Environment
   /v1/Services/{ServiceSid}/Environments/{Sid}:
@@ -175,17 +296,37 @@ paths:
     get:
       description: Retrieve a specific environment.
       tags:
-        - Serverless
+        - Retrieve
+        - Service
+        - Environment
         - Services
+        - Service
+        - Sid
+        - Assets
+        - Asset
+        - Versions
+        - Builds
+        - Status
         - Environments
+        - Environment
         - Deployments
       summary: Retrieve Service Environment
     delete:
       description: Delete a specific environment.
       tags:
-        - Serverless
+        - Delete
+        - Service
+        - Environment
         - Services
+        - Service
+        - Sid
+        - Assets
+        - Asset
+        - Versions
+        - Builds
+        - Status
         - Environments
+        - Environment
         - Deployments
       summary: Delete Service Environment
   /v1/Services/{ServiceSid}/Functions:
@@ -195,15 +336,39 @@ paths:
     get:
       description: Retrieve a list of all Functions.
       tags:
-        - Serverless
+        - Retrieve
+        - Service
+        - Functions
         - Services
+        - Service
+        - Sid
+        - Assets
+        - Asset
+        - Versions
+        - Builds
+        - Status
+        - Environments
+        - Environment
+        - Deployments
         - Functions
       summary: Retrieve Service Functions
     post:
       description: Create a new Function resource.
       tags:
-        - Serverless
+        - Create
+        - Service
+        - Functions
         - Services
+        - Service
+        - Sid
+        - Assets
+        - Asset
+        - Versions
+        - Builds
+        - Status
+        - Environments
+        - Environment
+        - Deployments
         - Functions
       summary: Create Service Functions
   /v1/Services/{ServiceSid}/Functions/{Sid}:
@@ -213,22 +378,58 @@ paths:
     get:
       description: Retrieve a specific Function resource.
       tags:
-        - Serverless
+        - Retrieve
+        - Service
+        - Function
         - Services
+        - Service
+        - Sid
+        - Assets
+        - Asset
+        - Versions
+        - Builds
+        - Status
+        - Environments
+        - Environment
+        - Deployments
         - Functions
       summary: Retrieve Service Function
     delete:
       description: Delete a Function resource.
       tags:
-        - Serverless
+        - Delete
+        - Service
+        - Function
         - Services
+        - Service
+        - Sid
+        - Assets
+        - Asset
+        - Versions
+        - Builds
+        - Status
+        - Environments
+        - Environment
+        - Deployments
         - Functions
       summary: Delete Service Function
     post:
       description: Update a specific Function resource.
       tags:
-        - Serverless
+        - Update
+        - Service
+        - Function
         - Services
+        - Service
+        - Sid
+        - Assets
+        - Asset
+        - Versions
+        - Builds
+        - Status
+        - Environments
+        - Environment
+        - Deployments
         - Functions
       summary: Update Service Function
   /v1/Services/{ServiceSid}/Functions/{FunctionSid}/Versions:
@@ -236,40 +437,95 @@ paths:
     get:
       description: Retrieve a list of all Function Version resources.
       tags:
-        - Serverless
-        - Services
-        - Functions
+        - Retrieve
+        - Service
+        - Function
         - Versions
+        - Services
+        - Service
+        - Sid
+        - Assets
+        - Asset
+        - Versions
+        - Builds
+        - Status
+        - Environments
+        - Environment
+        - Deployments
+        - Functions
+        - Function
       summary: Retrieve Service Function Versions
   /v1/Services/{ServiceSid}/Functions/{FunctionSid}/Versions/{Sid}:
     description: The content of a Function.
     get:
       description: Retrieve a specific Function Version resource.
       tags:
-        - Serverless
+        - Retrieve
+        - Service
+        - Function
+        - Version
         - Services
-        - Functions
+        - Service
+        - Sid
+        - Assets
+        - Asset
         - Versions
+        - Builds
+        - Status
+        - Environments
+        - Environment
+        - Deployments
+        - Functions
+        - Function
       summary: Retrieve Service Function Version
   /v1/Services/{ServiceSid}/Functions/{FunctionSid}/Versions/{Sid}/Content:
     description: The code of a Function Version.
     get:
       description: Retrieve a the content of a specific Function Version resource.
       tags:
-        - Serverless
-        - Services
-        - Functions
-        - Versions
+        - Retrieve
+        - Service
+        - Function
+        - Version
         - Contents
+        - Services
+        - Service
+        - Sid
+        - Assets
+        - Asset
+        - Versions
+        - Builds
+        - Status
+        - Environments
+        - Environment
+        - Deployments
+        - Functions
+        - Function
+        - Content
       summary: Retrieve Service Function Version Contents
   /v1/Services/{ServiceSid}/Environments/{EnvironmentSid}/Logs:
     description: A record of an event that occurred related to a function invocation.
     get:
       description: Retrieve a list of all logs.
       tags:
-        - Serverless
+        - Retrieve
+        - Service
+        - Environment
+        - Logs
         - Services
+        - Service
+        - Sid
+        - Assets
+        - Asset
+        - Versions
+        - Builds
+        - Status
         - Environments
+        - Environment
+        - Deployments
+        - Functions
+        - Function
+        - Content
         - Logs
       summary: Retrieve Service Environment Logs
   /v1/Services/{ServiceSid}/Environments/{EnvironmentSid}/Logs/{Sid}:
@@ -277,9 +533,24 @@ paths:
     get:
       description: Retrieve a specific log.
       tags:
-        - Serverless
+        - Retrieve
+        - Service
+        - Environment
+        - Log
         - Services
+        - Service
+        - Sid
+        - Assets
+        - Asset
+        - Versions
+        - Builds
+        - Status
         - Environments
+        - Environment
+        - Deployments
+        - Functions
+        - Function
+        - Content
         - Logs
       summary: Retrieve Service Environment Log
   /v1/Services:
@@ -289,14 +560,44 @@ paths:
     get:
       description: Retrieve a list of all Services.
       tags:
-        - Serverless
+        - Retrieve
         - Services
+        - Services
+        - Service
+        - Sid
+        - Assets
+        - Asset
+        - Versions
+        - Builds
+        - Status
+        - Environments
+        - Environment
+        - Deployments
+        - Functions
+        - Function
+        - Content
+        - Logs
       summary: Retrieve Services
     post:
       description: Create a new Service resource.
       tags:
-        - Serverless
+        - Create
+        - Service
         - Services
+        - Service
+        - Sid
+        - Assets
+        - Asset
+        - Versions
+        - Builds
+        - Status
+        - Environments
+        - Environment
+        - Deployments
+        - Functions
+        - Function
+        - Content
+        - Logs
       summary: Create Service
   /v1/Services/{Sid}:
     description: >-
@@ -305,37 +606,114 @@ paths:
     get:
       description: Retrieve a specific Service resource.
       tags:
-        - Serverless
+        - Retrieve
+        - Service
         - Services
+        - Service
+        - Sid
+        - Assets
+        - Asset
+        - Versions
+        - Builds
+        - Status
+        - Environments
+        - Environment
+        - Deployments
+        - Functions
+        - Function
+        - Content
+        - Logs
       summary: Retrieve Service
     delete:
       description: Delete a Service resource.
       tags:
-        - Serverless
+        - Retrieve
+        - Service
         - Services
+        - Service
+        - Sid
+        - Assets
+        - Asset
+        - Versions
+        - Builds
+        - Status
+        - Environments
+        - Environment
+        - Deployments
+        - Functions
+        - Function
+        - Content
+        - Logs
       summary: Retrieve Service
     post:
       description: Update a specific Service resource.
       tags:
-        - Serverless
+        - Update
+        - Service
         - Services
+        - Service
+        - Sid
+        - Assets
+        - Asset
+        - Versions
+        - Builds
+        - Status
+        - Environments
+        - Environment
+        - Deployments
+        - Functions
+        - Function
+        - Content
+        - Logs
       summary: Update Service
   /v1/Services/{ServiceSid}/Environments/{EnvironmentSid}/Variables:
     description: A key and value pair that is specific to an Environment.
     get:
       description: Retrieve a list of all Variables.
       tags:
-        - Serverless
+        - Retrieve
+        - Service
+        - Environment
+        - Variables
         - Services
+        - Service
+        - Sid
+        - Assets
+        - Asset
+        - Versions
+        - Builds
+        - Status
         - Environments
+        - Environment
+        - Deployments
+        - Functions
+        - Function
+        - Content
+        - Logs
         - Variables
       summary: Retrieve Service Environment Variables
     post:
       description: Create a new Variable.
       tags:
-        - Serverless
+        - Create
+        - Service
+        - Environment
+        - Variable
         - Services
+        - Service
+        - Sid
+        - Assets
+        - Asset
+        - Versions
+        - Builds
+        - Status
         - Environments
+        - Environment
+        - Deployments
+        - Functions
+        - Function
+        - Content
+        - Logs
         - Variables
       summary: Create Service Environment Variable
   /v1/Services/{ServiceSid}/Environments/{EnvironmentSid}/Variables/{Sid}:
@@ -343,25 +721,73 @@ paths:
     get:
       description: Retrieve a specific Variable.
       tags:
-        - Serverless
+        - Retrieve
+        - Service
+        - Environment
+        - Variable
         - Services
+        - Service
+        - Sid
+        - Assets
+        - Asset
+        - Versions
+        - Builds
+        - Status
         - Environments
+        - Environment
+        - Deployments
+        - Functions
+        - Function
+        - Content
+        - Logs
         - Variables
       summary: Retrieve Service Environment Variable
     post:
       description: Update a specific Variable.
       tags:
-        - Serverless
+        - Update
+        - Service
+        - Environment
+        - Variable
         - Services
+        - Service
+        - Sid
+        - Assets
+        - Asset
+        - Versions
+        - Builds
+        - Status
         - Environments
+        - Environment
+        - Deployments
+        - Functions
+        - Function
+        - Content
+        - Logs
         - Variables
       summary: Update Service Environment Variable
     delete:
       description: Delete a specific Variable.
       tags:
-        - Serverless
+        - Delete
+        - Service
+        - Environment
+        - Variable
         - Services
+        - Service
+        - Sid
+        - Assets
+        - Asset
+        - Versions
+        - Builds
+        - Status
         - Environments
+        - Environment
+        - Deployments
+        - Functions
+        - Function
+        - Content
+        - Logs
         - Variables
       summary: Delete Service Environment Variable
 tags:
@@ -394,4 +820,4 @@ x-maturity:
   - name: Beta
     description: >-
       PLEASE NOTE that this is a Beta product that is subject to change. Use it
-      with caution.
+      with ca

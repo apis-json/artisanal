@@ -1,0 +1,366 @@
+openapi: 3.1.0
+info:
+  title: amplify
+paths:
+  /apps:
+    GET:
+      summary: ListApps
+      description: <p>Returns a list of the existing Amplify apps. </p>
+      tags:
+        - List
+        - Apps
+        - Apps
+  /apps/{appId}/backendenvironments:
+    GET:
+      summary: ListBackendEnvironments
+      description: <p>Lists the backend environments for an Amplify app. </p>
+      tags:
+        - List
+        - Backend
+        - Environments
+        - Apps
+        - Id
+        - Backendenvironments
+  /apps/{appId}/branches:
+    GET:
+      summary: ListBranches
+      description: <p> Lists the branches of an Amplify app. </p>
+      tags:
+        - List
+        - Branches
+        - Apps
+        - Id
+        - Backendenvironments
+        - Branches
+  /apps/{appId}/branches/{branchName}/deployments:
+    POST:
+      summary: CreateDeployment
+      description: >-
+        <p>Creates a deployment for a manually deployed Amplify app. Manually
+        deployed apps are not connected to a repository. </p> <p>The maximum
+        duration between the <code>CreateDeployment</code> call and the
+        <code>StartDeployment</code> call cannot exceed 8 hours. If the duration
+        exceeds 8 hours, the <code>StartDeployment</code> call and the
+        associated <code>Job</code> will fail.</p>
+      tags:
+        - Create
+        - Deployment
+        - Apps
+        - Id
+        - Backendenvironments
+        - Branches
+        - Branch
+        - Name
+        - Deployments
+  /apps/{appId}/domains:
+    GET:
+      summary: ListDomainAssociations
+      description: <p> Returns the domain associations for an Amplify app. </p>
+      tags:
+        - List
+        - Domain
+        - Associations
+        - Apps
+        - Id
+        - Backendenvironments
+        - Branches
+        - Branch
+        - Name
+        - Deployments
+        - Domains
+  /apps/{appId}/webhooks:
+    GET:
+      summary: ListWebhooks
+      description: <p>Returns a list of webhooks for an Amplify app. </p>
+      tags:
+        - List
+        - Webhooks
+        - Apps
+        - Id
+        - Backendenvironments
+        - Branches
+        - Branch
+        - Name
+        - Deployments
+        - Domains
+        - Webhooks
+  /apps/{appId}:
+    POST:
+      summary: UpdateApp
+      description: <p>Updates an existing Amplify app. </p>
+      tags:
+        - Update
+        - App
+        - Apps
+        - Id
+        - Backendenvironments
+        - Branches
+        - Branch
+        - Name
+        - Deployments
+        - Domains
+        - Webhooks
+  /apps/{appId}/backendenvironments/{environmentName}:
+    GET:
+      summary: GetBackendEnvironment
+      description: <p>Returns a backend environment for an Amplify app. </p>
+      tags:
+        - Get
+        - Backend
+        - Environment
+        - Apps
+        - Id
+        - Backendenvironments
+        - Branches
+        - Branch
+        - Name
+        - Deployments
+        - Domains
+        - Webhooks
+        - Environment
+  /apps/{appId}/branches/{branchName}:
+    POST:
+      summary: UpdateBranch
+      description: <p> Updates a branch for an Amplify app. </p>
+      tags:
+        - Update
+        - Branch
+        - Apps
+        - Id
+        - Backendenvironments
+        - Branches
+        - Branch
+        - Name
+        - Deployments
+        - Domains
+        - Webhooks
+        - Environment
+  /apps/{appId}/domains/{domainName}:
+    POST:
+      summary: UpdateDomainAssociation
+      description: <p> Creates a new domain association for an Amplify app.</p>
+      tags:
+        - Update
+        - Domain
+        - Association
+        - Apps
+        - Id
+        - Backendenvironments
+        - Branches
+        - Branch
+        - Name
+        - Deployments
+        - Domains
+        - Webhooks
+        - Environment
+        - Domain
+  /apps/{appId}/branches/{branchName}/jobs/{jobId}:
+    GET:
+      summary: GetJob
+      description: <p> Returns a job for a branch of an Amplify app. </p>
+      tags:
+        - Get
+        - Job
+        - Apps
+        - Id
+        - Backendenvironments
+        - Branches
+        - Branch
+        - Name
+        - Deployments
+        - Domains
+        - Webhooks
+        - Environment
+        - Domain
+        - Jobs
+        - Job
+  /webhooks/{webhookId}:
+    POST:
+      summary: UpdateWebhook
+      description: <p>Updates a webhook. </p>
+      tags:
+        - Update
+        - Webhook
+        - Apps
+        - Id
+        - Backendenvironments
+        - Branches
+        - Branch
+        - Name
+        - Deployments
+        - Domains
+        - Webhooks
+        - Environment
+        - Domain
+        - Jobs
+        - Job
+  /apps/{appId}/accesslogs:
+    POST:
+      summary: GenerateAccessLogs
+      description: >-
+        <p>Returns the website access logs for a specific time range using a
+        presigned URL. </p>
+      tags:
+        - Generate
+        - Access
+        - Logs
+        - Apps
+        - Id
+        - Backendenvironments
+        - Branches
+        - Branch
+        - Name
+        - Deployments
+        - Domains
+        - Webhooks
+        - Environment
+        - Domain
+        - Jobs
+        - Job
+        - Accesslogs
+  /artifacts/{artifactId}:
+    GET:
+      summary: GetArtifactUrl
+      description: <p>Returns the artifact info that corresponds to an artifact id. </p>
+      tags:
+        - Get
+        - Artifact
+        - Url
+        - Apps
+        - Id
+        - Backendenvironments
+        - Branches
+        - Branch
+        - Name
+        - Deployments
+        - Domains
+        - Webhooks
+        - Environment
+        - Domain
+        - Jobs
+        - Job
+        - Accesslogs
+  /apps/{appId}/branches/{branchName}/jobs/{jobId}/artifacts:
+    GET:
+      summary: ListArtifacts
+      description: >-
+        <p>Returns a list of artifacts for a specified app, branch, and job.
+        </p>
+      tags:
+        - List
+        - Artifacts
+        - Apps
+        - Id
+        - Backendenvironments
+        - Branches
+        - Branch
+        - Name
+        - Deployments
+        - Domains
+        - Webhooks
+        - Environment
+        - Domain
+        - Jobs
+        - Job
+        - Accesslogs
+        - Artifacts
+  /apps/{appId}/branches/{branchName}/jobs:
+    POST:
+      summary: StartJob
+      description: <p> Starts a new job for a branch of an Amplify app. </p>
+      tags:
+        - Start
+        - Job
+        - Apps
+        - Id
+        - Backendenvironments
+        - Branches
+        - Branch
+        - Name
+        - Deployments
+        - Domains
+        - Webhooks
+        - Environment
+        - Domain
+        - Jobs
+        - Job
+        - Accesslogs
+        - Artifacts
+  /tags/{resourceArn}:
+    DELETE:
+      summary: UntagResource
+      description: <p>Untags a resource with a specified Amazon Resource Name (ARN).</p>
+      tags:
+        - Untag
+        - Resource
+        - Apps
+        - Id
+        - Backendenvironments
+        - Branches
+        - Branch
+        - Name
+        - Deployments
+        - Domains
+        - Webhooks
+        - Environment
+        - Domain
+        - Jobs
+        - Job
+        - Accesslogs
+        - Artifacts
+        - Arn
+  /apps/{appId}/branches/{branchName}/deployments/start:
+    POST:
+      summary: StartDeployment
+      description: >-
+        <p>Starts a deployment for a manually deployed app. Manually deployed
+        apps are not connected to a repository. </p> <p>The maximum duration
+        between the <code>CreateDeployment</code> call and the
+        <code>StartDeployment</code> call cannot exceed 8 hours. If the duration
+        exceeds 8 hours, the <code>StartDeployment</code> call and the
+        associated <code>Job</code> will fail.</p>
+      tags:
+        - Start
+        - Deployment
+        - Apps
+        - Id
+        - Backendenvironments
+        - Branches
+        - Branch
+        - Name
+        - Deployments
+        - Domains
+        - Webhooks
+        - Environment
+        - Domain
+        - Jobs
+        - Job
+        - Accesslogs
+        - Artifacts
+        - Arn
+        - Start
+  /apps/{appId}/branches/{branchName}/jobs/{jobId}/stop:
+    DELETE:
+      summary: StopJob
+      description: <p> Stops a job that is in progress for a branch of an Amplify app. </
+      tags:
+        - Stop
+        - Job
+        - Apps
+        - Id
+        - Backendenvironments
+        - Branches
+        - Branch
+        - Name
+        - Deployments
+        - Domains
+        - Webhooks
+        - Environment
+        - Domain
+        - Jobs
+        - Job
+        - Accesslogs
+        - Artifacts
+        - Arn
+        - Start
+        - Stop

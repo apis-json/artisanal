@@ -4,7 +4,11 @@ paths:
   /adjustAuthorisation:
     post:
       tags:
-        - Modifications
+        - Change
+        - The
+        - Authorised
+        - Amount
+        - Authorisation
       summary: Change the authorised amount
       description: >-
         Allows you to increase or decrease the authorised amount after the
@@ -32,7 +36,11 @@ paths:
   /authorise:
     post:
       tags:
-        - Payments
+        - Create
+        - An
+        - Authorisation
+        - Authorisation
+        - Authorise
       summary: Create an authorisation
       description: >-
         Creates a payment with a unique reference (`pspReference`) and attempts
@@ -49,7 +57,11 @@ paths:
   /authorise3d:
     post:
       tags:
-        - Payments
+        - Complete
+        - Authorisation
+        - Authorisation
+        - Authorise
+        - Authorise3d
       summary: Complete a 3DS authorisation
       description: >-
         For an authenticated 3D Secure session, completes the payment
@@ -67,7 +79,13 @@ paths:
   /authorise3ds2:
     post:
       tags:
-        - Payments
+        - Complete
+        - S2
+        - Authorisation
+        - Authorisation
+        - Authorise
+        - Authorise3d
+        - Authorise3ds2
       summary: Complete a 3DS2 authorisation
       description: >-
         For an authenticated 3D Secure 2 session, completes the payment
@@ -84,7 +102,14 @@ paths:
   /cancel:
     post:
       tags:
-        - Modifications
+        - Cancel
+        - An
+        - Authorisation
+        - Authorisation
+        - Authorise
+        - Authorise3d
+        - Authorise3ds2
+        - Cancel
       summary: Cancel an authorisation
       description: >-
         Cancels the authorisation hold on a payment, returning a unique
@@ -106,7 +131,17 @@ paths:
   /cancelOrRefund:
     post:
       tags:
-        - Modifications
+        - Cancel
+        - Or
+        - Refund
+        - Payment
+        - Authorisation
+        - Authorise
+        - Authorise3d
+        - Authorise3ds2
+        - Cancel
+        - Or
+        - Refund
       summary: Cancel or refund a payment
       description: >-
         Cancels a payment if it has not been captured yet, or refunds it if it
@@ -133,7 +168,17 @@ paths:
   /capture:
     post:
       tags:
-        - Modifications
+        - Capture
+        - An
+        - Authorisation
+        - Authorisation
+        - Authorise
+        - Authorise3d
+        - Authorise3ds2
+        - Cancel
+        - Or
+        - Refund
+        - Capture
       summary: Capture an authorisation
       description: >+
         Captures the authorisation hold on a payment, returning a unique
@@ -163,7 +208,17 @@ paths:
   /donate:
     post:
       tags:
-        - Modifications
+        - Create
+        - Donation
+        - Authorisation
+        - Authorise
+        - Authorise3d
+        - Authorise3ds2
+        - Cancel
+        - Or
+        - Refund
+        - Capture
+        - Donate
       summary: Create a donation
       description: >-
         Schedules a new payment to be created (including a new authorisation
@@ -180,7 +235,21 @@ paths:
   /getAuthenticationResult:
     post:
       tags:
-        - Payments
+        - Get
+        - The
+        - Authentication
+        - Result
+        - Authorisation
+        - Authorise
+        - Authorise3d
+        - Authorise3ds2
+        - Cancel
+        - Or
+        - Refund
+        - Capture
+        - Donate
+        - Authentication
+        - Result
       summary: Get the 3DS authentication result
       description: >-
         Return the authentication result after doing a 3D Secure authentication
@@ -188,7 +257,20 @@ paths:
   /refund:
     post:
       tags:
-        - Modifications
+        - Refund
+        - Captured
+        - Payment
+        - Authorisation
+        - Authorise
+        - Authorise3d
+        - Authorise3ds2
+        - Cancel
+        - Or
+        - Refund
+        - Capture
+        - Donate
+        - Authentication
+        - Result
       summary: Refund a captured payment
       description: >-
         Refunds a payment that has previously been captured, returning a unique
@@ -218,7 +300,22 @@ paths:
   /retrieve3ds2Result:
     post:
       tags:
-        - Payments
+        - Get
+        - The
+        - S2
+        - Authentication
+        - Result
+        - Authorisation
+        - Authorise
+        - Authorise3d
+        - Authorise3ds2
+        - Cancel
+        - Or
+        - Refund
+        - Capture
+        - Donate
+        - Authentication
+        - Result
       summary: Get the 3DS2 authentication result
       description: >-
         Retrieves the `threeDS2Result` after doing a 3D Secure 2 authentication
@@ -226,7 +323,23 @@ paths:
   /technicalCancel:
     post:
       tags:
-        - Modifications
+        - Cancel
+        - An
+        - Authorisation
+        - Using
+        - Your
+        - Reference
+        - Authorisation
+        - Authorise
+        - Authorise3d
+        - Authorise3ds2
+        - Cancel
+        - Or
+        - Refund
+        - Capture
+        - Donate
+        - Authentication
+        - Result
       summary: Cancel an authorisation using your reference
       description: >-
         This endpoint allows you to cancel a payment if you do not have the PSP
@@ -250,7 +363,22 @@ paths:
   /voidPendingRefund:
     post:
       tags:
-        - Modifications
+        - Cancel
+        - An
+        - In-person
+        - Refund
+        - Authorisation
+        - Authorise
+        - Authorise3d
+        - Authorise3ds2
+        - Cancel
+        - Or
+        - Refund
+        - Capture
+        - Donate
+        - Authentication
+        - Result
+        - Pending
       summary: Cancel an in-person refund
       description: >-
         This endpoint allows you to cancel an unreferenced refund request before
@@ -265,4 +393,4 @@ paths:
 
         For more information, refer to [Cancel an unreferenced
         refund](https://docs.adyen.com/point-of-sale/refund-payment/cancel-unreferenced).
-components: {}
+components: null

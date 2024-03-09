@@ -10,8 +10,11 @@ paths:
         appearing first.</p>
       summary: Retrieve Invoice Items
       tags:
-        - Invoices
+        - Retrieve
+        - Invoice
         - Items
+        - V1
+        - Invoiceitems
     post:
       description: >-
         <p>Creates an item to be added to a draft invoice (up to 250 items per
@@ -19,8 +22,11 @@ paths:
         invoice created for the customer specified.</p>
       summary: Create Invoice Item
       tags:
-        - Invoices
-        - Items
+        - Create
+        - Invoice
+        - Item
+        - V1
+        - Invoiceitems
   /v1/invoiceitems/{invoiceitem}:
     delete:
       description: >-
@@ -29,14 +35,22 @@ paths:
         if it’s attached to a draft invoice.</p>
       summary: Delete Invoice Item
       tags:
-        - Invoices
-        - Items
+        - Delete
+        - Invoice
+        - Item
+        - V1
+        - Invoiceitems
+        - Invoiceitem
     get:
       description: <p>Retrieves the invoice item with the given ID.</p>
       summary: Retrieve Invoice Item
       tags:
-        - Invoices
-        - Items
+        - Retrieve
+        - Invoice
+        - Item
+        - V1
+        - Invoiceitems
+        - Invoiceitem
     post:
       description: >-
         <p>Updates the amount or description of an invoice item on an upcoming
@@ -44,8 +58,12 @@ paths:
         it’s attached to is closed.</p>
       summary: Update Invoice Item
       tags:
-        - Invoices
-        - Items
+        - Update
+        - Invoice
+        - Item
+        - V1
+        - Invoiceitems
+        - Invoiceitem
   /v1/invoices:
     get:
       description: >-
@@ -54,6 +72,11 @@ paths:
         most recently created invoices appearing first.</p>
       summary: Retrieve Invoices
       tags:
+        - Retrieve
+        - Invoices
+        - V1
+        - Invoiceitems
+        - Invoiceitem
         - Invoices
     post:
       description: >-
@@ -64,6 +87,11 @@ paths:
         invoice to your customers.</p>
       summary: Create Invoice
       tags:
+        - Create
+        - Invoice
+        - V1
+        - Invoiceitems
+        - Invoiceitem
         - Invoices
   /v1/invoices/search:
     get:
@@ -83,6 +111,11 @@ paths:
       tags:
         - Search
         - Invoices
+        - V1
+        - Invoiceitems
+        - Invoiceitem
+        - Invoices
+        - Search
   /v1/invoices/upcoming:
     get:
       description: >-
@@ -113,8 +146,15 @@ paths:
         resource.</p>
       summary: Retrieve Upcoming Invoices
       tags:
+        - Retrieve
         - Upcoming
         - Invoices
+        - V1
+        - Invoiceitems
+        - Invoiceitem
+        - Invoices
+        - Search
+        - Upcoming
   /v1/invoices/upcoming/lines:
     get:
       description: >-
@@ -124,8 +164,16 @@ paths:
         retrieve the full (paginated) list of line items.</p>
       summary: Retrieve Upcoming Invoice Lines
       tags:
+        - Retrieve
         - Upcoming
+        - Invoice
+        - Lines
+        - V1
+        - Invoiceitems
+        - Invoiceitem
         - Invoices
+        - Search
+        - Upcoming
         - Lines
   /v1/invoices/{invoice}:
     delete:
@@ -136,12 +184,30 @@ paths:
         subscription, it must be <a href="#void_invoice">voided</a>.</p>
       summary: Delete Invoice
       tags:
+        - Delete
+        - Invoice
+        - V1
+        - Invoiceitems
+        - Invoiceitem
         - Invoices
+        - Search
+        - Upcoming
+        - Lines
+        - Invoice
     get:
       description: <p>Retrieves the invoice with the given ID.</p>
       summary: Retrieve Invoice
       tags:
+        - Retrieve
+        - Invoice
+        - V1
+        - Invoiceitems
+        - Invoiceitem
         - Invoices
+        - Search
+        - Upcoming
+        - Lines
+        - Invoice
     post:
       description: >-
         <p>Draft invoices are fully editable. Once an invoice is <a
@@ -161,7 +227,16 @@ paths:
         <code>auto_advance=false</code>.</p>
       summary: Update Invoice
       tags:
+        - Update
+        - Invoice
+        - V1
+        - Invoiceitems
+        - Invoiceitem
         - Invoices
+        - Search
+        - Upcoming
+        - Lines
+        - Invoice
   /v1/invoices/{invoice}/finalize:
     post:
       description: >-
@@ -171,7 +246,16 @@ paths:
       summary: Finalize Invoice
       tags:
         - Finalize
+        - Invoice
+        - V1
+        - Invoiceitems
+        - Invoiceitem
         - Invoices
+        - Search
+        - Upcoming
+        - Lines
+        - Invoice
+        - Finalize
   /v1/invoices/{invoice}/lines:
     get:
       description: >-
@@ -181,8 +265,18 @@ paths:
         (paginated) list of line items.</p>
       summary: Retrieve Invoice Lines
       tags:
-        - Invoices
+        - Retrieve
+        - Invoice
         - Lines
+        - V1
+        - Invoiceitems
+        - Invoiceitem
+        - Invoices
+        - Search
+        - Upcoming
+        - Lines
+        - Invoice
+        - Finalize
   /v1/invoices/{invoice}/lines/{line_item_id}:
     post:
       description: >-
@@ -199,8 +293,19 @@ paths:
         finalized.</p>
       summary: Retrieve Invoice Line
       tags:
+        - Retrieve
+        - Invoice
+        - Line
+        - V1
+        - Invoiceitems
+        - Invoiceitem
         - Invoices
+        - Search
+        - Upcoming
         - Lines
+        - Invoice
+        - Finalize
+        - Line_item_id
   /v1/invoices/{invoice}/mark_uncollectible:
     post:
       description: >-
@@ -209,8 +314,19 @@ paths:
       summary: Mark Invoice Uncollectable
       tags:
         - Mark
-        - Invoices
+        - Invoice
         - Uncollectable
+        - V1
+        - Invoiceitems
+        - Invoiceitem
+        - Invoices
+        - Search
+        - Upcoming
+        - Lines
+        - Invoice
+        - Finalize
+        - Line_item_id
+        - Mark_uncollectible
   /v1/invoices/{invoice}/pay:
     post:
       description: >-
@@ -223,7 +339,19 @@ paths:
       summary: Pay Invoice
       tags:
         - Pay
+        - Invoice
+        - V1
+        - Invoiceitems
+        - Invoiceitem
         - Invoices
+        - Search
+        - Upcoming
+        - Lines
+        - Invoice
+        - Finalize
+        - Line_item_id
+        - Mark_uncollectible
+        - Pay
   /v1/invoices/{invoice}/send:
     post:
       description: >-
@@ -241,7 +369,20 @@ paths:
       summary: Send Invoice
       tags:
         - Send
+        - Invoice
+        - V1
+        - Invoiceitems
+        - Invoiceitem
         - Invoices
+        - Search
+        - Upcoming
+        - Lines
+        - Invoice
+        - Finalize
+        - Line_item_id
+        - Mark_uncollectible
+        - Pay
+        - Send
   /v1/invoices/{invoice}/void:
     post:
       description: >-
@@ -252,7 +393,21 @@ paths:
       summary: Void Invoice
       tags:
         - Void
+        - Invoice
+        - V1
+        - Invoiceitems
+        - Invoiceitem
         - Invoices
+        - Search
+        - Upcoming
+        - Lines
+        - Invoice
+        - Finalize
+        - Line_item_id
+        - Mark_uncollectible
+        - Pay
+        - Send
+        - Void
 tags:
   - name: Invoices
     description: Needs a description.
@@ -275,4 +430,4 @@ tags:
   - name: Send
     description: Needs a description.
   - name: Void
-    description: Needs a description.
+    description: Needs a descriptio

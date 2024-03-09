@@ -7,49 +7,99 @@ paths:
       description: <p>Create an incoming testmode bank transfer</p>
       summary: Create Incoming Bank Transfer
       tags:
-        - Tests
+        - Create
         - Incoming
         - Bank
-        - Transfers
+        - Transfer
+        - V1
+        - Test_helpers
+        - Customers
+        - Customer
+        - Fund_cash_balance
   /v1/test_helpers/issuing/authorizations:
     post:
       description: <p>Create a test-mode authorization.</p>
       summary: Create Autorization
       tags:
-        - Tests
-        - Authorization
+        - Create
+        - Autorization
+        - V1
+        - Test_helpers
+        - Customers
+        - Customer
+        - Fund_cash_balance
+        - Issuing
+        - Authorizations
   /v1/test_helpers/issuing/authorizations/{authorization}/capture:
     post:
       description: <p>Capture a test-mode authorization.</p>
       summary: Capture Authorization
       tags:
-        - Tests
         - Capture
         - Authorization
+        - V1
+        - Test_helpers
+        - Customers
+        - Customer
+        - Fund_cash_balance
+        - Issuing
+        - Authorizations
+        - Authorization
+        - Capture
   /v1/test_helpers/issuing/authorizations/{authorization}/expire:
     post:
       description: <p>Expire a test-mode Authorization.</p>
       summary: Expire Authorization
       tags:
-        - Tests
-        - Expires
+        - Expire
         - Authorization
+        - V1
+        - Test_helpers
+        - Customers
+        - Customer
+        - Fund_cash_balance
+        - Issuing
+        - Authorizations
+        - Authorization
+        - Capture
+        - Expire
   /v1/test_helpers/issuing/authorizations/{authorization}/increment:
     post:
       description: <p>Increment a test-mode Authorization.</p>
       summary: Increment Authorization
       tags:
-        - Tests
-        - Increments
+        - Increment
         - Authorization
+        - V1
+        - Test_helpers
+        - Customers
+        - Customer
+        - Fund_cash_balance
+        - Issuing
+        - Authorizations
+        - Authorization
+        - Capture
+        - Expire
+        - Increment
   /v1/test_helpers/issuing/authorizations/{authorization}/reverse:
     post:
       description: <p>Reverse a test-mode Authorization.</p>
       summary: Reverse Authorization
       tags:
-        - Tests
         - Reverse
         - Authorization
+        - V1
+        - Test_helpers
+        - Customers
+        - Customer
+        - Fund_cash_balance
+        - Issuing
+        - Authorizations
+        - Authorization
+        - Capture
+        - Expire
+        - Increment
+        - Reverse
   /v1/test_helpers/issuing/cards/{card}/shipping/deliver:
     post:
       description: >-
@@ -57,10 +107,27 @@ paths:
         <code>Card</code> object to <code>delivered</code>.</p>
       summary: Update Shipping Status to Deliver
       tags:
-        - Tests
+        - Update
         - Shipping
         - Status
-        - Delivers
+        - To
+        - Deliver
+        - V1
+        - Test_helpers
+        - Customers
+        - Customer
+        - Fund_cash_balance
+        - Issuing
+        - Authorizations
+        - Authorization
+        - Capture
+        - Expire
+        - Increment
+        - Reverse
+        - Cards
+        - Card
+        - Shipping
+        - Deliver
   /v1/test_helpers/issuing/cards/{card}/shipping/fail:
     post:
       description: >-
@@ -68,10 +135,28 @@ paths:
         <code>Card</code> object to <code>failure</code>.</p>
       summary: Update Shipping Status to Fail
       tags:
-        - Tests
+        - Update
         - Shipping
         - Status
-        - Fails
+        - To
+        - Fail
+        - V1
+        - Test_helpers
+        - Customers
+        - Customer
+        - Fund_cash_balance
+        - Issuing
+        - Authorizations
+        - Authorization
+        - Capture
+        - Expire
+        - Increment
+        - Reverse
+        - Cards
+        - Card
+        - Shipping
+        - Deliver
+        - Fail
   /v1/test_helpers/issuing/cards/{card}/shipping/return:
     post:
       description: >-
@@ -79,9 +164,28 @@ paths:
         <code>Card</code> object to <code>returned</code>.</p>
       summary: Update Shipping Status to Return
       tags:
-        - Tests
+        - Update
         - Shipping
         - Status
+        - To
+        - Return
+        - V1
+        - Test_helpers
+        - Customers
+        - Customer
+        - Fund_cash_balance
+        - Issuing
+        - Authorizations
+        - Authorization
+        - Capture
+        - Expire
+        - Increment
+        - Reverse
+        - Cards
+        - Card
+        - Shipping
+        - Deliver
+        - Fail
         - Return
   /v1/test_helpers/issuing/cards/{card}/shipping/ship:
     post:
@@ -90,9 +194,29 @@ paths:
         <code>Card</code> object to <code>shipped</code>.</p>
       summary: Update Shipping Status to Ship
       tags:
-        - Tests
+        - Update
         - Shipping
         - Status
+        - To
+        - Ship
+        - V1
+        - Test_helpers
+        - Customers
+        - Customer
+        - Fund_cash_balance
+        - Issuing
+        - Authorizations
+        - Authorization
+        - Capture
+        - Expire
+        - Increment
+        - Reverse
+        - Cards
+        - Card
+        - Shipping
+        - Deliver
+        - Fail
+        - Return
         - Ship
   /v1/test_helpers/issuing/transactions/create_force_capture:
     post:
@@ -101,9 +225,30 @@ paths:
         forced capture.</p>
       summary: Create Force Capture
       tags:
-        - Tests
+        - Create
         - Force
         - Capture
+        - V1
+        - Test_helpers
+        - Customers
+        - Customer
+        - Fund_cash_balance
+        - Issuing
+        - Authorizations
+        - Authorization
+        - Capture
+        - Expire
+        - Increment
+        - Reverse
+        - Cards
+        - Card
+        - Shipping
+        - Deliver
+        - Fail
+        - Return
+        - Ship
+        - Transactions
+        - Create_force_capture
   /v1/test_helpers/issuing/transactions/create_unlinked_refund:
     post:
       description: >-
@@ -111,24 +256,93 @@ paths:
         unlinked refund.</p>
       summary: Create Unlinked Refund
       tags:
-        - Tests
+        - Create
         - Unlinked
-        - Refunds
+        - Refund
+        - V1
+        - Test_helpers
+        - Customers
+        - Customer
+        - Fund_cash_balance
+        - Issuing
+        - Authorizations
+        - Authorization
+        - Capture
+        - Expire
+        - Increment
+        - Reverse
+        - Cards
+        - Card
+        - Shipping
+        - Deliver
+        - Fail
+        - Return
+        - Ship
+        - Transactions
+        - Create_force_capture
+        - Create_unlinked_refund
   /v1/test_helpers/issuing/transactions/{transaction}/refund:
     post:
       description: <p>Refund a test-mode Transaction.</p>
       summary: Refund Transaction
       tags:
-        - Tests
-        - Refunds
+        - Refund
+        - Transaction
+        - V1
+        - Test_helpers
+        - Customers
+        - Customer
+        - Fund_cash_balance
+        - Issuing
+        - Authorizations
+        - Authorization
+        - Capture
+        - Expire
+        - Increment
+        - Reverse
+        - Cards
+        - Card
+        - Shipping
+        - Deliver
+        - Fail
+        - Return
+        - Ship
         - Transactions
+        - Create_force_capture
+        - Create_unlinked_refund
+        - Transaction
+        - Refund
   /v1/test_helpers/refunds/{refund}/expire:
     post:
       description: <p>Expire a refund with a status of <code>requires_action</code>.</p>
       summary: Expire Refund
       tags:
-        - Tests
-        - Expires
+        - Expire
+        - Refund
+        - V1
+        - Test_helpers
+        - Customers
+        - Customer
+        - Fund_cash_balance
+        - Issuing
+        - Authorizations
+        - Authorization
+        - Capture
+        - Expire
+        - Increment
+        - Reverse
+        - Cards
+        - Card
+        - Shipping
+        - Deliver
+        - Fail
+        - Return
+        - Ship
+        - Transactions
+        - Create_force_capture
+        - Create_unlinked_refund
+        - Transaction
+        - Refund
         - Refunds
   /v1/test_helpers/terminal/readers/{reader}/present_payment_method:
     post:
@@ -138,39 +352,194 @@ paths:
         transaction.</p>
       summary: Present Payment Method on Reader
       tags:
-        - Tests
-        - Presents
-        - Payments
-        - Methods
+        - Present
+        - Payment
+        - Method
+        - 'On'
+        - Reader
+        - V1
+        - Test_helpers
+        - Customers
+        - Customer
+        - Fund_cash_balance
+        - Issuing
+        - Authorizations
+        - Authorization
+        - Capture
+        - Expire
+        - Increment
+        - Reverse
+        - Cards
+        - Card
+        - Shipping
+        - Deliver
+        - Fail
+        - Return
+        - Ship
+        - Transactions
+        - Create_force_capture
+        - Create_unlinked_refund
+        - Transaction
+        - Refund
+        - Refunds
+        - Terminal
         - Readers
+        - Reader
+        - Present_payment_method
   /v1/test_helpers/test_clocks:
     get:
       description: <p>Returns a list of your test clocks.</p>
       summary: Retrieve Test Clocks
       tags:
-        - Tests
+        - Retrieve
+        - Test
         - Clocks
+        - V1
+        - Test_helpers
+        - Customers
+        - Customer
+        - Fund_cash_balance
+        - Issuing
+        - Authorizations
+        - Authorization
+        - Capture
+        - Expire
+        - Increment
+        - Reverse
+        - Cards
+        - Card
+        - Shipping
+        - Deliver
+        - Fail
+        - Return
+        - Ship
+        - Transactions
+        - Create_force_capture
+        - Create_unlinked_refund
+        - Transaction
+        - Refund
+        - Refunds
+        - Terminal
+        - Readers
+        - Reader
+        - Present_payment_method
+        - Test_clocks
     post:
       description: >-
         <p>Creates a new test clock that can be attached to new customers and
         quotes.</p>
       summary: Create Test Clock
       tags:
-        - Tests
-        - Clocks
+        - Create
+        - Test
+        - Clock
+        - V1
+        - Test_helpers
+        - Customers
+        - Customer
+        - Fund_cash_balance
+        - Issuing
+        - Authorizations
+        - Authorization
+        - Capture
+        - Expire
+        - Increment
+        - Reverse
+        - Cards
+        - Card
+        - Shipping
+        - Deliver
+        - Fail
+        - Return
+        - Ship
+        - Transactions
+        - Create_force_capture
+        - Create_unlinked_refund
+        - Transaction
+        - Refund
+        - Refunds
+        - Terminal
+        - Readers
+        - Reader
+        - Present_payment_method
+        - Test_clocks
   /v1/test_helpers/test_clocks/{test_clock}:
     delete:
       description: <p>Deletes a test clock.</p>
       summary: Delete Test Clock
       tags:
-        - Tests
-        - Clocks
+        - Delete
+        - Test
+        - Clock
+        - V1
+        - Test_helpers
+        - Customers
+        - Customer
+        - Fund_cash_balance
+        - Issuing
+        - Authorizations
+        - Authorization
+        - Capture
+        - Expire
+        - Increment
+        - Reverse
+        - Cards
+        - Card
+        - Shipping
+        - Deliver
+        - Fail
+        - Return
+        - Ship
+        - Transactions
+        - Create_force_capture
+        - Create_unlinked_refund
+        - Transaction
+        - Refund
+        - Refunds
+        - Terminal
+        - Readers
+        - Reader
+        - Present_payment_method
+        - Test_clocks
+        - Test_clock
     get:
       description: <p>Retrieves a test clock.</p>
       summary: Retrieve Test Clock
       tags:
-        - Tests
-        - Clocks
+        - Retrieve
+        - Test
+        - Clock
+        - V1
+        - Test_helpers
+        - Customers
+        - Customer
+        - Fund_cash_balance
+        - Issuing
+        - Authorizations
+        - Authorization
+        - Capture
+        - Expire
+        - Increment
+        - Reverse
+        - Cards
+        - Card
+        - Shipping
+        - Deliver
+        - Fail
+        - Return
+        - Ship
+        - Transactions
+        - Create_force_capture
+        - Create_unlinked_refund
+        - Transaction
+        - Refund
+        - Refunds
+        - Terminal
+        - Readers
+        - Reader
+        - Present_payment_method
+        - Test_clocks
+        - Test_clock
   /v1/test_helpers/test_clocks/{test_clock}/advance:
     post:
       description: >-
@@ -179,8 +548,40 @@ paths:
       summary: Advance Test Clock
       tags:
         - Advance
-        - Tests
-        - Clocks
+        - Test
+        - Clock
+        - V1
+        - Test_helpers
+        - Customers
+        - Customer
+        - Fund_cash_balance
+        - Issuing
+        - Authorizations
+        - Authorization
+        - Capture
+        - Expire
+        - Increment
+        - Reverse
+        - Cards
+        - Card
+        - Shipping
+        - Deliver
+        - Fail
+        - Return
+        - Ship
+        - Transactions
+        - Create_force_capture
+        - Create_unlinked_refund
+        - Transaction
+        - Refund
+        - Refunds
+        - Terminal
+        - Readers
+        - Reader
+        - Present_payment_method
+        - Test_clocks
+        - Test_clock
+        - Advance
   /v1/test_helpers/treasury/inbound_transfers/{id}/fail:
     post:
       description: >-
@@ -189,10 +590,44 @@ paths:
         <code>processing</code> state.</p>
       summary: Fail Inbound Transfer
       tags:
-        - Fails
+        - Fail
         - Inbound
         - Transfer
-        - Tests
+        - V1
+        - Test_helpers
+        - Customers
+        - Customer
+        - Fund_cash_balance
+        - Issuing
+        - Authorizations
+        - Authorization
+        - Capture
+        - Expire
+        - Increment
+        - Reverse
+        - Cards
+        - Card
+        - Shipping
+        - Deliver
+        - Fail
+        - Return
+        - Ship
+        - Transactions
+        - Create_force_capture
+        - Create_unlinked_refund
+        - Transaction
+        - Refund
+        - Refunds
+        - Terminal
+        - Readers
+        - Reader
+        - Present_payment_method
+        - Test_clocks
+        - Test_clock
+        - Advance
+        - Treasury
+        - Inbound_transfers
+        - Id
   /v1/test_helpers/treasury/inbound_transfers/{id}/return:
     post:
       description: >-
@@ -201,9 +636,44 @@ paths:
         in the <code>succeeded</code> state.</p>
       summary: Return Inbound Transfer
       tags:
-        - Tests
+        - Return
         - Inbound
-        - Transfers
+        - Transfer
+        - V1
+        - Test_helpers
+        - Customers
+        - Customer
+        - Fund_cash_balance
+        - Issuing
+        - Authorizations
+        - Authorization
+        - Capture
+        - Expire
+        - Increment
+        - Reverse
+        - Cards
+        - Card
+        - Shipping
+        - Deliver
+        - Fail
+        - Return
+        - Ship
+        - Transactions
+        - Create_force_capture
+        - Create_unlinked_refund
+        - Transaction
+        - Refund
+        - Refunds
+        - Terminal
+        - Readers
+        - Reader
+        - Present_payment_method
+        - Test_clocks
+        - Test_clock
+        - Advance
+        - Treasury
+        - Inbound_transfers
+        - Id
   /v1/test_helpers/treasury/inbound_transfers/{id}/succeed:
     post:
       description: >-
@@ -212,10 +682,45 @@ paths:
         the <code>processing</code> state.</p>
       summary: Succeed Inbound Transfer
       tags:
-        - Tests
         - Succeed
         - Inbound
-        - Transfers
+        - Transfer
+        - V1
+        - Test_helpers
+        - Customers
+        - Customer
+        - Fund_cash_balance
+        - Issuing
+        - Authorizations
+        - Authorization
+        - Capture
+        - Expire
+        - Increment
+        - Reverse
+        - Cards
+        - Card
+        - Shipping
+        - Deliver
+        - Fail
+        - Return
+        - Ship
+        - Transactions
+        - Create_force_capture
+        - Create_unlinked_refund
+        - Transaction
+        - Refund
+        - Refunds
+        - Terminal
+        - Readers
+        - Reader
+        - Present_payment_method
+        - Test_clocks
+        - Test_clock
+        - Advance
+        - Treasury
+        - Inbound_transfers
+        - Id
+        - Succeed
   /v1/test_helpers/treasury/outbound_payments/{id}/fail:
     post:
       description: >-
@@ -224,10 +729,46 @@ paths:
         <code>processing</code> state.</p>
       summary: Fail Outbound Payment
       tags:
-        - Tests
-        - Fails
+        - Fail
         - Outbound
-        - Payments
+        - Payment
+        - V1
+        - Test_helpers
+        - Customers
+        - Customer
+        - Fund_cash_balance
+        - Issuing
+        - Authorizations
+        - Authorization
+        - Capture
+        - Expire
+        - Increment
+        - Reverse
+        - Cards
+        - Card
+        - Shipping
+        - Deliver
+        - Fail
+        - Return
+        - Ship
+        - Transactions
+        - Create_force_capture
+        - Create_unlinked_refund
+        - Transaction
+        - Refund
+        - Refunds
+        - Terminal
+        - Readers
+        - Reader
+        - Present_payment_method
+        - Test_clocks
+        - Test_clock
+        - Advance
+        - Treasury
+        - Inbound_transfers
+        - Id
+        - Succeed
+        - Outbound_payments
   /v1/test_helpers/treasury/outbound_payments/{id}/post:
     post:
       description: >-
@@ -236,10 +777,47 @@ paths:
         <code>processing</code> state.</p>
       summary: Transition Outbound Payment
       tags:
-        - Tests
-        - Transitions
+        - Transition
         - Outbound
-        - Payments
+        - Payment
+        - V1
+        - Test_helpers
+        - Customers
+        - Customer
+        - Fund_cash_balance
+        - Issuing
+        - Authorizations
+        - Authorization
+        - Capture
+        - Expire
+        - Increment
+        - Reverse
+        - Cards
+        - Card
+        - Shipping
+        - Deliver
+        - Fail
+        - Return
+        - Ship
+        - Transactions
+        - Create_force_capture
+        - Create_unlinked_refund
+        - Transaction
+        - Refund
+        - Refunds
+        - Terminal
+        - Readers
+        - Reader
+        - Present_payment_method
+        - Test_clocks
+        - Test_clock
+        - Advance
+        - Treasury
+        - Inbound_transfers
+        - Id
+        - Succeed
+        - Outbound_payments
+        - Post
   /v1/test_helpers/treasury/outbound_payments/{id}/return:
     post:
       description: >-
@@ -248,9 +826,47 @@ paths:
         <code>processing</code> state.</p>
       summary: Return Outbound Payment
       tags:
-        - Tests
+        - Return
         - Outbound
-        - Payments
+        - Payment
+        - V1
+        - Test_helpers
+        - Customers
+        - Customer
+        - Fund_cash_balance
+        - Issuing
+        - Authorizations
+        - Authorization
+        - Capture
+        - Expire
+        - Increment
+        - Reverse
+        - Cards
+        - Card
+        - Shipping
+        - Deliver
+        - Fail
+        - Return
+        - Ship
+        - Transactions
+        - Create_force_capture
+        - Create_unlinked_refund
+        - Transaction
+        - Refund
+        - Refunds
+        - Terminal
+        - Readers
+        - Reader
+        - Present_payment_method
+        - Test_clocks
+        - Test_clock
+        - Advance
+        - Treasury
+        - Inbound_transfers
+        - Id
+        - Succeed
+        - Outbound_payments
+        - Post
   /v1/test_helpers/treasury/outbound_transfers/{outbound_transfer}/fail:
     post:
       description: >-
@@ -259,10 +875,49 @@ paths:
         <code>processing</code> state.</p>
       summary: Fail Outbound Transfer
       tags:
-        - Tests
-        - Fails
+        - Fail
         - Outbound
-        - Transfers
+        - Transfer
+        - V1
+        - Test_helpers
+        - Customers
+        - Customer
+        - Fund_cash_balance
+        - Issuing
+        - Authorizations
+        - Authorization
+        - Capture
+        - Expire
+        - Increment
+        - Reverse
+        - Cards
+        - Card
+        - Shipping
+        - Deliver
+        - Fail
+        - Return
+        - Ship
+        - Transactions
+        - Create_force_capture
+        - Create_unlinked_refund
+        - Transaction
+        - Refund
+        - Refunds
+        - Terminal
+        - Readers
+        - Reader
+        - Present_payment_method
+        - Test_clocks
+        - Test_clock
+        - Advance
+        - Treasury
+        - Inbound_transfers
+        - Id
+        - Succeed
+        - Outbound_payments
+        - Post
+        - Outbound_transfers
+        - Outbound_transfer
   /v1/test_helpers/treasury/outbound_transfers/{outbound_transfer}/post:
     post:
       description: >-
@@ -271,10 +926,49 @@ paths:
         <code>processing</code> state.</p>
       summary: Transition Outbound Transfer
       tags:
-        - Tests
-        - Transitions
+        - Transition
         - Outbound
-        - Transfers
+        - Transfer
+        - V1
+        - Test_helpers
+        - Customers
+        - Customer
+        - Fund_cash_balance
+        - Issuing
+        - Authorizations
+        - Authorization
+        - Capture
+        - Expire
+        - Increment
+        - Reverse
+        - Cards
+        - Card
+        - Shipping
+        - Deliver
+        - Fail
+        - Return
+        - Ship
+        - Transactions
+        - Create_force_capture
+        - Create_unlinked_refund
+        - Transaction
+        - Refund
+        - Refunds
+        - Terminal
+        - Readers
+        - Reader
+        - Present_payment_method
+        - Test_clocks
+        - Test_clock
+        - Advance
+        - Treasury
+        - Inbound_transfers
+        - Id
+        - Succeed
+        - Outbound_payments
+        - Post
+        - Outbound_transfers
+        - Outbound_transfer
   /v1/test_helpers/treasury/outbound_transfers/{outbound_transfer}/return:
     post:
       description: >-
@@ -283,9 +977,49 @@ paths:
         the <code>processing</code> state.</p>
       summary: Return Outbound Transfer
       tags:
-        - Tests
+        - Return
         - Outbound
-        - Transfers
+        - Transfer
+        - V1
+        - Test_helpers
+        - Customers
+        - Customer
+        - Fund_cash_balance
+        - Issuing
+        - Authorizations
+        - Authorization
+        - Capture
+        - Expire
+        - Increment
+        - Reverse
+        - Cards
+        - Card
+        - Shipping
+        - Deliver
+        - Fail
+        - Return
+        - Ship
+        - Transactions
+        - Create_force_capture
+        - Create_unlinked_refund
+        - Transaction
+        - Refund
+        - Refunds
+        - Terminal
+        - Readers
+        - Reader
+        - Present_payment_method
+        - Test_clocks
+        - Test_clock
+        - Advance
+        - Treasury
+        - Inbound_transfers
+        - Id
+        - Succeed
+        - Outbound_payments
+        - Post
+        - Outbound_transfers
+        - Outbound_transfer
   /v1/test_helpers/treasury/received_credits:
     post:
       description: >-
@@ -294,9 +1028,49 @@ paths:
         initiated by third parties.</p>
       summary: Received Credit
       tags:
-        - Tests
         - Received
-        - Credits
+        - Credit
+        - V1
+        - Test_helpers
+        - Customers
+        - Customer
+        - Fund_cash_balance
+        - Issuing
+        - Authorizations
+        - Authorization
+        - Capture
+        - Expire
+        - Increment
+        - Reverse
+        - Cards
+        - Card
+        - Shipping
+        - Deliver
+        - Fail
+        - Return
+        - Ship
+        - Transactions
+        - Create_force_capture
+        - Create_unlinked_refund
+        - Transaction
+        - Refund
+        - Refunds
+        - Terminal
+        - Readers
+        - Reader
+        - Present_payment_method
+        - Test_clocks
+        - Test_clock
+        - Advance
+        - Treasury
+        - Inbound_transfers
+        - Id
+        - Succeed
+        - Outbound_payments
+        - Post
+        - Outbound_transfers
+        - Outbound_transfer
+        - Received_credits
   /v1/test_helpers/treasury/received_debits:
     post:
       description: >-
@@ -305,9 +1079,50 @@ paths:
         initiated by third parties.</p>
       summary: Received Debit
       tags:
-        - Tests
         - Received
-        - Debits
+        - Debit
+        - V1
+        - Test_helpers
+        - Customers
+        - Customer
+        - Fund_cash_balance
+        - Issuing
+        - Authorizations
+        - Authorization
+        - Capture
+        - Expire
+        - Increment
+        - Reverse
+        - Cards
+        - Card
+        - Shipping
+        - Deliver
+        - Fail
+        - Return
+        - Ship
+        - Transactions
+        - Create_force_capture
+        - Create_unlinked_refund
+        - Transaction
+        - Refund
+        - Refunds
+        - Terminal
+        - Readers
+        - Reader
+        - Present_payment_method
+        - Test_clocks
+        - Test_clock
+        - Advance
+        - Treasury
+        - Inbound_transfers
+        - Id
+        - Succeed
+        - Outbound_payments
+        - Post
+        - Outbound_transfers
+        - Outbound_transfer
+        - Received_credits
+        - Received_debits
 tags:
   - name: Tests
     description: Needs a description.
@@ -378,4 +1193,4 @@ tags:
   - name: Credits
     description: Needs a description.
   - name: Debit
-    description: Needs a description.
+    description: Needs a descriptio

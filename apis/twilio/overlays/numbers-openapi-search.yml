@@ -10,22 +10,30 @@ paths:
     get:
       description: Fetch a specific AuthorizationDocument.
       tags:
-        - Numbers
-        - Hosted Numbers
+        - Retrieve
         - Hosted
-        - Numbers
+        - Number
+        - Authorization
+        - Document
+        - Hosted
+        - Number
         - Authorization
         - Documents
+        - Sid
       summary: Retrieve Hosted Number Authorization Document
     delete:
       description: Cancel the AuthorizationDocument request.
       tags:
-        - Numbers
-        - Hosted Numbers
+        - Delete
         - Hosted
-        - Numbers
+        - Number
+        - Authorization
+        - Document
+        - Hosted
+        - Number
         - Authorization
         - Documents
+        - Sid
       summary: Delete Hosted Number Authorization Document
   /v2/HostedNumber/AuthorizationDocuments:
     description: 'TODO: Resource-level docs'
@@ -34,36 +42,51 @@ paths:
         Retrieve a list of AuthorizationDocuments belonging to the account
         initiating the request.
       tags:
-        - Numbers
-        - Hosted Numbers
+        - Retrieve
         - Hosted
-        - Numbers
+        - Number
         - Authorization
         - Documents
+        - Hosted
+        - Number
+        - Authorization
+        - Documents
+        - Sid
       summary: Retrieve Hosted Number Authorization Documents
     post:
       description: >-
         Create an AuthorizationDocument for authorizing the hosting of phone
         number capabilities on Twilio's platform.
       tags:
-        - Numbers
-        - Hosted Numbers
+        - Create
         - Hosted
-        - Numbers
+        - Number
+        - Authorization
+        - Document
+        - Hosted
+        - Number
         - Authorization
         - Documents
+        - Sid
       summary: Create Hosted Number Authorization Document
   /v2/HostedNumber/Orders/Bulk/{BulkHostingSid}:
     description: 'TODO: Resource-level docs'
     get:
       description: Fetch a specific BulkHostedNumberOrder.
       tags:
-        - Numbers
-        - Hosted Numbers
+        - Retrieve
+        - Hosted
+        - Number
         - Orders
         - Bulk
-        - Bulk Hosting
         - Hosted
+        - Number
+        - Authorization
+        - Documents
+        - Sid
+        - Orders
+        - Bulk
+        - Hosting
       summary: Retrieve Hosted Number Orders Bulk
   /v2/HostedNumber/Orders/Bulk:
     description: 'TODO: Resource-level docs'
@@ -72,16 +95,38 @@ paths:
     post:
       description: Create a new Bundle.
       tags:
-        - Numbers
-        - Regulations
+        - Create
+        - Regulatory
+        - Compliance
+        - Bundle
+        - Hosted
+        - Number
+        - Authorization
+        - Documents
+        - Sid
+        - Orders
+        - Bulk
+        - Hosting
+        - Regulatory
         - Compliance
         - Bundles
       summary: Create Regulatory Compliance Bundle
     get:
       description: Retrieve a list of all Bundles for an account.
       tags:
-        - Numbers
-        - Regulations
+        - Retrieve
+        - Regulatory
+        - Compliance
+        - Bundles
+        - Hosted
+        - Number
+        - Authorization
+        - Documents
+        - Sid
+        - Orders
+        - Bulk
+        - Hosting
+        - Regulatory
         - Compliance
         - Bundles
       summary: Retrieve Regulatory Compliance Bundles
@@ -90,24 +135,57 @@ paths:
     get:
       description: Fetch a specific Bundle instance.
       tags:
-        - Numbers
-        - Regulations
+        - Retrieve
+        - Regulatory
+        - Compliance
+        - Bundle
+        - Hosted
+        - Number
+        - Authorization
+        - Documents
+        - Sid
+        - Orders
+        - Bulk
+        - Hosting
+        - Regulatory
         - Compliance
         - Bundles
       summary: Retrieve Regulatory Compliance Bundle
     post:
       description: Updates a Bundle in an account.
       tags:
-        - Numbers
-        - Regulations
+        - Update
+        - Regulatory
+        - Compliance
+        - Bundle
+        - Hosted
+        - Number
+        - Authorization
+        - Documents
+        - Sid
+        - Orders
+        - Bulk
+        - Hosting
+        - Regulatory
         - Compliance
         - Bundles
       summary: Update Regulatory Compliance Bundle
     delete:
       description: Delete a specific Bundle.
       tags:
-        - Numbers
-        - Regulations
+        - Delete
+        - Regulatory
+        - Compliance
+        - Bundle
+        - Hosted
+        - Number
+        - Authorization
+        - Documents
+        - Sid
+        - Orders
+        - Bulk
+        - Hosting
+        - Regulatory
         - Compliance
         - Bundles
       summary: Delete Regulatory Compliance Bundle
@@ -118,19 +196,45 @@ paths:
         Creates a new copy of a Bundle. It will internally create copies of all
         the bundle items (identities and documents) of the original bundle
       tags:
-        - Numbers
-        - Regulations
+        - Create
+        - Regulatory
+        - Compliance
+        - Bundle
+        - Copy
+        - Hosted
+        - Number
+        - Authorization
+        - Documents
+        - Sid
+        - Orders
+        - Bulk
+        - Hosting
+        - Regulatory
         - Compliance
         - Bundles
+        - Bundle
         - Copies
       summary: Create Regulatory Compliance Bundle Copy
     get:
       description: Retrieve a list of all Bundles Copies for a Bundle.
       tags:
-        - Numbers
-        - Regulations
+        - Retrieve
+        - Regulatory
+        - Compliance
+        - Bundle
+        - Copy
+        - Hosted
+        - Number
+        - Authorization
+        - Documents
+        - Sid
+        - Orders
+        - Bulk
+        - Hosting
+        - Regulatory
         - Compliance
         - Bundles
+        - Bundle
         - Copies
       summary: Retrieve Regulatory Compliance Bundle Copy
   /v2/HostedNumber/AuthorizationDocuments/{SigningDocumentSid}/DependentHostedNumberOrders:
@@ -140,57 +244,166 @@ paths:
         Retrieve a list of dependent HostedNumberOrders belonging to the
         AuthorizationDocument.
       tags:
-        - Numbers
-        - Hosted Numbers
-        - Signing
-        - Dependent
+        - Retrieve
         - Hosted
+        - Number
         - Authorization
         - Documents
         - Orders
+        - Hosted
+        - Number
+        - Authorization
+        - Documents
+        - Sid
+        - Orders
+        - Bulk
+        - Hosting
+        - Regulatory
+        - Compliance
+        - Bundles
+        - Bundle
+        - Copies
+        - Signing
+        - Document
+        - Dependent
       summary: Retrieve Hosted Number Authorization Documents Orders
   /v2/RegulatoryCompliance/EndUsers:
     description: 'TODO: Resource-level docs'
     post:
       description: Create a new End User.
       tags:
-        - Numbers
-        - Regulations
+        - Create
+        - Regulatory
         - Compliance
+        - End
         - User
+        - Hosted
+        - Number
+        - Authorization
+        - Documents
+        - Sid
+        - Orders
+        - Bulk
+        - Hosting
+        - Regulatory
+        - Compliance
+        - Bundles
+        - Bundle
+        - Copies
+        - Signing
+        - Document
+        - Dependent
+        - End
+        - Users
       summary: Create Regulatory Compliance End User
     get:
       description: Retrieve a list of all End User for an account.
       tags:
-        - Numbers
-        - Regulations
+        - Retrieve
+        - Regulatory
         - Compliance
-        - User
+        - End
+        - Users
+        - Hosted
+        - Number
+        - Authorization
+        - Documents
+        - Sid
+        - Orders
+        - Bulk
+        - Hosting
+        - Regulatory
+        - Compliance
+        - Bundles
+        - Bundle
+        - Copies
+        - Signing
+        - Document
+        - Dependent
+        - End
+        - Users
       summary: Retrieve Regulatory Compliance End Users
   /v2/RegulatoryCompliance/EndUsers/{Sid}:
     description: 'TODO: Resource-level docs'
     get:
       description: Fetch specific End User Instance.
       tags:
-        - Numbers
-        - Regulations
+        - Retrieve
+        - Regulatory
         - Compliance
+        - End
+        - User
+        - Hosted
+        - Number
+        - Authorization
+        - Documents
+        - Sid
+        - Orders
+        - Bulk
+        - Hosting
+        - Regulatory
+        - Compliance
+        - Bundles
+        - Bundle
+        - Copies
+        - Signing
+        - Document
+        - Dependent
+        - End
         - Users
       summary: Retrieve Regulatory Compliance End User
     post:
       description: Update an existing End User.
       tags:
-        - Numbers
-        - Regulations
+        - Update
+        - Regulatory
         - Compliance
+        - End
+        - User
+        - Hosted
+        - Number
+        - Authorization
+        - Documents
+        - Sid
+        - Orders
+        - Bulk
+        - Hosting
+        - Regulatory
+        - Compliance
+        - Bundles
+        - Bundle
+        - Copies
+        - Signing
+        - Document
+        - Dependent
+        - End
         - Users
       summary: Update Regulatory Compliance End User
     delete:
       description: Delete a specific End User.
       tags:
-        - Numbers
-        - Regulations
+        - Delete
+        - Regulatory
         - Compliance
+        - End
+        - User
+        - Hosted
+        - Number
+        - Authorization
+        - Documents
+        - Sid
+        - Orders
+        - Bulk
+        - Hosting
+        - Regulatory
+        - Compliance
+        - Bundles
+        - Bundle
+        - Copies
+        - Signing
+        - Document
+        - Dependent
+        - End
         - Users
       summary: Delete Regulatory Compliance End User
   /v2/RegulatoryCompliance/EndUserTypes:
@@ -198,43 +411,125 @@ paths:
     get:
       description: Retrieve a list of all End-User Types.
       tags:
-        - Numbers
-        - Regulations
+        - Retrieve
+        - Regulatory
         - Compliance
-        - Users
+        - End
+        - User
         - Types
-        - User Types
+        - Hosted
+        - Number
+        - Authorization
+        - Documents
+        - Sid
+        - Orders
+        - Bulk
+        - Hosting
+        - Regulatory
+        - Compliance
+        - Bundles
+        - Bundle
+        - Copies
+        - Signing
+        - Document
+        - Dependent
+        - End
+        - Users
+        - User
+        - Types
       summary: Retrieve Regulatory Compliance End User Types
   /v2/RegulatoryCompliance/EndUserTypes/{Sid}:
     description: 'TODO: Resource-level docs'
     get:
       description: Fetch a specific End-User Type Instance.
       tags:
-        - Numbers
-        - Regulations
+        - Retrieve
+        - Regulatory
         - Compliance
+        - End
+        - User
+        - Type
+        - Hosted
+        - Number
+        - Authorization
+        - Documents
+        - Sid
+        - Orders
+        - Bulk
+        - Hosting
+        - Regulatory
+        - Compliance
+        - Bundles
+        - Bundle
+        - Copies
+        - Signing
+        - Document
+        - Dependent
+        - End
         - Users
+        - User
         - Types
-        - User Types
       summary: Retrieve Regulatory Compliance End User Type
   /v2/RegulatoryCompliance/Bundles/{BundleSid}/Evaluations:
     description: 'TODO: Resource-level docs'
     post:
       description: Creates an evaluation for a bundle
       tags:
-        - Numbers
-        - Regulations
+        - Create
+        - Regulatory
+        - Compliance
+        - Bundle
+        - Evaluation
+        - Hosted
+        - Number
+        - Authorization
+        - Documents
+        - Sid
+        - Orders
+        - Bulk
+        - Hosting
+        - Regulatory
         - Compliance
         - Bundles
+        - Bundle
+        - Copies
+        - Signing
+        - Document
+        - Dependent
+        - End
+        - Users
+        - User
+        - Types
         - Evaluations
       summary: Create Regulatory Compliance Bundle Evaluation
     get:
       description: Retrieve a list of Evaluations associated to the Bundle resource.
       tags:
-        - Numbers
-        - Regulations
+        - Retrieve
+        - Regulatory
+        - Compliance
+        - Bundle
+        - Evaluations
+        - Hosted
+        - Number
+        - Authorization
+        - Documents
+        - Sid
+        - Orders
+        - Bulk
+        - Hosting
+        - Regulatory
         - Compliance
         - Bundles
+        - Bundle
+        - Copies
+        - Signing
+        - Document
+        - Dependent
+        - End
+        - Users
+        - User
+        - Types
         - Evaluations
       summary: Retrieve Regulatory Compliance Bundle Evaluations
   /v2/RegulatoryCompliance/Bundles/{BundleSid}/Evaluations/{Sid}:
@@ -242,10 +537,31 @@ paths:
     get:
       description: Fetch specific Evaluation Instance.
       tags:
-        - Numbers
-        - Regulations
+        - Retrieve
+        - Regulatory
+        - Compliance
+        - Bundle
+        - Evaluation
+        - Hosted
+        - Number
+        - Authorization
+        - Documents
+        - Sid
+        - Orders
+        - Bulk
+        - Hosting
+        - Regulatory
         - Compliance
         - Bundles
+        - Bundle
+        - Copies
+        - Signing
+        - Document
+        - Dependent
+        - End
+        - Users
+        - User
+        - Types
         - Evaluations
       summary: Retrieve Regulatory Compliance Bundle Evaluation
   /v2/HostedNumber/Orders/{Sid}:
@@ -253,20 +569,62 @@ paths:
     get:
       description: Fetch a specific HostedNumberOrder.
       tags:
-        - Numbers
-        - Hosted Numbers
-        - Orders
+        - Retrieve
         - Hosted
+        - Number
+        - Order
+        - Hosted
+        - Number
+        - Authorization
+        - Documents
+        - Sid
+        - Orders
+        - Bulk
+        - Hosting
+        - Regulatory
+        - Compliance
+        - Bundles
+        - Bundle
+        - Copies
+        - Signing
+        - Document
+        - Dependent
+        - End
+        - Users
+        - User
+        - Types
+        - Evaluations
       summary: Retrieve Hosted Number Order
     delete:
       description: >-
         Cancel the HostedNumberOrder (only available when the status is in
         `received`).
       tags:
-        - Numbers
-        - Hosted Numbers
-        - Orders
+        - Delete
         - Hosted
+        - Number
+        - Order
+        - Hosted
+        - Number
+        - Authorization
+        - Documents
+        - Sid
+        - Orders
+        - Bulk
+        - Hosting
+        - Regulatory
+        - Compliance
+        - Bundles
+        - Bundle
+        - Copies
+        - Signing
+        - Document
+        - Dependent
+        - End
+        - Users
+        - User
+        - Types
+        - Evaluations
       summary: Delete Hosted Number Order
   /v2/HostedNumber/Orders:
     description: 'TODO: Resource-level docs'
@@ -275,39 +633,127 @@ paths:
         Retrieve a list of HostedNumberOrders belonging to the account
         initiating the request.
       tags:
-        - Numbers
-        - Hosted Numbers
+        - Retrieve
+        - Hosted
+        - Number
         - Orders
         - Hosted
+        - Number
+        - Authorization
+        - Documents
+        - Sid
+        - Orders
+        - Bulk
+        - Hosting
+        - Regulatory
+        - Compliance
+        - Bundles
+        - Bundle
+        - Copies
+        - Signing
+        - Document
+        - Dependent
+        - End
+        - Users
+        - User
+        - Types
+        - Evaluations
       summary: Retrieve Hosted Number Orders
     post:
       description: Host a phone number's capability on Twilio's platform.
       tags:
-        - Numbers
-        - Hosted Numbers
-        - Orders
+        - Create
         - Hosted
+        - Number
+        - Order
+        - Hosted
+        - Number
+        - Authorization
+        - Documents
+        - Sid
+        - Orders
+        - Bulk
+        - Hosting
+        - Regulatory
+        - Compliance
+        - Bundles
+        - Bundle
+        - Copies
+        - Signing
+        - Document
+        - Dependent
+        - End
+        - Users
+        - User
+        - Types
+        - Evaluations
       summary: Create Hosted Number Order
   /v2/RegulatoryCompliance/Bundles/{BundleSid}/ItemAssignments:
     description: 'TODO: Resource-level docs'
     post:
       description: Create a new Assigned Item.
       tags:
-        - Numbers
-        - Regulations
+        - Create
+        - Regulatory
+        - Compliance
+        - Bundle
+        - Item
+        - Assignment
+        - Hosted
+        - Number
+        - Authorization
+        - Documents
+        - Sid
+        - Orders
+        - Bulk
+        - Hosting
+        - Regulatory
         - Compliance
         - Bundles
-        - Items
+        - Bundle
+        - Copies
+        - Signing
+        - Document
+        - Dependent
+        - End
+        - Users
+        - User
+        - Types
+        - Evaluations
+        - Item
         - Assignments
       summary: Create Regulatory Compliance Bundle Item Assignment
     get:
       description: Retrieve a list of all Assigned Items for an account.
       tags:
-        - Numbers
-        - Regulations
+        - Retrieve
+        - Regulatory
+        - Compliance
+        - Bundle
+        - Item
+        - Assignments
+        - Hosted
+        - Number
+        - Authorization
+        - Documents
+        - Sid
+        - Orders
+        - Bulk
+        - Hosting
+        - Regulatory
         - Compliance
         - Bundles
-        - Items
+        - Bundle
+        - Copies
+        - Signing
+        - Document
+        - Dependent
+        - End
+        - Users
+        - User
+        - Types
+        - Evaluations
+        - Item
         - Assignments
       summary: Retrieve Regulatory Compliance Bundle Item Assignments
   /v2/RegulatoryCompliance/Bundles/{BundleSid}/ItemAssignments/{Sid}:
@@ -315,21 +761,67 @@ paths:
     get:
       description: Fetch specific Assigned Item Instance.
       tags:
-        - Numbers
-        - Regulations
+        - Retrieve
+        - Regulatory
+        - Compliance
+        - Bundle
+        - Item
+        - Assignment
+        - Hosted
+        - Number
+        - Authorization
+        - Documents
+        - Sid
+        - Orders
+        - Bulk
+        - Hosting
+        - Regulatory
         - Compliance
         - Bundles
-        - Items
+        - Bundle
+        - Copies
+        - Signing
+        - Document
+        - Dependent
+        - End
+        - Users
+        - User
+        - Types
+        - Evaluations
+        - Item
         - Assignments
       summary: Retrieve Regulatory Compliance Bundle Item Assignment
     delete:
       description: Remove an Assignment Item Instance.
       tags:
-        - Numbers
-        - Regulations
+        - Delete
+        - Regulatory
+        - Compliance
+        - Bundle
+        - Item
+        - Assignment
+        - Hosted
+        - Number
+        - Authorization
+        - Documents
+        - Sid
+        - Orders
+        - Bulk
+        - Hosting
+        - Regulatory
         - Compliance
         - Bundles
-        - Items
+        - Bundle
+        - Copies
+        - Signing
+        - Document
+        - Dependent
+        - End
+        - Users
+        - User
+        - Types
+        - Evaluations
+        - Item
         - Assignments
       summary: Delete Regulatory Compliance Bundle Item Assignment
   /v2/RegulatoryCompliance/Regulations:
@@ -337,18 +829,68 @@ paths:
     get:
       description: Retrieve a list of all Regulations.
       tags:
-        - Numbers
-        - Regulations
+        - Retrieve
+        - Regulatory
         - Compliance
+        - Regulations
+        - Hosted
+        - Number
+        - Authorization
+        - Documents
+        - Sid
+        - Orders
+        - Bulk
+        - Hosting
+        - Regulatory
+        - Compliance
+        - Bundles
+        - Bundle
+        - Copies
+        - Signing
+        - Document
+        - Dependent
+        - End
+        - Users
+        - User
+        - Types
+        - Evaluations
+        - Item
+        - Assignments
+        - Regulations
       summary: Retrieve Regulatory Compliance Regulations
   /v2/RegulatoryCompliance/Regulations/{Sid}:
     description: 'TODO: Resource-level docs'
     get:
       description: Fetch specific Regulation Instance.
       tags:
-        - Numbers
-        - Regulations
+        - Retrieve
+        - Regulatory
         - Compliance
+        - Regulation
+        - Hosted
+        - Number
+        - Authorization
+        - Documents
+        - Sid
+        - Orders
+        - Bulk
+        - Hosting
+        - Regulatory
+        - Compliance
+        - Bundles
+        - Bundle
+        - Copies
+        - Signing
+        - Document
+        - Dependent
+        - End
+        - Users
+        - User
+        - Types
+        - Evaluations
+        - Item
+        - Assignments
+        - Regulations
       summary: Retrieve Regulatory Compliance Regulation
   /v2/RegulatoryCompliance:
     description: 'TODO: Resource-level docs'
@@ -360,10 +902,37 @@ paths:
         with all the bundle items of the source bundle (specified by the
         from_bundle_sid body param)
       tags:
-        - Numbers
-        - Regulations
+        - Create
+        - Regulatory
         - Compliance
-        - ' Bundles'
+        - Bundle
+        - Replace
+        - Items
+        - Hosted
+        - Number
+        - Authorization
+        - Documents
+        - Sid
+        - Orders
+        - Bulk
+        - Hosting
+        - Regulatory
+        - Compliance
+        - Bundles
+        - Bundle
+        - Copies
+        - Signing
+        - Document
+        - Dependent
+        - End
+        - Users
+        - User
+        - Types
+        - Evaluations
+        - Item
+        - Assignments
+        - Regulations
+        - Replace
         - Items
       summary: Create Regulatory Compliance Bundle Replace Items
   /v2/RegulatoryCompliance/SupportingDocuments:
@@ -371,75 +940,262 @@ paths:
     post:
       description: Create a new Supporting Document.
       tags:
-        - Numbers
-        - Regulations
+        - Create
+        - Regulatory
         - Compliance
         - Supporting
+        - Document
+        - Hosted
+        - Number
+        - Authorization
         - Documents
+        - Sid
+        - Orders
+        - Bulk
+        - Hosting
+        - Regulatory
+        - Compliance
+        - Bundles
+        - Bundle
+        - Copies
+        - Signing
+        - Document
+        - Dependent
+        - End
+        - Users
+        - User
+        - Types
+        - Evaluations
+        - Item
+        - Assignments
+        - Regulations
+        - Replace
+        - Items
+        - Supporting
       summary: Create Regulatory Compliance Supporting Document
     get:
       description: Retrieve a list of all Supporting Document for an account.
       tags:
-        - Numbers
-        - Regulations
+        - Retrieve
+        - Regulatory
         - Compliance
         - Supporting
         - Documents
+        - Hosted
+        - Number
+        - Authorization
+        - Documents
+        - Sid
+        - Orders
+        - Bulk
+        - Hosting
+        - Regulatory
+        - Compliance
+        - Bundles
+        - Bundle
+        - Copies
+        - Signing
+        - Document
+        - Dependent
+        - End
+        - Users
+        - User
+        - Types
+        - Evaluations
+        - Item
+        - Assignments
+        - Regulations
+        - Replace
+        - Items
+        - Supporting
       summary: Retrieve Regulatory Compliance Supporting Documents
   /v2/RegulatoryCompliance/SupportingDocuments/{Sid}:
     description: 'TODO: Resource-level docs'
     get:
       description: Fetch specific Supporting Document Instance.
       tags:
-        - Numbers
-        - Regulations
+        - Retrieve
+        - Regulatory
         - Compliance
         - Supporting
+        - Document
+        - Hosted
+        - Number
+        - Authorization
         - Documents
+        - Sid
+        - Orders
+        - Bulk
+        - Hosting
+        - Regulatory
+        - Compliance
+        - Bundles
+        - Bundle
+        - Copies
+        - Signing
+        - Document
+        - Dependent
+        - End
+        - Users
+        - User
+        - Types
+        - Evaluations
+        - Item
+        - Assignments
+        - Regulations
+        - Replace
+        - Items
+        - Supporting
       summary: Retrieve Regulatory Compliance Supporting Document
     post:
       description: Update an existing Supporting Document.
       tags:
-        - Numbers
-        - Regulations
+        - Update
+        - Regulatory
         - Compliance
         - Supporting
+        - Document
+        - Hosted
+        - Number
+        - Authorization
         - Documents
+        - Sid
+        - Orders
+        - Bulk
+        - Hosting
+        - Regulatory
+        - Compliance
+        - Bundles
+        - Bundle
+        - Copies
+        - Signing
+        - Document
+        - Dependent
+        - End
+        - Users
+        - User
+        - Types
+        - Evaluations
+        - Item
+        - Assignments
+        - Regulations
+        - Replace
+        - Items
+        - Supporting
       summary: Update Regulatory Compliance Supporting Document
     delete:
       description: Delete a specific Supporting Document.
       tags:
-        - Numbers
-        - Regulations
+        - Delete
+        - Regulatory
         - Compliance
         - Supporting
+        - Document
+        - Hosted
+        - Number
+        - Authorization
         - Documents
+        - Sid
+        - Orders
+        - Bulk
+        - Hosting
+        - Regulatory
+        - Compliance
+        - Bundles
+        - Bundle
+        - Copies
+        - Signing
+        - Document
+        - Dependent
+        - End
+        - Users
+        - User
+        - Types
+        - Evaluations
+        - Item
+        - Assignments
+        - Regulations
+        - Replace
+        - Items
+        - Supporting
       summary: Delete Regulatory Compliance Supporting Document
   /v2/RegulatoryCompliance/SupportingDocumentTypes:
     description: 'TODO: Resource-level docs'
     get:
       description: Retrieve a list of all Supporting Document Types.
       tags:
-        - Numbers
-        - Regulations
+        - Retrieve
+        - Regulatory
         - Compliance
         - Supporting
-        - Documents
+        - Document
         - Types
-        - ' Document Types'
+        - Hosted
+        - Number
+        - Authorization
+        - Documents
+        - Sid
+        - Orders
+        - Bulk
+        - Hosting
+        - Regulatory
+        - Compliance
+        - Bundles
+        - Bundle
+        - Copies
+        - Signing
+        - Document
+        - Dependent
+        - End
+        - Users
+        - User
+        - Types
+        - Evaluations
+        - Item
+        - Assignments
+        - Regulations
+        - Replace
+        - Items
+        - Supporting
       summary: Retrieve Regulatory Compliance Supporting Document Types
   /v2/RegulatoryCompliance/SupportingDocumentTypes/{Sid}:
     description: 'TODO: Resource-level docs'
     get:
       description: Fetch a specific Supporting Document Type Instance.
       tags:
-        - Numbers
-        - Regulations
+        - Retrieve
+        - Regulatory
         - Compliance
         - Supporting
+        - Document
+        - Type
+        - Hosted
+        - Number
+        - Authorization
         - Documents
+        - Sid
+        - Orders
+        - Bulk
+        - Hosting
+        - Regulatory
+        - Compliance
+        - Bundles
+        - Bundle
+        - Copies
+        - Signing
+        - Document
+        - Dependent
+        - End
+        - Users
+        - User
         - Types
-        - ' Document Types'
+        - Evaluations
+        - Item
+        - Assignments
+        - Regulations
+        - Replace
+        - Items
+        - Supporting
       summary: Retrieve Regulatory Compliance Supporting Document Type
 tags:
   - name: Tag
@@ -505,4 +1261,4 @@ x-maturity:
   - name: Beta
     description: >-
       PLEASE NOTE that this is a Beta product that is subject to change. Use it
-      with caution.
+      with ca

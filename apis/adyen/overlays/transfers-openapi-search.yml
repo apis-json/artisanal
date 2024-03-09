@@ -4,23 +4,39 @@ paths:
   /grants:
     get:
       tags:
+        - Get
         - Capital
+        - Account
+        - Grants
       summary: Get a capital account
       description: Returns a list of grants with status and outstanding balances.
     post:
       tags:
-        - Capital
+        - Request
+        - Grant
+        - Payout
+        - Grants
       summary: Request a grant payout
       description: Requests the payout of the selected grant offer.
-  '/grants/{id}':
+  /grants/{id}:
     get:
       tags:
-        - Capital
+        - Get
+        - Grant
+        - Reference
+        - Details
+        - Grants
+        - Id
       summary: Get grant reference details
       description: Returns the details of a capital account specified in the path.
   /transactions:
     get:
       tags:
+        - Get
+        - All
+        - Transactions
+        - Grants
+        - Id
         - Transactions
       summary: Get all transactions
       description: >+
@@ -46,9 +62,13 @@ paths:
         first page of results, and returns links to the next and previous pages
         when applicable. You can use the links to page through the results.
 
-  '/transactions/{id}':
+  /transactions/{id}:
     get:
       tags:
+        - Get
+        - Transaction
+        - Grants
+        - Id
         - Transactions
       summary: Get a transaction
       description: >-
@@ -60,6 +80,11 @@ paths:
   /transfers:
     post:
       tags:
+        - Transfer
+        - Funds
+        - Grants
+        - Id
+        - Transactions
         - Transfers
       summary: Transfer funds
       description: >-
@@ -78,12 +103,18 @@ paths:
         To use this endpoint, you need an additional role for your API
         credential and transfers must be enabled for the source balance account.
         Your Adyen contact will set these up for you.
-  '/transfers/{transferId}/returns':
+  /transfers/{transferId}/returns:
     post:
       tags:
+        - Return
+        - Transfer
+        - Grants
+        - Id
+        - Transactions
         - Transfers
+        - Returns
       summary: Return a transfer
       description: >-
         Returns previously transferred funds without creating a new
         `transferId`.
-components: {}
+components: null

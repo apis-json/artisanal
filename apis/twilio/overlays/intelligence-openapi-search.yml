@@ -10,8 +10,11 @@ paths:
     get:
       description: Get download URLs for media if possible
       tags:
-        - Intelligence
+        - Retrieve
+        - Transcript
+        - Media
         - Transcripts
+        - Sid
         - Media
       summary: Retrieve Transcript Media
   /v2/Transcripts/{TranscriptSid}/OperatorResults:
@@ -19,26 +22,47 @@ paths:
     get:
       description: Retrieve a list of Operator Results for the given Transcript.
       tags:
-        - Intelligence
+        - Retrieve
+        - Transcript
+        - Operator
+        - Results
         - Transcripts
-        - Operators
+        - Sid
+        - Media
+        - Transcript
+        - Operator
+        - Results
       summary: Retrieve Transcript Operator Results
   /v2/Transcripts/{TranscriptSid}/OperatorResults/{OperatorSid}:
     description: 'TODO: Resource-level docs'
     get:
       description: Fetch a specific Operator Result for the given Transcript.
       tags:
-        - Intelligence
+        - Retrieve
+        - Transcript
+        - Operator
+        - Result
         - Transcripts
-        - Operators
+        - Sid
+        - Media
+        - Transcript
+        - Operator
+        - Results
       summary: Retrieve Transcript Operator Result
   /v2/Transcripts/{TranscriptSid}/Sentences:
     description: 'TODO: Resource-level docs'
     get:
       description: Get all Transcript Sentences by TranscriptSid
       tags:
-        - Intelligence
+        - Retrieve
+        - Transcript
+        - Sentences
         - Transcripts
+        - Sid
+        - Media
+        - Transcript
+        - Operator
+        - Results
         - Sentences
       summary: Retrieve Transcript Sentences
   /v2/Services:
@@ -46,13 +70,29 @@ paths:
     post:
       description: Create a new Service for the given Account
       tags:
-        - Intelligence
+        - Create
+        - Service
+        - Transcripts
+        - Sid
+        - Media
+        - Transcript
+        - Operator
+        - Results
+        - Sentences
         - Services
       summary: Create Service
     get:
       description: Retrieves a list of all Services for an account.
       tags:
-        - Intelligence
+        - Retrieve
+        - Services
+        - Transcripts
+        - Sid
+        - Media
+        - Transcript
+        - Operator
+        - Results
+        - Sentences
         - Services
       summary: Retrieve Services
   /v2/Services/{Sid}:
@@ -60,19 +100,43 @@ paths:
     delete:
       description: Delete a specific Service.
       tags:
-        - Intelligence
+        - Delete
+        - Service
+        - Transcripts
+        - Sid
+        - Media
+        - Transcript
+        - Operator
+        - Results
+        - Sentences
         - Services
       summary: Delete Service
     get:
       description: Fetch a specific Service.
       tags:
-        - Intelligence
+        - Retrieve
+        - Service
+        - Transcripts
+        - Sid
+        - Media
+        - Transcript
+        - Operator
+        - Results
+        - Sentences
         - Services
       summary: Retrieve Service
     post:
       description: Update a specific Service.
       tags:
-        - Intelligence
+        - Update
+        - Service
+        - Transcripts
+        - Sid
+        - Media
+        - Transcript
+        - Operator
+        - Results
+        - Sentences
         - Services
       summary: Update Service
   /v2/Transcripts:
@@ -80,28 +144,60 @@ paths:
     post:
       description: Create a new Transcript for the service
       tags:
-        - Intelligence
+        - Create
+        - Transcript
         - Transcripts
+        - Sid
+        - Media
+        - Transcript
+        - Operator
+        - Results
+        - Sentences
+        - Services
       summary: Create Transcript
     get:
       description: Retrieve a list of Transcripts for a given service.
       tags:
-        - Intelligence
+        - Retrieve
         - Transcripts
+        - Transcripts
+        - Sid
+        - Media
+        - Transcript
+        - Operator
+        - Results
+        - Sentences
+        - Services
       summary: Retrieve Transcripts
   /v2/Transcripts/{Sid}:
     description: 'TODO: Resource-level docs'
     get:
       description: Fetch a specific Transcript.
       tags:
-        - Intelligence
+        - Retrieve
+        - Transcript
         - Transcripts
+        - Sid
+        - Media
+        - Transcript
+        - Operator
+        - Results
+        - Sentences
+        - Services
       summary: Retrieve Transcript
     delete:
       description: Delete a specific Transcript.
       tags:
-        - Intelligence
+        - Delete
+        - Transcript
         - Transcripts
+        - Sid
+        - Media
+        - Transcript
+        - Operator
+        - Results
+        - Sentences
+        - Services
       summary: Delete Transcript
 tags:
   - name: Tag
@@ -121,4 +217,4 @@ x-maturity:
   - name: Beta
     description: >-
       PLEASE NOTE that this is a Beta product that is subject to change. Use it
-      with caution.
+      with ca

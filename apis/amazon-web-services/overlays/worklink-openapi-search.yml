@@ -1,0 +1,824 @@
+openapi: 3.1.0
+info:
+  title: worklink
+paths:
+  /associateDomain:
+    POST:
+      summary: AssociateDomain
+      description: <p>Specifies a domain to be associated to Amazon WorkLink.</p>
+      tags:
+        - Associate
+        - Domain
+        - Domain
+  /associateWebsiteAuthorizationProvider:
+    POST:
+      summary: AssociateWebsiteAuthorizationProvider
+      description: >-
+        <p>Associates a website authorization provider with a specified fleet.
+        This is used to authorize users against associated websites in the
+        company network.</p>
+      tags:
+        - Associate
+        - Website
+        - Authorization
+        - Provider
+        - Domain
+        - Website
+        - Authorization
+        - Provider
+  /associateWebsiteCertificateAuthority:
+    POST:
+      summary: AssociateWebsiteCertificateAuthority
+      description: >-
+        <p>Imports the root certificate of a certificate authority (CA) used to
+        obtain TLS certificates used by associated websites within the company
+        network.</p>
+      tags:
+        - Associate
+        - Website
+        - Certificate
+        - Authority
+        - Domain
+        - Website
+        - Authorization
+        - Provider
+        - Certificate
+        - Authority
+  /createFleet:
+    POST:
+      summary: CreateFleet
+      description: >-
+        <p>Creates a fleet. A fleet consists of resources and the configuration
+        that delivers associated websites to authorized users who download and
+        set up the Amazon WorkLink app.</p>
+      tags:
+        - Create
+        - Fleet
+        - Domain
+        - Website
+        - Authorization
+        - Provider
+        - Certificate
+        - Authority
+        - Fleet
+  /deleteFleet:
+    POST:
+      summary: DeleteFleet
+      description: >-
+        <p>Deletes a fleet. Prevents users from accessing previously associated
+        websites. </p>
+      tags:
+        - Delete
+        - Fleet
+        - Domain
+        - Website
+        - Authorization
+        - Provider
+        - Certificate
+        - Authority
+        - Fleet
+  /describeAuditStreamConfiguration:
+    POST:
+      summary: DescribeAuditStreamConfiguration
+      description: >-
+        <p>Describes the configuration for delivering audit streams to the
+        customer account.</p>
+      tags:
+        - Describe
+        - Audit
+        - Stream
+        - Configuration
+        - Domain
+        - Website
+        - Authorization
+        - Provider
+        - Certificate
+        - Authority
+        - Fleet
+        - Audit
+        - Stream
+        - Configuration
+  /describeCompanyNetworkConfiguration:
+    POST:
+      summary: DescribeCompanyNetworkConfiguration
+      description: >-
+        <p>Describes the networking configuration to access the internal
+        websites associated with the specified fleet.</p>
+      tags:
+        - Describe
+        - Company
+        - Network
+        - Configuration
+        - Domain
+        - Website
+        - Authorization
+        - Provider
+        - Certificate
+        - Authority
+        - Fleet
+        - Audit
+        - Stream
+        - Configuration
+        - Company
+        - Network
+  /describeDevice:
+    POST:
+      summary: DescribeDevice
+      description: <p>Provides information about a user's device.</p>
+      tags:
+        - Describe
+        - Device
+        - Domain
+        - Website
+        - Authorization
+        - Provider
+        - Certificate
+        - Authority
+        - Fleet
+        - Audit
+        - Stream
+        - Configuration
+        - Company
+        - Network
+        - Device
+  /describeDevicePolicyConfiguration:
+    POST:
+      summary: DescribeDevicePolicyConfiguration
+      description: >-
+        <p>Describes the device policy configuration for the specified
+        fleet.</p>
+      tags:
+        - Describe
+        - Device
+        - Policy
+        - Configuration
+        - Domain
+        - Website
+        - Authorization
+        - Provider
+        - Certificate
+        - Authority
+        - Fleet
+        - Audit
+        - Stream
+        - Configuration
+        - Company
+        - Network
+        - Device
+        - Policy
+  /describeDomain:
+    POST:
+      summary: DescribeDomain
+      description: <p>Provides information about the domain.</p>
+      tags:
+        - Describe
+        - Domain
+        - Domain
+        - Website
+        - Authorization
+        - Provider
+        - Certificate
+        - Authority
+        - Fleet
+        - Audit
+        - Stream
+        - Configuration
+        - Company
+        - Network
+        - Device
+        - Policy
+  /describeFleetMetadata:
+    POST:
+      summary: DescribeFleetMetadata
+      description: >-
+        <p>Provides basic information for the specified fleet, excluding
+        identity provider, networking, and device configuration details.</p>
+      tags:
+        - Describe
+        - Fleet
+        - Metadata
+        - Domain
+        - Website
+        - Authorization
+        - Provider
+        - Certificate
+        - Authority
+        - Fleet
+        - Audit
+        - Stream
+        - Configuration
+        - Company
+        - Network
+        - Device
+        - Policy
+        - Metadata
+  /describeIdentityProviderConfiguration:
+    POST:
+      summary: DescribeIdentityProviderConfiguration
+      description: >-
+        <p>Describes the identity provider configuration of the specified
+        fleet.</p>
+      tags:
+        - Describe
+        - Identity
+        - Provider
+        - Configuration
+        - Domain
+        - Website
+        - Authorization
+        - Provider
+        - Certificate
+        - Authority
+        - Fleet
+        - Audit
+        - Stream
+        - Configuration
+        - Company
+        - Network
+        - Device
+        - Policy
+        - Metadata
+        - Identity
+  /describeWebsiteCertificateAuthority:
+    POST:
+      summary: DescribeWebsiteCertificateAuthority
+      description: <p>Provides information about the certificate authority.</p>
+      tags:
+        - Describe
+        - Website
+        - Certificate
+        - Authority
+        - Domain
+        - Website
+        - Authorization
+        - Provider
+        - Certificate
+        - Authority
+        - Fleet
+        - Audit
+        - Stream
+        - Configuration
+        - Company
+        - Network
+        - Device
+        - Policy
+        - Metadata
+        - Identity
+  /disassociateDomain:
+    POST:
+      summary: DisassociateDomain
+      description: >-
+        <p>Disassociates a domain from Amazon WorkLink. End users lose the
+        ability to access the domain with Amazon WorkLink. </p>
+      tags:
+        - Disassociate
+        - Domain
+        - Domain
+        - Website
+        - Authorization
+        - Provider
+        - Certificate
+        - Authority
+        - Fleet
+        - Audit
+        - Stream
+        - Configuration
+        - Company
+        - Network
+        - Device
+        - Policy
+        - Metadata
+        - Identity
+  /disassociateWebsiteAuthorizationProvider:
+    POST:
+      summary: DisassociateWebsiteAuthorizationProvider
+      description: >-
+        <p>Disassociates a website authorization provider from a specified
+        fleet. After the disassociation, users can't load any associated
+        websites that require this authorization provider.</p>
+      tags:
+        - Disassociate
+        - Website
+        - Authorization
+        - Provider
+        - Domain
+        - Website
+        - Authorization
+        - Provider
+        - Certificate
+        - Authority
+        - Fleet
+        - Audit
+        - Stream
+        - Configuration
+        - Company
+        - Network
+        - Device
+        - Policy
+        - Metadata
+        - Identity
+  /disassociateWebsiteCertificateAuthority:
+    POST:
+      summary: DisassociateWebsiteCertificateAuthority
+      description: <p>Removes a certificate authority (CA).</p>
+      tags:
+        - Disassociate
+        - Website
+        - Certificate
+        - Authority
+        - Domain
+        - Website
+        - Authorization
+        - Provider
+        - Certificate
+        - Authority
+        - Fleet
+        - Audit
+        - Stream
+        - Configuration
+        - Company
+        - Network
+        - Device
+        - Policy
+        - Metadata
+        - Identity
+  /listDevices:
+    POST:
+      summary: ListDevices
+      description: <p>Retrieves a list of devices registered with the specified fleet.</p>
+      tags:
+        - List
+        - Devices
+        - Domain
+        - Website
+        - Authorization
+        - Provider
+        - Certificate
+        - Authority
+        - Fleet
+        - Audit
+        - Stream
+        - Configuration
+        - Company
+        - Network
+        - Device
+        - Policy
+        - Metadata
+        - Identity
+        - Devices
+  /listDomains:
+    POST:
+      summary: ListDomains
+      description: <p>Retrieves a list of domains associated to a specified fleet.</p>
+      tags:
+        - List
+        - Domains
+        - Domain
+        - Website
+        - Authorization
+        - Provider
+        - Certificate
+        - Authority
+        - Fleet
+        - Audit
+        - Stream
+        - Configuration
+        - Company
+        - Network
+        - Device
+        - Policy
+        - Metadata
+        - Identity
+        - Devices
+        - Domains
+  /listFleets:
+    POST:
+      summary: ListFleets
+      description: <p>Retrieves a list of fleets for the current account and Region.</p>
+      tags:
+        - List
+        - Fleets
+        - Domain
+        - Website
+        - Authorization
+        - Provider
+        - Certificate
+        - Authority
+        - Fleet
+        - Audit
+        - Stream
+        - Configuration
+        - Company
+        - Network
+        - Device
+        - Policy
+        - Metadata
+        - Identity
+        - Devices
+        - Domains
+        - Fleets
+  /tags/{ResourceArn}:
+    DELETE:
+      summary: UntagResource
+      description: <p>Removes one or more tags from the specified resource.</p>
+      tags:
+        - Untag
+        - Resource
+        - Domain
+        - Website
+        - Authorization
+        - Provider
+        - Certificate
+        - Authority
+        - Fleet
+        - Audit
+        - Stream
+        - Configuration
+        - Company
+        - Network
+        - Device
+        - Policy
+        - Metadata
+        - Identity
+        - Devices
+        - Domains
+        - Fleets
+        - Resource
+        - Arn
+  /listWebsiteAuthorizationProviders:
+    POST:
+      summary: ListWebsiteAuthorizationProviders
+      description: >-
+        <p>Retrieves a list of website authorization providers associated with a
+        specified fleet.</p>
+      tags:
+        - List
+        - Website
+        - Authorization
+        - Providers
+        - Domain
+        - Website
+        - Authorization
+        - Provider
+        - Certificate
+        - Authority
+        - Fleet
+        - Audit
+        - Stream
+        - Configuration
+        - Company
+        - Network
+        - Device
+        - Policy
+        - Metadata
+        - Identity
+        - Devices
+        - Domains
+        - Fleets
+        - Resource
+        - Arn
+        - Providers
+  /listWebsiteCertificateAuthorities:
+    POST:
+      summary: ListWebsiteCertificateAuthorities
+      description: >-
+        <p>Retrieves a list of certificate authorities added for the current
+        account and Region.</p>
+      tags:
+        - List
+        - Website
+        - Certificate
+        - Authorities
+        - Domain
+        - Website
+        - Authorization
+        - Provider
+        - Certificate
+        - Authority
+        - Fleet
+        - Audit
+        - Stream
+        - Configuration
+        - Company
+        - Network
+        - Device
+        - Policy
+        - Metadata
+        - Identity
+        - Devices
+        - Domains
+        - Fleets
+        - Resource
+        - Arn
+        - Providers
+        - Authorities
+  /restoreDomainAccess:
+    POST:
+      summary: RestoreDomainAccess
+      description: <p>Moves a domain to ACTIVE status if it was in the INACTIVE status.</p>
+      tags:
+        - Restore
+        - Domain
+        - Access
+        - Domain
+        - Website
+        - Authorization
+        - Provider
+        - Certificate
+        - Authority
+        - Fleet
+        - Audit
+        - Stream
+        - Configuration
+        - Company
+        - Network
+        - Device
+        - Policy
+        - Metadata
+        - Identity
+        - Devices
+        - Domains
+        - Fleets
+        - Resource
+        - Arn
+        - Providers
+        - Authorities
+        - Access
+  /revokeDomainAccess:
+    POST:
+      summary: RevokeDomainAccess
+      description: <p>Moves a domain to INACTIVE status if it was in the ACTIVE status.</p>
+      tags:
+        - Revoke
+        - Domain
+        - Access
+        - Domain
+        - Website
+        - Authorization
+        - Provider
+        - Certificate
+        - Authority
+        - Fleet
+        - Audit
+        - Stream
+        - Configuration
+        - Company
+        - Network
+        - Device
+        - Policy
+        - Metadata
+        - Identity
+        - Devices
+        - Domains
+        - Fleets
+        - Resource
+        - Arn
+        - Providers
+        - Authorities
+        - Access
+  /signOutUser:
+    POST:
+      summary: SignOutUser
+      description: >-
+        <p>Signs the user out from all of their devices. The user can sign in
+        again if they have valid credentials.</p>
+      tags:
+        - Sign
+        - Out
+        - User
+        - Domain
+        - Website
+        - Authorization
+        - Provider
+        - Certificate
+        - Authority
+        - Fleet
+        - Audit
+        - Stream
+        - Configuration
+        - Company
+        - Network
+        - Device
+        - Policy
+        - Metadata
+        - Identity
+        - Devices
+        - Domains
+        - Fleets
+        - Resource
+        - Arn
+        - Providers
+        - Authorities
+        - Access
+        - Out
+        - User
+  /updateAuditStreamConfiguration:
+    POST:
+      summary: UpdateAuditStreamConfiguration
+      description: <p>Updates the audit stream configuration for the fleet.</p>
+      tags:
+        - Update
+        - Audit
+        - Stream
+        - Configuration
+        - Domain
+        - Website
+        - Authorization
+        - Provider
+        - Certificate
+        - Authority
+        - Fleet
+        - Audit
+        - Stream
+        - Configuration
+        - Company
+        - Network
+        - Device
+        - Policy
+        - Metadata
+        - Identity
+        - Devices
+        - Domains
+        - Fleets
+        - Resource
+        - Arn
+        - Providers
+        - Authorities
+        - Access
+        - Out
+        - User
+  /updateCompanyNetworkConfiguration:
+    POST:
+      summary: UpdateCompanyNetworkConfiguration
+      description: <p>Updates the company network configuration for the fleet.</p>
+      tags:
+        - Update
+        - Company
+        - Network
+        - Configuration
+        - Domain
+        - Website
+        - Authorization
+        - Provider
+        - Certificate
+        - Authority
+        - Fleet
+        - Audit
+        - Stream
+        - Configuration
+        - Company
+        - Network
+        - Device
+        - Policy
+        - Metadata
+        - Identity
+        - Devices
+        - Domains
+        - Fleets
+        - Resource
+        - Arn
+        - Providers
+        - Authorities
+        - Access
+        - Out
+        - User
+  /updateDevicePolicyConfiguration:
+    POST:
+      summary: UpdateDevicePolicyConfiguration
+      description: <p>Updates the device policy configuration for the fleet.</p>
+      tags:
+        - Update
+        - Device
+        - Policy
+        - Configuration
+        - Domain
+        - Website
+        - Authorization
+        - Provider
+        - Certificate
+        - Authority
+        - Fleet
+        - Audit
+        - Stream
+        - Configuration
+        - Company
+        - Network
+        - Device
+        - Policy
+        - Metadata
+        - Identity
+        - Devices
+        - Domains
+        - Fleets
+        - Resource
+        - Arn
+        - Providers
+        - Authorities
+        - Access
+        - Out
+        - User
+  /updateDomainMetadata:
+    POST:
+      summary: UpdateDomainMetadata
+      description: <p>Updates domain metadata, such as DisplayName.</p>
+      tags:
+        - Update
+        - Domain
+        - Metadata
+        - Domain
+        - Website
+        - Authorization
+        - Provider
+        - Certificate
+        - Authority
+        - Fleet
+        - Audit
+        - Stream
+        - Configuration
+        - Company
+        - Network
+        - Device
+        - Policy
+        - Metadata
+        - Identity
+        - Devices
+        - Domains
+        - Fleets
+        - Resource
+        - Arn
+        - Providers
+        - Authorities
+        - Access
+        - Out
+        - User
+  /UpdateFleetMetadata:
+    POST:
+      summary: UpdateFleetMetadata
+      description: <p>Updates fleet metadata, such as DisplayName.</p>
+      tags:
+        - Update
+        - Fleet
+        - Metadata
+        - Domain
+        - Website
+        - Authorization
+        - Provider
+        - Certificate
+        - Authority
+        - Fleet
+        - Audit
+        - Stream
+        - Configuration
+        - Company
+        - Network
+        - Device
+        - Policy
+        - Metadata
+        - Identity
+        - Devices
+        - Domains
+        - Fleets
+        - Resource
+        - Arn
+        - Providers
+        - Authorities
+        - Access
+        - Out
+        - User
+        - Update
+  /updateIdentityProviderConfiguration:
+    POST:
+      summary: UpdateIdentityProviderConfiguration
+      description: <p>Updates the identity provider configuration for the fleet.</
+      tags:
+        - Update
+        - Identity
+        - Provider
+        - Configuration
+        - Domain
+        - Website
+        - Authorization
+        - Provider
+        - Certificate
+        - Authority
+        - Fleet
+        - Audit
+        - Stream
+        - Configuration
+        - Company
+        - Network
+        - Device
+        - Policy
+        - Metadata
+        - Identity
+        - Devices
+        - Domains
+        - Fleets
+        - Resource
+        - Arn
+        - Providers
+        - Authorities
+        - Access
+        - Out
+        - User
+        - Update

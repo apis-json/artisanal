@@ -10,28 +10,36 @@ paths:
     get:
       description: Returns a single Composition resource identified by a Composition SID.
       tags:
-        - Videos
+        - Retrieve
+        - Composition
         - Compositions
+        - Sid
       summary: Retrieve Composition
     delete:
       description: Delete a Recording Composition resource identified by a Composition SID.
       tags:
-        - Videos
+        - Delete
+        - Composition
         - Compositions
+        - Sid
       summary: Delete Composition
   /v1/Compositions:
     description: Recording compositions
     get:
       description: List of all Recording compositions.
       tags:
-        - Videos
+        - Retrieve
         - Compositions
+        - Compositions
+        - Sid
       summary: Retrieve Compositions
     post:
       description: ''
       tags:
-        - Videos
+        - Create
+        - Composition
         - Compositions
+        - Sid
       summary: Create Composition
   /v1/CompositionHooks/{Sid}:
     description: Recording composition hooks
@@ -40,8 +48,12 @@ paths:
         Returns a single CompositionHook resource identified by a
         CompositionHook SID.
       tags:
-        - Videos
+        - Retrieve
+        - Composition
+        - Hook
         - Compositions
+        - Sid
+        - Composition
         - Hooks
       summary: Retrieve Composition Hook
     delete:
@@ -49,15 +61,23 @@ paths:
         Delete a Recording CompositionHook resource identified by a
         `CompositionHook SID`.
       tags:
-        - Videos
+        - Delete
+        - Composition
+        - Hook
         - Compositions
+        - Sid
+        - Composition
         - Hooks
       summary: Delete Composition Hook
     post:
       description: ''
       tags:
-        - Videos
+        - Update
+        - Composition
+        - Hook
         - Compositions
+        - Sid
+        - Composition
         - Hooks
       summary: Update Composition Hook
   /v1/CompositionHooks:
@@ -65,15 +85,23 @@ paths:
     get:
       description: List of all Recording CompositionHook resources.
       tags:
-        - Videos
+        - Retrieve
+        - Composition
+        - Hooks
         - Compositions
+        - Sid
+        - Composition
         - Hooks
       summary: Retrieve Composition Hooks
     post:
       description: ''
       tags:
-        - Videos
+        - Create
+        - Composition
+        - Hook
         - Compositions
+        - Sid
+        - Composition
         - Hooks
       summary: Create Composition Hook
   /v1/CompositionSettings/Default:
@@ -81,31 +109,57 @@ paths:
     get:
       description: ''
       tags:
-        - Videos
-        - Compositions
+        - Retrieve
+        - Composition
         - Settings
-        - Defaults
+        - Default
+        - Compositions
+        - Sid
+        - Composition
+        - Hooks
+        - Settings
+        - Default
       summary: Retrieve Composition Settings Default
     post:
       description: ''
       tags:
-        - Videos
-        - Compositions
+        - Update
+        - Composition
         - Settings
-        - Defaults
+        - Default
+        - Compositions
+        - Sid
+        - Composition
+        - Hooks
+        - Settings
+        - Default
       summary: Update Composition Settings Default
   /v1/Recordings/{Sid}:
     description: Single-track, single-media recordings
     get:
       description: Returns a single Recording resource identified by a Recording SID.
       tags:
-        - Videos
+        - Retrieve
+        - Recording
+        - Compositions
+        - Sid
+        - Composition
+        - Hooks
+        - Settings
+        - Default
         - Recordings
       summary: Retrieve Recording
     delete:
       description: Delete a Recording resource identified by a Recording SID.
       tags:
-        - Videos
+        - Delete
+        - Recording
+        - Compositions
+        - Sid
+        - Composition
+        - Hooks
+        - Settings
+        - Default
         - Recordings
       summary: Delete Recording
   /v1/Recordings:
@@ -113,7 +167,14 @@ paths:
     get:
       description: List of all Track recordings.
       tags:
-        - Videos
+        - Update
+        - Recording
+        - Compositions
+        - Sid
+        - Composition
+        - Hooks
+        - Settings
+        - Default
         - Recordings
       summary: Update Recording
   /v1/RecordingSettings/Default:
@@ -121,31 +182,65 @@ paths:
     get:
       description: ''
       tags:
-        - Videos
-        - Recordings
+        - Retrieve
+        - Recording
         - Settings
-        - Defaults
+        - Default
+        - Compositions
+        - Sid
+        - Composition
+        - Hooks
+        - Settings
+        - Default
+        - Recordings
+        - Recording
       summary: Retrieve Recording Settings Default
     post:
       description: ''
       tags:
-        - Videos
-        - Recordings
+        - Update
+        - Recording
         - Settings
-        - Defaults
+        - Default
+        - Compositions
+        - Sid
+        - Composition
+        - Hooks
+        - Settings
+        - Default
+        - Recordings
+        - Recording
       summary: Update Recording Settings Default
   /v1/Rooms/{Sid}:
     description: Video rooms with one or more participants
     get:
       description: ''
       tags:
-        - Defaults
+        - Retrieve
+        - Room
+        - Compositions
+        - Sid
+        - Composition
+        - Hooks
+        - Settings
+        - Default
+        - Recordings
+        - Recording
         - Rooms
       summary: Retrieve Room
     post:
       description: ''
       tags:
-        - Defaults
+        - Update
+        - Room
+        - Compositions
+        - Sid
+        - Composition
+        - Hooks
+        - Settings
+        - Default
+        - Recordings
+        - Recording
         - Rooms
       summary: Update Room
   /v1/Rooms:
@@ -153,13 +248,31 @@ paths:
     post:
       description: ''
       tags:
-        - Defaults
+        - Create
+        - Room
+        - Compositions
+        - Sid
+        - Composition
+        - Hooks
+        - Settings
+        - Default
+        - Recordings
+        - Recording
         - Rooms
       summary: Create Room
     get:
       description: ''
       tags:
-        - Defaults
+        - Retrieve
+        - Rooms
+        - Compositions
+        - Sid
+        - Composition
+        - Hooks
+        - Settings
+        - Default
+        - Recordings
+        - Recording
         - Rooms
       summary: Retrieve Rooms
   /v1/Rooms/{RoomSid}/Participants/{Sid}:
@@ -167,15 +280,37 @@ paths:
     get:
       description: ''
       tags:
-        - Defaults
+        - Retrieve
+        - Room
+        - Participant
+        - Compositions
+        - Sid
+        - Composition
+        - Hooks
+        - Settings
+        - Default
+        - Recordings
+        - Recording
         - Rooms
+        - Room
         - Participants
       summary: Retrieve Room Participant
     post:
       description: ''
       tags:
-        - Defaults
+        - Update
+        - Room
+        - Participant
+        - Compositions
+        - Sid
+        - Composition
+        - Hooks
+        - Settings
+        - Default
+        - Recordings
+        - Recording
         - Rooms
+        - Room
         - Participants
       summary: Update Room Participant
   /v1/Rooms/{RoomSid}/Participants:
@@ -183,8 +318,19 @@ paths:
     get:
       description: ''
       tags:
-        - Defaults
+        - Retrieve
+        - Room
+        - Participants
+        - Compositions
+        - Sid
+        - Composition
+        - Hooks
+        - Settings
+        - Default
+        - Recordings
+        - Recording
         - Rooms
+        - Room
         - Participants
       summary: Retrieve Room Participants
   /v1/Rooms/{RoomSid}/Participants/{Sid}/Anonymize:
@@ -192,8 +338,20 @@ paths:
     post:
       description: ''
       tags:
-        - Defaults
+        - Update
+        - Room
+        - Participant
+        - Anonymize
+        - Compositions
+        - Sid
+        - Composition
+        - Hooks
+        - Settings
+        - Default
+        - Recordings
+        - Recording
         - Rooms
+        - Room
         - Participants
         - Anonymize
       summary: Update Room Participant Anonymize
@@ -202,9 +360,24 @@ paths:
     get:
       description: Returns a single Track resource represented by TrackName or SID.
       tags:
-        - Defaults
+        - Retrieve
+        - Room
+        - Participant
+        - Published
+        - Track
+        - Compositions
+        - Sid
+        - Composition
+        - Hooks
+        - Settings
+        - Default
+        - Recordings
+        - Recording
         - Rooms
+        - Room
         - Participants
+        - Anonymize
+        - Participant
         - Published
         - Tracks
       summary: Retrieve Room Participant Published Track
@@ -215,9 +388,24 @@ paths:
         Returns a list of tracks associated with a given Participant. Only
         `currently` Published Tracks are in the list resource.
       tags:
-        - Defaults
+        - Retrieve
+        - Room
+        - Participant
+        - Published
+        - Tracks
+        - Compositions
+        - Sid
+        - Composition
+        - Hooks
+        - Settings
+        - Default
+        - Recordings
+        - Recording
         - Rooms
+        - Room
         - Participants
+        - Anonymize
+        - Participant
         - Published
         - Tracks
       summary: Retrieve Room Participant Published Tracks
@@ -226,19 +414,53 @@ paths:
     get:
       description: Returns a list of Subscribe Rules for the Participant.
       tags:
-        - Defaults
+        - Retrieve
+        - Room
+        - Participant
+        - Subscribe
+        - Rules
+        - Compositions
+        - Sid
+        - Composition
+        - Hooks
+        - Settings
+        - Default
+        - Recordings
+        - Recording
         - Rooms
+        - Room
         - Participants
-        - Subscriptions
+        - Anonymize
+        - Participant
+        - Published
+        - Tracks
+        - Subscribe
         - Rules
       summary: Retrieve Room Participant Subscribe Rules
     post:
       description: Update the Subscribe Rules for the Participant
       tags:
-        - Defaults
+        - Create
+        - Room
+        - Participant
+        - Subscribe
+        - Rules
+        - Compositions
+        - Sid
+        - Composition
+        - Hooks
+        - Settings
+        - Default
+        - Recordings
+        - Recording
         - Rooms
+        - Room
         - Participants
-        - Subscriptions
+        - Anonymize
+        - Participant
+        - Published
+        - Tracks
+        - Subscribe
         - Rules
       summary: Create Room Participant Subscribe Rules
   /v1/Rooms/{RoomSid}/Participants/{ParticipantSid}/SubscribedTracks/{Sid}:
@@ -249,65 +471,191 @@ paths:
         is one resource with the Video API that requires a SID, be Track Name on
         the subscriber side is not guaranteed to be unique.
       tags:
-        - Defaults
-        - Rooms
-        - Participants
-        - Subscriptions
+        - Retrieve
+        - Room
+        - Participant
+        - Subscribed
         - Track
+        - Compositions
+        - Sid
+        - Composition
+        - Hooks
+        - Settings
+        - Default
+        - Recordings
+        - Recording
+        - Rooms
+        - Room
+        - Participants
+        - Anonymize
+        - Participant
+        - Published
+        - Tracks
+        - Subscribe
+        - Rules
+        - Subscribed
       summary: Retrieve Room Participant Subscribed Track
   /v1/Rooms/{RoomSid}/Participants/{ParticipantSid}/SubscribedTracks:
     description: 'TODO: Resource-level docs'
     get:
       description: Returns a list of tracks that are subscribed for the participant.
       tags:
-        - Defaults
-        - Rooms
-        - Participants
-        - Subscriptions
+        - Retrieve
+        - Room
+        - Participant
+        - Subscribed
         - Tracks
+        - Compositions
+        - Sid
+        - Composition
+        - Hooks
+        - Settings
+        - Default
+        - Recordings
+        - Recording
+        - Rooms
+        - Room
+        - Participants
+        - Anonymize
+        - Participant
+        - Published
+        - Tracks
+        - Subscribe
+        - Rules
+        - Subscribed
       summary: Retrieve Room Participant Subscribed Tracks
   /v1/Rooms/{RoomSid}/Recordings/{Sid}:
     description: Single-track, single-media room recordings
     get:
       description: ''
       tags:
-        - Videos
-        - Rooms
+        - Retrieve
+        - Room
+        - Recording
+        - Compositions
+        - Sid
+        - Composition
+        - Hooks
+        - Settings
+        - Default
         - Recordings
+        - Recording
+        - Rooms
+        - Room
+        - Participants
+        - Anonymize
+        - Participant
+        - Published
+        - Tracks
+        - Subscribe
+        - Rules
+        - Subscribed
       summary: Retrieve Room Recording
     delete:
       description: ''
       tags:
-        - Videos
-        - Rooms
+        - Delete
+        - Room
+        - Recording
+        - Compositions
+        - Sid
+        - Composition
+        - Hooks
+        - Settings
+        - Default
         - Recordings
+        - Recording
+        - Rooms
+        - Room
+        - Participants
+        - Anonymize
+        - Participant
+        - Published
+        - Tracks
+        - Subscribe
+        - Rules
+        - Subscribed
       summary: Delete Room Recording
   /v1/Rooms/{RoomSid}/Recordings:
     description: Single-track, single-media room recordings
     get:
       description: ''
       tags:
-        - Videos
-        - Rooms
+        - Retrieve
+        - Room
         - Recordings
+        - Compositions
+        - Sid
+        - Composition
+        - Hooks
+        - Settings
+        - Default
+        - Recordings
+        - Recording
+        - Rooms
+        - Room
+        - Participants
+        - Anonymize
+        - Participant
+        - Published
+        - Tracks
+        - Subscribe
+        - Rules
+        - Subscribed
       summary: Retrieve Room Recordings
   /v1/Rooms/{RoomSid}/RecordingRules:
     description: 'TODO: Resource-level docs'
     get:
       description: Returns a list of Recording Rules for the Room.
       tags:
-        - Videos
-        - Rooms
-        - Recordings
+        - Retrieve
+        - Room
+        - Recording
         - Rules
+        - Compositions
+        - Sid
+        - Composition
+        - Hooks
+        - Settings
+        - Default
+        - Recordings
+        - Recording
+        - Rooms
+        - Room
+        - Participants
+        - Anonymize
+        - Participant
+        - Published
+        - Tracks
+        - Subscribe
+        - Rules
+        - Subscribed
       summary: Retrieve Room Recording Rules
     post:
       description: Update the Recording Rules for the Room
       tags:
-        - Videos
-        - Rooms
-        - Recordings
+        - Update
+        - Room
+        - Recording
         - Rules
+        - Compositions
+        - Sid
+        - Composition
+        - Hooks
+        - Settings
+        - Default
+        - Recordings
+        - Recording
+        - Rooms
+        - Room
+        - Participants
+        - Anonymize
+        - Participant
+        - Published
+        - Tracks
+        - Subscribe
+        - Rules
+        - Subscribed
       summary: Update Room Recording Rules
 tags:
   - name: Tag
@@ -345,4 +693,4 @@ tags:
     description: Needs a description.
 x-maturity:
   - name: GA
-    description: This product is Generally Available.
+    description: This product is Generally Avai

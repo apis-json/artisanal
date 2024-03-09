@@ -12,12 +12,18 @@ paths:
     post:
       description: ''
       tags:
+        - Create
+        - Media
+        - Processors
         - Media
         - Processors
       summary: Create Media Processors
     get:
       description: Returns a list of MediaProcessors.
       tags:
+        - Retrieve
+        - Media
+        - Processors
         - Media
         - Processors
       summary: Retrieve Media Processors
@@ -28,14 +34,22 @@ paths:
     get:
       description: Returns a single MediaProcessor resource identified by a SID.
       tags:
+        - Retrieve
+        - Media
+        - Processor
         - Media
         - Processors
+        - Sid
       summary: Retrieve Media Processor
     post:
       description: Updates a MediaProcessor resource identified by a SID.
       tags:
+        - Update
+        - Media
+        - Processor
         - Media
         - Processors
+        - Sid
       summary: Update Media Processor
   /v1/MediaRecordings/{Sid}:
     description: >-
@@ -44,13 +58,23 @@ paths:
     delete:
       description: Deletes a MediaRecording resource identified by a SID.
       tags:
+        - Delete
         - Media
+        - Processor
+        - Media
+        - Processors
+        - Sid
         - Recordings
       summary: Delete Media Processor
     get:
       description: Returns a single MediaRecording resource identified by a SID.
       tags:
+        - Retrieve
         - Media
+        - Processor
+        - Media
+        - Processors
+        - Sid
         - Recordings
       summary: Retrieve Media Processor
   /v1/MediaRecordings:
@@ -60,7 +84,12 @@ paths:
     get:
       description: Returns a list of MediaRecordings.
       tags:
+        - Retrieve
         - Media
+        - Recordings
+        - Media
+        - Processors
+        - Sid
         - Recordings
       summary: Retrieve Media Recordings
   /v1/PlayerStreamers/{Sid}:
@@ -70,16 +99,28 @@ paths:
     get:
       description: Returns a single PlayerStreamer resource identified by a SID.
       tags:
+        - Retrieve
+        - Player
+        - Streamer
         - Media
-        - ' Players'
-        - ' Streaming'
+        - Processors
+        - Sid
+        - Recordings
+        - Player
+        - Streamers
       summary: Retrieve Player Streamer
     post:
       description: Updates a PlayerStreamer resource identified by a SID.
       tags:
+        - Update
+        - Player
+        - Streamer
         - Media
-        - ' Players'
-        - ' Streaming'
+        - Processors
+        - Sid
+        - Recordings
+        - Player
+        - Streamers
       summary: Update Player Streamer
   /v1/PlayerStreamers:
     description: >-
@@ -88,16 +129,28 @@ paths:
     post:
       description: ''
       tags:
+        - Create
+        - Player
+        - Streamers
         - Media
-        - ' Players'
-        - ' Streaming'
+        - Processors
+        - Sid
+        - Recordings
+        - Player
+        - Streamers
       summary: Create Player Streamers
     get:
       description: Returns a list of PlayerStreamers.
       tags:
+        - Retrieve
+        - Player
+        - Streamers
         - Media
-        - ' Players'
-        - ' Streaming'
+        - Processors
+        - Sid
+        - Recordings
+        - Player
+        - Streamers
       summary: Retrieve Player Streamers
   /v1/PlayerStreamers/{Sid}/PlaybackGrant:
     description: >-
@@ -106,18 +159,38 @@ paths:
     post:
       description: ''
       tags:
-        - Media
+        - Create
+        - Player
+        - Streamer
         - Playback
-        - Grants
+        - Grant
+        - Media
+        - Processors
+        - Sid
+        - Recordings
+        - Player
+        - Streamers
+        - Playback
+        - Grant
       summary: Create Player Streamer Playback Grant
     get:
       description: >-
         **This method is not enabled.** Returns a single PlaybackGrant resource
         identified by a SID.
       tags:
-        - Media
+        - Retrieve
+        - Player
+        - Streamer
         - Playback
-        - Grants
+        - Grant
+        - Media
+        - Processors
+        - Sid
+        - Recordings
+        - Player
+        - Streamers
+        - Playback
+        - Grant
       summary: Retrieve Player Streamer Playback Grant
 tags:
   - name: Tag
@@ -142,4 +215,4 @@ x-maturity:
     description: >-
       PLEASE NOTE that this is a Preview product that is subject to change. Use
       it with caution. If you currently do not have developer preview access,
-      please contact https://www.twilio.com/help/contact.
+      please contact https://www.twilio.com/help/co
