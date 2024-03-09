@@ -1,15 +1,42 @@
+openapi: 3.1.0
 info:
+  x-publicVersion: true
   title: Management API
+tags:
+  - name: Account - company level
+  - name: Account - merchant level
+  - name: Account - store level
+  - name: Payout settings - merchant level
+  - name: Users - company level
+  - name: Users - merchant level
+  - name: My API credential
+  - name: API credentials - company level
+  - name: API credentials - merchant level
+  - name: API key - company level
+  - name: API key - merchant level
+  - name: Client key - company level
+  - name: Client key - merchant level
+  - name: Allowed origins - company level
+  - name: Allowed origins - merchant level
+  - name: Webhooks - company level
+  - name: Webhooks - merchant level
+  - name: Payment methods - merchant level
+  - name: Terminals - terminal level
+  - name: Terminal actions - company level
+  - name: Terminal actions - terminal level
+  - name: Terminal orders - company level
+  - name: Terminal orders - merchant level
+  - name: Terminal settings - company level
+  - name: Terminal settings - merchant level
+  - name: Terminal settings - store level
+  - name: Terminal settings - terminal level
+  - name: Android files - company level
+  - name: Split configuration - merchant level
 paths:
   /companies:
     get:
       tags:
-        - Get
-        - List
-        - Of
-        - Company
-        - Accounts
-        - Companies
+        - Account - company level
       summary: Get a list of company accounts
       description: >-
         Returns the list of company accounts that your API credential has access
@@ -21,14 +48,12 @@ paths:
 
 
         * Management API—Account read
+      x-sortIndex: 0
+      x-methodName: listCompanyAccounts
   /companies/{companyId}:
     get:
       tags:
-        - Get
-        - Company
-        - Account
-        - Companies
-        - Id
+        - Account - company level
       summary: Get a company account
       description: >-
         Returns the company account specified in the path. Your API credential
@@ -39,18 +64,12 @@ paths:
         [roles](https://docs.adyen.com/development-resources/api-credentials#api-permissions):
 
         * Management API—Account read
+      x-sortIndex: 0
+      x-methodName: getCompanyAccount
   /companies/{companyId}/androidApps:
     get:
       tags:
-        - Get
-        - List
-        - Of
-        - Android
-        - Apps
-        - Companies
-        - Id
-        - Android
-        - Apps
+        - Android files - company level
       summary: Get a list of Android apps
       description: >-
         Returns a list of the Android apps that are available for the company
@@ -71,15 +90,11 @@ paths:
         * Management API—Terminal actions read
 
         * Management API—Terminal actions read and write
+      x-sortIndex: 1
+      x-methodName: listAndroidApps
     post:
       tags:
-        - Upload
-        - Android
-        - App
-        - Companies
-        - Id
-        - Android
-        - Apps
+        - Android files - company level
       summary: Upload Android App
       description: >-
         Uploads an Android APK file to Adyen.
@@ -96,16 +111,13 @@ paths:
         an Adyen payment terminal, you accept full responsibility and liability
         for any consequences of uploading, installing, or running any such
         applications.
+      x-addedInVersion: '3'
+      x-sortIndex: 4
+      x-methodName: uploadAndroidApp
   /companies/{companyId}/androidApps/{id}:
     get:
       tags:
-        - Get
-        - Android
-        - App
-        - Companies
-        - Id
-        - Android
-        - Apps
+        - Android files - company level
       summary: Get Android app
       description: >-
         Returns the details of the Android app identified in the path. 
@@ -121,19 +133,12 @@ paths:
         * Management API—Android files read
 
         * Management API—Android files read and write
+      x-sortIndex: 3
+      x-methodName: getAndroidApp
   /companies/{companyId}/androidCertificates:
     get:
       tags:
-        - Get
-        - List
-        - Of
-        - Android
-        - Certificates
-        - Companies
-        - Id
-        - Android
-        - Apps
-        - Certificates
+        - Android files - company level
       summary: Get a list of Android certificates
       description: >-
         Returns a list of the Android certificates that are available for the
@@ -155,20 +160,12 @@ paths:
         * Management API—Terminal actions read
 
         * Management API—Terminal actions read and write
+      x-sortIndex: 2
+      x-methodName: listAndroidCertificates
   /companies/{companyId}/apiCredentials:
     get:
       tags:
-        - Get
-        - List
-        - Of
-        - Credentials
-        - Companies
-        - Id
-        - Android
-        - Apps
-        - Certificates
-        - Api
-        - Credentials
+        - API credentials - company level
       summary: Get a list of API credentials
       description: >-
         Returns the list of [API
@@ -181,18 +178,11 @@ paths:
         [roles](https://docs.adyen.com/development-resources/api-credentials#api-permissions):
 
         * Management API—API credentials read and write
+      x-sortIndex: 0
+      x-methodName: listApiCredentials
     post:
       tags:
-        - Create
-        - An
-        - Credential.
-        - Companies
-        - Id
-        - Android
-        - Apps
-        - Certificates
-        - Api
-        - Credentials
+        - API credentials - company level
       summary: Create an API credential.
       description: >-
         Creates an [API
@@ -229,20 +219,12 @@ paths:
         [roles](https://docs.adyen.com/development-resources/api-credentials#api-permissions):
 
         * Management API—API credentials read and write
+      x-sortIndex: 0
+      x-methodName: createApiCredential
   /companies/{companyId}/apiCredentials/{apiCredentialId}:
     get:
       tags:
-        - Get
-        - An
-        - Credential
-        - Companies
-        - Id
-        - Android
-        - Apps
-        - Certificates
-        - Api
-        - Credentials
-        - Credential
+        - API credentials - company level
       summary: Get an API credential
       description: >-
         Returns the [API
@@ -254,19 +236,11 @@ paths:
         [roles](https://docs.adyen.com/development-resources/api-credentials#api-permissions):
 
         * Management API—API credentials read and write
+      x-sortIndex: 0
+      x-methodName: getApiCredential
     patch:
       tags:
-        - Update
-        - An
-        - Credential.
-        - Companies
-        - Id
-        - Android
-        - Apps
-        - Certificates
-        - Api
-        - Credentials
-        - Credential
+        - API credentials - company level
       summary: Update an API credential.
       description: >-
         Changes the API credential's roles, merchant account access, or allowed
@@ -279,24 +253,12 @@ paths:
         [roles](https://docs.adyen.com/development-resources/api-credentials#api-permissions):
 
         * Management API—API credentials read and write
+      x-sortIndex: 0
+      x-methodName: updateApiCredential
   /companies/{companyId}/apiCredentials/{apiCredentialId}/allowedOrigins:
     get:
       tags:
-        - Get
-        - List
-        - Of
-        - Allowed
-        - Origins
-        - Companies
-        - Id
-        - Android
-        - Apps
-        - Certificates
-        - Api
-        - Credentials
-        - Credential
-        - Allowed
-        - Origins
+        - Allowed origins - company level
       summary: Get a list of allowed origins
       description: >-
         Returns the list of [allowed
@@ -308,22 +270,11 @@ paths:
         [roles](https://docs.adyen.com/development-resources/api-credentials#api-permissions):
 
         * Management API—API credentials read and write
+      x-sortIndex: 0
+      x-methodName: listAllowedOrigins
     post:
       tags:
-        - Create
-        - An
-        - Allowed
-        - Origin
-        - Companies
-        - Id
-        - Android
-        - Apps
-        - Certificates
-        - Api
-        - Credentials
-        - Credential
-        - Allowed
-        - Origins
+        - Allowed origins - company level
       summary: Create an allowed origin
       description: >-
         Adds a new [allowed
@@ -335,24 +286,12 @@ paths:
         [roles](https://docs.adyen.com/development-resources/api-credentials#api-permissions):
 
         * Management API—API credentials read and write
+      x-sortIndex: 0
+      x-methodName: createAllowedOrigin
   /companies/{companyId}/apiCredentials/{apiCredentialId}/allowedOrigins/{originId}:
     delete:
       tags:
-        - Delete
-        - An
-        - Allowed
-        - Origin
-        - Companies
-        - Id
-        - Android
-        - Apps
-        - Certificates
-        - Api
-        - Credentials
-        - Credential
-        - Allowed
-        - Origins
-        - Origin
+        - Allowed origins - company level
       summary: Delete an allowed origin
       description: >-
         Removes the [allowed
@@ -365,23 +304,11 @@ paths:
         [roles](https://docs.adyen.com/development-resources/api-credentials#api-permissions):
 
         * Management API—API credentials read and write
+      x-sortIndex: 0
+      x-methodName: deleteAllowedOrigin
     get:
       tags:
-        - Get
-        - An
-        - Allowed
-        - Origin
-        - Companies
-        - Id
-        - Android
-        - Apps
-        - Certificates
-        - Api
-        - Credentials
-        - Credential
-        - Allowed
-        - Origins
-        - Origin
+        - Allowed origins - company level
       summary: Get an allowed origin
       description: >-
         Returns the [allowed
@@ -393,25 +320,12 @@ paths:
         [roles](https://docs.adyen.com/development-resources/api-credentials#api-permissions):
 
         * Management API—API credentials read and write
+      x-sortIndex: 0
+      x-methodName: getAllowedOrigin
   /companies/{companyId}/apiCredentials/{apiCredentialId}/generateApiKey:
     post:
       tags:
-        - Generate
-        - New
-        - Key
-        - Companies
-        - Id
-        - Android
-        - Apps
-        - Certificates
-        - Api
-        - Credentials
-        - Credential
-        - Allowed
-        - Origins
-        - Origin
-        - Generate
-        - Key
+        - API key - company level
       summary: Generate new API key
       description: >-
         Returns a new API key for the API credential. You can use the new API
@@ -423,27 +337,12 @@ paths:
         [roles](https://docs.adyen.com/development-resources/api-credentials#api-permissions):
 
         * Management API—API credentials read and write
+      x-sortIndex: 0
+      x-methodName: generateNewApiKey
   /companies/{companyId}/apiCredentials/{apiCredentialId}/generateClientKey:
     post:
       tags:
-        - Generate
-        - New
-        - Client
-        - Key
-        - Companies
-        - Id
-        - Android
-        - Apps
-        - Certificates
-        - Api
-        - Credentials
-        - Credential
-        - Allowed
-        - Origins
-        - Origin
-        - Generate
-        - Key
-        - Client
+        - Client key - company level
       summary: Generate new client key
       description: >-
         Returns a new [client
@@ -457,30 +356,12 @@ paths:
         [roles](https://docs.adyen.com/development-resources/api-credentials#api-permissions):
 
         * Management API—API credentials read and write
+      x-sortIndex: 0
+      x-methodName: generateNewClientKey
   /companies/{companyId}/billingEntities:
     get:
       tags:
-        - Get
-        - List
-        - Of
-        - Billing
-        - Entities
-        - Companies
-        - Id
-        - Android
-        - Apps
-        - Certificates
-        - Api
-        - Credentials
-        - Credential
-        - Allowed
-        - Origins
-        - Origin
-        - Generate
-        - Key
-        - Client
-        - Billing
-        - Entities
+        - Terminal orders - company level
       summary: Get a list of billing entities
       description: >-
         Returns the billing entities of the company identified in the path and
@@ -496,31 +377,12 @@ paths:
         * Management API—Terminal ordering read
 
         * Management API—Terminal ordering read and write
+      x-sortIndex: 3
+      x-methodName: listBillingEntities
   /companies/{companyId}/merchants:
     get:
       tags:
-        - Get
-        - List
-        - Of
-        - Merchant
-        - Accounts
-        - Companies
-        - Id
-        - Android
-        - Apps
-        - Certificates
-        - Api
-        - Credentials
-        - Credential
-        - Allowed
-        - Origins
-        - Origin
-        - Generate
-        - Key
-        - Client
-        - Billing
-        - Entities
-        - Merchants
+        - Account - company level
       summary: Get a list of merchant accounts
       description: >-
         Returns the list of merchant accounts under the company account
@@ -533,33 +395,12 @@ paths:
         [roles](https://docs.adyen.com/development-resources/api-credentials#api-permissions):
 
         * Management API—Account read
+      x-sortIndex: 0
+      x-methodName: listMerchantAccounts
   /companies/{companyId}/shippingLocations:
     get:
       tags:
-        - Get
-        - List
-        - Of
-        - Shipping
-        - Locations
-        - Companies
-        - Id
-        - Android
-        - Apps
-        - Certificates
-        - Api
-        - Credentials
-        - Credential
-        - Allowed
-        - Origins
-        - Origin
-        - Generate
-        - Key
-        - Client
-        - Billing
-        - Entities
-        - Merchants
-        - Shipping
-        - Locations
+        - Terminal orders - company level
       summary: Get a list of shipping locations
       description: >-
         Returns the shipping locations for the company identified in the path
@@ -575,30 +416,11 @@ paths:
         * Management API—Terminal ordering read
 
         * Management API—Terminal ordering read and write
+      x-sortIndex: 4
+      x-methodName: listShippingLocations
     post:
       tags:
-        - Create
-        - Shipping
-        - Location
-        - Companies
-        - Id
-        - Android
-        - Apps
-        - Certificates
-        - Api
-        - Credentials
-        - Credential
-        - Allowed
-        - Origins
-        - Origin
-        - Generate
-        - Key
-        - Client
-        - Billing
-        - Entities
-        - Merchants
-        - Shipping
-        - Locations
+        - Terminal orders - company level
       summary: Create a shipping location
       description: >-
         Creates a shipping location for the company identified in the path. A
@@ -609,35 +431,12 @@ paths:
         [role](https://docs.adyen.com/development-resources/api-credentials#api-permissions):
 
         * Management API—Terminal ordering read and write
+      x-sortIndex: 5
+      x-methodName: createShippingLocation
   /companies/{companyId}/terminalActions:
     get:
       tags:
-        - Get
-        - List
-        - Of
-        - Terminal
-        - Actions
-        - Companies
-        - Id
-        - Android
-        - Apps
-        - Certificates
-        - Api
-        - Credentials
-        - Credential
-        - Allowed
-        - Origins
-        - Origin
-        - Generate
-        - Key
-        - Client
-        - Billing
-        - Entities
-        - Merchants
-        - Shipping
-        - Locations
-        - Terminal
-        - Actions
+        - Terminal actions - company level
       summary: Get a list of terminal actions
       description: >-
         Returns the [terminal
@@ -651,34 +450,12 @@ paths:
         * Management API—Terminal actions read
 
         * Management API—Terminal actions read and write
+      x-sortIndex: 1
+      x-methodName: listTerminalActions
   /companies/{companyId}/terminalActions/{actionId}:
     get:
       tags:
-        - Get
-        - Terminal
-        - Action
-        - Companies
-        - Id
-        - Android
-        - Apps
-        - Certificates
-        - Api
-        - Credentials
-        - Credential
-        - Allowed
-        - Origins
-        - Origin
-        - Generate
-        - Key
-        - Client
-        - Billing
-        - Entities
-        - Merchants
-        - Shipping
-        - Locations
-        - Terminal
-        - Actions
-        - Action
+        - Terminal actions - company level
       summary: Get terminal action
       description: >-
         Returns the details of the [terminal
@@ -691,36 +468,12 @@ paths:
         * Management API—Terminal actions read
 
         * Management API—Terminal actions read and write
+      x-sortIndex: 2
+      x-methodName: getTerminalAction
   /companies/{companyId}/terminalLogos:
     get:
       tags:
-        - Get
-        - The
-        - Terminal
-        - Logo
-        - Companies
-        - Id
-        - Android
-        - Apps
-        - Certificates
-        - Api
-        - Credentials
-        - Credential
-        - Allowed
-        - Origins
-        - Origin
-        - Generate
-        - Key
-        - Client
-        - Billing
-        - Entities
-        - Merchants
-        - Shipping
-        - Locations
-        - Terminal
-        - Actions
-        - Action
-        - Logos
+        - Terminal settings - company level
       summary: Get the terminal logo
       description: >-
         Returns the logo that is configured for a specific payment terminal
@@ -741,35 +494,11 @@ paths:
         * Management API—Terminal settings read
 
         * Management API—Terminal settings read and write
+      x-sortIndex: 2
+      x-methodName: getTerminalLogo
     patch:
       tags:
-        - Update
-        - The
-        - Terminal
-        - Logo
-        - Companies
-        - Id
-        - Android
-        - Apps
-        - Certificates
-        - Api
-        - Credentials
-        - Credential
-        - Allowed
-        - Origins
-        - Origin
-        - Generate
-        - Key
-        - Client
-        - Billing
-        - Entities
-        - Merchants
-        - Shipping
-        - Locations
-        - Terminal
-        - Actions
-        - Action
-        - Logos
+        - Terminal settings - company level
       summary: Update the terminal logo
       description: >-
         Updates the logo that is configured for a specific payment terminal
@@ -790,38 +519,12 @@ paths:
         [role](https://docs.adyen.com/development-resources/api-credentials#api-permissions):
 
         * Management API—Terminal settings read and write
+      x-sortIndex: 4
+      x-methodName: updateTerminalLogo
   /companies/{companyId}/terminalModels:
     get:
       tags:
-        - Get
-        - List
-        - Of
-        - Terminal
-        - Models
-        - Companies
-        - Id
-        - Android
-        - Apps
-        - Certificates
-        - Api
-        - Credentials
-        - Credential
-        - Allowed
-        - Origins
-        - Origin
-        - Generate
-        - Key
-        - Client
-        - Billing
-        - Entities
-        - Merchants
-        - Shipping
-        - Locations
-        - Terminal
-        - Actions
-        - Action
-        - Logos
-        - Models
+        - Terminal orders - company level
       summary: Get a list of terminal models
       description: >-
         Returns a list of payment terminal models that the company identified in
@@ -838,38 +541,12 @@ paths:
         * Management API—Terminal ordering read
 
         * Management API—Terminal ordering read and write
+      x-sortIndex: 1
+      x-methodName: listTerminalModels
   /companies/{companyId}/terminalOrders:
     get:
       tags:
-        - Get
-        - List
-        - Of
-        - Orders
-        - Companies
-        - Id
-        - Android
-        - Apps
-        - Certificates
-        - Api
-        - Credentials
-        - Credential
-        - Allowed
-        - Origins
-        - Origin
-        - Generate
-        - Key
-        - Client
-        - Billing
-        - Entities
-        - Merchants
-        - Shipping
-        - Locations
-        - Terminal
-        - Actions
-        - Action
-        - Logos
-        - Models
-        - Orders
+        - Terminal orders - company level
       summary: Get a list of orders
       description: >-
         Returns a lists of terminal products orders for the company identified
@@ -884,36 +561,11 @@ paths:
         * Management API—Terminal ordering read
 
         * Management API—Terminal ordering read and write
+      x-sortIndex: 7
+      x-methodName: listOrders
     post:
       tags:
-        - Create
-        - An
-        - Order
-        - Companies
-        - Id
-        - Android
-        - Apps
-        - Certificates
-        - Api
-        - Credentials
-        - Credential
-        - Allowed
-        - Origins
-        - Origin
-        - Generate
-        - Key
-        - Client
-        - Billing
-        - Entities
-        - Merchants
-        - Shipping
-        - Locations
-        - Terminal
-        - Actions
-        - Action
-        - Logos
-        - Models
-        - Orders
+        - Terminal orders - company level
       summary: Create an order
       description: >-
         Creates an order for payment terminal products for the company
@@ -930,38 +582,12 @@ paths:
         a sales
         order](https://docs.adyen.com/point-of-sale/managing-terminals/order-terminals/#sales-order-steps)
         in your Customer Area.
+      x-sortIndex: 6
+      x-methodName: createOrder
   /companies/{companyId}/terminalOrders/{orderId}:
     get:
       tags:
-        - Get
-        - An
-        - Order
-        - Companies
-        - Id
-        - Android
-        - Apps
-        - Certificates
-        - Api
-        - Credentials
-        - Credential
-        - Allowed
-        - Origins
-        - Origin
-        - Generate
-        - Key
-        - Client
-        - Billing
-        - Entities
-        - Merchants
-        - Shipping
-        - Locations
-        - Terminal
-        - Actions
-        - Action
-        - Logos
-        - Models
-        - Orders
-        - Order
+        - Terminal orders - company level
       summary: Get an order
       description: >-
         Returns the details of the terminal products order identified in the
@@ -974,37 +600,11 @@ paths:
         * Management API—Terminal ordering read
 
         * Management API—Terminal ordering read and write
+      x-sortIndex: 8
+      x-methodName: getOrder
     patch:
       tags:
-        - Update
-        - An
-        - Order
-        - Companies
-        - Id
-        - Android
-        - Apps
-        - Certificates
-        - Api
-        - Credentials
-        - Credential
-        - Allowed
-        - Origins
-        - Origin
-        - Generate
-        - Key
-        - Client
-        - Billing
-        - Entities
-        - Merchants
-        - Shipping
-        - Locations
-        - Terminal
-        - Actions
-        - Action
-        - Logos
-        - Models
-        - Orders
-        - Order
+        - Terminal orders - company level
       summary: Update an order
       description: >-
         Updates the terminal products order identified in the path.
@@ -1022,39 +622,12 @@ paths:
         [role](https://docs.adyen.com/development-resources/api-credentials#api-permissions):
 
         * Management API—Terminal ordering read and write
+      x-sortIndex: 9
+      x-methodName: updateOrder
   /companies/{companyId}/terminalOrders/{orderId}/cancel:
     post:
       tags:
-        - Cancel
-        - An
-        - Order
-        - Companies
-        - Id
-        - Android
-        - Apps
-        - Certificates
-        - Api
-        - Credentials
-        - Credential
-        - Allowed
-        - Origins
-        - Origin
-        - Generate
-        - Key
-        - Client
-        - Billing
-        - Entities
-        - Merchants
-        - Shipping
-        - Locations
-        - Terminal
-        - Actions
-        - Action
-        - Logos
-        - Models
-        - Orders
-        - Order
-        - Cancel
+        - Terminal orders - company level
       summary: Cancel an order
       description: >-
         Cancels the terminal products order identified in the path.
@@ -1070,42 +643,12 @@ paths:
         [role](https://docs.adyen.com/development-resources/api-credentials#api-permissions):
 
         * Management API—Terminal ordering read and write
+      x-sortIndex: 10
+      x-methodName: cancelOrder
   /companies/{companyId}/terminalProducts:
     get:
       tags:
-        - Get
-        - List
-        - Of
-        - Terminal
-        - Products
-        - Companies
-        - Id
-        - Android
-        - Apps
-        - Certificates
-        - Api
-        - Credentials
-        - Credential
-        - Allowed
-        - Origins
-        - Origin
-        - Generate
-        - Key
-        - Client
-        - Billing
-        - Entities
-        - Merchants
-        - Shipping
-        - Locations
-        - Terminal
-        - Actions
-        - Action
-        - Logos
-        - Models
-        - Orders
-        - Order
-        - Cancel
-        - Products
+        - Terminal orders - company level
       summary: Get a list of terminal products
       description: >-
         Returns a country-specific list of payment terminal packages and parts
@@ -1117,41 +660,12 @@ paths:
         * Management API—Terminal ordering read
 
         * Management API—Terminal ordering read and write
+      x-sortIndex: 2
+      x-methodName: listTerminalProducts
   /companies/{companyId}/terminalSettings:
     get:
       tags:
-        - Get
-        - Terminal
-        - Settings
-        - Companies
-        - Id
-        - Android
-        - Apps
-        - Certificates
-        - Api
-        - Credentials
-        - Credential
-        - Allowed
-        - Origins
-        - Origin
-        - Generate
-        - Key
-        - Client
-        - Billing
-        - Entities
-        - Merchants
-        - Shipping
-        - Locations
-        - Terminal
-        - Actions
-        - Action
-        - Logos
-        - Models
-        - Orders
-        - Order
-        - Cancel
-        - Products
-        - Settings
+        - Terminal settings - company level
       summary: Get terminal settings
       description: >-
         Returns the payment terminal settings that are configured for the
@@ -1173,40 +687,11 @@ paths:
         your API credential must have the following role:
 
         * Management API—Terminal settings Advanced read and write
+      x-sortIndex: 1
+      x-methodName: getTerminalSettings
     patch:
       tags:
-        - Update
-        - Terminal
-        - Settings
-        - Companies
-        - Id
-        - Android
-        - Apps
-        - Certificates
-        - Api
-        - Credentials
-        - Credential
-        - Allowed
-        - Origins
-        - Origin
-        - Generate
-        - Key
-        - Client
-        - Billing
-        - Entities
-        - Merchants
-        - Shipping
-        - Locations
-        - Terminal
-        - Actions
-        - Action
-        - Logos
-        - Models
-        - Orders
-        - Order
-        - Cancel
-        - Products
-        - Settings
+        - Terminal settings - company level
       summary: Update terminal settings
       description: >-
         Updates payment terminal settings for the company identified in the
@@ -1237,43 +722,12 @@ paths:
         your API credential must have the following role:
 
         * Management API—Terminal settings Advanced read and write
+      x-sortIndex: 3
+      x-methodName: updateTerminalSettings
   /companies/{companyId}/users:
     get:
       tags:
-        - Get
-        - List
-        - Of
-        - Users
-        - Companies
-        - Id
-        - Android
-        - Apps
-        - Certificates
-        - Api
-        - Credentials
-        - Credential
-        - Allowed
-        - Origins
-        - Origin
-        - Generate
-        - Key
-        - Client
-        - Billing
-        - Entities
-        - Merchants
-        - Shipping
-        - Locations
-        - Terminal
-        - Actions
-        - Action
-        - Logos
-        - Models
-        - Orders
-        - Order
-        - Cancel
-        - Products
-        - Settings
-        - Users
+        - Users - company level
       summary: Get a list of users
       description: >
         Returns the list of users for the `companyId` identified in the path.
@@ -1283,41 +737,11 @@ paths:
         [role](https://docs.adyen.com/development-resources/api-credentials#api-permissions):
 
         * Management API—Users read and write
+      x-sortIndex: 0
+      x-methodName: listUsers
     post:
       tags:
-        - Create
-        - New
-        - User
-        - Companies
-        - Id
-        - Android
-        - Apps
-        - Certificates
-        - Api
-        - Credentials
-        - Credential
-        - Allowed
-        - Origins
-        - Origin
-        - Generate
-        - Key
-        - Client
-        - Billing
-        - Entities
-        - Merchants
-        - Shipping
-        - Locations
-        - Terminal
-        - Actions
-        - Action
-        - Logos
-        - Models
-        - Orders
-        - Order
-        - Cancel
-        - Products
-        - Settings
-        - Users
+        - Users - company level
       summary: Create a new user
       description: >
         Creates the user for the `companyId` identified in the path.
@@ -1327,43 +751,12 @@ paths:
         [role](https://docs.adyen.com/development-resources/api-credentials#api-permissions):
 
         * Management API—Users read and write
+      x-sortIndex: 0
+      x-methodName: createNewUser
   /companies/{companyId}/users/{userId}:
     get:
       tags:
-        - Get
-        - User
-        - Details
-        - Companies
-        - Id
-        - Android
-        - Apps
-        - Certificates
-        - Api
-        - Credentials
-        - Credential
-        - Allowed
-        - Origins
-        - Origin
-        - Generate
-        - Key
-        - Client
-        - Billing
-        - Entities
-        - Merchants
-        - Shipping
-        - Locations
-        - Terminal
-        - Actions
-        - Action
-        - Logos
-        - Models
-        - Orders
-        - Order
-        - Cancel
-        - Products
-        - Settings
-        - Users
-        - User
+        - Users - company level
       summary: Get user details
       description: >
         Returns user details for the `userId` and the `companyId` identified in
@@ -1374,42 +767,11 @@ paths:
         [role](https://docs.adyen.com/development-resources/api-credentials#api-permissions):
 
         * Management API—Users read and write
+      x-sortIndex: 0
+      x-methodName: getUserDetails
     patch:
       tags:
-        - Update
-        - User
-        - Details
-        - Companies
-        - Id
-        - Android
-        - Apps
-        - Certificates
-        - Api
-        - Credentials
-        - Credential
-        - Allowed
-        - Origins
-        - Origin
-        - Generate
-        - Key
-        - Client
-        - Billing
-        - Entities
-        - Merchants
-        - Shipping
-        - Locations
-        - Terminal
-        - Actions
-        - Action
-        - Logos
-        - Models
-        - Orders
-        - Order
-        - Cancel
-        - Products
-        - Settings
-        - Users
-        - User
+        - Users - company level
       summary: Update user details
       description: >
         Updates user details for the `userId` and the `companyId` identified in
@@ -1420,44 +782,12 @@ paths:
         [role](https://docs.adyen.com/development-resources/api-credentials#api-permissions):
 
         * Management API—Users read and write
+      x-sortIndex: 0
+      x-methodName: updateUserDetails
   /companies/{companyId}/webhooks:
     get:
       tags:
-        - List
-        - All
-        - Webhooks
-        - Companies
-        - Id
-        - Android
-        - Apps
-        - Certificates
-        - Api
-        - Credentials
-        - Credential
-        - Allowed
-        - Origins
-        - Origin
-        - Generate
-        - Key
-        - Client
-        - Billing
-        - Entities
-        - Merchants
-        - Shipping
-        - Locations
-        - Terminal
-        - Actions
-        - Action
-        - Logos
-        - Models
-        - Orders
-        - Order
-        - Cancel
-        - Products
-        - Settings
-        - Users
-        - User
-        - Webhooks
+        - Webhooks - company level
       summary: List all webhooks
       description: >-
         Lists all webhook configurations for the company account.
@@ -1469,43 +799,11 @@ paths:
         * Management API—Webhooks read
 
         * Management API—Webhooks read and write
+      x-sortIndex: 2
+      x-methodName: listAllWebhooks
     post:
       tags:
-        - Set
-        - Up
-        - Webhook
-        - Companies
-        - Id
-        - Android
-        - Apps
-        - Certificates
-        - Api
-        - Credentials
-        - Credential
-        - Allowed
-        - Origins
-        - Origin
-        - Generate
-        - Key
-        - Client
-        - Billing
-        - Entities
-        - Merchants
-        - Shipping
-        - Locations
-        - Terminal
-        - Actions
-        - Action
-        - Logos
-        - Models
-        - Orders
-        - Order
-        - Cancel
-        - Products
-        - Settings
-        - Users
-        - User
-        - Webhooks
+        - Webhooks - company level
       summary: Set up a webhook
       description: >-
         Subscribe to receive webhook notifications about events related to your
@@ -1517,44 +815,12 @@ paths:
         [roles](https://docs.adyen.com/development-resources/api-credentials#api-permissions):
 
         * Management API—Webhooks read and write
+      x-sortIndex: 1
+      x-methodName: setUpWebhook
   /companies/{companyId}/webhooks/{webhookId}:
     delete:
       tags:
-        - Remove
-        - Webhook
-        - Companies
-        - Id
-        - Android
-        - Apps
-        - Certificates
-        - Api
-        - Credentials
-        - Credential
-        - Allowed
-        - Origins
-        - Origin
-        - Generate
-        - Key
-        - Client
-        - Billing
-        - Entities
-        - Merchants
-        - Shipping
-        - Locations
-        - Terminal
-        - Actions
-        - Action
-        - Logos
-        - Models
-        - Orders
-        - Order
-        - Cancel
-        - Products
-        - Settings
-        - Users
-        - User
-        - Webhooks
-        - Webhook
+        - Webhooks - company level
       summary: Remove a webhook
       description: >-
         Remove the configuration for the webhook identified in the path.
@@ -1564,43 +830,11 @@ paths:
         [roles](https://docs.adyen.com/development-resources/api-credentials#api-permissions):
 
         * Management API—Webhooks read and write
+      x-sortIndex: 5
+      x-methodName: removeWebhook
     get:
       tags:
-        - Get
-        - Webhook
-        - Companies
-        - Id
-        - Android
-        - Apps
-        - Certificates
-        - Api
-        - Credentials
-        - Credential
-        - Allowed
-        - Origins
-        - Origin
-        - Generate
-        - Key
-        - Client
-        - Billing
-        - Entities
-        - Merchants
-        - Shipping
-        - Locations
-        - Terminal
-        - Actions
-        - Action
-        - Logos
-        - Models
-        - Orders
-        - Order
-        - Cancel
-        - Products
-        - Settings
-        - Users
-        - User
-        - Webhooks
-        - Webhook
+        - Webhooks - company level
       summary: Get a webhook
       description: >-
         Returns the configuration for the webhook identified in the path.
@@ -1612,43 +846,11 @@ paths:
         * Management API—Webhooks read
 
         * Management API—Webhooks read and write
+      x-sortIndex: 3
+      x-methodName: getWebhook
     patch:
       tags:
-        - Update
-        - Webhook
-        - Companies
-        - Id
-        - Android
-        - Apps
-        - Certificates
-        - Api
-        - Credentials
-        - Credential
-        - Allowed
-        - Origins
-        - Origin
-        - Generate
-        - Key
-        - Client
-        - Billing
-        - Entities
-        - Merchants
-        - Shipping
-        - Locations
-        - Terminal
-        - Actions
-        - Action
-        - Logos
-        - Models
-        - Orders
-        - Order
-        - Cancel
-        - Products
-        - Settings
-        - Users
-        - User
-        - Webhooks
-        - Webhook
+        - Webhooks - company level
       summary: Update a webhook
       description: >-
         Make changes to the configuration of the webhook identified in the path.
@@ -1661,46 +863,12 @@ paths:
         [roles](https://docs.adyen.com/development-resources/api-credentials#api-permissions):
 
         * Management API—Webhooks read and write
+      x-sortIndex: 4
+      x-methodName: updateWebhook
   /companies/{companyId}/webhooks/{webhookId}/generateHmac:
     post:
       tags:
-        - Generate
-        - An
-        - Key
-        - Companies
-        - Id
-        - Android
-        - Apps
-        - Certificates
-        - Api
-        - Credentials
-        - Credential
-        - Allowed
-        - Origins
-        - Origin
-        - Generate
-        - Key
-        - Client
-        - Billing
-        - Entities
-        - Merchants
-        - Shipping
-        - Locations
-        - Terminal
-        - Actions
-        - Action
-        - Logos
-        - Models
-        - Orders
-        - Order
-        - Cancel
-        - Products
-        - Settings
-        - Users
-        - User
-        - Webhooks
-        - Webhook
-        - Hmac
+        - Webhooks - company level
       summary: Generate an HMAC key
       description: >-
         Returns an [HMAC key](https://en.wikipedia.org/wiki/HMAC) for the
@@ -1716,46 +884,12 @@ paths:
         [roles](https://docs.adyen.com/development-resources/api-credentials#api-permissions):
 
         * Management API—Webhooks read and write
+      x-sortIndex: 6
+      x-methodName: generateHmacKey
   /companies/{companyId}/webhooks/{webhookId}/test:
     post:
       tags:
-        - Test
-        - Webhook
-        - Companies
-        - Id
-        - Android
-        - Apps
-        - Certificates
-        - Api
-        - Credentials
-        - Credential
-        - Allowed
-        - Origins
-        - Origin
-        - Generate
-        - Key
-        - Client
-        - Billing
-        - Entities
-        - Merchants
-        - Shipping
-        - Locations
-        - Terminal
-        - Actions
-        - Action
-        - Logos
-        - Models
-        - Orders
-        - Order
-        - Cancel
-        - Products
-        - Settings
-        - Users
-        - User
-        - Webhooks
-        - Webhook
-        - Hmac
-        - Test
+        - Webhooks - company level
       summary: Test a webhook
       description: >-
         Sends sample notifications to test if the webhook is set up correctly.
@@ -1783,48 +917,12 @@ paths:
         [roles](https://docs.adyen.com/development-resources/api-credentials#api-permissions):
 
         * Management API—Webhooks read and write
+      x-sortIndex: 7
+      x-methodName: testWebhook
   /me:
     get:
       tags:
-        - Get
-        - Credential
-        - Details
-        - Companies
-        - Id
-        - Android
-        - Apps
-        - Certificates
-        - Api
-        - Credentials
-        - Credential
-        - Allowed
-        - Origins
-        - Origin
-        - Generate
-        - Key
-        - Client
-        - Billing
-        - Entities
-        - Merchants
-        - Shipping
-        - Locations
-        - Terminal
-        - Actions
-        - Action
-        - Logos
-        - Models
-        - Orders
-        - Order
-        - Cancel
-        - Products
-        - Settings
-        - Users
-        - User
-        - Webhooks
-        - Webhook
-        - Hmac
-        - Test
-        - Me
+        - My API credential
       summary: Get API credential details
       description: >-
         Returns your [API
@@ -1833,48 +931,12 @@ paths:
 
 
         You can make this request with any of the Management API roles.
+      x-sortIndex: 0
+      x-methodName: getApiCredentialDetails
   /me/allowedOrigins:
     get:
       tags:
-        - Get
-        - Allowed
-        - Origins
-        - Companies
-        - Id
-        - Android
-        - Apps
-        - Certificates
-        - Api
-        - Credentials
-        - Credential
-        - Allowed
-        - Origins
-        - Origin
-        - Generate
-        - Key
-        - Client
-        - Billing
-        - Entities
-        - Merchants
-        - Shipping
-        - Locations
-        - Terminal
-        - Actions
-        - Action
-        - Logos
-        - Models
-        - Orders
-        - Order
-        - Cancel
-        - Products
-        - Settings
-        - Users
-        - User
-        - Webhooks
-        - Webhook
-        - Hmac
-        - Test
-        - Me
+        - My API credential
       summary: Get allowed origins
       description: >-
         Returns the list of [allowed
@@ -1885,47 +947,11 @@ paths:
 
 
         You can make this request with any of the Management API roles.
+      x-sortIndex: 0
+      x-methodName: getAllowedOrigins
     post:
       tags:
-        - Add
-        - Allowed
-        - Origin
-        - Companies
-        - Id
-        - Android
-        - Apps
-        - Certificates
-        - Api
-        - Credentials
-        - Credential
-        - Allowed
-        - Origins
-        - Origin
-        - Generate
-        - Key
-        - Client
-        - Billing
-        - Entities
-        - Merchants
-        - Shipping
-        - Locations
-        - Terminal
-        - Actions
-        - Action
-        - Logos
-        - Models
-        - Orders
-        - Order
-        - Cancel
-        - Products
-        - Settings
-        - Users
-        - User
-        - Webhooks
-        - Webhook
-        - Hmac
-        - Test
-        - Me
+        - My API credential
       summary: Add allowed origin
       description: >-
         Adds an allowed origin to the list of [allowed
@@ -1937,48 +963,12 @@ paths:
 
 
         You can make this request with any of the Management API roles.
+      x-sortIndex: 0
+      x-methodName: addAllowedOrigin
   /me/allowedOrigins/{originId}:
     delete:
       tags:
-        - Remove
-        - Allowed
-        - Origin
-        - Companies
-        - Id
-        - Android
-        - Apps
-        - Certificates
-        - Api
-        - Credentials
-        - Credential
-        - Allowed
-        - Origins
-        - Origin
-        - Generate
-        - Key
-        - Client
-        - Billing
-        - Entities
-        - Merchants
-        - Shipping
-        - Locations
-        - Terminal
-        - Actions
-        - Action
-        - Logos
-        - Models
-        - Orders
-        - Order
-        - Cancel
-        - Products
-        - Settings
-        - Users
-        - User
-        - Webhooks
-        - Webhook
-        - Hmac
-        - Test
-        - Me
+        - My API credential
       summary: Remove allowed origin
       description: >-
         Removes the [allowed
@@ -1990,48 +980,11 @@ paths:
 
 
         You can make this request with any of the Management API roles.
+      x-sortIndex: 0
+      x-methodName: removeAllowedOrigin
     get:
       tags:
-        - Get
-        - Allowed
-        - Origin
-        - Details
-        - Companies
-        - Id
-        - Android
-        - Apps
-        - Certificates
-        - Api
-        - Credentials
-        - Credential
-        - Allowed
-        - Origins
-        - Origin
-        - Generate
-        - Key
-        - Client
-        - Billing
-        - Entities
-        - Merchants
-        - Shipping
-        - Locations
-        - Terminal
-        - Actions
-        - Action
-        - Logos
-        - Models
-        - Orders
-        - Order
-        - Cancel
-        - Products
-        - Settings
-        - Users
-        - User
-        - Webhooks
-        - Webhook
-        - Hmac
-        - Test
-        - Me
+        - My API credential
       summary: Get allowed origin details
       description: >-
         Returns the details of the [allowed
@@ -2043,48 +996,12 @@ paths:
 
 
         You can make this request with any of the Management API roles.
+      x-sortIndex: 0
+      x-methodName: getAllowedOriginDetails
   /me/generateClientKey:
     post:
       tags:
-        - Generate
-        - Client
-        - Key
-        - Companies
-        - Id
-        - Android
-        - Apps
-        - Certificates
-        - Api
-        - Credentials
-        - Credential
-        - Allowed
-        - Origins
-        - Origin
-        - Generate
-        - Key
-        - Client
-        - Billing
-        - Entities
-        - Merchants
-        - Shipping
-        - Locations
-        - Terminal
-        - Actions
-        - Action
-        - Logos
-        - Models
-        - Orders
-        - Order
-        - Cancel
-        - Products
-        - Settings
-        - Users
-        - User
-        - Webhooks
-        - Webhook
-        - Hmac
-        - Test
-        - Me
+        - My API credential
       summary: Generate a client key
       description: >-
         Generates a new [client
@@ -2100,50 +1017,12 @@ paths:
         [role](https://docs.adyen.com/development-resources/api-credentials#api-permissions):
 
         * Management API—API credentials read and write
+      x-sortIndex: 0
+      x-methodName: generateClientKey
   /merchants:
     get:
       tags:
-        - Get
-        - List
-        - Of
-        - Merchant
-        - Accounts
-        - Companies
-        - Id
-        - Android
-        - Apps
-        - Certificates
-        - Api
-        - Credentials
-        - Credential
-        - Allowed
-        - Origins
-        - Origin
-        - Generate
-        - Key
-        - Client
-        - Billing
-        - Entities
-        - Merchants
-        - Shipping
-        - Locations
-        - Terminal
-        - Actions
-        - Action
-        - Logos
-        - Models
-        - Orders
-        - Order
-        - Cancel
-        - Products
-        - Settings
-        - Users
-        - User
-        - Webhooks
-        - Webhook
-        - Hmac
-        - Test
-        - Me
+        - Account - merchant level
       summary: Get a list of merchant accounts
       description: >-
         Returns the list of merchant accounts that your API credential has
@@ -2155,47 +1034,11 @@ paths:
         [roles](https://docs.adyen.com/development-resources/api-credentials#api-permissions):
 
         * Management API—Account read
+      x-sortIndex: 4
+      x-methodName: listMerchantAccounts
     post:
       tags:
-        - Create
-        - Merchant
-        - Account
-        - Companies
-        - Id
-        - Android
-        - Apps
-        - Certificates
-        - Api
-        - Credentials
-        - Credential
-        - Allowed
-        - Origins
-        - Origin
-        - Generate
-        - Key
-        - Client
-        - Billing
-        - Entities
-        - Merchants
-        - Shipping
-        - Locations
-        - Terminal
-        - Actions
-        - Action
-        - Logos
-        - Models
-        - Orders
-        - Order
-        - Cancel
-        - Products
-        - Settings
-        - Users
-        - User
-        - Webhooks
-        - Webhook
-        - Hmac
-        - Test
-        - Me
+        - Account - merchant level
       summary: Create a merchant account
       description: >-
         Creates a merchant account for the company account specified in the
@@ -2210,48 +1053,12 @@ paths:
         [roles](https://docs.adyen.com/development-resources/api-credentials#api-permissions):
 
         * Management API—Accounts read and write
+      x-sortIndex: 1
+      x-methodName: createMerchantAccount
   /merchants/{merchantId}:
     get:
       tags:
-        - Get
-        - Merchant
-        - Account
-        - Companies
-        - Id
-        - Android
-        - Apps
-        - Certificates
-        - Api
-        - Credentials
-        - Credential
-        - Allowed
-        - Origins
-        - Origin
-        - Generate
-        - Key
-        - Client
-        - Billing
-        - Entities
-        - Merchants
-        - Shipping
-        - Locations
-        - Terminal
-        - Actions
-        - Action
-        - Logos
-        - Models
-        - Orders
-        - Order
-        - Cancel
-        - Products
-        - Settings
-        - Users
-        - User
-        - Webhooks
-        - Webhook
-        - Hmac
-        - Test
-        - Me
+        - Account - merchant level
       summary: Get a merchant account
       description: >-
         Returns the merchant account specified in the path. Your API credential
@@ -2262,51 +1069,12 @@ paths:
         [roles](https://docs.adyen.com/development-resources/api-credentials#api-permissions):
 
         * Management API—Account read
+      x-sortIndex: 3
+      x-methodName: getMerchantAccount
   /merchants/{merchantId}/activate:
     post:
       tags:
-        - Request
-        - To
-        - Activate
-        - Merchant
-        - Account
-        - Companies
-        - Id
-        - Android
-        - Apps
-        - Certificates
-        - Api
-        - Credentials
-        - Credential
-        - Allowed
-        - Origins
-        - Origin
-        - Generate
-        - Key
-        - Client
-        - Billing
-        - Entities
-        - Merchants
-        - Shipping
-        - Locations
-        - Terminal
-        - Actions
-        - Action
-        - Logos
-        - Models
-        - Orders
-        - Order
-        - Cancel
-        - Products
-        - Settings
-        - Users
-        - User
-        - Webhooks
-        - Webhook
-        - Hmac
-        - Test
-        - Me
-        - Activate
+        - Account - merchant level
       summary: Request to activate a merchant account
       description: >-
         Sends a request to activate the merchant account identified in the path.
@@ -2326,50 +1094,12 @@ paths:
         [roles](https://docs.adyen.com/development-resources/api-credentials#api-permissions):
 
         * Management API—Accounts read and write
+      x-sortIndex: 2
+      x-methodName: requestToActivateMerchantAccount
   /merchants/{merchantId}/apiCredentials:
     get:
       tags:
-        - Get
-        - List
-        - Of
-        - Credentials
-        - Companies
-        - Id
-        - Android
-        - Apps
-        - Certificates
-        - Api
-        - Credentials
-        - Credential
-        - Allowed
-        - Origins
-        - Origin
-        - Generate
-        - Key
-        - Client
-        - Billing
-        - Entities
-        - Merchants
-        - Shipping
-        - Locations
-        - Terminal
-        - Actions
-        - Action
-        - Logos
-        - Models
-        - Orders
-        - Order
-        - Cancel
-        - Products
-        - Settings
-        - Users
-        - User
-        - Webhooks
-        - Webhook
-        - Hmac
-        - Test
-        - Me
-        - Activate
+        - API credentials - merchant level
       summary: Get a list of API credentials
       description: >-
         Returns the list of [API
@@ -2382,48 +1112,11 @@ paths:
         [roles](https://docs.adyen.com/development-resources/api-credentials#api-permissions):
 
         * Management API—API credentials read and write
+      x-sortIndex: 0
+      x-methodName: listApiCredentials
     post:
       tags:
-        - Create
-        - An
-        - Credential
-        - Companies
-        - Id
-        - Android
-        - Apps
-        - Certificates
-        - Api
-        - Credentials
-        - Credential
-        - Allowed
-        - Origins
-        - Origin
-        - Generate
-        - Key
-        - Client
-        - Billing
-        - Entities
-        - Merchants
-        - Shipping
-        - Locations
-        - Terminal
-        - Actions
-        - Action
-        - Logos
-        - Models
-        - Orders
-        - Order
-        - Cancel
-        - Products
-        - Settings
-        - Users
-        - User
-        - Webhooks
-        - Webhook
-        - Hmac
-        - Test
-        - Me
-        - Activate
+        - API credentials - merchant level
       summary: Create an API credential
       description: >-
         Creates an [API
@@ -2459,49 +1152,12 @@ paths:
         [roles](https://docs.adyen.com/development-resources/api-credentials#api-permissions):
 
         * Management API—API credentials read and write
+      x-sortIndex: 0
+      x-methodName: createApiCredential
   /merchants/{merchantId}/apiCredentials/{apiCredentialId}:
     get:
       tags:
-        - Get
-        - An
-        - Credential
-        - Companies
-        - Id
-        - Android
-        - Apps
-        - Certificates
-        - Api
-        - Credentials
-        - Credential
-        - Allowed
-        - Origins
-        - Origin
-        - Generate
-        - Key
-        - Client
-        - Billing
-        - Entities
-        - Merchants
-        - Shipping
-        - Locations
-        - Terminal
-        - Actions
-        - Action
-        - Logos
-        - Models
-        - Orders
-        - Order
-        - Cancel
-        - Products
-        - Settings
-        - Users
-        - User
-        - Webhooks
-        - Webhook
-        - Hmac
-        - Test
-        - Me
-        - Activate
+        - API credentials - merchant level
       summary: Get an API credential
       description: >-
         Returns the [API
@@ -2513,48 +1169,11 @@ paths:
         [roles](https://docs.adyen.com/development-resources/api-credentials#api-permissions):
 
         * Management API—API credentials read and write
+      x-sortIndex: 0
+      x-methodName: getApiCredential
     patch:
       tags:
-        - Update
-        - An
-        - Credential
-        - Companies
-        - Id
-        - Android
-        - Apps
-        - Certificates
-        - Api
-        - Credentials
-        - Credential
-        - Allowed
-        - Origins
-        - Origin
-        - Generate
-        - Key
-        - Client
-        - Billing
-        - Entities
-        - Merchants
-        - Shipping
-        - Locations
-        - Terminal
-        - Actions
-        - Action
-        - Logos
-        - Models
-        - Orders
-        - Order
-        - Cancel
-        - Products
-        - Settings
-        - Users
-        - User
-        - Webhooks
-        - Webhook
-        - Hmac
-        - Test
-        - Me
-        - Activate
+        - API credentials - merchant level
       summary: Update an API credential
       description: >-
         Changes the API credential's roles, or allowed origins. The request has
@@ -2567,51 +1186,12 @@ paths:
         [roles](https://docs.adyen.com/development-resources/api-credentials#api-permissions):
 
         * Management API—API credentials read and write
+      x-sortIndex: 0
+      x-methodName: updateApiCredential
   /merchants/{merchantId}/apiCredentials/{apiCredentialId}/allowedOrigins:
     get:
       tags:
-        - Get
-        - List
-        - Of
-        - Allowed
-        - Origins
-        - Companies
-        - Id
-        - Android
-        - Apps
-        - Certificates
-        - Api
-        - Credentials
-        - Credential
-        - Allowed
-        - Origins
-        - Origin
-        - Generate
-        - Key
-        - Client
-        - Billing
-        - Entities
-        - Merchants
-        - Shipping
-        - Locations
-        - Terminal
-        - Actions
-        - Action
-        - Logos
-        - Models
-        - Orders
-        - Order
-        - Cancel
-        - Products
-        - Settings
-        - Users
-        - User
-        - Webhooks
-        - Webhook
-        - Hmac
-        - Test
-        - Me
-        - Activate
+        - Allowed origins - merchant level
       summary: Get a list of allowed origins
       description: >-
         Returns the list of [allowed
@@ -2623,49 +1203,11 @@ paths:
         [roles](https://docs.adyen.com/development-resources/api-credentials#api-permissions):
 
         * Management API—API credentials read and write
+      x-sortIndex: 0
+      x-methodName: listAllowedOrigins
     post:
       tags:
-        - Create
-        - An
-        - Allowed
-        - Origin
-        - Companies
-        - Id
-        - Android
-        - Apps
-        - Certificates
-        - Api
-        - Credentials
-        - Credential
-        - Allowed
-        - Origins
-        - Origin
-        - Generate
-        - Key
-        - Client
-        - Billing
-        - Entities
-        - Merchants
-        - Shipping
-        - Locations
-        - Terminal
-        - Actions
-        - Action
-        - Logos
-        - Models
-        - Orders
-        - Order
-        - Cancel
-        - Products
-        - Settings
-        - Users
-        - User
-        - Webhooks
-        - Webhook
-        - Hmac
-        - Test
-        - Me
-        - Activate
+        - Allowed origins - merchant level
       summary: Create an allowed origin
       description: >-
         Adds a new [allowed
@@ -2677,50 +1219,12 @@ paths:
         [roles](https://docs.adyen.com/development-resources/api-credentials#api-permissions):
 
         * Management API—API credentials read and write
+      x-sortIndex: 0
+      x-methodName: createAllowedOrigin
   /merchants/{merchantId}/apiCredentials/{apiCredentialId}/allowedOrigins/{originId}:
     delete:
       tags:
-        - Delete
-        - An
-        - Allowed
-        - Origin
-        - Companies
-        - Id
-        - Android
-        - Apps
-        - Certificates
-        - Api
-        - Credentials
-        - Credential
-        - Allowed
-        - Origins
-        - Origin
-        - Generate
-        - Key
-        - Client
-        - Billing
-        - Entities
-        - Merchants
-        - Shipping
-        - Locations
-        - Terminal
-        - Actions
-        - Action
-        - Logos
-        - Models
-        - Orders
-        - Order
-        - Cancel
-        - Products
-        - Settings
-        - Users
-        - User
-        - Webhooks
-        - Webhook
-        - Hmac
-        - Test
-        - Me
-        - Activate
+        - Allowed origins - merchant level
       summary: Delete an allowed origin
       description: >-
         Removes the [allowed
@@ -2733,49 +1237,11 @@ paths:
         [roles](https://docs.adyen.com/development-resources/api-credentials#api-permissions):
 
         * Management API—API credentials read and write
+      x-sortIndex: 0
+      x-methodName: deleteAllowedOrigin
     get:
       tags:
-        - Get
-        - An
-        - Allowed
-        - Origin
-        - Companies
-        - Id
-        - Android
-        - Apps
-        - Certificates
-        - Api
-        - Credentials
-        - Credential
-        - Allowed
-        - Origins
-        - Origin
-        - Generate
-        - Key
-        - Client
-        - Billing
-        - Entities
-        - Merchants
-        - Shipping
-        - Locations
-        - Terminal
-        - Actions
-        - Action
-        - Logos
-        - Models
-        - Orders
-        - Order
-        - Cancel
-        - Products
-        - Settings
-        - Users
-        - User
-        - Webhooks
-        - Webhook
-        - Hmac
-        - Test
-        - Me
-        - Activate
+        - Allowed origins - merchant level
       summary: Get an allowed origin
       description: >-
         Returns the [allowed
@@ -2787,49 +1253,12 @@ paths:
         [roles](https://docs.adyen.com/development-resources/api-credentials#api-permissions):
 
         * Management API—API credentials read and write
+      x-sortIndex: 0
+      x-methodName: getAllowedOrigin
   /merchants/{merchantId}/apiCredentials/{apiCredentialId}/generateApiKey:
     post:
       tags:
-        - Generate
-        - New
-        - Key
-        - Companies
-        - Id
-        - Android
-        - Apps
-        - Certificates
-        - Api
-        - Credentials
-        - Credential
-        - Allowed
-        - Origins
-        - Origin
-        - Generate
-        - Key
-        - Client
-        - Billing
-        - Entities
-        - Merchants
-        - Shipping
-        - Locations
-        - Terminal
-        - Actions
-        - Action
-        - Logos
-        - Models
-        - Orders
-        - Order
-        - Cancel
-        - Products
-        - Settings
-        - Users
-        - User
-        - Webhooks
-        - Webhook
-        - Hmac
-        - Test
-        - Me
-        - Activate
+        - API key - merchant level
       summary: Generate new API key
       description: >-
         Returns a new API key for the API credential. You can use the new API
@@ -2841,50 +1270,12 @@ paths:
         [roles](https://docs.adyen.com/development-resources/api-credentials#api-permissions):
 
         * Management API—API credentials read and write
+      x-sortIndex: 0
+      x-methodName: generateNewApiKey
   /merchants/{merchantId}/apiCredentials/{apiCredentialId}/generateClientKey:
     post:
       tags:
-        - Generate
-        - New
-        - Client
-        - Key
-        - Companies
-        - Id
-        - Android
-        - Apps
-        - Certificates
-        - Api
-        - Credentials
-        - Credential
-        - Allowed
-        - Origins
-        - Origin
-        - Generate
-        - Key
-        - Client
-        - Billing
-        - Entities
-        - Merchants
-        - Shipping
-        - Locations
-        - Terminal
-        - Actions
-        - Action
-        - Logos
-        - Models
-        - Orders
-        - Order
-        - Cancel
-        - Products
-        - Settings
-        - Users
-        - User
-        - Webhooks
-        - Webhook
-        - Hmac
-        - Test
-        - Me
-        - Activate
+        - Client key - merchant level
       summary: Generate new client key
       description: >-
         Returns a new [client
@@ -2898,51 +1289,12 @@ paths:
         [roles](https://docs.adyen.com/development-resources/api-credentials#api-permissions):
 
         * Management API—API credentials read and write
+      x-sortIndex: 0
+      x-methodName: generateNewClientKey
   /merchants/{merchantId}/billingEntities:
     get:
       tags:
-        - Get
-        - List
-        - Of
-        - Billing
-        - Entities
-        - Companies
-        - Id
-        - Android
-        - Apps
-        - Certificates
-        - Api
-        - Credentials
-        - Credential
-        - Allowed
-        - Origins
-        - Origin
-        - Generate
-        - Key
-        - Client
-        - Billing
-        - Entities
-        - Merchants
-        - Shipping
-        - Locations
-        - Terminal
-        - Actions
-        - Action
-        - Logos
-        - Models
-        - Orders
-        - Order
-        - Cancel
-        - Products
-        - Settings
-        - Users
-        - User
-        - Webhooks
-        - Webhook
-        - Hmac
-        - Test
-        - Me
-        - Activate
+        - Terminal orders - merchant level
       summary: Get a list of billing entities
       description: >-
         Returns the billing entities of the merchant account identified in the
@@ -2958,52 +1310,12 @@ paths:
         * Management API—Terminal ordering read
 
         * Management API—Terminal ordering read and write
+      x-sortIndex: 3
+      x-methodName: listBillingEntities
   /merchants/{merchantId}/paymentMethodSettings:
     get:
       tags:
-        - Get
-        - All
-        - Payment
-        - Methods
-        - Companies
-        - Id
-        - Android
-        - Apps
-        - Certificates
-        - Api
-        - Credentials
-        - Credential
-        - Allowed
-        - Origins
-        - Origin
-        - Generate
-        - Key
-        - Client
-        - Billing
-        - Entities
-        - Merchants
-        - Shipping
-        - Locations
-        - Terminal
-        - Actions
-        - Action
-        - Logos
-        - Models
-        - Orders
-        - Order
-        - Cancel
-        - Products
-        - Settings
-        - Users
-        - User
-        - Webhooks
-        - Webhook
-        - Hmac
-        - Test
-        - Me
-        - Activate
-        - Payment
-        - Method
+        - Payment methods - merchant level
       summary: Get all payment methods
       description: >
         Returns details for all payment methods of the merchant account
@@ -3014,50 +1326,11 @@ paths:
         [role](https://docs.adyen.com/development-resources/api-credentials#api-permissions):
 
         * Management API—Payment methods read
+      x-sortIndex: 2
+      x-methodName: getAllPaymentMethods
     post:
       tags:
-        - Request
-        - Payment
-        - Method
-        - Companies
-        - Id
-        - Android
-        - Apps
-        - Certificates
-        - Api
-        - Credentials
-        - Credential
-        - Allowed
-        - Origins
-        - Origin
-        - Generate
-        - Key
-        - Client
-        - Billing
-        - Entities
-        - Merchants
-        - Shipping
-        - Locations
-        - Terminal
-        - Actions
-        - Action
-        - Logos
-        - Models
-        - Orders
-        - Order
-        - Cancel
-        - Products
-        - Settings
-        - Users
-        - User
-        - Webhooks
-        - Webhook
-        - Hmac
-        - Test
-        - Me
-        - Activate
-        - Payment
-        - Method
+        - Payment methods - merchant level
       summary: Request a payment method
       description: >
         Sends a request to add a new payment method to the merchant account
@@ -3068,52 +1341,12 @@ paths:
         [role](https://docs.adyen.com/development-resources/api-credentials#api-permissions):
 
         * Management API—Payment methods read and write
+      x-sortIndex: 1
+      x-methodName: requestPaymentMethod
   /merchants/{merchantId}/paymentMethodSettings/{paymentMethodId}:
     get:
       tags:
-        - Get
-        - Payment
-        - Method
-        - Details
-        - Companies
-        - Id
-        - Android
-        - Apps
-        - Certificates
-        - Api
-        - Credentials
-        - Credential
-        - Allowed
-        - Origins
-        - Origin
-        - Generate
-        - Key
-        - Client
-        - Billing
-        - Entities
-        - Merchants
-        - Shipping
-        - Locations
-        - Terminal
-        - Actions
-        - Action
-        - Logos
-        - Models
-        - Orders
-        - Order
-        - Cancel
-        - Products
-        - Settings
-        - Users
-        - User
-        - Webhooks
-        - Webhook
-        - Hmac
-        - Test
-        - Me
-        - Activate
-        - Payment
-        - Method
+        - Payment methods - merchant level
       summary: Get payment method details
       description: >
         Returns details for the merchant account and the payment method
@@ -3124,50 +1357,11 @@ paths:
         [role](https://docs.adyen.com/development-resources/api-credentials#api-permissions):
 
         * Management API—Payment methods read
+      x-sortIndex: 3
+      x-methodName: getPaymentMethodDetails
     patch:
       tags:
-        - Update
-        - Payment
-        - Method
-        - Companies
-        - Id
-        - Android
-        - Apps
-        - Certificates
-        - Api
-        - Credentials
-        - Credential
-        - Allowed
-        - Origins
-        - Origin
-        - Generate
-        - Key
-        - Client
-        - Billing
-        - Entities
-        - Merchants
-        - Shipping
-        - Locations
-        - Terminal
-        - Actions
-        - Action
-        - Logos
-        - Models
-        - Orders
-        - Order
-        - Cancel
-        - Products
-        - Settings
-        - Users
-        - User
-        - Webhooks
-        - Webhook
-        - Hmac
-        - Test
-        - Me
-        - Activate
-        - Payment
-        - Method
+        - Payment methods - merchant level
       summary: Update a payment method
       description: >
         Updates payment method details for the merchant account and the payment
@@ -3178,57 +1372,12 @@ paths:
         [role](https://docs.adyen.com/development-resources/api-credentials#api-permissions):
 
         * Management API—Payment methods read and write
+      x-sortIndex: 4
+      x-methodName: updatePaymentMethod
   /merchants/{merchantId}/paymentMethodSettings/{paymentMethodId}/addApplePayDomains:
     post:
       tags:
-        - Add
-        - An
-        - Apple
-        - Pay
-        - Domain
-        - Companies
-        - Id
-        - Android
-        - Apps
-        - Certificates
-        - Api
-        - Credentials
-        - Credential
-        - Allowed
-        - Origins
-        - Origin
-        - Generate
-        - Key
-        - Client
-        - Billing
-        - Entities
-        - Merchants
-        - Shipping
-        - Locations
-        - Terminal
-        - Actions
-        - Action
-        - Logos
-        - Models
-        - Orders
-        - Order
-        - Cancel
-        - Products
-        - Settings
-        - Users
-        - User
-        - Webhooks
-        - Webhook
-        - Hmac
-        - Test
-        - Me
-        - Activate
-        - Payment
-        - Method
-        - Add
-        - Apple
-        - Pay
-        - Domains
+        - Payment methods - merchant level
       summary: Add an Apple Pay domain
       description: >
         Adds the new domain to the list of Apple Pay domains that are registered
@@ -3241,57 +1390,12 @@ paths:
         [role](https://docs.adyen.com/development-resources/api-credentials#api-permissions):
 
         * Management API—Payment methods read and write
+      x-sortIndex: 5
+      x-methodName: addApplePayDomain
   /merchants/{merchantId}/paymentMethodSettings/{paymentMethodId}/getApplePayDomains:
     get:
       tags:
-        - Get
-        - Apple
-        - Pay
-        - Domains
-        - Companies
-        - Id
-        - Android
-        - Apps
-        - Certificates
-        - Api
-        - Credentials
-        - Credential
-        - Allowed
-        - Origins
-        - Origin
-        - Generate
-        - Key
-        - Client
-        - Billing
-        - Entities
-        - Merchants
-        - Shipping
-        - Locations
-        - Terminal
-        - Actions
-        - Action
-        - Logos
-        - Models
-        - Orders
-        - Order
-        - Cancel
-        - Products
-        - Settings
-        - Users
-        - User
-        - Webhooks
-        - Webhook
-        - Hmac
-        - Test
-        - Me
-        - Activate
-        - Payment
-        - Method
-        - Add
-        - Apple
-        - Pay
-        - Domains
-        - Get
+        - Payment methods - merchant level
       summary: Get Apple Pay domains
       description: >
         Returns all Apple Pay domains that are registered with the merchant
@@ -3304,59 +1408,12 @@ paths:
         [role](https://docs.adyen.com/development-resources/api-credentials#api-permissions):
 
         * Management API—Payment methods read
+      x-sortIndex: 6
+      x-methodName: getApplePayDomains
   /merchants/{merchantId}/payoutSettings:
     get:
       tags:
-        - Get
-        - List
-        - Of
-        - Payout
-        - Settings
-        - Companies
-        - Id
-        - Android
-        - Apps
-        - Certificates
-        - Api
-        - Credentials
-        - Credential
-        - Allowed
-        - Origins
-        - Origin
-        - Generate
-        - Key
-        - Client
-        - Billing
-        - Entities
-        - Merchants
-        - Shipping
-        - Locations
-        - Terminal
-        - Actions
-        - Action
-        - Logos
-        - Models
-        - Orders
-        - Order
-        - Cancel
-        - Products
-        - Settings
-        - Users
-        - User
-        - Webhooks
-        - Webhook
-        - Hmac
-        - Test
-        - Me
-        - Activate
-        - Payment
-        - Method
-        - Add
-        - Apple
-        - Pay
-        - Domains
-        - Get
-        - Payout
+        - Payout settings - merchant level
       summary: Get a list of payout settings
       description: >-
         Returns the list of payout settings for the merchant account identified
@@ -3371,56 +1428,11 @@ paths:
         [roles](https://docs.adyen.com/development-resources/api-credentials#api-permissions):
 
         * Management API—Payout account settings read
+      x-sortIndex: 3
+      x-methodName: listPayoutSettings
     post:
       tags:
-        - Add
-        - Payout
-        - Setting
-        - Companies
-        - Id
-        - Android
-        - Apps
-        - Certificates
-        - Api
-        - Credentials
-        - Credential
-        - Allowed
-        - Origins
-        - Origin
-        - Generate
-        - Key
-        - Client
-        - Billing
-        - Entities
-        - Merchants
-        - Shipping
-        - Locations
-        - Terminal
-        - Actions
-        - Action
-        - Logos
-        - Models
-        - Orders
-        - Order
-        - Cancel
-        - Products
-        - Settings
-        - Users
-        - User
-        - Webhooks
-        - Webhook
-        - Hmac
-        - Test
-        - Me
-        - Activate
-        - Payment
-        - Method
-        - Add
-        - Apple
-        - Pay
-        - Domains
-        - Get
-        - Payout
+        - Payout settings - merchant level
       summary: Add a payout setting
       description: >-
         Sends a request to add a payout setting for the merchant account
@@ -3444,57 +1456,12 @@ paths:
 
 
         * Management API—Payout account settings read and write
+      x-sortIndex: 1
+      x-methodName: addPayoutSetting
   /merchants/{merchantId}/payoutSettings/{payoutSettingsId}:
     delete:
       tags:
-        - Delete
-        - Payout
-        - Setting
-        - Companies
-        - Id
-        - Android
-        - Apps
-        - Certificates
-        - Api
-        - Credentials
-        - Credential
-        - Allowed
-        - Origins
-        - Origin
-        - Generate
-        - Key
-        - Client
-        - Billing
-        - Entities
-        - Merchants
-        - Shipping
-        - Locations
-        - Terminal
-        - Actions
-        - Action
-        - Logos
-        - Models
-        - Orders
-        - Order
-        - Cancel
-        - Products
-        - Settings
-        - Users
-        - User
-        - Webhooks
-        - Webhook
-        - Hmac
-        - Test
-        - Me
-        - Activate
-        - Payment
-        - Method
-        - Add
-        - Apple
-        - Pay
-        - Domains
-        - Get
-        - Payout
+        - Payout settings - merchant level
       summary: Delete a payout setting
       description: >-
         Deletes the payout setting identified in the path.
@@ -3509,56 +1476,11 @@ paths:
 
 
         * Management API—Payout account settings read and write
+      x-sortIndex: 5
+      x-methodName: deletePayoutSetting
     get:
       tags:
-        - Get
-        - Payout
-        - Setting
-        - Companies
-        - Id
-        - Android
-        - Apps
-        - Certificates
-        - Api
-        - Credentials
-        - Credential
-        - Allowed
-        - Origins
-        - Origin
-        - Generate
-        - Key
-        - Client
-        - Billing
-        - Entities
-        - Merchants
-        - Shipping
-        - Locations
-        - Terminal
-        - Actions
-        - Action
-        - Logos
-        - Models
-        - Orders
-        - Order
-        - Cancel
-        - Products
-        - Settings
-        - Users
-        - User
-        - Webhooks
-        - Webhook
-        - Hmac
-        - Test
-        - Me
-        - Activate
-        - Payment
-        - Method
-        - Add
-        - Apple
-        - Pay
-        - Domains
-        - Get
-        - Payout
+        - Payout settings - merchant level
       summary: Get a payout setting
       description: >-
         Returns the payout setting identified in the path.
@@ -3572,56 +1494,11 @@ paths:
         [roles](https://docs.adyen.com/development-resources/api-credentials#api-permissions):
 
         * Management API—Payout account settings read
+      x-sortIndex: 4
+      x-methodName: getPayoutSetting
     patch:
       tags:
-        - Update
-        - Payout
-        - Setting
-        - Companies
-        - Id
-        - Android
-        - Apps
-        - Certificates
-        - Api
-        - Credentials
-        - Credential
-        - Allowed
-        - Origins
-        - Origin
-        - Generate
-        - Key
-        - Client
-        - Billing
-        - Entities
-        - Merchants
-        - Shipping
-        - Locations
-        - Terminal
-        - Actions
-        - Action
-        - Logos
-        - Models
-        - Orders
-        - Order
-        - Cancel
-        - Products
-        - Settings
-        - Users
-        - User
-        - Webhooks
-        - Webhook
-        - Hmac
-        - Test
-        - Me
-        - Activate
-        - Payment
-        - Method
-        - Add
-        - Apple
-        - Pay
-        - Domains
-        - Get
-        - Payout
+        - Payout settings - merchant level
       summary: Update a payout setting
       description: >-
         Updates the payout setting identified in the path. You can enable or
@@ -3637,59 +1514,12 @@ paths:
 
 
         * Management API—Payout account settings read and write
+      x-sortIndex: 2
+      x-methodName: updatePayoutSetting
   /merchants/{merchantId}/shippingLocations:
     get:
       tags:
-        - Get
-        - List
-        - Of
-        - Shipping
-        - Locations
-        - Companies
-        - Id
-        - Android
-        - Apps
-        - Certificates
-        - Api
-        - Credentials
-        - Credential
-        - Allowed
-        - Origins
-        - Origin
-        - Generate
-        - Key
-        - Client
-        - Billing
-        - Entities
-        - Merchants
-        - Shipping
-        - Locations
-        - Terminal
-        - Actions
-        - Action
-        - Logos
-        - Models
-        - Orders
-        - Order
-        - Cancel
-        - Products
-        - Settings
-        - Users
-        - User
-        - Webhooks
-        - Webhook
-        - Hmac
-        - Test
-        - Me
-        - Activate
-        - Payment
-        - Method
-        - Add
-        - Apple
-        - Pay
-        - Domains
-        - Get
-        - Payout
+        - Terminal orders - merchant level
       summary: Get a list of shipping locations
       description: >-
         Returns the shipping locations for the merchant account identified in
@@ -3705,56 +1535,11 @@ paths:
         * Management API—Terminal ordering read
 
         * Management API—Terminal ordering read and write
+      x-sortIndex: 4
+      x-methodName: listShippingLocations
     post:
       tags:
-        - Create
-        - Shipping
-        - Location
-        - Companies
-        - Id
-        - Android
-        - Apps
-        - Certificates
-        - Api
-        - Credentials
-        - Credential
-        - Allowed
-        - Origins
-        - Origin
-        - Generate
-        - Key
-        - Client
-        - Billing
-        - Entities
-        - Merchants
-        - Shipping
-        - Locations
-        - Terminal
-        - Actions
-        - Action
-        - Logos
-        - Models
-        - Orders
-        - Order
-        - Cancel
-        - Products
-        - Settings
-        - Users
-        - User
-        - Webhooks
-        - Webhook
-        - Hmac
-        - Test
-        - Me
-        - Activate
-        - Payment
-        - Method
-        - Add
-        - Apple
-        - Pay
-        - Domains
-        - Get
-        - Payout
+        - Terminal orders - merchant level
       summary: Create a shipping location
       description: >-
         Creates a shipping location for the merchant account identified in the
@@ -3766,61 +1551,12 @@ paths:
         [role](https://docs.adyen.com/development-resources/api-credentials#api-permissions):
 
         * Management API—Terminal ordering read and write
+      x-sortIndex: 5
+      x-methodName: createShippingLocation
   /merchants/{merchantId}/splitConfigurations:
     get:
       tags:
-        - Get
-        - List
-        - Of
-        - Split
-        - Configurations
-        - Companies
-        - Id
-        - Android
-        - Apps
-        - Certificates
-        - Api
-        - Credentials
-        - Credential
-        - Allowed
-        - Origins
-        - Origin
-        - Generate
-        - Key
-        - Client
-        - Billing
-        - Entities
-        - Merchants
-        - Shipping
-        - Locations
-        - Terminal
-        - Actions
-        - Action
-        - Logos
-        - Models
-        - Orders
-        - Order
-        - Cancel
-        - Products
-        - Settings
-        - Users
-        - User
-        - Webhooks
-        - Webhook
-        - Hmac
-        - Test
-        - Me
-        - Activate
-        - Payment
-        - Method
-        - Add
-        - Apple
-        - Pay
-        - Domains
-        - Get
-        - Payout
-        - Split
-        - Configurations
+        - Split configuration - merchant level
       summary: Get a list of split configurations
       description: >-
         Returns the list of split configurations for the merchant account.
@@ -3830,58 +1566,11 @@ paths:
         [role](https://docs.adyen.com/development-resources/api-credentials#api-permissions):
 
         * Management API - SplitConfiguration read and write
+      x-sortIndex: 3
+      x-methodName: listSplitConfigurations
     post:
       tags:
-        - Create
-        - Split
-        - Configuration
-        - Companies
-        - Id
-        - Android
-        - Apps
-        - Certificates
-        - Api
-        - Credentials
-        - Credential
-        - Allowed
-        - Origins
-        - Origin
-        - Generate
-        - Key
-        - Client
-        - Billing
-        - Entities
-        - Merchants
-        - Shipping
-        - Locations
-        - Terminal
-        - Actions
-        - Action
-        - Logos
-        - Models
-        - Orders
-        - Order
-        - Cancel
-        - Products
-        - Settings
-        - Users
-        - User
-        - Webhooks
-        - Webhook
-        - Hmac
-        - Test
-        - Me
-        - Activate
-        - Payment
-        - Method
-        - Add
-        - Apple
-        - Pay
-        - Domains
-        - Get
-        - Payout
-        - Split
-        - Configurations
+        - Split configuration - merchant level
       summary: Create a split configuration
       description: >-
         Creates a split configuration for the merchant account specified in the
@@ -3892,60 +1581,12 @@ paths:
         [role](https://docs.adyen.com/development-resources/api-credentials#api-permissions):
 
         * Management API - SplitConfiguration read and write
+      x-sortIndex: 1
+      x-methodName: createSplitConfiguration
   /merchants/{merchantId}/splitConfigurations/{splitConfigurationId}:
     delete:
       tags:
-        - Delete
-        - Split
-        - Configuration
-        - Companies
-        - Id
-        - Android
-        - Apps
-        - Certificates
-        - Api
-        - Credentials
-        - Credential
-        - Allowed
-        - Origins
-        - Origin
-        - Generate
-        - Key
-        - Client
-        - Billing
-        - Entities
-        - Merchants
-        - Shipping
-        - Locations
-        - Terminal
-        - Actions
-        - Action
-        - Logos
-        - Models
-        - Orders
-        - Order
-        - Cancel
-        - Products
-        - Settings
-        - Users
-        - User
-        - Webhooks
-        - Webhook
-        - Hmac
-        - Test
-        - Me
-        - Activate
-        - Payment
-        - Method
-        - Add
-        - Apple
-        - Pay
-        - Domains
-        - Get
-        - Payout
-        - Split
-        - Configurations
-        - Configuration
+        - Split configuration - merchant level
       summary: Delete a split configuration
       description: >-
         Deletes the split configuration specified in the path.
@@ -3955,59 +1596,11 @@ paths:
         [role](https://docs.adyen.com/development-resources/api-credentials#api-permissions):
 
         * Management API - SplitConfiguration read and write
+      x-sortIndex: 8
+      x-methodName: deleteSplitConfiguration
     get:
       tags:
-        - Get
-        - Split
-        - Configuration
-        - Companies
-        - Id
-        - Android
-        - Apps
-        - Certificates
-        - Api
-        - Credentials
-        - Credential
-        - Allowed
-        - Origins
-        - Origin
-        - Generate
-        - Key
-        - Client
-        - Billing
-        - Entities
-        - Merchants
-        - Shipping
-        - Locations
-        - Terminal
-        - Actions
-        - Action
-        - Logos
-        - Models
-        - Orders
-        - Order
-        - Cancel
-        - Products
-        - Settings
-        - Users
-        - User
-        - Webhooks
-        - Webhook
-        - Hmac
-        - Test
-        - Me
-        - Activate
-        - Payment
-        - Method
-        - Add
-        - Apple
-        - Pay
-        - Domains
-        - Get
-        - Payout
-        - Split
-        - Configurations
-        - Configuration
+        - Split configuration - merchant level
       summary: Get a split configuration
       description: >-
         Returns the split configuration specified in the path.
@@ -4017,60 +1610,11 @@ paths:
         [role](https://docs.adyen.com/development-resources/api-credentials#api-permissions):
 
         * Management API - SplitConfiguration read and write
+      x-sortIndex: 4
+      x-methodName: getSplitConfiguration
     patch:
       tags:
-        - Update
-        - Split
-        - Configuration
-        - Description
-        - Companies
-        - Id
-        - Android
-        - Apps
-        - Certificates
-        - Api
-        - Credentials
-        - Credential
-        - Allowed
-        - Origins
-        - Origin
-        - Generate
-        - Key
-        - Client
-        - Billing
-        - Entities
-        - Merchants
-        - Shipping
-        - Locations
-        - Terminal
-        - Actions
-        - Action
-        - Logos
-        - Models
-        - Orders
-        - Order
-        - Cancel
-        - Products
-        - Settings
-        - Users
-        - User
-        - Webhooks
-        - Webhook
-        - Hmac
-        - Test
-        - Me
-        - Activate
-        - Payment
-        - Method
-        - Add
-        - Apple
-        - Pay
-        - Domains
-        - Get
-        - Payout
-        - Split
-        - Configurations
-        - Configuration
+        - Split configuration - merchant level
       summary: Update split configuration description
       description: >-
         Changes the description of the split configuration specified in the
@@ -4081,58 +1625,11 @@ paths:
         [role](https://docs.adyen.com/development-resources/api-credentials#api-permissions):
 
         * Management API - SplitConfiguration read and write
+      x-sortIndex: 5
+      x-methodName: updateSplitConfigurationDescription
     post:
       tags:
-        - Create
-        - Rule
-        - Companies
-        - Id
-        - Android
-        - Apps
-        - Certificates
-        - Api
-        - Credentials
-        - Credential
-        - Allowed
-        - Origins
-        - Origin
-        - Generate
-        - Key
-        - Client
-        - Billing
-        - Entities
-        - Merchants
-        - Shipping
-        - Locations
-        - Terminal
-        - Actions
-        - Action
-        - Logos
-        - Models
-        - Orders
-        - Order
-        - Cancel
-        - Products
-        - Settings
-        - Users
-        - User
-        - Webhooks
-        - Webhook
-        - Hmac
-        - Test
-        - Me
-        - Activate
-        - Payment
-        - Method
-        - Add
-        - Apple
-        - Pay
-        - Domains
-        - Get
-        - Payout
-        - Split
-        - Configurations
-        - Configuration
+        - Split configuration - merchant level
       summary: Create a rule
       description: >-
         Creates a rule in the split configuration specified in the path.
@@ -4142,63 +1639,12 @@ paths:
         [role](https://docs.adyen.com/development-resources/api-credentials#api-permissions):
 
         * Management API - SplitConfiguration read and write
+      x-sortIndex: 2
+      x-methodName: createRule
   /merchants/{merchantId}/splitConfigurations/{splitConfigurationId}/rules/{ruleId}:
     delete:
       tags:
-        - Delete
-        - Split
-        - Configuration
-        - Rule
-        - Companies
-        - Id
-        - Android
-        - Apps
-        - Certificates
-        - Api
-        - Credentials
-        - Credential
-        - Allowed
-        - Origins
-        - Origin
-        - Generate
-        - Key
-        - Client
-        - Billing
-        - Entities
-        - Merchants
-        - Shipping
-        - Locations
-        - Terminal
-        - Actions
-        - Action
-        - Logos
-        - Models
-        - Orders
-        - Order
-        - Cancel
-        - Products
-        - Settings
-        - Users
-        - User
-        - Webhooks
-        - Webhook
-        - Hmac
-        - Test
-        - Me
-        - Activate
-        - Payment
-        - Method
-        - Add
-        - Apple
-        - Pay
-        - Domains
-        - Get
-        - Payout
-        - Split
-        - Configurations
-        - Configuration
-        - Rules
-        - Rule
+        - Split configuration - merchant level
       summary: Delete a split configuration rule
       description: >-
         Deletes the split configuration rule specified in the path.
@@ -4208,61 +1654,11 @@ paths:
         [role](https://docs.adyen.com/development-resources/api-credentials#api-permissions):
 
         * Management API - SplitConfiguration read and write
+      x-sortIndex: 9
+      x-methodName: deleteSplitConfigurationRule
     patch:
       tags:
-        - Update
-        - Split
-        - Conditions
-        - Companies
-        - Id
-        - Android
-        - Apps
-        - Certificates
-        - Api
-        - Credentials
-        - Credential
-        - Allowed
-        - Origins
-        - Origin
-        - Generate
-        - Key
-        - Client
-        - Billing
-        - Entities
-        - Merchants
-        - Shipping
-        - Locations
-        - Terminal
-        - Actions
-        - Action
-        - Logos
-        - Models
-        - Orders
-        - Order
-        - Cancel
-        - Products
-        - Settings
-        - Users
-        - User
-        - Webhooks
-        - Webhook
-        - Hmac
-        - Test
-        - Me
-        - Activate
-        - Payment
-        - Method
-        - Add
-        - Apple
-        - Pay
-        - Domains
-        - Get
-        - Payout
-        - Split
-        - Configurations
-        - Configuration
-        - Rules
-        - Rule
+        - Split configuration - merchant level
       summary: Update split conditions
       description: >-
         Changes the conditions of the split configuration rule specified in the
@@ -4273,64 +1669,12 @@ paths:
         [role](https://docs.adyen.com/development-resources/api-credentials#api-permissions):
 
         * Management API - SplitConfiguration read and write
+      x-sortIndex: 6
+      x-methodName: updateSplitConditions
   /merchants/{merchantId}/splitConfigurations/{splitConfigurationId}/rules/{ruleId}/splitLogic/{splitLogicId}:
     patch:
       tags:
-        - Update
-        - The
-        - Split
-        - Logic
-        - Companies
-        - Id
-        - Android
-        - Apps
-        - Certificates
-        - Api
-        - Credentials
-        - Credential
-        - Allowed
-        - Origins
-        - Origin
-        - Generate
-        - Key
-        - Client
-        - Billing
-        - Entities
-        - Merchants
-        - Shipping
-        - Locations
-        - Terminal
-        - Actions
-        - Action
-        - Logos
-        - Models
-        - Orders
-        - Order
-        - Cancel
-        - Products
-        - Settings
-        - Users
-        - User
-        - Webhooks
-        - Webhook
-        - Hmac
-        - Test
-        - Me
-        - Activate
-        - Payment
-        - Method
-        - Add
-        - Apple
-        - Pay
-        - Domains
-        - Get
-        - Payout
-        - Split
-        - Configurations
-        - Configuration
-        - Rules
-        - Rule
-        - Logic
+        - Split configuration - merchant level
       summary: Update the split logic
       description: >-
         Changes the split logic specified in the path.
@@ -4340,65 +1684,12 @@ paths:
         [role](https://docs.adyen.com/development-resources/api-credentials#api-permissions):
 
         * Management API - SplitConfiguration read and write
+      x-sortIndex: 7
+      x-methodName: updateSplitLogic
   /merchants/{merchantId}/stores:
     get:
       tags:
-        - Get
-        - List
-        - Of
-        - Stores
-        - Companies
-        - Id
-        - Android
-        - Apps
-        - Certificates
-        - Api
-        - Credentials
-        - Credential
-        - Allowed
-        - Origins
-        - Origin
-        - Generate
-        - Key
-        - Client
-        - Billing
-        - Entities
-        - Merchants
-        - Shipping
-        - Locations
-        - Terminal
-        - Actions
-        - Action
-        - Logos
-        - Models
-        - Orders
-        - Order
-        - Cancel
-        - Products
-        - Settings
-        - Users
-        - User
-        - Webhooks
-        - Webhook
-        - Hmac
-        - Test
-        - Me
-        - Activate
-        - Payment
-        - Method
-        - Add
-        - Apple
-        - Pay
-        - Domains
-        - Get
-        - Payout
-        - Split
-        - Configurations
-        - Configuration
-        - Rules
-        - Rule
-        - Logic
-        - Stores
+        - Account - store level
       summary: Get a list of stores
       description: >-
         Returns a list of stores for the merchant account identified in the
@@ -4411,62 +1702,11 @@ paths:
         * Management API—Stores read
 
         * Management API—Stores read and write
+      x-sortIndex: 1
+      x-methodName: listStoresByMerchantId
     post:
       tags:
-        - Create
-        - Store
-        - Companies
-        - Id
-        - Android
-        - Apps
-        - Certificates
-        - Api
-        - Credentials
-        - Credential
-        - Allowed
-        - Origins
-        - Origin
-        - Generate
-        - Key
-        - Client
-        - Billing
-        - Entities
-        - Merchants
-        - Shipping
-        - Locations
-        - Terminal
-        - Actions
-        - Action
-        - Logos
-        - Models
-        - Orders
-        - Order
-        - Cancel
-        - Products
-        - Settings
-        - Users
-        - User
-        - Webhooks
-        - Webhook
-        - Hmac
-        - Test
-        - Me
-        - Activate
-        - Payment
-        - Method
-        - Add
-        - Apple
-        - Pay
-        - Domains
-        - Get
-        - Payout
-        - Split
-        - Configurations
-        - Configuration
-        - Rules
-        - Rule
-        - Logic
-        - Stores
+        - Account - store level
       summary: Create a store
       description: >-
         Creates a store for the merchant account identified in the path.
@@ -4476,66 +1716,12 @@ paths:
         [role](https://docs.adyen.com/development-resources/api-credentials#api-permissions):
 
         * Management API—Stores read and write
+      x-sortIndex: 0
+      x-methodName: createStoreByMerchantId
   /merchants/{merchantId}/stores/{reference}/terminalLogos:
     get:
       tags:
-        - Get
-        - The
-        - Terminal
-        - Logo
-        - Companies
-        - Id
-        - Android
-        - Apps
-        - Certificates
-        - Api
-        - Credentials
-        - Credential
-        - Allowed
-        - Origins
-        - Origin
-        - Generate
-        - Key
-        - Client
-        - Billing
-        - Entities
-        - Merchants
-        - Shipping
-        - Locations
-        - Terminal
-        - Actions
-        - Action
-        - Logos
-        - Models
-        - Orders
-        - Order
-        - Cancel
-        - Products
-        - Settings
-        - Users
-        - User
-        - Webhooks
-        - Webhook
-        - Hmac
-        - Test
-        - Me
-        - Activate
-        - Payment
-        - Method
-        - Add
-        - Apple
-        - Pay
-        - Domains
-        - Get
-        - Payout
-        - Split
-        - Configurations
-        - Configuration
-        - Rules
-        - Rule
-        - Logic
-        - Stores
-        - Reference
+        - Terminal settings - store level
       summary: Get the terminal logo
       description: >-
         Returns the logo that is configured for a specific payment terminal
@@ -4554,65 +1740,11 @@ paths:
         * Management API—Terminal settings read
 
         * Management API—Terminal settings read and write
+      x-sortIndex: 2
+      x-methodName: getTerminalLogo
     patch:
       tags:
-        - Update
-        - The
-        - Terminal
-        - Logo
-        - Companies
-        - Id
-        - Android
-        - Apps
-        - Certificates
-        - Api
-        - Credentials
-        - Credential
-        - Allowed
-        - Origins
-        - Origin
-        - Generate
-        - Key
-        - Client
-        - Billing
-        - Entities
-        - Merchants
-        - Shipping
-        - Locations
-        - Terminal
-        - Actions
-        - Action
-        - Logos
-        - Models
-        - Orders
-        - Order
-        - Cancel
-        - Products
-        - Settings
-        - Users
-        - User
-        - Webhooks
-        - Webhook
-        - Hmac
-        - Test
-        - Me
-        - Activate
-        - Payment
-        - Method
-        - Add
-        - Apple
-        - Pay
-        - Domains
-        - Get
-        - Payout
-        - Split
-        - Configurations
-        - Configuration
-        - Rules
-        - Rule
-        - Logic
-        - Stores
-        - Reference
+        - Terminal settings - store level
       summary: Update the terminal logo
       description: >-
         Updates the logo that is configured for a specific payment terminal
@@ -4634,65 +1766,12 @@ paths:
         [role](https://docs.adyen.com/development-resources/api-credentials#api-permissions):
 
         * Management API—Terminal settings read and write
+      x-sortIndex: 4
+      x-methodName: updateTerminalLogo
   /merchants/{merchantId}/stores/{reference}/terminalSettings:
     get:
       tags:
-        - Get
-        - Terminal
-        - Settings
-        - Companies
-        - Id
-        - Android
-        - Apps
-        - Certificates
-        - Api
-        - Credentials
-        - Credential
-        - Allowed
-        - Origins
-        - Origin
-        - Generate
-        - Key
-        - Client
-        - Billing
-        - Entities
-        - Merchants
-        - Shipping
-        - Locations
-        - Terminal
-        - Actions
-        - Action
-        - Logos
-        - Models
-        - Orders
-        - Order
-        - Cancel
-        - Products
-        - Settings
-        - Users
-        - User
-        - Webhooks
-        - Webhook
-        - Hmac
-        - Test
-        - Me
-        - Activate
-        - Payment
-        - Method
-        - Add
-        - Apple
-        - Pay
-        - Domains
-        - Get
-        - Payout
-        - Split
-        - Configurations
-        - Configuration
-        - Rules
-        - Rule
-        - Logic
-        - Stores
-        - Reference
+        - Terminal settings - store level
       summary: Get terminal settings
       description: >-
         Returns the payment terminal settings that are configured for the store
@@ -4713,64 +1792,11 @@ paths:
         your API credential must have the following role:
 
         * Management API—Terminal settings Advanced read and write
+      x-sortIndex: 1
+      x-methodName: getTerminalSettings
     patch:
       tags:
-        - Update
-        - Terminal
-        - Settings
-        - Companies
-        - Id
-        - Android
-        - Apps
-        - Certificates
-        - Api
-        - Credentials
-        - Credential
-        - Allowed
-        - Origins
-        - Origin
-        - Generate
-        - Key
-        - Client
-        - Billing
-        - Entities
-        - Merchants
-        - Shipping
-        - Locations
-        - Terminal
-        - Actions
-        - Action
-        - Logos
-        - Models
-        - Orders
-        - Order
-        - Cancel
-        - Products
-        - Settings
-        - Users
-        - User
-        - Webhooks
-        - Webhook
-        - Hmac
-        - Test
-        - Me
-        - Activate
-        - Payment
-        - Method
-        - Add
-        - Apple
-        - Pay
-        - Domains
-        - Get
-        - Payout
-        - Split
-        - Configurations
-        - Configuration
-        - Rules
-        - Rule
-        - Logic
-        - Stores
-        - Reference
+        - Terminal settings - store level
       summary: Update terminal settings
       description: >-
         Updates payment terminal settings for the store identified in the path.
@@ -4800,65 +1826,12 @@ paths:
         your API credential must have the following role:
 
         * Management API—Terminal settings Advanced read and write
+      x-sortIndex: 3
+      x-methodName: updateTerminalSettings
   /merchants/{merchantId}/stores/{storeId}:
     get:
       tags:
-        - Get
-        - Store
-        - Companies
-        - Id
-        - Android
-        - Apps
-        - Certificates
-        - Api
-        - Credentials
-        - Credential
-        - Allowed
-        - Origins
-        - Origin
-        - Generate
-        - Key
-        - Client
-        - Billing
-        - Entities
-        - Merchants
-        - Shipping
-        - Locations
-        - Terminal
-        - Actions
-        - Action
-        - Logos
-        - Models
-        - Orders
-        - Order
-        - Cancel
-        - Products
-        - Settings
-        - Users
-        - User
-        - Webhooks
-        - Webhook
-        - Hmac
-        - Test
-        - Me
-        - Activate
-        - Payment
-        - Method
-        - Add
-        - Apple
-        - Pay
-        - Domains
-        - Get
-        - Payout
-        - Split
-        - Configurations
-        - Configuration
-        - Rules
-        - Rule
-        - Logic
-        - Stores
-        - Reference
-        - Store
+        - Account - store level
       summary: Get a store
       description: >-
         Returns the details of the store identified in the path.
@@ -4870,64 +1843,11 @@ paths:
         * Management API—Stores read
 
         * Management API—Stores read and write
+      x-sortIndex: 2
+      x-methodName: getStore
     patch:
       tags:
-        - Update
-        - Store
-        - Companies
-        - Id
-        - Android
-        - Apps
-        - Certificates
-        - Api
-        - Credentials
-        - Credential
-        - Allowed
-        - Origins
-        - Origin
-        - Generate
-        - Key
-        - Client
-        - Billing
-        - Entities
-        - Merchants
-        - Shipping
-        - Locations
-        - Terminal
-        - Actions
-        - Action
-        - Logos
-        - Models
-        - Orders
-        - Order
-        - Cancel
-        - Products
-        - Settings
-        - Users
-        - User
-        - Webhooks
-        - Webhook
-        - Hmac
-        - Test
-        - Me
-        - Activate
-        - Payment
-        - Method
-        - Add
-        - Apple
-        - Pay
-        - Domains
-        - Get
-        - Payout
-        - Split
-        - Configurations
-        - Configuration
-        - Rules
-        - Rule
-        - Logic
-        - Stores
-        - Reference
-        - Store
+        - Account - store level
       summary: Update a store
       description: >-
         Updates the store identified in the path. You can only update some store
@@ -4938,67 +1858,12 @@ paths:
         [role](https://docs.adyen.com/development-resources/api-credentials#api-permissions):
 
         * Management API—Stores read and write
+      x-sortIndex: 3
+      x-methodName: updateStore
   /merchants/{merchantId}/terminalLogos:
     get:
       tags:
-        - Get
-        - The
-        - Terminal
-        - Logo
-        - Companies
-        - Id
-        - Android
-        - Apps
-        - Certificates
-        - Api
-        - Credentials
-        - Credential
-        - Allowed
-        - Origins
-        - Origin
-        - Generate
-        - Key
-        - Client
-        - Billing
-        - Entities
-        - Merchants
-        - Shipping
-        - Locations
-        - Terminal
-        - Actions
-        - Action
-        - Logos
-        - Models
-        - Orders
-        - Order
-        - Cancel
-        - Products
-        - Settings
-        - Users
-        - User
-        - Webhooks
-        - Webhook
-        - Hmac
-        - Test
-        - Me
-        - Activate
-        - Payment
-        - Method
-        - Add
-        - Apple
-        - Pay
-        - Domains
-        - Get
-        - Payout
-        - Split
-        - Configurations
-        - Configuration
-        - Rules
-        - Rule
-        - Logic
-        - Stores
-        - Reference
-        - Store
+        - Terminal settings - merchant level
       summary: Get the terminal logo
       description: >-
         Returns the logo that is configured for a specific payment terminal
@@ -5018,66 +1883,11 @@ paths:
         * Management API—Terminal settings read
 
         * Management API—Terminal settings read and write
+      x-sortIndex: 2
+      x-methodName: getTerminalLogo
     patch:
       tags:
-        - Update
-        - The
-        - Terminal
-        - Logo
-        - Companies
-        - Id
-        - Android
-        - Apps
-        - Certificates
-        - Api
-        - Credentials
-        - Credential
-        - Allowed
-        - Origins
-        - Origin
-        - Generate
-        - Key
-        - Client
-        - Billing
-        - Entities
-        - Merchants
-        - Shipping
-        - Locations
-        - Terminal
-        - Actions
-        - Action
-        - Logos
-        - Models
-        - Orders
-        - Order
-        - Cancel
-        - Products
-        - Settings
-        - Users
-        - User
-        - Webhooks
-        - Webhook
-        - Hmac
-        - Test
-        - Me
-        - Activate
-        - Payment
-        - Method
-        - Add
-        - Apple
-        - Pay
-        - Domains
-        - Get
-        - Payout
-        - Split
-        - Configurations
-        - Configuration
-        - Rules
-        - Rule
-        - Logic
-        - Stores
-        - Reference
-        - Store
+        - Terminal settings - merchant level
       summary: Update the terminal logo
       description: >-
         Updates the logo for a specific payment terminal model at the merchant
@@ -5099,68 +1909,12 @@ paths:
         [role](https://docs.adyen.com/development-resources/api-credentials#api-permissions):
 
         * Management API—Terminal settings read and write
+      x-sortIndex: 4
+      x-methodName: updateTerminalLogo
   /merchants/{merchantId}/terminalModels:
     get:
       tags:
-        - Get
-        - List
-        - Of
-        - Terminal
-        - Models
-        - Companies
-        - Id
-        - Android
-        - Apps
-        - Certificates
-        - Api
-        - Credentials
-        - Credential
-        - Allowed
-        - Origins
-        - Origin
-        - Generate
-        - Key
-        - Client
-        - Billing
-        - Entities
-        - Merchants
-        - Shipping
-        - Locations
-        - Terminal
-        - Actions
-        - Action
-        - Logos
-        - Models
-        - Orders
-        - Order
-        - Cancel
-        - Products
-        - Settings
-        - Users
-        - User
-        - Webhooks
-        - Webhook
-        - Hmac
-        - Test
-        - Me
-        - Activate
-        - Payment
-        - Method
-        - Add
-        - Apple
-        - Pay
-        - Domains
-        - Get
-        - Payout
-        - Split
-        - Configurations
-        - Configuration
-        - Rules
-        - Rule
-        - Logic
-        - Stores
-        - Reference
-        - Store
+        - Terminal orders - merchant level
       summary: Get a list of terminal models
       description: >-
         Returns the payment terminal models that merchant account identified in
@@ -5175,67 +1929,12 @@ paths:
         * Management API—Terminal ordering read
 
         * Management API—Terminal ordering read and write
+      x-sortIndex: 1
+      x-methodName: listTerminalModels
   /merchants/{merchantId}/terminalOrders:
     get:
       tags:
-        - Get
-        - List
-        - Of
-        - Orders
-        - Companies
-        - Id
-        - Android
-        - Apps
-        - Certificates
-        - Api
-        - Credentials
-        - Credential
-        - Allowed
-        - Origins
-        - Origin
-        - Generate
-        - Key
-        - Client
-        - Billing
-        - Entities
-        - Merchants
-        - Shipping
-        - Locations
-        - Terminal
-        - Actions
-        - Action
-        - Logos
-        - Models
-        - Orders
-        - Order
-        - Cancel
-        - Products
-        - Settings
-        - Users
-        - User
-        - Webhooks
-        - Webhook
-        - Hmac
-        - Test
-        - Me
-        - Activate
-        - Payment
-        - Method
-        - Add
-        - Apple
-        - Pay
-        - Domains
-        - Get
-        - Payout
-        - Split
-        - Configurations
-        - Configuration
-        - Rules
-        - Rule
-        - Logic
-        - Stores
-        - Reference
-        - Store
+        - Terminal orders - merchant level
       summary: Get a list of orders
       description: >-
         Returns a list of terminal products orders for the merchant account
@@ -5248,65 +1947,11 @@ paths:
         * Management API—Terminal ordering read
 
         * Management API—Terminal ordering read and write
+      x-sortIndex: 7
+      x-methodName: listOrders
     post:
       tags:
-        - Create
-        - An
-        - Order
-        - Companies
-        - Id
-        - Android
-        - Apps
-        - Certificates
-        - Api
-        - Credentials
-        - Credential
-        - Allowed
-        - Origins
-        - Origin
-        - Generate
-        - Key
-        - Client
-        - Billing
-        - Entities
-        - Merchants
-        - Shipping
-        - Locations
-        - Terminal
-        - Actions
-        - Action
-        - Logos
-        - Models
-        - Orders
-        - Order
-        - Cancel
-        - Products
-        - Settings
-        - Users
-        - User
-        - Webhooks
-        - Webhook
-        - Hmac
-        - Test
-        - Me
-        - Activate
-        - Payment
-        - Method
-        - Add
-        - Apple
-        - Pay
-        - Domains
-        - Get
-        - Payout
-        - Split
-        - Configurations
-        - Configuration
-        - Rules
-        - Rule
-        - Logic
-        - Stores
-        - Reference
-        - Store
+        - Terminal orders - merchant level
       summary: Create an order
       description: >-
         Creates an order for payment terminal products for the merchant account
@@ -5323,66 +1968,12 @@ paths:
         a sales
         order](https://docs.adyen.com/point-of-sale/managing-terminals/order-terminals/#sales-order-steps)
         in your Customer Area.
+      x-sortIndex: 6
+      x-methodName: createOrder
   /merchants/{merchantId}/terminalOrders/{orderId}:
     get:
       tags:
-        - Get
-        - An
-        - Order
-        - Companies
-        - Id
-        - Android
-        - Apps
-        - Certificates
-        - Api
-        - Credentials
-        - Credential
-        - Allowed
-        - Origins
-        - Origin
-        - Generate
-        - Key
-        - Client
-        - Billing
-        - Entities
-        - Merchants
-        - Shipping
-        - Locations
-        - Terminal
-        - Actions
-        - Action
-        - Logos
-        - Models
-        - Orders
-        - Order
-        - Cancel
-        - Products
-        - Settings
-        - Users
-        - User
-        - Webhooks
-        - Webhook
-        - Hmac
-        - Test
-        - Me
-        - Activate
-        - Payment
-        - Method
-        - Add
-        - Apple
-        - Pay
-        - Domains
-        - Get
-        - Payout
-        - Split
-        - Configurations
-        - Configuration
-        - Rules
-        - Rule
-        - Logic
-        - Stores
-        - Reference
-        - Store
+        - Terminal orders - merchant level
       summary: Get an order
       description: >-
         Returns the details of the terminal products order identified in the
@@ -5395,65 +1986,11 @@ paths:
         * Management API—Terminal ordering read
 
         * Management API—Terminal ordering read and write
+      x-sortIndex: 8
+      x-methodName: getOrder
     patch:
       tags:
-        - Update
-        - An
-        - Order
-        - Companies
-        - Id
-        - Android
-        - Apps
-        - Certificates
-        - Api
-        - Credentials
-        - Credential
-        - Allowed
-        - Origins
-        - Origin
-        - Generate
-        - Key
-        - Client
-        - Billing
-        - Entities
-        - Merchants
-        - Shipping
-        - Locations
-        - Terminal
-        - Actions
-        - Action
-        - Logos
-        - Models
-        - Orders
-        - Order
-        - Cancel
-        - Products
-        - Settings
-        - Users
-        - User
-        - Webhooks
-        - Webhook
-        - Hmac
-        - Test
-        - Me
-        - Activate
-        - Payment
-        - Method
-        - Add
-        - Apple
-        - Pay
-        - Domains
-        - Get
-        - Payout
-        - Split
-        - Configurations
-        - Configuration
-        - Rules
-        - Rule
-        - Logic
-        - Stores
-        - Reference
-        - Store
+        - Terminal orders - merchant level
       summary: Update an order
       description: >-
         Updates the terminal products order identified in the path.
@@ -5471,66 +2008,12 @@ paths:
         [role](https://docs.adyen.com/development-resources/api-credentials#api-permissions):
 
         * Management API—Terminal ordering read and write
+      x-sortIndex: 9
+      x-methodName: updateOrder
   /merchants/{merchantId}/terminalOrders/{orderId}/cancel:
     post:
       tags:
-        - Cancel
-        - An
-        - Order
-        - Companies
-        - Id
-        - Android
-        - Apps
-        - Certificates
-        - Api
-        - Credentials
-        - Credential
-        - Allowed
-        - Origins
-        - Origin
-        - Generate
-        - Key
-        - Client
-        - Billing
-        - Entities
-        - Merchants
-        - Shipping
-        - Locations
-        - Terminal
-        - Actions
-        - Action
-        - Logos
-        - Models
-        - Orders
-        - Order
-        - Cancel
-        - Products
-        - Settings
-        - Users
-        - User
-        - Webhooks
-        - Webhook
-        - Hmac
-        - Test
-        - Me
-        - Activate
-        - Payment
-        - Method
-        - Add
-        - Apple
-        - Pay
-        - Domains
-        - Get
-        - Payout
-        - Split
-        - Configurations
-        - Configuration
-        - Rules
-        - Rule
-        - Logic
-        - Stores
-        - Reference
-        - Store
+        - Terminal orders - merchant level
       summary: Cancel an order
       description: >-
         Cancels the terminal products order identified in the path.
@@ -5546,68 +2029,12 @@ paths:
         [role](https://docs.adyen.com/development-resources/api-credentials#api-permissions):
 
         * Management API—Terminal ordering read and write
+      x-sortIndex: 10
+      x-methodName: cancelOrder
   /merchants/{merchantId}/terminalProducts:
     get:
       tags:
-        - Get
-        - List
-        - Of
-        - Terminal
-        - Products
-        - Companies
-        - Id
-        - Android
-        - Apps
-        - Certificates
-        - Api
-        - Credentials
-        - Credential
-        - Allowed
-        - Origins
-        - Origin
-        - Generate
-        - Key
-        - Client
-        - Billing
-        - Entities
-        - Merchants
-        - Shipping
-        - Locations
-        - Terminal
-        - Actions
-        - Action
-        - Logos
-        - Models
-        - Orders
-        - Order
-        - Cancel
-        - Products
-        - Settings
-        - Users
-        - User
-        - Webhooks
-        - Webhook
-        - Hmac
-        - Test
-        - Me
-        - Activate
-        - Payment
-        - Method
-        - Add
-        - Apple
-        - Pay
-        - Domains
-        - Get
-        - Payout
-        - Split
-        - Configurations
-        - Configuration
-        - Rules
-        - Rule
-        - Logic
-        - Stores
-        - Reference
-        - Store
+        - Terminal orders - merchant level
       summary: Get a list of terminal products
       description: >-
         Returns a country-specific list of payment terminal packages and parts
@@ -5620,66 +2047,12 @@ paths:
         * Management API—Terminal ordering read
 
         * Management API—Terminal ordering read and write
+      x-sortIndex: 2
+      x-methodName: listTerminalProducts
   /merchants/{merchantId}/terminalSettings:
     get:
       tags:
-        - Get
-        - Terminal
-        - Settings
-        - Companies
-        - Id
-        - Android
-        - Apps
-        - Certificates
-        - Api
-        - Credentials
-        - Credential
-        - Allowed
-        - Origins
-        - Origin
-        - Generate
-        - Key
-        - Client
-        - Billing
-        - Entities
-        - Merchants
-        - Shipping
-        - Locations
-        - Terminal
-        - Actions
-        - Action
-        - Logos
-        - Models
-        - Orders
-        - Order
-        - Cancel
-        - Products
-        - Settings
-        - Users
-        - User
-        - Webhooks
-        - Webhook
-        - Hmac
-        - Test
-        - Me
-        - Activate
-        - Payment
-        - Method
-        - Add
-        - Apple
-        - Pay
-        - Domains
-        - Get
-        - Payout
-        - Split
-        - Configurations
-        - Configuration
-        - Rules
-        - Rule
-        - Logic
-        - Stores
-        - Reference
-        - Store
+        - Terminal settings - merchant level
       summary: Get terminal settings
       description: >-
         Returns the payment terminal settings that are configured for the
@@ -5694,65 +2067,11 @@ paths:
         * Management API—Terminal settings read
 
         * Management API—Terminal settings read and write
+      x-sortIndex: 1
+      x-methodName: getTerminalSettings
     patch:
       tags:
-        - Update
-        - Terminal
-        - Settings
-        - Companies
-        - Id
-        - Android
-        - Apps
-        - Certificates
-        - Api
-        - Credentials
-        - Credential
-        - Allowed
-        - Origins
-        - Origin
-        - Generate
-        - Key
-        - Client
-        - Billing
-        - Entities
-        - Merchants
-        - Shipping
-        - Locations
-        - Terminal
-        - Actions
-        - Action
-        - Logos
-        - Models
-        - Orders
-        - Order
-        - Cancel
-        - Products
-        - Settings
-        - Users
-        - User
-        - Webhooks
-        - Webhook
-        - Hmac
-        - Test
-        - Me
-        - Activate
-        - Payment
-        - Method
-        - Add
-        - Apple
-        - Pay
-        - Domains
-        - Get
-        - Payout
-        - Split
-        - Configurations
-        - Configuration
-        - Rules
-        - Rule
-        - Logic
-        - Stores
-        - Reference
-        - Store
+        - Terminal settings - merchant level
       summary: Update terminal settings
       description: >-
         Updates payment terminal settings for the merchant account identified in
@@ -5778,67 +2097,12 @@ paths:
         [role](https://docs.adyen.com/development-resources/api-credentials#api-permissions):
 
         * Management API—Terminal settings read and write
+      x-sortIndex: 3
+      x-methodName: updateTerminalSettings
   /merchants/{merchantId}/users:
     get:
       tags:
-        - Get
-        - List
-        - Of
-        - Users
-        - Companies
-        - Id
-        - Android
-        - Apps
-        - Certificates
-        - Api
-        - Credentials
-        - Credential
-        - Allowed
-        - Origins
-        - Origin
-        - Generate
-        - Key
-        - Client
-        - Billing
-        - Entities
-        - Merchants
-        - Shipping
-        - Locations
-        - Terminal
-        - Actions
-        - Action
-        - Logos
-        - Models
-        - Orders
-        - Order
-        - Cancel
-        - Products
-        - Settings
-        - Users
-        - User
-        - Webhooks
-        - Webhook
-        - Hmac
-        - Test
-        - Me
-        - Activate
-        - Payment
-        - Method
-        - Add
-        - Apple
-        - Pay
-        - Domains
-        - Get
-        - Payout
-        - Split
-        - Configurations
-        - Configuration
-        - Rules
-        - Rule
-        - Logic
-        - Stores
-        - Reference
-        - Store
+        - Users - merchant level
       summary: Get a list of users
       description: >
         Returns a list of users associated with the `merchantId` specified in
@@ -5849,65 +2113,11 @@ paths:
         [role](https://docs.adyen.com/development-resources/api-credentials#api-permissions):
 
         * Management API—Users read and write
+      x-sortIndex: 0
+      x-methodName: listUsers
     post:
       tags:
-        - Create
-        - New
-        - User
-        - Companies
-        - Id
-        - Android
-        - Apps
-        - Certificates
-        - Api
-        - Credentials
-        - Credential
-        - Allowed
-        - Origins
-        - Origin
-        - Generate
-        - Key
-        - Client
-        - Billing
-        - Entities
-        - Merchants
-        - Shipping
-        - Locations
-        - Terminal
-        - Actions
-        - Action
-        - Logos
-        - Models
-        - Orders
-        - Order
-        - Cancel
-        - Products
-        - Settings
-        - Users
-        - User
-        - Webhooks
-        - Webhook
-        - Hmac
-        - Test
-        - Me
-        - Activate
-        - Payment
-        - Method
-        - Add
-        - Apple
-        - Pay
-        - Domains
-        - Get
-        - Payout
-        - Split
-        - Configurations
-        - Configuration
-        - Rules
-        - Rule
-        - Logic
-        - Stores
-        - Reference
-        - Store
+        - Users - merchant level
       summary: Create a new user
       description: >
         Creates a user for the `merchantId` specified in the path.
@@ -5917,66 +2127,12 @@ paths:
         [role](https://docs.adyen.com/development-resources/api-credentials#api-permissions):
 
         * Management API—Users read and write
+      x-sortIndex: 0
+      x-methodName: createNewUser
   /merchants/{merchantId}/users/{userId}:
     get:
       tags:
-        - Get
-        - User
-        - Details
-        - Companies
-        - Id
-        - Android
-        - Apps
-        - Certificates
-        - Api
-        - Credentials
-        - Credential
-        - Allowed
-        - Origins
-        - Origin
-        - Generate
-        - Key
-        - Client
-        - Billing
-        - Entities
-        - Merchants
-        - Shipping
-        - Locations
-        - Terminal
-        - Actions
-        - Action
-        - Logos
-        - Models
-        - Orders
-        - Order
-        - Cancel
-        - Products
-        - Settings
-        - Users
-        - User
-        - Webhooks
-        - Webhook
-        - Hmac
-        - Test
-        - Me
-        - Activate
-        - Payment
-        - Method
-        - Add
-        - Apple
-        - Pay
-        - Domains
-        - Get
-        - Payout
-        - Split
-        - Configurations
-        - Configuration
-        - Rules
-        - Rule
-        - Logic
-        - Stores
-        - Reference
-        - Store
+        - Users - merchant level
       summary: Get user details
       description: >
         Returns user details for the `userId` and the `merchantId` specified in
@@ -5987,64 +2143,11 @@ paths:
         [role](https://docs.adyen.com/development-resources/api-credentials#api-permissions):
 
         * Management API—Users read and write
+      x-sortIndex: 0
+      x-methodName: getUserDetails
     patch:
       tags:
-        - Update
-        - User
-        - Companies
-        - Id
-        - Android
-        - Apps
-        - Certificates
-        - Api
-        - Credentials
-        - Credential
-        - Allowed
-        - Origins
-        - Origin
-        - Generate
-        - Key
-        - Client
-        - Billing
-        - Entities
-        - Merchants
-        - Shipping
-        - Locations
-        - Terminal
-        - Actions
-        - Action
-        - Logos
-        - Models
-        - Orders
-        - Order
-        - Cancel
-        - Products
-        - Settings
-        - Users
-        - User
-        - Webhooks
-        - Webhook
-        - Hmac
-        - Test
-        - Me
-        - Activate
-        - Payment
-        - Method
-        - Add
-        - Apple
-        - Pay
-        - Domains
-        - Get
-        - Payout
-        - Split
-        - Configurations
-        - Configuration
-        - Rules
-        - Rule
-        - Logic
-        - Stores
-        - Reference
-        - Store
+        - Users - merchant level
       summary: Update a user
       description: >
         Updates user details for the `userId` and the `merchantId` specified in
@@ -6055,66 +2158,12 @@ paths:
         [role](https://docs.adyen.com/development-resources/api-credentials#api-permissions):
 
         * Management API—Users read and write
+      x-sortIndex: 0
+      x-methodName: updateUser
   /merchants/{merchantId}/webhooks:
     get:
       tags:
-        - List
-        - All
-        - Webhooks
-        - Companies
-        - Id
-        - Android
-        - Apps
-        - Certificates
-        - Api
-        - Credentials
-        - Credential
-        - Allowed
-        - Origins
-        - Origin
-        - Generate
-        - Key
-        - Client
-        - Billing
-        - Entities
-        - Merchants
-        - Shipping
-        - Locations
-        - Terminal
-        - Actions
-        - Action
-        - Logos
-        - Models
-        - Orders
-        - Order
-        - Cancel
-        - Products
-        - Settings
-        - Users
-        - User
-        - Webhooks
-        - Webhook
-        - Hmac
-        - Test
-        - Me
-        - Activate
-        - Payment
-        - Method
-        - Add
-        - Apple
-        - Pay
-        - Domains
-        - Get
-        - Payout
-        - Split
-        - Configurations
-        - Configuration
-        - Rules
-        - Rule
-        - Logic
-        - Stores
-        - Reference
-        - Store
+        - Webhooks - merchant level
       summary: List all webhooks
       description: >-
         Lists all webhook configurations for the merchant account.
@@ -6126,65 +2175,11 @@ paths:
         * Management API—Webhooks read
 
         * Management API—Webhooks read and write
+      x-sortIndex: 2
+      x-methodName: listAllWebhooks
     post:
       tags:
-        - Set
-        - Up
-        - Webhook
-        - Companies
-        - Id
-        - Android
-        - Apps
-        - Certificates
-        - Api
-        - Credentials
-        - Credential
-        - Allowed
-        - Origins
-        - Origin
-        - Generate
-        - Key
-        - Client
-        - Billing
-        - Entities
-        - Merchants
-        - Shipping
-        - Locations
-        - Terminal
-        - Actions
-        - Action
-        - Logos
-        - Models
-        - Orders
-        - Order
-        - Cancel
-        - Products
-        - Settings
-        - Users
-        - User
-        - Webhooks
-        - Webhook
-        - Hmac
-        - Test
-        - Me
-        - Activate
-        - Payment
-        - Method
-        - Add
-        - Apple
-        - Pay
-        - Domains
-        - Get
-        - Payout
-        - Split
-        - Configurations
-        - Configuration
-        - Rules
-        - Rule
-        - Logic
-        - Stores
-        - Reference
-        - Store
+        - Webhooks - merchant level
       summary: Set up a webhook
       description: >-
         Subscribe to receive webhook notifications about events related to your
@@ -6196,65 +2191,12 @@ paths:
         [roles](https://docs.adyen.com/development-resources/api-credentials#api-permissions):
 
         * Management API—Webhooks read and write
+      x-sortIndex: 1
+      x-methodName: setUpWebhook
   /merchants/{merchantId}/webhooks/{webhookId}:
     delete:
       tags:
-        - Remove
-        - Webhook
-        - Companies
-        - Id
-        - Android
-        - Apps
-        - Certificates
-        - Api
-        - Credentials
-        - Credential
-        - Allowed
-        - Origins
-        - Origin
-        - Generate
-        - Key
-        - Client
-        - Billing
-        - Entities
-        - Merchants
-        - Shipping
-        - Locations
-        - Terminal
-        - Actions
-        - Action
-        - Logos
-        - Models
-        - Orders
-        - Order
-        - Cancel
-        - Products
-        - Settings
-        - Users
-        - User
-        - Webhooks
-        - Webhook
-        - Hmac
-        - Test
-        - Me
-        - Activate
-        - Payment
-        - Method
-        - Add
-        - Apple
-        - Pay
-        - Domains
-        - Get
-        - Payout
-        - Split
-        - Configurations
-        - Configuration
-        - Rules
-        - Rule
-        - Logic
-        - Stores
-        - Reference
-        - Store
+        - Webhooks - merchant level
       summary: Remove a webhook
       description: >-
         Remove the configuration for the webhook identified in the path.
@@ -6264,64 +2206,11 @@ paths:
         [roles](https://docs.adyen.com/development-resources/api-credentials#api-permissions):
 
         * Management API—Webhooks read and write
+      x-sortIndex: 5
+      x-methodName: removeWebhook
     get:
       tags:
-        - Get
-        - Webhook
-        - Companies
-        - Id
-        - Android
-        - Apps
-        - Certificates
-        - Api
-        - Credentials
-        - Credential
-        - Allowed
-        - Origins
-        - Origin
-        - Generate
-        - Key
-        - Client
-        - Billing
-        - Entities
-        - Merchants
-        - Shipping
-        - Locations
-        - Terminal
-        - Actions
-        - Action
-        - Logos
-        - Models
-        - Orders
-        - Order
-        - Cancel
-        - Products
-        - Settings
-        - Users
-        - User
-        - Webhooks
-        - Webhook
-        - Hmac
-        - Test
-        - Me
-        - Activate
-        - Payment
-        - Method
-        - Add
-        - Apple
-        - Pay
-        - Domains
-        - Get
-        - Payout
-        - Split
-        - Configurations
-        - Configuration
-        - Rules
-        - Rule
-        - Logic
-        - Stores
-        - Reference
-        - Store
+        - Webhooks - merchant level
       summary: Get a webhook
       description: >-
         Returns the configuration for the webhook identified in the path.
@@ -6333,64 +2222,11 @@ paths:
         * Management API—Webhooks read
 
         * Management API—Webhooks read and write
+      x-sortIndex: 3
+      x-methodName: getWebhook
     patch:
       tags:
-        - Update
-        - Webhook
-        - Companies
-        - Id
-        - Android
-        - Apps
-        - Certificates
-        - Api
-        - Credentials
-        - Credential
-        - Allowed
-        - Origins
-        - Origin
-        - Generate
-        - Key
-        - Client
-        - Billing
-        - Entities
-        - Merchants
-        - Shipping
-        - Locations
-        - Terminal
-        - Actions
-        - Action
-        - Logos
-        - Models
-        - Orders
-        - Order
-        - Cancel
-        - Products
-        - Settings
-        - Users
-        - User
-        - Webhooks
-        - Webhook
-        - Hmac
-        - Test
-        - Me
-        - Activate
-        - Payment
-        - Method
-        - Add
-        - Apple
-        - Pay
-        - Domains
-        - Get
-        - Payout
-        - Split
-        - Configurations
-        - Configuration
-        - Rules
-        - Rule
-        - Logic
-        - Stores
-        - Reference
-        - Store
+        - Webhooks - merchant level
       summary: Update a webhook
       description: >-
         Make changes to the configuration of the webhook identified in the path.
@@ -6403,66 +2239,12 @@ paths:
         [roles](https://docs.adyen.com/development-resources/api-credentials#api-permissions):
 
         * Management API—Webhooks read and write
+      x-sortIndex: 4
+      x-methodName: updateWebhook
   /merchants/{merchantId}/webhooks/{webhookId}/generateHmac:
     post:
       tags:
-        - Generate
-        - An
-        - Key
-        - Companies
-        - Id
-        - Android
-        - Apps
-        - Certificates
-        - Api
-        - Credentials
-        - Credential
-        - Allowed
-        - Origins
-        - Origin
-        - Generate
-        - Key
-        - Client
-        - Billing
-        - Entities
-        - Merchants
-        - Shipping
-        - Locations
-        - Terminal
-        - Actions
-        - Action
-        - Logos
-        - Models
-        - Orders
-        - Order
-        - Cancel
-        - Products
-        - Settings
-        - Users
-        - User
-        - Webhooks
-        - Webhook
-        - Hmac
-        - Test
-        - Me
-        - Activate
-        - Payment
-        - Method
-        - Add
-        - Apple
-        - Pay
-        - Domains
-        - Get
-        - Payout
-        - Split
-        - Configurations
-        - Configuration
-        - Rules
-        - Rule
-        - Logic
-        - Stores
-        - Reference
-        - Store
+        - Webhooks - merchant level
       summary: Generate an HMAC key
       description: >-
         Returns an [HMAC key](https://en.wikipedia.org/wiki/HMAC) for the
@@ -6478,65 +2260,12 @@ paths:
         [roles](https://docs.adyen.com/development-resources/api-credentials#api-permissions):
 
         * Management API—Webhooks read and write
+      x-sortIndex: 6
+      x-methodName: generateHmacKey
   /merchants/{merchantId}/webhooks/{webhookId}/test:
     post:
       tags:
-        - Test
-        - Webhook
-        - Companies
-        - Id
-        - Android
-        - Apps
-        - Certificates
-        - Api
-        - Credentials
-        - Credential
-        - Allowed
-        - Origins
-        - Origin
-        - Generate
-        - Key
-        - Client
-        - Billing
-        - Entities
-        - Merchants
-        - Shipping
-        - Locations
-        - Terminal
-        - Actions
-        - Action
-        - Logos
-        - Models
-        - Orders
-        - Order
-        - Cancel
-        - Products
-        - Settings
-        - Users
-        - User
-        - Webhooks
-        - Webhook
-        - Hmac
-        - Test
-        - Me
-        - Activate
-        - Payment
-        - Method
-        - Add
-        - Apple
-        - Pay
-        - Domains
-        - Get
-        - Payout
-        - Split
-        - Configurations
-        - Configuration
-        - Rules
-        - Rule
-        - Logic
-        - Stores
-        - Reference
-        - Store
+        - Webhooks - merchant level
       summary: Test a webhook
       description: >-
         Sends sample notifications to test if the webhook is set up correctly.
@@ -6558,67 +2287,12 @@ paths:
         [roles](https://docs.adyen.com/development-resources/api-credentials#api-permissions):
 
         * Management API—Webhooks read and write
+      x-sortIndex: 7
+      x-methodName: testWebhook
   /stores:
     get:
       tags:
-        - Get
-        - List
-        - Of
-        - Stores
-        - Companies
-        - Id
-        - Android
-        - Apps
-        - Certificates
-        - Api
-        - Credentials
-        - Credential
-        - Allowed
-        - Origins
-        - Origin
-        - Generate
-        - Key
-        - Client
-        - Billing
-        - Entities
-        - Merchants
-        - Shipping
-        - Locations
-        - Terminal
-        - Actions
-        - Action
-        - Logos
-        - Models
-        - Orders
-        - Order
-        - Cancel
-        - Products
-        - Settings
-        - Users
-        - User
-        - Webhooks
-        - Webhook
-        - Hmac
-        - Test
-        - Me
-        - Activate
-        - Payment
-        - Method
-        - Add
-        - Apple
-        - Pay
-        - Domains
-        - Get
-        - Payout
-        - Split
-        - Configurations
-        - Configuration
-        - Rules
-        - Rule
-        - Logic
-        - Stores
-        - Reference
-        - Store
+        - Account - store level
       summary: Get a list of stores
       description: >-
         Returns a list of stores. The list is grouped into pages as defined by
@@ -6631,64 +2305,11 @@ paths:
         * Management API—Stores read
 
         * Management API—Stores read and write
+      x-sortIndex: 4
+      x-methodName: listStores
     post:
       tags:
-        - Create
-        - Store
-        - Companies
-        - Id
-        - Android
-        - Apps
-        - Certificates
-        - Api
-        - Credentials
-        - Credential
-        - Allowed
-        - Origins
-        - Origin
-        - Generate
-        - Key
-        - Client
-        - Billing
-        - Entities
-        - Merchants
-        - Shipping
-        - Locations
-        - Terminal
-        - Actions
-        - Action
-        - Logos
-        - Models
-        - Orders
-        - Order
-        - Cancel
-        - Products
-        - Settings
-        - Users
-        - User
-        - Webhooks
-        - Webhook
-        - Hmac
-        - Test
-        - Me
-        - Activate
-        - Payment
-        - Method
-        - Add
-        - Apple
-        - Pay
-        - Domains
-        - Get
-        - Payout
-        - Split
-        - Configurations
-        - Configuration
-        - Rules
-        - Rule
-        - Logic
-        - Stores
-        - Reference
-        - Store
+        - Account - store level
       summary: Create a store
       description: >-
         Creates a store for the merchant account specified in the request.
@@ -6698,65 +2319,12 @@ paths:
         [role](https://docs.adyen.com/development-resources/api-credentials#api-permissions):
 
         * Management API—Stores read and write
+      x-sortIndex: 5
+      x-methodName: createStore
   /stores/{storeId}:
     get:
       tags:
-        - Get
-        - Store
-        - Companies
-        - Id
-        - Android
-        - Apps
-        - Certificates
-        - Api
-        - Credentials
-        - Credential
-        - Allowed
-        - Origins
-        - Origin
-        - Generate
-        - Key
-        - Client
-        - Billing
-        - Entities
-        - Merchants
-        - Shipping
-        - Locations
-        - Terminal
-        - Actions
-        - Action
-        - Logos
-        - Models
-        - Orders
-        - Order
-        - Cancel
-        - Products
-        - Settings
-        - Users
-        - User
-        - Webhooks
-        - Webhook
-        - Hmac
-        - Test
-        - Me
-        - Activate
-        - Payment
-        - Method
-        - Add
-        - Apple
-        - Pay
-        - Domains
-        - Get
-        - Payout
-        - Split
-        - Configurations
-        - Configuration
-        - Rules
-        - Rule
-        - Logic
-        - Stores
-        - Reference
-        - Store
+        - Account - store level
       summary: Get a store
       description: >-
         Returns the details of the store identified in the path.
@@ -6768,64 +2336,11 @@ paths:
         * Management API—Stores read
 
         * Management API—Stores read and write
+      x-sortIndex: 6
+      x-methodName: getStoreById
     patch:
       tags:
-        - Update
-        - Store
-        - Companies
-        - Id
-        - Android
-        - Apps
-        - Certificates
-        - Api
-        - Credentials
-        - Credential
-        - Allowed
-        - Origins
-        - Origin
-        - Generate
-        - Key
-        - Client
-        - Billing
-        - Entities
-        - Merchants
-        - Shipping
-        - Locations
-        - Terminal
-        - Actions
-        - Action
-        - Logos
-        - Models
-        - Orders
-        - Order
-        - Cancel
-        - Products
-        - Settings
-        - Users
-        - User
-        - Webhooks
-        - Webhook
-        - Hmac
-        - Test
-        - Me
-        - Activate
-        - Payment
-        - Method
-        - Add
-        - Apple
-        - Pay
-        - Domains
-        - Get
-        - Payout
-        - Split
-        - Configurations
-        - Configuration
-        - Rules
-        - Rule
-        - Logic
-        - Stores
-        - Reference
-        - Store
+        - Account - store level
       summary: Update a store
       description: >-
         Updates the store identified in the path.
@@ -6837,67 +2352,12 @@ paths:
         [role](https://docs.adyen.com/development-resources/api-credentials#api-permissions):
 
         * Management API—Stores read and write
+      x-sortIndex: 7
+      x-methodName: updateStoreById
   /stores/{storeId}/terminalLogos:
     get:
       tags:
-        - Get
-        - The
-        - Terminal
-        - Logo
-        - Companies
-        - Id
-        - Android
-        - Apps
-        - Certificates
-        - Api
-        - Credentials
-        - Credential
-        - Allowed
-        - Origins
-        - Origin
-        - Generate
-        - Key
-        - Client
-        - Billing
-        - Entities
-        - Merchants
-        - Shipping
-        - Locations
-        - Terminal
-        - Actions
-        - Action
-        - Logos
-        - Models
-        - Orders
-        - Order
-        - Cancel
-        - Products
-        - Settings
-        - Users
-        - User
-        - Webhooks
-        - Webhook
-        - Hmac
-        - Test
-        - Me
-        - Activate
-        - Payment
-        - Method
-        - Add
-        - Apple
-        - Pay
-        - Domains
-        - Get
-        - Payout
-        - Split
-        - Configurations
-        - Configuration
-        - Rules
-        - Rule
-        - Logic
-        - Stores
-        - Reference
-        - Store
+        - Terminal settings - store level
       summary: Get the terminal logo
       description: >-
         Returns the logo that is configured for a specific payment terminal
@@ -6916,66 +2376,11 @@ paths:
         * Management API—Terminal settings read
 
         * Management API—Terminal settings read and write
+      x-sortIndex: 2
+      x-methodName: getTerminalLogoByStoreId
     patch:
       tags:
-        - Update
-        - The
-        - Terminal
-        - Logo
-        - Companies
-        - Id
-        - Android
-        - Apps
-        - Certificates
-        - Api
-        - Credentials
-        - Credential
-        - Allowed
-        - Origins
-        - Origin
-        - Generate
-        - Key
-        - Client
-        - Billing
-        - Entities
-        - Merchants
-        - Shipping
-        - Locations
-        - Terminal
-        - Actions
-        - Action
-        - Logos
-        - Models
-        - Orders
-        - Order
-        - Cancel
-        - Products
-        - Settings
-        - Users
-        - User
-        - Webhooks
-        - Webhook
-        - Hmac
-        - Test
-        - Me
-        - Activate
-        - Payment
-        - Method
-        - Add
-        - Apple
-        - Pay
-        - Domains
-        - Get
-        - Payout
-        - Split
-        - Configurations
-        - Configuration
-        - Rules
-        - Rule
-        - Logic
-        - Stores
-        - Reference
-        - Store
+        - Terminal settings - store level
       summary: Update the terminal logo
       description: >-
         Updates the logo that is configured for a specific payment terminal
@@ -6997,66 +2402,12 @@ paths:
         [role](https://docs.adyen.com/development-resources/api-credentials#api-permissions):
 
         * Management API—Terminal settings read and write
+      x-sortIndex: 4
+      x-methodName: updateTerminalLogoByStoreId
   /stores/{storeId}/terminalSettings:
     get:
       tags:
-        - Get
-        - Terminal
-        - Settings
-        - Companies
-        - Id
-        - Android
-        - Apps
-        - Certificates
-        - Api
-        - Credentials
-        - Credential
-        - Allowed
-        - Origins
-        - Origin
-        - Generate
-        - Key
-        - Client
-        - Billing
-        - Entities
-        - Merchants
-        - Shipping
-        - Locations
-        - Terminal
-        - Actions
-        - Action
-        - Logos
-        - Models
-        - Orders
-        - Order
-        - Cancel
-        - Products
-        - Settings
-        - Users
-        - User
-        - Webhooks
-        - Webhook
-        - Hmac
-        - Test
-        - Me
-        - Activate
-        - Payment
-        - Method
-        - Add
-        - Apple
-        - Pay
-        - Domains
-        - Get
-        - Payout
-        - Split
-        - Configurations
-        - Configuration
-        - Rules
-        - Rule
-        - Logic
-        - Stores
-        - Reference
-        - Store
+        - Terminal settings - store level
       summary: Get terminal settings
       description: >-
         Returns the payment terminal settings that are configured for the store
@@ -7077,65 +2428,11 @@ paths:
         your API credential must have the following role:
 
         * Management API—Terminal settings Advanced read and write
+      x-sortIndex: 1
+      x-methodName: getTerminalSettingsByStoreId
     patch:
       tags:
-        - Update
-        - Terminal
-        - Settings
-        - Companies
-        - Id
-        - Android
-        - Apps
-        - Certificates
-        - Api
-        - Credentials
-        - Credential
-        - Allowed
-        - Origins
-        - Origin
-        - Generate
-        - Key
-        - Client
-        - Billing
-        - Entities
-        - Merchants
-        - Shipping
-        - Locations
-        - Terminal
-        - Actions
-        - Action
-        - Logos
-        - Models
-        - Orders
-        - Order
-        - Cancel
-        - Products
-        - Settings
-        - Users
-        - User
-        - Webhooks
-        - Webhook
-        - Hmac
-        - Test
-        - Me
-        - Activate
-        - Payment
-        - Method
-        - Add
-        - Apple
-        - Pay
-        - Domains
-        - Get
-        - Payout
-        - Split
-        - Configurations
-        - Configuration
-        - Rules
-        - Rule
-        - Logic
-        - Stores
-        - Reference
-        - Store
+        - Terminal settings - store level
       summary: Update terminal settings
       description: >-
         Updates payment terminal settings for the store identified in the path.
@@ -7165,68 +2462,12 @@ paths:
         your API credential must have the following role:
 
         * Management API—Terminal settings Advanced read and write
+      x-sortIndex: 3
+      x-methodName: updateTerminalSettingsByStoreId
   /terminals:
     get:
       tags:
-        - Get
-        - List
-        - Of
-        - Terminals
-        - Companies
-        - Id
-        - Android
-        - Apps
-        - Certificates
-        - Api
-        - Credentials
-        - Credential
-        - Allowed
-        - Origins
-        - Origin
-        - Generate
-        - Key
-        - Client
-        - Billing
-        - Entities
-        - Merchants
-        - Shipping
-        - Locations
-        - Terminal
-        - Actions
-        - Action
-        - Logos
-        - Models
-        - Orders
-        - Order
-        - Cancel
-        - Products
-        - Settings
-        - Users
-        - User
-        - Webhooks
-        - Webhook
-        - Hmac
-        - Test
-        - Me
-        - Activate
-        - Payment
-        - Method
-        - Add
-        - Apple
-        - Pay
-        - Domains
-        - Get
-        - Payout
-        - Split
-        - Configurations
-        - Configuration
-        - Rules
-        - Rule
-        - Logic
-        - Stores
-        - Reference
-        - Store
-        - Terminals
+        - Terminals - terminal level
       summary: Get a list of terminals
       description: >-
         Returns the payment terminals that the API credential has access to and
@@ -7236,67 +2477,12 @@ paths:
         [roles](https://docs.adyen.com/development-resources/api-credentials#api-permissions):
 
         * Management API — Terminal actions read
+      x-sortIndex: 1
+      x-methodName: listTerminals
   /terminals/scheduleActions:
     post:
       tags:
-        - Create
-        - Terminal
-        - Action
-        - Companies
-        - Id
-        - Android
-        - Apps
-        - Certificates
-        - Api
-        - Credentials
-        - Credential
-        - Allowed
-        - Origins
-        - Origin
-        - Generate
-        - Key
-        - Client
-        - Billing
-        - Entities
-        - Merchants
-        - Shipping
-        - Locations
-        - Terminal
-        - Actions
-        - Action
-        - Logos
-        - Models
-        - Orders
-        - Order
-        - Cancel
-        - Products
-        - Settings
-        - Users
-        - User
-        - Webhooks
-        - Webhook
-        - Hmac
-        - Test
-        - Me
-        - Activate
-        - Payment
-        - Method
-        - Add
-        - Apple
-        - Pay
-        - Domains
-        - Get
-        - Payout
-        - Split
-        - Configurations
-        - Configuration
-        - Rules
-        - Rule
-        - Logic
-        - Stores
-        - Reference
-        - Store
-        - Terminals
+        - Terminal actions - terminal level
       summary: Create a terminal action
       description: >-
         Schedules a [terminal
@@ -7324,67 +2510,12 @@ paths:
         [role](https://docs.adyen.com/development-resources/api-credentials#api-permissions):
 
         * Management API—Terminal actions read and write
+      x-sortIndex: 1
+      x-methodName: createTerminalAction
   /terminals/{terminalId}/reassign:
     post:
       tags:
-        - Reassign
-        - Terminal
-        - Companies
-        - Id
-        - Android
-        - Apps
-        - Certificates
-        - Api
-        - Credentials
-        - Credential
-        - Allowed
-        - Origins
-        - Origin
-        - Generate
-        - Key
-        - Client
-        - Billing
-        - Entities
-        - Merchants
-        - Shipping
-        - Locations
-        - Terminal
-        - Actions
-        - Action
-        - Logos
-        - Models
-        - Orders
-        - Order
-        - Cancel
-        - Products
-        - Settings
-        - Users
-        - User
-        - Webhooks
-        - Webhook
-        - Hmac
-        - Test
-        - Me
-        - Activate
-        - Payment
-        - Method
-        - Add
-        - Apple
-        - Pay
-        - Domains
-        - Get
-        - Payout
-        - Split
-        - Configurations
-        - Configuration
-        - Rules
-        - Rule
-        - Logic
-        - Stores
-        - Reference
-        - Store
-        - Terminals
-        - Reassign
+        - Terminals - terminal level
       summary: Reassign a terminal
       description: >-
         Reassigns a payment terminal to a company account, merchant account,
@@ -7395,69 +2526,13 @@ paths:
         [role](https://docs.adyen.com/development-resources/api-credentials#api-permissions):
 
         * Management API—Assign Terminal
+      x-addedInVersion: '3'
+      x-sortIndex: 2
+      x-methodName: reassignTerminal
   /terminals/{terminalId}/terminalLogos:
     get:
       tags:
-        - Get
-        - The
-        - Terminal
-        - Logo
-        - Companies
-        - Id
-        - Android
-        - Apps
-        - Certificates
-        - Api
-        - Credentials
-        - Credential
-        - Allowed
-        - Origins
-        - Origin
-        - Generate
-        - Key
-        - Client
-        - Billing
-        - Entities
-        - Merchants
-        - Shipping
-        - Locations
-        - Terminal
-        - Actions
-        - Action
-        - Logos
-        - Models
-        - Orders
-        - Order
-        - Cancel
-        - Products
-        - Settings
-        - Users
-        - User
-        - Webhooks
-        - Webhook
-        - Hmac
-        - Test
-        - Me
-        - Activate
-        - Payment
-        - Method
-        - Add
-        - Apple
-        - Pay
-        - Domains
-        - Get
-        - Payout
-        - Split
-        - Configurations
-        - Configuration
-        - Rules
-        - Rule
-        - Logic
-        - Stores
-        - Reference
-        - Store
-        - Terminals
-        - Reassign
+        - Terminal settings - terminal level
       summary: Get the terminal logo
       description: >-
         Returns the logo that is configured for the payment terminal identified
@@ -7473,67 +2548,11 @@ paths:
         * Management API—Terminal settings read
 
         * Management API—Terminal settings read and write
+      x-sortIndex: 4
+      x-methodName: getTerminalLogo
     patch:
       tags:
-        - Update
-        - The
-        - Logo
-        - Companies
-        - Id
-        - Android
-        - Apps
-        - Certificates
-        - Api
-        - Credentials
-        - Credential
-        - Allowed
-        - Origins
-        - Origin
-        - Generate
-        - Key
-        - Client
-        - Billing
-        - Entities
-        - Merchants
-        - Shipping
-        - Locations
-        - Terminal
-        - Actions
-        - Action
-        - Logos
-        - Models
-        - Orders
-        - Order
-        - Cancel
-        - Products
-        - Settings
-        - Users
-        - User
-        - Webhooks
-        - Webhook
-        - Hmac
-        - Test
-        - Me
-        - Activate
-        - Payment
-        - Method
-        - Add
-        - Apple
-        - Pay
-        - Domains
-        - Get
-        - Payout
-        - Split
-        - Configurations
-        - Configuration
-        - Rules
-        - Rule
-        - Logic
-        - Stores
-        - Reference
-        - Store
-        - Terminals
-        - Reassign
+        - Terminal settings - terminal level
       summary: Update the logo
       description: >-
         Updates the logo for the payment terminal identified in the path.
@@ -7549,68 +2568,12 @@ paths:
         [role](https://docs.adyen.com/development-resources/api-credentials#api-permissions):
 
         * Management API—Terminal settings read and write
+      x-sortIndex: 6
+      x-methodName: updateLogo
   /terminals/{terminalId}/terminalSettings:
     get:
       tags:
-        - Get
-        - Terminal
-        - Settings
-        - Companies
-        - Id
-        - Android
-        - Apps
-        - Certificates
-        - Api
-        - Credentials
-        - Credential
-        - Allowed
-        - Origins
-        - Origin
-        - Generate
-        - Key
-        - Client
-        - Billing
-        - Entities
-        - Merchants
-        - Shipping
-        - Locations
-        - Terminal
-        - Actions
-        - Action
-        - Logos
-        - Models
-        - Orders
-        - Order
-        - Cancel
-        - Products
-        - Settings
-        - Users
-        - User
-        - Webhooks
-        - Webhook
-        - Hmac
-        - Test
-        - Me
-        - Activate
-        - Payment
-        - Method
-        - Add
-        - Apple
-        - Pay
-        - Domains
-        - Get
-        - Payout
-        - Split
-        - Configurations
-        - Configuration
-        - Rules
-        - Rule
-        - Logic
-        - Stores
-        - Reference
-        - Store
-        - Terminals
-        - Reassign
+        - Terminal settings - terminal level
       summary: Get terminal settings
       description: >-
         Returns the settings that are configured for the payment terminal
@@ -7630,67 +2593,11 @@ paths:
         your API credential must have the following role:
 
         * Management API—Terminal settings Advanced read and write
+      x-sortIndex: 3
+      x-methodName: getTerminalSettings
     patch:
       tags:
-        - Update
-        - Terminal
-        - Settings
-        - Companies
-        - Id
-        - Android
-        - Apps
-        - Certificates
-        - Api
-        - Credentials
-        - Credential
-        - Allowed
-        - Origins
-        - Origin
-        - Generate
-        - Key
-        - Client
-        - Billing
-        - Entities
-        - Merchants
-        - Shipping
-        - Locations
-        - Terminal
-        - Actions
-        - Action
-        - Logos
-        - Models
-        - Orders
-        - Order
-        - Cancel
-        - Products
-        - Settings
-        - Users
-        - User
-        - Webhooks
-        - Webhook
-        - Hmac
-        - Test
-        - Me
-        - Activate
-        - Payment
-        - Method
-        - Add
-        - Apple
-        - Pay
-        - Domains
-        - Get
-        - Payout
-        - Split
-        - Configurations
-        - Configuration
-        - Rules
-        - Rule
-        - Logic
-        - Stores
-        - Reference
-        - Store
-        - Terminals
-        - Reassign
+        - Terminal settings - terminal level
       summary: Update terminal settings
       description: >-
         Updates the settings that are configured for the payment terminal
@@ -7719,4 +2626,5 @@ paths:
         your API credential must have the following role:
 
         * Management API—Terminal settings Advanced read and write
-components: null
+      x-sortIndex: 5
+      x-methodName: updateTerminalSettings

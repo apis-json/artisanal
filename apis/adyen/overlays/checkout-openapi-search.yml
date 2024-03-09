@@ -1,16 +1,21 @@
+openapi: 3.1.0
 info:
+  x-publicVersion: true
   title: Adyen Checkout API
+tags:
+  - name: Payments
+  - name: Donations
+  - name: Payment links
+  - name: Modifications
+  - name: Recurring
+  - name: Orders
+  - name: Utility
+  - name: Classic Checkout SDK
 paths:
   /applePay/sessions:
     post:
       tags:
-        - Get
-        - An
-        - Apple
-        - Pay
-        - Session
-        - Pay
-        - Sessions
+        - Utility
       summary: Get an Apple Pay session
       description: >-
         You need to use this endpoint if you have an API-only integration with
@@ -20,16 +25,12 @@ paths:
         The endpoint returns the Apple Pay session data which you need to
         complete the [Apple Pay session
         validation](https://docs.adyen.com/payment-methods/apple-pay/api-only?tab=adyen-certificate-validation_1#complete-apple-pay-session-validation).
+      x-sortIndex: 2
+      x-methodName: getApplePaySession
   /cancels:
     post:
       tags:
-        - Cancel
-        - An
-        - Authorised
-        - Payment
-        - Pay
-        - Sessions
-        - Cancels
+        - Modifications
       summary: Cancel an authorised payment
       description: >-
         Cancels the authorisation on a payment that has not yet been
@@ -54,20 +55,12 @@ paths:
 
         For more information, refer to
         [Cancel](https://docs.adyen.com/online-payments/cancel).
+      x-sortIndex: 3
+      x-methodName: cancelAuthorisedPayment
   /cardDetails:
     post:
       tags:
-        - Get
-        - The
-        - List
-        - Of
-        - Brands
-        - 'On'
-        - Card
-        - Pay
-        - Sessions
-        - Cancels
-        - Details
+        - Payments
       summary: Get the list of brands on the card
       description: >+
         Send a request with at least the first 6 digits of the card number to
@@ -84,17 +77,11 @@ paths:
         cards, you must let the shopper choose the brand to pay with  if you
         support both brands.
 
+      x-sortIndex: 6
+      x-methodName: cardDetails
   /donations:
     post:
       tags:
-        - Start
-        - Transaction
-        - For
-        - Donations
-        - Pay
-        - Sessions
-        - Cancels
-        - Details
         - Donations
       summary: Start a transaction for donations
       description: >-
@@ -105,58 +92,34 @@ paths:
 
         For more information, see
         [Donations](https://docs.adyen.com/online-payments/donations).
+      x-sortIndex: 2
+      x-methodName: donations
   /orders:
     post:
       tags:
-        - Create
-        - An
-        - Order
-        - Pay
-        - Sessions
-        - Cancels
-        - Details
-        - Donations
         - Orders
       summary: Create an order
       description: >-
         Creates an order to be used for partial payments. Make a POST `/orders`
         call before making a `/payments` call when processing payments with
         different payment methods.
+      x-sortIndex: 2
+      x-methodName: orders
   /orders/cancel:
     post:
       tags:
-        - Cancel
-        - An
-        - Order
-        - Pay
-        - Sessions
-        - Cancels
-        - Details
-        - Donations
         - Orders
-        - Cancel
       summary: Cancel an order
       description: >-
         Cancels an order. Cancellation of an order results in an automatic
         rollback of all payments made in the order, either by canceling or
         refunding the payment, depending on the type of payment method.
+      x-sortIndex: 3
+      x-methodName: cancelOrder
   /originKeys:
     post:
       tags:
-        - Create
-        - Origin
-        - Key
-        - Values
-        - For
-        - Domains
-        - Pay
-        - Sessions
-        - Cancels
-        - Details
-        - Donations
-        - Orders
-        - Cancel
-        - Keys
+        - Utility
       summary: Create originKey values for domains
       description: >-
         This operation takes the origin domains and returns a JSON object
@@ -168,21 +131,14 @@ paths:
         This allows you to use a single key for all origins, add or remove
         origins without generating a new key, and detect the card type from the
         number entered in your payment form. 
+      deprecated: true
+      x-deprecatedInVersion: '67'
+      x-sortIndex: 1
+      x-methodName: originKeys
   /paymentLinks:
     post:
       tags:
-        - Create
-        - Payment
-        - Link
-        - Pay
-        - Sessions
-        - Cancels
-        - Details
-        - Donations
-        - Orders
-        - Cancel
-        - Keys
-        - Links
+        - Payment links
       summary: Create a payment link
       description: >-
         Creates a payment link to our hosted payment form where shoppers can
@@ -192,70 +148,30 @@ paths:
 
         For more information, refer to [Pay by Link
         documentation](https://docs.adyen.com/online-payments/pay-by-link#create-payment-links-through-api).
+      x-sortIndex: 1
+      x-methodName: paymentLinks
   /paymentLinks/{linkId}:
     get:
       tags:
-        - Get
-        - Payment
-        - Link
-        - Pay
-        - Sessions
-        - Cancels
-        - Details
-        - Donations
-        - Orders
-        - Cancel
-        - Keys
-        - Links
-        - Link
-        - Id
+        - Payment links
       summary: Get a payment link
       description: Retrieves the payment link details using the payment link `id`.
+      x-sortIndex: 2
+      x-methodName: getPaymentLink
     patch:
       tags:
-        - Update
-        - The
-        - Status
-        - Of
-        - Payment
-        - Link
-        - Pay
-        - Sessions
-        - Cancels
-        - Details
-        - Donations
-        - Orders
-        - Cancel
-        - Keys
-        - Links
-        - Link
-        - Id
+        - Payment links
       summary: Update the status of a payment link
       description: >-
         Updates the status of a payment link. Use this endpoint to [force the
         expiry of a payment
         link](https://docs.adyen.com/online-payments/pay-by-link#update-payment-link-status).
+      x-sortIndex: 3
+      x-methodName: updatePaymentLink
   /paymentMethods:
     post:
       tags:
-        - Get
-        - List
-        - Of
-        - Available
-        - Payment
-        - Methods
-        - Pay
-        - Sessions
-        - Cancels
-        - Details
-        - Donations
-        - Orders
-        - Cancel
-        - Keys
-        - Links
-        - Link
-        - Id
-        - Methods
+        - Payments
       summary: Get a list of available payment methods
       description: >-
         Queries the available payment methods for a transaction based on the
@@ -269,53 +185,23 @@ paths:
         always offering the most up-to-date list of payment methods, its usage
         is optional. You can, for example, also cache the `/paymentMethods`
         response and update it once a week.
+      x-sortIndex: 2
+      x-methodName: paymentMethods
   /paymentMethods/balance:
     post:
       tags:
-        - Get
-        - The
-        - Balance
-        - Of
-        - Gift
-        - Card
-        - Pay
-        - Sessions
-        - Cancels
-        - Details
-        - Donations
         - Orders
-        - Cancel
-        - Keys
-        - Links
-        - Link
-        - Id
-        - Methods
-        - Balance
       summary: Get the balance of a gift card
       description: >-
         Retrieves the balance remaining on a shopper's gift card. To check a
         gift card's balance, make a POST `/paymentMethods/balance` call and
         include the gift card's details inside a `paymentMethod` object.
+      x-sortIndex: 1
+      x-methodName: getBalanceOfGiftCard
   /paymentSession:
     post:
       tags:
-        - Create
-        - Payment
-        - Session
-        - Pay
-        - Sessions
-        - Cancels
-        - Details
-        - Donations
-        - Orders
-        - Cancel
-        - Keys
-        - Links
-        - Link
-        - Id
-        - Methods
-        - Balance
-        - Session
+        - Classic Checkout SDK
       summary: Create a payment session
       description: >-
         Provides the data object that can be used to start the Checkout SDK. To
@@ -326,25 +212,13 @@ paths:
 
         For more information, refer to [How it
         works](https://docs.adyen.com/online-payments#howitworks).
+      deprecated: true
+      x-deprecatedInVersion: '37'
+      x-sortIndex: 1
+      x-methodName: paymentSession
   /payments:
     post:
       tags:
-        - Start
-        - Transaction
-        - Pay
-        - Sessions
-        - Cancels
-        - Details
-        - Donations
-        - Orders
-        - Cancel
-        - Keys
-        - Links
-        - Link
-        - Id
-        - Methods
-        - Balance
-        - Session
         - Payments
       summary: Start a transaction
       description: >-
@@ -362,27 +236,11 @@ paths:
 
         * For a redirect or additional action, the response contains an `action`
         object. 
+      x-sortIndex: 3
+      x-methodName: payments
   /payments/details:
     post:
       tags:
-        - Submit
-        - Details
-        - For
-        - Payment
-        - Pay
-        - Sessions
-        - Cancels
-        - Details
-        - Donations
-        - Orders
-        - Cancel
-        - Keys
-        - Links
-        - Link
-        - Id
-        - Methods
-        - Balance
-        - Session
         - Payments
       summary: Submit details for a payment
       description: >+
@@ -391,28 +249,12 @@ paths:
         request, for example when the shopper was redirected to another page to
         complete the payment.
 
+      x-sortIndex: 4
+      x-methodName: paymentsDetails
   /payments/result:
     post:
       tags:
-        - Verify
-        - Payment
-        - Result
-        - Pay
-        - Sessions
-        - Cancels
-        - Details
-        - Donations
-        - Orders
-        - Cancel
-        - Keys
-        - Links
-        - Link
-        - Id
-        - Methods
-        - Balance
-        - Session
-        - Payments
-        - Result
+        - Classic Checkout SDK
       summary: Verify a payment result
       description: >-
         Verifies the payment result using the payload returned from the Checkout
@@ -421,33 +263,14 @@ paths:
 
         For more information, refer to [How it
         works](https://docs.adyen.com/online-payments#howitworks).
+      deprecated: true
+      x-deprecatedInVersion: '37'
+      x-sortIndex: 2
+      x-methodName: verifyPaymentResult
   /payments/{paymentPspReference}/amountUpdates:
     post:
       tags:
-        - Update
-        - An
-        - Authorised
-        - Amount
-        - Pay
-        - Sessions
-        - Cancels
-        - Details
-        - Donations
-        - Orders
-        - Cancel
-        - Keys
-        - Links
-        - Link
-        - Id
-        - Methods
-        - Balance
-        - Session
-        - Payments
-        - Result
-        - Psp
-        - Reference
-        - Amount
-        - Updates
+        - Modifications
       summary: Update an authorised amount
       description: >-
         Increases or decreases the authorised payment amount and returns a
@@ -466,33 +289,12 @@ paths:
 
         For more information, refer to [Authorisation
         adjustment](https://docs.adyen.com/online-payments/adjust-authorisation#use-cases).
+      x-sortIndex: 6
+      x-methodName: updateAuthorisedAmount
   /payments/{paymentPspReference}/cancels:
     post:
       tags:
-        - Cancel
-        - An
-        - Authorised
-        - Payment
-        - Pay
-        - Sessions
-        - Cancels
-        - Details
-        - Donations
-        - Orders
-        - Cancel
-        - Keys
-        - Links
-        - Link
-        - Id
-        - Methods
-        - Balance
-        - Session
-        - Payments
-        - Result
-        - Psp
-        - Reference
-        - Amount
-        - Updates
+        - Modifications
       summary: Cancel an authorised payment
       description: >-
         Cancels the authorisation on a payment that has not yet been
@@ -517,34 +319,12 @@ paths:
 
         For more information, refer to
         [Cancel](https://docs.adyen.com/online-payments/cancel).
+      x-sortIndex: 2
+      x-methodName: cancelAuthorisedPaymentByPspReference
   /payments/{paymentPspReference}/captures:
     post:
       tags:
-        - Capture
-        - An
-        - Authorised
-        - Payment
-        - Pay
-        - Sessions
-        - Cancels
-        - Details
-        - Donations
-        - Orders
-        - Cancel
-        - Keys
-        - Links
-        - Link
-        - Id
-        - Methods
-        - Balance
-        - Session
-        - Payments
-        - Result
-        - Psp
-        - Reference
-        - Amount
-        - Updates
-        - Captures
+        - Modifications
       summary: Capture an authorised payment
       description: >2-
          Captures an authorised payment and returns a unique reference for this request. You get the outcome of the request asynchronously, in a [**CAPTURE** webhook](https://docs.adyen.com/online-payments/capture#capture-notification).
@@ -566,34 +346,12 @@ paths:
 
         For more information, refer to
         [Capture](https://docs.adyen.com/online-payments/capture).
+      x-sortIndex: 1
+      x-methodName: captureAuthorisedPayment
   /payments/{paymentPspReference}/refunds:
     post:
       tags:
-        - Refund
-        - Captured
-        - Payment
-        - Pay
-        - Sessions
-        - Cancels
-        - Details
-        - Donations
-        - Orders
-        - Cancel
-        - Keys
-        - Links
-        - Link
-        - Id
-        - Methods
-        - Balance
-        - Session
-        - Payments
-        - Result
-        - Psp
-        - Reference
-        - Amount
-        - Updates
-        - Captures
-        - Refunds
+        - Modifications
       summary: Refund a captured payment
       description: >-
         Refunds a payment that has been
@@ -624,36 +382,12 @@ paths:
 
         For more information, refer to
         [Refund](https://docs.adyen.com/online-payments/refund).
+      x-sortIndex: 4
+      x-methodName: refundCapturedPayment
   /payments/{paymentPspReference}/reversals:
     post:
       tags:
-        - Refund
-        - Or
-        - Cancel
-        - Payment
-        - Pay
-        - Sessions
-        - Cancels
-        - Details
-        - Donations
-        - Orders
-        - Cancel
-        - Keys
-        - Links
-        - Link
-        - Id
-        - Methods
-        - Balance
-        - Session
-        - Payments
-        - Result
-        - Psp
-        - Reference
-        - Amount
-        - Updates
-        - Captures
-        - Refunds
-        - Reversals
+        - Modifications
       summary: Refund or cancel a payment
       description: >-
         [Refunds](https://docs.adyen.com/api-explorer/#/CheckoutService/latest/post/payments/{paymentPspReference}/refunds)
@@ -673,35 +407,12 @@ paths:
 
         For more information, refer to
         [Reversal](https://docs.adyen.com/online-payments/reversal).
+      x-sortIndex: 5
+      x-methodName: refundOrCancelPayment
   /sessions:
     post:
       tags:
-        - Create
-        - Payment
-        - Session
-        - Pay
-        - Sessions
-        - Cancels
-        - Details
-        - Donations
-        - Orders
-        - Cancel
-        - Keys
-        - Links
-        - Link
-        - Id
-        - Methods
-        - Balance
-        - Session
         - Payments
-        - Result
-        - Psp
-        - Reference
-        - Amount
-        - Updates
-        - Captures
-        - Refunds
-        - Reversals
       summary: Create a payment session
       description: >-
         Creates a payment session for [Web
@@ -718,75 +429,24 @@ paths:
         You get the payment outcome asynchronously, in an
         [AUTHORISATION](https://docs.adyen.com/api-explorer/#/Webhooks/latest/post/AUTHORISATION)
         webhook.
+      x-addedInVersion: '68'
+      x-sortIndex: 1
+      x-methodName: sessions
   /sessions/{sessionId}:
     get:
       tags:
-        - Get
-        - The
-        - Result
-        - Of
-        - Payment
-        - Session
-        - Pay
-        - Sessions
-        - Cancels
-        - Details
-        - Donations
-        - Orders
-        - Cancel
-        - Keys
-        - Links
-        - Link
-        - Id
-        - Methods
-        - Balance
-        - Session
         - Payments
-        - Result
-        - Psp
-        - Reference
-        - Amount
-        - Updates
-        - Captures
-        - Refunds
-        - Reversals
       summary: Get the result of a payment session
       description: >-
         Returns the status of the payment session with the `sessionId` and
         `sessionResult` specified in the path.
+      x-addedInVersion: '68'
+      x-sortIndex: 2
+      x-methodName: getResultOfPaymentSession
   /storedPaymentMethods:
     get:
       tags:
-        - Get
-        - Tokens
-        - For
-        - Stored
-        - Payment
-        - Details
-        - Pay
-        - Sessions
-        - Cancels
-        - Details
-        - Donations
-        - Orders
-        - Cancel
-        - Keys
-        - Links
-        - Link
-        - Id
-        - Methods
-        - Balance
-        - Session
-        - Payments
-        - Result
-        - Psp
-        - Reference
-        - Amount
-        - Updates
-        - Captures
-        - Refunds
-        - Reversals
-        - Payment
+        - Recurring
       summary: Get tokens for stored payment details
       description: >+
         Lists the tokens for stored payment details for the shopper identified
@@ -794,43 +454,17 @@ paths:
         payment requests for the shopper's payment. A summary of the stored
         details is included.
 
+      x-addedInVersion: '70'
+      x-sortIndex: 2
+      x-methodName: getTokensForStoredPaymentDetails
   /storedPaymentMethods/{storedPaymentMethodId}:
     delete:
       tags:
-        - Delete
-        - Token
-        - For
-        - Stored
-        - Payment
-        - Details
-        - Pay
-        - Sessions
-        - Cancels
-        - Details
-        - Donations
-        - Orders
-        - Cancel
-        - Keys
-        - Links
-        - Link
-        - Id
-        - Methods
-        - Balance
-        - Session
-        - Payments
-        - Result
-        - Psp
-        - Reference
-        - Amount
-        - Updates
-        - Captures
-        - Refunds
-        - Reversals
-        - Payment
-        - Stored
-        - Method
+        - Recurring
       summary: Delete a token for stored payment details
       description: >-
         Deletes the token identified in the path. The token can no longer be
         used with payment requests.
-components: null
+      x-addedInVersion: '70'
+      x-sortIndex: 4
+      x-methodName: deleteTokenForStoredPaymentDetails

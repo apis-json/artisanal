@@ -1,14 +1,17 @@
+openapi: 3.1.0
 info:
+  x-publicVersion: true
   title: Notification Configuration API
+  x-timestamp: '2023-05-30T15:27:19Z'
+x-groups:
+  - General
+tags:
+  - name: General
 paths:
   /createNotificationConfiguration:
     post:
       tags:
-        - Subscribe
-        - To
-        - Notifications
-        - Notification
-        - Configuration
+        - General
       summary: Subscribe to notifications
       description: >-
         Creates a subscription to notifications informing you of events on your
@@ -20,79 +23,62 @@ paths:
         A marketplace may have multiple endpoints if desired; an event
         notification may be sent to as many or as few different endpoints as
         configured.
+      x-groupName: General
+      x-sortIndex: 1
+      x-methodName: createNotificationConfiguration
   /deleteNotificationConfigurations:
     post:
       tags:
-        - Delete
-        - Notification
-        - Subscription
-        - Configuration
-        - Notification
-        - Configuration
-        - Configurations
+        - General
       summary: Delete a notification subscription configuration
       description: >-
         Deletes an existing notification subscription configuration. After the
         subscription is deleted, no further event notifications will be sent to
         the URL defined in the subscription.
+      x-groupName: General
+      x-sortIndex: 6
+      x-methodName: deleteNotificationConfigurations
   /getNotificationConfiguration:
     post:
       tags:
-        - Get
-        - Notification
-        - Subscription
-        - Configuration
-        - Notification
-        - Configuration
-        - Configurations
+        - General
       summary: Get a notification subscription configuration
       description: Returns the details of the configuration of a notification subscription.
+      x-groupName: General
+      x-sortIndex: 2
+      x-methodName: getNotificationConfiguration
   /getNotificationConfigurationList:
     post:
       tags:
-        - Get
-        - List
-        - Of
-        - Notification
-        - Subscription
-        - Configurations
-        - Notification
-        - Configuration
-        - Configurations
-        - List
+        - General
       summary: Get a list of notification subscription configurations
       description: >-
         Returns the details of the configurations of all of the notification
         subscriptions in the platform of the executing user.
+      x-groupName: General
+      x-sortIndex: 3
+      x-methodName: getNotificationConfigurationList
   /testNotificationConfiguration:
     post:
       tags:
-        - Test
-        - Notification
-        - Configuration
-        - Notification
-        - Configuration
-        - Configurations
-        - List
+        - General
       summary: Test a notification configuration
       description: >-
         Tests an existing notification subscription configuration. For each
         event type specified, a test notification will be generated and sent to
         the URL configured in the subscription specified.
+      x-groupName: General
+      x-sortIndex: 4
+      x-methodName: testNotificationConfiguration
   /updateNotificationConfiguration:
     post:
       tags:
-        - Update
-        - Notification
-        - Subscription
-        - Configuration
-        - Notification
-        - Configuration
-        - Configurations
-        - List
+        - General
       summary: Update a notification subscription configuration
       description: >-
         Updates an existing notification subscription configuration. If you are
         updating the event types, you must provide all event types, otherwise
         the previous event type configuration will be overwritten.
-components: null
+      x-groupName: General
+      x-sortIndex: 5
+      x-methodName: updateNotificationConfiguration

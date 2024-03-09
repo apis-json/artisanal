@@ -1,38 +1,37 @@
+openapi: 3.1.0
 info:
+  x-publicVersion: true
   title: Hosted Onboarding API
+  x-timestamp: '2023-05-30T15:27:20Z'
+x-groups:
+  - Hosted Onboarding Page
+  - PCI Compliance Questionnaire Page
+tags:
+  - name: Hosted Onboarding Page
+  - name: PCI Compliance Questionnaire Page
 paths:
   /getOnboardingUrl:
     post:
       tags:
-        - Get
-        - Link
-        - To
-        - Adyen-hosted
-        - Onboarding
-        - Page
-        - Onboarding
-        - Url
+        - Hosted Onboarding Page
       summary: Get a link to a Adyen-hosted onboarding page
       description: >-
         Returns a link to an Adyen-hosted onboarding page (HOP) that you can
         send to your account holder. For more information on how to use HOP,
         refer to [Hosted
         onboarding](https://docs.adyen.com/marketplaces-and-platforms/classic/collect-verification-details/hosted-onboarding-page). 
+      x-groupName: Hosted Onboarding Page
+      x-sortIndex: 1
+      x-methodName: getOnboardingUrl
   /getPciQuestionnaireUrl:
     post:
       tags:
-        - Get
-        - Link
-        - To
-        - Compliance
-        - Questionnaire
-        - Onboarding
-        - Url
-        - Pci
-        - Questionnaire
+        - PCI Compliance Questionnaire Page
       summary: Get a link to a PCI compliance questionnaire
       description: >-
         Returns a link to a PCI compliance questionnaire that you can send to
         your account holder.
          > You should only use this endpoint if you have a [partner platform setup](https://docs.adyen.com/marketplaces-and-platforms/classic/platforms-for-partners).
-components: null
+      x-groupName: PCI Compliance Questionnaire Page
+      x-sortIndex: 1
+      x-methodName: getPciQuestionnaireUrl

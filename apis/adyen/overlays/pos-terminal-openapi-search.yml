@@ -1,89 +1,62 @@
+openapi: 3.1.0
 info:
+  x-publicVersion: true
   title: POS Terminal Management API
+tags:
+  - name: General
 paths:
   /assignTerminals:
     post:
       tags:
-        - Assign
-        - Terminals
-        - Terminals
+        - General
       summary: Assign terminals
       description: >-
         Assigns one or more payment terminals to a merchant account or a store.
         You can also use this endpoint to reassign terminals between merchant
         accounts or stores, and to unassign a terminal and return it to company
         inventory.
+      x-sortIndex: 1
+      x-methodName: assignTerminals
   /findTerminal:
     post:
       tags:
-        - Get
-        - The
-        - Account
-        - Or
-        - Store
-        - Of
-        - Terminal
-        - Terminals
-        - Terminal
+        - General
       summary: Get the account or store of a terminal
       description: >-
         Returns the company account, merchant account, or store that a payment
         terminal is assigned to.
+      x-sortIndex: 1
+      x-methodName: findTerminal
   /getStoresUnderAccount:
     post:
       tags:
-        - Get
-        - The
-        - Stores
-        - Of
-        - An
-        - Account
-        - Terminals
-        - Terminal
-        - Stores
-        - Under
-        - Account
+        - General
       summary: Get the stores of an account
       description: >-
         Returns a list of stores associated with a company account or a merchant
         account, including the status of each store.
+      x-sortIndex: 1
+      x-methodName: getStoresUnderAccount
   /getTerminalDetails:
     post:
       tags:
-        - Get
-        - The
-        - Details
-        - Of
-        - Terminal
-        - Terminals
-        - Terminal
-        - Stores
-        - Under
-        - Account
-        - Details
+        - General
       summary: Get the details of a terminal
       description: >-
         Returns the details of a payment terminal, including where the terminal
         is assigned to. The response returns the same details that are provided
         in the terminal list in your Customer Area and in the Terminal Fleet
         report.
+      x-sortIndex: 1
+      x-methodName: getTerminalDetails
   /getTerminalsUnderAccount:
     post:
       tags:
-        - Get
-        - The
-        - List
-        - Of
-        - Terminals
-        - Terminals
-        - Terminal
-        - Stores
-        - Under
-        - Account
-        - Details
+        - General
       summary: Get the list of terminals
       description: >-
         Returns a list of payment terminals associated with a company account,
         merchant account, or store. The response shows whether the terminals are
         in the inventory, or in-store (ready for boarding or already boarded).
-components: null
+      x-sortIndex: 1
+      x-methodName: getTerminalsUnderAccount

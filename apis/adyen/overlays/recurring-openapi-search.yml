@@ -1,30 +1,25 @@
+openapi: 3.1.0
 info:
+  x-publicVersion: true
   title: Adyen Recurring API
+tags:
+  - name: General
 paths:
   /createPermit:
     post:
       tags:
-        - Create
-        - New
-        - Permits
-        - Linked
-        - To
-        - Recurring
-        - Contract.
-        - Permit
+        - General
       summary: Create new permits linked to a recurring contract.
       description: >-
         Create permits for a recurring contract, including support for defining
         restrictions.
+      x-addedInVersion: '40'
+      x-sortIndex: 0
+      x-methodName: createPermit
   /disable:
     post:
       tags:
-        - Disable
-        - Stored
-        - Payment
-        - Details
-        - Permit
-        - Disable
+        - General
       summary: Disable stored payment details
       description: >-
         Disables stored payment details to stop charging a shopper with this
@@ -33,30 +28,23 @@ paths:
 
         For more information, refer to [Disable stored
         details](https://docs.adyen.com/classic-integration/recurring-payments/disable-stored-details/).
+      x-sortIndex: 2
+      x-methodName: disable
   /disablePermit:
     post:
       tags:
-        - Disable
-        - An
-        - Existing
-        - Permit.
-        - Permit
-        - Disable
+        - General
       summary: Disable an existing permit.
       description: >-
         Disable a permit that was previously linked to a
         recurringDetailReference.
+      x-addedInVersion: '61'
+      x-sortIndex: 0
+      x-methodName: disablePermit
   /listRecurringDetails:
     post:
       tags:
-        - Get
-        - Stored
-        - Payment
-        - Details
-        - Permit
-        - Disable
-        - Recurring
-        - Details
+        - General
       summary: Get stored payment details
       description: >-
         Lists the stored payment details for a shopper, if there are any
@@ -67,20 +55,12 @@ paths:
 
         For more information, refer to [Retrieve stored
         details](https://docs.adyen.com/classic-integration/recurring-payments/retrieve-stored-details/).
+      x-sortIndex: 1
+      x-methodName: listRecurringDetails
   /notifyShopper:
     post:
       tags:
-        - Ask
-        - Issuer
-        - To
-        - Notify
-        - The
-        - Shopper
-        - Permit
-        - Disable
-        - Recurring
-        - Details
-        - Shopper
+        - General
       summary: Ask issuer to notify the shopper
       description: >-
         Sends a request to the issuer so they can inform the shopper about the
@@ -88,21 +68,12 @@ paths:
         acquiring in India. For more information, refer to [Recurring card
         payments in
         India](https://docs.adyen.com/payment-methods/cards/cards-recurring-india).
+      x-sortIndex: 4
+      x-methodName: notifyShopper
   /scheduleAccountUpdater:
     post:
       tags:
-        - Schedule
-        - Running
-        - The
-        - Account
-        - Updater
-        - Permit
-        - Disable
-        - Recurring
-        - Details
-        - Shopper
-        - Account
-        - Updater
+        - General
       summary: Schedule running the Account Updater
       description: >-
         When making the API call, you can submit either the credit card
@@ -114,4 +85,6 @@ paths:
 
         * If the recurring detail reference is provided, the fields for
         `shopperReference` and `selectedRecurringDetailReference` are mandatory.
-components: null
+      x-addedInVersion: '4'
+      x-sortIndex: 3
+      x-methodName: scheduleAccountUpdater

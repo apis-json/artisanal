@@ -1,42 +1,41 @@
+openapi: 3.1.0
 info:
+  x-publicVersion: true
   title: Transfers API
+tags:
+  - name: Transfers
+  - name: Transactions
+  - name: Capital
 paths:
   /grants:
     get:
       tags:
-        - Get
         - Capital
-        - Account
-        - Grants
       summary: Get a capital account
       description: Returns a list of grants with status and outstanding balances.
+      x-addedInVersion: '3'
+      x-sortIndex: 2
+      x-methodName: getCapitalAccount
     post:
       tags:
-        - Request
-        - Grant
-        - Payout
-        - Grants
+        - Capital
       summary: Request a grant payout
       description: Requests the payout of the selected grant offer.
+      x-addedInVersion: '3'
+      x-sortIndex: 1
+      x-methodName: requestGrantPayout
   /grants/{id}:
     get:
       tags:
-        - Get
-        - Grant
-        - Reference
-        - Details
-        - Grants
-        - Id
+        - Capital
       summary: Get grant reference details
       description: Returns the details of a capital account specified in the path.
+      x-addedInVersion: '3'
+      x-sortIndex: 3
+      x-methodName: getGrantReferenceDetails
   /transactions:
     get:
       tags:
-        - Get
-        - All
-        - Transactions
-        - Grants
-        - Id
         - Transactions
       summary: Get all transactions
       description: >+
@@ -62,13 +61,12 @@ paths:
         first page of results, and returns links to the next and previous pages
         when applicable. You can use the links to page through the results.
 
+      x-addedInVersion: '1'
+      x-sortIndex: 1
+      x-methodName: getAllTransactions
   /transactions/{id}:
     get:
       tags:
-        - Get
-        - Transaction
-        - Grants
-        - Id
         - Transactions
       summary: Get a transaction
       description: >-
@@ -77,14 +75,12 @@ paths:
 
 
         Returns a transaction.
+      x-addedInVersion: '1'
+      x-sortIndex: 2
+      x-methodName: getTransaction
   /transfers:
     post:
       tags:
-        - Transfer
-        - Funds
-        - Grants
-        - Id
-        - Transactions
         - Transfers
       summary: Transfer funds
       description: >-
@@ -103,18 +99,17 @@ paths:
         To use this endpoint, you need an additional role for your API
         credential and transfers must be enabled for the source balance account.
         Your Adyen contact will set these up for you.
+      x-addedInVersion: '2'
+      x-sortIndex: 1
+      x-methodName: transferFunds
   /transfers/{transferId}/returns:
     post:
       tags:
-        - Return
-        - Transfer
-        - Grants
-        - Id
-        - Transactions
         - Transfers
-        - Returns
       summary: Return a transfer
       description: >-
         Returns previously transferred funds without creating a new
         `transferId`.
-components: null
+      x-addedInVersion: '3'
+      x-sortIndex: 2
+      x-methodName: returnTransfer

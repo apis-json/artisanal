@@ -1,15 +1,14 @@
+openapi: 3.1.0
 info:
+  x-publicVersion: true
   title: Adyen BinLookup API
+tags:
+  - name: General
 paths:
   /get3dsAvailability:
     post:
       tags:
-        - Check
-        - If
-        - Secure
-        - Is
-        - Available
-        - Availability
+        - General
       summary: Check if 3D Secure is available
       description: >-
         Verifies whether 3D Secure is available for the specified BIN or card
@@ -19,16 +18,13 @@ paths:
 
         For more information, refer to [3D Secure
         2](https://docs.adyen.com/online-payments/3d-secure/native-3ds2).
+      x-addedInVersion: '1'
+      x-sortIndex: 0
+      x-methodName: get3dsAvailability
   /getCostEstimate:
     post:
       tags:
-        - Get
-        - Fees
-        - Cost
-        - Estimate
-        - Availability
-        - Cost
-        - Estimate
+        - General
       summary: Get a fees cost estimate
       description: >-
         >This API is available only for merchants operating in Australia, the
@@ -53,4 +49,5 @@ paths:
         plan to provide additional Level 2/3 data), the returned amounts are
         based on a set of assumption criteria you define in the `assumptions`
         parameter.
-components: null
+      x-sortIndex: 0
+      x-methodName: getCostEstimate
