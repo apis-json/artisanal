@@ -6,68 +6,22 @@ paths:
     GET:
       summary: GetApiAssociation
       description: <p>Retrieves an <code>ApiAssociation</code> object.</p>
-      tags:
-        - Get
-        - Api
-        - Association
-        - Name
-        - Apiassociation
   /v1/sourceApis/{sourceApiIdentifier}/mergedApiAssociations:
     POST:
       summary: AssociateMergedGraphqlApi
       description: >-
         <p>Creates an association between a Merged API and source API using the
         source API's identifier.</p>
-      tags:
-        - Associate
-        - Merged
-        - Graphql
-        - Api
-        - Name
-        - Apiassociation
-        - Apis
-        - Source
-        - Api
-        - Identifier
-        - Merged
-        - Associations
   /v1/mergedApis/{mergedApiIdentifier}/sourceApiAssociations:
     POST:
       summary: AssociateSourceGraphqlApi
       description: >-
         <p>Creates an association between a Merged API and source API using the
         Merged API's identifier.</p>
-      tags:
-        - Associate
-        - Source
-        - Graphql
-        - Api
-        - Name
-        - Apiassociation
-        - Apis
-        - Source
-        - Api
-        - Identifier
-        - Merged
-        - Associations
   /v1/apis/{apiId}/ApiCaches:
     GET:
       summary: GetApiCache
       description: <p>Retrieves an <code>ApiCache</code> object.</p>
-      tags:
-        - Get
-        - Api
-        - Cache
-        - Name
-        - Apiassociation
-        - Apis
-        - Source
-        - Api
-        - Identifier
-        - Merged
-        - Associations
-        - Id
-        - Caches
   /v1/apis/{apiId}/apikeys:
     GET:
       summary: ListApiKeys
@@ -77,409 +31,72 @@ paths:
         be included in the response until they have actually been deleted. You
         can safely call <code>DeleteApiKey</code> to manually delete a key
         before it's automatically deleted.</p> </note>
-      tags:
-        - List
-        - Api
-        - Keys
-        - Name
-        - Apiassociation
-        - Apis
-        - Source
-        - Api
-        - Identifier
-        - Merged
-        - Associations
-        - Id
-        - Caches
-        - Apikeys
   /v1/apis/{apiId}/datasources:
     GET:
       summary: ListDataSources
       description: <p>Lists the data sources for a given API.</p>
-      tags:
-        - List
-        - Data
-        - Sources
-        - Name
-        - Apiassociation
-        - Apis
-        - Source
-        - Api
-        - Identifier
-        - Merged
-        - Associations
-        - Id
-        - Caches
-        - Apikeys
-        - Datasources
   /v1/domainnames:
     GET:
       summary: ListDomainNames
       description: <p>Lists multiple custom domain names.</p>
-      tags:
-        - List
-        - Domain
-        - Names
-        - Name
-        - Apiassociation
-        - Apis
-        - Source
-        - Api
-        - Identifier
-        - Merged
-        - Associations
-        - Id
-        - Caches
-        - Apikeys
-        - Datasources
-        - V1
-        - Domainnames
   /v1/apis/{apiId}/functions:
     GET:
       summary: ListFunctions
       description: <p>List multiple functions.</p>
-      tags:
-        - List
-        - Functions
-        - Name
-        - Apiassociation
-        - Apis
-        - Source
-        - Api
-        - Identifier
-        - Merged
-        - Associations
-        - Id
-        - Caches
-        - Apikeys
-        - Datasources
-        - V1
-        - Domainnames
-        - Functions
   /v1/apis:
     GET:
       summary: ListGraphqlApis
       description: <p>Lists your GraphQL APIs.</p>
-      tags:
-        - List
-        - Graphql
-        - Apis
-        - Name
-        - Apiassociation
-        - Apis
-        - Source
-        - Api
-        - Identifier
-        - Merged
-        - Associations
-        - Id
-        - Caches
-        - Apikeys
-        - Datasources
-        - V1
-        - Domainnames
-        - Functions
   /v1/apis/{apiId}/types/{typeName}/resolvers:
     GET:
       summary: ListResolvers
       description: <p>Lists the resolvers for a given API and type.</p>
-      tags:
-        - List
-        - Resolvers
-        - Name
-        - Apiassociation
-        - Apis
-        - Source
-        - Api
-        - Identifier
-        - Merged
-        - Associations
-        - Id
-        - Caches
-        - Apikeys
-        - Datasources
-        - V1
-        - Domainnames
-        - Functions
-        - Types
-        - Type
-        - Resolvers
   /v1/apis/{apiId}/types:
     GET:
       summary: ListTypes
       description: <p>Lists the types for a given API.</p>
-      tags:
-        - List
-        - Types
-        - Name
-        - Apiassociation
-        - Apis
-        - Source
-        - Api
-        - Identifier
-        - Merged
-        - Associations
-        - Id
-        - Caches
-        - Apikeys
-        - Datasources
-        - V1
-        - Domainnames
-        - Functions
-        - Types
-        - Type
-        - Resolvers
   /v1/apis/{apiId}/apikeys/{id}:
     POST:
       summary: UpdateApiKey
       description: >-
         <p>Updates an API key. You can update the key as long as it's not
         deleted.</p>
-      tags:
-        - Update
-        - Api
-        - Key
-        - Name
-        - Apiassociation
-        - Apis
-        - Source
-        - Api
-        - Identifier
-        - Merged
-        - Associations
-        - Id
-        - Caches
-        - Apikeys
-        - Datasources
-        - V1
-        - Domainnames
-        - Functions
-        - Types
-        - Type
-        - Resolvers
   /v1/apis/{apiId}/datasources/{name}:
     POST:
       summary: UpdateDataSource
       description: <p>Updates a <code>DataSource</code> object.</p>
-      tags:
-        - Update
-        - Data
-        - Source
-        - Name
-        - Apiassociation
-        - Apis
-        - Source
-        - Api
-        - Identifier
-        - Merged
-        - Associations
-        - Id
-        - Caches
-        - Apikeys
-        - Datasources
-        - V1
-        - Domainnames
-        - Functions
-        - Types
-        - Type
-        - Resolvers
   /v1/domainnames/{domainName}:
     POST:
       summary: UpdateDomainName
       description: <p>Updates a custom <code>DomainName</code> object.</p>
-      tags:
-        - Update
-        - Domain
-        - Name
-        - Name
-        - Apiassociation
-        - Apis
-        - Source
-        - Api
-        - Identifier
-        - Merged
-        - Associations
-        - Id
-        - Caches
-        - Apikeys
-        - Datasources
-        - V1
-        - Domainnames
-        - Functions
-        - Types
-        - Type
-        - Resolvers
   /v1/apis/{apiId}/functions/{functionId}:
     POST:
       summary: UpdateFunction
       description: <p>Updates a <code>Function</code> object.</p>
-      tags:
-        - Update
-        - Function
-        - Name
-        - Apiassociation
-        - Apis
-        - Source
-        - Api
-        - Identifier
-        - Merged
-        - Associations
-        - Id
-        - Caches
-        - Apikeys
-        - Datasources
-        - V1
-        - Domainnames
-        - Functions
-        - Types
-        - Type
-        - Resolvers
-        - Function
   /v1/apis/{apiId}:
     POST:
       summary: UpdateGraphqlApi
       description: <p>Updates a <code>GraphqlApi</code> object.</p>
-      tags:
-        - Update
-        - Graphql
-        - Api
-        - Name
-        - Apiassociation
-        - Apis
-        - Source
-        - Api
-        - Identifier
-        - Merged
-        - Associations
-        - Id
-        - Caches
-        - Apikeys
-        - Datasources
-        - V1
-        - Domainnames
-        - Functions
-        - Types
-        - Type
-        - Resolvers
-        - Function
   /v1/apis/{apiId}/types/{typeName}/resolvers/{fieldName}:
     POST:
       summary: UpdateResolver
       description: <p>Updates a <code>Resolver</code> object.</p>
-      tags:
-        - Update
-        - Resolver
-        - Name
-        - Apiassociation
-        - Apis
-        - Source
-        - Api
-        - Identifier
-        - Merged
-        - Associations
-        - Id
-        - Caches
-        - Apikeys
-        - Datasources
-        - V1
-        - Domainnames
-        - Functions
-        - Types
-        - Type
-        - Resolvers
-        - Function
-        - Field
   /v1/apis/{apiId}/types/{typeName}:
     POST:
       summary: UpdateType
       description: <p>Updates a <code>Type</code> object.</p>
-      tags:
-        - Update
-        - Type
-        - Name
-        - Apiassociation
-        - Apis
-        - Source
-        - Api
-        - Identifier
-        - Merged
-        - Associations
-        - Id
-        - Caches
-        - Apikeys
-        - Datasources
-        - V1
-        - Domainnames
-        - Functions
-        - Types
-        - Type
-        - Resolvers
-        - Function
-        - Field
   /v1/sourceApis/{sourceApiIdentifier}/mergedApiAssociations/{associationId}:
     DELETE:
       summary: DisassociateMergedGraphqlApi
       description: >-
         <p>Deletes an association between a Merged API and source API using the
         source API's identifier and the association ID.</p>
-      tags:
-        - Disassociate
-        - Merged
-        - Graphql
-        - Api
-        - Name
-        - Apiassociation
-        - Apis
-        - Source
-        - Api
-        - Identifier
-        - Merged
-        - Associations
-        - Id
-        - Caches
-        - Apikeys
-        - Datasources
-        - V1
-        - Domainnames
-        - Functions
-        - Types
-        - Type
-        - Resolvers
-        - Function
-        - Field
-        - Association
   /v1/mergedApis/{mergedApiIdentifier}/sourceApiAssociations/{associationId}:
     POST:
       summary: UpdateSourceApiAssociation
       description: >-
         <p>Updates some of the configuration choices of a particular source API
         association.</p>
-      tags:
-        - Update
-        - Source
-        - Api
-        - Association
-        - Name
-        - Apiassociation
-        - Apis
-        - Source
-        - Api
-        - Identifier
-        - Merged
-        - Associations
-        - Id
-        - Caches
-        - Apikeys
-        - Datasources
-        - V1
-        - Domainnames
-        - Functions
-        - Types
-        - Type
-        - Resolvers
-        - Function
-        - Field
-        - Association
   /v1/dataplane-evaluatecode:
     POST:
       summary: EvaluateCode
@@ -492,32 +109,6 @@ paths:
         configuration for the selected data source operation. The response
         function interprets responses from the data source and maps it to the
         shape of the GraphQL field output type. </p>
-      tags:
-        - Evaluate
-        - Code
-        - Name
-        - Apiassociation
-        - Apis
-        - Source
-        - Api
-        - Identifier
-        - Merged
-        - Associations
-        - Id
-        - Caches
-        - Apikeys
-        - Datasources
-        - V1
-        - Domainnames
-        - Functions
-        - Types
-        - Type
-        - Resolvers
-        - Function
-        - Field
-        - Association
-        - Dataplane
-        - Evaluatecode
   /v1/dataplane-evaluatetemplate:
     POST:
       summary: EvaluateMappingTemplate
@@ -530,68 +121,10 @@ paths:
         and map it to the shape of the GraphQL field output type.</p> <p>Mapping
         templates are written in the Apache Velocity Template Language
         (VTL).</p>
-      tags:
-        - Evaluate
-        - Mapping
-        - Template
-        - Name
-        - Apiassociation
-        - Apis
-        - Source
-        - Api
-        - Identifier
-        - Merged
-        - Associations
-        - Id
-        - Caches
-        - Apikeys
-        - Datasources
-        - V1
-        - Domainnames
-        - Functions
-        - Types
-        - Type
-        - Resolvers
-        - Function
-        - Field
-        - Association
-        - Dataplane
-        - Evaluatecode
-        - Evaluatetemplate
   /v1/apis/{apiId}/FlushCache:
     DELETE:
       summary: FlushApiCache
       description: <p>Flushes an <code>ApiCache</code> object.</p>
-      tags:
-        - Flush
-        - Api
-        - Cache
-        - Name
-        - Apiassociation
-        - Apis
-        - Source
-        - Api
-        - Identifier
-        - Merged
-        - Associations
-        - Id
-        - Caches
-        - Apikeys
-        - Datasources
-        - V1
-        - Domainnames
-        - Functions
-        - Types
-        - Type
-        - Resolvers
-        - Function
-        - Field
-        - Association
-        - Dataplane
-        - Evaluatecode
-        - Evaluatetemplate
-        - Flush
-        - Cache
   /v1/datasources/introspections/{introspectionId}:
     GET:
       summary: GetDataSourceIntrospection
@@ -600,37 +133,6 @@ paths:
         is successful, the result of the instrospection will also be returned.
         If the retrieval fails the operation, an error message will be returned
         instead.</p>
-      tags:
-        - Get
-        - Data
-        - Source
-        - Introspection
-        - Name
-        - Apiassociation
-        - Apis
-        - Source
-        - Api
-        - Identifier
-        - Merged
-        - Associations
-        - Id
-        - Caches
-        - Apikeys
-        - Datasources
-        - V1
-        - Domainnames
-        - Functions
-        - Types
-        - Type
-        - Resolvers
-        - Function
-        - Field
-        - Association
-        - Dataplane
-        - Evaluatecode
-        - Evaluatetemplate
-        - Flush
-        - Cache
   /v1/apis/{apiId}/environmentVariables:
     PUT:
       summary: PutGraphqlApiEnvironmentVariables
@@ -659,398 +161,45 @@ paths:
         This means the existing environmental variables will be lost. To avoid
         this, you must include all existing and new environmental variables in
         the list each time you call this action.</p>
-      tags:
-        - Put
-        - Graphql
-        - Api
-        - Environment
-        - Variables
-        - Name
-        - Apiassociation
-        - Apis
-        - Source
-        - Api
-        - Identifier
-        - Merged
-        - Associations
-        - Id
-        - Caches
-        - Apikeys
-        - Datasources
-        - V1
-        - Domainnames
-        - Functions
-        - Types
-        - Type
-        - Resolvers
-        - Function
-        - Field
-        - Association
-        - Dataplane
-        - Evaluatecode
-        - Evaluatetemplate
-        - Flush
-        - Cache
-        - Environment
-        - Variables
   /v1/apis/{apiId}/schema:
     GET:
       summary: GetIntrospectionSchema
       description: <p>Retrieves the introspection schema for a GraphQL API.</p>
-      tags:
-        - Get
-        - Introspection
-        - Schema
-        - Name
-        - Apiassociation
-        - Apis
-        - Source
-        - Api
-        - Identifier
-        - Merged
-        - Associations
-        - Id
-        - Caches
-        - Apikeys
-        - Datasources
-        - V1
-        - Domainnames
-        - Functions
-        - Types
-        - Type
-        - Resolvers
-        - Function
-        - Field
-        - Association
-        - Dataplane
-        - Evaluatecode
-        - Evaluatetemplate
-        - Flush
-        - Cache
-        - Environment
-        - Variables
-        - Schema
   /v1/apis/{apiId}/schemacreation:
     POST:
       summary: StartSchemaCreation
       description: >-
         <p>Adds a new schema to your GraphQL API.</p> <p>This operation is
         asynchronous. Use to determine when it has completed.</p>
-      tags:
-        - Start
-        - Schema
-        - Creation
-        - Name
-        - Apiassociation
-        - Apis
-        - Source
-        - Api
-        - Identifier
-        - Merged
-        - Associations
-        - Id
-        - Caches
-        - Apikeys
-        - Datasources
-        - V1
-        - Domainnames
-        - Functions
-        - Types
-        - Type
-        - Resolvers
-        - Function
-        - Field
-        - Association
-        - Dataplane
-        - Evaluatecode
-        - Evaluatetemplate
-        - Flush
-        - Cache
-        - Environment
-        - Variables
-        - Schema
-        - Schemacreation
   /v1/apis/{apiId}/functions/{functionId}/resolvers:
     GET:
       summary: ListResolversByFunction
       description: <p>List the resolvers that are associated with a specific function.</p>
-      tags:
-        - List
-        - Resolvers
-        - By
-        - Function
-        - Name
-        - Apiassociation
-        - Apis
-        - Source
-        - Api
-        - Identifier
-        - Merged
-        - Associations
-        - Id
-        - Caches
-        - Apikeys
-        - Datasources
-        - V1
-        - Domainnames
-        - Functions
-        - Types
-        - Type
-        - Resolvers
-        - Function
-        - Field
-        - Association
-        - Dataplane
-        - Evaluatecode
-        - Evaluatetemplate
-        - Flush
-        - Cache
-        - Environment
-        - Variables
-        - Schema
-        - Schemacreation
   /v1/apis/{apiId}/sourceApiAssociations:
     GET:
       summary: ListSourceApiAssociations
       description: <p>Lists the <code>SourceApiAssociationSummary</code> data.</p>
-      tags:
-        - List
-        - Source
-        - Api
-        - Associations
-        - Name
-        - Apiassociation
-        - Apis
-        - Source
-        - Api
-        - Identifier
-        - Merged
-        - Associations
-        - Id
-        - Caches
-        - Apikeys
-        - Datasources
-        - V1
-        - Domainnames
-        - Functions
-        - Types
-        - Type
-        - Resolvers
-        - Function
-        - Field
-        - Association
-        - Dataplane
-        - Evaluatecode
-        - Evaluatetemplate
-        - Flush
-        - Cache
-        - Environment
-        - Variables
-        - Schema
-        - Schemacreation
   /v1/tags/{resourceArn}:
     DELETE:
       summary: UntagResource
       description: <p>Untags a resource.</p>
-      tags:
-        - Untag
-        - Resource
-        - Name
-        - Apiassociation
-        - Apis
-        - Source
-        - Api
-        - Identifier
-        - Merged
-        - Associations
-        - Id
-        - Caches
-        - Apikeys
-        - Datasources
-        - V1
-        - Domainnames
-        - Functions
-        - Types
-        - Type
-        - Resolvers
-        - Function
-        - Field
-        - Association
-        - Dataplane
-        - Evaluatecode
-        - Evaluatetemplate
-        - Flush
-        - Cache
-        - Environment
-        - Variables
-        - Schema
-        - Schemacreation
-        - Arn
   /v1/mergedApis/{mergedApiIdentifier}/sourceApiAssociations/{associationId}/types:
     GET:
       summary: ListTypesByAssociation
       description: <p>Lists <code>Type</code> objects by the source API association ID.</p>
-      tags:
-        - List
-        - Types
-        - By
-        - Association
-        - Name
-        - Apiassociation
-        - Apis
-        - Source
-        - Api
-        - Identifier
-        - Merged
-        - Associations
-        - Id
-        - Caches
-        - Apikeys
-        - Datasources
-        - V1
-        - Domainnames
-        - Functions
-        - Types
-        - Type
-        - Resolvers
-        - Function
-        - Field
-        - Association
-        - Dataplane
-        - Evaluatecode
-        - Evaluatetemplate
-        - Flush
-        - Cache
-        - Environment
-        - Variables
-        - Schema
-        - Schemacreation
-        - Arn
   /v1/datasources/introspections:
     POST:
       summary: StartDataSourceIntrospection
       description: >-
         <p>Creates a new introspection. Returns the <code>introspectionId</code>
         of the new introspection after its creation. </p>
-      tags:
-        - Start
-        - Data
-        - Source
-        - Introspection
-        - Name
-        - Apiassociation
-        - Apis
-        - Source
-        - Api
-        - Identifier
-        - Merged
-        - Associations
-        - Id
-        - Caches
-        - Apikeys
-        - Datasources
-        - V1
-        - Domainnames
-        - Functions
-        - Types
-        - Type
-        - Resolvers
-        - Function
-        - Field
-        - Association
-        - Dataplane
-        - Evaluatecode
-        - Evaluatetemplate
-        - Flush
-        - Cache
-        - Environment
-        - Variables
-        - Schema
-        - Schemacreation
-        - Arn
-        - Introspections
   /v1/mergedApis/{mergedApiIdentifier}/sourceApiAssociations/{associationId}/merge:
     POST:
       summary: StartSchemaMerge
       description: >-
         <p>Initiates a merge operation. Returns a status that shows the result
         of the merge operation.</p>
-      tags:
-        - Start
-        - Schema
-        - Merge
-        - Name
-        - Apiassociation
-        - Apis
-        - Source
-        - Api
-        - Identifier
-        - Merged
-        - Associations
-        - Id
-        - Caches
-        - Apikeys
-        - Datasources
-        - V1
-        - Domainnames
-        - Functions
-        - Types
-        - Type
-        - Resolvers
-        - Function
-        - Field
-        - Association
-        - Dataplane
-        - Evaluatecode
-        - Evaluatetemplate
-        - Flush
-        - Cache
-        - Environment
-        - Variables
-        - Schema
-        - Schemacreation
-        - Arn
-        - Introspections
-        - Merge
   /v1/apis/{apiId}/ApiCaches/update:
     POST:
       summary: UpdateApiCache
-      description: <p>Updates the cache for the GraphQL API.</
-      tags:
-        - Update
-        - Api
-        - Cache
-        - Name
-        - Apiassociation
-        - Apis
-        - Source
-        - Api
-        - Identifier
-        - Merged
-        - Associations
-        - Id
-        - Caches
-        - Apikeys
-        - Datasources
-        - V1
-        - Domainnames
-        - Functions
-        - Types
-        - Type
-        - Resolvers
-        - Function
-        - Field
-        - Association
-        - Dataplane
-        - Evaluatecode
-        - Evaluatetemplate
-        - Flush
-        - Cache
-        - Environment
-        - Variables
-        - Schema
-        - Schemacreation
-        - Arn
-        - Introspections
-        - Merge
-        - null
+      description: <p>Updates the cache for the GraphQL

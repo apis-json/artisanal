@@ -1,0 +1,506 @@
+openapi: 3.1.0
+info:
+  title: Box Comments API
+  description: Needs a description.
+paths:
+  /files/{file_id}/comments:
+    get:
+      operationId: get_files_id_comments
+      summary: List file comments
+      description: Retrieves a list of comments for a file.
+      tags:
+        - Comments
+      x-box-tag: comments
+      parameters:
+        - name: file_id
+          description: |-
+            The unique identifier that represents a file.
+
+            The ID for any file can be determined
+            by visiting a file in the web application
+            and copying the ID from the URL. For example,
+            for the URL `https://*.app.box.com/files/123`
+            the `file_id` is `123`.
+          example: '12345'
+          in: path
+          required: true
+          schema:
+            type: string
+        - name: fields
+          description: |-
+            A comma-separated list of attributes to include in the
+            response. This can be used to request fields that are
+            not normally returned in a standard response.
+
+            Be aware that specifying this parameter will have the
+            effect that none of the standard fields are returned in
+            the response unless explicitly specified, instead only
+            fields for the mini representation are returned, additional
+            to the fields requested.
+          in: query
+          example:
+            - id
+            - type
+            - name
+          required: false
+          explode: false
+          schema:
+            type: array
+            items:
+              type: string
+        - name: limit
+          description: The maximum number of items to return per page.
+          in: query
+          required: false
+          example: 1000
+          schema:
+            type: integer
+            format: int64
+            maximum: 1000
+        - name: offset
+          description: |-
+            The offset of the item at which to begin the response.
+
+            Queries with offset parameter value
+            exceeding 10000 will be rejected
+            with a 400 response.
+          in: query
+          required: false
+          example: 1000
+          schema:
+            type: integer
+            format: int64
+            default: 0
+      responses:
+        '200':
+          description: |-
+            Returns a collection of comment objects. If there are no
+            comments on this file an empty collection will be returned.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Comments'
+        default:
+          description: An unexpected client error.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ClientError'
+  /comments/{comment_id}:
+    get:
+      operationId: get_comments_id
+      summary: Get comment
+      tags:
+        - Comments
+      x-box-tag: comments
+      description: |-
+        Retrieves the message and metadata for a specific comment, as well
+        as information on the user who created the comment.
+      parameters:
+        - name: comment_id
+          description: The ID of the comment.
+          example: '12345'
+          in: path
+          required: true
+          schema:
+            type: string
+        - name: fields
+          description: |-
+            A comma-separated list of attributes to include in the
+            response. This can be used to request fields that are
+            not normally returned in a standard response.
+
+            Be aware that specifying this parameter will have the
+            effect that none of the standard fields are returned in
+            the response unless explicitly specified, instead only
+            fields for the mini representation are returned, additional
+            to the fields requested.
+          in: query
+          example:
+            - id
+            - type
+            - name
+          required: false
+          explode: false
+          schema:
+            type: array
+            items:
+              type: string
+      responses:
+        '200':
+          description: Returns a full comment object.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Comment--Full'
+        default:
+          description: An unexpected client error.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ClientError'
+    put:
+      operationId: put_comments_id
+      summary: Update comment
+      tags:
+        - Comments
+      x-box-tag: comments
+      description: Update the message of a comment.
+      parameters:
+        - name: comment_id
+          description: The ID of the comment.
+          example: '12345'
+          in: path
+          required: true
+          schema:
+            type: string
+        - name: fields
+          description: |-
+            A comma-separated list of attributes to include in the
+            response. This can be used to request fields that are
+            not normally returned in a standard response.
+
+            Be aware that specifying this parameter will have the
+            effect that none of the standard fields are returned in
+            the response unless explicitly specified, instead only
+            fields for the mini representation are returned, additional
+            to the fields requested.
+          in: query
+          example:
+            - id
+            - type
+            - name
+          required: false
+          explode: false
+          schema:
+            type: array
+            items:
+              type: string
+      requestBody:
+        content:
+          application/json:
+            schema:
+              type: object
+              properties:
+                message:
+                  type: string
+                  description: The text of the comment to update
+                  example: Review completed!
+      responses:
+        '200':
+          description: Returns the updated comment object.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Comment--Full'
+        default:
+          description: An unexpected client error.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ClientError'
+    delete:
+      operationId: delete_comments_id
+      summary: Remove comment
+      tags:
+        - Comments
+      x-box-tag: comments
+      description: Permanently deletes a comment.
+      parameters:
+        - name: comment_id
+          description: The ID of the comment.
+          example: '12345'
+          in: path
+          required: true
+          schema:
+            type: string
+      responses:
+        '204':
+          description: Returns an empty response when the comment has been deleted.
+        default:
+          description: An unexpected client error.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ClientError'
+  /comments:
+    post:
+      operationId: post_comments
+      tags:
+        - Comments
+      x-box-tag: comments
+      summary: Create comment
+      description: |-
+        Adds a comment by the user to a specific file, or
+        as a reply to an other comment.
+      parameters:
+        - name: fields
+          description: |-
+            A comma-separated list of attributes to include in the
+            response. This can be used to request fields that are
+            not normally returned in a standard response.
+
+            Be aware that specifying this parameter will have the
+            effect that none of the standard fields are returned in
+            the response unless explicitly specified, instead only
+            fields for the mini representation are returned, additional
+            to the fields requested.
+          in: query
+          example:
+            - id
+            - type
+            - name
+          required: false
+          explode: false
+          schema:
+            type: array
+            items:
+              type: string
+      requestBody:
+        content:
+          application/json:
+            schema:
+              type: object
+              required:
+                - message
+                - item
+              properties:
+                message:
+                  type: string
+                  description: |-
+                    The text of the comment.
+
+                    To mention a user, use the `tagged_message`
+                    parameter instead.
+                  example: Review completed!
+                tagged_message:
+                  type: string
+                  description: |-
+                    The text of the comment, including `@[user_id:name]`
+                    somewhere in the message to mention another user, which
+                    will send them an email notification, letting them know
+                    they have been mentioned.
+
+                    The `user_id` is the target user's ID, where the `name`
+                    can be any custom phrase. In the Box UI this name will
+                    link to the user's profile.
+
+                    If you are not mentioning another user, use `message`
+                    instead.
+                  example: '@[1234:John] Review completed!'
+                item:
+                  type: object
+                  description: The item to attach the comment to.
+                  required:
+                    - id
+                    - type
+                  properties:
+                    id:
+                      type: string
+                      description: The ID of the item
+                      example: '11446498'
+                    type:
+                      type: string
+                      description: >-
+                        The type of the item that this comment will be placed
+                        on.
+                      example: file
+                      enum:
+                        - file
+                        - comment
+      responses:
+        '201':
+          description: |-
+            Returns the newly created comment object.
+
+            Not all available fields are returned by default. Use the
+            [fields](#param-fields) query parameter to explicitly request
+            any specific fields.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Comment--Full'
+        default:
+          description: An unexpected client error.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ClientError'
+components:
+  schemas:
+    Comments:
+      title: Comments
+      type: object
+      x-box-resource-id: comments
+      x-box-tag: comments
+      description: A list of comments
+      allOf:
+        - type: object
+          description: The part of an API response that describes pagination
+          properties:
+            total_count:
+              description: >-
+                One greater than the offset of the last entry in the entire
+                collection.
+
+                The total number of entries in the collection may be less than
+
+                `total_count`.
+
+
+                This field is only returned for calls that use offset-based
+                pagination.
+
+                For marker-based paginated APIs, this field will be omitted.
+              example: 5000
+              type: integer
+              format: int64
+            limit:
+              description: >-
+                The limit that was used for these entries. This will be the same
+                as the
+
+                `limit` query parameter unless that value exceeded the maximum
+                value
+
+                allowed. The maximum value varies by API.
+              example: 1000
+              type: integer
+              format: int64
+            offset:
+              description: >-
+                The 0-based offset of the first entry in this set. This will be
+                the same
+
+                as the `offset` query parameter.
+
+
+                This field is only returned for calls that use offset-based
+                pagination.
+
+                For marker-based paginated APIs, this field will be omitted.
+              example: 2000
+              type: integer
+              format: int64
+            order:
+              description: >-
+                The order by which items are returned.
+
+
+                This field is only returned for calls that use offset-based
+                pagination.
+
+                For marker-based paginated APIs, this field will be omitted.
+              type: array
+              items:
+                type: object
+                description: The order in which a pagination is ordered
+                properties:
+                  by:
+                    description: The field to order by
+                    example: type
+                    type: string
+                  direction:
+                    type: string
+                    description: The direction to order by, either ascending or descending
+                    example: ASC
+                    enum:
+                      - ASC
+                      - DESC
+        - properties:
+            entries:
+              type: array
+              description: A list of comments
+              items:
+                $ref: '#/components/schemas/Comment--Full'
+    ClientError:
+      title: Client error
+      type: object
+      x-box-resource-id: client_error
+      description: A generic error
+      properties:
+        type:
+          description: error
+          example: error
+          type: string
+          enum:
+            - error
+          nullable: false
+        status:
+          description: The HTTP status of the response.
+          example: 400
+          type: integer
+          format: int32
+          nullable: false
+        code:
+          description: A Box-specific error code
+          example: item_name_invalid
+          type: string
+          enum:
+            - created
+            - accepted
+            - no_content
+            - redirect
+            - not_modified
+            - bad_request
+            - unauthorized
+            - forbidden
+            - not_found
+            - method_not_allowed
+            - conflict
+            - precondition_failed
+            - too_many_requests
+            - internal_server_error
+            - unavailable
+            - item_name_invalid
+            - insufficient_scope
+        message:
+          description: A short message describing the error.
+          example: Method Not Allowed
+          type: string
+          nullable: false
+        context_info:
+          description: |-
+            A free-form object that contains additional context
+            about the error. The possible fields are defined on
+            a per-endpoint basis. `message` is only one example.
+          type: object
+          nullable: true
+          properties:
+            message:
+              type: string
+              description: More details on the error.
+              example: Something went wrong.
+        help_url:
+          description: A URL that links to more information about why this error occurred.
+          example: >-
+            https://developer.box.com/guides/api-calls/permissions-and-errors/common-errors/
+          type: string
+          nullable: false
+        request_id:
+          description: |-
+            A unique identifier for this response, which can be used
+            when contacting Box support.
+          type: string
+          example: abcdef123456
+          nullable: false
+    Comment--Full:
+      title: Comment (Full)
+      type: object
+      x-box-resource-id: comment--full
+      x-box-variant: full
+      description: |-
+        Comments are messages created on files. Comments
+        can be made independently or created as responses to other
+        comments
+      allOf:
+        - $ref: '#/components/schemas/Comment'
+        - properties:
+            tagged_message:
+              type: string
+              example: '@[1234567:Aaron Levie] these tigers are cool!'
+              description: |-
+                The string representing the comment text with
+                @mentions included. @mention format is @[id:username]
+                where `id` is user's Box ID and `username` is
+                their display name.

@@ -8,24 +8,12 @@ paths:
       description: >-
         <p>Lists the cross-account permissions associated with a signing
         profile.</p>
-      tags:
-        - List
-        - Profile
-        - Permissions
-        - Name
-        - Permissions
   /signing-profiles/{profileName}:
     PUT:
       summary: PutSigningProfile
       description: >-
         <p>Creates a signing profile. A signing profile is a code-signing
         template that can be used to carry out a pre-defined signing job. </p>
-      tags:
-        - Put
-        - Signing
-        - Profile
-        - Name
-        - Permissions
   /signing-jobs/{jobId}:
     GET:
       summary: DescribeSigningJob
@@ -33,39 +21,16 @@ paths:
         <p>Returns information about a specific code signing job. You specify
         the job by using the <code>jobId</code> value that is returned by the
         <a>StartSigningJob</a> operation. </p>
-      tags:
-        - Describe
-        - Signing
-        - Job
-        - Name
-        - Permissions
-        - Id
   /revocations:
     GET:
       summary: GetRevocationStatus
       description: >-
         <p>Retrieves the revocation status of one or more of the signing
         profile, signing job, and signing certificate.</p>
-      tags:
-        - Get
-        - Revocation
-        - Status
-        - Name
-        - Permissions
-        - Id
-        - Revocations
   /signing-platforms/{platformId}:
     GET:
       summary: GetSigningPlatform
       description: <p>Returns information on a specific signing platform.</p>
-      tags:
-        - Get
-        - Signing
-        - Platform
-        - Name
-        - Permissions
-        - Id
-        - Revocations
   /signing-jobs:
     POST:
       summary: StartSigningJob
@@ -88,16 +53,6 @@ paths:
         <code>StartSigningJob</code>.</p> <p>For a Java example that shows how
         to use this action, see <a
         href="https://docs.aws.amazon.com/signer/latest/developerguide/api-startsigningjob.html">StartSigningJob</a>.</p>
-      tags:
-        - Start
-        - Signing
-        - Job
-        - Name
-        - Permissions
-        - Id
-        - Revocations
-        - Signing
-        - Jobs
   /signing-platforms:
     GET:
       summary: ListSigningPlatforms
@@ -110,17 +65,6 @@ paths:
         <code>maxResults</code> parameter and with new values that Signer
         returns in the <code>nextToken</code> parameter until all of your
         signing jobs have been returned.</p>
-      tags:
-        - List
-        - Signing
-        - Platforms
-        - Name
-        - Permissions
-        - Id
-        - Revocations
-        - Signing
-        - Jobs
-        - Platforms
   /signing-profiles:
     GET:
       summary: ListSigningProfiles
@@ -135,74 +79,22 @@ paths:
         <code>maxResults</code> parameter and with new values that Signer
         returns in the <code>nextToken</code> parameter until all of your
         signing jobs have been returned.</p>
-      tags:
-        - List
-        - Signing
-        - Profiles
-        - Name
-        - Permissions
-        - Id
-        - Revocations
-        - Signing
-        - Jobs
-        - Platforms
-        - Profiles
   /tags/{resourceArn}:
     DELETE:
       summary: UntagResource
       description: >-
         <p>Removes one or more tags from a signing profile. To remove the tags,
         specify a list of tag keys.</p>
-      tags:
-        - Untag
-        - Resource
-        - Name
-        - Permissions
-        - Id
-        - Revocations
-        - Signing
-        - Jobs
-        - Platforms
-        - Profiles
-        - Arn
   /signing-profiles/{profileName}/permissions/{statementId}:
     DELETE:
       summary: RemoveProfilePermission
       description: <p>Removes cross-account permissions from a signing profile.</p>
-      tags:
-        - Remove
-        - Profile
-        - Permission
-        - Name
-        - Permissions
-        - Id
-        - Revocations
-        - Signing
-        - Jobs
-        - Platforms
-        - Profiles
-        - Arn
-        - Statement
   /signing-jobs/{jobId}/revoke:
     PUT:
       summary: RevokeSignature
       description: >-
         <p>Changes the state of a signing job to REVOKED. This indicates that
         the signature is no longer valid.</p>
-      tags:
-        - Revoke
-        - Signature
-        - Name
-        - Permissions
-        - Id
-        - Revocations
-        - Signing
-        - Jobs
-        - Platforms
-        - Profiles
-        - Arn
-        - Statement
-        - Revoke
   /signing-profiles/{profileName}/revoke:
     PUT:
       summary: RevokeSigningProfile
@@ -210,38 +102,7 @@ paths:
         <p>Changes the state of a signing profile to REVOKED. This indicates
         that signatures generated using the signing profile after an effective
         start date are no longer valid.</p>
-      tags:
-        - Revoke
-        - Signing
-        - Profile
-        - Name
-        - Permissions
-        - Id
-        - Revocations
-        - Signing
-        - Jobs
-        - Platforms
-        - Profiles
-        - Arn
-        - Statement
-        - Revoke
   /signing-jobs/with-payload:
     POST:
       summary: SignPayload
-      description: <p>Signs a binary payload and returns a signature envelope.</
-      tags:
-        - Sign
-        - Payload
-        - Name
-        - Permissions
-        - Id
-        - Revocations
-        - Signing
-        - Jobs
-        - Platforms
-        - Profiles
-        - Arn
-        - Statement
-        - Revoke
-        - With
-        - P
+      description: <p>Signs a binary payload and returns a signature envel

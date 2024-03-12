@@ -1,0 +1,39 @@
+openapi: 3.1.0
+info:
+  title: Box Storage Policy Assignments API
+paths:
+  /storage_policy_assignments:
+    get:
+      summary: List storage policy assignments
+      tags:
+        - Standard and Zones Storage Policy Assignments
+      description: Fetches all the storage policy assignment for an enterprise or user.
+    post:
+      summary: Assign storage policy
+      tags:
+        - Standard and Zones Storage Policy Assignments
+      description: Creates a storage policy assignment for an enterprise or user.
+  /storage_policy_assignments/{storage_policy_assignment_id}:
+    get:
+      summary: Get storage policy assignment
+      tags:
+        - Standard and Zones Storage Policy Assignments
+      description: Fetches a specific storage policy assignment.
+    put:
+      summary: Update storage policy assignment
+      tags:
+        - Standard and Zones Storage Policy Assignments
+      description: Updates a specific storage policy assignment.
+    delete:
+      summary: Unassign storage policy
+      tags:
+        - Standard and Zones Storage Policy Assignments
+      description: |-
+        Delete a storage policy assignment.
+
+        Deleting a storage policy assignment on a user
+        will have the user inherit the enterprise's default
+        storage policy.
+
+        There is a rate limit for calling this endpoint of only
+        twice per user in a 24 hour time fram

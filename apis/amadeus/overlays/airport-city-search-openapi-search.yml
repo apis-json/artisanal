@@ -1,0 +1,516 @@
+openapi: 3.0.1
+info:
+  title: Airport & City Search
+  version: '1.0'
+servers:
+  - url: https://test.api.amadeus.com/v1
+paths:
+  /reference-data/locations:
+    get:
+      tags:
+        - location
+      summary: Returns a list of airports and cities matching a given keyword.
+  /reference-data/locations/{locationId}:
+    get:
+      tags:
+        - location
+      summary: Returns a specific airports or cities based on its id.
+components:
+  schemas:
+    Location:
+      type: object
+      properties:
+        id:
+          type: string
+          description: id of the ressource
+        self:
+          $ref: '#/components/schemas/Links'
+        type:
+          type: string
+          description: the resource name
+          example: location
+        subType:
+          type: string
+          description: location sub type
+          example: AIRPORT
+          enum:
+            - AIRPORT
+            - CITY
+            - POINT_OF_INTEREST
+            - DISTRICT
+        name:
+          type: string
+          description: short name of the location
+          example: Paris CDG
+        detailedName:
+          type: string
+          description: >-
+            detailed name of the location. For a city location it contains city
+            name and country code. For an airport location it contains city
+            name; country code and airport full name
+          example: 'Paris/FR: Charles de Gaulle'
+        timeZoneOffset:
+          type: string
+          description: >-
+            timezone offset of the location at the date of the API call
+            (including daylight saving time)
+          example: '+01:00'
+        iataCode:
+          type: string
+          description: >-
+            IATA code of the location. ([IATA table
+            codes](http://www.iata.org/publications/Pages/code-search.aspx)
+            here)
+          example: CDG
+        geoCode:
+          $ref: '#/components/schemas/GeoCode'
+        address:
+          $ref: '#/components/schemas/Address'
+        distance:
+          $ref: '#/components/schemas/Distance'
+        analytics:
+          $ref: '#/components/schemas/Analytics'
+        relevance:
+          type: number
+          description: score value calculated based on distance and analytics
+          format: double
+          example: 9.6584
+        category:
+          type: string
+          description: category of the location
+          example: HISTORICAL
+          enum:
+            - SIGHTS
+            - BEACH_PARK
+            - HISTORICAL
+            - NIGHTLIFE
+            - RESTAURANT
+            - SHOPPING
+        tags:
+          type: array
+          description: list of tags related to the location
+          items:
+            type: string
+            example: ''
+        rank:
+          type: string
+          description: >-
+            the rank is the position compared to other locations based on how
+            famous is a place. 1 being the highest.
+          example: '1'
+    Address:
+      type: object
+      properties:
+        cityName:
+          type: string
+          description: >-
+            name of the city of the location; equal to name if the location is a
+            city
+          example: Paris
+        cityCode:
+          type: string
+          description: >-
+            IATA code of the city of the location; equal to IATAcode if the
+            location is a city
+          example: PAR
+        countryName:
+          type: string
+          description: name of the country of the location
+          example: France
+        countryCode:
+          type: string
+          description: code of the country of the location in ISO standard
+          example: FR
+        stateCode:
+          type: string
+          description: code of the state of the location if any
+          example: TO
+        regionCode:
+          type: string
+          description: code of the region of the location in ISO standard
+          example: EUROP
+    Distance:
+      type: object
+      properties:
+        value:
+          type: integer
+          description: >-
+            great-circle distance between two locations. This distance thus do
+            not take into account traffic conditions; international boundaries;
+            mountains; water; or other elements that might make the a nearby
+            location hard to reach.
+          example: 152
+        unit:
+          type: string
+          description: unit of the distance
+          example: KM
+          enum:
+            - KM
+            - MI
+    GeoCode:
+      type: object
+      properties:
+        latitude:
+          type: number
+          description: latitude of the location
+          format: double
+          example: 43.580418
+        longitude:
+          type: number
+          description: longitude of the location
+          format: double
+          example: 7.125102
+    Analytics:
+      type: object
+      properties:
+        travelers:
+          $ref: '#/components/schemas/Travelers'
+    Travelers:
+      type: object
+      properties:
+        score:
+          type: number
+          description: >-
+            Approximate score for ranking purposes calculated based on number of
+            travelers in the location.
+          format: integer
+          example: 68
+    Error_400:
+      required:
+        - errors
+      type: object
+      properties:
+        errors:
+          type: array
+          items:
+            $ref: '#/components/schemas/Issue'
+      example:
+        errors:
+          - status: 400
+            code: 477
+            title: INVALID FORMAT
+            detail: invalid query parameter format
+            source:
+              parameter: airport
+              example: CDG
+    Error_404:
+      required:
+        - errors
+      type: object
+      properties:
+        errors:
+          type: array
+          items:
+            $ref: '#/components/schemas/Issue'
+      example:
+        errors:
+          - status: 404
+            code: 1797
+            title: NOT FOUND
+            detail: no response found for this query parameter
+            source:
+              parameter: airport
+    Error_500:
+      required:
+        - errors
+      type: object
+      properties:
+        errors:
+          type: array
+          items:
+            $ref: '#/components/schemas/Issue'
+      example:
+        errors:
+          - status: 500
+            code: 141
+            title: SYSTEM ERROR HAS OCCURRED
+    Issue:
+      type: object
+      properties:
+        status:
+          type: integer
+          description: the HTTP status code applicable to this error
+        code:
+          type: integer
+          description: an application-specific error code
+          format: int64
+        title:
+          type: string
+          description: a short summary of the error
+        detail:
+          type: string
+          description: explanation of the error
+        source:
+          title: Issue_Source
+          type: object
+          properties:
+            pointer:
+              type: string
+              description: >-
+                a JSON Pointer [RFC6901] to the associated entity in the request
+                document
+            parameter:
+              type: string
+              description: a string indicating which URI query parameter caused the issue
+            example:
+              type: string
+              description: a string indicating an example of the right value
+          description: an object containing references to the source of the error
+    Collection_Meta:
+      title: Collection_Meta
+      type: object
+      properties:
+        count:
+          type: integer
+          example: 1
+        links:
+          title: CollectionLinks
+          type: object
+          properties:
+            self:
+              type: string
+              format: uri
+              example: https://test.api.amadeus.com/v1/area/resources?...
+            next:
+              type: string
+              format: uri
+              example: https://test.api.amadeus.com/v1/area/resources?...
+            previous:
+              type: string
+              format: uri
+              example: https://test.api.amadeus.com/v1/area/resources?...
+            last:
+              type: string
+              format: uri
+              example: https://test.api.amadeus.com/v1/area/resources?...
+            first:
+              type: string
+              format: uri
+              example: https://test.api.amadeus.com/v1/area/resources?...
+            up:
+              type: string
+              format: uri
+              example: https://test.api.amadeus.com/v1/area/resources?...
+          example:
+            self: https://test.api.amadeus.com/v1/area/resources?param=value
+    Links:
+      required:
+        - href
+      type: object
+      properties:
+        href:
+          type: string
+          format: uri
+        methods:
+          type: array
+          items:
+            type: string
+            enum:
+              - GET
+              - PUT
+              - DELETE
+              - POST
+              - PATCH
+        count:
+          type: integer
+      example:
+        href: string
+  responses:
+    '400':
+      description: "code    | title                                 \n- | ---------------------------------- \n477     | INVALID FORMAT\n572     | INVALID OPTION \n2781    | INVALID LENGTH\n4926    | INVALID DATA RECEIVED               \n32171   | MANDATORY DATA MISSING \t     \n"
+      content:
+        application/vnd.amadeus+json:
+          schema:
+            $ref: '#/components/schemas/Error_400'
+    '404':
+      description: Not Found
+      content:
+        application/vnd.amadeus+json:
+          schema:
+            $ref: '#/components/schemas/Error_404'
+    '500':
+      description: Unexpected Error
+      content:
+        application/vnd.amadeus+json:
+          schema:
+            $ref: '#/components/schemas/Error_500'
+    airport-city-autocomplete:
+      description: Successful Operation
+      content:
+        application/vnd.amadeus+json:
+          schema:
+            title: Success
+            required:
+              - data
+            type: object
+            properties:
+              meta:
+                $ref: '#/components/schemas/Collection_Meta'
+              data:
+                type: array
+                items:
+                  $ref: '#/components/schemas/Location'
+            example:
+              meta:
+                count: 2
+                links:
+                  self: >-
+                    https://test.api.amadeus.com/v1/reference-data/locations?subType=CITY,AIRPORT&keyword=MUC&countryCode=DE
+              data:
+                - type: location
+                  subType: CITY
+                  name: MUNICH INTERNATIONAL
+                  detailedName: MUNICH/DE:MUNICH INTERNATIONAL
+                  id: CMUC
+                  self:
+                    href: >-
+                      https://test.api.amadeus.com/v1/reference-data/locations/CMUC
+                    methods:
+                      - GET
+                  timeZoneOffset: '+02:00'
+                  iataCode: MUC
+                  geoCode:
+                    latitude: 48.35378
+                    longitude: 11.78609
+                  address:
+                    cityName: MUNICH
+                    cityCode: MUC
+                    countryName: GERMANY
+                    countryCode: DE
+                    regionCode: EUROP
+                  analytics:
+                    travelers:
+                      score: 27
+                - type: location
+                  subType: AIRPORT
+                  name: MUNICH INTERNATIONAL
+                  detailedName: MUNICH/DE:MUNICH INTERNATIONAL
+                  id: AMUC
+                  self:
+                    href: >-
+                      https://test.api.amadeus.com/v1/reference-data/locations/AMUC
+                    methods:
+                      - GET
+                  timeZoneOffset: '+02:00'
+                  iataCode: MUC
+                  geoCode:
+                    latitude: 48.35378
+                    longitude: 11.78609
+                  address:
+                    cityName: MUNICH
+                    cityCode: MUC
+                    countryName: GERMANY
+                    countryCode: DE
+                    regionCode: EUROP
+                  analytics:
+                    travelers:
+                      score: 27
+    airport-city:
+      description: Successful Operation
+      content:
+        application/vnd.amadeus+json:
+          schema:
+            title: Success
+            required:
+              - data
+            type: object
+            properties:
+              meta:
+                $ref: '#/components/schemas/Collection_Meta'
+              data:
+                $ref: '#/components/schemas/Location'
+            example:
+              meta:
+                links:
+                  self: >-
+                    https://test.api.amadeus.com/v1/reference-data/locations/CMUC
+              data:
+                type: location
+                subType: CITY
+                name: MUNICH INTERNATIONAL
+                detailedName: MUNICH/DE:MUNICH INTERNATIONAL
+                id: CMUC
+                self:
+                  href: >-
+                    https://test.api.amadeus.com/v1/reference-data/locations/CMUC
+                  methods:
+                    - GET
+                timeZoneOffset: '+02:00'
+                iataCode: MUC
+                geoCode:
+                  latitude: 48.35378
+                  longitude: 11.78609
+                address:
+                  cityName: MUNICH
+                  cityCode: MUC
+                  countryName: GERMANY
+                  countryCode: DE
+                  regionCode: EUROP
+                analytics:
+                  travelers:
+                    score: 27
+    400_GET-Id:
+      description: |
+        code    | title                                 
+        ------- | ------------------------------------- 
+        572     | INVALID OPTION    
+      content:
+        application/vnd.amadeus+json:
+          schema:
+            $ref: '#/components/schemas/Error_400'
+  parameters:
+    pageLimit:
+      name: page[limit]
+      in: query
+      description: maximum items in one page
+      schema:
+        type: integer
+        default: 10
+    pageOffset:
+      name: page[offset]
+      in: query
+      description: start index of the requested page
+      schema:
+        type: integer
+        default: 0
+    sort:
+      name: sort
+      in: query
+      description: >
+        defines on which attribute the sorting will be done:
+
+        * analytics.travelers.score - sort by the number of travelers by airport
+        or city, the airports and cities with the highest traffic are on top of
+        the results
+      schema:
+        type: string
+        default: analytics.travelers.score
+        enum:
+          - analytics.travelers.score
+    view:
+      name: view
+      in: query
+      description: >
+        select the level of information of the reply:
+
+        * LIGHT - Gives only the IATACode, name, detailedName, cityName and
+        countryName
+
+        * FULL - Adds on top of the LIGHT information the timeZoneOffset,
+        geocode, detailed address and travelers.score
+
+        default option is FULL
+      schema:
+        type: string
+        default: FULL
+        enum:
+          - LIGHT
+          - FULL
+    locationId:
+      name: locationId
+      in: path
+      description: identifier of the location
+      required: true
+      schema:
+        type: string
+      example: nu

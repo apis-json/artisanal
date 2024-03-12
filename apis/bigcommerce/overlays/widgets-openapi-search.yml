@@ -1,0 +1,148 @@
+openapi: 3.0.1
+info:
+  title: Widgets
+  version: ''
+tags:
+  - name: Regions
+  - name: Widget Template
+    description: BigCommerce Widget Templates API Definition.
+  - name: Widget
+    description: BigCommerce Widgets API Definition.
+  - name: Placement
+    description: BigCommerce Placements API Definition.
+paths:
+  /content/widget-templates:
+    post:
+      tags:
+        - Widget Template
+      summary: Create a Widget Template
+      description: >-
+        Creates a **Widget Template**.
+
+
+        ***Note:*** *There is a limit of 1000 custom widget templates per
+        store.*
+
+
+        **Required Fields**
+
+        * name
+
+        * template
+    get:
+      tags:
+        - Widget Template
+      description: Returns a list of **Widget Templates**.
+      summary: Get All Widget Templates
+  /content/widget-templates/{uuid}/preview:
+    post:
+      tags:
+        - Widget Template
+      summary: Render a Widget Template
+      description: Render a widget template and return the widget html.
+    parameters:
+      - null
+  /content/widget-templates/{uuid}:
+    get:
+      tags:
+        - Widget Template
+      summary: Get a Widget Template
+      description: Returns a single **Widget Template**.
+    put:
+      tags:
+        - Widget Template
+      summary: Update a Widget Template
+      description: Updates a **Widget Template**.
+    delete:
+      tags:
+        - Widget Template
+      summary: Delete A Widget Template
+      description: Deletes a **Widget Template**.
+    parameters:
+      - null
+      - null
+  /content/widgets:
+    post:
+      tags:
+        - Widget
+      summary: Create a Widget
+      description: >-
+        Creates a **Widget**.
+
+
+        **Note:** There is a limit of 100,000 widgets per store and 150 widgets
+        per page. For more information, see [Store
+        Limits](https://support.bigcommerce.com/s/article/Platform-Limits#storelimits).
+    get:
+      tags:
+        - Widget
+      summary: Get All Widgets
+      description: Returns a list of **Widgets**. Optional parameters can be passed in.
+    parameters:
+      - null
+  /content/widgets/{uuid}:
+    get:
+      tags:
+        - Widget
+      summary: Get a Widget
+      description: Returns a single **Widget**.
+    put:
+      tags:
+        - Widget
+      summary: Update a Widget
+      description: Updates a **Widget**.
+    delete:
+      tags:
+        - Widget
+      summary: Delete a Widget
+      description: Deletes a **Widget**.
+    parameters:
+      - null
+      - null
+  /content/placements:
+    post:
+      tags:
+        - Placement
+      summary: Create a Placement
+      description: >-
+        Creates a **Placement**.
+
+
+        **Template Files**
+
+
+        To view the list of values accepted by the `template_file` property,
+        including **custom** templates, see
+        [Placements](/docs/storefront/widgets#placements).
+    get:
+      tags:
+        - Placement
+      summary: Get All Placements
+      description: Returns a list of **Placements**.
+    parameters:
+      - null
+  /content/placements/{uuid}:
+    get:
+      tags:
+        - Placement
+      summary: Get a Placement
+      description: Returns a single **Placement**.
+    put:
+      tags:
+        - Placement
+      summary: Update a Placement
+      description: Updates a **Placement**.
+    delete:
+      tags:
+        - Placement
+      summary: Delete a Placement
+      description: Deletes a **Placement**.
+    parameters:
+      - null
+      - null
+  /content/regions:
+    get:
+      summary: Get Theme Regions
+      description: Returns a list of unique **Theme Regions** in a file.
+      tags:
+        - Regio

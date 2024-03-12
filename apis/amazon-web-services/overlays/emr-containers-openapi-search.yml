@@ -9,15 +9,6 @@ paths:
         <p>Displays detailed information about a job run. A job run is a unit of
         work, such as a Spark jar, PySpark script, or SparkSQL query, that you
         submit to Amazon EMR on EKS.</p>
-      tags:
-        - Describe
-        - Job
-        - Run
-        - Cluster
-        - Id
-        - Jobruns
-        - Job
-        - Run
   /jobtemplates:
     GET:
       summary: ListJobTemplates
@@ -27,16 +18,6 @@ paths:
         a job run. Job template allows two use cases: avoid repeating recurring
         StartJobRun API request values, enforcing certain values in StartJobRun
         API request.</p>
-      tags:
-        - List
-        - Job
-        - Templates
-        - Cluster
-        - Id
-        - Jobruns
-        - Job
-        - Run
-        - Jobtemplates
   /virtualclusters/{virtualClusterId}/endpoints:
     GET:
       summary: ListManagedEndpoints
@@ -45,17 +26,6 @@ paths:
         endpoint is a gateway that connects Amazon EMR Studio to Amazon EMR on
         EKS so that Amazon EMR Studio can communicate with your virtual
         cluster.</p>
-      tags:
-        - List
-        - Managed
-        - Endpoints
-        - Cluster
-        - Id
-        - Jobruns
-        - Job
-        - Run
-        - Jobtemplates
-        - Endpoints
   /virtualclusters:
     GET:
       summary: ListVirtualClusters
@@ -67,18 +37,6 @@ paths:
         single Kubernetes namespace. Given this relationship, you can model
         virtual clusters the same way you model Kubernetes namespaces to meet
         your requirements.</p>
-      tags:
-        - List
-        - Virtual
-        - Clusters
-        - Cluster
-        - Id
-        - Jobruns
-        - Job
-        - Run
-        - Jobtemplates
-        - Endpoints
-        - Virtualclusters
   /jobtemplates/{templateId}:
     GET:
       summary: DescribeJobTemplate
@@ -88,18 +46,6 @@ paths:
         be used to start a job run. Job template allows two use cases: avoid
         repeating recurring StartJobRun API request values, enforcing certain
         values in StartJobRun API request.</p>
-      tags:
-        - Describe
-        - Job
-        - Template
-        - Cluster
-        - Id
-        - Jobruns
-        - Job
-        - Run
-        - Jobtemplates
-        - Endpoints
-        - Virtualclusters
   /virtualclusters/{virtualClusterId}/endpoints/{endpointId}:
     GET:
       summary: DescribeManagedEndpoint
@@ -108,19 +54,6 @@ paths:
         endpoint is a gateway that connects Amazon EMR Studio to Amazon EMR on
         EKS so that Amazon EMR Studio can communicate with your virtual
         cluster.</p>
-      tags:
-        - Describe
-        - Managed
-        - Endpoint
-        - Cluster
-        - Id
-        - Jobruns
-        - Job
-        - Run
-        - Jobtemplates
-        - Endpoints
-        - Virtualclusters
-        - Endpoint
   /virtualclusters/{virtualClusterId}:
     GET:
       summary: DescribeVirtualCluster
@@ -132,39 +65,10 @@ paths:
         a single Kubernetes namespace. Given this relationship, you can model
         virtual clusters the same way you model Kubernetes namespaces to meet
         your requirements.</p>
-      tags:
-        - Describe
-        - Virtual
-        - Cluster
-        - Cluster
-        - Id
-        - Jobruns
-        - Job
-        - Run
-        - Jobtemplates
-        - Endpoints
-        - Virtualclusters
-        - Endpoint
   /virtualclusters/{virtualClusterId}/endpoints/{endpointId}/credentials:
     POST:
       summary: GetManagedEndpointSessionCredentials
       description: <p>Generate a session token to connect to a managed endpoint. </p>
-      tags:
-        - Get
-        - Managed
-        - Endpoint
-        - Session
-        - Credentials
-        - Cluster
-        - Id
-        - Jobruns
-        - Job
-        - Run
-        - Jobtemplates
-        - Endpoints
-        - Virtualclusters
-        - Endpoint
-        - Credentials
   /virtualclusters/{virtualClusterId}/jobruns:
     POST:
       summary: StartJobRun
@@ -172,35 +76,7 @@ paths:
         <p>Starts a job run. A job run is a unit of work, such as a Spark jar,
         PySpark script, or SparkSQL query, that you submit to Amazon EMR on
         EKS.</p>
-      tags:
-        - Start
-        - Job
-        - Run
-        - Cluster
-        - Id
-        - Jobruns
-        - Job
-        - Run
-        - Jobtemplates
-        - Endpoints
-        - Virtualclusters
-        - Endpoint
-        - Credentials
   /tags/{resourceArn}:
     DELETE:
       summary: UntagResource
-      description: <p>Removes tags from resources.</
-      tags:
-        - Untag
-        - Resource
-        - Cluster
-        - Id
-        - Jobruns
-        - Job
-        - Run
-        - Jobtemplates
-        - Endpoints
-        - Virtualclusters
-        - Endpoint
-        - Credentials
-        - nu
+      description: <p>Removes tags from resour

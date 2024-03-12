@@ -1,0 +1,471 @@
+openapi: 3.0.3
+info:
+  title: Settings V3
+tags:
+  - name: Email Statuses
+  - name: Search Filters
+  - name: Store Locale
+  - name: Storefront Category
+  - name: Storefront Robotstxt
+  - name: Storefront Search
+  - name: Storefront Security
+  - name: Storefront SEO
+  - name: Storefront Status
+  - name: Analytics
+  - name: Catalog
+  - name: Inventory
+  - name: Inventory Notifications
+  - name: Logo
+  - name: Logo Image
+  - name: Favicon Image
+  - name: Store Profile
+  - name: Storefront Product
+  - name: Units of Measurement
+paths:
+  /settings/analytics:
+    parameters:
+      - null
+    get:
+      summary: Get All Web Analytics Providers
+      description: Returns a list of web analytics providers.
+      tags:
+        - Analytics
+  /settings/analytics/{id}:
+    parameters:
+      - null
+      - null
+    get:
+      summary: Get a Web Analytics Provider
+      description: Returns a single web analytics provider data for a default channel.
+      tags:
+        - Analytics
+    put:
+      summary: Update a Web Analytics Provider
+      description: Updates a single web analytics provider data for a default channel.
+      tags:
+        - Analytics
+  /settings/catalog:
+    parameters:
+      - null
+    get:
+      summary: Get Catalog Settings
+      description: |-
+        Returns catalog settings.
+
+         - Channel ID can be used as a query parameter for getting channel-specific setting. If omitted, you will interact with the global setting only. 
+
+         - `null` indicates that a particular field has not been overridden on a channel level when channel level settings are requested and values are inherited from global level.
+      tags:
+        - Catalog
+    put:
+      summary: Update Catalog Settings
+      description: |-
+        Updates catalog settings.
+
+         - Channel ID can be used as a query parameter for updating channel-specific setting. If omitted, you will interact with the global setting only. 
+
+         - `null` should be supplied to delete overrides per given channel and to inherit values from global level. Partial updates are not supported and all settings should be supplied with `null` value in order to delete overrides per channel.
+      tags:
+        - Catalog
+  /settings/email-statuses:
+    parameters:
+      - null
+    get:
+      summary: Get Transactional Email Settings
+      description: >-
+        Get global transactional email settings or channel specific overrides by
+        `channel_id`.
+      tags:
+        - Email Statuses
+    put:
+      summary: Update Transactional Email Settings
+      description: >-
+        Update global transactional email settings or create channel specific
+        overrides by `channel_id`.
+      tags:
+        - Email Statuses
+  /settings/favicon/image:
+    parameters:
+      - null
+    post:
+      summary: Create Favicon Image
+      description: >-
+        Uploads an image file to use as the storefront favicon. Supported MIME
+        types include GIF, JPEG, and PNG. 
+
+          - Channel ID can be used as a query parameter for updating channel-specific setting. If omitted, you will interact with the global setting only.
+      tags:
+        - Favicon Image
+  /settings/inventory/notifications:
+    parameters:
+      - null
+    get:
+      summary: Get Inventory Notifications Settings
+      description: >-
+        Returns inventory notification settings. 
+
+        * `channel_id` can be used as a query parameter to get inventory
+        notification settings per channel. If omitted, you will interact with
+        the global setting only.
+      tags:
+        - Inventory Notifications
+    put:
+      summary: Update Inventory Notifications Settings
+      description: >-
+        Updates inventory notification settings. 
+
+        * `channel_id` can be used as a query parameter to get inventory
+        notification settings per channel. If omitted, you will interact with
+        the global setting only. 
+
+        * Supplying `null` settings values per channel will delete overrides per
+        given channel and values will be inherited from global level. 
+
+        * Partial updates are not supported within the given endpoint. In order
+        to delete overrides per channel, `null` should be supplied for all the
+        settings within the given endpoint.
+      tags:
+        - Inventory Notifications
+  /settings/logo:
+    parameters:
+      - null
+    get:
+      summary: Get Store Logo Settings
+      description: |-
+        Returns store logo settings.
+
+         - Channel ID can be used as a query parameter for getting channel-specific setting. If omitted, you will interact with the global setting only. 
+
+         - `null` indicates that a particular field has not been overridden on a channel level when channel level settings are requested and values are inherited from global level.
+      tags:
+        - Logo
+    put:
+      summary: Update Store Logo Settings
+      description: >-
+        Updates the logo type and logo text for a textual logo. To upload new
+        images, use the dedicated image POST endpoints.
+
+         - Channel ID can be used as a query parameter for updating channel-specific setting. If omitted, you will interact with the global setting only. 
+
+         - `null` should be supplied to delete overrides per given channel and to inherit values from global level. Partial updates are not supported and all settings should be supplied with `null` value in order to delete overrides per channel.
+      tags:
+        - Logo
+  /settings/logo/image:
+    parameters:
+      - null
+    post:
+      summary: Create Logo Image
+      description: >-
+        Uploads an image file to use as the storefront logo. Supported MIME
+        types include GIF, JPEG, and PNG. 
+
+         - Channel ID can be used as a query parameter for updating channel-specific setting. If omitted, you will interact with the global setting only.
+      tags:
+        - Logo Image
+  /settings/search/filters:
+    get:
+      summary: Get Enabled Filters
+      description: >-
+        Returns a list of enabled default [Product
+        Filtering](https://support.bigcommerce.com/s/article/Product-Filtering-Settings)
+        filters. These filters will be used if a store does not have contextual
+        overrides.
+      tags:
+        - Search Filters
+    put:
+      summary: Update Enabled Filters
+      description: >-
+        Updates enabled default [Product
+        Filtering](https://support.bigcommerce.com/s/article/Product-Filtering-Settings)
+        filters.
+      tags:
+        - Search Filters
+  /settings/search/filters/available:
+    parameters:
+      - null
+    get:
+      summary: Get Available Filters
+      description: >-
+        Returns a list of filters available to power [Product
+        Filtering](https://support.bigcommerce.com/s/article/Product-Filtering-Settings).
+      tags:
+        - Search Filters
+  /settings/search/filters/contexts:
+    parameters:
+      - null
+    get:
+      summary: Get Contextual Filters
+      description: >-
+        Returns a list of contextual filters enabled for a particular channel or
+        category.
+
+
+        **Usage Notes**
+
+
+        Contextual filters allow you to configure the enabled filters per
+        channel or category, so that shoppers can filter by the most relevant
+        criteria.
+
+
+        The order of the returned filters will match the sort order of the
+        filters on the storefront.
+      tags:
+        - Search Filters
+    put:
+      summary: Upsert Contextual Filters
+      description: >-
+        Upserts contextual filters for a particular channel or category.
+
+
+        **Usage Notes**
+
+
+        Contextual filters allow you to configure the enabled filters per
+        channel or category, so that shoppers can filter by the most relevant
+        criteria.
+
+
+        You can change the order of the filters on the live site by changing the
+        order of the filters you send.
+      tags:
+        - Search Filters
+  /settings/store/locale:
+    get:
+      summary: Get Locale Settings
+      description: Returns global locale settings.
+      tags:
+        - Store Locale
+    put:
+      summary: Update Locale Settings
+      description: Updates global locale settings.
+      tags:
+        - Store Locale
+  /settings/store/profile:
+    parameters:
+      - null
+    get:
+      summary: Get Store Profile Settings
+      description: |-
+        Returns store profile settings.
+
+         - Channel ID can be used as a query parameter for getting channel-specific setting. If omitted, you will interact with the global setting only. 
+
+         - `null` indicates that a particular field has not been overridden on a channel level when channel level settings are requested and values are inherited from global level.
+      tags:
+        - Store Profile
+    put:
+      summary: Update Store Profile Settings
+      description: |-
+        Updates store profile settings.
+
+         - Channel ID can be used as a query parameter for updating channel-specific setting. If omitted, you will interact with the global setting only. 
+
+         - `null` should be supplied to delete overrides per given channel and to inherit values from global level. Partial updates are not supported and all settings should be supplied with `null` value in order to delete overrides per channel.
+      tags:
+        - Store Profile
+  /settings/storefront/category:
+    parameters:
+      - null
+    get:
+      summary: Get Storefront Category Settings
+      description: |-
+        Returns category settings.
+
+         - Channel ID can be used as a query parameter for getting channel-specific settings. If omitted, you will interact with the global setting only. 
+
+         - `null` indicates that a particular field has not been overridden on a channel level when channel level settings are requested and values are inherited from global level.
+      tags:
+        - Storefront Category
+    put:
+      summary: Update Storefront Category Settings
+      description: |-
+        Updates category settings.
+
+         - Channel ID can be used as a query parameter for updating channel-specific settings. If omitted, you will interact with the global setting only. 
+
+         - `null` should be supplied to delete overrides per given channel and to inherit values from global level. Partial updates are not supported and all settings should be supplied with `null` value in order to delete overrides per channel.
+      tags:
+        - Storefront Category
+  /settings/storefront/product:
+    parameters:
+      - null
+    get:
+      summary: Get Storefront Product Settings
+      description: |-
+        Returns product settings.
+
+         - Channel ID can be used as a query parameter for getting channel-specific setting. If omitted, you will interact with the global setting only. 
+
+         - `null` indicates that a particular field has not been overridden on a channel level when channel level settings are requested and values are inherited from global level.
+      tags:
+        - Storefront Product
+    put:
+      summary: Update Storefront Product Settings
+      description: |-
+        Updates product settings.
+
+         - Channel ID can be used as a query parameter for updating channel-specific setting. If omitted, you will interact with the global setting only. 
+
+         - `null` should be supplied to delete overrides per given channel and to inherit values from global level. Partial updates are not supported and all settings should be supplied with `null` value in order to delete overrides per channel.
+      tags:
+        - Storefront Product
+  /settings/storefront/robotstxt:
+    parameters:
+      - null
+    get:
+      summary: Get Robots.txt Settings
+      description: |-
+        Returns Robots.txt settings.
+
+         - Channel ID can be used as a query parameter for getting channel-specific setting. If omitted, you will interact with the global setting only. 
+
+         - `null` indicates that a particular field has not been overridden on a channel level when channel level settings are requested and values are inherited from global level.
+      tags:
+        - Storefront Robotstxt
+    put:
+      summary: Update Robots.txt Settings
+      description: |-
+        Updates Robots.txt settings.
+
+         - Channel ID can be used as a query parameter for updating channel-specific setting. If omitted, you will interact with the global setting only. 
+
+         - `null` should be supplied to delete overrides per given channel and to inherit values from global level. Partial updates are not supported and all settings should be supplied with `null` value in order to delete overrides per channel.
+      tags:
+        - Storefront Robotstxt
+  /settings/storefront/search:
+    parameters:
+      - null
+    get:
+      summary: Get Storefront Search Settings
+      description: |-
+        Returns search settings.
+
+         - Channel ID can be used as a query parameter for getting channel-specific setting. If omitted, you will interact with the global setting only. 
+
+         - `null` indicates that a particular field has not been overridden on a channel level when channel level settings are requested and values are inherited from global level.
+      tags:
+        - Storefront Search
+    put:
+      summary: Update Storefront Search Settings
+      description: |-
+        Updates search settings.
+
+         - Channel ID can be used as a query parameter for updating channel-specific setting. If omitted, you will interact with the global setting only. 
+
+         - `null` should be supplied to delete overrides per given channel and to inherit values from global level. Partial updates are not supported and all settings should be supplied with `null` value in order to delete overrides per channel.
+      tags:
+        - Storefront Search
+  /settings/storefront/security:
+    parameters:
+      - null
+    get:
+      summary: Get Storefront Security Settings
+      description: |-
+        Returns security settings.
+
+         - Channel ID can be used as a query parameter for getting channel-specific setting. If omitted, you will interact with the global setting only. 
+
+         - `null` indicates that a particular field has not been overridden on a channel level when channel level settings are requested and values are inherited from global level.
+      tags:
+        - Storefront Security
+    put:
+      summary: Update Storefront Security Settings
+      description: |-
+        Updates security settings.
+
+         - Channel ID can be used as a query parameter for updating channel-specific setting. If omitted, you will interact with the global setting only. 
+
+         - `null` should be supplied to delete overrides per given channel and to inherit values from global level. Partial updates are not supported and all settings should be supplied with `null` value in order to delete overrides per channel.
+      tags:
+        - Storefront Security
+  /settings/storefront/seo:
+    parameters:
+      - null
+    get:
+      summary: Get Storefront SEO Settings
+      description: |-
+        Returns SEO settings.
+
+         - Channel ID can be used as a query parameter for getting channel-specific setting. If omitted, you will interact with the global setting only. 
+
+         - `null` indicates that a particular field has not been overridden on a channel level when channel level settings are requested and values are inherited from global level.
+      tags:
+        - Storefront SEO
+    put:
+      summary: Update Storefront SEO Settings
+      description: |-
+        Updates SEO settings.
+
+         - Channel ID can be used as a query parameter for updating channel-specific setting. If omitted, you will interact with the global setting only. 
+
+         - `null` should be supplied to delete overrides per given channel and to inherit values from global level. Partial updates are not supported and all settings should be supplied with `null` value in order to delete overrides per channel.
+      tags:
+        - Storefront SEO
+  /settings/storefront/status:
+    parameters:
+      - null
+    get:
+      summary: Get Storefront Status
+      description: |-
+        Returns storefront status-related settings. 
+
+         - Channel ID can be used as a query parameter for getting channel-specific setting. If omitted, you will interact with the global setting only. 
+
+         - `null` indicates that a particular field has not been overridden on a channel level when channel level settings are requested and values are inherited from global level.
+      tags:
+        - Storefront Status
+    put:
+      summary: Update Storefront Status
+      description: |-
+        Updates storefront status-related settings.
+
+         - Channel ID can be used as a query parameter for updating channel-specific setting. If omitted, you will interact with the global setting only. 
+
+         - `null` should be supplied to delete overrides per given channel and to inherit values from global level. Partial updates are not supported and all settings should be supplied with `null` value in order to delete overrides per channel.
+      tags:
+        - Storefront Status
+  /settings/inventory:
+    parameters:
+      - null
+    get:
+      summary: Get Inventory Settings
+      tags:
+        - Inventory
+      description: Get Inventory Settings
+    put:
+      summary: Update Inventory Settings
+      tags:
+        - Inventory
+      description: Update inventory settings
+  /settings/store/units-of-measurement:
+    get:
+      summary: Get Units of Measurement Settings
+      description: >-
+        Get settings for [units of
+        measurements](https://support.bigcommerce.com/s/article/Store-Settings?language=en_US#physical).
+      tags:
+        - Units of Measurement
+    put:
+      summary: Update Units of Measurement Settings
+      description: >-
+        Update settings for [units of
+        measurements](https://support.bigcommerce.com/s/article/Store-Settings?language=en_US#physical).
+
+
+        The endpoint does not support partial updates. Provide all fields to
+        update global or channel-level settings.
+
+
+        Create channel-level settings, or overrides for a channel, using the
+        `channel_id`  query parameter. 
+
+
+        To delete overrides for a channel, supply `null` as a value for all
+        fields. A channel then inherits global values.
+
+
+        The endpoint does not support 'null' as a value for global-level
+        settings.
+      tags:
+        - Units of Measureme

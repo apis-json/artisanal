@@ -5,13 +5,6 @@ paths:
   /v1/payment_intents:
     get:
       description: <p>Returns a list of PaymentIntents.</p>
-      summary: Retrieve Payment Intents
-      tags:
-        - Retrieve
-        - Payment
-        - Intents
-        - V1
-        - Payment_intents
     post:
       description: >-
         <p>Creates a PaymentIntent object.</p>
@@ -36,13 +29,6 @@ paths:
         API</a> when you supply
 
         <code>confirm=true</code>.</p>
-      summary: Create Payment Intent
-      tags:
-        - Create
-        - Payment
-        - Intent
-        - V1
-        - Payment_intents
   /v1/payment_intents/search:
     get:
       description: >-
@@ -57,14 +43,6 @@ paths:
 
         to an hour behind during outages. Search functionality is not available
         to merchants in India.</p>
-      summary: Search Payment Intents
-      tags:
-        - Search
-        - Payment
-        - Intents
-        - V1
-        - Payment_intents
-        - Search
   /v1/payment_intents/{intent}:
     get:
       description: >-
@@ -80,15 +58,6 @@ paths:
         returns a subset of properties. Refer to the <a
         href="#payment_intent_object">payment intent</a> object reference for
         more details.</p>
-      summary: Retrieve Payment Intent
-      tags:
-        - Retrieve
-        - Payment
-        - Intent
-        - V1
-        - Payment_intents
-        - Search
-        - Intent
     post:
       description: >-
         <p>Updates properties on a PaymentIntent object without confirming.</p>
@@ -107,30 +76,11 @@ paths:
 
         the <a href="/docs/api/payment_intents/confirm">confirm API</a>
         instead.</p>
-      summary: Update Payment Intent
-      tags:
-        - Update
-        - Payment
-        - Intent
-        - V1
-        - Payment_intents
-        - Search
-        - Intent
   /v1/payment_intents/{intent}/apply_customer_balance:
     post:
       description: >-
         <p>Manually reconcile the remaining amount for a
         <code>customer_balance</code> PaymentIntent.</p>
-      summary: Reconcile Payment Intent
-      tags:
-        - Reconcile
-        - Payment
-        - Intent
-        - V1
-        - Payment_intents
-        - Search
-        - Intent
-        - Apply_customer_balance
   /v1/payment_intents/{intent}/cancel:
     post:
       description: >-
@@ -151,17 +101,6 @@ paths:
         <p>You can’t cancel the PaymentIntent for a Checkout Session. <a
         href="/docs/api/checkout/sessions/expire">Expire the Checkout
         Session</a> instead.</p>
-      summary: Cancel Payment Intent
-      tags:
-        - Cancel
-        - Payment
-        - Intent
-        - V1
-        - Payment_intents
-        - Search
-        - Intent
-        - Apply_customer_balance
-        - Cancel
   /v1/payment_intents/{intent}/capture:
     post:
       description: >-
@@ -175,18 +114,6 @@ paths:
 
         <p>Learn more about <a href="/docs/payments/capture-later">separate
         authorization and capture</a>.</p>
-      summary: Capture Payment Intent
-      tags:
-        - Capture
-        - Payment
-        - Intent
-        - V1
-        - Payment_intents
-        - Search
-        - Intent
-        - Apply_customer_balance
-        - Cancel
-        - Capture
   /v1/payment_intents/{intent}/confirm:
     post:
       description: >-
@@ -249,19 +176,6 @@ paths:
         documentation</a>
 
         to learn more about manual confirmation.</p>
-      summary: Confirm Payment Intent
-      tags:
-        - Confirm
-        - Payment
-        - Intent
-        - V1
-        - Payment_intents
-        - Search
-        - Intent
-        - Apply_customer_balance
-        - Cancel
-        - Capture
-        - Confirm
   /v1/payment_intents/{intent}/increment_authorization:
     post:
       description: >-
@@ -317,64 +231,6 @@ paths:
         <p>Learn more about <a
         href="/docs/terminal/features/incremental-authorizations">incremental
         authorizations</a>.</p>
-      summary: Increment Payment Intent Authorization
-      tags:
-        - Increment
-        - Payment
-        - Intent
-        - Authorization
-        - V1
-        - Payment_intents
-        - Search
-        - Intent
-        - Apply_customer_balance
-        - Cancel
-        - Capture
-        - Confirm
-        - Increment_authorization
   /v1/payment_intents/{intent}/verify_microdeposits:
     post:
-      description: <p>Verifies microdeposits on a PaymentIntent object.</p>
-      summary: Verify Payment Intent Microdeposits
-      tags:
-        - Verify
-        - Payment
-        - Intent
-        - Microdeposits
-        - V1
-        - Payment_intents
-        - Search
-        - Intent
-        - Apply_customer_balance
-        - Cancel
-        - Capture
-        - Confirm
-        - Increment_authorization
-        - Verify_microdeposits
-tags:
-  - name: Payments
-    description: Needs a description.
-  - name: Intents
-    description: Needs a description.
-  - name: Search
-    description: Needs a description.
-  - name: Balances
-    description: Needs a description.
-  - name: Reconcile
-    description: Needs a description.
-  - name: Cancel
-    description: Needs a description.
-  - name: Capture
-    description: Needs a description.
-  - name: Confirm
-    description: Needs a description.
-  - name: Increment
-    description: Needs a description.
-  - name: Authorization
-    description: Needs a description.
-  - name: Verify
-    description: Needs a description.
-  - name: Micro
-    description: Needs a description.
-  - name: Deposits
-    description: Needs a descriptio
+      description: <p>Verifies microdeposits on a PaymentIntent obj

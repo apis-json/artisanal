@@ -25,13 +25,6 @@ paths:
         charges for Amazon AppFlow apply. For the pricing information, see <a
         href="http://aws.amazon.com/appflow/pricing/">Amazon AppFlow
         pricing</a>.</p> </note>
-      tags:
-        - Cancel
-        - Flow
-        - Executions
-        - Cancel
-        - Flow
-        - Executions
   /create-connector-profile:
     POST:
       summary: CreateConnectorProfile
@@ -43,16 +36,6 @@ paths:
         through the Amazon AppFlow support channel. In each connector profile
         that you create, you can provide the credentials and properties for only
         one connector.</p>
-      tags:
-        - Create
-        - Connector
-        - Profile
-        - Cancel
-        - Flow
-        - Executions
-        - Create
-        - Connector
-        - Profile
   /create-flow:
     POST:
       summary: CreateFlow
@@ -63,30 +46,10 @@ paths:
         however, you can only transfer data to one item in this list at a time.
         Amazon AppFlow does not currently support flows to multiple destinations
         at once. </p>
-      tags:
-        - Create
-        - Flow
-        - Cancel
-        - Flow
-        - Executions
-        - Create
-        - Connector
-        - Profile
   /delete-connector-profile:
     POST:
       summary: DeleteConnectorProfile
       description: <p> Enables you to delete an existing connector profile. </p>
-      tags:
-        - Delete
-        - Connector
-        - Profile
-        - Cancel
-        - Flow
-        - Executions
-        - Create
-        - Connector
-        - Profile
-        - Delete
   /delete-flow:
     POST:
       summary: DeleteFlow
@@ -94,16 +57,6 @@ paths:
         <p> Enables your application to delete an existing flow. Before deleting
         the flow, Amazon AppFlow validates the request by checking the flow
         configuration and status. You can delete flows one at a time. </p>
-      tags:
-        - Delete
-        - Flow
-        - Cancel
-        - Flow
-        - Executions
-        - Create
-        - Connector
-        - Profile
-        - Delete
   /describe-connector:
     POST:
       summary: DescribeConnector
@@ -111,36 +64,12 @@ paths:
         <p>Describes the given custom connector registered in your Amazon Web
         Services account. This API can be used for custom connectors that are
         registered in your account and also for Amazon authored connectors.</p>
-      tags:
-        - Describe
-        - Connector
-        - Cancel
-        - Flow
-        - Executions
-        - Create
-        - Connector
-        - Profile
-        - Delete
-        - Describe
   /describe-connector-entity:
     POST:
       summary: DescribeConnectorEntity
       description: >-
         <p> Provides details regarding the entity used with the connector, with
         a description of the data model for each field in that entity. </p>
-      tags:
-        - Describe
-        - Connector
-        - Entity
-        - Cancel
-        - Flow
-        - Executions
-        - Create
-        - Connector
-        - Profile
-        - Delete
-        - Describe
-        - Entity
   /describe-connector-profiles:
     POST:
       summary: DescribeConnectorProfiles
@@ -152,20 +81,6 @@ paths:
         <code>connector-types</code> are provided, returns all connector
         profiles in a paginated form. If there is no match, this operation
         returns an empty list.</p>
-      tags:
-        - Describe
-        - Connector
-        - Profiles
-        - Cancel
-        - Flow
-        - Executions
-        - Create
-        - Connector
-        - Profile
-        - Delete
-        - Describe
-        - Entity
-        - Profiles
   /describe-connectors:
     POST:
       summary: DescribeConnectors
@@ -177,60 +92,14 @@ paths:
         <code>nextToken</code> object, which can be be passed in to the next
         call to the <code>DescribeConnectors</code> API operation to retrieve
         the next page. </p>
-      tags:
-        - Describe
-        - Connectors
-        - Cancel
-        - Flow
-        - Executions
-        - Create
-        - Connector
-        - Profile
-        - Delete
-        - Describe
-        - Entity
-        - Profiles
-        - Connectors
   /describe-flow:
     POST:
       summary: DescribeFlow
       description: <p> Provides a description of the specified flow. </p>
-      tags:
-        - Describe
-        - Flow
-        - Cancel
-        - Flow
-        - Executions
-        - Create
-        - Connector
-        - Profile
-        - Delete
-        - Describe
-        - Entity
-        - Profiles
-        - Connectors
   /describe-flow-execution-records:
     POST:
       summary: DescribeFlowExecutionRecords
       description: <p> Fetches the execution history of the flow. </p>
-      tags:
-        - Describe
-        - Flow
-        - Execution
-        - Records
-        - Cancel
-        - Flow
-        - Executions
-        - Create
-        - Connector
-        - Profile
-        - Delete
-        - Describe
-        - Entity
-        - Profiles
-        - Connectors
-        - Execution
-        - Records
   /list-connector-entities:
     POST:
       summary: ListConnectorEntities
@@ -239,25 +108,6 @@ paths:
         AppFlow. For example, you can query Salesforce for <i>Account</i> and
         <i>Opportunity</i> entities, or query ServiceNow for the <i>Incident</i>
         entity. </p>
-      tags:
-        - List
-        - Connector
-        - Entities
-        - Cancel
-        - Flow
-        - Executions
-        - Create
-        - Connector
-        - Profile
-        - Delete
-        - Describe
-        - Entity
-        - Profiles
-        - Connectors
-        - Execution
-        - Records
-        - List
-        - Entities
   /list-connectors:
     POST:
       summary: ListConnectors
@@ -265,71 +115,14 @@ paths:
         <p>Returns the list of all registered custom connectors in your Amazon
         Web Services account. This API lists only custom connectors registered
         in this account, not the Amazon Web Services authored connectors. </p>
-      tags:
-        - List
-        - Connectors
-        - Cancel
-        - Flow
-        - Executions
-        - Create
-        - Connector
-        - Profile
-        - Delete
-        - Describe
-        - Entity
-        - Profiles
-        - Connectors
-        - Execution
-        - Records
-        - List
-        - Entities
   /list-flows:
     POST:
       summary: ListFlows
       description: <p> Lists all of the flows associated with your account. </p>
-      tags:
-        - List
-        - Flows
-        - Cancel
-        - Flow
-        - Executions
-        - Create
-        - Connector
-        - Profile
-        - Delete
-        - Describe
-        - Entity
-        - Profiles
-        - Connectors
-        - Execution
-        - Records
-        - List
-        - Entities
-        - Flows
   /tags/{resourceArn}:
     DELETE:
       summary: UntagResource
       description: <p> Removes a tag from the specified flow. </p>
-      tags:
-        - Untag
-        - Resource
-        - Cancel
-        - Flow
-        - Executions
-        - Create
-        - Connector
-        - Profile
-        - Delete
-        - Describe
-        - Entity
-        - Profiles
-        - Connectors
-        - Execution
-        - Records
-        - List
-        - Entities
-        - Flows
-        - Arn
   /register-connector:
     POST:
       summary: RegisterConnector
@@ -337,27 +130,6 @@ paths:
         <p>Registers a new custom connector with your Amazon Web Services
         account. Before you can register the connector, you must deploy the
         associated AWS lambda function in your account.</p>
-      tags:
-        - Register
-        - Connector
-        - Cancel
-        - Flow
-        - Executions
-        - Create
-        - Connector
-        - Profile
-        - Delete
-        - Describe
-        - Entity
-        - Profiles
-        - Connectors
-        - Execution
-        - Records
-        - List
-        - Entities
-        - Flows
-        - Arn
-        - Register
   /reset-connector-metadata-cache:
     POST:
       summary: ResetConnectorMetadataCache
@@ -372,32 +144,6 @@ paths:
         application. Amazon AppFlow automatically resets the cache once every
         hour, but you can use this action when you want to get the latest
         metadata right away.</p>
-      tags:
-        - Reset
-        - Connector
-        - Metadata
-        - Cache
-        - Cancel
-        - Flow
-        - Executions
-        - Create
-        - Connector
-        - Profile
-        - Delete
-        - Describe
-        - Entity
-        - Profiles
-        - Connectors
-        - Execution
-        - Records
-        - List
-        - Entities
-        - Flows
-        - Arn
-        - Register
-        - Reset
-        - Metadata
-        - Cache
   /start-flow:
     POST:
       summary: StartFlow
@@ -405,31 +151,6 @@ paths:
         <p> Activates an existing flow. For on-demand flows, this operation runs
         the flow immediately. For schedule and event-triggered flows, this
         operation activates the flow. </p>
-      tags:
-        - Start
-        - Flow
-        - Cancel
-        - Flow
-        - Executions
-        - Create
-        - Connector
-        - Profile
-        - Delete
-        - Describe
-        - Entity
-        - Profiles
-        - Connectors
-        - Execution
-        - Records
-        - List
-        - Entities
-        - Flows
-        - Arn
-        - Register
-        - Reset
-        - Metadata
-        - Cache
-        - Start
   /stop-flow:
     POST:
       summary: StopFlow
@@ -438,98 +159,16 @@ paths:
         returns an <code>unsupportedOperationException</code> error message. For
         schedule and event-triggered flows, this operation deactivates the flow.
         </p>
-      tags:
-        - Stop
-        - Flow
-        - Cancel
-        - Flow
-        - Executions
-        - Create
-        - Connector
-        - Profile
-        - Delete
-        - Describe
-        - Entity
-        - Profiles
-        - Connectors
-        - Execution
-        - Records
-        - List
-        - Entities
-        - Flows
-        - Arn
-        - Register
-        - Reset
-        - Metadata
-        - Cache
-        - Start
-        - Stop
   /unregister-connector:
     POST:
       summary: UnregisterConnector
       description: >-
         <p>Unregisters the custom connector registered in your account that
         matches the connector label provided in the request.</p>
-      tags:
-        - Unregister
-        - Connector
-        - Cancel
-        - Flow
-        - Executions
-        - Create
-        - Connector
-        - Profile
-        - Delete
-        - Describe
-        - Entity
-        - Profiles
-        - Connectors
-        - Execution
-        - Records
-        - List
-        - Entities
-        - Flows
-        - Arn
-        - Register
-        - Reset
-        - Metadata
-        - Cache
-        - Start
-        - Stop
-        - Unregister
   /update-connector-profile:
     POST:
       summary: UpdateConnectorProfile
       description: <p> Updates a given connector profile associated with your account. </p>
-      tags:
-        - Update
-        - Connector
-        - Profile
-        - Cancel
-        - Flow
-        - Executions
-        - Create
-        - Connector
-        - Profile
-        - Delete
-        - Describe
-        - Entity
-        - Profiles
-        - Connectors
-        - Execution
-        - Records
-        - List
-        - Entities
-        - Flows
-        - Arn
-        - Register
-        - Reset
-        - Metadata
-        - Cache
-        - Start
-        - Stop
-        - Unregister
-        - Update
   /update-connector-registration:
     POST:
       summary: UpdateConnectorRegistration
@@ -539,66 +178,7 @@ paths:
         <p>The latest version of the AWS Lambda function that's assigned to the
         connector</p> </li> <li> <p>A new AWS Lambda function that you
         specify</p> </li> </ul>
-      tags:
-        - Update
-        - Connector
-        - Registration
-        - Cancel
-        - Flow
-        - Executions
-        - Create
-        - Connector
-        - Profile
-        - Delete
-        - Describe
-        - Entity
-        - Profiles
-        - Connectors
-        - Execution
-        - Records
-        - List
-        - Entities
-        - Flows
-        - Arn
-        - Register
-        - Reset
-        - Metadata
-        - Cache
-        - Start
-        - Stop
-        - Unregister
-        - Update
-        - Registration
   /update-flow:
     POST:
       summary: UpdateFlow
-      description: <p> Updates an existing flow. </
-      tags:
-        - Update
-        - Flow
-        - Cancel
-        - Flow
-        - Executions
-        - Create
-        - Connector
-        - Profile
-        - Delete
-        - Describe
-        - Entity
-        - Profiles
-        - Connectors
-        - Execution
-        - Records
-        - List
-        - Entities
-        - Flows
-        - Arn
-        - Register
-        - Reset
-        - Metadata
-        - Cache
-        - Start
-        - Stop
-        - Unregister
-        - Update
-        - Regist
+      description: <p> Updates an existing f

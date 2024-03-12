@@ -1,0 +1,39 @@
+openapi: 3.1.0
+info:
+  title: Box Retention Policy Assignments API
+paths:
+  /retention_policy_assignments:
+    post:
+      summary: Assign retention policy
+      tags:
+        - Retention policy assignments
+      description: Assigns a retention policy to an item.
+  /retention_policy_assignments/{retention_policy_assignment_id}:
+    get:
+      summary: Get retention policy assignment
+      tags:
+        - Retention policy assignments
+      description: Retrieves a retention policy assignment
+    delete:
+      summary: Remove retention policy assignment
+      tags:
+        - Retention policy assignments
+      description: |-
+        Removes a retention policy assignment
+        applied to content.
+  /retention_policy_assignments/{retention_policy_assignment_id}/files_under_retention:
+    get:
+      summary: Get files under retention
+      tags:
+        - Retention policy assignments
+      description: >-
+        Returns a list of files under retention for a retention policy
+        assignment.
+  /retention_policy_assignments/{retention_policy_assignment_id}/file_versions_under_retention:
+    get:
+      summary: Get file versions under retention
+      tags:
+        - Retention policy assignments
+      description: |-
+        Returns a list of file versions under retention for a retention policy
+        assignmen

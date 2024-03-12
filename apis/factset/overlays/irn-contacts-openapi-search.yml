@@ -1,0 +1,75 @@
+openapi: 3.0.1
+info:
+  title: IRN API v1
+paths:
+  /v1/contact-relationships:
+    get:
+      tags:
+        - Contacts - Relationships
+      summary: >-
+        Get all the relationships where the given symbol or contact identifier
+        has been tagged in a relationship
+    post:
+      tags:
+        - Contacts - Relationships
+      summary: Create a contact relationship
+  /v1/contact-relationships/{contactRelationshipId}:
+    get:
+      tags:
+        - Contacts - Relationships
+      summary: Get details on a specific contact relationship
+    patch:
+      tags:
+        - Contacts - Relationships
+      summary: Update a contact relationship
+    delete:
+      tags:
+        - Contacts - Relationships
+      summary: Delete a contact relationship
+  /v1/contacts:
+    get:
+      tags:
+        - Contacts
+      summary: >-
+        Get list of all contacts in your group along with some of their standard
+        field data
+    post:
+      tags:
+        - Contacts
+      summary: Create a contact
+  /v1/contacts/{contactId}:
+    get:
+      tags:
+        - Contacts
+      summary: Get all custom field and standard field details on a specific contact
+    patch:
+      tags:
+        - Contacts
+      summary: Edit a contact’s standard field and custom field data
+    delete:
+      tags:
+        - Contacts
+      summary: Delete a contact
+  /v1/contacts/{contactId}/about:
+    get:
+      tags:
+        - Contacts
+      summary: Get the About field content for a specific contact
+  /v1/contacts/{contactId}/events:
+    get:
+      tags:
+        - Contacts
+      summary: Get a contact’s audit history
+  /v1/contacts/{contactId}/records:
+    get:
+      tags:
+        - Contacts
+      summary: Get all notes and meetings where a specific contact was tagged
+  /v1/contacts/{contactId}/relationships:
+    get:
+      tags:
+        - Contacts
+      summary: Returns a list of a contact’s relationships
+tags:
+  - name: Contacts
+  - name: Contacts - Rel

@@ -1,0 +1,37 @@
+openapi: 3.1.0
+info:
+  title: Box Legal Hold Policies API
+paths:
+  /legal_hold_policies:
+    get:
+      summary: List all legal hold policies
+      tags:
+        - Legal hold policies
+      description: |-
+        Retrieves a list of legal hold policies that belong to
+        an enterprise.
+    post:
+      summary: Create legal hold policy
+      tags:
+        - Legal hold policies
+      description: Create a new legal hold policy.
+  /legal_hold_policies/{legal_hold_policy_id}:
+    get:
+      summary: Get legal hold policy
+      tags:
+        - Legal hold policies
+      description: Retrieve a legal hold policy.
+    put:
+      summary: Update legal hold policy
+      tags:
+        - Legal hold policies
+      description: Update legal hold policy.
+    delete:
+      tags:
+        - Legal hold policies
+      summary: Remove legal hold policy
+      description: |-
+        Delete an existing legal hold policy.
+
+        This is an asynchronous process. The policy will not be
+        fully deleted yet when the response return

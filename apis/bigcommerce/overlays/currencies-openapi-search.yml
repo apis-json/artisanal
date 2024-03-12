@@ -1,0 +1,106 @@
+openapi: 3.0.1
+info:
+  title: Currencies
+  version: ''
+tags:
+  - name: Currencies (Single)
+  - name: Currencies (Bulk)
+paths:
+  /currencies:
+    parameters:
+      - null
+    get:
+      tags:
+        - Currencies (Bulk)
+      summary: Get All Currencies
+      description: Returns a list of all store *Currency*.
+    post:
+      tags:
+        - Currencies (Bulk)
+      summary: Create a Currency
+      description: >-
+        Creates *Currency*.
+
+
+        **Required Fields** 
+
+
+        * name
+
+        * currency_code
+
+        * currency_exchange_rate
+
+        * token_location
+
+        * token
+
+        * decimal_token
+
+        * thousands_token
+
+        * decimal_places
+
+
+        **Read-Only Fields**
+
+        * id
+
+        * date_created
+
+        * date_modified
+
+
+
+        The `is_default` property can only be set to true. The value of
+        `is_default` cannot be unset, only overridden. To change the storeʼs
+        default currency in the BigCommerce control panel, please see [Managing
+        Currencies (Help
+        Center)](https://support.bigcommerce.com/s/article/Managing-Currencies-Beta).
+    delete:
+      tags:
+        - Currencies (Bulk)
+      summary: Delete All Currencies
+      description: Deletes all non-default store currencies.
+  /currencies/{id}:
+    parameters:
+      - null
+      - null
+    get:
+      tags:
+        - Currencies (Single)
+      summary: Get a Currency
+      description: Returns a single *Currency*.
+    put:
+      tags:
+        - Currencies (Single)
+      summary: Update a Currency
+      description: >-
+        Updates a *Currency*.
+
+
+        **Read-Only Fields**
+
+
+        * id
+
+        * date_created
+
+        * date_modified
+
+        * currency_code
+
+
+
+        The `is_default` property can only be set to true. The value of
+        `is_default` cannot be unset, only overridden. 
+    delete:
+      tags:
+        - Currencies (Single)
+      summary: Delete a Currency
+      description: >-
+        Deletes a *Currency*.
+
+
+        If a currencyʼs `is_default` property is set to true, this currency
+        cannot be deleted

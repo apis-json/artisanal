@@ -1,0 +1,74 @@
+openapi: 3.0.3
+info:
+  title: Webhooks v3
+  version: ''
+tags:
+  - name: Manage Webhooks (Single)
+  - name: Manage Webhooks (Bulk)
+  - name: Webhook Events
+  - name: Webhooks Admin
+paths:
+  /hooks:
+    post:
+      summary: Create a Webhook
+      description: >-
+        Creates a webhook. Only one webhook at a time can be created. Custom
+        headers can be added. Destination URL must be served on port 443 (custom
+        ports are not currently supported).
+      tags:
+        - Manage Webhooks (Bulk)
+    get:
+      summary: Get Webhooks
+      description: >-
+        Returns a list of all webhooks on a store associated to the `client_id`
+        used to authenticate the request.
+
+
+        *Note: BigCommerce determines the `client_id` from the `access_token`.*
+      tags:
+        - Manage Webhooks (Bulk)
+  /hooks/{webhook_id}:
+    get:
+      description: Return a webhook by ID.
+      summary: Get a Webhook
+      tags:
+        - Manage Webhooks (Single)
+    parameters:
+      - null
+    put:
+      summary: Update a Webhook
+      description: Updates a webhook. Custom headers can be added.
+      tags:
+        - Manage Webhooks (Single)
+    delete:
+      summary: Delete a Webhook
+      description: >-
+        Deletes a webhook. Only one webhook at a time can be deleted. When a
+        webhook is deleted, it is returned in the response as a 200 OK.
+      tags:
+        - Manage Webhooks (Single)
+  /hooks/admin:
+    get:
+      summary: Get Admin Info
+      description: >-
+        List all notification emails, webhooks, and denylisted domains
+        associated with the API account.
+      tags:
+        - Webhooks Admin
+    put:
+      summary: Upsert Email Notifications
+      description: >
+        Update email addresses that are sent notification emails when any domain
+        associated with the API account is denylisted or when a webhook is
+        deactivated. Supports `upsert` functionality in the case that no email
+        address exists yet.
+      tags:
+        - Webhooks Admin
+  /hooks/events:
+    get:
+      tags:
+        - Webhook Events
+      summary: Get Events
+      description: >
+        Get a list of events that were sent but not successfully received.
+        Events are stored for not less than one wee

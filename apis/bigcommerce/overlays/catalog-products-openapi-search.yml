@@ -1,0 +1,626 @@
+openapi: 3.0.3
+info:
+  title: Catalog - Products
+  version: ''
+tags:
+  - name: Batch metafields
+  - name: Products
+  - name: Bulk Pricing Rules
+  - name: Complex Rules
+  - name: Custom Fields
+  - name: Images
+  - name: Metafields
+  - name: Reviews
+  - name: Videos
+  - name: Channel Assignments
+  - name: Category Assignments
+  - name: Summary
+paths:
+  /catalog/products:
+    get:
+      tags:
+        - Products
+      summary: Get All Products
+      description: >-
+        Returns a list of **Products**. Optional filter parameters can be passed
+        in.
+    put:
+      tags:
+        - Products
+      summary: Update Products (Batch)
+      description: |-
+        Updates products in batches. Batches are limited to 10 products.
+
+        **Required Fields**
+        * `id` - product `id` is required for batch updates to products.
+
+        **Read-Only Fields**
+        - `id`
+        - `date_created`
+        - `date_modified`
+        - `calculated_price`
+        - `base_variant_id`
+    post:
+      tags:
+        - Products
+      summary: Create a Product
+      description: >-
+        Creates a *Product*. Only one product can be created at a time; however,
+        you can create multiple product variants using the `variants` array.
+
+
+        **Required Fields:**
+
+        - `name`
+
+        - `type`
+
+        - `weight`
+
+        - `price`
+
+
+        **Read-Only Fields**
+
+        - `id`
+
+        - `date_created`
+
+        - `date_modified`
+
+        - `calculated_price`
+
+        - `base_variant_id`
+
+
+        **Limits**
+
+        - 250 characters product name length.
+
+        - A product can have up to 1000 images. Each image file or image
+        uploaded by URL can be up to 8 MB.
+
+
+        **Usage Notes**
+
+        * You can create multiple product variants using the `variants` array.
+
+        * This endpoint accepts a `video` array. To create a product video that
+        accepts a `video` object, see [Create a Product
+        Video](/docs/rest-catalog/products/videos#create-a-product-video) for
+        information.
+    delete:
+      tags:
+        - Products
+      summary: Delete Products
+      description: >-
+        To delete *Product* objects, you must include a filter. This prevents
+        inadvertently deleting all *Product* objects in a store.
+
+
+        > #### Note
+
+        > The maximum number of products you can delete at one time is 250.
+
+
+        **Example**:
+
+        To delete products with IDs 1,2 and 3, use `DELETE
+        /v3/catalog/products?id:in=1,2,3`.
+    parameters:
+      - null
+  /catalog/products/{product_id}:
+    get:
+      tags:
+        - Products
+      summary: Get a Product
+      description: Returns a single *Product*. Optional parameters can be passed in.
+    put:
+      tags:
+        - Products
+      summary: Update a Product
+      description: >
+        Updates a *Product*.
+
+
+        **Limits**
+
+        - A product can have up to 1000 images. Each image file or image
+        uploaded by URL can be up to 8 MB.
+
+
+        **Read-Only Fields**
+
+        - id
+
+        - date_created
+
+        - date_modified
+
+        - calculated_price
+
+        - base_variant_id
+    delete:
+      tags:
+        - Products
+      summary: Delete a Product
+      description: Deletes a *Product*.
+    parameters:
+      - null
+      - null
+  /catalog/products/{product_id}/images:
+    get:
+      tags:
+        - Images
+      summary: Get All Product Images
+      description: >-
+        Returns a list of *Product Images*. Optional parameters can be passed
+        in.
+    post:
+      tags:
+        - Images
+      summary: Create a Product Image
+      description: >-
+        Creates a *Product Image*.
+
+         **Required Fields**
+        - `image_file`, or
+
+        - `image_url`
+
+
+        **Usage Notes**
+
+        - `image_url` - `255` character limit
+
+        - For file uploads, use the `multipart/form-data` media type.
+
+        - You can create only one image at a time. A product can have up to 1000
+        images.
+
+        - Supported image file types are BMP, GIF, JPEG, PNG, WBMP, XBM, and
+        WEBP.
+
+        - Each image file or image uploaded by URL can be up to 8 MB.
+    parameters:
+      - null
+      - null
+  /catalog/products/{product_id}/images/{image_id}:
+    get:
+      tags:
+        - Images
+      summary: Get a Product Image
+      description: Returns a single *Product Image*. Optional parameters can be passed in.
+    put:
+      tags:
+        - Images
+      summary: Update a Product Image
+      description: >-
+        Updates a *Product Image*.
+
+
+        **Usage Notes**
+
+        - `image_url` - `255` character limit
+
+        - Each image file or image uploaded by URL can be up to 8 MB.
+
+        - For file uploads, send a POST request using the `multipart/form-data`
+        media type
+    delete:
+      tags:
+        - Images
+      summary: Delete a Product Image
+      description: Deletes a *Product Image*.
+    parameters:
+      - null
+      - null
+      - null
+  /catalog/products/{product_id}/videos:
+    get:
+      tags:
+        - Videos
+      summary: Get All Product Videos
+      description: >-
+        Returns a list of *Product Videos*. Optional parameters can be passed
+        in.
+    post:
+      tags:
+        - Videos
+      summary: Create a Product Video
+      description: |-
+        Creates a *Product Video*.
+
+        **Required Fields**
+        * video_id
+
+        **Read-Only Fields**
+        * id
+
+        Publicly accessible URLs are valid parameters.
+        Videos must be loaded through YouTube at this time.
+    parameters:
+      - null
+      - null
+  /catalog/products/{product_id}/videos/{id}:
+    get:
+      tags:
+        - Videos
+      summary: Get a Product Video
+      description: Returns a single *Product Video*. Optional parameters can be passed in.
+    put:
+      tags:
+        - Videos
+      summary: Update a Product Video
+      description: |-
+        Updates a *Product Video.
+
+        **Required Fields**
+        * none
+
+        **Read-Only Fields**
+        * id
+    delete:
+      tags:
+        - Videos
+      summary: Delete a Product Video
+      description: Deletes a *Product Video*.
+    parameters:
+      - null
+      - null
+      - null
+  /catalog/products/{product_id}/complex-rules:
+    get:
+      tags:
+        - Complex Rules
+      summary: Get Complex Rules
+      description: >-
+        Returns a list of all product *Complex Rules*. Optional parameters may
+        be passed in.
+    post:
+      tags:
+        - Complex Rules
+      summary: Create a Complex Rule
+      description: |-
+        Creates a product *Complex Rule*.
+
+        **Required Fields**
+        - modifier_id
+        - modifier_value_id
+        - variant_id
+
+        **Read-Only Fields**
+        - complex_rule_id
+        - conditions_id
+        - rule_id
+        - combination_id
+        - id
+    parameters:
+      - null
+      - null
+  /catalog/products/{product_id}/complex-rules/{complex_rule_id}:
+    get:
+      tags:
+        - Complex Rules
+      summary: Get a Product Complex Rule
+      description: Returns a single *Complex Rule*. Optional parameters can be passed in.
+    put:
+      tags:
+        - Complex Rules
+      summary: Update a Product Complex Rule
+      description: |-
+        Updates a *Complex Rule*.
+
+        **Required Fields**:
+        - none
+
+        **Read-Only Fields**:
+        - complex_rule_id
+        - conditions_id
+        - rule_id
+        - combination_id
+        - id
+    delete:
+      tags:
+        - Complex Rules
+      summary: Delete a Product Complex Rule
+      description: Deletes a product *Complex Rule*.
+    parameters:
+      - null
+      - null
+      - null
+  /catalog/products/{product_id}/custom-fields:
+    get:
+      tags:
+        - Custom Fields
+      summary: Get Product Custom Fields
+      description: >-
+        Returns a list of product *Custom Fields*. You can pass in optional
+        parameters.
+
+
+        **Note:**
+
+        The default rate limit for this endpoint is 40 concurrent requests.
+    post:
+      tags:
+        - Custom Fields
+      summary: Create a Product Custom Field
+      description: |-
+        Creates a *Custom Field*.
+
+        **Required Fields:**
+        - name
+        - value
+
+        **Name-Value Pair Uniqueness**
+        - Every name-value pair must be unique inside a product.
+
+        **Read-Only:**
+        - id
+
+        **Limits**
+        - 200 custom fields per product limit.
+        - 250 characters per custom field limit.
+
+        **Note:**
+        The default rate limit for this endpoint is 40 concurrent requests.
+    parameters:
+      - null
+  /catalog/products/{product_id}/custom-fields/{custom_field_id}:
+    get:
+      tags:
+        - Custom Fields
+      summary: Get a Product Custom Field
+      description: |
+        Returns a *Custom Field*.
+
+        **Note:**
+        The default rate limit for this endpoint is 40 concurrent requests.
+    put:
+      tags:
+        - Custom Fields
+      summary: Update a Product Custom Field
+      description: |-
+        Updates a *Custom Field*.
+
+        **Required Fields**
+        - none
+
+        **Name-Value Pair Uniqueness**
+        - Every name-value pair must be unique inside a product.
+
+        **Read-Only**
+        - id
+
+         **Limits**
+        - 200 custom fields per product limit.
+        - 250 characters per custom field limit.
+        - 40 concurrent requests default rate limit.
+    delete:
+      tags:
+        - Custom Fields
+      summary: Delete a Product Custom Field
+      description: |-
+        Deletes a product *Custom Field*.
+
+        **Note:**
+        The default rate limit for this endpoint is 40 concurrent requests.
+    parameters:
+      - null
+      - null
+  /catalog/products/{product_id}/bulk-pricing-rules/{bulk_pricing_rule_id}:
+    get:
+      tags:
+        - Bulk Pricing Rules
+      summary: Get a Bulk Pricing Rule
+      description: >-
+        Returns a single *Bulk Pricing Rule*. Optional parameters can be passed
+        in.
+    put:
+      tags:
+        - Bulk Pricing Rules
+      summary: Update a Bulk Pricing Rule
+      description: |-
+        Updates a *Bulk Pricing Rule*.
+
+        **Required Fields**
+        * none
+
+        **Read-Only Fields**
+        - id
+    delete:
+      tags:
+        - Bulk Pricing Rules
+      summary: Delete a Bulk Pricing Rule
+      description: Deletes a *Bulk Pricing Rule*.
+    parameters:
+      - null
+      - null
+      - null
+  /catalog/products/{product_id}/metafields:
+    get:
+      tags:
+        - Metafields
+      summary: Get Product Metafields
+      description: >-
+        Returns a list of *Product Metafields*. Optional parameters can be
+        passed in.
+    post:
+      tags:
+        - Metafields
+      summary: Create a Product Metafield
+      description: >-
+        Creates a *Product Metafield*.
+
+
+        **Required Fields:**
+
+        * permission_set
+
+        * namespace
+
+        * key
+
+        * value
+
+
+        **Note:** The maxiumum number of metafields allowed on each order,
+        product, category, variant, or brand is 250 per client ID. For more
+        information, see [Platform
+        Limits](https://support.bigcommerce.com/s/article/Platform-Limits) in
+        the Help Center.
+    parameters:
+      - null
+      - null
+  /catalog/products/{product_id}/metafields/{metafield_id}:
+    get:
+      tags:
+        - Metafields
+      summary: Get a Product Metafield
+      description: >-
+        Returns a single *Product Metafield*. Optional parameters can be passed
+        in.
+    put:
+      tags:
+        - Metafields
+      summary: Update a Product Metafield
+      description: "Updates a *Product Metafield*.\n\n**Required Fields**\n* none\n\n**Read-Only Fields**\n* id\n* These fields can only be modified using the API account that created the metafield:\n\t* `namespace`\n\t* `key`\n\t* `permission_set`\n\t* `value`\n\n**Usage Notes**\n* Attempting to modify the `namespace`, `key`, `permission_set`, or `value` field using an API account different from the one used to create those metafields will result in a `403` error message. "
+    delete:
+      tags:
+        - Metafields
+      summary: Delete a Product Metafield
+      description: Deletes a *Product Metafield*.
+    parameters:
+      - null
+      - null
+      - null
+  /catalog/products/{product_id}/reviews:
+    get:
+      tags:
+        - Reviews
+      summary: Get Product Reviews
+      description: >-
+        Returns a list of all *Product Reviews*. Optional parameters can be
+        passed in.
+    post:
+      tags:
+        - Reviews
+      summary: Create a Product Review
+      description: |-
+        Creates a *Product Review*.
+
+        **Required Fields**
+        - title
+        - date_reviewed
+
+        **Read-Only Fields**
+        * id
+    parameters:
+      - null
+      - null
+  /catalog/products/{product_id}/reviews/{review_id}:
+    get:
+      tags:
+        - Reviews
+      summary: Get a Product Review
+      description: Returns a single *Product Review*. Optional parameters maybe passed in.
+    put:
+      tags:
+        - Reviews
+      summary: Update a Product Review
+      description: |-
+        Updates a *Product Review*.
+
+        **Required Fields**
+        * none
+
+        **Read-Only Fields**
+        * id
+    delete:
+      tags:
+        - Reviews
+      summary: Delete a Product Review
+      description: Deletes a *Product Review*.
+    parameters:
+      - null
+      - null
+      - null
+  /catalog/products/channel-assignments:
+    get:
+      summary: Get Products Channel Assignments
+      description: Returns a list of products channel assignments.
+      tags:
+        - Channel Assignments
+    put:
+      summary: Create Products Channel Assignments
+      description: Creates products channel assignments.
+      tags:
+        - Channel Assignments
+    delete:
+      summary: Delete Products Channel Assignments
+      description: Delete products channel assignments. A filter must be supplied.
+      tags:
+        - Channel Assignments
+    parameters:
+      - null
+  /catalog/products/category-assignments:
+    get:
+      summary: Get Products Category Assignments
+      description: Returns a list of products category assignments.
+      tags:
+        - Category Assignments
+    put:
+      summary: Create Products Category Assignments.
+      description: Creates products category assignments.
+      tags:
+        - Category Assignments
+    delete:
+      summary: Delete Products Category Assignments
+      description: Deletes products category assignments. A filter must be supplied.
+      tags:
+        - Category Assignments
+    parameters:
+      - null
+  /catalog/summary:
+    get:
+      tags:
+        - Summary
+      summary: Get a Catalog Summary
+      description: |-
+        Returns a lightweight inventory summary from the BigCommerce Catalog.
+
+        The inventory summary includes:
+        * "inventory_count"
+        * "variant_count"
+        * "inventory_value"
+        * "highest_variant_price"
+        * "average_variant_price"
+        * "lowest_variant_price"
+        * "oldest_variant_date"
+        * "newest_variant_date"
+        * "primary_category_id"
+        * "primary_category_name"
+    parameters:
+      - null
+  /catalog/products/metafields:
+    get:
+      summary: Get All Product Metafields
+      tags:
+        - Batch metafields
+      description: Get all product metafields.
+    post:
+      summary: Create multiple Metafields
+      tags:
+        - Batch metafields
+      description: Create multiple metafields.
+    put:
+      summary: Update multiple Metafields
+      tags:
+        - Batch metafields
+      description: Update multiple metafields.
+    delete:
+      summary: Delete All Metafields
+      tags:
+        - Batch metafields
+      description: Delete all product metafield

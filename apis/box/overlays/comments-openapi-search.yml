@@ -1,0 +1,36 @@
+openapi: 3.1.0
+info:
+  title: Box Comments API
+paths:
+  /files/{file_id}/comments:
+    get:
+      summary: List file comments
+      description: Retrieves a list of comments for a file.
+      tags:
+        - Comments
+  /comments/{comment_id}:
+    get:
+      summary: Get comment
+      tags:
+        - Comments
+      description: |-
+        Retrieves the message and metadata for a specific comment, as well
+        as information on the user who created the comment.
+    put:
+      summary: Update comment
+      tags:
+        - Comments
+      description: Update the message of a comment.
+    delete:
+      summary: Remove comment
+      tags:
+        - Comments
+      description: Permanently deletes a comment.
+  /comments:
+    post:
+      tags:
+        - Comments
+      summary: Create comment
+      description: |-
+        Adds a comment by the user to a specific file, or
+        as a reply to an other commen

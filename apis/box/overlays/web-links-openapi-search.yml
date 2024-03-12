@@ -1,0 +1,75 @@
+openapi: 3.1.0
+info:
+  title: Box Web Links API
+paths:
+  /web_links:
+    post:
+      summary: Create web link
+      tags:
+        - Web links
+      description: Creates a web link object within a folder.
+  /web_links/{web_link_id}:
+    get:
+      summary: Get web link
+      tags:
+        - Web links
+      description: Retrieve information about a web link.
+    post:
+      summary: Restore web link
+      tags:
+        - Trashed web links
+      description: >-
+        Restores a web link that has been moved to the trash.
+
+
+        An optional new parent ID can be provided to restore the  web link to in
+        case
+
+        the original folder has been deleted.
+    put:
+      summary: Update web link
+      tags:
+        - Web links
+      description: Updates a web link object.
+    delete:
+      summary: Remove web link
+      tags:
+        - Web links
+      description: Deletes a web link.
+  /web_links/{web_link_id}/trash:
+    get:
+      summary: Get trashed web link
+      tags:
+        - Trashed web links
+      description: Retrieves a web link that has been moved to the trash.
+    delete:
+      summary: Permanently remove web link
+      tags:
+        - Trashed web links
+      description: |-
+        Permanently deletes a web link that is in the trash.
+        This action cannot be undone.
+  /web_links/{web_link_id}#get_shared_link:
+    get:
+      summary: Get shared link for web link
+      tags:
+        - Shared links (Web Links)
+      description: Gets the information for a shared link on a web link.
+  /web_links/{web_link_id}#add_shared_link:
+    put:
+      summary: Add shared link to web link
+      tags:
+        - Shared links (Web Links)
+      description: Adds a shared link to a web link.
+  /web_links/{web_link_id}#update_shared_link:
+    put:
+      summary: Update shared link on web link
+      tags:
+        - Shared links (Web Links)
+      description: Updates a shared link on a web link.
+  /web_links/{web_link_id}#remove_shared_link:
+    put:
+      summary: Remove shared link from web link
+      tags:
+        - Shared links (Web Links)
+      description: Removes a shared link from a web lin

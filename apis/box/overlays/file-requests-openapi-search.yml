@@ -1,0 +1,30 @@
+openapi: 3.1.0
+info:
+  title: Box File Requests API
+paths:
+  /file_requests/{file_request_id}:
+    get:
+      summary: Get file request
+      tags:
+        - File requests
+      description: Retrieves the information about a file request.
+    put:
+      summary: Update file request
+      tags:
+        - File requests
+      description: |-
+        Updates a file request. This can be used to activate or
+        deactivate a file request.
+    delete:
+      summary: Delete file request
+      tags:
+        - File requests
+      description: Deletes a file request permanently.
+  /file_requests/{file_request_id}/copy:
+    post:
+      summary: Copy file request
+      tags:
+        - File requests
+      description: |-
+        Copies an existing file request that is already present on one folder,
+        and applies it to another folde

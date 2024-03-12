@@ -1,5 +1,5 @@
 info:
-  title: Twilio Studio API
+  title: Twilio - Studio
   license:
     name: Apache 2.0
     url: https://www.apache.org/licenses/LICENSE-2.0.html
@@ -10,324 +10,110 @@ paths:
     get:
       description: Retrieve a list of all Executions for the Flow.
       tags:
-        - Retrieve
-        - Flow
-        - Executions
-        - Flows
-        - Flow
-        - Sid
-        - Executions
-      summary: Retrieve Flow Executions
+        - StudioV2Execution
     post:
       description: Triggers a new Execution for the Flow
       tags:
-        - Create
-        - Flow
-        - Execution
-        - Flows
-        - Flow
-        - Sid
-        - Executions
-      summary: Create Flow Execution
+        - StudioV2Execution
   /v2/Flows/{FlowSid}/Executions/{Sid}:
     description: Executions of Studio flows
     get:
       description: Retrieve an Execution
       tags:
-        - Retrieve
-        - Flow
-        - Execution
-        - Flows
-        - Flow
-        - Sid
-        - Executions
-      summary: Retrieve Flow Execution
+        - StudioV2Execution
     delete:
       description: Delete the Execution and all Steps relating to it.
       tags:
-        - Delete
-        - Flow
-        - Execution
-        - Flows
-        - Flow
-        - Sid
-        - Executions
-      summary: Delete Flow Execution
+        - StudioV2Execution
     post:
       description: Update the status of an Execution to `ended`.
       tags:
-        - Update
-        - Flow
-        - Execution
-        - Flows
-        - Flow
-        - Sid
-        - Executions
-      summary: Update Flow Execution
+        - StudioV2Execution
   /v2/Flows/{FlowSid}/Executions/{ExecutionSid}/Context:
     description: JSON context for executions
     get:
       description: Retrieve the most recent context for an Execution.
       tags:
-        - Retrieve
-        - Flow
-        - Execution
-        - Context
-        - Flows
-        - Flow
-        - Sid
-        - Executions
-        - Execution
-        - Context
-      summary: Retrieve Flow Execution Context
+        - StudioV2ExecutionContext
   /v2/Flows/{FlowSid}/Executions/{ExecutionSid}/Steps:
     description: Individual steps within an execution
     get:
       description: Retrieve a list of all Steps for an Execution.
       tags:
-        - Retrieve
-        - Flow
-        - Execution
-        - Steps
-        - Flows
-        - Flow
-        - Sid
-        - Executions
-        - Execution
-        - Context
-        - Steps
-      summary: Retrieve Flow Execution Steps
+        - StudioV2ExecutionStep
   /v2/Flows/{FlowSid}/Executions/{ExecutionSid}/Steps/{Sid}:
     description: Individual steps within an execution
     get:
       description: Retrieve a Step.
       tags:
-        - Retrieve
-        - Flow
-        - Execution
-        - Step
-        - Flows
-        - Flow
-        - Sid
-        - Executions
-        - Execution
-        - Context
-        - Steps
-      summary: Retrieve Flow Execution Step
+        - StudioV2ExecutionStep
   /v2/Flows/{FlowSid}/Executions/{ExecutionSid}/Steps/{StepSid}/Context:
     description: JSON context for an individual step within an execution
     get:
       description: Retrieve the context for an Execution Step.
       tags:
-        - Retrieve
-        - Flow
-        - Execution
-        - Step
-        - Context
-        - Flows
-        - Flow
-        - Sid
-        - Executions
-        - Execution
-        - Context
-        - Steps
-        - Step
-      summary: Retrieve Flow Execution Step Context
+        - StudioV2ExecutionStepContext
   /v2/Flows:
     description: Studio flows
     post:
       description: Create a Flow.
       tags:
-        - Create
-        - Flow
-        - Flows
-        - Flow
-        - Sid
-        - Executions
-        - Execution
-        - Context
-        - Steps
-        - Step
-      summary: Create Flow
+        - StudioV2Flow
     get:
       description: Retrieve a list of all Flows.
       tags:
-        - Retrieve
-        - Flows
-        - Flows
-        - Flow
-        - Sid
-        - Executions
-        - Execution
-        - Context
-        - Steps
-        - Step
-      summary: Retrieve Flows
+        - StudioV2Flow
   /v2/Flows/{Sid}:
     description: Studio flows
     post:
       description: Update a Flow.
       tags:
-        - Update
-        - Flow
-        - Flows
-        - Flow
-        - Sid
-        - Executions
-        - Execution
-        - Context
-        - Steps
-        - Step
-      summary: Update Flow
+        - StudioV2Flow
     get:
       description: Retrieve a specific Flow.
       tags:
-        - Retrieve
-        - Flow
-        - Flows
-        - Flow
-        - Sid
-        - Executions
-        - Execution
-        - Context
-        - Steps
-        - Step
-      summary: Retrieve Flow
+        - StudioV2Flow
     delete:
       description: Delete a specific Flow.
       tags:
-        - Delete
-        - Flow
-        - Flows
-        - Flow
-        - Sid
-        - Executions
-        - Execution
-        - Context
-        - Steps
-        - Step
-      summary: Delete Flow
+        - StudioV2Flow
   /v2/Flows/{Sid}/Revisions:
     description: Studio flows revisions
     get:
       description: Retrieve a list of all Flows revisions.
       tags:
-        - Retrieve
-        - Flow
-        - Revisions
-        - Flows
-        - Flow
-        - Sid
-        - Executions
-        - Execution
-        - Context
-        - Steps
-        - Step
-        - Revisions
-      summary: Retrieve Flow Revisions
+        - StudioV2FlowRevision
   /v2/Flows/{Sid}/Revisions/{Revision}:
     description: Studio flows revisions
     get:
       description: Retrieve a specific Flow revision.
       tags:
-        - Retrieve
-        - Flow
-        - Revision
-        - Flows
-        - Flow
-        - Sid
-        - Executions
-        - Execution
-        - Context
-        - Steps
-        - Step
-        - Revisions
-        - Revision
-      summary: Retrieve Flow Revision
+        - StudioV2FlowRevision
   /v2/Flows/Validate:
     description: Flow definition validator
     post:
       description: Validate flow JSON definition
       tags:
-        - Retrieve
-        - Flow
-        - Validate
-        - Flows
-        - Flow
-        - Sid
-        - Executions
-        - Execution
-        - Context
-        - Steps
-        - Step
-        - Revisions
-        - Revision
-        - Validate
-      summary: Retrieve Flow Validate
+        - StudioV2FlowValidate
   /v2/Flows/{Sid}/TestUsers:
     description: Test users of a flow
     get:
       description: Fetch flow test users
       tags:
-        - Retrieve
-        - Flow
-        - Test
-        - Users
-        - Flows
-        - Flow
-        - Sid
-        - Executions
-        - Execution
-        - Context
-        - Steps
-        - Step
-        - Revisions
-        - Revision
-        - Validate
-        - Test
-        - Users
-      summary: Retrieve Flow Test Users
+        - StudioV2FlowTestUser
     post:
       description: Update flow test users
       tags:
-        - Update
-        - Flow
-        - Test
-        - Users
-        - Flows
-        - Flow
-        - Sid
-        - Executions
-        - Execution
-        - Context
-        - Steps
-        - Step
-        - Revisions
-        - Revision
-        - Validate
-        - Test
-        - Users
-      summary: Update Flow Test Users
+        - StudioV2FlowTestUser
 tags:
-  - name: Tag
-  - name: Studio
-    description: Needs a description.
-  - name: Flows
-    description: Needs a description.
-  - name: Executions
-    description: Needs a description.
-  - name: Context
-    description: Needs a description.
-  - name: Steps
-    description: Needs a description.
-  - name: Revisions
-    description: Needs a description.
-  - name: Validate
-    description: Needs a description.
-  - name: Tests
-    description: Needs a description.
-  - name: Users
-    description: Needs a description.
+  - name: StudioV2Execution
+  - name: StudioV2ExecutionContext
+  - name: StudioV2ExecutionStep
+  - name: StudioV2ExecutionStepContext
+  - name: StudioV2Flow
+  - name: StudioV2FlowRevision
+  - name: StudioV2FlowTestUser
+  - name: StudioV2FlowValidate
 x-maturity:
   - name: GA
-    description: This product is Generally Avai
+    description: This product is Generally Av

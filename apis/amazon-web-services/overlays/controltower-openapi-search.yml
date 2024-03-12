@@ -9,12 +9,6 @@ paths:
         <p>Creates a new landing zone. This API call starts an asynchronous
         operation that creates and configures a landing zone, based on the
         parameters specified in the manifest JSON file.</p>
-      tags:
-        - Create
-        - Landing
-        - Zone
-        - Create
-        - Landingzone
   /delete-landingzone:
     POST:
       summary: DeleteLandingZone
@@ -22,13 +16,6 @@ paths:
         <p>Decommissions a landing zone. This API call starts an asynchronous
         operation that deletes Amazon Web Services Control Tower resources
         deployed in accounts managed by Amazon Web Services Control Tower.</p>
-      tags:
-        - Delete
-        - Landing
-        - Zone
-        - Create
-        - Landingzone
-        - Delete
   /disable-baseline:
     POST:
       summary: DisableBaseline
@@ -37,14 +24,6 @@ paths:
         Target. This API starts an asynchronous operation to remove all
         resources deployed as part of the baseline enablement. The resource will
         vary depending on the enabled baseline.</p>
-      tags:
-        - Disable
-        - Baseline
-        - Create
-        - Landingzone
-        - Delete
-        - Disable
-        - Baseline
   /disable-control:
     POST:
       summary: DisableControl
@@ -55,15 +34,6 @@ paths:
         the control that you specify. For usage examples, see <a
         href="https://docs.aws.amazon.com/controltower/latest/userguide/control-api-examples-short.html">
         <i>the Amazon Web Services Control Tower User Guide</i> </a>.</p>
-      tags:
-        - Disable
-        - Control
-        - Create
-        - Landingzone
-        - Delete
-        - Disable
-        - Baseline
-        - Control
   /enable-baseline:
     POST:
       summary: EnableBaseline
@@ -71,16 +41,6 @@ paths:
         <p>Enable (apply) a <code>Baseline</code> to a Target. This API starts
         an asynchronous operation to deploy resources specified by the
         <code>Baseline</code> to the specified Target.</p>
-      tags:
-        - Enable
-        - Baseline
-        - Create
-        - Landingzone
-        - Delete
-        - Disable
-        - Baseline
-        - Control
-        - Enable
   /enable-control:
     POST:
       summary: EnableControl
@@ -92,33 +52,12 @@ paths:
         see <a
         href="https://docs.aws.amazon.com/controltower/latest/userguide/control-api-examples-short.html">
         <i>the Amazon Web Services Control Tower User Guide</i> </a>.</p>
-      tags:
-        - Enable
-        - Control
-        - Create
-        - Landingzone
-        - Delete
-        - Disable
-        - Baseline
-        - Control
-        - Enable
   /get-baseline:
     POST:
       summary: GetBaseline
       description: >-
         <p>Retrieve details about an existing <code>Baseline</code> resource by
         specifying its identifier.</p>
-      tags:
-        - Get
-        - Baseline
-        - Create
-        - Landingzone
-        - Delete
-        - Disable
-        - Baseline
-        - Control
-        - Enable
-        - Get
   /get-baseline-operation:
     POST:
       summary: GetBaselineOperation
@@ -128,19 +67,6 @@ paths:
         <code>DisableBaseline</code>, <code>UpdateEnabledBaseline</code>,
         <code>ResetEnabledBaseline</code>. A status message is displayed in case
         of operation failure.</p>
-      tags:
-        - Get
-        - Baseline
-        - Operation
-        - Create
-        - Landingzone
-        - Delete
-        - Disable
-        - Baseline
-        - Control
-        - Enable
-        - Get
-        - Operation
   /get-control-operation:
     POST:
       summary: GetControlOperation
@@ -151,39 +77,12 @@ paths:
         examples, see <a
         href="https://docs.aws.amazon.com/controltower/latest/userguide/control-api-examples-short.html">
         <i>the Amazon Web Services Control Tower User Guide</i> </a>.</p>
-      tags:
-        - Get
-        - Control
-        - Operation
-        - Create
-        - Landingzone
-        - Delete
-        - Disable
-        - Baseline
-        - Control
-        - Enable
-        - Get
-        - Operation
   /get-enabled-baseline:
     POST:
       summary: GetEnabledBaseline
       description: >-
         <p>Retrieve details of an <code>EnabledBaseline</code> resource by
         specifying its identifier.</p>
-      tags:
-        - Get
-        - Enabled
-        - Baseline
-        - Create
-        - Landingzone
-        - Delete
-        - Disable
-        - Baseline
-        - Control
-        - Enable
-        - Get
-        - Operation
-        - Enabled
   /get-enabled-control:
     POST:
       summary: GetEnabledControl
@@ -192,80 +91,22 @@ paths:
         <a
         href="https://docs.aws.amazon.com/controltower/latest/userguide/control-api-examples-short.html">
         <i>the Amazon Web Services Control Tower User Guide</i> </a>.</p>
-      tags:
-        - Get
-        - Enabled
-        - Control
-        - Create
-        - Landingzone
-        - Delete
-        - Disable
-        - Baseline
-        - Control
-        - Enable
-        - Get
-        - Operation
-        - Enabled
   /get-landingzone:
     POST:
       summary: GetLandingZone
       description: >-
         <p>Returns details about the landing zone. Displays a message in case of
         error.</p>
-      tags:
-        - Get
-        - Landing
-        - Zone
-        - Create
-        - Landingzone
-        - Delete
-        - Disable
-        - Baseline
-        - Control
-        - Enable
-        - Get
-        - Operation
-        - Enabled
   /get-landingzone-operation:
     POST:
       summary: GetLandingZoneOperation
       description: >-
         <p>Returns the status of the specified landing zone operation. Details
         for an operation are available for 60 days.</p>
-      tags:
-        - Get
-        - Landing
-        - Zone
-        - Operation
-        - Create
-        - Landingzone
-        - Delete
-        - Disable
-        - Baseline
-        - Control
-        - Enable
-        - Get
-        - Operation
-        - Enabled
   /list-baselines:
     POST:
       summary: ListBaselines
       description: <p>Returns a summary list of all available baselines.</p>
-      tags:
-        - List
-        - Baselines
-        - Create
-        - Landingzone
-        - Delete
-        - Disable
-        - Baseline
-        - Control
-        - Enable
-        - Get
-        - Operation
-        - Enabled
-        - List
-        - Baselines
   /list-enabled-baselines:
     POST:
       summary: ListEnabledBaselines
@@ -274,22 +115,6 @@ paths:
         resources. You can filter the list by the corresponding
         <code>Baseline</code> or <code>Target</code> of the
         <code>EnabledBaseline</code> resources.</p>
-      tags:
-        - List
-        - Enabled
-        - Baselines
-        - Create
-        - Landingzone
-        - Delete
-        - Disable
-        - Baseline
-        - Control
-        - Enable
-        - Get
-        - Operation
-        - Enabled
-        - List
-        - Baselines
   /list-enabled-controls:
     POST:
       summary: ListEnabledControls
@@ -299,23 +124,6 @@ paths:
         usage examples, see <a
         href="https://docs.aws.amazon.com/controltower/latest/userguide/control-api-examples-short.html">
         <i>the Amazon Web Services Control Tower User Guide</i> </a>.</p>
-      tags:
-        - List
-        - Enabled
-        - Controls
-        - Create
-        - Landingzone
-        - Delete
-        - Disable
-        - Baseline
-        - Control
-        - Enable
-        - Get
-        - Operation
-        - Enabled
-        - List
-        - Baselines
-        - Controls
   /list-landingzones:
     POST:
       summary: ListLandingZones
@@ -324,24 +132,6 @@ paths:
         managed account. This API also creates an ARN for existing accounts that
         do not yet have a landing zone ARN. </p> <p>Returns one landing zone
         ARN.</p>
-      tags:
-        - List
-        - Landing
-        - Zones
-        - Create
-        - Landingzone
-        - Delete
-        - Disable
-        - Baseline
-        - Control
-        - Enable
-        - Get
-        - Operation
-        - Enabled
-        - List
-        - Baselines
-        - Controls
-        - Landingzones
   /tags/{resourceArn}:
     DELETE:
       summary: UntagResource
@@ -349,24 +139,6 @@ paths:
         <p>Removes tags from a resource. For usage examples, see <a
         href="https://docs.aws.amazon.com/controltower/latest/userguide/control-api-examples-short.html">
         <i>the Amazon Web Services Control Tower User Guide</i> </a>.</p>
-      tags:
-        - Untag
-        - Resource
-        - Create
-        - Landingzone
-        - Delete
-        - Disable
-        - Baseline
-        - Control
-        - Enable
-        - Get
-        - Operation
-        - Enabled
-        - List
-        - Baselines
-        - Controls
-        - Landingzones
-        - Arn
   /reset-enabled-baseline:
     POST:
       summary: ResetEnabledBaseline
@@ -374,26 +146,6 @@ paths:
         <p>Re-enables an <code>EnabledBaseline</code> resource. For example,
         this API can re-apply the existing <code>Baseline</code> after a new
         member account is moved to the target OU.</p>
-      tags:
-        - Reset
-        - Enabled
-        - Baseline
-        - Create
-        - Landingzone
-        - Delete
-        - Disable
-        - Baseline
-        - Control
-        - Enable
-        - Get
-        - Operation
-        - Enabled
-        - List
-        - Baselines
-        - Controls
-        - Landingzones
-        - Arn
-        - Reset
   /reset-landingzone:
     POST:
       summary: ResetLandingZone
@@ -401,53 +153,12 @@ paths:
         <p>This API call resets a landing zone. It starts an asynchronous
         operation that resets the landing zone to the parameters specified in
         its original configuration.</p>
-      tags:
-        - Reset
-        - Landing
-        - Zone
-        - Create
-        - Landingzone
-        - Delete
-        - Disable
-        - Baseline
-        - Control
-        - Enable
-        - Get
-        - Operation
-        - Enabled
-        - List
-        - Baselines
-        - Controls
-        - Landingzones
-        - Arn
-        - Reset
   /update-enabled-baseline:
     POST:
       summary: UpdateEnabledBaseline
       description: >-
         <p>Updates an <code>EnabledBaseline</code> resource's applied parameters
         or version.</p>
-      tags:
-        - Update
-        - Enabled
-        - Baseline
-        - Create
-        - Landingzone
-        - Delete
-        - Disable
-        - Baseline
-        - Control
-        - Enable
-        - Get
-        - Operation
-        - Enabled
-        - List
-        - Baselines
-        - Controls
-        - Landingzones
-        - Arn
-        - Reset
-        - Update
   /update-enabled-control:
     POST:
       summary: UpdateEnabledControl
@@ -466,27 +177,6 @@ paths:
         operation. For usage examples, see <a
         href="https://docs.aws.amazon.com/controltower/latest/userguide/control-api-examples-short.html">
         <i>the Amazon Web Services Control Tower User Guide</i> </a> </p>
-      tags:
-        - Update
-        - Enabled
-        - Control
-        - Create
-        - Landingzone
-        - Delete
-        - Disable
-        - Baseline
-        - Control
-        - Enable
-        - Get
-        - Operation
-        - Enabled
-        - List
-        - Baselines
-        - Controls
-        - Landingzones
-        - Arn
-        - Reset
-        - Update
   /update-landingzone:
     POST:
       summary: UpdateLandingZone
@@ -494,25 +184,4 @@ paths:
         <p>This API call updates the landing zone. It starts an asynchronous
         operation that updates the landing zone based on the new landing zone
         version, or on the changed parameters specified in the updated manifest
-        file. </
-      tags:
-        - Update
-        - Landing
-        - Zone
-        - Create
-        - Landingzone
-        - Delete
-        - Disable
-        - Baseline
-        - Control
-        - Enable
-        - Get
-        - Operation
-        - Enabled
-        - List
-        - Baselines
-        - Controls
-        - Landingzones
-        - Arn
-        - Reset
-        - null
+        fi

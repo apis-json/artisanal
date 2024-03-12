@@ -1,0 +1,46 @@
+openapi: 3.0.3
+info:
+  title: Conversational API Powered by FactSet Mercury
+  license:
+    name: Apache License, Version 2.0
+    url: https://www.apache.org/licenses/LICENSE-2.0
+paths:
+  /create:
+    post:
+      summary: Create a chat request for a given natural language query.
+      description: >
+        Returns a chat ID for polling the response to a natural language query
+        for financial data.
+
+          This endpoint is an interface for initializing a request for an answer from FactSet Mercury, our large language model for surfacing FactSet datasets through conversational natural language queries. Use the `/create` endpoint to start generating responses for one-off questions. Responses contain a chat ID and status for the chat process.
+      tags:
+        - Single Question Chat
+  /status:
+    post:
+      summary: Retrieve the status of a chat response process.
+      description: >
+        Returns the status of a chat response for a given chat conversation ID
+        (recevied from the `/create` endpoint). Poll the `/status` endpoint with
+        your conversation ID to confirm when your data is ready.
+
+        Answers may take minutes to generate, depending on the complexity of the
+        query.
+      tags:
+        - Single Question Chat
+  /result:
+    post:
+      summary: Retrieve the completed response for your query.
+      description: >
+        Returns FactSet content and data in response to the query provided to
+        the `/create` endpoint. This endpoint is the final step in the
+        single-question request process.
+
+        Responses contain a combination of Microsoft Adaptive Cards for
+        data/tables and markdown for text.
+      tags:
+        - Single Question Chat
+tags:
+  - name: Single Question Chat
+externalDocs:
+  description: API Documentation
+  url: https://developer.factset.com/api-catalog/conversational-api-powered-facts

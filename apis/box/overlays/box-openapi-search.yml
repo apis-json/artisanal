@@ -1,0 +1,3036 @@
+openapi: 3.0.2
+info:
+  title: Box Platform API
+  license:
+    name: Apache-2.0
+    url: http://www.apache.org/licenses/LICENSE-2.0
+  x-box-commit-hash: '5819125043'
+paths:
+  /authorize:
+    get:
+      summary: Authorize user
+      description: |-
+        Authorize a user by sending them through the [Box](https://box.com)
+        website and request their permission to act on their behalf.
+
+        This is the first step when authenticating a user using
+        OAuth 2.0. To request a user's authorization to use the Box APIs
+        on their behalf you will need to send a user to the URL with this
+        format.
+      tags:
+        - Authorization
+  /oauth2/token:
+    post:
+      summary: Request access token
+      description: |-
+        Request an Access Token using either a client-side obtained OAuth 2.0
+        authorization code or a server-side JWT assertion.
+
+        An Access Token is a string that enables Box to verify that a
+        request belongs to an authorized session. In the normal order of
+        operations you will begin by requesting authentication from the
+        [authorize](#get-authorize) endpoint and Box will send you an
+        authorization code.
+
+        You will then send this code to this endpoint to exchange it for
+        an Access Token. The returned Access Token can then be used to to make
+        Box API calls.
+      tags:
+        - Authorization
+  /oauth2/token#refresh:
+    post:
+      summary: Refresh access token
+      description: Refresh an Access Token using its client ID, secret, and refresh token.
+      tags:
+        - Authorization
+  /oauth2/revoke:
+    post:
+      summary: Revoke access token
+      description: |-
+        Revoke an active Access Token, effectively logging a user out
+        that has been previously authenticated.
+      tags:
+        - Authorization
+  /files/{file_id}:
+    get:
+      summary: Get file information
+      tags:
+        - Files
+      description: Retrieves the details about a file.
+    post:
+      summary: Restore file
+      tags:
+        - Trashed files
+      description: >-
+        Restores a file that has been moved to the trash.
+
+
+        An optional new parent ID can be provided to restore the file to in case
+        the
+
+        original folder has been deleted.
+    put:
+      summary: Update file
+      tags:
+        - Files
+      description: |-
+        Updates a file. This can be used to rename or move a file,
+        create a shared link, or lock a file.
+    delete:
+      summary: Delete file
+      tags:
+        - Files
+      description: |-
+        Deletes a file, either permanently or by moving it to
+        the trash.
+
+        The the enterprise settings determine whether the item will
+        be permanently deleted from Box or moved to the trash.
+  /files/{file_id}/content:
+    get:
+      summary: Download file
+      tags:
+        - Downloads
+      description: Returns the contents of a file in binary format.
+    post:
+      tags:
+        - Uploads
+      summary: Upload file version
+      description: |-
+        Update a file's content. For file sizes over 50MB we recommend
+        using the Chunk Upload APIs.
+
+        # Request body order
+
+        The `attributes` part of the body must come **before** the
+        `file` part. Requests that do not follow this format when
+        uploading the file will receive a HTTP `400` error with a
+        `metadata_after_file_contents` error code.
+  /files/content:
+    options:
+      summary: Preflight check before upload
+      tags:
+        - Files
+      description: |-
+        Performs a check to verify that a file will be accepted by Box
+        before you upload the entire file.
+    post:
+      tags:
+        - Uploads
+      summary: Upload file
+      description: |-
+        Uploads a small file to Box. For file sizes over 50MB we recommend
+        using the Chunk Upload APIs.
+
+        # Request body order
+
+        The `attributes` part of the body must come **before** the
+        `file` part. Requests that do not follow this format when
+        uploading the file will receive a HTTP `400` error with a
+        `metadata_after_file_contents` error code.
+  /files/upload_sessions:
+    post:
+      summary: Create upload session
+      tags:
+        - Uploads (Chunked)
+      description: Creates an upload session for a new file.
+  /files/{file_id}/upload_sessions:
+    post:
+      summary: Create upload session for existing file
+      tags:
+        - Uploads (Chunked)
+      description: Creates an upload session for an existing file.
+  /files/upload_sessions/{upload_session_id}:
+    get:
+      summary: Get upload session
+      tags:
+        - Uploads (Chunked)
+      description: Return information about an upload session.
+    put:
+      summary: Upload part of file
+      tags:
+        - Uploads (Chunked)
+      description: Updates a chunk of an upload session for a file.
+    delete:
+      summary: Remove upload session
+      tags:
+        - Uploads (Chunked)
+      description: |-
+        Abort an upload session and discard all data uploaded.
+
+        This cannot be reversed.
+  /files/upload_sessions/{upload_session_id}/parts:
+    get:
+      summary: List parts
+      tags:
+        - Uploads (Chunked)
+      description: |-
+        Return a list of the chunks uploaded to the upload
+        session so far.
+  /files/upload_sessions/{upload_session_id}/commit:
+    post:
+      summary: Commit upload session
+      tags:
+        - Uploads (Chunked)
+      description: |-
+        Close an upload session and create a file from the
+        uploaded chunks.
+  /files/{file_id}/copy:
+    post:
+      summary: Copy file
+      description: Creates a copy of a file.
+      tags:
+        - Files
+  /files/{file_id}/thumbnail.{extension}:
+    get:
+      summary: Get file thumbnail
+      description: >-
+        Retrieves a thumbnail, or smaller image representation, of a file.
+
+
+        Sizes of `32x32`,`64x64`, `128x128`, and `256x256` can be returned in
+
+        the `.png` format and sizes of `32x32`, `160x160`, and `320x320`
+
+        can be returned in the `.jpg` format.
+
+
+        Thumbnails can be generated for the image and video file formats listed
+
+        [found on our community site][1].
+
+
+        [1]:
+        https://community.box.com/t5/Migrating-and-Previewing-Content/File-Types-and-Fonts-Supported-in-Box-Content-Preview/ta-p/327
+      tags:
+        - Files
+  /files/{file_id}/collaborations:
+    get:
+      summary: List file collaborations
+      description: |-
+        Retrieves a list of pending and active collaborations for a
+        file. This returns all the users that have access to the file
+        or have been invited to the file.
+      tags:
+        - Collaborations (List)
+  /files/{file_id}/comments:
+    get:
+      summary: List file comments
+      description: Retrieves a list of comments for a file.
+      tags:
+        - Comments
+  /files/{file_id}/tasks:
+    get:
+      summary: List tasks on file
+      description: |-
+        Retrieves a list of all the tasks for a file. This
+        endpoint does not support pagination.
+      tags:
+        - Tasks
+  /files/{file_id}/trash:
+    get:
+      summary: Get trashed file
+      tags:
+        - Trashed files
+      description: |-
+        Retrieves a file that has been moved to the trash.
+
+        Please note that only if the file itself has been moved to the
+        trash can it be retrieved with this API call. If instead one of
+        its parent folders was moved to the trash, only that folder
+        can be inspected using the
+        [`GET /folders/:id/trash`](e://get_folders_id_trash) API.
+
+        To list all items that have been moved to the trash, please
+        use the [`GET /folders/trash/items`](e://get-folders-trash-items/)
+        API.
+    delete:
+      summary: Permanently remove file
+      tags:
+        - Trashed files
+      description: |-
+        Permanently deletes a file that is in the trash.
+        This action cannot be undone.
+  /files/{file_id}/versions:
+    get:
+      summary: List all file versions
+      tags:
+        - File versions
+      description: >-
+        Retrieve a list of the past versions for a file.
+
+
+        Versions are only tracked by Box users with premium accounts. To fetch
+        the ID
+
+        of the current version of a file, use the `GET /file/:id` API.
+  /files/{file_id}/versions/{file_version_id}:
+    get:
+      summary: Get file version
+      tags:
+        - File versions
+      description: |-
+        Retrieve a specific version of a file.
+
+        Versions are only tracked for Box users with premium accounts.
+    delete:
+      summary: Remove file version
+      tags:
+        - File versions
+      description: |-
+        Move a file version to the trash.
+
+        Versions are only tracked for Box users with premium accounts.
+    put:
+      summary: Restore file version
+      tags:
+        - File versions
+      description: |-
+        Restores a specific version of a file after it was deleted.
+        Don't use this endpoint to restore Box Notes,
+        as it works with file formats such as PDF, DOC,
+        PPTX or similar.
+  /files/{file_id}/versions/current:
+    post:
+      summary: Promote file version
+      tags:
+        - File versions
+      description: |-
+        Promote a specific version of a file.
+
+        If previous versions exist, this method can be used to
+        promote one of the older versions to the top of the version history.
+
+        This creates a new copy of the old version and puts it at the
+        top of the versions history. The file will have the exact same contents
+        as the older version, with the the same hash digest, `etag`, and
+        name as the original.
+
+        Other properties such as comments do not get updated to their
+        former values.
+
+        Don't use this endpoint to restore Box Notes,
+        as it works with file formats such as PDF, DOC,
+        PPTX or similar.
+  /files/{file_id}/metadata:
+    get:
+      summary: List metadata instances on file
+      tags:
+        - Metadata instances (Files)
+      description: Retrieves all metadata for a given file.
+  /files/{file_id}/metadata/enterprise/securityClassification-6VMVochwUWo:
+    get:
+      summary: Get classification on file
+      tags:
+        - Classifications on files
+      description: |-
+        Retrieves the classification metadata instance that
+        has been applied to a file.
+
+        This API can also be called by including the enterprise ID in the
+        URL explicitly, for example
+        `/files/:id//enterprise_12345/securityClassification-6VMVochwUWo`.
+    post:
+      summary: Add classification to file
+      tags:
+        - Classifications on files
+      description: |-
+        Adds a classification to a file by specifying the label of the
+        classification to add.
+
+        This API can also be called by including the enterprise ID in the
+        URL explicitly, for example
+        `/files/:id//enterprise_12345/securityClassification-6VMVochwUWo`.
+    put:
+      summary: Update classification on file
+      tags:
+        - Classifications on files
+      description: >-
+        Updates a classification on a file.
+
+
+        The classification can only be updated if a classification has already
+        been
+
+        applied to the file before. When editing classifications, only values
+        are
+
+        defined for the enterprise will be accepted.
+    delete:
+      summary: Remove classification from file
+      tags:
+        - Classifications on files
+      description: |-
+        Removes any classifications from a file.
+
+        This API can also be called by including the enterprise ID in the
+        URL explicitly, for example
+        `/files/:id//enterprise_12345/securityClassification-6VMVochwUWo`.
+  /files/{file_id}/metadata/{scope}/{template_key}:
+    get:
+      summary: Get metadata instance on file
+      tags:
+        - Metadata instances (Files)
+      description: |-
+        Retrieves the instance of a metadata template that has been applied to a
+        file.
+    post:
+      summary: Create metadata instance on file
+      tags:
+        - Metadata instances (Files)
+      description: >-
+        Applies an instance of a metadata template to a file.
+
+
+        In most cases only values that are present in the metadata template
+
+        will be accepted, except for the `global.properties` template which
+        accepts
+
+        any key-value pair.
+    put:
+      summary: Update metadata instance on file
+      tags:
+        - Metadata instances (Files)
+      description: >-
+        Updates a piece of metadata on a file.
+
+
+        The metadata instance can only be updated if the template has already
+        been
+
+        applied to the file before. When editing metadata, only values that
+        match
+
+        the metadata template schema will be accepted.
+
+
+        The update is applied atomically. If any errors occur during the
+
+        application of the operations, the metadata instance will not be
+        changed.
+    delete:
+      summary: Remove metadata instance from file
+      tags:
+        - Metadata instances (Files)
+      description: Deletes a piece of file metadata.
+  /files/{file_id}/metadata/global/boxSkillsCards:
+    get:
+      summary: List Box Skill cards on file
+      tags:
+        - Skills
+      description: List the Box Skills metadata cards that are attached to a file.
+    post:
+      summary: Create Box Skill cards on file
+      tags:
+        - Skills
+      description: Applies one or more Box Skills metadata cards to a file.
+    put:
+      summary: Update Box Skill cards on file
+      tags:
+        - Skills
+      description: Updates one or more Box Skills metadata cards to a file.
+    delete:
+      summary: Remove Box Skill cards from file
+      tags:
+        - Skills
+      description: Removes any Box Skills cards metadata from a file.
+  /files/{file_id}/watermark:
+    get:
+      summary: Get watermark on file
+      tags:
+        - Watermarks (Files)
+      description: Retrieve the watermark for a file.
+    put:
+      summary: Apply watermark to file
+      tags:
+        - Watermarks (Files)
+      description: Applies or update a watermark on a file.
+    delete:
+      summary: Remove watermark from file
+      tags:
+        - Watermarks (Files)
+      description: Removes the watermark from a file.
+  /file_requests/{file_request_id}:
+    get:
+      summary: Get file request
+      tags:
+        - File requests
+      description: Retrieves the information about a file request.
+    put:
+      summary: Update file request
+      tags:
+        - File requests
+      description: |-
+        Updates a file request. This can be used to activate or
+        deactivate a file request.
+    delete:
+      summary: Delete file request
+      tags:
+        - File requests
+      description: Deletes a file request permanently.
+  /file_requests/{file_request_id}/copy:
+    post:
+      summary: Copy file request
+      tags:
+        - File requests
+      description: |-
+        Copies an existing file request that is already present on one folder,
+        and applies it to another folder.
+  /folders/{folder_id}:
+    get:
+      summary: Get folder information
+      tags:
+        - Folders
+      description: |-
+        Retrieves details for a folder, including the first 100 entries
+        in the folder.
+
+        Passing `sort`, `direction`, `offset`, and `limit`
+        parameters in query allows you to manage the
+        list of returned
+        [folder items](r://folder--full#param-item-collection).
+
+        To fetch more items within the folder, use the
+        [Get items in a folder](e://get-folders-id-items) endpoint.
+    post:
+      summary: Restore folder
+      tags:
+        - Trashed folders
+      description: >-
+        Restores a folder that has been moved to the trash.
+
+
+        An optional new parent ID can be provided to restore the folder to in
+        case the
+
+        original folder has been deleted.
+
+
+        # Folder locking
+
+
+        During this operation, part of the file tree will be locked, mainly
+
+        the source folder and all of its descendants, as well as the destination
+
+        folder.
+
+
+        For the duration of the operation, no other move, copy, delete, or
+        restore
+
+        operation can performed on any of the locked folders.
+    put:
+      summary: Update folder
+      description: |-
+        Updates a folder. This can be also be used to move the folder,
+        create shared links, update collaborations, and more.
+      tags:
+        - Folders
+    delete:
+      summary: Delete folder
+      description: |-
+        Deletes a folder, either permanently or by moving it to
+        the trash.
+      tags:
+        - Folders
+  /folders/{folder_id}/items:
+    get:
+      summary: List items in folder
+      tags:
+        - Folders
+      description: |-
+        Retrieves a page of items in a folder. These items can be files,
+        folders, and web links.
+
+        To request more information about the folder itself, like its size,
+        use the [Get a folder](#get-folders-id) endpoint instead.
+  /folders:
+    post:
+      summary: Create folder
+      tags:
+        - Folders
+      description: Creates a new empty folder within the specified parent folder.
+  /folders/{folder_id}/copy:
+    post:
+      summary: Copy folder
+      description: |-
+        Creates a copy of a folder within a destination folder.
+
+        The original folder will not be changed.
+      tags:
+        - Folders
+  /folders/{folder_id}/collaborations:
+    get:
+      summary: List folder collaborations
+      description: |-
+        Retrieves a list of pending and active collaborations for a
+        folder. This returns all the users that have access to the folder
+        or have been invited to the folder.
+      tags:
+        - Collaborations (List)
+  /folders/{folder_id}/trash:
+    get:
+      summary: Get trashed folder
+      tags:
+        - Trashed folders
+      description: |-
+        Retrieves a folder that has been moved to the trash.
+
+        Please note that only if the folder itself has been moved to the
+        trash can it be retrieved with this API call. If instead one of
+        its parent folders was moved to the trash, only that folder
+        can be inspected using the
+        [`GET /folders/:id/trash`](e://get_folders_id_trash) API.
+
+        To list all items that have been moved to the trash, please
+        use the [`GET /folders/trash/items`](e://get-folders-trash-items/)
+        API.
+    delete:
+      summary: Permanently remove folder
+      tags:
+        - Trashed folders
+      description: |-
+        Permanently deletes a folder that is in the trash.
+        This action cannot be undone.
+  /folders/{folder_id}/metadata:
+    get:
+      summary: List metadata instances on folder
+      tags:
+        - Metadata instances (Folders)
+      description: >-
+        Retrieves all metadata for a given folder. This can not be used on the
+        root
+
+        folder with ID `0`.
+  /folders/{folder_id}/metadata/enterprise/securityClassification-6VMVochwUWo:
+    get:
+      summary: Get classification on folder
+      tags:
+        - Classifications on folders
+      description: |-
+        Retrieves the classification metadata instance that
+        has been applied to a folder.
+
+        This API can also be called by including the enterprise ID in the
+        URL explicitly, for example
+        `/folders/:id//enterprise_12345/securityClassification-6VMVochwUWo`.
+    post:
+      summary: Add classification to folder
+      tags:
+        - Classifications on folders
+      description: |-
+        Adds a classification to a folder by specifying the label of the
+        classification to add.
+
+        This API can also be called by including the enterprise ID in the
+        URL explicitly, for example
+        `/folders/:id//enterprise_12345/securityClassification-6VMVochwUWo`.
+    put:
+      summary: Update classification on folder
+      tags:
+        - Classifications on folders
+      description: >-
+        Updates a classification on a folder.
+
+
+        The classification can only be updated if a classification has already
+        been
+
+        applied to the folder before. When editing classifications, only values
+        are
+
+        defined for the enterprise will be accepted.
+    delete:
+      summary: Remove classification from folder
+      tags:
+        - Classifications on folders
+      description: |-
+        Removes any classifications from a folder.
+
+        This API can also be called by including the enterprise ID in the
+        URL explicitly, for example
+        `/folders/:id//enterprise_12345/securityClassification-6VMVochwUWo`.
+  /folders/{folder_id}/metadata/{scope}/{template_key}:
+    get:
+      summary: Get metadata instance on folder
+      tags:
+        - Metadata instances (Folders)
+      description: |-
+        Retrieves the instance of a metadata template that has been applied to a
+        folder. This can not be used on the root folder with ID `0`.
+    post:
+      summary: Create metadata instance on folder
+      tags:
+        - Metadata instances (Folders)
+      description: >-
+        Applies an instance of a metadata template to a folder.
+
+
+        In most cases only values that are present in the metadata template
+
+        will be accepted, except for the `global.properties` template which
+        accepts
+
+        any key-value pair.
+
+
+        To display the metadata template in the Box web app the enterprise needs
+        to be
+
+        configured to enable **Cascading Folder Level Metadata** for the user in
+        the
+
+        admin console.
+    put:
+      summary: Update metadata instance on folder
+      tags:
+        - Metadata instances (Folders)
+      description: >-
+        Updates a piece of metadata on a folder.
+
+
+        The metadata instance can only be updated if the template has already
+        been
+
+        applied to the folder before. When editing metadata, only values that
+        match
+
+        the metadata template schema will be accepted.
+
+
+        The update is applied atomically. If any errors occur during the
+
+        application of the operations, the metadata instance will not be
+        changed.
+    delete:
+      summary: Remove metadata instance from folder
+      tags:
+        - Metadata instances (Folders)
+      description: Deletes a piece of folder metadata.
+  /folders/trash/items:
+    get:
+      summary: List trashed items
+      tags:
+        - Trashed items
+      description: |-
+        Retrieves the files and folders that have been moved
+        to the trash.
+
+        Any attribute in the full files or folders objects can be passed
+        in with the `fields` parameter to retrieve those specific
+        attributes that are not returned by default.
+
+        This endpoint defaults to use offset-based pagination, yet also supports
+        marker-based pagination using the `marker` parameter.
+  /folders/{folder_id}/watermark:
+    get:
+      summary: Get watermark for folder
+      tags:
+        - Watermarks (Folders)
+      description: Retrieve the watermark for a folder.
+    put:
+      summary: Apply watermark to folder
+      tags:
+        - Watermarks (Folders)
+      description: Applies or update a watermark on a folder.
+    delete:
+      summary: Remove watermark from folder
+      tags:
+        - Watermarks (Folders)
+      description: Removes the watermark from a folder.
+  /folder_locks:
+    get:
+      summary: List folder locks
+      tags:
+        - Folder Locks
+      description: |-
+        Retrieves folder lock details for a given folder.
+
+        You must be authenticated as the owner or co-owner of the folder to
+        use this endpoint.
+    post:
+      summary: Create folder lock
+      tags:
+        - Folder Locks
+      description: |-
+        Creates a folder lock on a folder, preventing it from being moved and/or
+        deleted.
+
+        You must be authenticated as the owner or co-owner of the folder to
+        use this endpoint.
+  /folder_locks/{folder_lock_id}:
+    delete:
+      summary: Delete folder lock
+      description: |-
+        Deletes a folder lock on a given folder.
+
+        You must be authenticated as the owner or co-owner of the folder to
+        use this endpoint.
+      tags:
+        - Folder Locks
+  /metadata_templates:
+    get:
+      summary: Find metadata template by instance ID
+      tags:
+        - Metadata templates
+      description: |-
+        Finds a metadata template by searching for the ID of an instance of the
+        template.
+  /metadata_templates/enterprise/securityClassification-6VMVochwUWo/schema:
+    get:
+      summary: List all classifications
+      tags:
+        - Classifications
+      description: >-
+        Retrieves the classification metadata template and lists all the
+
+        classifications available to this enterprise.
+
+
+        This API can also be called by including the enterprise ID in the
+
+        URL explicitly, for example
+
+        `/metadata_templates/enterprise_12345/securityClassification-6VMVochwUWo/schema`.
+  /metadata_templates/enterprise/securityClassification-6VMVochwUWo/schema#add:
+    put:
+      summary: Add classification
+      tags:
+        - Classifications
+      description: >-
+        Adds one or more new classifications to the list of classifications
+
+        available to the enterprise.
+
+
+        This API can also be called by including the enterprise ID in the
+
+        URL explicitly, for example
+
+        `/metadata_templates/enterprise_12345/securityClassification-6VMVochwUWo/schema`.
+  /metadata_templates/enterprise/securityClassification-6VMVochwUWo/schema#update:
+    put:
+      summary: Update classification
+      tags:
+        - Classifications
+      description: >-
+        Updates the labels and descriptions of one or more classifications
+
+        available to the enterprise.
+
+
+        This API can also be called by including the enterprise ID in the
+
+        URL explicitly, for example
+
+        `/metadata_templates/enterprise_12345/securityClassification-6VMVochwUWo/schema`.
+  /metadata_templates/{scope}/{template_key}/schema:
+    get:
+      summary: Get metadata template by name
+      tags:
+        - Metadata templates
+      description: >-
+        Retrieves a metadata template by its `scope` and `templateKey` values.
+
+
+        To find the `scope` and `templateKey` for a template, list all templates
+        for
+
+        an enterprise or globally, or list all templates applied to a file or
+        folder.
+    put:
+      tags:
+        - Metadata templates
+      summary: Update metadata template
+      description: >-
+        Updates a metadata template.
+
+
+        The metadata template can only be updated if the template
+
+        already exists.
+
+
+        The update is applied atomically. If any errors occur during the
+
+        application of the operations, the metadata template will not be
+        changed.
+    delete:
+      summary: Remove metadata template
+      tags:
+        - Metadata templates
+      description: |-
+        Delete a metadata template and its instances.
+        This deletion is permanent and can not be reversed.
+  /metadata_templates/{template_id}:
+    get:
+      summary: Get metadata template by ID
+      tags:
+        - Metadata templates
+      description: Retrieves a metadata template by its ID.
+  /metadata_templates/global:
+    get:
+      summary: List all global metadata templates
+      tags:
+        - Metadata templates
+      description: |-
+        Used to retrieve all generic, global metadata templates available to all
+        enterprises using Box.
+  /metadata_templates/enterprise:
+    get:
+      summary: List all metadata templates for enterprise
+      tags:
+        - Metadata templates
+      description: >-
+        Used to retrieve all metadata templates created to be used specifically
+        within
+
+        the user's enterprise
+  /metadata_templates/schema:
+    post:
+      summary: Create metadata template
+      tags:
+        - Metadata templates
+      description: |-
+        Creates a new metadata template that can be applied to
+        files and folders.
+  /metadata_templates/schema#classifications:
+    post:
+      summary: Add initial classifications
+      tags:
+        - Classifications
+      description: |-
+        When an enterprise does not yet have any classifications, this API call
+        initializes the classification template with an initial set of
+        classifications.
+
+        If an enterprise already has a classification, the template will already
+        exist and instead an API call should be made to add additional
+        classifications.
+  /metadata_cascade_policies:
+    get:
+      summary: List metadata cascade policies
+      tags:
+        - Metadata cascade policies
+      description: |-
+        Retrieves a list of all the metadata cascade policies
+        that are applied to a given folder. This can not be used on the root
+        folder with ID `0`.
+    post:
+      summary: Create metadata cascade policy
+      tags:
+        - Metadata cascade policies
+      description: |-
+        Creates a new metadata cascade policy that applies a given
+        metadata template to a given folder and automatically
+        cascades it down to any files within that folder.
+
+        In order for the policy to be applied a metadata instance must first
+        be applied to the folder the policy is to be applied to.
+  /metadata_cascade_policies/{metadata_cascade_policy_id}:
+    get:
+      summary: Get metadata cascade policy
+      tags:
+        - Metadata cascade policies
+      description: Retrieve a specific metadata cascade policy assigned to a folder.
+    delete:
+      summary: Remove metadata cascade policy
+      tags:
+        - Metadata cascade policies
+      description: Deletes a metadata cascade policy.
+  /metadata_cascade_policies/{metadata_cascade_policy_id}/apply:
+    post:
+      summary: Force-apply metadata cascade policy to folder
+      tags:
+        - Metadata cascade policies
+      description: >-
+        Force the metadata on a folder with a metadata cascade policy to be
+        applied to
+
+        all of its children. This can be used after creating a new cascade
+        policy to
+
+        enforce the metadata to be cascaded down to all existing files within
+        that
+
+        folder.
+  /metadata_queries/execute_read:
+    post:
+      summary: Query files/folders by metadata
+      tags:
+        - Search
+      description: >-
+        Create a search using SQL-like syntax to return items that match
+        specific
+
+        metadata.
+
+
+        By default, this endpoint returns only the most basic info about the
+        items for
+
+        which the query matches. To get additional fields for each item,
+        including any
+
+        of the metadata, use the `fields` attribute in the query.
+  /comments/{comment_id}:
+    get:
+      summary: Get comment
+      tags:
+        - Comments
+      description: |-
+        Retrieves the message and metadata for a specific comment, as well
+        as information on the user who created the comment.
+    put:
+      summary: Update comment
+      tags:
+        - Comments
+      description: Update the message of a comment.
+    delete:
+      summary: Remove comment
+      tags:
+        - Comments
+      description: Permanently deletes a comment.
+  /comments:
+    post:
+      tags:
+        - Comments
+      summary: Create comment
+      description: |-
+        Adds a comment by the user to a specific file, or
+        as a reply to an other comment.
+  /collaborations/{collaboration_id}:
+    get:
+      summary: Get collaboration
+      tags:
+        - Collaborations
+      description: Retrieves a single collaboration.
+    put:
+      tags:
+        - Collaborations
+      summary: Update collaboration
+      description: |-
+        Updates a collaboration.
+        Can be used to change the owner of an item, or to
+        accept collaboration invites.
+    delete:
+      summary: Remove collaboration
+      tags:
+        - Collaborations
+      description: Deletes a single collaboration.
+  /collaborations:
+    get:
+      summary: List pending collaborations
+      tags:
+        - Collaborations (List)
+      description: Retrieves all pending collaboration invites for this user.
+    post:
+      tags:
+        - Collaborations
+      summary: Create collaboration
+      description: |-
+        Adds a collaboration for a single user or a single group to a file
+        or folder.
+
+        Collaborations can be created using email address, user IDs, or a
+        group IDs.
+
+        If a collaboration is being created with a group, access to
+        this endpoint is dependent on the group's ability to be invited.
+
+        If collaboration is in `pending` status, the following fields
+        are redacted:
+        - `login` and `name` are hidden if a collaboration was created
+        using `user_id`,
+        -  `name` is hidden if a collaboration was created using `login`.
+  /search:
+    get:
+      summary: Search for content
+      tags:
+        - Search
+      description: |-
+        Searches for files, folders, web links, and shared files across the
+        users content or across the entire enterprise.
+  /tasks:
+    post:
+      tags:
+        - Tasks
+      summary: Create task
+      description: >-
+        Creates a single task on a file. This task is not assigned to any user
+        and
+
+        will need to be assigned separately.
+  /tasks/{task_id}:
+    get:
+      summary: Get task
+      tags:
+        - Tasks
+      description: Retrieves information about a specific task.
+    put:
+      tags:
+        - Tasks
+      summary: Update task
+      description: |-
+        Updates a task. This can be used to update a task's configuration, or to
+        update its completion state.
+    delete:
+      tags:
+        - Tasks
+      summary: Remove task
+      description: Removes a task from a file.
+  /tasks/{task_id}/assignments:
+    get:
+      summary: List task assignments
+      tags:
+        - Task assignments
+      description: Lists all of the assignments for a given task.
+  /task_assignments:
+    post:
+      summary: Assign task
+      tags:
+        - Task assignments
+      description: |-
+        Assigns a task to a user.
+
+        A task can be assigned to more than one user by creating multiple
+        assignments.
+  /task_assignments/{task_assignment_id}:
+    get:
+      summary: Get task assignment
+      tags:
+        - Task assignments
+      description: Retrieves information about a task assignment.
+    put:
+      summary: Update task assignment
+      tags:
+        - Task assignments
+      description: |-
+        Updates a task assignment. This endpoint can be
+        used to update the state of a task assigned to a user.
+    delete:
+      summary: Unassign task
+      tags:
+        - Task assignments
+      description: Deletes a specific task assignment.
+  /shared_items:
+    get:
+      summary: Find file for shared link
+      tags:
+        - Shared links (Files)
+      description: |-
+        Returns the file represented by a shared link.
+
+        A shared file can be represented by a shared link,
+        which can originate within the current enterprise or within another.
+
+        This endpoint allows an application to retrieve information about a
+        shared file when only given a shared link.
+
+        The `shared_link_permission_options` array field can be returned
+        by requesting it in the `fields` query parameter.
+  /files/{file_id}#get_shared_link:
+    get:
+      summary: Get shared link for file
+      tags:
+        - Shared links (Files)
+      description: Gets the information for a shared link on a file.
+  /files/{file_id}#add_shared_link:
+    put:
+      summary: Add shared link to file
+      tags:
+        - Shared links (Files)
+      description: Adds a shared link to a file.
+  /files/{file_id}#update_shared_link:
+    put:
+      summary: Update shared link on file
+      tags:
+        - Shared links (Files)
+      description: Updates a shared link on a file.
+  /files/{file_id}#remove_shared_link:
+    put:
+      summary: Remove shared link from file
+      tags:
+        - Shared links (Files)
+      description: Removes a shared link from a file.
+  /shared_items#folders:
+    get:
+      summary: Find folder for shared link
+      tags:
+        - Shared links (Folders)
+      description: |-
+        Return the folder represented by a shared link.
+
+        A shared folder can be represented by a shared link,
+        which can originate within the current enterprise or within another.
+
+        This endpoint allows an application to retrieve information about a
+        shared folder when only given a shared link.
+  /folders/{folder_id}#get_shared_link:
+    get:
+      summary: Get shared link for folder
+      tags:
+        - Shared links (Folders)
+      description: Gets the information for a shared link on a folder.
+  /folders/{folder_id}#add_shared_link:
+    put:
+      summary: Add shared link to folder
+      tags:
+        - Shared links (Folders)
+      description: Adds a shared link to a folder.
+  /folders/{folder_id}#update_shared_link:
+    put:
+      summary: Update shared link on folder
+      tags:
+        - Shared links (Folders)
+      description: Updates a shared link on a folder.
+  /folders/{folder_id}#remove_shared_link:
+    put:
+      summary: Remove shared link from folder
+      tags:
+        - Shared links (Folders)
+      description: Removes a shared link from a folder.
+  /web_links:
+    post:
+      summary: Create web link
+      tags:
+        - Web links
+      description: Creates a web link object within a folder.
+  /web_links/{web_link_id}:
+    get:
+      summary: Get web link
+      tags:
+        - Web links
+      description: Retrieve information about a web link.
+    post:
+      summary: Restore web link
+      tags:
+        - Trashed web links
+      description: >-
+        Restores a web link that has been moved to the trash.
+
+
+        An optional new parent ID can be provided to restore the  web link to in
+        case
+
+        the original folder has been deleted.
+    put:
+      summary: Update web link
+      tags:
+        - Web links
+      description: Updates a web link object.
+    delete:
+      summary: Remove web link
+      tags:
+        - Web links
+      description: Deletes a web link.
+  /web_links/{web_link_id}/trash:
+    get:
+      summary: Get trashed web link
+      tags:
+        - Trashed web links
+      description: Retrieves a web link that has been moved to the trash.
+    delete:
+      summary: Permanently remove web link
+      tags:
+        - Trashed web links
+      description: |-
+        Permanently deletes a web link that is in the trash.
+        This action cannot be undone.
+  /shared_items#web_links:
+    get:
+      summary: Find web link for shared link
+      tags:
+        - Shared links (Web Links)
+      description: |-
+        Returns the web link represented by a shared link.
+
+        A shared web link can be represented by a shared link,
+        which can originate within the current enterprise or within another.
+
+        This endpoint allows an application to retrieve information about a
+        shared web link when only given a shared link.
+  /web_links/{web_link_id}#get_shared_link:
+    get:
+      summary: Get shared link for web link
+      tags:
+        - Shared links (Web Links)
+      description: Gets the information for a shared link on a web link.
+  /web_links/{web_link_id}#add_shared_link:
+    put:
+      summary: Add shared link to web link
+      tags:
+        - Shared links (Web Links)
+      description: Adds a shared link to a web link.
+  /web_links/{web_link_id}#update_shared_link:
+    put:
+      summary: Update shared link on web link
+      tags:
+        - Shared links (Web Links)
+      description: Updates a shared link on a web link.
+  /web_links/{web_link_id}#remove_shared_link:
+    put:
+      summary: Remove shared link from web link
+      tags:
+        - Shared links (Web Links)
+      description: Removes a shared link from a web link.
+  /users:
+    get:
+      summary: List enterprise users
+      tags:
+        - Users
+      description: >-
+        Returns a list of all users for the Enterprise along with their
+        `user_id`,
+
+        `public_name`, and `login`.
+
+
+        The application and the authenticated user need to
+
+        have the permission to look up users in the entire
+
+        enterprise.
+    post:
+      summary: Create user
+      tags:
+        - Users
+      description: |-
+        Creates a new managed user in an enterprise. This endpoint
+        is only available to users and applications with the right
+        admin permissions.
+  /users/me:
+    get:
+      summary: Get current user
+      tags:
+        - Users
+      description: >-
+        Retrieves information about the user who is currently authenticated.
+
+
+        In the case of a client-side authenticated OAuth 2.0 application
+
+        this will be the user who authorized the app.
+
+
+        In the case of a JWT, server-side authenticated application
+
+        this will be the service account that belongs to the application
+
+        by default.
+
+
+        Use the `As-User` header to change who this API call is made on behalf
+        of.
+  /users/terminate_sessions:
+    post:
+      summary: Create jobs to terminate users session
+      tags:
+        - Session termination
+      description: |-
+        Validates the roles and permissions of the user,
+        and creates asynchronous jobs
+        to terminate the user's sessions.
+        Returns the status for the POST request.
+  /users/{user_id}:
+    get:
+      summary: Get user
+      tags:
+        - Users
+      description: |-
+        Retrieves information about a user in the enterprise.
+
+        The application and the authenticated user need to
+        have the permission to look up users in the entire
+        enterprise.
+
+        This endpoint also returns a limited set of information
+        for external users who are collaborated on content
+        owned by the enterprise for authenticated users with the
+        right scopes. In this case, disallowed fields will return
+        null instead.
+    put:
+      summary: Update user
+      tags:
+        - Users
+      description: |-
+        Updates a managed or app user in an enterprise. This endpoint
+        is only available to users and applications with the right
+        admin permissions.
+    delete:
+      summary: Delete user
+      tags:
+        - Users
+      description: |-
+        Deletes a user. By default this will fail if the user
+        still owns any content. Move their owned content first
+        before proceeding, or use the `force` field to delete
+        the user and their files.
+  /users/{user_id}/avatar:
+    get:
+      summary: Get user avatar
+      tags:
+        - User avatars
+      description: Retrieves an image of a the user's avatar.
+    post:
+      summary: Add or update user avatar
+      tags:
+        - User avatars
+      description: Adds or updates a user avatar.
+    delete:
+      summary: Delete user avatar
+      tags:
+        - User avatars
+      description: |-
+        Removes an existing user avatar.
+        You cannot reverse this operation.
+  /users/{user_id}/folders/0:
+    put:
+      summary: Transfer owned folders
+      tags:
+        - Transfer folders
+      description: >-
+        Move all of the items (files, folders and workflows) owned by a user
+        into
+
+        another user's account
+
+
+        Only the root folder (`0`) can be transferred.
+
+
+        Folders can only be moved across users by users with administrative
+
+        permissions.
+
+
+        All existing shared links and folder-level collaborations are
+        transferred
+
+        during the operation. Please note that while collaborations at the
+        individual
+
+        file-level are transferred during the operation, the collaborations are
+
+        deleted when the original user is deleted.
+
+
+        This call will be performed synchronously which might lead to a slow
+        response
+
+        when the source user has a large number of items in all of its folders.
+
+
+        If the destination path has a metadata cascade policy attached to any of
+
+        the parent folders, a metadata cascade operation will be kicked off
+
+        asynchronously.
+
+
+        There is currently no way to check for when this operation is finished.
+
+
+        The destination folder's name will be in the format `{User}'s Files and
+
+        Folders`, where `{User}` is the display name of the user.
+
+
+        To make this API call your application will need to have the "Read and
+        write
+
+        all files and folders stored in Box" scope enabled.
+
+
+        Please make sure the destination user has access to `Relay` or `Relay
+        Lite`,
+
+        and has access to the files and folders involved in the workflows being
+
+        transferred.
+
+
+        Admins will receive an email when the operation is completed.
+  /users/{user_id}/email_aliases:
+    get:
+      summary: List user's email aliases
+      tags:
+        - Email aliases
+      description: |-
+        Retrieves all email aliases for a user. The collection
+        does not include the primary login for the user.
+    post:
+      summary: Create email alias
+      tags:
+        - Email aliases
+      description: Adds a new email alias to a user account..
+  /users/{user_id}/email_aliases/{email_alias_id}:
+    delete:
+      summary: Remove email alias
+      tags:
+        - Email aliases
+      description: Removes an email alias from a user.
+  /users/{user_id}/memberships:
+    get:
+      summary: List user's groups
+      tags:
+        - Group memberships
+      description: |-
+        Retrieves all the groups for a user. Only members of this
+        group or users with admin-level permissions will be able to
+        use this API.
+  /invites:
+    post:
+      summary: Create user invite
+      tags:
+        - Invites
+      description: |-
+        Invites an existing external user to join an enterprise.
+
+        The existing user can not be part of another enterprise and
+        must already have a Box account. Once invited, the user will receive an
+        email and are prompted to accept the invitation within the
+        Box web application.
+
+        This method requires the "Manage An Enterprise" scope enabled for
+        the application, which can be enabled within the developer console.
+  /invites/{invite_id}:
+    get:
+      summary: Get user invite status
+      tags:
+        - Invites
+      description: Returns the status of a user invite.
+  /groups:
+    get:
+      summary: List groups for enterprise
+      tags:
+        - Groups
+      description: |-
+        Retrieves all of the groups for a given enterprise. The user
+        must have admin permissions to inspect enterprise's groups.
+    post:
+      summary: Create group
+      tags:
+        - Groups
+      description: |-
+        Creates a new group of users in an enterprise. Only users with admin
+        permissions can create new groups.
+  /groups/terminate_sessions:
+    post:
+      summary: Create jobs to terminate user group session
+      tags:
+        - Session termination
+      description: |-
+        Validates the roles and permissions of the group,
+        and creates asynchronous jobs
+        to terminate the group's sessions.
+        Returns the status for the POST request.
+  /groups/{group_id}:
+    get:
+      summary: Get group
+      tags:
+        - Groups
+      description: |-
+        Retrieves information about a group. Only members of this
+        group or users with admin-level permissions will be able to
+        use this API.
+    put:
+      summary: Update group
+      tags:
+        - Groups
+      description: |-
+        Updates a specific group. Only admins of this
+        group or users with admin-level permissions will be able to
+        use this API.
+    delete:
+      summary: Remove group
+      tags:
+        - Groups
+      description: |-
+        Permanently deletes a group. Only users with
+        admin-level permissions will be able to use this API.
+  /groups/{group_id}/memberships:
+    get:
+      summary: List members of group
+      tags:
+        - Group memberships
+      description: |-
+        Retrieves all the members for a group. Only members of this
+        group or users with admin-level permissions will be able to
+        use this API.
+  /groups/{group_id}/collaborations:
+    get:
+      summary: List group collaborations
+      tags:
+        - Collaborations (List)
+      description: |-
+        Retrieves all the collaborations for a group. The user
+        must have admin permissions to inspect enterprise's groups.
+
+        Each collaboration object has details on which files or
+        folders the group has access to and with what role.
+  /group_memberships:
+    post:
+      summary: Add user to group
+      tags:
+        - Group memberships
+      description: |-
+        Creates a group membership. Only users with
+        admin-level permissions will be able to use this API.
+  /group_memberships/{group_membership_id}:
+    get:
+      summary: Get group membership
+      tags:
+        - Group memberships
+      description: |-
+        Retrieves a specific group membership. Only admins of this
+        group or users with admin-level permissions will be able to
+        use this API.
+    put:
+      summary: Update group membership
+      tags:
+        - Group memberships
+      description: |-
+        Updates a user's group membership. Only admins of this
+        group or users with admin-level permissions will be able to
+        use this API.
+    delete:
+      summary: Remove user from group
+      tags:
+        - Group memberships
+      description: |-
+        Deletes a specific group membership. Only admins of this
+        group or users with admin-level permissions will be able to
+        use this API.
+  /webhooks:
+    get:
+      summary: List all webhooks
+      tags:
+        - Webhooks
+      description: >-
+        Returns all defined webhooks for the requesting application.
+
+
+        This API only returns webhooks that are applied to files or folders that
+        are
+
+        owned by the authenticated user. This means that an admin can not see
+        webhooks
+
+        created by a service account unless the admin has access to those
+        folders, and
+
+        vice versa.
+    post:
+      summary: Create webhook
+      tags:
+        - Webhooks
+      description: Creates a webhook.
+  /webhooks/{webhook_id}:
+    get:
+      tags:
+        - Webhooks
+      summary: Get webhook
+      description: Retrieves a specific webhook
+    put:
+      summary: Update webhook
+      tags:
+        - Webhooks
+      description: Updates a webhook.
+    delete:
+      summary: Remove webhook
+      tags:
+        - Webhooks
+      description: Deletes a webhook.
+  /skill_invocations/{skill_id}:
+    put:
+      summary: Update all Box Skill cards on file
+      tags:
+        - Skills
+      description: >-
+        An alternative method that can be used to overwrite and update all Box
+        Skill
+
+        metadata cards on a file.
+  /events:
+    options:
+      summary: Get events long poll endpoint
+      tags:
+        - Events
+      description: >-
+        Returns a list of real-time servers that can be used for long-polling
+        updates
+
+        to the [event stream](#get-events).
+
+
+        Long polling is the concept where a HTTP request is kept open until the
+
+        server sends a response, then repeating the process over and over to
+        receive
+
+        updated responses.
+
+
+        Long polling the event stream can only be used for user events, not for
+
+        enterprise events.
+
+
+        To use long polling, first use this endpoint to retrieve a list of long
+        poll
+
+        URLs. Next, make a long poll request to any of the provided URLs.
+
+
+        When an event occurs in monitored account a response with the value
+
+        `new_change` will be sent. The response contains no other details as
+
+        it only serves as a prompt to take further action such as sending a
+
+        request to the [events endpoint](#get-events) with the last known
+
+        `stream_position`.
+
+
+        After the server sends this response it closes the connection. You must
+        now
+
+        repeat the long poll process to begin listening for events again.
+
+
+        If no events occur for a while and the connection times out you will
+
+        receive a response with the value `reconnect`. When you receive this
+        response
+
+        you’ll make another call to this endpoint to restart the process.
+
+
+        If you receive no events in `retry_timeout` seconds then you will need
+        to
+
+        make another request to the real-time server (one of the URLs in the
+        response
+
+        for this endpoint). This might be necessary due to network errors.
+
+
+        Finally, if you receive a `max_retries` error when making a request to
+        the
+
+        real-time server, you should start over by making a call to this
+        endpoint
+
+        first.
+    get:
+      summary: List user and enterprise events
+      tags:
+        - Events
+      description: >-
+        Returns up to a year of past events for a given user
+
+        or for the entire enterprise.
+
+
+        By default this returns events for the authenticated user. To retrieve
+        events
+
+        for the entire enterprise, set the `stream_type` to
+        `admin_logs_streaming`
+
+        for live monitoring of new events, or `admin_logs` for querying across
+
+        historical events. The user making the API call will
+
+        need to have admin privileges, and the application will need to have the
+
+        scope `manage enterprise properties` checked.
+  /collections:
+    get:
+      summary: List all collections
+      tags:
+        - Collections
+      description: |-
+        Retrieves all collections for a given user.
+
+        Currently, only the `favorites` collection
+        is supported.
+  /collections/{collection_id}/items:
+    get:
+      summary: List collection items
+      tags:
+        - Collections
+      description: |-
+        Retrieves the files and/or folders contained within
+        this collection.
+  /recent_items:
+    get:
+      summary: List recently accessed items
+      tags:
+        - Recent items
+      description: |-
+        Returns information about the recent items accessed
+        by a user, either in the last 90 days or up to the last
+        1000 items accessed.
+  /retention_policies:
+    get:
+      summary: List retention policies
+      tags:
+        - Retention policies
+      description: Retrieves all of the retention policies for an enterprise.
+    post:
+      summary: Create retention policy
+      tags:
+        - Retention policies
+      description: Creates a retention policy.
+  /retention_policies/{retention_policy_id}:
+    get:
+      summary: Get retention policy
+      tags:
+        - Retention policies
+      description: Retrieves a retention policy.
+    put:
+      summary: Update retention policy
+      tags:
+        - Retention policies
+      description: Updates a retention policy.
+    delete:
+      summary: Delete retention policy
+      tags:
+        - Retention policies
+      description: Permanently deletes a retention policy.
+  /retention_policies/{retention_policy_id}/assignments:
+    get:
+      summary: List retention policy assignments
+      tags:
+        - Retention policy assignments
+      description: >-
+        Returns a list of all retention policy assignments associated with a
+        specified
+
+        retention policy.
+  /retention_policy_assignments:
+    post:
+      summary: Assign retention policy
+      tags:
+        - Retention policy assignments
+      description: Assigns a retention policy to an item.
+  /retention_policy_assignments/{retention_policy_assignment_id}:
+    get:
+      summary: Get retention policy assignment
+      tags:
+        - Retention policy assignments
+      description: Retrieves a retention policy assignment
+    delete:
+      summary: Remove retention policy assignment
+      tags:
+        - Retention policy assignments
+      description: |-
+        Removes a retention policy assignment
+        applied to content.
+  /retention_policy_assignments/{retention_policy_assignment_id}/files_under_retention:
+    get:
+      summary: Get files under retention
+      tags:
+        - Retention policy assignments
+      description: >-
+        Returns a list of files under retention for a retention policy
+        assignment.
+  /retention_policy_assignments/{retention_policy_assignment_id}/file_versions_under_retention:
+    get:
+      summary: Get file versions under retention
+      tags:
+        - Retention policy assignments
+      description: |-
+        Returns a list of file versions under retention for a retention policy
+        assignment.
+  /legal_hold_policies:
+    get:
+      summary: List all legal hold policies
+      tags:
+        - Legal hold policies
+      description: |-
+        Retrieves a list of legal hold policies that belong to
+        an enterprise.
+    post:
+      summary: Create legal hold policy
+      tags:
+        - Legal hold policies
+      description: Create a new legal hold policy.
+  /legal_hold_policies/{legal_hold_policy_id}:
+    get:
+      summary: Get legal hold policy
+      tags:
+        - Legal hold policies
+      description: Retrieve a legal hold policy.
+    put:
+      summary: Update legal hold policy
+      tags:
+        - Legal hold policies
+      description: Update legal hold policy.
+    delete:
+      tags:
+        - Legal hold policies
+      summary: Remove legal hold policy
+      description: |-
+        Delete an existing legal hold policy.
+
+        This is an asynchronous process. The policy will not be
+        fully deleted yet when the response returns.
+  /legal_hold_policy_assignments:
+    get:
+      summary: List legal hold policy assignments
+      tags:
+        - Legal hold policy assignments
+      description: Retrieves a list of items a legal hold policy has been assigned to.
+    post:
+      summary: Assign legal hold policy
+      tags:
+        - Legal hold policy assignments
+      description: Assign a legal hold to a file, file version, folder, or user.
+  /legal_hold_policy_assignments/{legal_hold_policy_assignment_id}:
+    get:
+      summary: Get legal hold policy assignment
+      tags:
+        - Legal hold policy assignments
+      description: Retrieve a legal hold policy assignment.
+    delete:
+      tags:
+        - Legal hold policy assignments
+      summary: Unassign legal hold policy
+      description: |-
+        Remove a legal hold from an item.
+
+        This is an asynchronous process. The policy will not be
+        fully removed yet when the response returns.
+  /legal_hold_policy_assignments/{legal_hold_policy_assignment_id}/files_on_hold:
+    get:
+      summary: List current file versions for legal hold policy assignment
+      tags:
+        - Legal hold policy assignments
+      description: >-
+        Get a list of current file versions for a legal hold
+
+        assignment.
+
+
+        In some cases you may want to get previous file versions instead. In
+        these
+
+        cases, use the `GET 
+        /legal_hold_policy_assignments/:id/file_versions_on_hold`
+
+        API instead to return any previous versions of a file for this legal
+        hold
+
+        policy assignment.
+
+
+        Due to ongoing re-architecture efforts this API might not return all
+        file
+
+        versions held for this policy ID. Instead, this API will only return the
+
+        latest file version held in the newly developed architecture. The `GET
+
+        /file_version_legal_holds` API can be used to fetch current and past
+        versions
+
+        of files held within the legacy architecture.
+
+
+        The `GET /legal_hold_policy_assignments?policy_id={id}` API can be used
+        to
+
+        find a list of policy assignments for a given policy ID.
+  /file_version_retentions:
+    get:
+      tags:
+        - File version retentions
+      summary: List file version retentions
+      description: Retrieves all file version retentions for the given enterprise.
+  /legal_hold_policy_assignments/{legal_hold_policy_assignment_id}/file_versions_on_hold:
+    get:
+      summary: List previous file versions for legal hold policy assignment
+      tags:
+        - Legal hold policy assignments
+      description: >-
+        Get a list of previous file versions for a legal hold
+
+        assignment.
+
+
+        In some cases you may only need the latest file versions instead. In
+        these
+
+        cases, use the `GET  /legal_hold_policy_assignments/:id/files_on_hold`
+        API
+
+        instead to return any current (latest) versions of a file for this legal
+        hold
+
+        policy assignment.
+
+
+        Due to ongoing re-architecture efforts this API might not return all
+        files
+
+        held for this policy ID. Instead, this API will only return past file
+        versions
+
+        held in the newly developed architecture. The `GET
+        /file_version_legal_holds`
+
+        API can be used to fetch current and past versions of files held within
+        the
+
+        legacy architecture.
+
+
+        The `GET /legal_hold_policy_assignments?policy_id={id}` API can be used
+        to
+
+        find a list of policy assignments for a given policy ID.
+  /file_version_retentions/{file_version_retention_id}:
+    get:
+      tags:
+        - File version retentions
+      summary: Get retention on file
+      description: Returns information about a file version retention.
+  /file_version_legal_holds/{file_version_legal_hold_id}:
+    get:
+      summary: Get file version legal hold
+      tags:
+        - File version legal holds
+      description: |-
+        Retrieves information about the legal hold policies
+        assigned to a file version.
+  /file_version_legal_holds:
+    get:
+      summary: List file version legal holds
+      tags:
+        - File version legal holds
+      description: >-
+        Get a list of file versions on legal hold for a legal hold
+
+        assignment.
+
+
+        Due to ongoing re-architecture efforts this API might not return all
+        file
+
+        versions for this policy ID.
+
+
+        Instead, this API will only return file versions held in the legacy
+
+        architecture. Two new endpoints will available to request any file
+        versions
+
+        held in the new architecture.
+
+
+        For file versions held in the new architecture, the `GET
+
+        /legal_hold_policy_assignments/:id/file_versions_on_hold` API can be
+        used to
+
+        return all past file versions available for this policy assignment, and
+        the
+
+        `GET /legal_hold_policy_assignments/:id/files_on_hold` API can be used
+        to
+
+        return any current (latest) versions of a file under legal hold.
+
+
+        The `GET /legal_hold_policy_assignments?policy_id={id}` API can be used
+        to
+
+        find a list of policy assignments for a given policy ID.
+
+
+        Once the re-architecture is completed this API will be deprecated.
+  /shield_information_barriers/{shield_information_barrier_id}:
+    get:
+      summary: Get shield information barrier with specified ID
+      tags:
+        - Shield information barriers
+      description: Get shield information barrier based on provided ID.
+  /shield_information_barriers/change_status:
+    post:
+      summary: Add changed status of shield information barrier with specified ID
+      tags:
+        - Shield information barriers
+      description: Change status of shield information barrier with the specified ID.
+  /shield_information_barriers:
+    get:
+      summary: List shield information barriers
+      tags:
+        - Shield information barriers
+      description: |-
+        Retrieves a list of shield information barrier objects
+        for the enterprise of JWT.
+    post:
+      summary: Create shield information barrier
+      tags:
+        - Shield information barriers
+      description: |-
+        Creates a shield information barrier to
+        separate individuals/groups within the same
+        firm and prevents confidential information passing between them.
+  /shield_information_barrier_reports:
+    get:
+      summary: List shield information barrier reports
+      tags:
+        - Shield information barrier reports
+      description: Lists shield information barrier reports.
+    post:
+      summary: Create shield information barrier report
+      tags:
+        - Shield information barrier reports
+      description: Creates a shield information barrier report for a given barrier.
+  /shield_information_barrier_reports/{shield_information_barrier_report_id}:
+    get:
+      summary: Get shield information barrier report by ID
+      tags:
+        - Shield information barrier reports
+      description: Retrieves a shield information barrier report by its ID.
+  /shield_information_barrier_segments/{shield_information_barrier_segment_id}:
+    get:
+      summary: Get shield information barrier segment with specified ID
+      tags:
+        - Shield information barrier segments
+      description: Retrieves shield information barrier segment based on provided ID..
+    delete:
+      summary: Delete shield information barrier segment
+      tags:
+        - Shield information barrier segments
+      description: |-
+        Deletes the shield information barrier segment
+        based on provided ID.
+    put:
+      summary: Update shield information barrier segment with specified ID
+      tags:
+        - Shield information barrier segments
+      description: Updates the shield information barrier segment based on provided ID..
+  /shield_information_barrier_segments:
+    get:
+      summary: List shield information barrier segments
+      tags:
+        - Shield information barrier segments
+      description: |-
+        Retrieves a list of shield information barrier segment objects
+        for the specified Information Barrier ID.
+    post:
+      summary: Create shield information barrier segment
+      tags:
+        - Shield information barrier segments
+      description: Creates a shield information barrier segment.
+  /shield_information_barrier_segment_members/{shield_information_barrier_segment_member_id}:
+    get:
+      summary: Get shield information barrier segment member by ID
+      tags:
+        - Shield information barrier segment members
+      description: |-
+        Retrieves a shield information barrier
+        segment member by its ID.
+    delete:
+      summary: Delete shield information barrier segment member by ID
+      tags:
+        - Shield information barrier segment members
+      description: |-
+        Deletes a shield information barrier
+        segment member based on provided ID.
+  /shield_information_barrier_segment_members:
+    get:
+      summary: List shield information barrier segment members
+      tags:
+        - Shield information barrier segment members
+      description: |-
+        Lists shield information barrier segment members
+        based on provided segment IDs.
+    post:
+      summary: Create shield information barrier segment member
+      tags:
+        - Shield information barrier segment members
+      description: Creates a new shield information barrier segment member.
+  /shield_information_barrier_segment_restrictions/{shield_information_barrier_segment_restriction_id}:
+    get:
+      summary: Get shield information barrier segment restriction by ID
+      tags:
+        - Shield information barrier segment restrictions
+      description: |-
+        Retrieves a shield information barrier segment
+        restriction based on provided ID.
+    delete:
+      summary: Delete shield information barrier segment restriction by ID
+      tags:
+        - Shield information barrier segment restrictions
+      description: |-
+        Delete shield information barrier segment restriction
+        based on provided ID.
+  /shield_information_barrier_segment_restrictions:
+    get:
+      summary: List shield information barrier segment restrictions
+      tags:
+        - Shield information barrier segment restrictions
+      description: |-
+        Lists shield information barrier segment restrictions
+        based on provided segment ID.
+    post:
+      summary: Create shield information barrier segment restriction
+      tags:
+        - Shield information barrier segment restrictions
+      description: |-
+        Creates a shield information barrier
+        segment restriction object.
+  /device_pinners/{device_pinner_id}:
+    get:
+      summary: Get device pin
+      tags:
+        - Device pinners
+      description: Retrieves information about an individual device pin.
+    delete:
+      summary: Remove device pin
+      tags:
+        - Device pinners
+      description: Deletes an individual device pin.
+  /enterprises/{enterprise_id}/device_pinners:
+    get:
+      summary: List enterprise device pins
+      tags:
+        - Device pinners
+      description: |-
+        Retrieves all the device pins within an enterprise.
+
+        The user must have admin privileges, and the application
+        needs the "manage enterprise" scope to make this call.
+  /terms_of_services:
+    get:
+      summary: List terms of services
+      tags:
+        - Terms of service
+      description: |-
+        Returns the current terms of service text and settings
+        for the enterprise.
+    post:
+      tags:
+        - Terms of service
+      summary: Create terms of service
+      description: |-
+        Creates a terms of service for a given enterprise
+        and type of user.
+  /terms_of_services/{terms_of_service_id}:
+    get:
+      summary: Get terms of service
+      tags:
+        - Terms of service
+      description: Fetches a specific terms of service.
+    put:
+      summary: Update terms of service
+      tags:
+        - Terms of service
+      description: Updates a specific terms of service.
+  /terms_of_service_user_statuses:
+    get:
+      summary: List terms of service user statuses
+      tags:
+        - Terms of service user statuses
+      description: |-
+        Retrieves an overview of users and their status for a
+        terms of service, including Whether they have accepted
+        the terms and when.
+    post:
+      summary: Create terms of service status for new user
+      tags:
+        - Terms of service user statuses
+      description: Sets the status for a terms of service for a user.
+  /terms_of_service_user_statuses/{terms_of_service_user_status_id}:
+    put:
+      summary: Update terms of service status for existing user
+      tags:
+        - Terms of service user statuses
+      description: Updates the status for a terms of service for a user.
+  /collaboration_whitelist_entries:
+    get:
+      summary: List allowed collaboration domains
+      tags:
+        - Domain restrictions for collaborations
+      description: >-
+        Returns the list domains that have been deemed safe to create
+        collaborations
+
+        for within the current enterprise.
+    post:
+      summary: Add domain to list of allowed collaboration domains
+      tags:
+        - Domain restrictions for collaborations
+      description: |-
+        Creates a new entry in the list of allowed domains to allow
+        collaboration for.
+  /collaboration_whitelist_entries/{collaboration_whitelist_entry_id}:
+    get:
+      summary: Get allowed collaboration domain
+      tags:
+        - Domain restrictions for collaborations
+      description: |-
+        Returns a domain that has been deemed safe to create collaborations
+        for within the current enterprise.
+    delete:
+      summary: Remove domain from list of allowed collaboration domains
+      tags:
+        - Domain restrictions for collaborations
+      description: >-
+        Removes a domain from the list of domains that have been deemed safe to
+        create
+
+        collaborations for within the current enterprise.
+  /collaboration_whitelist_exempt_targets:
+    get:
+      summary: List users exempt from collaboration domain restrictions
+      tags:
+        - Domain restrictions (User exemptions)
+      description: |-
+        Returns a list of users who have been exempt from the collaboration
+        domain restrictions.
+    post:
+      summary: Create user exemption from collaboration domain restrictions
+      tags:
+        - Domain restrictions (User exemptions)
+      description: >-
+        Exempts a user from the restrictions set out by the allowed list of
+        domains
+
+        for collaborations.
+  /collaboration_whitelist_exempt_targets/{collaboration_whitelist_exempt_target_id}:
+    get:
+      summary: Get user exempt from collaboration domain restrictions
+      tags:
+        - Domain restrictions (User exemptions)
+      description: |-
+        Returns a users who has been exempt from the collaboration
+        domain restrictions.
+    delete:
+      summary: Remove user from list of users exempt from domain restrictions
+      tags:
+        - Domain restrictions (User exemptions)
+      description: >-
+        Removes a user's exemption from the restrictions set out by the allowed
+        list
+
+        of domains for collaborations.
+  /storage_policies:
+    get:
+      summary: List storage policies
+      tags:
+        - Standard and Zones Storage Policies
+      description: Fetches all the storage policies in the enterprise.
+  /storage_policies/{storage_policy_id}:
+    get:
+      summary: Get storage policy
+      tags:
+        - Standard and Zones Storage Policies
+      description: Fetches a specific storage policy.
+  /storage_policy_assignments:
+    get:
+      summary: List storage policy assignments
+      tags:
+        - Standard and Zones Storage Policy Assignments
+      description: Fetches all the storage policy assignment for an enterprise or user.
+    post:
+      summary: Assign storage policy
+      tags:
+        - Standard and Zones Storage Policy Assignments
+      description: Creates a storage policy assignment for an enterprise or user.
+  /storage_policy_assignments/{storage_policy_assignment_id}:
+    get:
+      summary: Get storage policy assignment
+      tags:
+        - Standard and Zones Storage Policy Assignments
+      description: Fetches a specific storage policy assignment.
+    put:
+      summary: Update storage policy assignment
+      tags:
+        - Standard and Zones Storage Policy Assignments
+      description: Updates a specific storage policy assignment.
+    delete:
+      summary: Unassign storage policy
+      tags:
+        - Standard and Zones Storage Policy Assignments
+      description: |-
+        Delete a storage policy assignment.
+
+        Deleting a storage policy assignment on a user
+        will have the user inherit the enterprise's default
+        storage policy.
+
+        There is a rate limit for calling this endpoint of only
+        twice per user in a 24 hour time frame.
+  /zip_downloads:
+    post:
+      summary: Create zip download
+      tags:
+        - Zip Downloads
+      description: >-
+        Creates a request to download multiple files and folders as a single
+        `zip`
+
+        archive file. This API does not return the archive but instead performs
+        all
+
+        the checks to ensure that the user has access to all the items, and then
+
+        returns a `download_url` and a `status_url` that can be used to download
+        the
+
+        archive.
+
+
+        The limit for an archive is either the Account's upload limit or
+
+        10,000 files, whichever is met first.
+
+
+        **Note**: Downloading a large file can be
+
+        affected by various
+
+        factors such as distance, network latency,
+
+        bandwidth, and congestion, as well as packet loss
+
+        ratio and current server load.
+
+        For these reasons we recommend that a maximum ZIP archive
+
+        total size does not exceed 25GB.
+  /zip_downloads/{zip_download_id}/content:
+    get:
+      summary: Download zip archive
+      tags:
+        - Zip Downloads
+      description: >-
+        Returns the contents of a `zip` archive in binary format. This URL does
+        not
+
+        require any form of authentication and could be used in a user's browser
+        to
+
+        download the archive to a user's device.
+
+
+        By default, this URL is only valid for a few seconds from the creation
+        of
+
+        the request for this archive. Once a download has started it can not be
+
+        stopped and resumed, instead a new request for a zip archive would need
+        to
+
+        be created.
+
+
+        The URL of this endpoint should not be considered as fixed. Instead, use
+
+        the [Create zip download](e://post_zip_downloads) API to request to
+        create a
+
+        `zip` archive, and then follow the `download_url` field in the response
+        to
+
+        this endpoint.
+  /zip_downloads/{zip_download_id}/status:
+    get:
+      summary: Get zip download status
+      tags:
+        - Zip Downloads
+      description: >-
+        Returns the download status of a `zip` archive, allowing an application
+        to
+
+        inspect the progress of the download as well as the number of items that
+
+        might have been skipped.
+
+
+        This endpoint can only be accessed once the download has started.
+
+        Subsequently this endpoint is valid for 12 hours from the start of the
+
+        download.
+
+
+        The URL of this endpoint should not be considered as fixed. Instead, use
+
+        the [Create zip download](e://post_zip_downloads) API to request to
+        create a
+
+        `zip` archive, and then follow the `status_url` field in the response to
+
+        this endpoint.
+  /sign_requests/{sign_request_id}/cancel:
+    post:
+      summary: Cancel sign request
+      tags:
+        - Sign requests
+      description: Cancels a sign request.
+  /sign_requests/{sign_request_id}/resend:
+    post:
+      summary: Resend sign request
+      tags:
+        - Sign requests
+      description: Resends a sign request email to all outstanding signers.
+  /sign_requests/{sign_request_id}:
+    get:
+      summary: Get sign request by ID
+      tags:
+        - Sign requests
+      description: Gets a sign request by ID.
+  /sign_requests:
+    get:
+      summary: List sign requests
+      tags:
+        - Sign requests
+      description: >-
+        Gets sign requests created by a user. If the `sign_files` and/or
+
+        `parent_folder` are deleted, the sign request will not return in the
+        list.
+    post:
+      summary: Create sign request
+      tags:
+        - Sign requests
+      description: >-
+        Creates a sign request. This involves preparing a document for signing
+        and
+
+        sending the sign request to signers.
+  /workflows:
+    get:
+      summary: List workflows
+      tags:
+        - Workflows
+      description: >-
+        Returns list of workflows that act on a given `folder ID`, and
+
+        have a flow with a trigger type of `WORKFLOW_MANUAL_START`.
+
+
+        You application must be authorized to use the `Manage Box Relay`
+        application
+
+        scope within the developer console in to use this endpoint.
+  /workflows/{workflow_id}/start:
+    post:
+      summary: Starts workflow based on request body
+      tags:
+        - Workflows
+      description: >-
+        Initiates a flow with a trigger type of `WORKFLOW_MANUAL_START`.
+
+
+        You application must be authorized to use the `Manage Box Relay`
+        application
+
+        scope within the developer console.
+  /sign_templates:
+    get:
+      summary: List Box Sign templates
+      tags:
+        - Sign templates
+      description: Gets Box Sign templates created by a user.
+  /sign_templates/{template_id}:
+    get:
+      summary: Get Box Sign template by ID
+      tags:
+        - Sign templates
+      description: Fetches details of a specific Box Sign template.
+  /integration_mappings/slack:
+    get:
+      summary: List Slack integration mappings
+      tags:
+        - Integration mappings
+      description: >-
+        Lists [Slack integration
+        mappings](https://support.box.com/hc/en-us/articles/4415585987859-Box-as-the-Content-Layer-for-Slack)
+        in a users' enterprise.
+
+
+        You need Admin or Co-Admin role to
+
+        use this endpoint.
+    post:
+      summary: Create Slack integration mapping
+      tags:
+        - Integration mappings
+      description: >-
+        Creates a [Slack integration
+        mapping](https://support.box.com/hc/en-us/articles/4415585987859-Box-as-the-Content-Layer-for-Slack)
+
+        by mapping a Slack channel to a Box item.
+
+
+        You need Admin or Co-Admin role to
+
+        use this endpoint.
+  /integration_mappings/slack/{integration_mapping_id}:
+    put:
+      summary: Update Slack integration mapping
+      tags:
+        - Integration mappings
+      description: >-
+        Updates a [Slack integration
+        mapping](https://support.box.com/hc/en-us/articles/4415585987859-Box-as-the-Content-Layer-for-Slack).
+
+        Supports updating the Box folder ID and options.
+
+
+        You need Admin or Co-Admin role to
+
+        use this endpoint.
+    delete:
+      summary: Delete Slack integration mapping
+      tags:
+        - Integration mappings
+      description: >-
+        Deletes a [Slack integration
+        mapping](https://support.box.com/hc/en-us/articles/4415585987859-Box-as-the-Content-Layer-for-Slack).
+
+
+
+        You need Admin or Co-Admin role to
+
+        use this endpoint.
+tags:
+  - name: Authorization
+    description: |-
+      A set of endpoints used to
+      manage user authorization process.
+    x-box-tag: authorization
+    x-box-priority: true
+  - name: Sign requests
+    description: |-
+      Sign requests are used
+      to submit a file for
+      signature.
+    x-box-tag: sign_requests
+  - name: Classifications
+    description: |-
+      Classification labels are
+      used for content that is
+      sensitive or under security
+      restrictions.
+    x-box-tag: classifications
+  - name: Classifications on files
+    description: |-
+      Classification labels are
+      used for files that are
+      sensitive or under security
+      restrictions.
+    x-box-tag: file_classifications
+  - name: Classifications on folders
+    description: |-
+      Classification labels are
+      used for folders that are
+      sensitive or under security
+      restrictions.
+    x-box-tag: folder_classifications
+  - name: Collaborations
+    description: |-
+      Collaborations define access permissions
+      for users and groups to files and folders,
+      similar to access control lists.
+    x-box-tag: user_collaborations
+  - name: Collaborations (List)
+    description: |-
+      A set of endpoints used to
+      retrieve file, folder,
+      pending, and group collaborations.
+    x-box-tag: list_collaborations
+  - name: Collections
+    description: |-
+      Collections are a way to group files,
+      folders, and web links without putting them
+      all into a folder.
+    x-box-tag: collections
+  - name: Comments
+    description: |-
+      Comments are messages generated users on files,
+      allowing users to collaborate on a file,
+      discussing any feedback they might
+      have on the content.
+    x-box-tag: comments
+  - name: Device pinners
+    description: |-
+      Device pinners allow enterprises to
+      control what devices can use
+      native Box applications.
+    x-box-tag: device_pinners
+  - name: Domain restrictions (User exemptions)
+    description: |-
+      A set of endpoints that allow exempting users
+      from restrictions imposed by the list of
+      allowed collaboration domains for a specific enterprise.
+    x-box-tag: collaboration_allowlist_exempt_targets
+  - name: Domain restrictions for collaborations
+    description: |-
+      A set of endpoints that manage domains for which users
+      can collaborate with files and folders in an enterprise.
+    x-box-tag: collaboration_allowlist_entries
+  - name: Downloads
+    description: |-
+      Downloads allow saving files to the application's server,
+      or directly by the end user in a browser.
+    x-box-tag: downloads
+  - name: Email aliases
+    description: |-
+      Email aliases provide a list of emails additional
+      to the user's primary login email.
+    x-box-tag: email_aliases
+  - name: Events
+    description: |-
+      Events provide a way for an
+      application to subscribe to
+      any actions performed by
+      any user, users, or service in an enterprise.
+    x-box-tag: events
+  - name: File requests
+    description: |-
+      File Requests provide a fast and
+      secure way to request files and associated metadata
+      from anyone.
+      Users can create new file requests
+      based on an existing file request,
+      update file request settings, activate, deactivate, and delete
+      file requests programmatically.
+    x-box-tag: file_requests
+  - name: File version legal holds
+    description: |-
+      A legal hold is a process that an enterprise
+      can use to preserve all forms of potentially relevant
+      information when
+      litigation is pending or reasonably anticipated.
+      A File Version Legal Hold represents all the policies that
+      are assigned to a specific file version.
+    x-box-tag: file_version_legal_holds
+  - name: File version retentions
+    description: |-
+      A retention policy blocks permanent
+      deletion of content for a specified amount of time.
+      A file version retention is a record for a retained file.
+    x-box-tag: file_version_retentions
+  - name: File versions
+    description: |-
+      A set of endpoints used to manage specific
+      versions of a file.
+    x-box-tag: file_versions
+  - name: Files
+    description: |-
+      Files, together with Folders,
+      are at the core of the Box API.
+      Files can be uploaded and downloaded,
+      as well as hold important metadata
+      information about the content.
+    x-box-tag: files
+  - name: Folder Locks
+    description: |-
+      Folder locks define access restrictions
+      placed by folder owners to prevent
+      specific folders from being moved or deleted.
+    x-box-tag: folder_locks
+  - name: Folders
+    description: |-
+      Folders, together with Files,
+      are at the core of the Box API.
+      Folders can be uploaded and downloaded,
+      as well as hold important metadata
+      information about the content.
+    x-box-tag: folders
+  - name: Integration mappings
+    description: |-
+      Integration Mappings allow the users
+      to manage where content from partner apps is stored in Box.
+    x-box-tag: integration_mappings
+  - name: Group memberships
+    description: |-
+      Group memberships signify that
+      a user is a part of the group.
+    x-box-tag: memberships
+  - name: Groups
+    description: Groups created in an enterprise.
+    x-box-tag: groups
+  - name: Invites
+    description: |-
+      Invites are used to invite the user to
+      an enterprise.
+    x-box-tag: invites
+  - name: Legal hold policies
+    description: |-
+      A legal hold is a process that an enterprise
+      can use to preserve all forms of potentially
+      relevant information when litigation is pending or
+      reasonably anticipated.
+    x-box-tag: legal_hold_policies
+  - name: Legal hold policy assignments
+    description: |-
+      A Legal Hold Policy Assignment
+      is a relation between a policy and custodian.
+      In this case, as custodian can be a user, folder,
+      file, or file version.
+    x-box-tag: legal_hold_policy_assignments
+  - name: Metadata cascade policies
+    description: |-
+      A metadata cascade policy describes how metadata
+      instances applied to a folder should be applied
+      to any item within that folder.
+    x-box-tag: metadata_cascade_policies
+  - name: Metadata instances (Files)
+    description: |-
+      A metadata instance describes
+      the relation between a template and a file,
+      including the values that are assigned for every field.
+    x-box-tag: file_metadata
+  - name: Metadata instances (Folders)
+    description: >-
+      A metadata instance describes the relation between a template and a
+      folder,
+
+      including the values that are assigned for every field.
+    x-box-tag: folder_metadata
+  - name: Metadata templates
+    description: |-
+      A metadata template describes a reusable set
+      of key/value pairs that can be assigned to a file.
+    x-box-tag: metadata_templates
+  - name: Recent items
+    description: |-
+      Recent items represent items such
+      as files or folders that
+      the user accessed recently.
+    x-box-tag: recent_items
+  - name: Retention policies
+    description: |-
+      A retention policy blocks permanent deletion of content
+      for a specified amount of time. Admins can create
+      retention policies and then assign them to
+      specific folders or their entire enterprise.
+    x-box-tag: retention_policies
+  - name: Retention policy assignments
+    description: |-
+      A Retention Policy Assignment is a relation
+      between a policy and folder or enterprise.
+      Creating an assignment puts a retention on
+      all the file versions that belong to that folder or enterprise.
+    x-box-tag: retention_policy_assignments
+  - name: Search
+    description: |-
+      The Box API provides a way to find content in Box
+      using full-text search queries.
+    x-box-tag: search
+  - name: Session termination
+    description: |-
+      Session termination API is used to
+      validate the roles and permissions of the group,
+      and creates asynchronous jobs to terminate the group's sessions.
+    x-box-tag: session_termination
+  - name: Shared links (Files)
+    description: |-
+      Files shared links are URLs that are generated for files stored in Box,
+      which provide direct, read-only access to the resource.
+    x-box-tag: shared_links_files
+  - name: Shared links (Folders)
+    description: >-
+      Folders shared links are URLs that are generated for folders stored in
+      Box,
+
+      which provide direct, read-only access to the resource.
+    x-box-tag: shared_links_folders
+  - name: Shared links (Web Links)
+    description: |-
+      Web links for files are URLs that are generated
+      for web links in Box,
+      which provide direct, read-only access to the resource.
+    x-box-tag: shared_links_web_links
+  - name: Shield information barriers
+    description: >-
+      Shield information barrier in Box defines an ethical wall.
+
+      An ethical wall is a mechanism that prevents exchanges or communication
+      that
+
+      could lead to conflicts of interest and therefore result in
+
+      business activities ethically or legally questionable.
+    x-box-tag: shield_information_barriers
+  - name: Shield information barrier segments
+    description: |-
+      Shield information barrier segment represents
+      a defined group of users. A user can be a member
+      of only one segment, which makes segments
+      different from groups.
+    x-box-tag: shield_information_barrier_segments
+  - name: Shield information barrier segment members
+    description: |-
+      Shield information barrier segment member
+      represents a user that is assigned to a
+      specific segment.
+    x-box-tag: shield_information_barrier_segment_members
+  - name: Shield information barrier reports
+    description: |-
+      Shield information barrier reports
+      contain information on what existing collaborations
+      will be removed permanently when the information barrier is enabled.
+    x-box-tag: shield_information_barrier_reports
+  - name: Shield information barrier segment restrictions
+    description: |-
+      Shield information barrier segment restriction is
+      an access restriction based on the content (file or folder) owner.
+    x-box-tag: shield_information_barrier_segment_restrictions
+  - name: Sign templates
+    description: |-
+      Sign templates allow you to use a predefined Box Sign
+      template when creating a sign request.
+      The template includes placeholders that
+      are automatically populated with data when creating the request.
+    x-box-tag: sign_templates
+  - name: Skills
+    description: |-
+      Box Skills are designed to allow custom processing
+      of files uploaded to Box, with the
+      intent of enhancing the underlying metadata of the file.
+    x-box-tag: skills
+  - name: Standard and Zones Storage Policies
+    description: |-
+      Storage policy assignment represents the
+      storage zone for items in a given enterprise.
+    x-box-tag: storage_policies
+  - name: Standard and Zones Storage Policy Assignments
+    description: |-
+      Storage policy assignment represents the
+      relation between storage zone and the
+      assigned item (for example a file stored
+      in a specific zone).
+    x-box-tag: storage_policy_assignments
+  - name: Task assignments
+    description: |-
+      A task assignment defines which
+      task is assigned to which user to complete.
+    x-box-tag: task_assignments
+  - name: Tasks
+    description: |-
+      Tasks allow users to request collaborators on a file
+      to review a file or complete a piece of work.
+      Tasks can be used by developers to create file-centric workflows.
+    x-box-tag: tasks
+  - name: Terms of service
+    description: |-
+      A set of endpoints used to
+      manage terms of service agreements.
+    x-box-tag: terms_of_services
+  - name: Terms of service user statuses
+    description: |-
+      A set of endpoints used to
+      manage the status of terms of service
+      for a particular user.
+    x-box-tag: terms_of_service_user_statuses
+  - name: Transfer folders
+    description: |-
+      API designed to move all of the items
+      (files, folders and workflows)
+      owned by a user into another user's account.
+    x-box-tag: transfer
+  - name: Trashed files
+    description: |-
+      Files that were deleted and
+      are in trash.
+    x-box-tag: trashed_files
+  - name: Trashed folders
+    description: |-
+      Folders that were deleted and
+      are in trash.
+    x-box-tag: trashed_folders
+  - name: Trashed items
+    description: |-
+      Items that were deleted and
+      are in trash.
+    x-box-tag: trashed_items
+  - name: Trashed web links
+    description: |-
+      Web links that were deleted and
+      are in trash.
+    x-box-tag: trashed_web_links
+  - name: Uploads
+    description: |-
+      The direct file upload API supports files
+      up to 50MB in size and sends all
+      the binary data to the Box API in 1 API request.
+    x-box-tag: uploads
+  - name: Uploads (Chunked)
+    description: |-
+      The chunked upload endpoints support files from
+      20MB in size and allow an application
+      to upload the file in parts,
+      allowing for more control to catch any errors
+      and retry parts individually.
+    x-box-tag: chunked_uploads
+  - name: User avatars
+    description: |-
+      User avatars are JPG or PNG files
+      uploaded to Box to represent the
+      user image. They are then displayed
+      in the user account.
+    x-box-tag: avatars
+  - name: Users
+    description: |-
+      Box API supports a variety of users,
+      ranging from real employees
+      logging in with their Managed User account,
+      to applications using App Users to drive powerful
+      automation workflows.
+    x-box-tag: users
+  - name: Watermarks (Files)
+    description: |-
+      A watermark is a semi-transparent
+      overlay on an embedded file
+      preview that displays a viewer's email address
+      or user ID and the time of access over
+      the file.
+    x-box-tag: file_watermarks
+  - name: Watermarks (Folders)
+    description: |-
+      A watermark is a semi-transparent overlay on an embedded folder
+      preview that displays a viewer's email address or user ID
+      and the time of access over
+      the folder content.
+    x-box-tag: folder_watermarks
+  - name: Web links
+    description: |-
+      Web links are objects that point to URLs.
+      These objects are also known as bookmarks
+      within the Box web application.
+    x-box-tag: web_links
+  - name: Webhooks
+    description: |-
+      Webhooks allow you to monitor Box content for events,
+      and receive notifications to a URL of your choice when they occur.
+      For example, a workflow may include waiting
+      for a file to be downloaded to delete a shared link.
+    x-box-tag: webhooks
+  - name: Workflows
+    description: |-
+      Box Relay Workflows are objects that represent
+      a named collection of flows.
+    x-box-tag: workflows
+  - name: Zip Downloads
+    description: |-
+      Zip downloads represent a successful request
+      to create a ZIP archive with files and folders.
+    x-box-tag: zip_downloads
+externalDocs:
+  description: Box Developer Documentation
+  url: https://developer.box.c

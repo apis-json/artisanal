@@ -1,0 +1,482 @@
+openapi: 3.1.0
+info:
+  title: Box Integration Mappings API
+  description: Needs a description.
+paths:
+  /integration_mappings/slack:
+    get:
+      operationId: get_integration_mappings_slack
+      summary: List Slack integration mappings
+      tags:
+        - Integration mappings
+      x-box-tag: integration_mappings
+      description: >-
+        Lists [Slack integration
+        mappings](https://support.box.com/hc/en-us/articles/4415585987859-Box-as-the-Content-Layer-for-Slack)
+        in a users' enterprise.
+
+
+        You need Admin or Co-Admin role to
+
+        use this endpoint.
+      parameters:
+        - name: marker
+          description: >-
+            Defines the position marker at which to begin returning results.
+            This is
+
+            used when paginating using marker-based pagination.
+
+
+            This requires `usemarker` to be set to `true`.
+          in: query
+          required: false
+          example: JV9IRGZmieiBasejOG9yDCRNgd2ymoZIbjsxbJMjIs3kioVii
+          schema:
+            type: string
+        - name: limit
+          description: The maximum number of items to return per page.
+          in: query
+          required: false
+          example: 1000
+          schema:
+            type: integer
+            format: int64
+            maximum: 1000
+        - in: query
+          name: partner_item_type
+          schema:
+            type: string
+            enum:
+              - channel
+            nullable: false
+          description: Mapped item type, for which the mapping should be returned
+          example: channel
+        - in: query
+          name: partner_item_id
+          schema:
+            type: string
+            nullable: false
+          description: ID of the mapped item, for which the mapping should be returned
+          example: '12345'
+        - in: query
+          name: box_item_id
+          schema:
+            type: string
+            nullable: false
+          description: Box item ID, for which the mappings should be returned
+          example: '12345'
+        - in: query
+          name: box_item_type
+          schema:
+            nullable: false
+            type: string
+            enum:
+              - folder
+          description: Box item type, for which the mappings should be returned
+          example: folder
+        - in: query
+          name: is_manually_created
+          schema:
+            type: boolean
+            nullable: false
+          description: Whether the mapping has been manually created
+          example: true
+      responses:
+        '200':
+          description: Returns a collection of integration mappings
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/IntegrationMappings'
+        '400':
+          description: |-
+            The server cannot or will not process the
+            request due to an apparent client error.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ClientError'
+        '404':
+          description: >-
+            Returns a `not_found` error if the integration mapping could not be
+            found.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ClientError'
+        default:
+          description: An unexpected client error.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ClientError'
+    post:
+      operationId: post_integration_mappings_slack
+      summary: Create Slack integration mapping
+      tags:
+        - Integration mappings
+      x-box-tag: integration_mappings
+      description: >-
+        Creates a [Slack integration
+        mapping](https://support.box.com/hc/en-us/articles/4415585987859-Box-as-the-Content-Layer-for-Slack)
+
+        by mapping a Slack channel to a Box item.
+
+
+        You need Admin or Co-Admin role to
+
+        use this endpoint.
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/IntegrationMappingSlackCreateRequest'
+      responses:
+        '201':
+          description: Returns the created integration mapping.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/IntegrationMapping'
+        '400':
+          description: |-
+            Returns a `bad_request` if an incorrect `options`
+            was supplied or the Box folder cannot be
+            mapped to this `partner_item_id`.
+            Error codes:
+            * `SERVICE_ACCOUNT_IS_NOT_A_COOWNER_OR_OWNER` - service account
+            doesn't have co-owner collaboration or is
+            not an owner of the `box_item_id`,
+            * `CHANNEL_ALREADY_MAPPED` - channel is already
+              mapped to another `box_item_id`,
+            * `CHANNEL_NOT_FOUND` - channel was not found,
+            * `CHANNEL_NOT_SUITABLE_FOR_CFS` - connect channel, not
+            suitable for Box as Content layer for Slack,
+            * `BOX_ENTERPRISE_MISMATCH` - Box folder must be
+            owned by the enterprise, which is configured
+            to use Box as Content layer for Slack,
+            * `CFS_DISABLED` - Box as Content layer
+            for Slack must be enabled for a provided
+            Slack workspace or organization
+            * `BOX_FOLDER_EXTERNALLY_OWNED` - Box folder must
+            be internally owned to the admin's enterprise,
+            * `JWT_APP_NOT_AUTHORIZED` - JWT authorization error.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ClientError'
+        '404':
+          description: >-
+            Returns a `not_found` error if the integration mapping could not be
+            found.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ClientError'
+        default:
+          description: An unexpected client error.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ClientError'
+  /integration_mappings/slack/{integration_mapping_id}:
+    put:
+      operationId: put_integration_mappings_slack_id
+      summary: Update Slack integration mapping
+      tags:
+        - Integration mappings
+      x-box-tag: integration_mappings
+      description: >-
+        Updates a [Slack integration
+        mapping](https://support.box.com/hc/en-us/articles/4415585987859-Box-as-the-Content-Layer-for-Slack).
+
+        Supports updating the Box folder ID and options.
+
+
+        You need Admin or Co-Admin role to
+
+        use this endpoint.
+      parameters:
+        - name: integration_mapping_id
+          description: An ID of an integration mapping
+          example: '11235432'
+          in: path
+          required: true
+          schema:
+            type: string
+      requestBody:
+        content:
+          application/json:
+            schema:
+              type: object
+              properties:
+                box_item:
+                  nullable: false
+                  allOf:
+                    - $ref: '#/components/schemas/IntegrationMappingBoxItemSlack'
+                options:
+                  nullable: false
+                  allOf:
+                    - $ref: '#/components/schemas/IntegrationMappingSlackOptions'
+        description: At least one of `box_item` and `options` must be provided.
+      responses:
+        '200':
+          description: Returns the updated integration mapping object.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/IntegrationMapping'
+        '400':
+          description: |-
+            Returns a `bad_request` if an incorrect `options` was
+            supplied or the Box folder cannot be mapped to this `partner_item`.
+            Error codes:
+            * `SERVICE_ACCOUNT_IS_NOT_A_COOWNER_OR_OWNER` - service account
+              doesn't have co-owner collaboration or is
+              not an owner of the `box_item_id`,
+            * `BOX_FOLDER_EXTERNALLY_OWNED` - Box folder must be
+              internally owned to the admin's enterprise,
+            * `JWT_APP_NOT_AUTHORIZED` - JWT authorization error.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ClientError'
+        '404':
+          description: Returns `not_found` if integration mapping object was not found.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ClientError'
+        default:
+          description: An unexpected client error.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ClientError'
+    delete:
+      operationId: delete_integration_mappings_slack_id
+      summary: Delete Slack integration mapping
+      tags:
+        - Integration mappings
+      x-box-tag: integration_mappings
+      description: >-
+        Deletes a [Slack integration
+        mapping](https://support.box.com/hc/en-us/articles/4415585987859-Box-as-the-Content-Layer-for-Slack).
+
+
+
+        You need Admin or Co-Admin role to
+
+        use this endpoint.
+      parameters:
+        - name: integration_mapping_id
+          description: An ID of an integration mapping
+          example: '11235432'
+          in: path
+          required: true
+          schema:
+            type: string
+      responses:
+        '204':
+          description: Empty body in response
+        '404':
+          description: >-
+            Returns a `not_found` error if the integration mapping could not be
+            found.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ClientError'
+        default:
+          description: An unexpected client error.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ClientError'
+components:
+  schemas:
+    IntegrationMappings:
+      title: Integration mappings
+      type: object
+      x-box-resource-id: integration_mappings
+      x-box-tag: integration_mappings
+      description: |-
+        A list of integration mapping
+        objects.
+      allOf:
+        - type: object
+          description: |-
+            The part of an API response that describes marker
+            based pagination
+          properties:
+            limit:
+              description: >-
+                The limit that was used for these entries. This will be the same
+                as the
+
+                `limit` query parameter unless that value exceeded the maximum
+                value
+
+                allowed. The maximum value varies by API.
+              example: 1000
+              type: integer
+              format: int64
+            next_marker:
+              description: The marker for the start of the next page of results.
+              example: JV9IRGZmieiBasejOG9yDCRNgd2ymoZIbjsxbJMjIs3kioVii
+              type: string
+              nullable: true
+        - properties:
+            entries:
+              type: array
+              description: A list of integration mappings
+              items:
+                $ref: '#/components/schemas/IntegrationMapping'
+    ClientError:
+      title: Client error
+      type: object
+      x-box-resource-id: client_error
+      description: A generic error
+      properties:
+        type:
+          description: error
+          example: error
+          type: string
+          enum:
+            - error
+          nullable: false
+        status:
+          description: The HTTP status of the response.
+          example: 400
+          type: integer
+          format: int32
+          nullable: false
+        code:
+          description: A Box-specific error code
+          example: item_name_invalid
+          type: string
+          enum:
+            - created
+            - accepted
+            - no_content
+            - redirect
+            - not_modified
+            - bad_request
+            - unauthorized
+            - forbidden
+            - not_found
+            - method_not_allowed
+            - conflict
+            - precondition_failed
+            - too_many_requests
+            - internal_server_error
+            - unavailable
+            - item_name_invalid
+            - insufficient_scope
+        message:
+          description: A short message describing the error.
+          example: Method Not Allowed
+          type: string
+          nullable: false
+        context_info:
+          description: |-
+            A free-form object that contains additional context
+            about the error. The possible fields are defined on
+            a per-endpoint basis. `message` is only one example.
+          type: object
+          nullable: true
+          properties:
+            message:
+              type: string
+              description: More details on the error.
+              example: Something went wrong.
+        help_url:
+          description: A URL that links to more information about why this error occurred.
+          example: >-
+            https://developer.box.com/guides/api-calls/permissions-and-errors/common-errors/
+          type: string
+          nullable: false
+        request_id:
+          description: |-
+            A unique identifier for this response, which can be used
+            when contacting Box support.
+          type: string
+          example: abcdef123456
+          nullable: false
+    IntegrationMapping:
+      title: Integration mapping
+      type: object
+      x-box-resource-id: integration_mapping
+      x-box-tag: integration_mappings
+      x-box-variant: standard
+      description: |-
+        A standard representation of an integration
+        mapping object.
+      allOf:
+        - $ref: '#/components/schemas/IntegrationMapping--Base'
+        - properties:
+            type:
+              type: string
+              example: integration_mapping
+              enum:
+                - integration_mapping
+              description: Mapping type
+              nullable: false
+            partner_item:
+              oneOf:
+                - $ref: '#/components/schemas/IntegrationMappingPartnerItemSlack'
+              nullable: false
+              description: Mapped item object for Slack
+            box_item:
+              allOf:
+                - $ref: '#/components/schemas/Folder--Mini'
+              description: |-
+                The Box folder, to which the object from the
+                partner app domain (referenced in `partner_item_id`) is mapped
+              nullable: false
+            is_manually_created:
+              type: boolean
+              example: true
+              description: |-
+                Identifies whether the mapping has
+                been manually set
+                (as opposed to being automatically created)
+              nullable: false
+            options:
+              type: object
+              nullable: false
+              example: {}
+              description: Integration mapping options for Slack
+              anyOf:
+                - $ref: '#/components/schemas/IntegrationMappingSlackOptions'
+            created_by:
+              allOf:
+                - $ref: '#/components/schemas/UserIntegrationMappings'
+              description: |-
+                An object representing the user who
+                created the integration mapping
+              nullable: false
+            modified_by:
+              allOf:
+                - $ref: '#/components/schemas/UserIntegrationMappings'
+              description: |-
+                The user who
+                last modified the integration mapping
+              nullable: false
+            created_at:
+              type: string
+              format: date-time
+              description: When the integration mapping object was created
+              example: '2012-12-12T10:53:43-08:00'
+              nullable: false
+            modified_at:
+              type: string
+              format: date-time
+              description: When the integration mapping object was last modified
+              example: '2012-12-12T10:53:43-08:00'
+              nullable: false
+      required:
+        - type
+        - partner_item
+        - box_item

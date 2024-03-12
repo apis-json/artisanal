@@ -10,55 +10,73 @@ paths:
   /confirmThirdParty:
     post:
       tags:
-        - Reviewing
+        - Confirm
+        - Payout
+        - Third
+        - Party
       summary: Confirm a payout
       description: |-
         Confirms a previously submitted payout.
 
         To cancel a payout, use the `/declineThirdParty` endpoint.
-      x-addedInVersion: '10'
-      x-sortIndex: 1
-      x-methodName: confirmThirdParty
   /declineThirdParty:
     post:
       tags:
-        - Reviewing
+        - Cancel
+        - Payout
+        - Third
+        - Party
       summary: Cancel a payout
       description: |-
         Cancels a previously submitted payout.
 
         To confirm and send a payout, use the `/confirmThirdParty` endpoint.
-      x-addedInVersion: '10'
-      x-sortIndex: 2
-      x-methodName: declineThirdParty
   /payout:
     post:
       tags:
-        - Instant payouts
+        - Make
+        - An
+        - Instant
+        - Card
+        - Payout
+        - Third
+        - Party
+        - Payout
       summary: Make an instant card payout
       description: >-
         With this call, you can pay out to your customers, and funds will be
         made available within 30 minutes on the cardholder's bank account (this
         is dependent on whether the issuer supports this functionality). Instant
         card payouts are only supported for Visa and Mastercard cards.
-      x-addedInVersion: '11'
-      x-sortIndex: 1
-      x-methodName: payout
   /storeDetail:
     post:
       tags:
-        - Initialization
+        - Store
+        - Payout
+        - Details
+        - Third
+        - Party
+        - Payout
+        - Detail
       summary: Store payout details
       description: >-
         Stores payment details under the `PAYOUT` recurring contract. These
         payment details can be used later to submit a payout via the
         `/submitThirdParty` call.
-      x-sortIndex: 2
-      x-methodName: storeDetail
   /storeDetailAndSubmitThirdParty:
     post:
       tags:
-        - Initialization
+        - Store
+        - Details
+        - And
+        - Submit
+        - Payout
+        - Third
+        - Party
+        - Payout
+        - Detail
+        - And
+        - Submit
       summary: Store details and submit a payout
       description: >-
         Submits a payout and stores its details for subsequent payouts.
@@ -66,13 +84,17 @@ paths:
 
         The submitted payout must be confirmed or declined either by a reviewer
         or via `/confirmThirdParty` or `/declineThirdParty` calls.
-      x-addedInVersion: '10'
-      x-sortIndex: 1
-      x-methodName: storeDetailAndSubmitThirdParty
   /submitThirdParty:
     post:
       tags:
-        - Initialization
+        - Submit
+        - Payout
+        - Third
+        - Party
+        - Payout
+        - Detail
+        - And
+        - Submit
       summary: Submit a payout
       description: >-
         Submits a payout using the previously stored payment details. To store
@@ -80,7 +102,4 @@ paths:
 
 
         The submitted payout must be confirmed or declined either by a reviewer
-        or via `/confirmThirdParty` or `/declineThirdParty` calls.
-      x-addedInVersion: '10'
-      x-sortIndex: 3
-      x-methodName: submitThirdParty
+        or via `/confirmThirdParty` or `/d

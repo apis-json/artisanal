@@ -1,0 +1,547 @@
+openapi: 3.1.0
+info:
+  title: Box File Requests API
+  description: Needs a description.
+paths:
+  /file_requests/{file_request_id}:
+    get:
+      operationId: get_file_requests_id
+      summary: Get file request
+      tags:
+        - File requests
+      x-box-tag: file_requests
+      x-box-enable-explorer: true
+      description: Retrieves the information about a file request.
+      parameters:
+        - name: file_request_id
+          description: |-
+            The unique identifier that represent a file request.
+
+            The ID for any file request can be determined
+            by visiting a file request builder in the web application
+            and copying the ID from the URL. For example,
+            for the URL `https://*.app.box.com/filerequest/123`
+            the `file_request_id` is `123`.
+          example: '123'
+          in: path
+          required: true
+          schema:
+            type: string
+      responses:
+        '200':
+          description: Returns a file request object.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/FileRequest'
+        '401':
+          description: >-
+            Returned when the access token provided in the `Authorization`
+            header
+
+            is not recognized or not provided.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ClientError'
+        '404':
+          description: |-
+            Returned if the file request is not found, or the user does not
+            have access to the associated folder.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ClientError'
+        '405':
+          description: Returned if the `file_request_id` is not in a recognized format.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ClientError'
+        default:
+          description: An unexpected client error.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ClientError'
+    put:
+      operationId: put_file_requests_id
+      summary: Update file request
+      tags:
+        - File requests
+      x-box-tag: file_requests
+      x-box-enable-explorer: true
+      x-box-sanitized: true
+      description: |-
+        Updates a file request. This can be used to activate or
+        deactivate a file request.
+      parameters:
+        - name: file_request_id
+          description: |-
+            The unique identifier that represent a file request.
+
+            The ID for any file request can be determined
+            by visiting a file request builder in the web application
+            and copying the ID from the URL. For example,
+            for the URL `https://*.app.box.com/filerequest/123`
+            the `file_request_id` is `123`.
+          example: '123'
+          in: path
+          required: true
+          schema:
+            type: string
+        - name: if-match
+          description: |-
+            Ensures this item hasn't recently changed before
+            making changes.
+
+            Pass in the item's last observed `etag` value
+            into this header and the endpoint will fail
+            with a `412 Precondition Failed` if it
+            has changed since.
+          in: header
+          required: false
+          example: '1'
+          schema:
+            type: string
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/FileRequestUpdateRequest'
+      responses:
+        '200':
+          description: Returns the updated file request object.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/FileRequest'
+        '401':
+          description: >-
+            Returned when the access token provided in the `Authorization`
+            header
+
+            is not recognized or not provided.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ClientError'
+        '403':
+          description: >-
+            Returned if the user does not have all the permissions to complete
+            the
+
+            update.
+
+
+            * `access_denied_insufficient_permissions` when the authenticated
+            user
+
+            does not have access to update the file request.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ClientError'
+        '404':
+          description: |-
+            Returned if the file request is not found, or the user does not
+            have access to the associated folder.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ClientError'
+        '405':
+          description: Returned if the `file_request_id` is not in a recognized format.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ClientError'
+        '412':
+          description: >-
+            Returns an error when the `If-Match` header does not match
+
+            the current `etag` value of the file request. This indicates that
+            the
+
+            file request has changed since it was last requested.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ClientError'
+        default:
+          description: An unexpected client error.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ClientError'
+    delete:
+      operationId: delete_file_requests_id
+      summary: Delete file request
+      tags:
+        - File requests
+      x-box-tag: file_requests
+      x-box-sanitized: true
+      description: Deletes a file request permanently.
+      parameters:
+        - name: file_request_id
+          description: |-
+            The unique identifier that represent a file request.
+
+            The ID for any file request can be determined
+            by visiting a file request builder in the web application
+            and copying the ID from the URL. For example,
+            for the URL `https://*.app.box.com/filerequest/123`
+            the `file_request_id` is `123`.
+          example: '123'
+          in: path
+          required: true
+          schema:
+            type: string
+      responses:
+        '204':
+          description: >-
+            Returns an empty response when the file request has been
+            successfully
+
+            deleted.
+        '401':
+          description: >-
+            Returned when the access token provided in the `Authorization`
+            header
+
+            is not recognized or not provided.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ClientError'
+        '404':
+          description: >-
+            Returned if the file request is not found or has already been
+            deleted,
+
+            or the user does not have access to the associated folder.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ClientError'
+        '405':
+          description: Returned if the `file_request_id` is not in a recognized format.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ClientError'
+        default:
+          description: An unexpected client error.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ClientError'
+  /file_requests/{file_request_id}/copy:
+    post:
+      operationId: post_file_requests_id_copy
+      summary: Copy file request
+      tags:
+        - File requests
+      x-box-tag: file_requests
+      x-box-enable-explorer: true
+      x-box-sanitized: true
+      description: |-
+        Copies an existing file request that is already present on one folder,
+        and applies it to another folder.
+      parameters:
+        - name: file_request_id
+          description: |-
+            The unique identifier that represent a file request.
+
+            The ID for any file request can be determined
+            by visiting a file request builder in the web application
+            and copying the ID from the URL. For example,
+            for the URL `https://*.app.box.com/filerequest/123`
+            the `file_request_id` is `123`.
+          example: '123'
+          in: path
+          required: true
+          schema:
+            type: string
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/FileRequestCopyRequest'
+      responses:
+        '200':
+          description: Returns updated file request object.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/FileRequest'
+        '401':
+          description: >-
+            Returned when the access token provided in the `Authorization`
+            header
+
+            is not recognized or not provided.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ClientError'
+        '403':
+          description: >-
+            Returned if the user does not have all the permissions to complete
+            the
+
+            update.
+
+
+            * `access_denied_insufficient_permissions` when the authenticated
+            user
+
+            does not have access to update the file request.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ClientError'
+        '404':
+          description: |-
+            Returned if the file request is not found, or the user does not
+            have access to the associated folder.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ClientError'
+        '405':
+          description: Returned if the `file_request_id` is not in a recognized format.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ClientError'
+        default:
+          description: An unexpected client error.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ClientError'
+components:
+  schemas:
+    FileRequest:
+      title: File Request
+      type: object
+      x-box-resource-id: file_request
+      x-box-tag: file_requests
+      description: |-
+        A standard representation of a file request, as returned
+        from any file request API endpoints by default.
+      required:
+        - id
+        - type
+        - folder
+        - created_at
+        - updated_at
+      properties:
+        id:
+          type: string
+          description: The unique identifier for this file request.
+          readOnly: true
+          example: '42037322'
+        type:
+          type: string
+          description: '`file_request`'
+          example: file_request
+          enum:
+            - file_request
+          readOnly: true
+        title:
+          type: string
+          description: |-
+            The title of file request. This is shown
+            in the Box UI to users uploading files.
+
+            This defaults to title of the file request that was
+            copied to create this file request.
+          example: Please upload documents
+        description:
+          type: string
+          nullable: true
+          description: |-
+            The optional description of this file request. This is
+            shown in the Box UI to users uploading files.
+
+            This defaults to description of the file request that was
+            copied to create this file request.
+          example: Following documents are requested for your process
+        status:
+          type: string
+          example: active
+          description: |-
+            The status of the file request. This defaults
+            to `active`.
+
+            When the status is set to `inactive`, the file request
+            will no longer accept new submissions, and any visitor
+            to the file request URL will receive a `HTTP 404` status
+            code.
+
+            This defaults to status of file request that was
+            copied to create this file request.
+          enum:
+            - active
+            - inactive
+        is_email_required:
+          type: boolean
+          example: true
+          description: |-
+            Whether a file request submitter is required to provide
+            their email address.
+
+            When this setting is set to true, the Box UI will show
+            an email field on the file request form.
+
+            This defaults to setting of file request that was
+            copied to create this file request.
+        is_description_required:
+          type: boolean
+          example: true
+          description: |-
+            Whether a file request submitter is required to provide
+            a description of the files they are submitting.
+
+            When this setting is set to true, the Box UI will show
+            a description field on the file request form.
+
+            This defaults to setting of file request that was
+            copied to create this file request.
+        expires_at:
+          type: string
+          format: date-time
+          description: |-
+            The date after which a file request will no longer accept new
+            submissions.
+
+            After this date, the `status` will automatically be set to
+            `inactive`.
+          example: '2020-09-28T10:53:43-08:00'
+        folder:
+          allOf:
+            - $ref: '#/components/schemas/Folder--Mini'
+            - description: |-
+                The folder that this file request is associated with.
+
+                Files submitted through the file request form will be
+                uploaded to this folder.
+          nullable: false
+        url:
+          type: string
+          description: |-
+            The generated URL for this file request. This URL can be shared
+            with users to let them upload files to the associated folder.
+          example: /f/19e57f40ace247278a8e3d336678c64a
+          readOnly: true
+        etag:
+          type: string
+          example: '1'
+          nullable: true
+          description: >-
+            The HTTP `etag` of this file. This can be used in combination with
+
+            the `If-Match` header when updating a file request. By providing
+            that
+
+            header, a change will only be performed on the  file request if the
+            `etag`
+
+            on the file request still matches the `etag` provided in the
+            `If-Match`
+
+            header.
+        created_by:
+          allOf:
+            - $ref: '#/components/schemas/User--Mini'
+            - description: The user who created this file request.
+        created_at:
+          type: string
+          format: date-time
+          nullable: false
+          description: The date and time when the file request was created.
+          example: '2020-09-28T10:53:43-08:00'
+        updated_by:
+          allOf:
+            - $ref: '#/components/schemas/User--Mini'
+            - description: The user who last modified this file request.
+            - nullable: false
+        updated_at:
+          type: string
+          format: date-time
+          nullable: false
+          description: The date and time when the file request was last updated.
+          example: '2020-09-28T10:53:43-08:00'
+    ClientError:
+      title: Client error
+      type: object
+      x-box-resource-id: client_error
+      description: A generic error
+      properties:
+        type:
+          description: error
+          example: error
+          type: string
+          enum:
+            - error
+          nullable: false
+        status:
+          description: The HTTP status of the response.
+          example: 400
+          type: integer
+          format: int32
+          nullable: false
+        code:
+          description: A Box-specific error code
+          example: item_name_invalid
+          type: string
+          enum:
+            - created
+            - accepted
+            - no_content
+            - redirect
+            - not_modified
+            - bad_request
+            - unauthorized
+            - forbidden
+            - not_found
+            - method_not_allowed
+            - conflict
+            - precondition_failed
+            - too_many_requests
+            - internal_server_error
+            - unavailable
+            - item_name_invalid
+            - insufficient_scope
+        message:
+          description: A short message describing the error.
+          example: Method Not Allowed
+          type: string
+          nullable: false
+        context_info:
+          description: |-
+            A free-form object that contains additional context
+            about the error. The possible fields are defined on
+            a per-endpoint basis. `message` is only one example.
+          type: object
+          nullable: true
+          properties:
+            message:
+              type: string
+              description: More details on the error.
+              example: Something went wrong.
+        help_url:
+          description: A URL that links to more information about why this error occurred.
+          example: >-
+            https://developer.box.com/guides/api-calls/permissions-and-errors/common-errors/
+          type: string
+          nullable: false
+        request_id:
+          description: |-
+            A unique identifier for this response, which can be used
+            when contacting Box support.
+          type: string
+          example: abcdef123456
+          nullable: false

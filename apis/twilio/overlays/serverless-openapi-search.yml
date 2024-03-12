@@ -1,5 +1,5 @@
 info:
-  title: Twilio Serverless API
+  title: Twilio - Serverless
   license:
     name: Apache 2.0
     url: https://www.apache.org/licenses/LICENSE-2.0.html
@@ -12,25 +12,11 @@ paths:
     get:
       description: Retrieve a list of all Assets.
       tags:
-        - Retrieve
-        - Service
-        - Assets
-        - Services
-        - Service
-        - Sid
-        - Assets
-      summary: Retrieve Service Assets
+        - ServerlessV1Asset
     post:
       description: Create a new Asset resource.
       tags:
-        - Create
-        - Service
-        - Asset
-        - Services
-        - Service
-        - Sid
-        - Assets
-      summary: Create Service Asset
+        - ServerlessV1Asset
   /v1/Services/{ServiceSid}/Assets/{Sid}:
     description: >-
       A wrapper that represents a static file and groups the different Versions
@@ -38,68 +24,27 @@ paths:
     get:
       description: Retrieve a specific Asset resource.
       tags:
-        - Retrieve
-        - Service
-        - Asset
-        - Services
-        - Service
-        - Sid
-        - Assets
-      summary: Retrieve Service Asset
+        - ServerlessV1Asset
     delete:
       description: Delete an Asset resource.
       tags:
-        - Delete
-        - Service
-        - Asset
-        - Services
-        - Service
-        - Sid
-        - Assets
-      summary: Delete Service Asset
+        - ServerlessV1Asset
     post:
       description: Update a specific Asset resource.
       tags:
-        - Update
-        - Service
-        - Asset
-        - Services
-        - Service
-        - Sid
-        - Assets
-      summary: Update Service Asset
+        - ServerlessV1Asset
   /v1/Services/{ServiceSid}/Assets/{AssetSid}/Versions:
     description: The content of an Asset.
     get:
       description: Retrieve a list of all Asset Versions.
       tags:
-        - Retrieve
-        - Service
-        - Asset
-        - Versions
-        - Services
-        - Service
-        - Sid
-        - Assets
-        - Asset
-        - Versions
-      summary: Retrieve Service Asset Versions
+        - ServerlessV1AssetVersion
   /v1/Services/{ServiceSid}/Assets/{AssetSid}/Versions/{Sid}:
     description: The content of an Asset.
     get:
       description: Retrieve a specific Asset Version.
       tags:
-        - Retrieve
-        - Service
-        - Asset
-        - Version
-        - Services
-        - Service
-        - Sid
-        - Assets
-        - Asset
-        - Versions
-      summary: Retrieve Service Asset Version
+        - ServerlessV1AssetVersion
   /v1/Services/{ServiceSid}/Builds:
     description: >-
       A collection of Function Versions, Asset Versions, Dependencies, and a
@@ -107,33 +52,13 @@ paths:
     get:
       description: Retrieve a list of all Builds.
       tags:
-        - Retrieve
-        - Service
-        - Builds
-        - Services
-        - Service
-        - Sid
-        - Assets
-        - Asset
-        - Versions
-        - Builds
-      summary: Retrieve Service Builds
+        - ServerlessV1Build
     post:
       description: >-
         Create a new Build resource. At least one function version or asset
         version is required.
       tags:
-        - Create
-        - Service
-        - Build
-        - Services
-        - Service
-        - Sid
-        - Assets
-        - Asset
-        - Versions
-        - Builds
-      summary: Create Service Build
+        - ServerlessV1Build
   /v1/Services/{ServiceSid}/Builds/{Sid}:
     description: >-
       A collection of Function Versions, Asset Versions, Dependencies, and a
@@ -141,49 +66,17 @@ paths:
     get:
       description: Retrieve a specific Build resource.
       tags:
-        - Retrieve
-        - Service
-        - Build
-        - Services
-        - Service
-        - Sid
-        - Assets
-        - Asset
-        - Versions
-        - Builds
-      summary: Retrieve Service Build
+        - ServerlessV1Build
     delete:
       description: Delete a Build resource.
       tags:
-        - Delete
-        - Service
-        - Build
-        - Services
-        - Service
-        - Sid
-        - Assets
-        - Asset
-        - Versions
-        - Builds
-      summary: Delete Service Build
+        - ServerlessV1Build
   /v1/Services/{ServiceSid}/Builds/{Sid}/Status:
     description: The status of a Build resource.
     get:
       description: Retrieve a specific Build resource.
       tags:
-        - Retrieve
-        - Service
-        - Build
-        - Status
-        - Services
-        - Service
-        - Sid
-        - Assets
-        - Asset
-        - Versions
-        - Builds
-        - Status
-      summary: Retrieve Service Build Status
+        - ServerlessV1BuildStatus
   /v1/Services/{ServiceSid}/Environments/{EnvironmentSid}/Deployments:
     description: >-
       An association of a Build with an Environment so that the Build is
@@ -191,41 +84,11 @@ paths:
     get:
       description: Retrieve a list of all Deployments.
       tags:
-        - Retrieve
-        - Service
-        - Environment
-        - Deployments
-        - Services
-        - Service
-        - Sid
-        - Assets
-        - Asset
-        - Versions
-        - Builds
-        - Status
-        - Environments
-        - Environment
-        - Deployments
-      summary: Retrieve Service Environment Deployments
+        - ServerlessV1Deployment
     post:
       description: Create a new Deployment.
       tags:
-        - Create
-        - Service
-        - Environment
-        - Deployment
-        - Services
-        - Service
-        - Sid
-        - Assets
-        - Asset
-        - Versions
-        - Builds
-        - Status
-        - Environments
-        - Environment
-        - Deployments
-      summary: Create Service Environment Deployment
+        - ServerlessV1Deployment
   /v1/Services/{ServiceSid}/Environments/{EnvironmentSid}/Deployments/{Sid}:
     description: >-
       An association of a Build with an Environment so that the Build is
@@ -233,22 +96,7 @@ paths:
     get:
       description: Retrieve a specific Deployment.
       tags:
-        - Retrieve
-        - Service
-        - Environment
-        - Deployment
-        - Services
-        - Service
-        - Sid
-        - Assets
-        - Asset
-        - Versions
-        - Builds
-        - Status
-        - Environments
-        - Environment
-        - Deployments
-      summary: Retrieve Service Environment Deployment
+        - ServerlessV1Deployment
   /v1/Services/{ServiceSid}/Environments:
     description: >-
       Represents a deployed build of a given set of Functions and/or Assets at a
@@ -256,39 +104,11 @@ paths:
     get:
       description: Retrieve a list of all environments.
       tags:
-        - Retrieve
-        - Service
-        - Environments
-        - Services
-        - Service
-        - Sid
-        - Assets
-        - Asset
-        - Versions
-        - Builds
-        - Status
-        - Environments
-        - Environment
-        - Deployments
-      summary: Retrieve Service Environments
+        - ServerlessV1Environment
     post:
       description: Create a new environment.
       tags:
-        - Create
-        - Service
-        - Environment
-        - Services
-        - Service
-        - Sid
-        - Assets
-        - Asset
-        - Versions
-        - Builds
-        - Status
-        - Environments
-        - Environment
-        - Deployments
-      summary: Create Service Environment
+        - ServerlessV1Environment
   /v1/Services/{ServiceSid}/Environments/{Sid}:
     description: >-
       Represents a deployed build of a given set of Functions and/or Assets at a
@@ -296,39 +116,11 @@ paths:
     get:
       description: Retrieve a specific environment.
       tags:
-        - Retrieve
-        - Service
-        - Environment
-        - Services
-        - Service
-        - Sid
-        - Assets
-        - Asset
-        - Versions
-        - Builds
-        - Status
-        - Environments
-        - Environment
-        - Deployments
-      summary: Retrieve Service Environment
+        - ServerlessV1Environment
     delete:
       description: Delete a specific environment.
       tags:
-        - Delete
-        - Service
-        - Environment
-        - Services
-        - Service
-        - Sid
-        - Assets
-        - Asset
-        - Versions
-        - Builds
-        - Status
-        - Environments
-        - Environment
-        - Deployments
-      summary: Delete Service Environment
+        - ServerlessV1Environment
   /v1/Services/{ServiceSid}/Functions:
     description: >-
       A wrapper that represents a Serverless JavaScript function and groups the
@@ -336,41 +128,11 @@ paths:
     get:
       description: Retrieve a list of all Functions.
       tags:
-        - Retrieve
-        - Service
-        - Functions
-        - Services
-        - Service
-        - Sid
-        - Assets
-        - Asset
-        - Versions
-        - Builds
-        - Status
-        - Environments
-        - Environment
-        - Deployments
-        - Functions
-      summary: Retrieve Service Functions
+        - ServerlessV1Function
     post:
       description: Create a new Function resource.
       tags:
-        - Create
-        - Service
-        - Functions
-        - Services
-        - Service
-        - Sid
-        - Assets
-        - Asset
-        - Versions
-        - Builds
-        - Status
-        - Environments
-        - Environment
-        - Deployments
-        - Functions
-      summary: Create Service Functions
+        - ServerlessV1Function
   /v1/Services/{ServiceSid}/Functions/{Sid}:
     description: >-
       A wrapper that represents a Serverless JavaScript function and groups the
@@ -378,181 +140,45 @@ paths:
     get:
       description: Retrieve a specific Function resource.
       tags:
-        - Retrieve
-        - Service
-        - Function
-        - Services
-        - Service
-        - Sid
-        - Assets
-        - Asset
-        - Versions
-        - Builds
-        - Status
-        - Environments
-        - Environment
-        - Deployments
-        - Functions
-      summary: Retrieve Service Function
+        - ServerlessV1Function
     delete:
       description: Delete a Function resource.
       tags:
-        - Delete
-        - Service
-        - Function
-        - Services
-        - Service
-        - Sid
-        - Assets
-        - Asset
-        - Versions
-        - Builds
-        - Status
-        - Environments
-        - Environment
-        - Deployments
-        - Functions
-      summary: Delete Service Function
+        - ServerlessV1Function
     post:
       description: Update a specific Function resource.
       tags:
-        - Update
-        - Service
-        - Function
-        - Services
-        - Service
-        - Sid
-        - Assets
-        - Asset
-        - Versions
-        - Builds
-        - Status
-        - Environments
-        - Environment
-        - Deployments
-        - Functions
-      summary: Update Service Function
+        - ServerlessV1Function
   /v1/Services/{ServiceSid}/Functions/{FunctionSid}/Versions:
     description: The content of a Function.
     get:
       description: Retrieve a list of all Function Version resources.
       tags:
-        - Retrieve
-        - Service
-        - Function
-        - Versions
-        - Services
-        - Service
-        - Sid
-        - Assets
-        - Asset
-        - Versions
-        - Builds
-        - Status
-        - Environments
-        - Environment
-        - Deployments
-        - Functions
-        - Function
-      summary: Retrieve Service Function Versions
+        - ServerlessV1FunctionVersion
   /v1/Services/{ServiceSid}/Functions/{FunctionSid}/Versions/{Sid}:
     description: The content of a Function.
     get:
       description: Retrieve a specific Function Version resource.
       tags:
-        - Retrieve
-        - Service
-        - Function
-        - Version
-        - Services
-        - Service
-        - Sid
-        - Assets
-        - Asset
-        - Versions
-        - Builds
-        - Status
-        - Environments
-        - Environment
-        - Deployments
-        - Functions
-        - Function
-      summary: Retrieve Service Function Version
+        - ServerlessV1FunctionVersion
   /v1/Services/{ServiceSid}/Functions/{FunctionSid}/Versions/{Sid}/Content:
     description: The code of a Function Version.
     get:
       description: Retrieve a the content of a specific Function Version resource.
       tags:
-        - Retrieve
-        - Service
-        - Function
-        - Version
-        - Contents
-        - Services
-        - Service
-        - Sid
-        - Assets
-        - Asset
-        - Versions
-        - Builds
-        - Status
-        - Environments
-        - Environment
-        - Deployments
-        - Functions
-        - Function
-        - Content
-      summary: Retrieve Service Function Version Contents
+        - ServerlessV1FunctionVersionContent
   /v1/Services/{ServiceSid}/Environments/{EnvironmentSid}/Logs:
     description: A record of an event that occurred related to a function invocation.
     get:
       description: Retrieve a list of all logs.
       tags:
-        - Retrieve
-        - Service
-        - Environment
-        - Logs
-        - Services
-        - Service
-        - Sid
-        - Assets
-        - Asset
-        - Versions
-        - Builds
-        - Status
-        - Environments
-        - Environment
-        - Deployments
-        - Functions
-        - Function
-        - Content
-        - Logs
-      summary: Retrieve Service Environment Logs
+        - ServerlessV1Log
   /v1/Services/{ServiceSid}/Environments/{EnvironmentSid}/Logs/{Sid}:
     description: A record of an event that occurred related to a function invocation.
     get:
       description: Retrieve a specific log.
       tags:
-        - Retrieve
-        - Service
-        - Environment
-        - Log
-        - Services
-        - Service
-        - Sid
-        - Assets
-        - Asset
-        - Versions
-        - Builds
-        - Status
-        - Environments
-        - Environment
-        - Deployments
-        - Functions
-        - Function
-        - Content
-        - Logs
-      summary: Retrieve Service Environment Log
+        - ServerlessV1Log
   /v1/Services:
     description: >-
       The top-level resource for a Serverless application, which serves as a
@@ -560,45 +186,11 @@ paths:
     get:
       description: Retrieve a list of all Services.
       tags:
-        - Retrieve
-        - Services
-        - Services
-        - Service
-        - Sid
-        - Assets
-        - Asset
-        - Versions
-        - Builds
-        - Status
-        - Environments
-        - Environment
-        - Deployments
-        - Functions
-        - Function
-        - Content
-        - Logs
-      summary: Retrieve Services
+        - ServerlessV1Service
     post:
       description: Create a new Service resource.
       tags:
-        - Create
-        - Service
-        - Services
-        - Service
-        - Sid
-        - Assets
-        - Asset
-        - Versions
-        - Builds
-        - Status
-        - Environments
-        - Environment
-        - Deployments
-        - Functions
-        - Function
-        - Content
-        - Logs
-      summary: Create Service
+        - ServerlessV1Service
   /v1/Services/{Sid}:
     description: >-
       The top-level resource for a Serverless application, which serves as a
@@ -606,218 +198,54 @@ paths:
     get:
       description: Retrieve a specific Service resource.
       tags:
-        - Retrieve
-        - Service
-        - Services
-        - Service
-        - Sid
-        - Assets
-        - Asset
-        - Versions
-        - Builds
-        - Status
-        - Environments
-        - Environment
-        - Deployments
-        - Functions
-        - Function
-        - Content
-        - Logs
-      summary: Retrieve Service
+        - ServerlessV1Service
     delete:
       description: Delete a Service resource.
       tags:
-        - Retrieve
-        - Service
-        - Services
-        - Service
-        - Sid
-        - Assets
-        - Asset
-        - Versions
-        - Builds
-        - Status
-        - Environments
-        - Environment
-        - Deployments
-        - Functions
-        - Function
-        - Content
-        - Logs
-      summary: Retrieve Service
+        - ServerlessV1Service
     post:
       description: Update a specific Service resource.
       tags:
-        - Update
-        - Service
-        - Services
-        - Service
-        - Sid
-        - Assets
-        - Asset
-        - Versions
-        - Builds
-        - Status
-        - Environments
-        - Environment
-        - Deployments
-        - Functions
-        - Function
-        - Content
-        - Logs
-      summary: Update Service
+        - ServerlessV1Service
   /v1/Services/{ServiceSid}/Environments/{EnvironmentSid}/Variables:
     description: A key and value pair that is specific to an Environment.
     get:
       description: Retrieve a list of all Variables.
       tags:
-        - Retrieve
-        - Service
-        - Environment
-        - Variables
-        - Services
-        - Service
-        - Sid
-        - Assets
-        - Asset
-        - Versions
-        - Builds
-        - Status
-        - Environments
-        - Environment
-        - Deployments
-        - Functions
-        - Function
-        - Content
-        - Logs
-        - Variables
-      summary: Retrieve Service Environment Variables
+        - ServerlessV1Variable
     post:
       description: Create a new Variable.
       tags:
-        - Create
-        - Service
-        - Environment
-        - Variable
-        - Services
-        - Service
-        - Sid
-        - Assets
-        - Asset
-        - Versions
-        - Builds
-        - Status
-        - Environments
-        - Environment
-        - Deployments
-        - Functions
-        - Function
-        - Content
-        - Logs
-        - Variables
-      summary: Create Service Environment Variable
+        - ServerlessV1Variable
   /v1/Services/{ServiceSid}/Environments/{EnvironmentSid}/Variables/{Sid}:
     description: A key and value pair that is specific to an Environment.
     get:
       description: Retrieve a specific Variable.
       tags:
-        - Retrieve
-        - Service
-        - Environment
-        - Variable
-        - Services
-        - Service
-        - Sid
-        - Assets
-        - Asset
-        - Versions
-        - Builds
-        - Status
-        - Environments
-        - Environment
-        - Deployments
-        - Functions
-        - Function
-        - Content
-        - Logs
-        - Variables
-      summary: Retrieve Service Environment Variable
+        - ServerlessV1Variable
     post:
       description: Update a specific Variable.
       tags:
-        - Update
-        - Service
-        - Environment
-        - Variable
-        - Services
-        - Service
-        - Sid
-        - Assets
-        - Asset
-        - Versions
-        - Builds
-        - Status
-        - Environments
-        - Environment
-        - Deployments
-        - Functions
-        - Function
-        - Content
-        - Logs
-        - Variables
-      summary: Update Service Environment Variable
+        - ServerlessV1Variable
     delete:
       description: Delete a specific Variable.
       tags:
-        - Delete
-        - Service
-        - Environment
-        - Variable
-        - Services
-        - Service
-        - Sid
-        - Assets
-        - Asset
-        - Versions
-        - Builds
-        - Status
-        - Environments
-        - Environment
-        - Deployments
-        - Functions
-        - Function
-        - Content
-        - Logs
-        - Variables
-      summary: Delete Service Environment Variable
+        - ServerlessV1Variable
 tags:
-  - name: Tag
-  - name: Serverless
-    description: Needs a description.
-  - name: Services
-    description: Needs a description.
-  - name: Assets
-    description: Needs a description.
-  - name: Versions
-    description: Needs a description.
-  - name: Builds
-    description: Needs a description.
-  - name: Status
-    description: Needs a description.
-  - name: Environments
-    description: Needs a description.
-  - name: Deployments
-    description: Needs a description.
-  - name: Functions
-    description: Needs a description.
-  - name: Contents
-    description: Needs a description.
-  - name: Logs
-    description: Needs a description.
-  - name: Variables
-    description: Needs a description.
+  - name: ServerlessV1Asset
+  - name: ServerlessV1AssetVersion
+  - name: ServerlessV1Build
+  - name: ServerlessV1BuildStatus
+  - name: ServerlessV1Deployment
+  - name: ServerlessV1Environment
+  - name: ServerlessV1Function
+  - name: ServerlessV1FunctionVersion
+  - name: ServerlessV1FunctionVersionContent
+  - name: ServerlessV1Log
+  - name: ServerlessV1Service
+  - name: ServerlessV1Variable
 x-maturity:
   - name: Beta
     description: >-
       PLEASE NOTE that this is a Beta product that is subject to change. Use it
-      with ca
+      with 

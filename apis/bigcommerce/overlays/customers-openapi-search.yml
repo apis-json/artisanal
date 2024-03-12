@@ -1,0 +1,527 @@
+openapi: 3.0.0
+info:
+  version: ''
+  title: Customers V3
+tags:
+  - name: Customers
+  - name: Consent
+  - name: Validate Credentials
+  - name: Metafields
+  - name: Customer Metafields
+  - name: Customer Batch Metafields
+  - name: Addresses
+  - name: Attributes
+  - name: Attribute Values
+  - name: Form Fields
+  - name: Form Field Values
+  - name: Stored Instruments
+  - name: Global Settings
+  - name: Channel Settings
+paths:
+  /customers:
+    get:
+      description: >-
+        Returns a list of Customers. Optional filter parameters can be passed
+        in.
+
+
+        **Notes**
+
+
+        Attribute names are not available on the customer object.
+      summary: Get All Customers
+      tags:
+        - Customers
+    post:
+      description: >-
+        Creates Customers. Create up to 10 customers in one call.
+
+
+        **Required Fields**
+
+        * last_name
+
+        * first_name
+
+        * email
+
+
+        **Required Fields Customer Address**
+
+        * first_name
+
+        * city
+
+        * country_code
+
+        * last_name
+
+        * address1
+
+
+        **Required Fields Attributes**
+
+        * Attributes must be
+        [created](/docs/rest-management/customers/customer-attributes#create-a-customer-attribute)
+        **BEFORE** creating a customer.
+
+        * attribute_id
+
+        * attribute_value -- This is input as a string, regardless of the
+        [Type](/docs/rest-management/customers/customer-attributes#create-a-customer-attribute).
+
+
+        **Notes**
+
+
+        A customer can be created with global access or channel-specific access.
+
+        * **Global access:**
+          * Make sure the channel has `allow_global_logins` enabled. This is on by default only for the default storefront. Find more info at [Customer Settings > Channel](/docs/rest-management/customers/customer-settings-channel).
+          * Omit `channel_ids` field, or provide `channel_ids: null`.
+        * **Channel-specific access:**
+          * Provide a `channel_ids` array containing the channels accessible by the customer. This array cannot be empty.
+      summary: Create Customers
+      tags:
+        - Customers
+    put:
+      description: >-
+        Updates Customers. Subresource updates are not supported. Up to 10
+        customers can be updated in one call.
+
+
+        **Required Fields**
+
+        * id -- ID of the *Customer* This must be included in the request body
+
+
+        **Read Only Fields**
+
+        * id
+
+        * registration_ip_address
+
+        * date_created
+
+        * date_modified
+
+
+
+        **Notes**
+
+
+        * Attributes Values can not be updated using Update a Customer. Use the
+        [Update customer attribute
+        values](/docs/rest-management/customers/customer-attribute-values#upsert-customer-attribute-values)
+        endpoint.
+
+        * channel_ids -- Updating the list of channels a customer can access may
+        create some side effects in a multi-storefront situation. This list
+        determines which customer account we will use to authenticate a shopper
+        given a channel.
+      summary: Update Customers
+      tags:
+        - Customers
+    delete:
+      description: >-
+        Deletes Customers.
+
+
+        **Required Query**
+
+        * id:in -- ID of the customer
+
+
+        **Notes**
+
+
+        A query is required to delete customers. If not provided, a 204 is
+        returned, with no changes to the data.
+      summary: Delete Customers
+      tags:
+        - Customers
+  /customers/addresses:
+    get:
+      description: >-
+        Returns a list of Customer Addresses. Optional filter parameters can be
+        passed in.
+      summary: Get All Customer Addresses
+      tags:
+        - Addresses
+    post:
+      description: >-
+        Creates a Customer Address. Multiple customer addresses can be created
+        in one call.
+
+
+        **Required Fields**
+
+        * **customer_id**
+
+        * **first_name**
+
+        * **last_name**
+
+        * **city**
+
+        * **country_code**
+
+        * **address1**
+
+
+        **Notes**
+
+        * A unique customer address is a combination of the following core
+        address fields:
+          * **customer_id**
+          * **first_name**
+          * **last_name**
+          * **company**
+          * **phone**
+          * **address_type**
+          * **address1**
+          * **address2**
+          * **city**
+          * **country_code**
+          * **state_or_province**
+          * **postal_code**
+        * An attempt to create an address that already exists will result in no
+        change to the address or custom form field values, an HTTP 200 return
+        code, and the address will be absent from the response body.
+
+        * The default rate limit for this endpoint is 10 concurrent requests.
+      summary: Create a Customer Address
+      tags:
+        - Addresses
+    put:
+      description: >-
+        Updates a Customer Address. Multiple customer addresses can be updated
+        in one call.
+
+
+        **Required Fields**
+
+        * **id** -- ID of the *Customer Address*
+
+
+        **Limits**
+
+        * Limit of **3** concurrent requests.
+
+
+        **Notes**
+
+        * A unique customer address is a combination of the following core
+        address fields:
+          * **first_name**
+          * **last_name**
+          * **company**
+          * **phone**
+          * **address_type**
+          * **address1**
+          * **address2**
+          * **city**
+          * **country_code**
+          * **state_or_province**
+          * **postal_code**
+        * An attempt to update an address such that it becomes identical to
+        another address that already exists will result in no change to the
+        target address or custom form field values. The response will have an
+        HTTP 200 return code, and the address will be absent from the response
+        body.
+      summary: Update a Customer Address
+      tags:
+        - Addresses
+    delete:
+      description: |-
+        Deletes a Customer Address.
+
+        **Required Query**
+        * id:in -- ID of the *Customer Address*
+      summary: Delete a Customer Address
+      tags:
+        - Addresses
+  /customers/validate-credentials:
+    post:
+      tags:
+        - Validate Credentials
+      description: >-
+        Validate a customer credentials - This endpoint has special rate
+        limiting protections to protect against abuse.
+      summary: Validate a customer credentials
+  /customers/settings:
+    get:
+      tags:
+        - Global Settings
+      description: Returns the global-level customer settings.
+      summary: Get Customer Settings
+    put:
+      tags:
+        - Global Settings
+      description: Updates the customer settings on the global level.
+      summary: Update Customer Settings
+  /customers/settings/channels/{channel_id}:
+    get:
+      tags:
+        - Channel Settings
+      description: |-
+        Returns the customer settings per channel.
+
+        **Notes**
+
+         * `null` indicates that there is no override per given channel and values are inherited from the global level.
+      summary: Get Customer Settings per Channel
+    put:
+      tags:
+        - Channel Settings
+      description: >-
+        Update the customer settings per channel
+
+
+        **Required Fields**
+
+
+        * `channel_id`: Provide a `channel_id` array containing one or more
+        channel IDs. Customers will have access to these channels and no others.
+        This array cannot be empty.
+
+
+        **Notes**
+
+
+        * Setting `null` will delete override per given channel, and values will
+        be inherited from the global level. Make sure the channel has
+        `allow_global_logins` enabled.
+      summary: Update Customer Settings per Channel
+    parameters:
+      - null
+  /customers/attributes:
+    get:
+      description: >-
+        Returns a list of Customer Attributes. You can pass in optional filter
+        parameters.
+      summary: Get All Customer Attributes
+      tags:
+        - Attributes
+    post:
+      description: >-
+        Creates a Customer Attribute. Multiple customer attributes can be
+        created in one call.
+
+
+        **Required Fields**
+
+        * name
+
+        * type
+
+
+        **Limits**
+
+        * Limit of 3 concurrent requests.
+
+
+        **Notes**
+
+
+        Once the data type is set, it cannot be changed. The attribute will need
+        to be deleted then created again with the new data type. This will also
+        delete it from the customer.
+
+
+        Customer attributes are created separately from the customer. After the
+        name and type are created, then the attributes can be added to the
+        customer.
+
+
+        A store cannot have more than 50 customer attributes.
+      summary: Create a Customer Attribute
+      tags:
+        - Attributes
+    put:
+      description: >-
+        Updates a Customer Attribute. Multiple customer attributes can be
+        updated in one call.
+
+
+        **Required Fields**
+
+        * id -- ID of the *Customer Attribute*
+
+
+        Once the data type is set, it can not be changed. The attribute will
+        need to be deleted then created again with the new data type. This will
+        also delete it from the customer.
+
+
+        **Limits**
+
+        * Limit of 3 concurrent requests.
+      summary: Update a Customer Attribute
+      tags:
+        - Attributes
+    delete:
+      description: |-
+        Deletes Customer Attributes from the store.
+
+        **Required Query**
+        * id:in -- ID of the *Customer Attribute*
+      summary: Delete Customer Attributes
+      tags:
+        - Attributes
+  /customers/attribute-values:
+    get:
+      description: >-
+        Returns a list of Customer Attribute Values. Optional filter parameters
+        can be passed in.
+      summary: Get All Customer Attribute Values
+      tags:
+        - Attribute Values
+    put:
+      description: >-
+        Upserts Customer Attribute Values. Updates the attribute values on the
+        Customer. Multiple customer attribute values can be updated in one call.
+
+
+        Upsert checks for an existing record. If there is none, it creates the
+        record, if there is a matching record, it updates that record.
+
+
+        **Limits**
+
+        * 10 per call limit.
+      summary: Upsert Customer Attribute Values
+      tags:
+        - Attribute Values
+    delete:
+      description: >-
+        Deletes Customer Attribute Values. Deletes the attribute value from the
+        customer.
+
+
+        **Required Query**
+
+        * id:in - ID of the *Customer Attribute Value*
+      summary: Delete Customer Attribute Values
+      tags:
+        - Attribute Values
+  /customers/form-field-values:
+    get:
+      summary: Get Customer Form Field Values
+      description: >-
+        Returns a list of form field values for the Customer or Customer Address
+        object.
+
+
+        To learn about adding and managing form fields, see [Adding and Editing
+        Fields in the Account Signup
+        Form](https://support.bigcommerce.com/s/article/Editing-Form-Fields).
+      tags:
+        - Form Field Values
+    put:
+      summary: Upsert Customer Form Field Values
+      description: >-
+        Updates form field values on the Customer or Customer Address objects.
+        Multiple form field values can be updated in one call.
+
+
+        Upsert checks for an existing record, if there is none it creates the
+        record, if there is a matching record it updates that record.
+
+
+        To learn more about editing form fields, see [Adding and Editing Fields
+        in the Account Signup
+        Form](https://support.bigcommerce.com/s/article/Editing-Form-Fields).
+
+
+        **Limits**
+
+        * Limit of 10 concurrent requests.
+      tags:
+        - Form Field Values
+  /customers/{customerId}/consent:
+    get:
+      description: >-
+        Gets the status of a customerʼs consent to allow data collection by
+        cookies and scripts while shopping on a storefront.
+      summary: Get Customer Consent
+      tags:
+        - Consent
+    put:
+      description: >-
+        Updates the status of a customerʼs consent to allow data collection by
+        cookies and scripts while shopping on a storefront.
+      summary: Update Customer Consent
+      tags:
+        - Consent
+    parameters:
+      - null
+  /customers/{customerId}/stored-instruments:
+    get:
+      summary: Get Stored Instruments
+      tags:
+        - Stored Instruments
+      description: >-
+        Lists all available stored instruments for a customer. This list will
+        include all types of stored instruments namely card, account and
+        bank_account instruments
+    parameters:
+      - null
+  /customers/{customerId}/metafields:
+    get:
+      summary: Get Customer Metafields
+      tags:
+        - Customer Metafields
+      description: >-
+        Gets customer metafields by passing the `customerId` in the query
+        parameters.
+    post:
+      summary: Create Customer Metafields
+      tags:
+        - Customer Metafields
+      description: >-
+        Creates Customer metafields by passing the `customerId` in the query
+        parameters.
+  /customers/{customerId}/metafields/{metafieldId}:
+    get:
+      summary: Get Customer Metafields List
+      description: >
+        Lists available metafields for a customer. To retrieve the list, use
+        `customerId` and `metafieldId` in the query parameters.
+      tags:
+        - Customer Metafields
+    put:
+      summary: Update a Metafield
+      tags:
+        - Customer Metafields
+      description: >-
+        Updates customer metafields. To update the customer metafields, use
+        'customerId' and 'metafield' in the query parameters.
+    delete:
+      summary: Delete Customer Metafields
+      tags:
+        - Customer Metafields
+      description: >
+        Deletes customer metafields. To delete customer metafields, use
+        'customerId' and 'metafieldId' in the query parameters.
+  /customers/metafields:
+    get:
+      summary: Get All Customer Metafields
+      tags:
+        - Customer Batch Metafields
+      description: Get all customer metafields.
+    post:
+      summary: Create Multiple Metafields
+      tags:
+        - Customer Batch Metafields
+      description: Create multiple metafields.
+    put:
+      summary: Update Multiple Metafields
+      tags:
+        - Customer Batch Metafields
+      description: Create multiple metafields.
+    delete:
+      summary: Delete All Metafields
+      tags:
+        - Customer Batch Metafields
+      description: Delete all customer metafield

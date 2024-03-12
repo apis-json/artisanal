@@ -1,0 +1,76 @@
+openapi: 3.0.0
+info:
+  title: Tax Rates & Zones
+tags:
+  - name: Tax Zones
+  - name: Tax Rates
+paths:
+  /tax/zones:
+    parameters:
+      - null
+    get:
+      tags:
+        - Tax Zones
+      summary: Get Tax Zones
+      description: >-
+        Retrieve a selection of tax zones when you provide a list of tax zone
+        IDs. Otherwise, retrieve all tax zones defined on the store.
+    put:
+      tags:
+        - Tax Zones
+      summary: Update Tax Zones
+      description: >-
+        Update one or more tax zones. Only the tax zone `id` field is required.
+        Fields unspecified by the request will retain their current state.
+    post:
+      tags:
+        - Tax Zones
+      summary: Create Tax Zones
+      description: |-
+        Create one or more tax zones.
+
+        > #### Note
+        > You cannot create a default tax zone.
+    delete:
+      tags:
+        - Tax Zones
+      summary: Delete Tax Zones
+      description: >-
+        Delete one or more tax zones. Deleting a tax zone removes all associated
+        tax rates.
+
+
+        > You must specify which zone(s) to delete using the `id:in` query
+        parameter.
+  /tax/rates:
+    parameters:
+      - null
+    get:
+      tags:
+        - Tax Rates
+      summary: Get Tax Rates
+      description: Retrieve a list of tax rates.
+    put:
+      tags:
+        - Tax Rates
+      summary: Update Tax Rates
+      description: >-
+        Update one or more tax rates. Only the tax rate `id` field is required.
+        Fields unspecified by the request will retain their current state.
+    post:
+      tags:
+        - Tax Rates
+      summary: Create Tax Rates
+      description: >-
+        Create one or more tax rates. Tax rates must be associated with a
+        `tax_zone_id`.
+    delete:
+      tags:
+        - Tax Rates
+      summary: Delete Tax Rates
+      description: >-
+        Delete one or more tax rates.
+
+
+        > You must specify which rate(s) to delete using the `id:in` query
+        paramete

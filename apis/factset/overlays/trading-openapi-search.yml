@@ -1,0 +1,55 @@
+openapi: 3.0.1
+info:
+  title: EMS API
+  license:
+    name: Apache License, Version 2.0
+    url: https://www.apache.org/licenses/LICENSE-2.0
+paths:
+  /orders/create:
+    post:
+      tags:
+        - Orders
+      summary: Send orders to EMS for execution.
+      description: >-
+        This endpoint takes the list of orders and place them on EMS for
+        execution.
+  /orders/replace:
+    post:
+      tags:
+        - Orders
+      summary: Replace the orders on EMS system.
+      description: This endpoint takes the list of orders to be replaced on the EMS system.
+  /orders/cancel:
+    post:
+      tags:
+        - Orders
+      summary: Cancel the orders on EMS system.
+      description: >-
+        This endpoint takes the list of orders to be cancelled on the EMS
+        system.
+  /child-orders/create:
+    post:
+      tags:
+        - ChildOrders
+      summary: Create Child Orders
+      description: This endpoint is used to create child orders.
+  /child-orders/replace:
+    post:
+      tags:
+        - ChildOrders
+      summary: Replace the Child Orders on EMS system.
+      description: This endpoint takes the child order to be replaced on the EMS system.
+  /child-orders/cancel:
+    post:
+      tags:
+        - ChildOrders
+      summary: Cancel Child Orders
+      description: This endpoint is to cancel a specific child order.
+tags:
+  - name: Orders
+    description: These endpoints relate to Order Entry.
+  - name: ChildOrders
+    description: These endpoints relate to Order Routing.
+externalDocs:
+  description: API Documentation
+  url: https://developer.factset.com/api-catalog/factset-tra

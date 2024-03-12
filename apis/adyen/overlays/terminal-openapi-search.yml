@@ -9,10 +9,19 @@ paths:
         and the following Logout) to process. Content of the Login Request
         message.
       summary: Login Request
+      tags:
+        - Login
+        - Request
+        - Login
   /logout:
     post:
       description: Empty. Content of the Logout Request message.
       summary: Logout Request
+      tags:
+        - Logout
+        - Request
+        - Login
+        - Logout
   /enableservice:
     post:
       description: >-
@@ -21,10 +30,24 @@ paths:
         the Customer to start the services. Content of the Enable Service
         Request message.
       summary: EnableService Request
+      tags:
+        - Enable
+        - Service
+        - Request
+        - Login
+        - Logout
+        - Enableservice
   /admin:
     post:
       description: Empty. Content of the Custom Admin Request message.
       summary: Admin Request
+      tags:
+        - Admin
+        - Request
+        - Login
+        - Logout
+        - Enableservice
+        - Admin
   /payment:
     post:
       description: >-
@@ -32,6 +55,14 @@ paths:
         related to the Payment transaction to process. Content of the Payment
         Request message.
       summary: Payment Request
+      tags:
+        - Payment
+        - Request
+        - Login
+        - Logout
+        - Enableservice
+        - Admin
+        - Payment
   /cardacquisition:
     post:
       description: >-
@@ -40,30 +71,87 @@ paths:
         (e.g. payment or loyalty) which refers to this Card Acquisition message
         pair. Content of the Card Acquisition Request message.
       summary: CardAcquisition Request
+      tags:
+        - Card
+        - Acquisition
+        - Request
+        - Login
+        - Logout
+        - Enableservice
+        - Admin
+        - Payment
+        - Cardacquisition
   /loyalty:
     post:
       description: >-
         It conveys Information related to the Loyalty transaction to process.
         Content of the Loyalty Request message.
       summary: Loyalty Request
+      tags:
+        - Loyalty
+        - Request
+        - Login
+        - Logout
+        - Enableservice
+        - Admin
+        - Payment
+        - Cardacquisition
+        - Loyalty
   /storedvalue:
     post:
       description: >-
         It conveys Information related to the Stored Value transaction to
         process. Content of the Stored Value Request message.
       summary: StoredValue Request
+      tags:
+        - Stored
+        - Value
+        - Request
+        - Login
+        - Logout
+        - Enableservice
+        - Admin
+        - Payment
+        - Cardacquisition
+        - Loyalty
+        - Storedvalue
   /reversal:
     post:
       description: >-
         It conveys Information related to the reversal of a previous payment or
         a loyalty transaction. Content of the Reversal Request message.
       summary: Reversal Request
+      tags:
+        - Reversal
+        - Request
+        - Login
+        - Logout
+        - Enableservice
+        - Admin
+        - Payment
+        - Cardacquisition
+        - Loyalty
+        - Storedvalue
+        - Reversal
   /reconciliation:
     post:
       description: >-
         It conveys Information related to the Reconciliation requested by the
         Sale System. Content of the Reconciliation Request message.
       summary: Reconciliation Request
+      tags:
+        - Reconciliation
+        - Request
+        - Login
+        - Logout
+        - Enableservice
+        - Admin
+        - Payment
+        - Cardacquisition
+        - Loyalty
+        - Storedvalue
+        - Reversal
+        - Reconciliation
   /gettotals:
     post:
       description: >-
@@ -71,12 +159,43 @@ paths:
         format of the totals to be computed by the POI System. Content of the
         Get Totals Request message.
       summary: GetTotals Request
+      tags:
+        - Get
+        - Totals
+        - Request
+        - Login
+        - Logout
+        - Enableservice
+        - Admin
+        - Payment
+        - Cardacquisition
+        - Loyalty
+        - Storedvalue
+        - Reversal
+        - Reconciliation
+        - Gettotals
   /balanceinquiry:
     post:
       description: >-
         It conveys Information related to the account for which a Balance
         Inquiry is requested. Content of the Balance Inquiry Request message.
       summary: BalanceInquiry Request
+      tags:
+        - Balance
+        - Inquiry
+        - Request
+        - Login
+        - Logout
+        - Enableservice
+        - Admin
+        - Payment
+        - Cardacquisition
+        - Loyalty
+        - Storedvalue
+        - Reversal
+        - Reconciliation
+        - Gettotals
+        - Balanceinquiry
   /transactionstatus:
     post:
       description: >-
@@ -84,12 +203,46 @@ paths:
         Payment, Loyalty or Reversal transaction. Content of the
         TransactionStatus Request message.
       summary: TransactionStatus Request
+      tags:
+        - Transaction
+        - Status
+        - Request
+        - Login
+        - Logout
+        - Enableservice
+        - Admin
+        - Payment
+        - Cardacquisition
+        - Loyalty
+        - Storedvalue
+        - Reversal
+        - Reconciliation
+        - Gettotals
+        - Balanceinquiry
+        - Transactionstatus
   /diagnosis:
     post:
       description: >-
         It conveys Information related to the target POI for which the diagnosis
         is requested. Content of the Diagnosis Request message.
       summary: Diagnosis Request
+      tags:
+        - Diagnosis
+        - Request
+        - Login
+        - Logout
+        - Enableservice
+        - Admin
+        - Payment
+        - Cardacquisition
+        - Loyalty
+        - Storedvalue
+        - Reversal
+        - Reconciliation
+        - Gettotals
+        - Balanceinquiry
+        - Transactionstatus
+        - Diagnosis
   /display:
     post:
       description: >-
@@ -98,6 +251,24 @@ paths:
         (the DisplayOutput element) per Display Device type. Content of the
         Display Request message.
       summary: Display Request
+      tags:
+        - Display
+        - Request
+        - Login
+        - Logout
+        - Enableservice
+        - Admin
+        - Payment
+        - Cardacquisition
+        - Loyalty
+        - Storedvalue
+        - Reversal
+        - Reconciliation
+        - Gettotals
+        - Balanceinquiry
+        - Transactionstatus
+        - Diagnosis
+        - Display
   /input:
     post:
       description: >-
@@ -106,6 +277,25 @@ paths:
         the Input Device, it might contain an operation (the DisplayOutput
         element) per Display Device type. Content of the Input Request message.
       summary: Input Request
+      tags:
+        - Input
+        - Request
+        - Login
+        - Logout
+        - Enableservice
+        - Admin
+        - Payment
+        - Cardacquisition
+        - Loyalty
+        - Storedvalue
+        - Reversal
+        - Reconciliation
+        - Gettotals
+        - Balanceinquiry
+        - Transactionstatus
+        - Diagnosis
+        - Display
+        - Input
   /print:
     post:
       description: >-
@@ -113,10 +303,52 @@ paths:
         contains the complete content to print. Content of the Print Request
         message.
       summary: Print Request
+      tags:
+        - Print
+        - Request
+        - Login
+        - Logout
+        - Enableservice
+        - Admin
+        - Payment
+        - Cardacquisition
+        - Loyalty
+        - Storedvalue
+        - Reversal
+        - Reconciliation
+        - Gettotals
+        - Balanceinquiry
+        - Transactionstatus
+        - Diagnosis
+        - Display
+        - Input
+        - Print
   /cardreaderapdu:
     post:
       description: >-
         It contains the APDU request to send to the chip of the card, and a
         possible invitation message to display on the CashierInterface or the
         CustomerInterface. Content of the Card Reader APDU Request message.
-      summary: CardReaderAPDU Request
+      summary: CardReaderAPDU Reque
+      tags:
+        - Card
+        - Reader
+        - Reque
+        - Login
+        - Logout
+        - Enableservice
+        - Admin
+        - Payment
+        - Cardacquisition
+        - Loyalty
+        - Storedvalue
+        - Reversal
+        - Reconciliation
+        - Gettotals
+        - Balanceinquiry
+        - Transactionstatus
+        - Diagnosis
+        - Display
+        - Input
+        - Print
+        - Cardreaderap

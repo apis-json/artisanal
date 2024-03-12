@@ -1,0 +1,619 @@
+openapi: 3.1.0
+info:
+  title: Box Webhooks API
+  description: Needs a description.
+paths:
+  /webhooks:
+    get:
+      operationId: get_webhooks
+      summary: List all webhooks
+      tags:
+        - Webhooks
+      x-box-tag: webhooks
+      description: >-
+        Returns all defined webhooks for the requesting application.
+
+
+        This API only returns webhooks that are applied to files or folders that
+        are
+
+        owned by the authenticated user. This means that an admin can not see
+        webhooks
+
+        created by a service account unless the admin has access to those
+        folders, and
+
+        vice versa.
+      parameters:
+        - name: marker
+          description: >-
+            Defines the position marker at which to begin returning results.
+            This is
+
+            used when paginating using marker-based pagination.
+
+
+            This requires `usemarker` to be set to `true`.
+          in: query
+          required: false
+          example: JV9IRGZmieiBasejOG9yDCRNgd2ymoZIbjsxbJMjIs3kioVii
+          schema:
+            type: string
+        - name: limit
+          description: The maximum number of items to return per page.
+          in: query
+          required: false
+          example: 1000
+          schema:
+            type: integer
+            format: int64
+            maximum: 1000
+      responses:
+        '200':
+          description: Returns a list of webhooks.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Webhooks'
+        '403':
+          description: |-
+            Returns an error if the application does not
+            have the permission to manage webhooks.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ClientError'
+        default:
+          description: An unexpected client error.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ClientError'
+    post:
+      operationId: post_webhooks
+      summary: Create webhook
+      tags:
+        - Webhooks
+      x-box-tag: webhooks
+      description: Creates a webhook.
+      requestBody:
+        content:
+          application/json:
+            schema:
+              type: object
+              required:
+                - target
+                - triggers
+                - address
+              properties:
+                target:
+                  type: object
+                  description: The item that will trigger the webhook
+                  properties:
+                    id:
+                      description: The ID of the item to trigger a webhook
+                      type: string
+                      example: '1231232'
+                    type:
+                      description: The type of item to trigger a webhook
+                      type: string
+                      example: file
+                      enum:
+                        - file
+                        - folder
+                address:
+                  type: string
+                  example: https://example.com/webhooks
+                  description: The URL that is notified by this webhook
+                triggers:
+                  type: array
+                  example:
+                    - FILE.UPLOADED
+                  description: |-
+                    An array of event names that this webhook is
+                    to be triggered for
+                  items:
+                    title: Webhook Trigger
+                    example: FILE.UPLOADED
+                    type: string
+                    description: The event name that triggered this webhook
+                    enum:
+                      - FILE.UPLOADED
+                      - FILE.PREVIEWED
+                      - FILE.DOWNLOADED
+                      - FILE.TRASHED
+                      - FILE.DELETED
+                      - FILE.RESTORED
+                      - FILE.COPIED
+                      - FILE.MOVED
+                      - FILE.LOCKED
+                      - FILE.UNLOCKED
+                      - FILE.RENAMED
+                      - COMMENT.CREATED
+                      - COMMENT.UPDATED
+                      - COMMENT.DELETED
+                      - TASK_ASSIGNMENT.CREATED
+                      - TASK_ASSIGNMENT.UPDATED
+                      - METADATA_INSTANCE.CREATED
+                      - METADATA_INSTANCE.UPDATED
+                      - METADATA_INSTANCE.DELETED
+                      - FOLDER.CREATED
+                      - FOLDER.RENAMED
+                      - FOLDER.DOWNLOADED
+                      - FOLDER.RESTORED
+                      - FOLDER.DELETED
+                      - FOLDER.COPIED
+                      - FOLDER.MOVED
+                      - FOLDER.TRASHED
+                      - WEBHOOK.DELETED
+                      - COLLABORATION.CREATED
+                      - COLLABORATION.ACCEPTED
+                      - COLLABORATION.REJECTED
+                      - COLLABORATION.REMOVED
+                      - COLLABORATION.UPDATED
+                      - SHARED_LINK.DELETED
+                      - SHARED_LINK.CREATED
+                      - SHARED_LINK.UPDATED
+                      - SIGN_REQUEST.COMPLETED
+                      - SIGN_REQUEST.DECLINED
+                      - SIGN_REQUEST.EXPIRED
+                      - SIGN_REQUEST.SIGNER_EMAIL_BOUNCED
+      responses:
+        '201':
+          description: Returns the new webhook object.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Webhook'
+        '400':
+          description: |-
+            Returns an error if the parameters were
+            incorrect.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ClientError'
+        '403':
+          description: |-
+            Returns an error if the application does not
+            have the permission to manage webhooks.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ClientError'
+        '404':
+          description: |-
+            Returns an error if the target item could
+            not be found
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ClientError'
+        '409':
+          description: |-
+            Returns an error if the a webhook for this
+            combination of target, application, and user
+            already exists.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ClientError'
+        default:
+          description: An unexpected client error.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ClientError'
+  /webhooks/{webhook_id}:
+    get:
+      operationId: get_webhooks_id
+      tags:
+        - Webhooks
+      x-box-tag: webhooks
+      summary: Get webhook
+      description: Retrieves a specific webhook
+      parameters:
+        - name: webhook_id
+          description: The ID of the webhook.
+          example: '3321123'
+          in: path
+          required: true
+          schema:
+            type: string
+      responses:
+        '200':
+          description: Returns a webhook object
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Webhook'
+        '403':
+          description: |-
+            Returns an error if the application does not
+            have the permission to manage webhooks.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ClientError'
+        '404':
+          description: Returns an error if the webhook could not be found
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ClientError'
+        default:
+          description: An unexpected client error.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ClientError'
+    put:
+      operationId: put_webhooks_id
+      summary: Update webhook
+      tags:
+        - Webhooks
+      x-box-tag: webhooks
+      description: Updates a webhook.
+      parameters:
+        - name: webhook_id
+          description: The ID of the webhook.
+          example: '3321123'
+          in: path
+          required: true
+          schema:
+            type: string
+      requestBody:
+        content:
+          application/json:
+            schema:
+              type: object
+              properties:
+                target:
+                  type: object
+                  description: The item that will trigger the webhook
+                  properties:
+                    id:
+                      description: The ID of the item to trigger a webhook
+                      type: string
+                      example: '1231232'
+                    type:
+                      description: The type of item to trigger a webhook
+                      type: string
+                      example: file
+                      enum:
+                        - file
+                        - folder
+                address:
+                  type: string
+                  example: https://example.com/webhooks
+                  description: The URL that is notified by this webhook
+                triggers:
+                  type: array
+                  example:
+                    - FILE.UPLOADED
+                  description: |-
+                    An array of event names that this webhook is
+                    to be triggered for
+                  items:
+                    title: Webhook Trigger
+                    example: FILE.UPLOADED
+                    type: string
+                    description: The event name that triggered this webhook
+                    enum:
+                      - FILE.UPLOADED
+                      - FILE.PREVIEWED
+                      - FILE.DOWNLOADED
+                      - FILE.TRASHED
+                      - FILE.DELETED
+                      - FILE.RESTORED
+                      - FILE.COPIED
+                      - FILE.MOVED
+                      - FILE.LOCKED
+                      - FILE.UNLOCKED
+                      - FILE.RENAMED
+                      - COMMENT.CREATED
+                      - COMMENT.UPDATED
+                      - COMMENT.DELETED
+                      - TASK_ASSIGNMENT.CREATED
+                      - TASK_ASSIGNMENT.UPDATED
+                      - METADATA_INSTANCE.CREATED
+                      - METADATA_INSTANCE.UPDATED
+                      - METADATA_INSTANCE.DELETED
+                      - FOLDER.CREATED
+                      - FOLDER.RENAMED
+                      - FOLDER.DOWNLOADED
+                      - FOLDER.RESTORED
+                      - FOLDER.DELETED
+                      - FOLDER.COPIED
+                      - FOLDER.MOVED
+                      - FOLDER.TRASHED
+                      - WEBHOOK.DELETED
+                      - COLLABORATION.CREATED
+                      - COLLABORATION.ACCEPTED
+                      - COLLABORATION.REJECTED
+                      - COLLABORATION.REMOVED
+                      - COLLABORATION.UPDATED
+                      - SHARED_LINK.DELETED
+                      - SHARED_LINK.CREATED
+                      - SHARED_LINK.UPDATED
+                      - SIGN_REQUEST.COMPLETED
+                      - SIGN_REQUEST.DECLINED
+                      - SIGN_REQUEST.EXPIRED
+                      - SIGN_REQUEST.SIGNER_EMAIL_BOUNCED
+      responses:
+        '200':
+          description: Returns the new webhook object.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Webhook'
+        '400':
+          description: |-
+            Returns an error if the parameters were
+            incorrect.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ClientError'
+        '403':
+          description: |-
+            Returns an error if the application does not
+            have the permission to manage webhooks.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ClientError'
+        '404':
+          description: |-
+            Returns an error if the target item or webhook
+            could not be found
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ClientError'
+        '409':
+          description: |-
+            Returns an error if the a webhook for this
+            combination of target, application, and user
+            already exists.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ClientError'
+        default:
+          description: An unexpected client error.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ClientError'
+    delete:
+      operationId: delete_webhooks_id
+      summary: Remove webhook
+      tags:
+        - Webhooks
+      x-box-tag: webhooks
+      description: Deletes a webhook.
+      parameters:
+        - name: webhook_id
+          description: The ID of the webhook.
+          example: '3321123'
+          in: path
+          required: true
+          schema:
+            type: string
+      responses:
+        '204':
+          description: |-
+            An empty response will be returned when the webhook
+            was successfully deleted.
+        '403':
+          description: |-
+            Returns an error if the application does not
+            have the permission to manage webhooks.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ClientError'
+        '404':
+          description: Returns an error if the webhook could not be found
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ClientError'
+        default:
+          description: An unexpected client error.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ClientError'
+components:
+  schemas:
+    Webhooks:
+      title: Webhooks
+      type: object
+      x-box-resource-id: webhooks
+      x-box-tag: webhooks
+      description: A list of webhooks.
+      allOf:
+        - type: object
+          description: |-
+            The part of an API response that describes marker
+            based pagination
+          properties:
+            limit:
+              description: >-
+                The limit that was used for these entries. This will be the same
+                as the
+
+                `limit` query parameter unless that value exceeded the maximum
+                value
+
+                allowed. The maximum value varies by API.
+              example: 1000
+              type: integer
+              format: int64
+            next_marker:
+              description: The marker for the start of the next page of results.
+              example: JV9IRGZmieiBasejOG9yDCRNgd2ymoZIbjsxbJMjIs3kioVii
+              type: string
+              nullable: true
+            prev_marker:
+              description: The marker for the start of the previous page of results.
+              example: JV9IRGZmieiBasejOG9yDCRNgd2ymoZIbjsxbJMjIs3kioVih
+              type: string
+              nullable: true
+        - properties:
+            entries:
+              type: array
+              description: A list of webhooks
+              items:
+                $ref: '#/components/schemas/Webhook--Mini'
+    ClientError:
+      title: Client error
+      type: object
+      x-box-resource-id: client_error
+      description: A generic error
+      properties:
+        type:
+          description: error
+          example: error
+          type: string
+          enum:
+            - error
+          nullable: false
+        status:
+          description: The HTTP status of the response.
+          example: 400
+          type: integer
+          format: int32
+          nullable: false
+        code:
+          description: A Box-specific error code
+          example: item_name_invalid
+          type: string
+          enum:
+            - created
+            - accepted
+            - no_content
+            - redirect
+            - not_modified
+            - bad_request
+            - unauthorized
+            - forbidden
+            - not_found
+            - method_not_allowed
+            - conflict
+            - precondition_failed
+            - too_many_requests
+            - internal_server_error
+            - unavailable
+            - item_name_invalid
+            - insufficient_scope
+        message:
+          description: A short message describing the error.
+          example: Method Not Allowed
+          type: string
+          nullable: false
+        context_info:
+          description: |-
+            A free-form object that contains additional context
+            about the error. The possible fields are defined on
+            a per-endpoint basis. `message` is only one example.
+          type: object
+          nullable: true
+          properties:
+            message:
+              type: string
+              description: More details on the error.
+              example: Something went wrong.
+        help_url:
+          description: A URL that links to more information about why this error occurred.
+          example: >-
+            https://developer.box.com/guides/api-calls/permissions-and-errors/common-errors/
+          type: string
+          nullable: false
+        request_id:
+          description: |-
+            A unique identifier for this response, which can be used
+            when contacting Box support.
+          type: string
+          example: abcdef123456
+          nullable: false
+    Webhook:
+      title: Webhook
+      type: object
+      x-box-resource-id: webhook
+      x-box-variant: standard
+      x-box-tag: webhooks
+      description: Represents a configured webhook.
+      allOf:
+        - $ref: '#/components/schemas/Webhook--Mini'
+        - properties:
+            created_by:
+              allOf:
+                - $ref: '#/components/schemas/User--Mini'
+                - description: The user who created the webhook
+            created_at:
+              type: string
+              format: date-time
+              description: |-
+                A timestamp identifying the time that
+                the webhook was created.
+              example: '2012-12-12T10:53:43-08:00'
+            address:
+              type: string
+              example: https://example.com/webhooks
+              description: The URL that is notified by this webhook
+            triggers:
+              type: array
+              example:
+                - FILE.UPLOADED
+              description: |-
+                An array of event names that this webhook is
+                to be triggered for
+              items:
+                title: Webhook Trigger
+                example: FILE.UPLOADED
+                type: string
+                description: The event name that triggered this webhook
+                enum:
+                  - FILE.UPLOADED
+                  - FILE.PREVIEWED
+                  - FILE.DOWNLOADED
+                  - FILE.TRASHED
+                  - FILE.DELETED
+                  - FILE.RESTORED
+                  - FILE.COPIED
+                  - FILE.MOVED
+                  - FILE.LOCKED
+                  - FILE.UNLOCKED
+                  - FILE.RENAMED
+                  - COMMENT.CREATED
+                  - COMMENT.UPDATED
+                  - COMMENT.DELETED
+                  - TASK_ASSIGNMENT.CREATED
+                  - TASK_ASSIGNMENT.UPDATED
+                  - METADATA_INSTANCE.CREATED
+                  - METADATA_INSTANCE.UPDATED
+                  - METADATA_INSTANCE.DELETED
+                  - FOLDER.CREATED
+                  - FOLDER.RENAMED
+                  - FOLDER.DOWNLOADED
+                  - FOLDER.RESTORED
+                  - FOLDER.DELETED
+                  - FOLDER.COPIED
+                  - FOLDER.MOVED
+                  - FOLDER.TRASHED
+                  - WEBHOOK.DELETED
+                  - COLLABORATION.CREATED
+                  - COLLABORATION.ACCEPTED
+                  - COLLABORATION.REJECTED
+                  - COLLABORATION.REMOVED
+                  - COLLABORATION.UPDATED
+                  - SHARED_LINK.DELETED
+                  - SHARED_LINK.CREATED
+                  - SHARED_LINK.UPDATED
+                  - SIGN_REQUEST.COMPLETED
+                  - SIGN_REQUEST.DECLINED
+                  - SIGN_REQUEST.EXPIRED
+                  - SIGN_REQUEST.SIGNER_EMAIL_BOUNCED

@@ -1,0 +1,209 @@
+openapi: 3.1.0
+info:
+  title: Box Users API
+paths:
+  /users:
+    get:
+      summary: List enterprise users
+      tags:
+        - Users
+      description: >-
+        Returns a list of all users for the Enterprise along with their
+        `user_id`,
+
+        `public_name`, and `login`.
+
+
+        The application and the authenticated user need to
+
+        have the permission to look up users in the entire
+
+        enterprise.
+    post:
+      summary: Create user
+      tags:
+        - Users
+      description: |-
+        Creates a new managed user in an enterprise. This endpoint
+        is only available to users and applications with the right
+        admin permissions.
+  /users/me:
+    get:
+      summary: Get current user
+      tags:
+        - Users
+      description: >-
+        Retrieves information about the user who is currently authenticated.
+
+
+        In the case of a client-side authenticated OAuth 2.0 application
+
+        this will be the user who authorized the app.
+
+
+        In the case of a JWT, server-side authenticated application
+
+        this will be the service account that belongs to the application
+
+        by default.
+
+
+        Use the `As-User` header to change who this API call is made on behalf
+        of.
+  /users/terminate_sessions:
+    post:
+      summary: Create jobs to terminate users session
+      tags:
+        - Session termination
+      description: |-
+        Validates the roles and permissions of the user,
+        and creates asynchronous jobs
+        to terminate the user's sessions.
+        Returns the status for the POST request.
+  /users/{user_id}:
+    get:
+      summary: Get user
+      tags:
+        - Users
+      description: |-
+        Retrieves information about a user in the enterprise.
+
+        The application and the authenticated user need to
+        have the permission to look up users in the entire
+        enterprise.
+
+        This endpoint also returns a limited set of information
+        for external users who are collaborated on content
+        owned by the enterprise for authenticated users with the
+        right scopes. In this case, disallowed fields will return
+        null instead.
+    put:
+      summary: Update user
+      tags:
+        - Users
+      description: |-
+        Updates a managed or app user in an enterprise. This endpoint
+        is only available to users and applications with the right
+        admin permissions.
+    delete:
+      summary: Delete user
+      tags:
+        - Users
+      description: |-
+        Deletes a user. By default this will fail if the user
+        still owns any content. Move their owned content first
+        before proceeding, or use the `force` field to delete
+        the user and their files.
+  /users/{user_id}/avatar:
+    get:
+      summary: Get user avatar
+      tags:
+        - User avatars
+      description: Retrieves an image of a the user's avatar.
+    post:
+      summary: Add or update user avatar
+      tags:
+        - User avatars
+      description: Adds or updates a user avatar.
+    delete:
+      summary: Delete user avatar
+      tags:
+        - User avatars
+      description: |-
+        Removes an existing user avatar.
+        You cannot reverse this operation.
+  /users/{user_id}/folders/0:
+    put:
+      summary: Transfer owned folders
+      tags:
+        - Transfer folders
+      description: >-
+        Move all of the items (files, folders and workflows) owned by a user
+        into
+
+        another user's account
+
+
+        Only the root folder (`0`) can be transferred.
+
+
+        Folders can only be moved across users by users with administrative
+
+        permissions.
+
+
+        All existing shared links and folder-level collaborations are
+        transferred
+
+        during the operation. Please note that while collaborations at the
+        individual
+
+        file-level are transferred during the operation, the collaborations are
+
+        deleted when the original user is deleted.
+
+
+        This call will be performed synchronously which might lead to a slow
+        response
+
+        when the source user has a large number of items in all of its folders.
+
+
+        If the destination path has a metadata cascade policy attached to any of
+
+        the parent folders, a metadata cascade operation will be kicked off
+
+        asynchronously.
+
+
+        There is currently no way to check for when this operation is finished.
+
+
+        The destination folder's name will be in the format `{User}'s Files and
+
+        Folders`, where `{User}` is the display name of the user.
+
+
+        To make this API call your application will need to have the "Read and
+        write
+
+        all files and folders stored in Box" scope enabled.
+
+
+        Please make sure the destination user has access to `Relay` or `Relay
+        Lite`,
+
+        and has access to the files and folders involved in the workflows being
+
+        transferred.
+
+
+        Admins will receive an email when the operation is completed.
+  /users/{user_id}/email_aliases:
+    get:
+      summary: List user's email aliases
+      tags:
+        - Email aliases
+      description: |-
+        Retrieves all email aliases for a user. The collection
+        does not include the primary login for the user.
+    post:
+      summary: Create email alias
+      tags:
+        - Email aliases
+      description: Adds a new email alias to a user account..
+  /users/{user_id}/email_aliases/{email_alias_id}:
+    delete:
+      summary: Remove email alias
+      tags:
+        - Email aliases
+      description: Removes an email alias from a user.
+  /users/{user_id}/memberships:
+    get:
+      summary: List user's groups
+      tags:
+        - Group memberships
+      description: |-
+        Retrieves all the groups for a user. Only members of this
+        group or users with admin-level permissions will be able to
+        use this AP

@@ -1,59 +1,28 @@
+openapi: 3.0.0
 info:
   title: Stripe Accounts API
 paths:
   /v1/account:
     get:
-      description: Retrieves the details of an account.
-      summary: Retrieve Account
-      tags:
-        - Retrieve
-        - Account
-        - V1
-        - Account
+      description: <p>Retrieves the details of an account.</p>
   /v1/account_links:
     post:
       description: >-
         <p>Creates an AccountLink object that includes a single-use Stripe URL
         that the platform can redirect their user to in order to take them
         through the Connect Onboarding flow.</p>
-      summary: Create Account Link
-      tags:
-        - Create
-        - Account
-        - Link
-        - V1
-        - Account
-        - Account_links
   /v1/account_sessions:
     post:
       description: >-
         <p>Creates a AccountSession object that includes a single-use token that
         the platform can use on their front-end to grant client-side API
         access.</p>
-      summary: Create Account Sessions
-      tags:
-        - Create
-        - Account
-        - Sessions
-        - V1
-        - Account
-        - Account_links
-        - Account_sessions
   /v1/accounts:
     get:
       description: >-
         <p>Returns a list of accounts connected to your platform via <a
         href="/docs/connect">Connect</a>. If you’re not a platform, the list is
         empty.</p>
-      summary: Retrieve Accounts
-      tags:
-        - Retrieve
-        - Accounts
-        - V1
-        - Account
-        - Account_links
-        - Account_sessions
-        - Accounts
     post:
       description: >-
         <p>With <a href="/docs/connect">Connect</a>, you can create Stripe
@@ -72,15 +41,6 @@ paths:
         information during account onboarding.
 
         You can prefill any information on the account.</p>
-      summary: Create Account
-      tags:
-        - Create
-        - Account
-        - V1
-        - Account
-        - Account_links
-        - Account_sessions
-        - Accounts
   /v1/accounts/{account}:
     delete:
       description: >-
@@ -97,26 +57,8 @@ paths:
         <p>If you want to delete your own account, use the <a
         href="https://dashboard.stripe.com/settings/account">account information
         tab in your account settings</a> instead.</p>
-      summary: Delete Account
-      tags:
-        - Delete
-        - Account
-        - V1
-        - Account
-        - Account_links
-        - Account_sessions
-        - Accounts
     get:
       description: <p>Retrieves the details of an account.</p>
-      summary: Retrieve Accounts
-      tags:
-        - Retrieve
-        - Accounts
-        - V1
-        - Account
-        - Account_links
-        - Account_sessions
-        - Accounts
     post:
       description: >-
         <p>Updates a <a href="/docs/connect/accounts">connected account</a> by
@@ -145,58 +87,14 @@ paths:
 
         <a href="/docs/connect/updating-accounts">Connect</a> documentation to
         learn more about updating accounts.</p>
-      summary: Update Account
-      tags:
-        - Update
-        - Account
-        - V1
-        - Account
-        - Account_links
-        - Account_sessions
-        - Accounts
   /v1/accounts/{account}/bank_accounts:
     post:
       description: <p>Create an external account for a given account.</p>
-      summary: Create Bank Account
-      tags:
-        - Create
-        - Bank
-        - Account
-        - V1
-        - Account
-        - Account_links
-        - Account_sessions
-        - Accounts
-        - Bank_accounts
   /v1/accounts/{account}/bank_accounts/{id}:
     delete:
       description: <p>Delete a specified external account for a given account.</p>
-      summary: Delete Bank Account
-      tags:
-        - Delete
-        - Bank
-        - Account
-        - V1
-        - Account
-        - Account_links
-        - Account_sessions
-        - Accounts
-        - Bank_accounts
-        - Id
     get:
       description: <p>Retrieve a specified external account for a given account.</p>
-      summary: Retrieve Bank Account
-      tags:
-        - Retrieve
-        - Bank
-        - Account
-        - V1
-        - Account
-        - Account_links
-        - Account_sessions
-        - Accounts
-        - Bank_accounts
-        - Id
     post:
       description: >-
         <p>Updates the metadata, account holder name, account holder type of a
@@ -208,142 +106,29 @@ paths:
 
         <p>You can re-enable a disabled bank account by performing an update
         call without providing any arguments or changes.</p>
-      summary: Update Bank Account
-      tags:
-        - Update
-        - Bank
-        - Account
-        - V1
-        - Account
-        - Account_links
-        - Account_sessions
-        - Accounts
-        - Bank_accounts
-        - Id
   /v1/accounts/{account}/capabilities:
     get:
       description: >-
         <p>Returns a list of capabilities associated with the account. The
         capabilities are returned sorted by creation date, with the most recent
         capability appearing first.</p>
-      summary: Retrieve Account Capabilities
-      tags:
-        - Retrieve
-        - Account
-        - Capabilities
-        - V1
-        - Account
-        - Account_links
-        - Account_sessions
-        - Accounts
-        - Bank_accounts
-        - Id
-        - Capabilities
   /v1/accounts/{account}/capabilities/{capability}:
     get:
       description: <p>Retrieves information about the specified Account Capability.</p>
-      summary: Retrieve Account Capability
-      tags:
-        - Retrieve
-        - Account
-        - Capability
-        - V1
-        - Account
-        - Account_links
-        - Account_sessions
-        - Accounts
-        - Bank_accounts
-        - Id
-        - Capabilities
-        - Capability
     post:
       description: >-
         <p>Updates an existing Account Capability. Request or remove a
         capability by updating its <code>requested</code> parameter.</p>
-      summary: Update Account Capability
-      tags:
-        - Update
-        - Account
-        - Capability
-        - V1
-        - Account
-        - Account_links
-        - Account_sessions
-        - Accounts
-        - Bank_accounts
-        - Id
-        - Capabilities
-        - Capability
   /v1/accounts/{account}/external_accounts:
     get:
       description: <p>List external accounts for an account.</p>
-      summary: Retrieve External Accounts
-      tags:
-        - Retrieve
-        - External
-        - Accounts
-        - V1
-        - Account
-        - Account_links
-        - Account_sessions
-        - Accounts
-        - Bank_accounts
-        - Id
-        - Capabilities
-        - Capability
-        - External_accounts
     post:
       description: <p>Create an external account for a given account.</p>
-      summary: Create External Accounts
-      tags:
-        - Create
-        - External
-        - Accounts
-        - V1
-        - Account
-        - Account_links
-        - Account_sessions
-        - Accounts
-        - Bank_accounts
-        - Id
-        - Capabilities
-        - Capability
-        - External_accounts
   /v1/accounts/{account}/external_accounts/{id}:
     delete:
       description: <p>Delete a specified external account for a given account.</p>
-      summary: Delete External Account
-      tags:
-        - Delete
-        - External
-        - Account
-        - V1
-        - Account
-        - Account_links
-        - Account_sessions
-        - Accounts
-        - Bank_accounts
-        - Id
-        - Capabilities
-        - Capability
-        - External_accounts
     get:
       description: <p>Retrieve a specified external account for a given account.</p>
-      summary: Retrieve External Account
-      tags:
-        - Retrieve
-        - External
-        - Account
-        - V1
-        - Account
-        - Account_links
-        - Account_sessions
-        - Accounts
-        - Bank_accounts
-        - Id
-        - Capabilities
-        - Capability
-        - External_accounts
     post:
       description: >-
         <p>Updates the metadata, account holder name, account holder type of a
@@ -355,21 +140,6 @@ paths:
 
         <p>You can re-enable a disabled bank account by performing an update
         call without providing any arguments or changes.</p>
-      summary: Update External Account
-      tags:
-        - Update
-        - External
-        - Account
-        - V1
-        - Account
-        - Account_links
-        - Account_sessions
-        - Accounts
-        - Bank_accounts
-        - Id
-        - Capabilities
-        - Capability
-        - External_accounts
   /v1/accounts/{account}/login_links:
     post:
       description: >-
@@ -380,64 +150,14 @@ paths:
         <p><strong>You may only create login links for <a
         href="/docs/connect/express-accounts">Express accounts</a> connected to
         your platform</strong>.</p>
-      summary: Create Login Link
-      tags:
-        - Create
-        - Login
-        - Link
-        - V1
-        - Account
-        - Account_links
-        - Account_sessions
-        - Accounts
-        - Bank_accounts
-        - Id
-        - Capabilities
-        - Capability
-        - External_accounts
-        - Login_links
   /v1/accounts/{account}/people:
     get:
       description: >-
         <p>Returns a list of people associated with the account’s legal entity.
         The people are returned sorted by creation date, with the most recent
         people appearing first.</p>
-      summary: Retrieve Account Peoples
-      tags:
-        - Retrieve
-        - Account
-        - Peoples
-        - V1
-        - Account
-        - Account_links
-        - Account_sessions
-        - Accounts
-        - Bank_accounts
-        - Id
-        - Capabilities
-        - Capability
-        - External_accounts
-        - Login_links
-        - People
     post:
       description: <p>Creates a new person.</p>
-      summary: Create Account People
-      tags:
-        - Create
-        - Account
-        - People
-        - V1
-        - Account
-        - Account_links
-        - Account_sessions
-        - Accounts
-        - Bank_accounts
-        - Id
-        - Capabilities
-        - Capability
-        - External_accounts
-        - Login_links
-        - People
   /v1/accounts/{account}/people/{person}:
     delete:
       description: >-
@@ -447,110 +167,18 @@ paths:
         <code>account_opener</code>. If your integration is using the
         <code>executive</code> parameter, you cannot delete the only verified
         <code>executive</code> on file.</p>
-      summary: Delete Account People
-      tags:
-        - Delete
-        - Account
-        - People
-        - V1
-        - Account
-        - Account_links
-        - Account_sessions
-        - Accounts
-        - Bank_accounts
-        - Id
-        - Capabilities
-        - Capability
-        - External_accounts
-        - Login_links
-        - People
-        - Person
     get:
       description: <p>Retrieves an existing person.</p>
-      summary: Retrieve Account People
-      tags:
-        - Retrieve
-        - Account
-        - People
-        - V1
-        - Account
-        - Account_links
-        - Account_sessions
-        - Accounts
-        - Bank_accounts
-        - Id
-        - Capabilities
-        - Capability
-        - External_accounts
-        - Login_links
-        - People
-        - Person
     post:
       description: <p>Updates an existing person.</p>
-      summary: Delete Account People
-      tags:
-        - Delete
-        - Account
-        - People
-        - V1
-        - Account
-        - Account_links
-        - Account_sessions
-        - Accounts
-        - Bank_accounts
-        - Id
-        - Capabilities
-        - Capability
-        - External_accounts
-        - Login_links
-        - People
-        - Person
   /v1/accounts/{account}/persons:
     get:
       description: >-
         <p>Returns a list of people associated with the account’s legal entity.
         The people are returned sorted by creation date, with the most recent
         people appearing first.</p>
-      summary: Retrieve Account Persons
-      tags:
-        - Retrieve
-        - Account
-        - Persons
-        - V1
-        - Account
-        - Account_links
-        - Account_sessions
-        - Accounts
-        - Bank_accounts
-        - Id
-        - Capabilities
-        - Capability
-        - External_accounts
-        - Login_links
-        - People
-        - Person
-        - Persons
     post:
       description: <p>Creates a new person.</p>
-      summary: Create Account Person
-      tags:
-        - Create
-        - Account
-        - Person
-        - V1
-        - Account
-        - Account_links
-        - Account_sessions
-        - Accounts
-        - Bank_accounts
-        - Id
-        - Capabilities
-        - Capability
-        - External_accounts
-        - Login_links
-        - People
-        - Person
-        - Persons
   /v1/accounts/{account}/persons/{person}:
     delete:
       description: >-
@@ -560,67 +188,10 @@ paths:
         <code>account_opener</code>. If your integration is using the
         <code>executive</code> parameter, you cannot delete the only verified
         <code>executive</code> on file.</p>
-      summary: Delete Account Person
-      tags:
-        - Delete
-        - Account
-        - Person
-        - V1
-        - Account
-        - Account_links
-        - Account_sessions
-        - Accounts
-        - Bank_accounts
-        - Id
-        - Capabilities
-        - Capability
-        - External_accounts
-        - Login_links
-        - People
-        - Person
-        - Persons
     get:
       description: <p>Retrieves an existing person.</p>
-      summary: Retrieve Account Person
-      tags:
-        - Retrieve
-        - Account
-        - Person
-        - V1
-        - Account
-        - Account_links
-        - Account_sessions
-        - Accounts
-        - Bank_accounts
-        - Id
-        - Capabilities
-        - Capability
-        - External_accounts
-        - Login_links
-        - People
-        - Person
-        - Persons
     post:
       description: <p>Updates an existing person.</p>
-      summary: Update Account Person
-      tags:
-        - Update
-        - Account
-        - Person
-        - V1
-        - Account
-        - Account_links
-        - Account_sessions
-        - Accounts
-        - Bank_accounts
-        - Id
-        - Capabilities
-        - Capability
-        - External_accounts
-        - Login_links
-        - People
-        - Person
-        - Persons
   /v1/accounts/{account}/reject:
     post:
       description: >-
@@ -630,24 +201,4 @@ paths:
 
         <p>Test-mode Custom and Express accounts can be rejected at any time.
         Accounts created using live-mode keys may only be rejected once all
-        balances are zero.</p>
-      summary: Reject Account
-      tags:
-        - Reject
-        - Account
-        - V1
-        - Account
-        - Account_links
-        - Account_sessions
-        - Accounts
-        - Bank_accounts
-        - Id
-        - Capabilities
-        - Capability
-        - External_accounts
-        - Login_links
-        - People
-        - Person
-        - Persons
-        - Reject
-components: nu
+        balances are z

@@ -1,0 +1,41 @@
+openapi: 3.1.0
+info:
+  title: Box Sign Requests API
+paths:
+  /sign_requests/{sign_request_id}/cancel:
+    post:
+      summary: Cancel sign request
+      tags:
+        - Sign requests
+      description: Cancels a sign request.
+  /sign_requests/{sign_request_id}/resend:
+    post:
+      summary: Resend sign request
+      tags:
+        - Sign requests
+      description: Resends a sign request email to all outstanding signers.
+  /sign_requests/{sign_request_id}:
+    get:
+      summary: Get sign request by ID
+      tags:
+        - Sign requests
+      description: Gets a sign request by ID.
+  /sign_requests:
+    get:
+      summary: List sign requests
+      tags:
+        - Sign requests
+      description: >-
+        Gets sign requests created by a user. If the `sign_files` and/or
+
+        `parent_folder` are deleted, the sign request will not return in the
+        list.
+    post:
+      summary: Create sign request
+      tags:
+        - Sign requests
+      description: >-
+        Creates a sign request. This involves preparing a document for signing
+        and
+
+        sending the sign request to signer

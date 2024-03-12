@@ -1,0 +1,84 @@
+openapi: 3.0.3
+info:
+  title: Pages V3
+  version: ''
+tags:
+  - name: Pages (Bulk)
+  - name: Pages (Single)
+paths:
+  /content/pages:
+    get:
+      tags:
+        - Pages (Bulk)
+      description: >-
+        Returns one or more content pages. This endpoint supports bulk
+        operations.
+      summary: Get Pages
+    post:
+      tags:
+        - Pages (Bulk)
+      description: >-
+        Creates one or more content pages. This endpoint supports bulk
+        operations.
+      summary: Create Pages
+    put:
+      tags:
+        - Pages (Bulk)
+      description: >-
+        Updates one or more content pages. This endpoint supports bulk
+        operations.
+      summary: Update Pages
+    delete:
+      tags:
+        - Pages (Bulk)
+      description: >-
+        Deletes one or more content pages. This endpoint supports bulk
+        operations.
+
+
+        > #### Warning
+
+        > **Pay attention to query parameters**
+
+        > If you attempt to delete multiple pages by passing more than one page
+        ID to `id:in` and one or more of them does not exist, you will receive a
+        404 response. However, the pages corresponding to the page IDs that do
+        exist will still be deleted.
+      summary: Delete Pages
+    parameters:
+      - null
+  /content/pages/{pageId}:
+    get:
+      tags:
+        - Pages (Single)
+      description: >-
+        Returns one content page.
+
+
+        > #### Warning
+
+        > **Pay attention to query parameters**
+
+        > This endpoint recognizes the same query parameters as [Get Multiple
+        Pages](/docs/rest-content/pages#get-pages). If the requested page does
+        not meet the query parameters you specify, you will receive a 404
+        response even if the requested `pageId` does exist.
+      summary: Get a Page
+    put:
+      tags:
+        - Pages (Single)
+      description: Updates one content page.
+      summary: Update a Page
+    delete:
+      tags:
+        - Pages (Single)
+      description: |-
+        Deletes one content page.
+
+        > #### Warning
+        > **Query parameters not recognized**
+        > This endpoint does not recognize query parameters.
+      summary: Delete a Page
+    parameters:
+      - null
+      - nu

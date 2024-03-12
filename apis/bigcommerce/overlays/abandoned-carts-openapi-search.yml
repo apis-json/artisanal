@@ -1,0 +1,68 @@
+openapi: 3.0.0
+info:
+  version: ''
+  title: Abandoned Carts
+tags:
+  - name: Abandoned Carts
+  - name: Abandoned Cart Settings
+  - name: Abandoned Carts Settings
+paths:
+  /abandoned-carts/settings:
+    get:
+      summary: Get Global Abandoned Cart Settings
+      description: Returns the global abandoned cart settings of a store.
+      tags:
+        - Abandoned Cart Settings
+    put:
+      summary: Update Global Abandoned Cart Settings
+      description: Updates the global abandoned cart settings of a store.
+      tags:
+        - Abandoned Carts Settings
+    parameters:
+      - null
+  /abandoned-carts/settings/channels/{channel_id}:
+    get:
+      summary: Get Channel Abandoned Cart Settings
+      description: >-
+        Returns the per-channel overrides for the abandoned cart settings of a
+        store.
+      tags:
+        - Abandoned Carts Settings
+    put:
+      summary: Update Channel Abandoned Cart Settings
+      description: >-
+        Updates the per-channel overrides for the abandoned cart settings of a
+        store.
+
+
+        #### OAuth Scopes
+
+        | UI Name                                      | Permission |
+        Parameter                                     |
+
+        |-------------------------------------|------------|-----------------------------------------------|     
+
+        | Information & Settings                       | modify     |
+        `store_v2_information`                        |
+      tags:
+        - Abandoned Carts Settings
+    parameters:
+      - null
+      - null
+  /abandoned-carts/{token}:
+    get:
+      summary: Get an Abandoned Cart
+      description: >-
+        Returns the `cart_id` corresponding to the abandoned cart `{token}`
+        passed in.
+
+
+        **Usage Notes**:
+
+        * `{token}` is the token in the query string of the abandoned cart link
+        found in abandoned cart email notifications to shoppers
+      tags:
+        - Abandoned Carts
+    parameters:
+      - null
+      - nu

@@ -25,86 +25,36 @@ paths:
         feature variations used for the experiment. </p> <p>If the user is not
         assigned to a launch or experiment, they are served the default
         variation.</p>
-      tags:
-        - Batch
-        - Evaluate
-        - Feature
-        - Projects
-        - Project
-        - Evaluations
   /projects/{project}/experiments:
     GET:
       summary: ListExperiments
       description: >-
         <p>Returns configuration details about all the experiments in the
         specified project.</p>
-      tags:
-        - List
-        - Experiments
-        - Projects
-        - Project
-        - Evaluations
-        - Experiments
   /projects/{project}/features:
     GET:
       summary: ListFeatures
       description: >-
         <p>Returns configuration details about all the features in the specified
         project.</p>
-      tags:
-        - List
-        - Features
-        - Projects
-        - Project
-        - Evaluations
-        - Experiments
-        - Features
   /projects/{project}/launches:
     GET:
       summary: ListLaunches
       description: >-
         <p>Returns configuration details about all the launches in the specified
         project.</p>
-      tags:
-        - List
-        - Launches
-        - Projects
-        - Project
-        - Evaluations
-        - Experiments
-        - Features
-        - Launches
   /projects:
     GET:
       summary: ListProjects
       description: >-
         <p>Returns configuration details about all the projects in the current
         Region in your account.</p>
-      tags:
-        - List
-        - Projects
-        - Projects
-        - Project
-        - Evaluations
-        - Experiments
-        - Features
-        - Launches
   /segments:
     GET:
       summary: ListSegments
       description: >-
         <p>Returns a list of audience segments that you have created in your
         account in this Region.</p>
-      tags:
-        - List
-        - Segments
-        - Projects
-        - Project
-        - Evaluations
-        - Experiments
-        - Features
-        - Launches
-        - Segments
   /projects/{project}/experiments/{experiment}:
     PATCH:
       summary: UpdateExperiment
@@ -113,17 +63,6 @@ paths:
         update an experiment's tag. Instead, use <a
         href="https://docs.aws.amazon.com/cloudwatchevidently/latest/APIReference/API_TagResource.html">TagResource</a>.
         </p>
-      tags:
-        - Update
-        - Experiment
-        - Projects
-        - Project
-        - Evaluations
-        - Experiments
-        - Features
-        - Launches
-        - Segments
-        - Experiment
   /projects/{project}/features/{feature}:
     PATCH:
       summary: UpdateFeature
@@ -132,18 +71,6 @@ paths:
         update the tags of an existing feature. Instead, use <a
         href="https://docs.aws.amazon.com/cloudwatchevidently/latest/APIReference/API_TagResource.html">TagResource</a>.
         </p>
-      tags:
-        - Update
-        - Feature
-        - Projects
-        - Project
-        - Evaluations
-        - Experiments
-        - Features
-        - Launches
-        - Segments
-        - Experiment
-        - Feature
   /projects/{project}/launches/{launch}:
     PATCH:
       summary: UpdateLaunch
@@ -152,19 +79,6 @@ paths:
         to update the tags of an existing launch. Instead, use <a
         href="https://docs.aws.amazon.com/cloudwatchevidently/latest/APIReference/API_TagResource.html">TagResource</a>.
         </p>
-      tags:
-        - Update
-        - Launch
-        - Projects
-        - Project
-        - Evaluations
-        - Experiments
-        - Features
-        - Launches
-        - Segments
-        - Experiment
-        - Feature
-        - Launch
   /projects/{project}:
     PATCH:
       summary: UpdateProject
@@ -179,39 +93,12 @@ paths:
         Instead, use <a
         href="https://docs.aws.amazon.com/cloudwatchevidently/latest/APIReference/API_TagResource.html">TagResource</a>.
         </p>
-      tags:
-        - Update
-        - Project
-        - Projects
-        - Project
-        - Evaluations
-        - Experiments
-        - Features
-        - Launches
-        - Segments
-        - Experiment
-        - Feature
-        - Launch
   /segments/{segment}:
     GET:
       summary: GetSegment
       description: >-
         <p>Returns information about the specified segment. Specify the segment
         you want to view by specifying its ARN.</p>
-      tags:
-        - Get
-        - Segment
-        - Projects
-        - Project
-        - Evaluations
-        - Experiments
-        - Features
-        - Launches
-        - Segments
-        - Experiment
-        - Feature
-        - Launch
-        - Segment
   /projects/{project}/evaluations/{feature}:
     POST:
       summary: EvaluateFeature
@@ -245,20 +132,6 @@ paths:
         allocation of the various feature variations used for the experiment.
         </p> <p>If the user is not assigned to a launch or experiment, they are
         served the default variation.</p>
-      tags:
-        - Evaluate
-        - Feature
-        - Projects
-        - Project
-        - Evaluations
-        - Experiments
-        - Features
-        - Launches
-        - Segments
-        - Experiment
-        - Feature
-        - Launch
-        - Segment
   /projects/{project}/experiments/{experiment}/results:
     POST:
       summary: GetExperimentResults
@@ -273,167 +146,40 @@ paths:
         statistical significance.</p> <p>Experiment results are available up to
         63 days after the start of the experiment. They are not available after
         that because of CloudWatch data retention policies.</p>
-      tags:
-        - Get
-        - Experiment
-        - Results
-        - Projects
-        - Project
-        - Evaluations
-        - Experiments
-        - Features
-        - Launches
-        - Segments
-        - Experiment
-        - Feature
-        - Launch
-        - Segment
-        - Results
   /segments/{segment}/references:
     GET:
       summary: ListSegmentReferences
       description: >-
         <p>Use this operation to find which experiments or launches are using a
         specified segment.</p>
-      tags:
-        - List
-        - Segment
-        - References
-        - Projects
-        - Project
-        - Evaluations
-        - Experiments
-        - Features
-        - Launches
-        - Segments
-        - Experiment
-        - Feature
-        - Launch
-        - Segment
-        - Results
-        - References
   /tags/{resourceArn}:
     DELETE:
       summary: UntagResource
       description: <p>Removes one or more tags from the specified resource.</p>
-      tags:
-        - Untag
-        - Resource
-        - Projects
-        - Project
-        - Evaluations
-        - Experiments
-        - Features
-        - Launches
-        - Segments
-        - Experiment
-        - Feature
-        - Launch
-        - Segment
-        - Results
-        - References
-        - Arn
   /events/projects/{project}:
     POST:
       summary: PutProjectEvents
       description: >-
         <p>Sends performance events to Evidently. These events can be used to
         evaluate a launch or an experiment.</p>
-      tags:
-        - Put
-        - Project
-        - Events
-        - Projects
-        - Project
-        - Evaluations
-        - Experiments
-        - Features
-        - Launches
-        - Segments
-        - Experiment
-        - Feature
-        - Launch
-        - Segment
-        - Results
-        - References
-        - Arn
-        - Events
   /projects/{project}/experiments/{experiment}/start:
     POST:
       summary: StartExperiment
       description: >-
         <p>Starts an existing experiment. To create an experiment, use <a
         href="https://docs.aws.amazon.com/cloudwatchevidently/latest/APIReference/API_CreateExperiment.html">CreateExperiment</a>.</p>
-      tags:
-        - Start
-        - Experiment
-        - Projects
-        - Project
-        - Evaluations
-        - Experiments
-        - Features
-        - Launches
-        - Segments
-        - Experiment
-        - Feature
-        - Launch
-        - Segment
-        - Results
-        - References
-        - Arn
-        - Events
-        - Start
   /projects/{project}/launches/{launch}/start:
     POST:
       summary: StartLaunch
       description: >-
         <p>Starts an existing launch. To create a launch, use <a
         href="https://docs.aws.amazon.com/cloudwatchevidently/latest/APIReference/API_CreateLaunch.html">CreateLaunch</a>.</p>
-      tags:
-        - Start
-        - Launch
-        - Projects
-        - Project
-        - Evaluations
-        - Experiments
-        - Features
-        - Launches
-        - Segments
-        - Experiment
-        - Feature
-        - Launch
-        - Segment
-        - Results
-        - References
-        - Arn
-        - Events
-        - Start
   /projects/{project}/experiments/{experiment}/cancel:
     POST:
       summary: StopExperiment
       description: >-
         <p>Stops an experiment that is currently running. If you stop an
         experiment, you can't resume it or restart it.</p>
-      tags:
-        - Stop
-        - Experiment
-        - Projects
-        - Project
-        - Evaluations
-        - Experiments
-        - Features
-        - Launches
-        - Segments
-        - Experiment
-        - Feature
-        - Launch
-        - Segment
-        - Results
-        - References
-        - Arn
-        - Events
-        - Start
-        - Cancel
   /projects/{project}/launches/{launch}/cancel:
     POST:
       summary: StopLaunch
@@ -444,26 +190,6 @@ paths:
         allocated to the launch will instead be available to the feature's
         experiment, if there is one. Otherwise, all traffic will be served the
         default variation after the launch is stopped.</p>
-      tags:
-        - Stop
-        - Launch
-        - Projects
-        - Project
-        - Evaluations
-        - Experiments
-        - Features
-        - Launches
-        - Segments
-        - Experiment
-        - Feature
-        - Launch
-        - Segment
-        - Results
-        - References
-        - Arn
-        - Events
-        - Start
-        - Cancel
   /test-segment-pattern:
     POST:
       summary: TestSegmentPattern
@@ -471,29 +197,6 @@ paths:
         <p>Use this operation to test a rules pattern that you plan to use to
         create an audience segment. For more information about segments, see <a
         href="https://docs.aws.amazon.com/cloudwatchevidently/latest/APIReference/API_CreateSegment.html">CreateSegment</a>.</p>
-      tags:
-        - Test
-        - Segment
-        - Pattern
-        - Projects
-        - Project
-        - Evaluations
-        - Experiments
-        - Features
-        - Launches
-        - Segments
-        - Experiment
-        - Feature
-        - Launch
-        - Segment
-        - Results
-        - References
-        - Arn
-        - Events
-        - Start
-        - Cancel
-        - Test
-        - Pattern
   /projects/{project}/data-delivery:
     PATCH:
       summary: UpdateProjectDataDelivery
@@ -503,30 +206,4 @@ paths:
         choose not to store evaluation events, Evidently deletes them after
         using them to produce metrics and other experiment results that you can
         view.</p> <p>You can't specify both <code>cloudWatchLogs</code> and
-        <code>s3Destination</code> in the same operation.</
-      tags:
-        - Update
-        - Project
-        - Data
-        - Delivery
-        - Projects
-        - Project
-        - Evaluations
-        - Experiments
-        - Features
-        - Launches
-        - Segments
-        - Experiment
-        - Feature
-        - Launch
-        - Segment
-        - Results
-        - References
-        - Arn
-        - Events
-        - Start
-        - Cancel
-        - Test
-        - Pattern
-        - Data
-        - De
+        <code>s3Destination</code> in the same operat

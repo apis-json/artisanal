@@ -1,9 +1,22 @@
+openapi: 3.0.1
 info:
   title: Twilio - Accounts
   license:
     name: Apache 2.0
     url: https://www.apache.org/licenses/LICENSE-2.0.html
-openapi: 3.0.1
+tags:
+  - name: AccountsV1AuthTokenPromotion
+  - name: AccountsV1Aws
+  - name: AccountsV1PublicKey
+  - name: AccountsV1Safelist
+  - name: AccountsV1SecondaryAuthToken
+x-maturity:
+  - name: GA
+    description: This product is Generally Available.
+  - name: Beta
+    description: >-
+      PLEASE NOTE that this is a Beta product that is subject to change. Use it
+      with caution.
 paths:
   /v1/AuthTokens/Promote:
     description: Auth Token promotion
@@ -13,13 +26,7 @@ paths:
         token, all requests to Twilio using your old primary Auth Token will
         result in an error.
       tags:
-        - Promote
-        - Auth
-        - Token
-        - Auth
-        - Tokens
-        - Promote
-      summary: Promote Auth Token
+        - AccountsV1AuthTokenPromotion
   /v1/Credentials:
     description: 'TODO: Resource-level docs'
   /v1/Credentials/AWS:
@@ -29,58 +36,25 @@ paths:
         Retrieves a collection of AWS Credentials belonging to the account used
         to make the request
       tags:
-        - Retrieve
-        - Credentials
-        - Auth
-        - Tokens
-        - Promote
-        - Credentials
-      summary: Retrieve AWS Credentials
+        - AccountsV1Aws
     post:
       description: Create a new AWS Credential
       tags:
-        - Create
-        - Credential
-        - Auth
-        - Tokens
-        - Promote
-        - Credentials
-      summary: Create AWS Credential
+        - AccountsV1Aws
   /v1/Credentials/AWS/{Sid}:
     description: User provided AWS keys
     get:
       description: Fetch the AWS credentials specified by the provided Credential Sid
       tags:
-        - Retrieve
-        - Credential
-        - Auth
-        - Tokens
-        - Promote
-        - Credentials
-        - Sid
-      summary: Retrieve AWS Credential
+        - AccountsV1Aws
     post:
       description: Modify the properties of a given Account
       tags:
-        - Modify
-        - Account
-        - Auth
-        - Tokens
-        - Promote
-        - Credentials
-        - Sid
-      summary: Modify AWS Account
+        - AccountsV1Aws
     delete:
       description: Delete a Credential from your account
       tags:
-        - Delete
-        - Account
-        - Auth
-        - Tokens
-        - Promote
-        - Credentials
-        - Sid
-      summary: Delete AWS Account
+        - AccountsV1Aws
   /v1/Credentials/PublicKeys:
     description: User provided public keys
     get:
@@ -88,199 +62,46 @@ paths:
         Retrieves a collection of Public Key Credentials belonging to the
         account used to make the request
       tags:
-        - Retrieve
-        - Public
-        - Keys
-        - Auth
-        - Tokens
-        - Promote
-        - Credentials
-        - Sid
-        - Public
-        - Keys
-      summary: Retrieve Public Keys
+        - AccountsV1PublicKey
     post:
       description: Create a new Public Key Credential
       tags:
-        - Create
-        - Public
-        - Key
-        - Auth
-        - Tokens
-        - Promote
-        - Credentials
-        - Sid
-        - Public
-        - Keys
-      summary: Create Public Key
+        - AccountsV1PublicKey
   /v1/Credentials/PublicKeys/{Sid}:
     description: User provided public keys
     get:
       description: Fetch the public key specified by the provided Credential Sid
       tags:
-        - Retrieve
-        - Public
-        - Key
-        - Auth
-        - Tokens
-        - Promote
-        - Credentials
-        - Sid
-        - Public
-        - Keys
-      summary: Retrieve Public Key
+        - AccountsV1PublicKey
     post:
       description: Modify the properties of a given Account
       tags:
-        - Update
-        - Public
-        - Key
-        - Auth
-        - Tokens
-        - Promote
-        - Credentials
-        - Sid
-        - Public
-        - Keys
-      summary: Update Public Key
+        - AccountsV1PublicKey
     delete:
       description: Delete a Credential from your account
       tags:
-        - Delete
-        - Public
-        - Key
-        - Auth
-        - Tokens
-        - Promote
-        - Credentials
-        - Sid
-        - Public
-        - Keys
-      summary: Delete Public Key
+        - AccountsV1PublicKey
   /v1/SafeList/Numbers:
     description: 'TODO: Resource-level docs'
     post:
       description: Add a new phone number to SafeList.
       tags:
-        - Add
-        - Safe
-        - List
-        - Phone
-        - Number
-        - Auth
-        - Tokens
-        - Promote
-        - Credentials
-        - Sid
-        - Public
-        - Keys
-        - Safe
-        - List
-        - Numbers
-      summary: Add SafeList Phone Number
+        - AccountsV1Safelist
     get:
       description: Check if a phone number exists in SafeList.
       tags:
-        - Get
-        - Safe
-        - List
-        - Phone
-        - Number
-        - Auth
-        - Tokens
-        - Promote
-        - Credentials
-        - Sid
-        - Public
-        - Keys
-        - Safe
-        - List
-        - Numbers
-      summary: Get SafeList Phone Number
+        - AccountsV1Safelist
     delete:
       description: Remove a phone number from SafeList.
       tags:
-        - Delete
-        - Safe
-        - List
-        - Phone
-        - Number
-        - Auth
-        - Tokens
-        - Promote
-        - Credentials
-        - Sid
-        - Public
-        - Keys
-        - Safe
-        - List
-        - Numbers
-      summary: Delete SafeList Phone Number
+        - AccountsV1Safelist
   /v1/AuthTokens/Secondary:
     description: Secondary Auth Token
     post:
       description: Create a new secondary Auth Token
       tags:
-        - Create
-        - Auth
-        - Token
-        - Auth
-        - Tokens
-        - Promote
-        - Credentials
-        - Sid
-        - Public
-        - Keys
-        - Safe
-        - List
-        - Numbers
-        - Secondary
-      summary: Create Auth Token
+        - AccountsV1SecondaryAuthToken
     delete:
       description: Delete the secondary Auth Token from your account
       tags:
-        - Delete
-        - Auth
-        - Token
-        - Auth
-        - Tokens
-        - Promote
-        - Credentials
-        - Sid
-        - Public
-        - Keys
-        - Safe
-        - List
-        - Numbers
-        - Secondary
-      summary: Delete Auth Token
-tags:
-  - name: Authentication
-    description: Needs a description.
-  - name: Promotion
-    description: Needs a description.
-  - name: Tokens
-    description: Needs a description.
-  - name: Credentials
-    description: Needs a description.
-  - name: AWS
-    description: Needs a description.
-  - name: Public Keys
-    description: Needs a description.
-  - name: Keys
-    description: Needs a description.
-  - name: Lists
-    description: Needs a description.
-  - name: Numbers
-    description: Needs a description.
-  - name: Phone Numbers
-    description: Needs a description.
-  - name: Safety
-    description: Needs a description.
-x-maturity:
-  - name: GA
-    description: This product is Generally Available.
-  - name: Beta
-    description: >-
-      PLEASE NOTE that this is a Beta product that is subject to change. Use it
-      with ca
+        - AccountsV1SecondaryA

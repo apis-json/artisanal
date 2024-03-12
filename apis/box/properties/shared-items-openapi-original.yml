@@ -1,0 +1,1705 @@
+openapi: 3.1.0
+info:
+  title: Box Shared Items API
+  description: Needs a description.
+paths:
+  /shared_items:
+    get:
+      operationId: get_shared_items
+      summary: Find file for shared link
+      tags:
+        - Shared links (Files)
+      x-box-tag: shared_links_files
+      x-box-enable-explorer: true
+      description: |-
+        Returns the file represented by a shared link.
+
+        A shared file can be represented by a shared link,
+        which can originate within the current enterprise or within another.
+
+        This endpoint allows an application to retrieve information about a
+        shared file when only given a shared link.
+
+        The `shared_link_permission_options` array field can be returned
+        by requesting it in the `fields` query parameter.
+      parameters:
+        - name: if-none-match
+          description: |-
+            Ensures an item is only returned if it has changed.
+
+            Pass in the item's last observed `etag` value
+            into this header and the endpoint will fail
+            with a `304 Not Modified` if the item has not
+            changed since.
+          in: header
+          required: false
+          example: '1'
+          schema:
+            type: string
+        - name: fields
+          description: |-
+            A comma-separated list of attributes to include in the
+            response. This can be used to request fields that are
+            not normally returned in a standard response.
+
+            Be aware that specifying this parameter will have the
+            effect that none of the standard fields are returned in
+            the response unless explicitly specified, instead only
+            fields for the mini representation are returned, additional
+            to the fields requested.
+          in: query
+          example:
+            - id
+            - type
+            - name
+          required: false
+          explode: false
+          schema:
+            type: array
+            items:
+              type: string
+        - name: boxapi
+          description: |-
+            A header containing the shared link and optional password for the
+            shared link.
+
+            The format for this header is as follows.
+
+            `shared_link=[link]&shared_link_password=[password]`
+          example: shared_link=[link]&shared_link_password=[password]
+          in: header
+          required: true
+          schema:
+            type: string
+      responses:
+        '200':
+          description: |-
+            Returns a full file resource if the shared link is valid and
+            the user has access to it.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/File--Full'
+        '304':
+          description: >-
+            Returns an empty response when the `If-None-Match` header matches
+
+            the current `etag` value of the folder. This indicates that the
+            folder
+
+            has not changed since it was last requested.
+        default:
+          description: An unexpected client error.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ClientError'
+  /shared_items#folders:
+    get:
+      operationId: get_shared_items#folders
+      summary: Find folder for shared link
+      tags:
+        - Shared links (Folders)
+      x-box-tag: shared_links_folders
+      x-box-enable-explorer: true
+      description: |-
+        Return the folder represented by a shared link.
+
+        A shared folder can be represented by a shared link,
+        which can originate within the current enterprise or within another.
+
+        This endpoint allows an application to retrieve information about a
+        shared folder when only given a shared link.
+      parameters:
+        - name: if-none-match
+          description: |-
+            Ensures an item is only returned if it has changed.
+
+            Pass in the item's last observed `etag` value
+            into this header and the endpoint will fail
+            with a `304 Not Modified` if the item has not
+            changed since.
+          in: header
+          required: false
+          example: '1'
+          schema:
+            type: string
+        - name: fields
+          description: |-
+            A comma-separated list of attributes to include in the
+            response. This can be used to request fields that are
+            not normally returned in a standard response.
+
+            Be aware that specifying this parameter will have the
+            effect that none of the standard fields are returned in
+            the response unless explicitly specified, instead only
+            fields for the mini representation are returned, additional
+            to the fields requested.
+          in: query
+          example:
+            - id
+            - type
+            - name
+          required: false
+          explode: false
+          schema:
+            type: array
+            items:
+              type: string
+        - name: boxapi
+          description: |-
+            A header containing the shared link and optional password for the
+            shared link.
+
+            The format for this header is as follows.
+
+            `shared_link=[link]&shared_link_password=[password]`
+          example: shared_link=[link]&shared_link_password=[password]
+          in: header
+          required: true
+          schema:
+            type: string
+      responses:
+        '200':
+          description: |-
+            Returns a full folder resource if the shared link is valid and
+            the user has access to it.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Folder--Full'
+        '304':
+          description: >-
+            Returns an empty response when the `If-None-Match` header matches
+
+            the current `etag` value of the folder. This indicates that the
+            folder
+
+            has not changed since it was last requested.
+        default:
+          description: An unexpected client error.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ClientError'
+  /shared_items#web_links:
+    get:
+      operationId: get_shared_items#web_links
+      summary: Find web link for shared link
+      tags:
+        - Shared links (Web Links)
+      x-box-tag: shared_links_web_links
+      x-box-enable-explorer: true
+      description: |-
+        Returns the web link represented by a shared link.
+
+        A shared web link can be represented by a shared link,
+        which can originate within the current enterprise or within another.
+
+        This endpoint allows an application to retrieve information about a
+        shared web link when only given a shared link.
+      parameters:
+        - name: if-none-match
+          description: |-
+            Ensures an item is only returned if it has changed.
+
+            Pass in the item's last observed `etag` value
+            into this header and the endpoint will fail
+            with a `304 Not Modified` if the item has not
+            changed since.
+          in: header
+          required: false
+          example: '1'
+          schema:
+            type: string
+        - name: fields
+          description: |-
+            A comma-separated list of attributes to include in the
+            response. This can be used to request fields that are
+            not normally returned in a standard response.
+
+            Be aware that specifying this parameter will have the
+            effect that none of the standard fields are returned in
+            the response unless explicitly specified, instead only
+            fields for the mini representation are returned, additional
+            to the fields requested.
+          in: query
+          example:
+            - id
+            - type
+            - name
+          required: false
+          explode: false
+          schema:
+            type: array
+            items:
+              type: string
+        - name: boxapi
+          description: |-
+            A header containing the shared link and optional password for the
+            shared link.
+
+            The format for this header is as follows.
+
+            `shared_link=[link]&shared_link_password=[password]`
+          example: shared_link=[link]&shared_link_password=[password]
+          in: header
+          required: true
+          schema:
+            type: string
+      responses:
+        '200':
+          description: |-
+            Returns a full file resource if the shared link is valid and
+            the user has access to it.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/WebLink'
+        '304':
+          description: >-
+            Returns an empty response when the `If-None-Match` header matches
+
+            the current `etag` value of the folder. This indicates that the
+            folder
+
+            has not changed since it was last requested.
+        default:
+          description: An unexpected client error.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ClientError'
+components:
+  schemas:
+    File--Full:
+      title: File (Full)
+      type: object
+      x-box-resource-id: file--full
+      x-box-variant: full
+      description: |-
+        A full representation of a file, as can be returned from any
+        file API endpoints by default
+      allOf:
+        - $ref: '#/components/schemas/File'
+        - properties:
+            version_number:
+              type: string
+              example: '1'
+              description: The version number of this file
+            comment_count:
+              type: integer
+              example: 10
+              description: The number of comments on this file
+            permissions:
+              allOf:
+                - type: object
+                  description: The permissions that the authenticated user has for a file.
+                  required:
+                    - can_annotate
+                    - can_comment
+                    - can_preview
+                    - can_upload
+                    - can_view_annotations_all
+                    - can_view_annotations_self
+                  allOf:
+                    - type: object
+                      description: >-
+                        The permissions that the authenticated user has for an
+                        item.
+                      required:
+                        - can_delete
+                        - can_download
+                        - can_invite_collaborator
+                        - can_rename
+                        - can_set_share_access
+                        - can_share
+                      properties:
+                        can_delete:
+                          type: boolean
+                          description: Specifies if the current user can delete this item.
+                          example: true
+                          nullable: false
+                        can_download:
+                          type: boolean
+                          description: >-
+                            Specifies if the current user can download this
+                            item.
+                          example: true
+                          nullable: false
+                        can_invite_collaborator:
+                          type: boolean
+                          description: >-
+                            Specifies if the current user can invite new
+
+                            users to collaborate on this item, and if the user
+                            can
+
+                            update the role of a user already collaborated on
+                            this
+
+                            item.
+                          example: true
+                          nullable: false
+                        can_rename:
+                          type: boolean
+                          description: Specifies if the user can rename this item.
+                          example: true
+                          nullable: false
+                        can_set_share_access:
+                          type: boolean
+                          description: >-
+                            Specifies if the user can change the access level of
+                            an
+
+                            existing shared link on this item.
+                          example: true
+                          nullable: false
+                        can_share:
+                          type: boolean
+                          description: >-
+                            Specifies if the user can create a shared link for
+                            this item.
+                          example: true
+                          nullable: false
+                    - properties:
+                        can_annotate:
+                          type: boolean
+                          description: >-
+                            Specifies if the user can place annotations on this
+                            file.
+                          example: true
+                          nullable: false
+                        can_comment:
+                          type: boolean
+                          description: >-
+                            Specifies if the user can place comments on this
+                            file.
+                          example: true
+                          nullable: false
+                        can_preview:
+                          type: boolean
+                          description: Specifies if the user can preview this file.
+                          example: true
+                          nullable: false
+                        can_upload:
+                          type: boolean
+                          description: >-
+                            Specifies if the user can upload a new version of
+                            this file.
+                          example: true
+                          nullable: false
+                        can_view_annotations_all:
+                          type: boolean
+                          description: >-
+                            Specifies if the user view all annotations placed on
+                            this file
+                          example: true
+                          nullable: false
+                        can_view_annotations_self:
+                          type: boolean
+                          description: >-
+                            Specifies if the user view annotations placed by
+                            themselves
+
+                            on this file
+                          example: true
+                          nullable: false
+                - description: |-
+                    Describes the permissions that the current user has
+                    for this file.
+                - nullable: false
+            tags:
+              allOf:
+                - type: array
+                  example:
+                    - approved
+                  items:
+                    type: string
+                  minItems: 1
+                  maxItems: 100
+                  description: |-
+                    The tags for this item. These tags are shown in
+                    the Box web app and mobile apps next to an item.
+
+                    To add or remove a tag, retrieve the item's current tags,
+                    modify them, and then update this field.
+
+                    There is a limit of 100 tags per item, and 10,000
+                    unique tags per enterprise.
+                - nullable: false
+            lock:
+              allOf:
+                - title: Lock
+                  type: object
+                  description: >-
+                    The lock held on a file. A lock prevents a file from being
+                    moved,
+
+                    renamed, or otherwise changed by anyone else than the user
+                    who created the
+
+                    lock.
+                  properties:
+                    id:
+                      type: string
+                      description: The unique identifier for this lock
+                      example: '11446498'
+                    type:
+                      type: string
+                      description: '`lock`'
+                      example: lock
+                      enum:
+                        - lock
+                    created_by:
+                      allOf:
+                        - $ref: '#/components/schemas/User--Mini'
+                        - description: The user who created the lock.
+                    created_at:
+                      type: string
+                      format: date-time
+                      example: '2012-12-12T10:53:43-08:00'
+                      description: The time this lock was created at.
+                    expired_at:
+                      type: string
+                      format: date-time
+                      example: '2012-12-12T10:53:43-08:00'
+                      description: >-
+                        The time this lock is to expire at, which might be in
+                        the past.
+                    is_download_prevented:
+                      type: boolean
+                      example: true
+                      description: Whether or not the file can be downloaded while locked.
+                    app_type:
+                      type: string
+                      description: >-
+                        If the lock is managed by an application rather than a
+                        user, this
+
+                        field identifies the type of the application that holds
+                        the lock.
+
+                        This is an open enum and may be extended with additional
+                        values in
+
+                        the future.
+                      enum:
+                        - gsuite
+                        - office_wopi
+                        - office_wopiplus
+                        - other
+                      example: office_wopiplus
+                      nullable: true
+                - description: >-
+                    The lock held on this file. If there is no lock, this can
+                    either
+
+                    be `null` or have a timestamp in the past.
+              nullable: true
+            extension:
+              type: string
+              example: pdf
+              description: >-
+                Indicates the (optional) file extension for this file. By
+                default,
+
+                this is set to an empty string.
+            is_package:
+              type: boolean
+              example: true
+              description: |-
+                Indicates if the file is a package. Packages are commonly used
+                by Mac Applications and can include iWork files.
+            expiring_embed_link:
+              allOf:
+                - title: Expiring embed link
+                  type: object
+                  description: An expiring Box Embed Link.
+                  allOf:
+                    - type: object
+                      description: The basics of an access token
+                      properties:
+                        access_token:
+                          type: string
+                          format: token
+                          example: >-
+                            c3FIOG9vSGV4VHo4QzAyg5T1JvNnJoZ3ExaVNyQWw6WjRsanRKZG5lQk9qUE1BVQ
+                          description: The requested access token.
+                        expires_in:
+                          type: integer
+                          format: int64
+                          example: 3600
+                          description: The time in seconds by which this token will expire.
+                        token_type:
+                          type: string
+                          enum:
+                            - bearer
+                          example: bearer
+                          description: The type of access token returned.
+                        restricted_to:
+                          type: array
+                          description: >-
+                            The permissions that this access token permits,
+
+                            providing a list of resources (files, folders, etc)
+
+                            and the scopes permitted for each of those
+                            resources.
+                          items:
+                            $ref: '#/components/schemas/FileOrFolderScope'
+                    - properties:
+                        url:
+                          type: string
+                          format: url
+                          example: https://cloud.app.box.com/preview/expiring_embed/...
+                          description: >-
+                            The actual expiring embed URL for this file,
+                            constructed
+
+                            from the file ID and access tokens specified in this
+                            object.
+                - description: >-
+                    Requesting this field creates an expiring Box Embed URL for
+                    an
+
+                    embedded preview session in an `iframe`.
+
+
+                    This URL will expire after 60 seconds and the session will
+
+                    expire after 60 minutes.
+
+
+                    Not all file types are supported for these embed URLs. Box
+                    Embed
+
+                    is not optimized for mobile browsers and should not be used
+                    in web
+
+                    experiences designed for mobile devices. Many UI elements,
+                    like
+
+                    the **download** and **print** options might not show in
+                    mobile
+
+                    browsers.
+            watermark_info:
+              allOf:
+                - type: object
+                  description: Details about the watermark applied to this item
+                  properties:
+                    is_watermarked:
+                      type: boolean
+                      description: Specifies if this item has a watermark applied.
+                      example: true
+                      nullable: false
+                - description: Details about the watermark applied to this file
+            is_accessible_via_shared_link:
+              type: boolean
+              description: |-
+                Specifies if the file can be accessed
+                via the direct shared link or a shared link
+                to a parent folder.
+              example: true
+              enum:
+                - true
+                - false
+            allowed_invitee_roles:
+              type: array
+              example:
+                - editor
+              nullable: false
+              description: |-
+                A list of the types of roles that user can be invited at
+                when sharing this file.
+              items:
+                type: string
+                enum:
+                  - editor
+                  - viewer
+                  - previewer
+                  - uploader
+                  - previewer uploader
+                  - viewer uploader
+                  - co-owner
+            is_externally_owned:
+              type: boolean
+              example: true
+              nullable: false
+              description: |-
+                Specifies if this file is owned by a user outside of the
+                authenticated enterprise.
+            has_collaborations:
+              type: boolean
+              example: true
+              nullable: false
+              description: Specifies if this file has any other collaborators.
+            metadata:
+              allOf:
+                - title: Item metadata instances
+                  type: object
+                  description: >-
+                    A list of metadata instances, nested within key-value pairs
+                    of their `scope`
+
+                    and `templateKey`.
+
+
+                    To access the metadata for a file or folder, first use the
+
+                    metadata endpoints to determine the metadata templates
+                    available to your
+
+                    enterprise.
+
+
+                    Then use the `GET /files/:id` or `GET /folder/:id`
+
+                    endpoint with the `fields` query parameter to get
+
+                    the metadata by ID.
+
+
+                    To request a metadata instance for a particular `scope` and
+                    `templateKey`
+
+                    use the following format for the `fields` parameter:
+
+                    `metadata.<scope>.<templateKey>`
+
+
+                    For example,
+                    `?fields=metadata.enterprise_27335.marketingCollateral`.
+                  example:
+                    enterprise_27335:
+                      marketingCollateral:
+                        $canEdit: true
+                        $id: 01234500-12f1-1234-aa12-b1d234cb567e
+                        $parent: folder_59449484661
+                        $scope: enterprise_27335
+                        $template: marketingCollateral
+                        $type: properties-6bcba49f-ca6d-4d2a-a758-57fe6edf44d0
+                        $typeVersion: 2
+                        $version: 1
+                  additionalProperties:
+                    type: object
+                    description: >-
+                      A list of metadata instances, nested within key-value
+                      pairs of their `scope`
+
+                      and `templateKey`.
+                    example:
+                      marketingCollateral:
+                        $canEdit: true
+                        $id: 01234500-12f1-1234-aa12-b1d234cb567e
+                        $parent: folder_59449484661
+                        $scope: enterprise_27335
+                        $template: marketingCollateral
+                        $type: properties-6bcba49f-ca6d-4d2a-a758-57fe6edf44d0
+                        $typeVersion: 2
+                        $version: 1
+                    additionalProperties:
+                      $ref: '#/components/schemas/Metadata'
+                - description: >-
+                    An object containing the metadata instances that have been
+
+                    attached to this file.
+
+
+                    Each metadata instance is uniquely identified by its `scope`
+                    and
+
+                    `templateKey`. There can only be one instance of any
+                    metadata
+
+                    template attached to each file. Each metadata instance is
+                    nested
+
+                    within an object with the `templateKey` as the key, which
+                    again
+
+                    itself is nested in an object with the `scope` as the key.
+            expires_at:
+              type: string
+              format: date-time
+              nullable: true
+              description: When the file will automatically be deleted
+              example: '2012-12-12T10:53:43-08:00'
+            representations:
+              allOf:
+                - title: Representations
+                  description: A list of file representations
+                  type: object
+                  properties:
+                    entries:
+                      type: array
+                      description: A list of files
+                      items:
+                        type: object
+                        description: A file representation
+                        properties:
+                          content:
+                            type: object
+                            description: >-
+                              An object containing the URL that can be used to
+                              actually fetch
+
+                              the representation.
+                            properties:
+                              url_template:
+                                type: string
+                                example: >-
+                                  https://dl.boxcloud.com/api/2.0/internal_files/123/versions/345/representations/png_paged_2048x2048/content/{+asset_path}?watermark_content=4567
+                                description: >-
+                                  The download URL that can be used to fetch the
+                                  representation.
+
+                                  Make sure to make an authenticated API call to
+                                  this endpoint.
+
+
+                                  This URL is a template and will require the
+                                  `{+asset_path}` to
+
+                                  be replaced by a path. In general, for unpaged
+                                  representations
+
+                                  it can be replaced by an empty string.
+
+
+                                  For paged representations, replace the
+                                  `{+asset_path}` with the
+
+                                  page to request plus the extension for the
+                                  file, for example
+
+                                  `1.pdf`.
+
+
+                                  When requesting the download URL the following
+                                  additional
+
+                                  query params can be passed along.
+
+
+                                  * `set_content_disposition_type` - Sets the
+
+                                  `Content-Disposition` header in the API
+                                  response with the
+
+                                  specified disposition type of either `inline`
+                                  or `attachment`.
+
+                                  If not supplied, the `Content-Disposition`
+                                  header is not
+
+                                  included in the response.
+
+
+                                  * `set_content_disposition_filename` - Allows
+                                  the application to
+                                    define the representation's file name used in the
+                                    `Content-Disposition` header.  If not defined, the filename
+                                    is derived from the source file name in Box combined with the
+                                    extension of the representation.
+                          info:
+                            type: object
+                            description: >-
+                              An object containing the URL that can be used to
+                              fetch more info
+
+                              on this representation.
+                            properties:
+                              url:
+                                type: string
+                                example: >-
+                                  https://api.box.com/2.0/internal_files/123/versions/345/representations/png_paged_2048x2048
+                                description: >-
+                                  The API URL that can be used to get more info
+                                  on this file
+
+                                  representation. Make sure to make an
+                                  authenticated API call
+
+                                  to this endpoint.
+                          properties:
+                            type: object
+                            description: >-
+                              An object containing the size and type of this
+                              presentation.
+                            properties:
+                              dimensions:
+                                type: string
+                                format: <width>x<height>
+                                example: 2048x2048
+                                description: >-
+                                  The width by height size of this
+                                  representation in pixels.
+                              paged:
+                                type: boolean
+                                example: true
+                                description: >-
+                                  Indicates if the representation is build up
+                                  out of multiple
+
+                                  pages.
+                              thumb:
+                                type: boolean
+                                example: true
+                                description: >-
+                                  Indicates if the representation can be used as
+                                  a thumbnail of
+
+                                  the file.
+                          representation:
+                            type: string
+                            example: png
+                            description: >-
+                              Indicates the file type of the returned
+                              representation.
+                          status:
+                            type: object
+                            description: >-
+                              An object containing the status of this
+                              representation.
+                            properties:
+                              state:
+                                type: string
+                                example: success
+                                enum:
+                                  - success
+                                  - viewable
+                                  - pending
+                                  - none
+                                description: >-
+                                  The status of the representation.
+
+
+                                  * `success` defines the representation as
+                                  ready to be viewed.
+
+                                  * `viewable` defines a video to be ready for
+                                  viewing.
+
+                                  * `pending` defines the representation as to
+                                  be generated. Retry
+                                    this endpoint to re-check the status.
+                                  * `none` defines that the representation will
+                                  be created when
+                                    requested. Request the URL defined in the `info` object to
+                                    trigger this generation.
+                - description: >-
+                    A list of representations for a file that can be used to
+
+                    display a placeholder of the file in your application. By
+                    default
+
+                    this returns all representations and we recommend using the
+
+                    `x-rep-hints` header to further customize the desired
+
+                    representations.
+            classification:
+              allOf:
+                - type: object
+                  description: The classification applied to an item
+                  properties:
+                    name:
+                      type: string
+                      example: Top Secret
+                      description: The name of the classification
+                    definition:
+                      type: string
+                      example: Content that should not be shared outside the company.
+                      description: An explanation of the meaning of this classification.
+                    color:
+                      type: string
+                      example: '#FF0000'
+                      description: >-
+                        The color that is used to display the
+
+                        classification label in a user-interface. Colors are
+                        defined by the admin
+
+                        or co-admin who created the classification in the Box
+                        web app.
+                - description: Details about the classification applied to this file.
+                - nullable: true
+            uploader_display_name:
+              allOf:
+                - title: Uploader display name
+                  type: string
+                  example: Ellis Wiggins
+                  nullable: false
+                  description: >-
+                    The display name of the user that uploaded the file. In most
+                    cases this is the
+
+                    name of the user logged in at the time of the upload.
+
+
+                    If the file was uploaded using a File Request form that
+                    requires the user to
+
+                    provide an email address, this field is populated with that
+                    email address. If
+
+                    an email address was not required in the File Request form,
+                    this field is set
+
+                    to return a value of `File Request`.
+
+
+                    In all other anonymous cases where no email was provided
+                    this field
+
+                    will default to a value of `Someone`.
+            disposition_at:
+              type: string
+              format: date-time
+              nullable: true
+              description: The retention expiration timestamp for the given file
+              example: '2012-12-12T10:53:43-08:00'
+            shared_link_permission_options:
+              type: array
+              example:
+                - can_preview
+              nullable: true
+              description: |-
+                A list of the types of roles that user can be invited at
+                when sharing this file.
+              items:
+                type: string
+                enum:
+                  - can_preview
+                  - can_download
+                  - can_edit
+    ClientError:
+      title: Client error
+      type: object
+      x-box-resource-id: client_error
+      description: A generic error
+      properties:
+        type:
+          description: error
+          example: error
+          type: string
+          enum:
+            - error
+          nullable: false
+        status:
+          description: The HTTP status of the response.
+          example: 400
+          type: integer
+          format: int32
+          nullable: false
+        code:
+          description: A Box-specific error code
+          example: item_name_invalid
+          type: string
+          enum:
+            - created
+            - accepted
+            - no_content
+            - redirect
+            - not_modified
+            - bad_request
+            - unauthorized
+            - forbidden
+            - not_found
+            - method_not_allowed
+            - conflict
+            - precondition_failed
+            - too_many_requests
+            - internal_server_error
+            - unavailable
+            - item_name_invalid
+            - insufficient_scope
+        message:
+          description: A short message describing the error.
+          example: Method Not Allowed
+          type: string
+          nullable: false
+        context_info:
+          description: |-
+            A free-form object that contains additional context
+            about the error. The possible fields are defined on
+            a per-endpoint basis. `message` is only one example.
+          type: object
+          nullable: true
+          properties:
+            message:
+              type: string
+              description: More details on the error.
+              example: Something went wrong.
+        help_url:
+          description: A URL that links to more information about why this error occurred.
+          example: >-
+            https://developer.box.com/guides/api-calls/permissions-and-errors/common-errors/
+          type: string
+          nullable: false
+        request_id:
+          description: |-
+            A unique identifier for this response, which can be used
+            when contacting Box support.
+          type: string
+          example: abcdef123456
+          nullable: false
+    Folder--Full:
+      title: Folder (Full)
+      type: object
+      x-box-resource-id: folder--full
+      x-box-variant: full
+      description: |-
+        A full representation of a folder, as can be returned from any
+        folder API endpoints by default
+      allOf:
+        - $ref: '#/components/schemas/Folder'
+        - properties:
+            sync_state:
+              allOf:
+                - type: string
+                  example: synced
+                  nullable: false
+                  description: |-
+                    Specifies whether a folder should be synced to a
+                    user's device or not. This is used by Box Sync
+                    (discontinued) and is not used by Box Drive.
+                  enum:
+                    - synced
+                    - not_synced
+                    - partially_synced
+            has_collaborations:
+              type: boolean
+              example: true
+              nullable: false
+              description: Specifies if this folder has any other collaborators.
+            permissions:
+              allOf:
+                - type: object
+                  description: >-
+                    The permissions that the authenticated user has for a
+                    folder.
+                  required:
+                    - can_upload
+                  allOf:
+                    - type: object
+                      description: >-
+                        The permissions that the authenticated user has for an
+                        item.
+                      required:
+                        - can_delete
+                        - can_download
+                        - can_invite_collaborator
+                        - can_rename
+                        - can_set_share_access
+                        - can_share
+                      properties:
+                        can_delete:
+                          type: boolean
+                          description: Specifies if the current user can delete this item.
+                          example: true
+                          nullable: false
+                        can_download:
+                          type: boolean
+                          description: >-
+                            Specifies if the current user can download this
+                            item.
+                          example: true
+                          nullable: false
+                        can_invite_collaborator:
+                          type: boolean
+                          description: >-
+                            Specifies if the current user can invite new
+
+                            users to collaborate on this item, and if the user
+                            can
+
+                            update the role of a user already collaborated on
+                            this
+
+                            item.
+                          example: true
+                          nullable: false
+                        can_rename:
+                          type: boolean
+                          description: Specifies if the user can rename this item.
+                          example: true
+                          nullable: false
+                        can_set_share_access:
+                          type: boolean
+                          description: >-
+                            Specifies if the user can change the access level of
+                            an
+
+                            existing shared link on this item.
+                          example: true
+                          nullable: false
+                        can_share:
+                          type: boolean
+                          description: >-
+                            Specifies if the user can create a shared link for
+                            this item.
+                          example: true
+                          nullable: false
+                    - properties:
+                        can_upload:
+                          type: boolean
+                          description: Specifies if the user can upload into this folder.
+                          example: true
+                          nullable: false
+                - description: |-
+                    Describes the permissions that the current user has
+                    for this folder
+                - nullable: false
+            tags:
+              allOf:
+                - type: array
+                  example:
+                    - approved
+                  items:
+                    type: string
+                  minItems: 1
+                  maxItems: 100
+                  description: |-
+                    The tags for this item. These tags are shown in
+                    the Box web app and mobile apps next to an item.
+
+                    To add or remove a tag, retrieve the item's current tags,
+                    modify them, and then update this field.
+
+                    There is a limit of 100 tags per item, and 10,000
+                    unique tags per enterprise.
+                - nullable: false
+            can_non_owners_invite:
+              allOf:
+                - type: boolean
+                  example: true
+                  description: |-
+                    Specifies if users who are not the owner
+                    of the folder can invite new collaborators to the folder.
+                - nullable: false
+            is_externally_owned:
+              type: boolean
+              example: true
+              nullable: false
+              description: |-
+                Specifies if this folder is owned by a user outside of the
+                authenticated enterprise.
+            metadata:
+              allOf:
+                - title: Item metadata instances
+                  type: object
+                  description: >-
+                    A list of metadata instances, nested within key-value pairs
+                    of their `scope`
+
+                    and `templateKey`.
+
+
+                    To access the metadata for a file or folder, first use the
+
+                    metadata endpoints to determine the metadata templates
+                    available to your
+
+                    enterprise.
+
+
+                    Then use the `GET /files/:id` or `GET /folder/:id`
+
+                    endpoint with the `fields` query parameter to get
+
+                    the metadata by ID.
+
+
+                    To request a metadata instance for a particular `scope` and
+                    `templateKey`
+
+                    use the following format for the `fields` parameter:
+
+                    `metadata.<scope>.<templateKey>`
+
+
+                    For example,
+                    `?fields=metadata.enterprise_27335.marketingCollateral`.
+                  example:
+                    enterprise_27335:
+                      marketingCollateral:
+                        $canEdit: true
+                        $id: 01234500-12f1-1234-aa12-b1d234cb567e
+                        $parent: folder_59449484661
+                        $scope: enterprise_27335
+                        $template: marketingCollateral
+                        $type: properties-6bcba49f-ca6d-4d2a-a758-57fe6edf44d0
+                        $typeVersion: 2
+                        $version: 1
+                  additionalProperties:
+                    type: object
+                    description: >-
+                      A list of metadata instances, nested within key-value
+                      pairs of their `scope`
+
+                      and `templateKey`.
+                    example:
+                      marketingCollateral:
+                        $canEdit: true
+                        $id: 01234500-12f1-1234-aa12-b1d234cb567e
+                        $parent: folder_59449484661
+                        $scope: enterprise_27335
+                        $template: marketingCollateral
+                        $type: properties-6bcba49f-ca6d-4d2a-a758-57fe6edf44d0
+                        $typeVersion: 2
+                        $version: 1
+                    additionalProperties:
+                      $ref: '#/components/schemas/Metadata'
+                - description: >-
+                    An object containing the metadata instances that have been
+
+                    attached to this folder.
+
+
+                    Each metadata instance is uniquely identified by its `scope`
+                    and
+
+                    `templateKey`. There can only be one instance of any
+                    metadata
+
+                    template attached to each folder. Each metadata instance is
+                    nested
+
+                    within an object with the `templateKey` as the key, which
+                    again
+
+                    itself is nested in an object with the `scope` as the key.
+            is_collaboration_restricted_to_enterprise:
+              allOf:
+                - type: boolean
+                  example: true
+                  description: >-
+                    Specifies if new invites to this folder are restricted to
+                    users
+
+                    within the enterprise. This does not affect existing
+
+                    collaborations.
+                - nullable: false
+            allowed_shared_link_access_levels:
+              type: array
+              example:
+                - open
+              items:
+                type: string
+                enum:
+                  - open
+                  - company
+                  - collaborators
+              nullable: false
+              description: |-
+                A list of access levels that are available
+                for this folder.
+
+                For some folders, like the root folder, this will always
+                be an empty list as sharing is not allowed at that level.
+            allowed_invitee_roles:
+              type: array
+              example:
+                - editor
+              nullable: false
+              description: |-
+                A list of the types of roles that user can be invited at
+                when sharing this folder.
+              items:
+                type: string
+                enum:
+                  - editor
+                  - viewer
+                  - previewer
+                  - uploader
+                  - previewer uploader
+                  - viewer uploader
+                  - co-owner
+            watermark_info:
+              allOf:
+                - type: object
+                  description: Details about the watermark applied to this item
+                  properties:
+                    is_watermarked:
+                      type: boolean
+                      description: Specifies if this item has a watermark applied.
+                      example: true
+                      nullable: false
+                - description: Details about the watermark applied to this folder
+                - nullable: false
+            is_accessible_via_shared_link:
+              type: boolean
+              description: |-
+                Specifies if the folder can be accessed
+                with the direct shared link or a shared link
+                to a parent folder.
+              example: true
+              enum:
+                - true
+                - false
+            can_non_owners_view_collaborators:
+              type: boolean
+              example: true
+              description: |-
+                Specifies if collaborators who are not owners
+                of this folder are restricted from viewing other
+                collaborations on this folder.
+
+                It also restricts non-owners from inviting new
+                collaborators.
+            classification:
+              allOf:
+                - type: object
+                  description: The classification applied to an item
+                  properties:
+                    name:
+                      type: string
+                      example: Top Secret
+                      description: The name of the classification
+                    definition:
+                      type: string
+                      example: Content that should not be shared outside the company.
+                      description: An explanation of the meaning of this classification.
+                    color:
+                      type: string
+                      example: '#FF0000'
+                      description: >-
+                        The color that is used to display the
+
+                        classification label in a user-interface. Colors are
+                        defined by the admin
+
+                        or co-admin who created the classification in the Box
+                        web app.
+                - description: Details about the classification applied to this folder.
+                - nullable: true
+    WebLink:
+      title: Web link
+      type: object
+      x-box-resource-id: web_link
+      x-box-variant: standard
+      description: |-
+        Web links are objects that point to URLs. These objects
+        are also known as bookmarks within the Box web application.
+
+        Web link objects are treated similarly to file objects,
+        they will also support most actions that apply to regular files.
+      allOf:
+        - $ref: '#/components/schemas/WebLink--Mini'
+        - properties:
+            parent:
+              allOf:
+                - $ref: '#/components/schemas/Folder--Mini'
+                - description: The parent object the web link belongs to
+            description:
+              type: string
+              example: Example page
+              description: |-
+                The description accompanying the web link. This is
+                visible within the Box web application.
+            path_collection:
+              allOf:
+                - title: Path collection
+                  description: A list of parent folders for an item.
+                  type: object
+                  required:
+                    - total_count
+                    - entries
+                  properties:
+                    total_count:
+                      description: The number of folders in this list.
+                      example: 1
+                      type: integer
+                      format: int64
+                      nullable: false
+                    entries:
+                      type: array
+                      description: The parent folders for this item
+                      nullable: false
+                      items:
+                        $ref: '#/components/schemas/Folder--Mini'
+                - description: |-
+                    The tree of folders that this web link is contained in,
+                    starting at the root.
+                - nullable: false
+            created_at:
+              type: string
+              format: date-time
+              description: When this file was created on Box’s servers.
+              example: '2012-12-12T10:53:43-08:00'
+            modified_at:
+              type: string
+              format: date-time
+              description: |-
+                When this file was last updated on the Box
+                servers.
+              example: '2012-12-12T10:53:43-08:00'
+            trashed_at:
+              type: string
+              format: date-time
+              nullable: true
+              description: When this file was moved to the trash.
+              example: '2012-12-12T10:53:43-08:00'
+            purged_at:
+              type: string
+              format: date-time
+              nullable: true
+              description: When this file will be permanently deleted.
+              example: '2012-12-12T10:53:43-08:00'
+            created_by:
+              allOf:
+                - $ref: '#/components/schemas/User--Mini'
+                - description: The user who created this web link
+            modified_by:
+              allOf:
+                - $ref: '#/components/schemas/User--Mini'
+                - description: The user who last modified this web link
+            owned_by:
+              allOf:
+                - $ref: '#/components/schemas/User--Mini'
+                - description: The user who owns this web link
+            shared_link:
+              allOf:
+                - title: Shared link
+                  description: >-
+                    Shared links provide direct, read-only access to files or
+                    folder on Box.
+
+
+                    Shared links with open access level allow anyone with the
+                    URL
+
+                    to access the item, while shared links with company or
+                    collaborators access
+
+                    levels can only be accessed by appropriately authenticated
+                    Box users.
+                  type: object
+                  required:
+                    - url
+                    - accessed
+                    - effective_access
+                    - effective_permission
+                    - is_password_enabled
+                    - download_count
+                    - preview_count
+                  properties:
+                    url:
+                      type: string
+                      format: url
+                      description: >-
+                        The URL that can be used to access the item on Box.
+
+
+                        This URL will display the item in Box's preview UI where
+                        the file
+
+                        can be downloaded if allowed.
+
+
+                        This URL will continue to work even when a custom
+                        `vanity_url`
+
+                        has been set for this shared link.
+                      example: https://www.box.com/s/vspke7y05sb214wjokpk
+                      nullable: false
+                    download_url:
+                      type: string
+                      format: url
+                      x-box-premium-feature: true
+                      description: >-
+                        A URL that can be used to download the file. This URL
+                        can be used in
+
+                        a browser to download the file. This URL includes the
+                        file
+
+                        extension so that the file will be saved with the right
+                        file type.
+
+
+                        This property will be `null` for folders.
+                      example: >-
+                        https://www.box.com/shared/static/rh935iit6ewrmw0unyul.jpeg
+                      nullable: true
+                    vanity_url:
+                      type: string
+                      format: url
+                      description: >-
+                        The "Custom URL" that can also be used to preview the
+                        item on Box.  Custom
+
+                        URLs can only be created or modified in the Box Web
+                        application.
+                      example: https://acme.app.box.com/v/my_url/
+                      nullable: true
+                    vanity_name:
+                      type: string
+                      description: >-
+                        The custom name of a shared link, as used in the
+                        `vanity_url` field.
+                      example: my_url
+                      nullable: true
+                    access:
+                      type: string
+                      description: >-
+                        The access level for this shared link.
+
+
+                        * `open` - provides access to this item to anyone with
+                        this link
+
+                        * `company` - only provides access to this item to
+                        people the same company
+
+                        * `collaborators` - only provides access to this item to
+                        people who are
+                           collaborators on this item
+
+                        If this field is omitted when creating the shared link,
+                        the access level
+
+                        will be set to the default access level specified by the
+                        enterprise admin.
+                      enum:
+                        - open
+                        - company
+                        - collaborators
+                      example: open
+                      nullable: false
+                    effective_access:
+                      type: string
+                      description: >-
+                        The effective access level for the shared link. This can
+                        be a more
+
+                        restrictive access level than the value in the `access`
+                        field when the
+
+                        enterprise settings restrict the allowed access levels.
+                      enum:
+                        - open
+                        - company
+                        - collaborators
+                      example: company
+                      nullable: false
+                    effective_permission:
+                      type: string
+                      description: |-
+                        The effective permissions for this shared link.
+                        These result in the more restrictive combination of
+                        the share link permissions and the item permissions set
+                        by the administrator, the owner, and any ancestor item
+                        such as a folder.
+                      enum:
+                        - can_edit
+                        - can_download
+                        - can_preview
+                        - no_access
+                      example: can_download
+                      nullable: false
+                    unshared_at:
+                      type: string
+                      format: date-time
+                      description: >-
+                        The date and time when this link will be unshared. This
+                        field can only be
+
+                        set by users with paid accounts.
+                      example: '2018-04-13T13:53:23-07:00'
+                      nullable: true
+                    is_password_enabled:
+                      type: boolean
+                      description: >-
+                        Defines if the shared link requires a password to access
+                        the item.
+                      example: true
+                      nullable: false
+                    permissions:
+                      type: object
+                      description: >-
+                        Defines if this link allows a user to preview, edit, and
+                        download an item.
+
+                        These permissions refer to the shared link only and
+
+                        do not supersede permissions applied to the item itself.
+                      required:
+                        - can_download
+                        - can_preview
+                        - can_edit
+                      properties:
+                        can_download:
+                          type: boolean
+                          example: true
+                          nullable: false
+                          description: >-
+                            Defines if the shared link allows for the item to be
+                            downloaded. For
+
+                            shared links on folders, this also applies to any
+                            items in the folder.
+
+
+                            This value can be set to `true` when the effective
+                            access level is
+
+                            set to `open` or `company`, not `collaborators`.
+                        can_preview:
+                          type: boolean
+                          example: true
+                          nullable: false
+                          description: >-
+                            Defines if the shared link allows for the item to be
+                            previewed.
+
+
+                            This value is always `true`. For shared links on
+                            folders this also
+
+                            applies to any items in the folder.
+                        can_edit:
+                          type: boolean
+                          example: false
+                          nullable: false
+                          description: >-
+                            Defines if the shared link allows for the item to be
+                            edited.
+
+
+                            This value can only be `true` if `can_download` is
+                            also `true` and if
+
+                            the item has a type of `file`.
+                    download_count:
+                      type: integer
+                      example: 3
+                      description: The number of times this item has been downloaded.
+                      nullable: false
+                    preview_count:
+                      type: integer
+                      example: 3
+                      description: The number of times this item has been previewed.
+                      nullable: false
+                - description: |-
+                    The shared link object for this item. Will be
+                    `null` if no shared link has been created.
+                - nullable: true
+            item_status:
+              type: string
+              example: active
+              enum:
+                - active
+                - trashed
+                - deleted
+              description: >-
+                Whether this item is deleted or not. Values include `active`,
+
+                `trashed` if the file has been moved to the trash, and `deleted`
+                if
+
+                the file has been permanently deleted

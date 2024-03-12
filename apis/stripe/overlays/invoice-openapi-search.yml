@@ -8,76 +8,30 @@ paths:
         <p>Returns a list of your invoice items. Invoice items are returned
         sorted by creation date, with the most recently created invoice items
         appearing first.</p>
-      summary: Retrieve Invoice Items
-      tags:
-        - Retrieve
-        - Invoice
-        - Items
-        - V1
-        - Invoiceitems
     post:
       description: >-
         <p>Creates an item to be added to a draft invoice (up to 250 items per
         invoice). If no invoice is specified, the item will be on the next
         invoice created for the customer specified.</p>
-      summary: Create Invoice Item
-      tags:
-        - Create
-        - Invoice
-        - Item
-        - V1
-        - Invoiceitems
   /v1/invoiceitems/{invoiceitem}:
     delete:
       description: >-
         <p>Deletes an invoice item, removing it from an invoice. Deleting
         invoice items is only possible when they’re not attached to invoices, or
         if it’s attached to a draft invoice.</p>
-      summary: Delete Invoice Item
-      tags:
-        - Delete
-        - Invoice
-        - Item
-        - V1
-        - Invoiceitems
-        - Invoiceitem
     get:
       description: <p>Retrieves the invoice item with the given ID.</p>
-      summary: Retrieve Invoice Item
-      tags:
-        - Retrieve
-        - Invoice
-        - Item
-        - V1
-        - Invoiceitems
-        - Invoiceitem
     post:
       description: >-
         <p>Updates the amount or description of an invoice item on an upcoming
         invoice. Updating an invoice item is only possible before the invoice
         it’s attached to is closed.</p>
-      summary: Update Invoice Item
-      tags:
-        - Update
-        - Invoice
-        - Item
-        - V1
-        - Invoiceitems
-        - Invoiceitem
   /v1/invoices:
     get:
       description: >-
         <p>You can list all invoices, or list the invoices for a specific
         customer. The invoices are returned sorted by creation date, with the
         most recently created invoices appearing first.</p>
-      summary: Retrieve Invoices
-      tags:
-        - Retrieve
-        - Invoices
-        - V1
-        - Invoiceitems
-        - Invoiceitem
-        - Invoices
     post:
       description: >-
         <p>This endpoint creates a draft invoice for a given customer. The
@@ -85,14 +39,6 @@ paths:
         href="#finalize_invoice">finalize</a> the invoice, which allows you to
         <a href="#pay_invoice">pay</a> or <a href="#send_invoice">send</a> the
         invoice to your customers.</p>
-      summary: Create Invoice
-      tags:
-        - Create
-        - Invoice
-        - V1
-        - Invoiceitems
-        - Invoiceitem
-        - Invoices
   /v1/invoices/search:
     get:
       description: >-
@@ -107,15 +53,6 @@ paths:
 
         to an hour behind during outages. Search functionality is not available
         to merchants in India.</p>
-      summary: Search Invoices
-      tags:
-        - Search
-        - Invoices
-        - V1
-        - Invoiceitems
-        - Invoiceitem
-        - Invoices
-        - Search
   /v1/invoices/upcoming:
     get:
       description: >-
@@ -144,17 +81,6 @@ paths:
         <code>period[start]</code> is equal to the
         <code>subscription_proration_date</code> on the upcoming invoice
         resource.</p>
-      summary: Retrieve Upcoming Invoices
-      tags:
-        - Retrieve
-        - Upcoming
-        - Invoices
-        - V1
-        - Invoiceitems
-        - Invoiceitem
-        - Invoices
-        - Search
-        - Upcoming
   /v1/invoices/upcoming/lines:
     get:
       description: >-
@@ -162,19 +88,6 @@ paths:
         <strong>lines</strong> property containing the total count of line items
         and the first handful of those items. There is also a URL where you can
         retrieve the full (paginated) list of line items.</p>
-      summary: Retrieve Upcoming Invoice Lines
-      tags:
-        - Retrieve
-        - Upcoming
-        - Invoice
-        - Lines
-        - V1
-        - Invoiceitems
-        - Invoiceitem
-        - Invoices
-        - Search
-        - Upcoming
-        - Lines
   /v1/invoices/{invoice}:
     delete:
       description: >-
@@ -182,32 +95,8 @@ paths:
         Attempts to delete invoices that are no longer in a draft state will
         fail; once an invoice has been finalized or if an invoice is for a
         subscription, it must be <a href="#void_invoice">voided</a>.</p>
-      summary: Delete Invoice
-      tags:
-        - Delete
-        - Invoice
-        - V1
-        - Invoiceitems
-        - Invoiceitem
-        - Invoices
-        - Search
-        - Upcoming
-        - Lines
-        - Invoice
     get:
       description: <p>Retrieves the invoice with the given ID.</p>
-      summary: Retrieve Invoice
-      tags:
-        - Retrieve
-        - Invoice
-        - V1
-        - Invoiceitems
-        - Invoiceitem
-        - Invoices
-        - Search
-        - Upcoming
-        - Lines
-        - Invoice
     post:
       description: >-
         <p>Draft invoices are fully editable. Once an invoice is <a
@@ -225,37 +114,12 @@ paths:
         reconciling</a> invoices, pass
 
         <code>auto_advance=false</code>.</p>
-      summary: Update Invoice
-      tags:
-        - Update
-        - Invoice
-        - V1
-        - Invoiceitems
-        - Invoiceitem
-        - Invoices
-        - Search
-        - Upcoming
-        - Lines
-        - Invoice
   /v1/invoices/{invoice}/finalize:
     post:
       description: >-
         <p>Stripe automatically finalizes drafts before sending and attempting
         payment on invoices. However, if you’d like to finalize a draft invoice
         manually, you can do so using this method.</p>
-      summary: Finalize Invoice
-      tags:
-        - Finalize
-        - Invoice
-        - V1
-        - Invoiceitems
-        - Invoiceitem
-        - Invoices
-        - Search
-        - Upcoming
-        - Lines
-        - Invoice
-        - Finalize
   /v1/invoices/{invoice}/lines:
     get:
       description: >-
@@ -263,20 +127,6 @@ paths:
         property containing the total count of line items and the first handful
         of those items. There is also a URL where you can retrieve the full
         (paginated) list of line items.</p>
-      summary: Retrieve Invoice Lines
-      tags:
-        - Retrieve
-        - Invoice
-        - Lines
-        - V1
-        - Invoiceitems
-        - Invoiceitem
-        - Invoices
-        - Search
-        - Upcoming
-        - Lines
-        - Invoice
-        - Finalize
   /v1/invoices/{invoice}/lines/{line_item_id}:
     post:
       description: >-
@@ -291,42 +141,11 @@ paths:
 
         Updating an invoice’s line item is only possible before the invoice is
         finalized.</p>
-      summary: Retrieve Invoice Line
-      tags:
-        - Retrieve
-        - Invoice
-        - Line
-        - V1
-        - Invoiceitems
-        - Invoiceitem
-        - Invoices
-        - Search
-        - Upcoming
-        - Lines
-        - Invoice
-        - Finalize
-        - Line_item_id
   /v1/invoices/{invoice}/mark_uncollectible:
     post:
       description: >-
         <p>Marking an invoice as uncollectible is useful for keeping track of
         bad debts that can be written off for accounting purposes.</p>
-      summary: Mark Invoice Uncollectable
-      tags:
-        - Mark
-        - Invoice
-        - Uncollectable
-        - V1
-        - Invoiceitems
-        - Invoiceitem
-        - Invoices
-        - Search
-        - Upcoming
-        - Lines
-        - Invoice
-        - Finalize
-        - Line_item_id
-        - Mark_uncollectible
   /v1/invoices/{invoice}/pay:
     post:
       description: >-
@@ -336,22 +155,6 @@ paths:
         settings</a>. However, if you’d like to attempt payment on an invoice
         out of the normal collection schedule or for some other reason, you can
         do so.</p>
-      summary: Pay Invoice
-      tags:
-        - Pay
-        - Invoice
-        - V1
-        - Invoiceitems
-        - Invoiceitem
-        - Invoices
-        - Search
-        - Upcoming
-        - Lines
-        - Invoice
-        - Finalize
-        - Line_item_id
-        - Mark_uncollectible
-        - Pay
   /v1/invoices/{invoice}/send:
     post:
       description: >-
@@ -366,68 +169,10 @@ paths:
 
         <p>Requests made in test-mode result in no emails being sent, despite
         sending an <code>invoice.sent</code> event.</p>
-      summary: Send Invoice
-      tags:
-        - Send
-        - Invoice
-        - V1
-        - Invoiceitems
-        - Invoiceitem
-        - Invoices
-        - Search
-        - Upcoming
-        - Lines
-        - Invoice
-        - Finalize
-        - Line_item_id
-        - Mark_uncollectible
-        - Pay
-        - Send
   /v1/invoices/{invoice}/void:
     post:
       description: >-
         <p>Mark a finalized invoice as void. This cannot be undone. Voiding an
         invoice is similar to <a href="#delete_invoice">deletion</a>, however it
         only applies to finalized invoices and maintains a papertrail where the
-        invoice can still be found.</p>
-      summary: Void Invoice
-      tags:
-        - Void
-        - Invoice
-        - V1
-        - Invoiceitems
-        - Invoiceitem
-        - Invoices
-        - Search
-        - Upcoming
-        - Lines
-        - Invoice
-        - Finalize
-        - Line_item_id
-        - Mark_uncollectible
-        - Pay
-        - Send
-        - Void
-tags:
-  - name: Invoices
-    description: Needs a description.
-  - name: Items
-    description: Needs a description.
-  - name: Search
-    description: Needs a description.
-  - name: Upcoming
-    description: Needs a description.
-  - name: Lines
-    description: Needs a description.
-  - name: Finalize
-    description: Needs a description.
-  - name: Mark
-    description: Needs a description.
-  - name: Uncollectable
-    description: Needs a description.
-  - name: Pay
-    description: Needs a description.
-  - name: Send
-    description: Needs a description.
-  - name: Void
-    description: Needs a descriptio
+        invoice can still be fo

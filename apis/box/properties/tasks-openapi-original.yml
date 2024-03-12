@@ -1,0 +1,640 @@
+openapi: 3.1.0
+info:
+  title: Box Tasks API
+  description: Needs a description.
+paths:
+  /files/{file_id}/tasks:
+    get:
+      operationId: get_files_id_tasks
+      summary: List tasks on file
+      description: |-
+        Retrieves a list of all the tasks for a file. This
+        endpoint does not support pagination.
+      tags:
+        - Tasks
+      x-box-tag: tasks
+      x-box-sanitized: true
+      parameters:
+        - name: file_id
+          description: |-
+            The unique identifier that represents a file.
+
+            The ID for any file can be determined
+            by visiting a file in the web application
+            and copying the ID from the URL. For example,
+            for the URL `https://*.app.box.com/files/123`
+            the `file_id` is `123`.
+          example: '12345'
+          in: path
+          required: true
+          schema:
+            type: string
+      responses:
+        '200':
+          description: |-
+            Returns a list of tasks on a file.
+
+            If there are no tasks on this file an empty collection is returned
+            instead.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Tasks'
+        '404':
+          description: >-
+            Returns an error when the file could not be found or the user does
+            not
+
+            have access to the file.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ClientError'
+        '405':
+          description: Returns an error when the `file_id` was not provided.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ClientError'
+        '500':
+          description: >-
+            Returns an error when an attempt was made to retrieve tasks for the
+            file
+
+            with ID `0`.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ClientError'
+        default:
+          description: An unexpected client error.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ClientError'
+  /tasks:
+    post:
+      operationId: post_tasks
+      tags:
+        - Tasks
+      summary: Create task
+      x-box-tag: tasks
+      x-box-sanitized: true
+      description: >-
+        Creates a single task on a file. This task is not assigned to any user
+        and
+
+        will need to be assigned separately.
+      requestBody:
+        content:
+          application/json:
+            schema:
+              type: object
+              required:
+                - item
+              properties:
+                item:
+                  type: object
+                  description: The file to attach the task to.
+                  properties:
+                    id:
+                      type: string
+                      description: The ID of the file
+                      example: '11446498'
+                    type:
+                      type: string
+                      description: '`file`'
+                      example: file
+                      enum:
+                        - file
+                action:
+                  type: string
+                  description: |-
+                    The action the task assignee will be prompted to do. Must be
+
+                    * `review` defines an approval task that can be approved or
+                    rejected
+                    * `complete` defines a general task which can be completed
+                  example: review
+                  default: review
+                  enum:
+                    - review
+                    - complete
+                message:
+                  type: string
+                  default: ''
+                  description: An optional message to include with the task.
+                  example: Please review
+                due_at:
+                  type: string
+                  format: date-time
+                  description: |-
+                    Defines when the task is due. Defaults to `null` if not
+                    provided.
+                  example: '2012-12-12T10:53:43-08:00'
+                completion_rule:
+                  type: string
+                  description: >-
+                    Defines which assignees need to complete this task before
+                    the task
+
+                    is considered completed.
+
+
+                    * `all_assignees` (default) requires all assignees to review
+                    or
+
+                    approve the the task in order for it to be considered
+                    completed.
+
+                    * `any_assignee` accepts any one assignee to review or
+
+                    approve the the task in order for it to be considered
+                    completed.
+                  example: all_assignees
+                  default: all_assignees
+                  enum:
+                    - all_assignees
+                    - any_assignee
+      responses:
+        '201':
+          description: Returns the newly created task.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Task'
+        '400':
+          description: >-
+            Returned if the request parameters or body is not valid.
+
+
+            * `bad_request` when the body does not contain a valid request. This
+            may
+
+            be because the `action` or `completion_rule` are not one of the
+            allowed
+
+            values.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ClientError'
+        '403':
+          description: >-
+            Returns an error when the user does not have the permission to
+            create a
+
+            task on the file.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ClientError'
+        '404':
+          description: >-
+            Returns an error when the file could not be found or the user does
+            not
+
+            have access to the file.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ClientError'
+        default:
+          description: An unexpected client error.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ClientError'
+  /tasks/{task_id}:
+    get:
+      operationId: get_tasks_id
+      summary: Get task
+      tags:
+        - Tasks
+      x-box-tag: tasks
+      x-box-sanitized: true
+      description: Retrieves information about a specific task.
+      parameters:
+        - name: task_id
+          description: The ID of the task.
+          example: '12345'
+          in: path
+          required: true
+          schema:
+            type: string
+      responses:
+        '200':
+          description: Returns a task object.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Task'
+        '404':
+          description: >-
+            Returns an error when the task could not be found or the user does
+            not
+
+            have access to the file the task is assigned to.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ClientError'
+        default:
+          description: An unexpected client error.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ClientError'
+    put:
+      operationId: put_tasks_id
+      tags:
+        - Tasks
+      summary: Update task
+      x-box-tag: tasks
+      x-box-sanitized: true
+      description: |-
+        Updates a task. This can be used to update a task's configuration, or to
+        update its completion state.
+      parameters:
+        - name: task_id
+          description: The ID of the task.
+          example: '12345'
+          in: path
+          required: true
+          schema:
+            type: string
+      requestBody:
+        content:
+          application/json:
+            schema:
+              type: object
+              properties:
+                action:
+                  type: string
+                  description: |-
+                    The action the task assignee will be prompted to do. Must be
+
+                    * `review` defines an approval task that can be approved or
+                    rejected
+                    * `complete` defines a general task which can be completed
+                  example: review
+                  enum:
+                    - review
+                    - complete
+                message:
+                  type: string
+                  description: The message included with the task.
+                  example: Please review
+                due_at:
+                  type: string
+                  format: date-time
+                  description: When the task is due at.
+                  example: '2012-12-12T10:53:43-08:00'
+                completion_rule:
+                  type: string
+                  description: >-
+                    Defines which assignees need to complete this task before
+                    the task
+
+                    is considered completed.
+
+
+                    * `all_assignees` (default) requires all assignees to review
+                    or
+
+                    approve the the task in order for it to be considered
+                    completed.
+
+                    * `any_assignee` accepts any one assignee to review or
+
+                    approve the the task in order for it to be considered
+                    completed.
+                  example: all_assignees
+                  enum:
+                    - all_assignees
+                    - any_assignee
+      responses:
+        '200':
+          description: Returns the updated task object
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Task'
+        '400':
+          description: >-
+            Returned if the request parameters or body is not valid.
+
+
+            * `bad_request` when the body does not contain a valid request. This
+            may
+
+            be because the `action` or `completion_rule` are not one of the
+            allowed
+
+            values.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ClientError'
+        '403':
+          description: >-
+            Returns an error when the user does not have the permission to
+            update a
+
+            task on the file.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ClientError'
+        '404':
+          description: >-
+            Returns an error when the file could not be found or the user does
+            not
+
+            have access to the file.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ClientError'
+        default:
+          description: An unexpected client error.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ClientError'
+    delete:
+      operationId: delete_tasks_id
+      tags:
+        - Tasks
+      summary: Remove task
+      x-box-tag: tasks
+      x-box-sanitized: true
+      description: Removes a task from a file.
+      parameters:
+        - name: task_id
+          description: The ID of the task.
+          example: '12345'
+          in: path
+          required: true
+          schema:
+            type: string
+      responses:
+        '204':
+          description: Returns an empty response when the task was successfully deleted.
+        '404':
+          description: >-
+            Returns an error when the task could not be found or the user does
+            not
+
+            have access to the file the task is assigned to.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ClientError'
+        default:
+          description: An unexpected client error.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ClientError'
+  /tasks/{task_id}/assignments:
+    get:
+      operationId: get_tasks_id_assignments
+      summary: List task assignments
+      tags:
+        - Task assignments
+      x-box-tag: task_assignments
+      x-box-sanitized: true
+      description: Lists all of the assignments for a given task.
+      parameters:
+        - name: task_id
+          description: The ID of the task.
+          example: '12345'
+          in: path
+          required: true
+          schema:
+            type: string
+      responses:
+        '200':
+          description: |-
+            Returns a collection of task assignment defining what task on
+            a file has been assigned to which users and by who.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/TaskAssignments'
+        '404':
+          description: >-
+            Returns an error when the task could not be found or the user does
+            not
+
+            have access to the file the task is assigned to.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ClientError'
+        '500':
+          description: |-
+            Returns an error if the task assignment ID was omitted in
+            the request.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ClientError'
+        default:
+          description: An unexpected client error.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ClientError'
+components:
+  schemas:
+    Tasks:
+      title: Tasks
+      type: object
+      x-box-resource-id: tasks
+      x-box-tag: tasks
+      description: A list of tasks
+      properties:
+        total_count:
+          description: >-
+            One greater than the offset of the last entry in the entire
+            collection.
+
+            The total number of entries in the collection may be less than
+
+            `total_count`.
+          example: 5000
+          type: integer
+          format: int64
+        entries:
+          type: array
+          description: A list of tasks
+          items:
+            $ref: '#/components/schemas/Task'
+    ClientError:
+      title: Client error
+      type: object
+      x-box-resource-id: client_error
+      description: A generic error
+      properties:
+        type:
+          description: error
+          example: error
+          type: string
+          enum:
+            - error
+          nullable: false
+        status:
+          description: The HTTP status of the response.
+          example: 400
+          type: integer
+          format: int32
+          nullable: false
+        code:
+          description: A Box-specific error code
+          example: item_name_invalid
+          type: string
+          enum:
+            - created
+            - accepted
+            - no_content
+            - redirect
+            - not_modified
+            - bad_request
+            - unauthorized
+            - forbidden
+            - not_found
+            - method_not_allowed
+            - conflict
+            - precondition_failed
+            - too_many_requests
+            - internal_server_error
+            - unavailable
+            - item_name_invalid
+            - insufficient_scope
+        message:
+          description: A short message describing the error.
+          example: Method Not Allowed
+          type: string
+          nullable: false
+        context_info:
+          description: |-
+            A free-form object that contains additional context
+            about the error. The possible fields are defined on
+            a per-endpoint basis. `message` is only one example.
+          type: object
+          nullable: true
+          properties:
+            message:
+              type: string
+              description: More details on the error.
+              example: Something went wrong.
+        help_url:
+          description: A URL that links to more information about why this error occurred.
+          example: >-
+            https://developer.box.com/guides/api-calls/permissions-and-errors/common-errors/
+          type: string
+          nullable: false
+        request_id:
+          description: |-
+            A unique identifier for this response, which can be used
+            when contacting Box support.
+          type: string
+          example: abcdef123456
+          nullable: false
+    Task:
+      title: Task
+      type: object
+      x-box-resource-id: task
+      x-box-tag: tasks
+      description: >-
+        A task allows for file-centric workflows within Box. Users can
+
+        create tasks on files and assign them to other users for them to
+        complete the
+
+        tasks.
+      properties:
+        id:
+          type: string
+          description: The unique identifier for this task
+          example: '11446498'
+        type:
+          type: string
+          description: '`task`'
+          example: task
+          enum:
+            - task
+        item:
+          allOf:
+            - $ref: '#/components/schemas/File--Mini'
+            - description: The file associated with the task
+        due_at:
+          type: string
+          format: date-time
+          description: When the task is due
+          example: '2012-12-12T10:53:43-08:00'
+        action:
+          type: string
+          example: review
+          description: |-
+            The type of task the task assignee will be prompted to
+            perform.
+          enum:
+            - review
+            - complete
+        message:
+          type: string
+          description: A message that will be included with the task
+          example: Legal review
+        task_assignment_collection:
+          allOf:
+            - $ref: '#/components/schemas/TaskAssignments'
+            - description: |-
+                A collection of task assignment objects
+                associated with the task
+        is_completed:
+          type: boolean
+          description: Whether the task has been completed
+          example: true
+        created_by:
+          allOf:
+            - $ref: '#/components/schemas/User--Mini'
+            - description: The user who created the task
+        created_at:
+          type: string
+          format: date-time
+          description: When the task object was created
+          example: '2012-12-12T10:53:43-08:00'
+        completion_rule:
+          type: string
+          description: |-
+            Defines which assignees need to complete this task before the task
+            is considered completed.
+
+            * `all_assignees` requires all assignees to review or
+            approve the the task in order for it to be considered completed.
+            * `any_assignee` accepts any one assignee to review or
+            approve the the task in order for it to be considered completed.
+          example: all_assignees
+          enum:
+            - all_assignees
+            - any_assignee
+    TaskAssignments:
+      title: Task assignments
+      type: object
+      x-box-resource-id: task_assignments
+      x-box-tag: task_assignments
+      description: A list of task assignments
+      properties:
+        total_count:
+          description: The total number of items in this collection.
+          example: 100
+          type: integer
+          format: int64
+        entries:
+          type: array
+          description: A list of task assignments
+          items:
+            $ref: '#/components/schemas/TaskAssignment'

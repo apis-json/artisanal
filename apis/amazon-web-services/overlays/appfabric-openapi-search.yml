@@ -9,14 +9,6 @@ paths:
         <p>Gets user access details in a batch request.</p> <p>This action polls
         data from the tasks that are kicked off by the
         <code>StartUserAccessTasks</code> action.</p>
-      tags:
-        - Batch
-        - Get
-        - User
-        - Access
-        - Tasks
-        - Useraccess
-        - Batchget
   /appbundles/{appBundleIdentifier}/appauthorizations/{appAuthorizationIdentifier}/connect:
     POST:
       summary: ConnectAppAuthorization
@@ -24,92 +16,26 @@ paths:
         <p>Establishes a connection between Amazon Web Services AppFabric and an
         application, which allows AppFabric to call the APIs of the
         application.</p>
-      tags:
-        - Connect
-        - App
-        - Authorization
-        - Useraccess
-        - Batchget
-        - Bundle
-        - Identifier
-        - Appauthorizations
-        - App
-        - Authorization
-        - Connect
   /appbundles/{appBundleIdentifier}/appauthorizations:
     GET:
       summary: ListAppAuthorizations
       description: >-
         <p>Returns a list of all app authorizations configured for an app
         bundle.</p>
-      tags:
-        - List
-        - App
-        - Authorizations
-        - Useraccess
-        - Batchget
-        - Bundle
-        - Identifier
-        - Appauthorizations
-        - App
-        - Authorization
-        - Connect
   /appbundles:
     GET:
       summary: ListAppBundles
       description: <p>Returns a list of app bundles.</p>
-      tags:
-        - List
-        - App
-        - Bundles
-        - Useraccess
-        - Batchget
-        - Bundle
-        - Identifier
-        - Appauthorizations
-        - App
-        - Authorization
-        - Connect
-        - Appbundles
   /appbundles/{appBundleIdentifier}/ingestions:
     GET:
       summary: ListIngestions
       description: <p>Returns a list of all ingestions configured for an app bundle.</p>
-      tags:
-        - List
-        - Ingestions
-        - Useraccess
-        - Batchget
-        - Bundle
-        - Identifier
-        - Appauthorizations
-        - App
-        - Authorization
-        - Connect
-        - Appbundles
-        - Ingestions
   /appbundles/{appBundleIdentifier}/ingestions/{ingestionIdentifier}/ingestiondestinations:
     GET:
       summary: ListIngestionDestinations
       description: >-
         <p>Returns a list of all ingestion destinations configured for an
         ingestion.</p>
-      tags:
-        - List
-        - Ingestion
-        - Destinations
-        - Useraccess
-        - Batchget
-        - Bundle
-        - Identifier
-        - Appauthorizations
-        - App
-        - Authorization
-        - Connect
-        - Appbundles
-        - Ingestions
-        - Ingestion
-        - Ingestiondestinations
   /appbundles/{appBundleIdentifier}/appauthorizations/{appAuthorizationIdentifier}:
     PATCH:
       summary: UpdateAppAuthorization
@@ -118,61 +44,14 @@ paths:
         AppFabric to connect to an application.</p> <p>If the app authorization
         was in a <code>connected</code> state, updating the app authorization
         will set it back to a <code>PendingConnect</code> state.</p>
-      tags:
-        - Update
-        - App
-        - Authorization
-        - Useraccess
-        - Batchget
-        - Bundle
-        - Identifier
-        - Appauthorizations
-        - App
-        - Authorization
-        - Connect
-        - Appbundles
-        - Ingestions
-        - Ingestion
-        - Ingestiondestinations
   /appbundles/{appBundleIdentifier}:
     GET:
       summary: GetAppBundle
       description: <p>Returns information about an app bundle.</p>
-      tags:
-        - Get
-        - App
-        - Bundle
-        - Useraccess
-        - Batchget
-        - Bundle
-        - Identifier
-        - Appauthorizations
-        - App
-        - Authorization
-        - Connect
-        - Appbundles
-        - Ingestions
-        - Ingestion
-        - Ingestiondestinations
   /appbundles/{appBundleIdentifier}/ingestions/{ingestionIdentifier}:
     GET:
       summary: GetIngestion
       description: <p>Returns information about an ingestion.</p>
-      tags:
-        - Get
-        - Ingestion
-        - Useraccess
-        - Batchget
-        - Bundle
-        - Identifier
-        - Appauthorizations
-        - App
-        - Authorization
-        - Connect
-        - Appbundles
-        - Ingestions
-        - Ingestion
-        - Ingestiondestinations
   /appbundles/{appBundleIdentifier}/ingestions/{ingestionIdentifier}/ingestiondestinations/{ingestionDestinationIdentifier}:
     PATCH:
       summary: UpdateIngestionDestination
@@ -180,68 +59,16 @@ paths:
         <p>Updates an ingestion destination, which specifies how an
         application's ingested data is processed by Amazon Web Services
         AppFabric and where it's delivered.</p>
-      tags:
-        - Update
-        - Ingestion
-        - Destination
-        - Useraccess
-        - Batchget
-        - Bundle
-        - Identifier
-        - Appauthorizations
-        - App
-        - Authorization
-        - Connect
-        - Appbundles
-        - Ingestions
-        - Ingestion
-        - Ingestiondestinations
-        - Destination
   /tags/{resourceArn}:
     DELETE:
       summary: UntagResource
       description: <p>Removes a tag or tags from a resource.</p>
-      tags:
-        - Untag
-        - Resource
-        - Useraccess
-        - Batchget
-        - Bundle
-        - Identifier
-        - Appauthorizations
-        - App
-        - Authorization
-        - Connect
-        - Appbundles
-        - Ingestions
-        - Ingestion
-        - Ingestiondestinations
-        - Destination
-        - Arn
   /appbundles/{appBundleIdentifier}/ingestions/{ingestionIdentifier}/start:
     POST:
       summary: StartIngestion
       description: >-
         <p>Starts (enables) an ingestion, which collects data from an
         application.</p>
-      tags:
-        - Start
-        - Ingestion
-        - Useraccess
-        - Batchget
-        - Bundle
-        - Identifier
-        - Appauthorizations
-        - App
-        - Authorization
-        - Connect
-        - Appbundles
-        - Ingestions
-        - Ingestion
-        - Ingestiondestinations
-        - Destination
-        - Arn
-        - Start
   /useraccess/start:
     POST:
       summary: StartUserAccessTasks
@@ -250,46 +77,7 @@ paths:
         address.</p> <p>The tasks are stopped when the user access status data
         is found. The tasks are terminated when the API calls to the application
         time out.</p>
-      tags:
-        - Start
-        - User
-        - Access
-        - Tasks
-        - Useraccess
-        - Batchget
-        - Bundle
-        - Identifier
-        - Appauthorizations
-        - App
-        - Authorization
-        - Connect
-        - Appbundles
-        - Ingestions
-        - Ingestion
-        - Ingestiondestinations
-        - Destination
-        - Arn
-        - Start
   /appbundles/{appBundleIdentifier}/ingestions/{ingestionIdentifier}/stop:
     POST:
       summary: StopIngestion
-      description: <p>Stops (disables) an ingestion.</
-      tags:
-        - Stop
-        - Ingestion
-        - Useraccess
-        - Batchget
-        - Bundle
-        - Identifier
-        - Appauthorizations
-        - App
-        - Authorization
-        - Connect
-        - Appbundles
-        - Ingestions
-        - Ingestion
-        - Ingestiondestinations
-        - Destination
-        - Arn
-        - Start
-        - nu
+      description: <p>Stops (disables) an ingest

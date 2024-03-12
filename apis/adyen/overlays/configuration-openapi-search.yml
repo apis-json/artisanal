@@ -20,38 +20,54 @@ paths:
   /accountHolders:
     post:
       tags:
-        - Account holders
+        - Create
+        - An
+        - Account
+        - Holder
+        - Holders
       summary: Create an account holder
       description: >+
         Creates an account holder linked to a [legal
         entity](https://docs.adyen.com/api-explorer/#/legalentity/latest/post/legalEntities).
 
-      x-addedInVersion: '1'
-      x-sortIndex: 1
-      x-methodName: createAccountHolder
   /accountHolders/{id}:
     get:
       tags:
-        - Account holders
+        - Get
+        - An
+        - Account
+        - Holder
+        - Holders
+        - Id
       summary: Get an account holder
       description: Returns an account holder.
-      x-addedInVersion: '1'
-      x-sortIndex: 3
-      x-methodName: getAccountHolder
     patch:
       tags:
-        - Account holders
+        - Update
+        - An
+        - Account
+        - Holder
+        - Holders
+        - Id
       summary: Update an account holder
       description: >-
         Updates an account holder. When updating an account holder resource, if
         a parameter is not provided in the request, it is left unchanged.
-      x-addedInVersion: '1'
-      x-sortIndex: 2
-      x-methodName: updateAccountHolder
   /accountHolders/{id}/balanceAccounts:
     get:
       tags:
-        - Account holders
+        - Get
+        - All
+        - Balance
+        - Accounts
+        - Of
+        - An
+        - Account
+        - Holder
+        - Holders
+        - Id
+        - Balance
+        - Accounts
       summary: Get all balance accounts of an account holder
       description: >-
         Returns a paginated list of the balance accounts associated with an
@@ -60,36 +76,56 @@ paths:
 
         For example, to limit the page to 5 balance accounts and skip the first
         10, use `/accountHolders/{id}/balanceAccounts?limit=5&offset=10`.
-      x-addedInVersion: '1'
-      x-sortIndex: 4
-      x-methodName: getAllBalanceAccountsOfAccountHolder
   /accountHolders/{id}/taxForms:
     get:
       tags:
-        - Account holders
+        - Get
+        - Tax
+        - Form
+        - Holders
+        - Id
+        - Balance
+        - Accounts
+        - Tax
+        - Forms
       summary: Get a tax form
       description: >-
         Generates a tax form for account holders operating in the US. For more
         information, refer to [Providing tax
         forms](https://docs.adyen.com/marketplaces-and-platforms/us-tax-forms/).
-      x-addedInVersion: '2'
-      x-sortIndex: 5
-      x-methodName: getTaxForm
   /balanceAccounts:
     post:
       tags:
-        - Balance accounts
+        - Create
+        - Balance
+        - Account
+        - Holders
+        - Id
+        - Balance
+        - Accounts
+        - Tax
+        - Forms
       summary: Create a balance account
       description: >-
         Creates a balance account that holds the funds of the associated account
         holder.
-      x-addedInVersion: '1'
-      x-sortIndex: 1
-      x-methodName: createBalanceAccount
   /balanceAccounts/{balanceAccountId}/sweeps:
     get:
       tags:
-        - Balance accounts
+        - Get
+        - All
+        - Sweeps
+        - For
+        - Balance
+        - Account
+        - Holders
+        - Id
+        - Balance
+        - Accounts
+        - Tax
+        - Forms
+        - Account
+        - Sweeps
       summary: Get all sweeps for a balance account
       description: >-
         Returns a list of the sweeps configured for a balance account.
@@ -98,12 +134,18 @@ paths:
         To fetch multiple pages, use the query parameters. For example, to limit
         the page to 5 sweeps and to skip the first 10, use
         `/balanceAccounts/{balanceAccountId}/sweeps?limit=5&offset=10`.
-      x-addedInVersion: '2'
-      x-sortIndex: 7
-      x-methodName: getAllSweepsForBalanceAccount
     post:
       tags:
-        - Balance accounts
+        - Create
+        - Sweep
+        - Holders
+        - Id
+        - Balance
+        - Accounts
+        - Tax
+        - Forms
+        - Account
+        - Sweeps
       summary: Create a sweep
       description: >-
         Creates a sweep that results in moving funds from or to a balance
@@ -112,59 +154,110 @@ paths:
 
         A sweep pulls in or pushes out funds based on a defined schedule,
         amount, currency, and a source or a destination.
-      x-addedInVersion: '2'
-      x-sortIndex: 5
-      x-methodName: createSweep
   /balanceAccounts/{balanceAccountId}/sweeps/{sweepId}:
     delete:
       tags:
-        - Balance accounts
+        - Delete
+        - Sweep
+        - Holders
+        - Id
+        - Balance
+        - Accounts
+        - Tax
+        - Forms
+        - Account
+        - Sweeps
+        - Sweep
       summary: Delete a sweep
       description: Deletes a sweep for a balance account.
-      x-addedInVersion: '2'
-      x-sortIndex: 9
-      x-methodName: deleteSweep
     get:
       tags:
-        - Balance accounts
+        - Get
+        - Sweep
+        - Holders
+        - Id
+        - Balance
+        - Accounts
+        - Tax
+        - Forms
+        - Account
+        - Sweeps
+        - Sweep
       summary: Get a sweep
       description: Returns a sweep.
-      x-addedInVersion: '2'
-      x-sortIndex: 8
-      x-methodName: getSweep
     patch:
       tags:
-        - Balance accounts
+        - Update
+        - Sweep
+        - Holders
+        - Id
+        - Balance
+        - Accounts
+        - Tax
+        - Forms
+        - Account
+        - Sweeps
+        - Sweep
       summary: Update a sweep
       description: >-
         Updates a sweep. When updating a sweep resource, note that if a request
         parameter is not provided, the parameter is left unchanged.
-      x-addedInVersion: '2'
-      x-sortIndex: 6
-      x-methodName: updateSweep
   /balanceAccounts/{id}:
     get:
       tags:
-        - Balance accounts
+        - Get
+        - Balance
+        - Account
+        - Holders
+        - Id
+        - Balance
+        - Accounts
+        - Tax
+        - Forms
+        - Account
+        - Sweeps
+        - Sweep
       summary: Get a balance account
       description: >-
         Returns a balance account and its balances for the default currency and
         other currencies with a non-zero balance.
-      x-addedInVersion: '1'
-      x-sortIndex: 3
-      x-methodName: getBalanceAccount
     patch:
       tags:
-        - Balance accounts
+        - Update
+        - Balance
+        - Account
+        - Holders
+        - Id
+        - Balance
+        - Accounts
+        - Tax
+        - Forms
+        - Account
+        - Sweeps
+        - Sweep
       summary: Update a balance account
       description: Updates a balance account.
-      x-addedInVersion: '1'
-      x-sortIndex: 2
-      x-methodName: updateBalanceAccount
   /balanceAccounts/{id}/paymentInstruments:
     get:
       tags:
-        - Balance accounts
+        - Get
+        - Payment
+        - Instruments
+        - Linked
+        - To
+        - Balance
+        - Account
+        - Holders
+        - Id
+        - Balance
+        - Accounts
+        - Tax
+        - Forms
+        - Account
+        - Sweeps
+        - Sweep
+        - Payment
+        - Instruments
       summary: Get payment instruments linked to a balance account
       description: >-
         Returns a paginated list of the payment instruments associated with a
@@ -175,22 +268,48 @@ paths:
         the page to 3 payment instruments which are in active status and to skip
         the first 6, use
         `/balanceAccounts/{id}/paymentInstruments?limit=3&offset=6&status=active`.
-      x-addedInVersion: '1'
-      x-sortIndex: 4
-      x-methodName: getPaymentInstrumentsLinkedToBalanceAccount
   /balancePlatforms/{id}:
     get:
       tags:
+        - Get
+        - Balance
         - Platform
+        - Holders
+        - Id
+        - Balance
+        - Accounts
+        - Tax
+        - Forms
+        - Account
+        - Sweeps
+        - Sweep
+        - Payment
+        - Instruments
+        - Platforms
       summary: Get a balance platform
       description: Returns a balance platform.
-      x-addedInVersion: '1'
-      x-sortIndex: 1
-      x-methodName: getBalancePlatform
   /balancePlatforms/{id}/accountHolders:
     get:
       tags:
+        - Get
+        - All
+        - Account
+        - Holders
+        - Under
+        - Balance
         - Platform
+        - Holders
+        - Id
+        - Balance
+        - Accounts
+        - Tax
+        - Forms
+        - Account
+        - Sweeps
+        - Sweep
+        - Payment
+        - Instruments
+        - Platforms
       summary: Get all account holders under a balance platform
       description: >-
         Returns a paginated list of all the account holders that belong to the
@@ -199,155 +318,456 @@ paths:
 
         For example, to limit the page to 5 account holders and to skip the
         first 20, use `/balancePlatforms/{id}/accountHolders?limit=5&offset=20`.
-      x-addedInVersion: '1'
-      x-sortIndex: 2
-      x-methodName: getAllAccountHoldersUnderBalancePlatform
   /cardorders:
     get:
       tags:
-        - Card orders
+        - Get
+        - List
+        - Of
+        - Card
+        - Orders
+        - Holders
+        - Id
+        - Balance
+        - Accounts
+        - Tax
+        - Forms
+        - Account
+        - Sweeps
+        - Sweep
+        - Payment
+        - Instruments
+        - Platforms
+        - Cardorders
       summary: Get a list of card orders
       description: Returns a paginated list of card orders.
-      x-addedInVersion: '1'
-      x-sortIndex: 1
-      x-methodName: listCardOrders
   /cardorders/{id}/items:
     get:
       tags:
-        - Card orders
+        - Get
+        - Card
+        - Order
+        - Items
+        - Holders
+        - Id
+        - Balance
+        - Accounts
+        - Tax
+        - Forms
+        - Account
+        - Sweeps
+        - Sweep
+        - Payment
+        - Instruments
+        - Platforms
+        - Cardorders
+        - Items
       summary: Get card order items
       description: Returns the item list of a specific card order.
-      x-addedInVersion: '1'
-      x-sortIndex: 2
-      x-methodName: getCardOrderItems
   /grantAccounts/{id}:
     get:
       tags:
-        - Grant accounts
+        - Get
+        - Grant
+        - Account
+        - Holders
+        - Id
+        - Balance
+        - Accounts
+        - Tax
+        - Forms
+        - Account
+        - Sweeps
+        - Sweep
+        - Payment
+        - Instruments
+        - Platforms
+        - Cardorders
+        - Items
       summary: Get a grant account
       description: >-
         Returns the details of the [grant
         account](https://docs.adyen.com/marketplaces-and-platforms/capital#grant-account).
-      x-addedInVersion: '1'
-      x-sortIndex: 1
-      x-methodName: getGrantAccount
   /grantOffers:
     get:
       tags:
-        - Grant offers
+        - Get
+        - All
+        - Available
+        - Grant
+        - Offers
+        - Holders
+        - Id
+        - Balance
+        - Accounts
+        - Tax
+        - Forms
+        - Account
+        - Sweeps
+        - Sweep
+        - Payment
+        - Instruments
+        - Platforms
+        - Cardorders
+        - Items
+        - Offers
       summary: Get all available grant offers
       description: >-
         Returns a list of all [grant
         offers](https://docs.adyen.com/marketplaces-and-platforms/capital#grant-offers)
         available for `accountHolderId` specified as a query parameter.
-      x-addedInVersion: '2'
-      x-sortIndex: 1
-      x-methodName: getAllAvailableGrantOffers
   /grantOffers/{grantOfferId}:
     get:
       tags:
-        - Grant offers
+        - Get
+        - Grant
+        - Offer
+        - Holders
+        - Id
+        - Balance
+        - Accounts
+        - Tax
+        - Forms
+        - Account
+        - Sweeps
+        - Sweep
+        - Payment
+        - Instruments
+        - Platforms
+        - Cardorders
+        - Items
+        - Offers
+        - Grant
+        - Offer
       summary: Get a grant offer
       description: Returns the details of a single grant offer.
-      x-addedInVersion: '2'
-      x-sortIndex: 1
-      x-methodName: getGrantOffer
   /networkTokens/{networkTokenId}:
     get:
       tags:
-        - Network tokens
+        - Get
+        - Network
+        - Token
+        - Holders
+        - Id
+        - Balance
+        - Accounts
+        - Tax
+        - Forms
+        - Account
+        - Sweeps
+        - Sweep
+        - Payment
+        - Instruments
+        - Platforms
+        - Cardorders
+        - Items
+        - Offers
+        - Grant
+        - Offer
+        - Tokens
+        - Network
+        - Token
       summary: Get a network token
       description: Returns the details of a network token.
-      x-addedInVersion: '1'
-      x-sortIndex: 1
-      x-methodName: getNetworkToken
     patch:
       tags:
-        - Network tokens
+        - Update
+        - Network
+        - Token
+        - Holders
+        - Id
+        - Balance
+        - Accounts
+        - Tax
+        - Forms
+        - Account
+        - Sweeps
+        - Sweep
+        - Payment
+        - Instruments
+        - Platforms
+        - Cardorders
+        - Items
+        - Offers
+        - Grant
+        - Offer
+        - Tokens
+        - Network
+        - Token
       summary: Update a network token
       description: Updates the status of the network token.
-      x-addedInVersion: '1'
-      x-sortIndex: 2
-      x-methodName: updateNetworkToken
   /paymentInstrumentGroups:
     post:
       tags:
-        - Payment instrument groups
+        - Create
+        - Payment
+        - Instrument
+        - Group
+        - Holders
+        - Id
+        - Balance
+        - Accounts
+        - Tax
+        - Forms
+        - Account
+        - Sweeps
+        - Sweep
+        - Payment
+        - Instruments
+        - Platforms
+        - Cardorders
+        - Items
+        - Offers
+        - Grant
+        - Offer
+        - Tokens
+        - Network
+        - Token
+        - Instrument
+        - Groups
       summary: Create a payment instrument group
       description: >-
         Creates a payment instrument group to associate and group payment
         instrument resources together. You can apply a transaction rule to a
         payment instrument group.
-      x-addedInVersion: '1'
-      x-sortIndex: 1
-      x-methodName: createPaymentInstrumentGroup
   /paymentInstrumentGroups/{id}:
     get:
       tags:
-        - Payment instrument groups
+        - Get
+        - Payment
+        - Instrument
+        - Group
+        - Holders
+        - Id
+        - Balance
+        - Accounts
+        - Tax
+        - Forms
+        - Account
+        - Sweeps
+        - Sweep
+        - Payment
+        - Instruments
+        - Platforms
+        - Cardorders
+        - Items
+        - Offers
+        - Grant
+        - Offer
+        - Tokens
+        - Network
+        - Token
+        - Instrument
+        - Groups
       summary: Get a payment instrument group
       description: Returns the details of a payment instrument group.
-      x-addedInVersion: '1'
-      x-sortIndex: 2
-      x-methodName: getPaymentInstrumentGroup
   /paymentInstrumentGroups/{id}/transactionRules:
     get:
       tags:
-        - Payment instrument groups
+        - Get
+        - All
+        - Transaction
+        - Rules
+        - For
+        - Payment
+        - Instrument
+        - Group
+        - Holders
+        - Id
+        - Balance
+        - Accounts
+        - Tax
+        - Forms
+        - Account
+        - Sweeps
+        - Sweep
+        - Payment
+        - Instruments
+        - Platforms
+        - Cardorders
+        - Items
+        - Offers
+        - Grant
+        - Offer
+        - Tokens
+        - Network
+        - Token
+        - Instrument
+        - Groups
+        - Transaction
+        - Rules
       summary: Get all transaction rules for a payment instrument group
       description: >-
         Returns a list of all the transaction rules associated with a payment
         instrument group.
-      x-addedInVersion: '1'
-      x-sortIndex: 3
-      x-methodName: getAllTransactionRulesForPaymentInstrumentGroup
   /paymentInstruments:
     post:
       tags:
-        - Payment instruments
+        - Create
+        - Payment
+        - Instrument
+        - Holders
+        - Id
+        - Balance
+        - Accounts
+        - Tax
+        - Forms
+        - Account
+        - Sweeps
+        - Sweep
+        - Payment
+        - Instruments
+        - Platforms
+        - Cardorders
+        - Items
+        - Offers
+        - Grant
+        - Offer
+        - Tokens
+        - Network
+        - Token
+        - Instrument
+        - Groups
+        - Transaction
+        - Rules
       summary: Create a payment instrument
       description: >-
         Creates a payment instrument to issue a physical card, a virtual card,
         or a business account to your user.
 
          For more information, refer to [Issue cards](https://docs.adyen.com/issuing/create-cards) or [Issue business accounts](https://docs.adyen.com/marketplaces-and-platforms/business-accounts).
-      x-addedInVersion: '1'
-      x-sortIndex: 11
-      x-methodName: createPaymentInstrument
   /paymentInstruments/{id}:
     get:
       tags:
-        - Payment instruments
+        - Get
+        - Payment
+        - Instrument
+        - Holders
+        - Id
+        - Balance
+        - Accounts
+        - Tax
+        - Forms
+        - Account
+        - Sweeps
+        - Sweep
+        - Payment
+        - Instruments
+        - Platforms
+        - Cardorders
+        - Items
+        - Offers
+        - Grant
+        - Offer
+        - Tokens
+        - Network
+        - Token
+        - Instrument
+        - Groups
+        - Transaction
+        - Rules
       summary: Get a payment instrument
       description: Returns the details of a payment instrument.
-      x-addedInVersion: '1'
-      x-sortIndex: 13
-      x-methodName: getPaymentInstrument
     patch:
       tags:
-        - Payment instruments
+        - Update
+        - Payment
+        - Instrument
+        - Holders
+        - Id
+        - Balance
+        - Accounts
+        - Tax
+        - Forms
+        - Account
+        - Sweeps
+        - Sweep
+        - Payment
+        - Instruments
+        - Platforms
+        - Cardorders
+        - Items
+        - Offers
+        - Grant
+        - Offer
+        - Tokens
+        - Network
+        - Token
+        - Instrument
+        - Groups
+        - Transaction
+        - Rules
       summary: Update a payment instrument
       description: >-
         Updates a payment instrument. Once a payment instrument is already
         active, you can only update its status. However, for cards created with
         **inactive** status, you can still update the balance account associated
         with the card.
-      x-addedInVersion: '1'
-      x-sortIndex: 12
-      x-methodName: updatePaymentInstrument
   /paymentInstruments/{id}/networkTokens:
     get:
       tags:
-        - Payment instruments
+        - List
+        - Network
+        - Tokens
+        - Holders
+        - Id
+        - Balance
+        - Accounts
+        - Tax
+        - Forms
+        - Account
+        - Sweeps
+        - Sweep
+        - Payment
+        - Instruments
+        - Platforms
+        - Cardorders
+        - Items
+        - Offers
+        - Grant
+        - Offer
+        - Tokens
+        - Network
+        - Token
+        - Instrument
+        - Groups
+        - Transaction
+        - Rules
       summary: List network tokens
       description: List the network tokens connected to a payment instrument.
-      x-addedInVersion: '1'
-      x-sortIndex: 15
-      x-methodName: listNetworkTokens
   /paymentInstruments/{id}/reveal:
     get:
       tags:
-        - Payment instruments
+        - Get
+        - The
+        - Of
+        - Payment
+        - Instrument
+        - Holders
+        - Id
+        - Balance
+        - Accounts
+        - Tax
+        - Forms
+        - Account
+        - Sweeps
+        - Sweep
+        - Payment
+        - Instruments
+        - Platforms
+        - Cardorders
+        - Items
+        - Offers
+        - Grant
+        - Offer
+        - Tokens
+        - Network
+        - Token
+        - Instrument
+        - Groups
+        - Transaction
+        - Rules
+        - Reveal
       summary: Get the PAN of a payment instrument
       description: >-
         Returns the primary account number (PAN) of a payment instrument.
@@ -358,51 +778,184 @@ paths:
 
 
         * Balance Platform BCL PCI role
-      x-addedInVersion: '1'
-      x-sortIndex: 14
-      x-methodName: getPanOfPaymentInstrument
   /paymentInstruments/{id}/transactionRules:
     get:
       tags:
-        - Payment instruments
+        - Get
+        - All
+        - Transaction
+        - Rules
+        - For
+        - Payment
+        - Instrument
+        - Holders
+        - Id
+        - Balance
+        - Accounts
+        - Tax
+        - Forms
+        - Account
+        - Sweeps
+        - Sweep
+        - Payment
+        - Instruments
+        - Platforms
+        - Cardorders
+        - Items
+        - Offers
+        - Grant
+        - Offer
+        - Tokens
+        - Network
+        - Token
+        - Instrument
+        - Groups
+        - Transaction
+        - Rules
+        - Reveal
       summary: Get all transaction rules for a payment instrument
       description: >-
         Returns a list of transaction rules associated with a payment
         instrument.
-      x-addedInVersion: '1'
-      x-sortIndex: 14
-      x-methodName: getAllTransactionRulesForPaymentInstrument
   /pins/change:
     post:
       tags:
-        - PIN functionality
+        - Change
+        - Pin
+        - Holders
+        - Id
+        - Balance
+        - Accounts
+        - Tax
+        - Forms
+        - Account
+        - Sweeps
+        - Sweep
+        - Payment
+        - Instruments
+        - Platforms
+        - Cardorders
+        - Items
+        - Offers
+        - Grant
+        - Offer
+        - Tokens
+        - Network
+        - Token
+        - Instrument
+        - Groups
+        - Transaction
+        - Rules
+        - Reveal
+        - Pins
+        - Change
       summary: Change Pin
       description: Change Pin
-      x-addedInVersion: '1'
-      x-sortIndex: 2
-      x-methodName: changePin
   /pins/publicKey:
     get:
       tags:
-        - PIN functionality
+        - Get
+        - Public
+        - Key
+        - Holders
+        - Id
+        - Balance
+        - Accounts
+        - Tax
+        - Forms
+        - Account
+        - Sweeps
+        - Sweep
+        - Payment
+        - Instruments
+        - Platforms
+        - Cardorders
+        - Items
+        - Offers
+        - Grant
+        - Offer
+        - Tokens
+        - Network
+        - Token
+        - Instrument
+        - Groups
+        - Transaction
+        - Rules
+        - Reveal
+        - Pins
+        - Change
+        - Key
       summary: Get RSA publicKey
       description: Get RSA publicKey
-      x-addedInVersion: '1'
-      x-sortIndex: 1
-      x-methodName: getRsaPublickey
   /pins/reveal:
     post:
       tags:
-        - PIN functionality
+        - Reveal
+        - Pin
+        - Holders
+        - Id
+        - Balance
+        - Accounts
+        - Tax
+        - Forms
+        - Account
+        - Sweeps
+        - Sweep
+        - Payment
+        - Instruments
+        - Platforms
+        - Cardorders
+        - Items
+        - Offers
+        - Grant
+        - Offer
+        - Tokens
+        - Network
+        - Token
+        - Instrument
+        - Groups
+        - Transaction
+        - Rules
+        - Reveal
+        - Pins
+        - Change
+        - Key
       summary: Reveal Pin
       description: Reveal Pin
-      x-addedInVersion: '1'
-      x-sortIndex: 2
-      x-methodName: revealPin
   /transactionRules:
     post:
       tags:
-        - Transaction rules
+        - Create
+        - Transaction
+        - Rule
+        - Holders
+        - Id
+        - Balance
+        - Accounts
+        - Tax
+        - Forms
+        - Account
+        - Sweeps
+        - Sweep
+        - Payment
+        - Instruments
+        - Platforms
+        - Cardorders
+        - Items
+        - Offers
+        - Grant
+        - Offer
+        - Tokens
+        - Network
+        - Token
+        - Instrument
+        - Groups
+        - Transaction
+        - Rules
+        - Reveal
+        - Pins
+        - Change
+        - Key
       summary: Create a transaction rule
       description: >-
         Creates a [transaction
@@ -413,29 +966,113 @@ paths:
         such as all the cards in your platform, or to a specific card. For use
         cases, see
         [examples](https://docs.adyen.com/issuing/transaction-rules/examples).
-      x-addedInVersion: '1'
-      x-sortIndex: 1
-      x-methodName: createTransactionRule
   /transactionRules/{transactionRuleId}:
     delete:
       tags:
-        - Transaction rules
+        - Delete
+        - Transaction
+        - Rule
+        - Holders
+        - Id
+        - Balance
+        - Accounts
+        - Tax
+        - Forms
+        - Account
+        - Sweeps
+        - Sweep
+        - Payment
+        - Instruments
+        - Platforms
+        - Cardorders
+        - Items
+        - Offers
+        - Grant
+        - Offer
+        - Tokens
+        - Network
+        - Token
+        - Instrument
+        - Groups
+        - Transaction
+        - Rules
+        - Reveal
+        - Pins
+        - Change
+        - Key
+        - Rule
       summary: Delete a transaction rule
       description: Deletes a transaction rule.
-      x-addedInVersion: '1'
-      x-sortIndex: 5
-      x-methodName: deleteTransactionRule
     get:
       tags:
-        - Transaction rules
+        - Get
+        - Transaction
+        - Rule
+        - Holders
+        - Id
+        - Balance
+        - Accounts
+        - Tax
+        - Forms
+        - Account
+        - Sweeps
+        - Sweep
+        - Payment
+        - Instruments
+        - Platforms
+        - Cardorders
+        - Items
+        - Offers
+        - Grant
+        - Offer
+        - Tokens
+        - Network
+        - Token
+        - Instrument
+        - Groups
+        - Transaction
+        - Rules
+        - Reveal
+        - Pins
+        - Change
+        - Key
+        - Rule
       summary: Get a transaction rule
       description: Returns the details of a transaction rule.
-      x-addedInVersion: '1'
-      x-sortIndex: 2
-      x-methodName: getTransactionRule
     patch:
       tags:
-        - Transaction rules
+        - Update
+        - Transaction
+        - Rule
+        - Holders
+        - Id
+        - Balance
+        - Accounts
+        - Tax
+        - Forms
+        - Account
+        - Sweeps
+        - Sweep
+        - Payment
+        - Instruments
+        - Platforms
+        - Cardorders
+        - Items
+        - Offers
+        - Grant
+        - Offer
+        - Tokens
+        - Network
+        - Token
+        - Instrument
+        - Groups
+        - Transaction
+        - Rules
+        - Reveal
+        - Pins
+        - Change
+        - Key
+        - Rule
       summary: Update a transaction rule
       description: >-
         Updates a transaction rule. 
@@ -449,13 +1086,43 @@ paths:
         * When updating any other parameter, you need to send all existing
         resource parameters. If you omit a parameter in the request, that
         parameter is removed from the resource.
-      x-addedInVersion: '1'
-      x-sortIndex: 3
-      x-methodName: updateTransactionRule
   /transferRoutes/calculate:
     post:
       tags:
-        - Transfer routes
+        - Calculate
+        - Transfer
+        - Routes
+        - Holders
+        - Id
+        - Balance
+        - Accounts
+        - Tax
+        - Forms
+        - Account
+        - Sweeps
+        - Sweep
+        - Payment
+        - Instruments
+        - Platforms
+        - Cardorders
+        - Items
+        - Offers
+        - Grant
+        - Offer
+        - Tokens
+        - Network
+        - Token
+        - Instrument
+        - Groups
+        - Transaction
+        - Rules
+        - Reveal
+        - Pins
+        - Change
+        - Key
+        - Rule
+        - Routes
+        - Calculate
       summary: Calculate transfer routes
       description: >-
         Returns available transfer routes based on a combination of transfer
@@ -463,20 +1130,49 @@ paths:
         endpoint to find optimal transfer priorities and associated requirements
         before you [make a
         transfer](https://docs.adyen.com/api-explorer/transfers/latest/post/transfers).
-      x-addedInVersion: '1'
-      x-sortIndex: 1
-      x-methodName: calculateTransferRoutes
   /validateBankAccountIdentification:
     post:
       tags:
-        - Bank account validation
+        - Validate
+        - Bank
+        - Account
+        - Holders
+        - Id
+        - Balance
+        - Accounts
+        - Tax
+        - Forms
+        - Account
+        - Sweeps
+        - Sweep
+        - Payment
+        - Instruments
+        - Platforms
+        - Cardorders
+        - Items
+        - Offers
+        - Grant
+        - Offer
+        - Tokens
+        - Network
+        - Token
+        - Instrument
+        - Groups
+        - Transaction
+        - Rules
+        - Reveal
+        - Pins
+        - Change
+        - Key
+        - Rule
+        - Routes
+        - Calculate
+        - Bank
+        - Identification
       summary: Validate a bank account
       description: >-
         Validates bank account identification details. You can use this endpoint
         to validate bank account details before you [make a
         transfer](https://docs.adyen.com/api-explorer/transfers/latest/post/transfers)
         or [create a transfer
-        instrument](https://docs.adyen.com/api-explorer/legalentity/latest/post/transferInstruments).
-      x-addedInVersion: '1'
-      x-sortIndex: 1
-      x-methodName: validateBankAccountIdentification
+        instrument](https://docs.adyen.com/api-explorer/legalentity/latest/po

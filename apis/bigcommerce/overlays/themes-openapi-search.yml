@@ -1,0 +1,122 @@
+openapi: 3.0.0
+info:
+  title: Themes
+  version: ''
+  license:
+    name: ''
+tags:
+  - name: Themes
+  - name: Theme Actions
+  - name: Theme Configurations
+  - name: Theme Custom Templates
+  - name: Theme Jobs
+paths:
+  /themes:
+    parameters:
+      - null
+    get:
+      tags:
+        - Themes
+      summary: Get all Themes
+      description: Returns a list of store *Themes*.
+    post:
+      tags:
+        - Themes
+      summary: Upload a Theme
+      description: |-
+        Uploads a new *Theme* to your BigCommerce store.
+
+        **Required Fields**
+        * file
+  /themes/{uuid}:
+    get:
+      tags:
+        - Themes
+      summary: Get a Theme
+      description: >-
+        Returns a store *Theme*. The theme variation is not available at this
+        endpoint.
+    delete:
+      tags:
+        - Themes
+      summary: Delete a Theme
+      description: >-
+        Deletes a store *Theme*.
+
+        Theme variations can not be deleted using this endpoint. This will
+        delete the theme and all variations.
+    parameters:
+      - null
+      - null
+  /themes/{uuid}/actions/download:
+    parameters:
+      - null
+      - null
+    post:
+      tags:
+        - Theme Actions
+      summary: Download a Theme
+      description: Downloads a stores *Theme*.
+  /themes/actions/activate:
+    parameters:
+      - null
+      - null
+    post:
+      tags:
+        - Theme Actions
+      summary: Activate a Theme
+      description: |-
+        Actives a store *Theme*.
+
+        This returns a 204 response upon success.
+  /themes/jobs/{job_id}:
+    get:
+      tags:
+        - Theme Jobs
+      summary: Get a Theme Job
+      description: >-
+        Returns a theme *Job*. When the job is complete, the results array
+        provides a generated link to access the theme. The link is active for 60
+        seconds.
+    parameters:
+      - null
+      - null
+  /themes/{uuid}/configurations:
+    get:
+      tags:
+        - Theme Configurations
+      summary: Get Theme Configuration
+      description: |-
+        Returns a list of theme's configurations.
+
+        **Usage Notes**:
+        * At least one filter must be provided.
+    parameters:
+      - null
+      - null
+      - null
+      - null
+      - null
+      - null
+  /themes/{uuid}/configurations/validate:
+    post:
+      summary: Validate Theme Configuration
+      tags:
+        - Theme Configurations
+      description: >-
+        Validates a theme configuration against the theme's schema without
+        creating it. Useful for testing schemas before creation.
+    parameters:
+      - null
+      - null
+  /themes/custom-templates/{version_uuid}:
+    parameters:
+      - null
+      - null
+    get:
+      summary: Get Custom Templates
+      tags:
+        - Theme Custom Templates
+      description: >-
+        Enumerate available custom templates for in the theme files in a
+        specific theme version for each supported entity typ

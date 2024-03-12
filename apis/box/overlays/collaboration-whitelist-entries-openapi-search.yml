@@ -1,0 +1,38 @@
+openapi: 3.1.0
+info:
+  title: Box Collaboration Whitelist Entries API
+paths:
+  /collaboration_whitelist_entries:
+    get:
+      summary: List allowed collaboration domains
+      tags:
+        - Domain restrictions for collaborations
+      description: >-
+        Returns the list domains that have been deemed safe to create
+        collaborations
+
+        for within the current enterprise.
+    post:
+      summary: Add domain to list of allowed collaboration domains
+      tags:
+        - Domain restrictions for collaborations
+      description: |-
+        Creates a new entry in the list of allowed domains to allow
+        collaboration for.
+  /collaboration_whitelist_entries/{collaboration_whitelist_entry_id}:
+    get:
+      summary: Get allowed collaboration domain
+      tags:
+        - Domain restrictions for collaborations
+      description: |-
+        Returns a domain that has been deemed safe to create collaborations
+        for within the current enterprise.
+    delete:
+      summary: Remove domain from list of allowed collaboration domains
+      tags:
+        - Domain restrictions for collaborations
+      description: >-
+        Removes a domain from the list of domains that have been deemed safe to
+        create
+
+        collaborations for within the current enterpris

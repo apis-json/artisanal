@@ -1,0 +1,33 @@
+openapi: 3.0.0
+info:
+  version: ''
+  title: Accepted Payment Methods
+tags:
+  - name: Methods
+paths:
+  /payments/methods:
+    parameters:
+      - null
+    get:
+      description: >-
+        Returns a list of accepted payment methods based on the `order_id` or
+        `checkout_id`.
+
+
+        **Notes**
+
+        * Use the [Create an
+        Order](/docs/rest-management/orders#create-an-order) endpoint to
+        generate the `order_id`.
+
+        * Orders created will be set to incomplete order status.
+
+        * The cart ID and checkout ID are the same.
+
+
+        **Required Fields**
+
+        * `order_id` or `checkout_id`
+      summary: Get Accepted Payment Methods
+      tags:
+        - Metho

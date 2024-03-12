@@ -1,0 +1,75 @@
+openapi: 3.0.1
+info:
+  title: Wishlist
+  version: ''
+tags:
+  - name: Wishlists
+  - name: Wishlists Items
+paths:
+  /wishlists:
+    get:
+      tags:
+        - Wishlists
+      summary: Get All Wishlists
+      description: >-
+        Returns a list of wishlists. Optional filter parameters can be passed
+        in.
+    post:
+      tags:
+        - Wishlists
+      summary: Create a Wishlist
+      description: >-
+        Creates a wishlist and wishlist item. More than one item can be added in
+        the POST.
+
+
+        **Required Fields**
+
+        * name
+
+        * customer_id
+  /wishlists/{wishlist_id}/items/{item_id}:
+    parameters:
+      - null
+      - null
+      - null
+    delete:
+      tags:
+        - Wishlists Items
+      summary: Delete Wishlist Item
+      description: Deletes a wishlist item.
+  /wishlists/{wishlist_id}:
+    parameters:
+      - null
+      - null
+    get:
+      tags:
+        - Wishlists
+      summary: Get a Wishlist
+      description: Returns a single wishlist.
+    put:
+      tags:
+        - Wishlists
+      summary: Update a Wishlist
+      description: >-
+        Updates a wishlist.
+
+
+        Use this endpoint to update existing wishlist items, change the
+        wishlistʼs name and whether the wishlist is available publicly. To add
+        or delete a wishlist item, see [Wishlist
+        Items](/docs/rest-management/wishlists/wishlists-items).
+    delete:
+      tags:
+        - Wishlists
+      summary: Delete a Wishlist
+      description: Deletes a wishlist.
+  /wishlists/{wishlist_id}/items:
+    parameters:
+      - null
+      - null
+    post:
+      tags:
+        - Wishlists Items
+      summary: Add Wishlist Item
+      description: Adds a wishlist item. More than one item can be added at a tim

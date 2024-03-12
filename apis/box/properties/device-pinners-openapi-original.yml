@@ -1,0 +1,277 @@
+openapi: 3.1.0
+info:
+  title: Box Device Pinners API
+  description: Needs a description.
+paths:
+  /device_pinners/{device_pinner_id}:
+    get:
+      operationId: get_device_pinners_id
+      summary: Get device pin
+      tags:
+        - Device pinners
+      x-box-tag: device_pinners
+      description: Retrieves information about an individual device pin.
+      parameters:
+        - name: device_pinner_id
+          description: The ID of the device pin
+          in: path
+          required: true
+          example: '2324234'
+          schema:
+            type: string
+      responses:
+        '200':
+          description: Returns information about a single device pin.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/DevicePinner'
+        default:
+          description: An unexpected client error.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ClientError'
+    delete:
+      operationId: delete_device_pinners_id
+      summary: Remove device pin
+      tags:
+        - Device pinners
+      x-box-tag: device_pinners
+      description: Deletes an individual device pin.
+      parameters:
+        - name: device_pinner_id
+          description: The ID of the device pin
+          in: path
+          required: true
+          example: '2324234'
+          schema:
+            type: string
+      responses:
+        '204':
+          description: Returns an empty response when the pin has been deleted.
+        default:
+          description: An unexpected client error.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ClientError'
+  /enterprises/{enterprise_id}/device_pinners:
+    get:
+      operationId: get_enterprises_id_device_pinners
+      summary: List enterprise device pins
+      tags:
+        - Device pinners
+      x-box-tag: device_pinners
+      description: |-
+        Retrieves all the device pins within an enterprise.
+
+        The user must have admin privileges, and the application
+        needs the "manage enterprise" scope to make this call.
+      parameters:
+        - name: enterprise_id
+          description: The ID of the enterprise
+          in: path
+          required: true
+          example: '3442311'
+          schema:
+            type: string
+        - name: marker
+          description: >-
+            Defines the position marker at which to begin returning results.
+            This is
+
+            used when paginating using marker-based pagination.
+
+
+            This requires `usemarker` to be set to `true`.
+          in: query
+          required: false
+          example: JV9IRGZmieiBasejOG9yDCRNgd2ymoZIbjsxbJMjIs3kioVii
+          schema:
+            type: string
+        - name: limit
+          description: The maximum number of items to return per page.
+          in: query
+          required: false
+          example: 1000
+          schema:
+            type: integer
+            format: int64
+            maximum: 1000
+        - name: direction
+          description: >-
+            The direction to sort results in. This can be either in alphabetical
+            ascending
+
+            (`ASC`) or descending (`DESC`) order.
+          in: query
+          required: false
+          example: ASC
+          schema:
+            type: string
+            enum:
+              - ASC
+              - DESC
+      responses:
+        '200':
+          description: Returns a list of device pins for a given enterprise.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/DevicePinners'
+        default:
+          description: An unexpected client error.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ClientError'
+components:
+  schemas:
+    DevicePinner:
+      title: Device pinner
+      type: object
+      x-box-resource-id: device_pinner
+      x-box-tag: device_pinners
+      description: |-
+        Device pins allow enterprises to control what devices can
+        use native Box applications.
+      properties:
+        id:
+          type: string
+          description: The unique identifier for this device pin.
+          example: '11446498'
+        type:
+          type: string
+          description: '`device_pinner`'
+          example: device_pinner
+          enum:
+            - device_pinner
+        owned_by:
+          allOf:
+            - $ref: '#/components/schemas/User--Mini'
+            - description: The user that the device pin belongs to
+        product_name:
+          type: string
+          description: The type of device being pinned
+          example: iPad
+    ClientError:
+      title: Client error
+      type: object
+      x-box-resource-id: client_error
+      description: A generic error
+      properties:
+        type:
+          description: error
+          example: error
+          type: string
+          enum:
+            - error
+          nullable: false
+        status:
+          description: The HTTP status of the response.
+          example: 400
+          type: integer
+          format: int32
+          nullable: false
+        code:
+          description: A Box-specific error code
+          example: item_name_invalid
+          type: string
+          enum:
+            - created
+            - accepted
+            - no_content
+            - redirect
+            - not_modified
+            - bad_request
+            - unauthorized
+            - forbidden
+            - not_found
+            - method_not_allowed
+            - conflict
+            - precondition_failed
+            - too_many_requests
+            - internal_server_error
+            - unavailable
+            - item_name_invalid
+            - insufficient_scope
+        message:
+          description: A short message describing the error.
+          example: Method Not Allowed
+          type: string
+          nullable: false
+        context_info:
+          description: |-
+            A free-form object that contains additional context
+            about the error. The possible fields are defined on
+            a per-endpoint basis. `message` is only one example.
+          type: object
+          nullable: true
+          properties:
+            message:
+              type: string
+              description: More details on the error.
+              example: Something went wrong.
+        help_url:
+          description: A URL that links to more information about why this error occurred.
+          example: >-
+            https://developer.box.com/guides/api-calls/permissions-and-errors/common-errors/
+          type: string
+          nullable: false
+        request_id:
+          description: |-
+            A unique identifier for this response, which can be used
+            when contacting Box support.
+          type: string
+          example: abcdef123456
+          nullable: false
+    DevicePinners:
+      title: Device pinners
+      type: object
+      x-box-resource-id: device_pinners
+      x-box-tag: device_pinners
+      description: A list of device pins
+      properties:
+        entries:
+          type: array
+          description: A list of device pins
+          items:
+            $ref: '#/components/schemas/DevicePinner'
+        limit:
+          description: >-
+            The limit that was used for these entries. This will be the same as
+            the
+
+            `limit` query parameter unless that value exceeded the maximum value
+
+            allowed.
+          default: 100
+          example: 200
+          type: integer
+          format: int64
+        next_marker:
+          description: The marker for the start of the next page of results.
+          example: 3000
+          type: integer
+          format: int64
+        order:
+          description: The order by which items are returned.
+          type: array
+          items:
+            type: object
+            description: The order in which a pagination is ordered
+            properties:
+              by:
+                description: The field that is ordered by
+                example: id
+                enum:
+                  - id
+                type: string
+              direction:
+                type: string
+                description: The direction to order by, either ascending or descending
+                example: asc
+                enum:
+                  - asc
+                  - desc

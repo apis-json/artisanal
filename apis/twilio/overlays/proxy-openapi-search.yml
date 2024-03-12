@@ -1,5 +1,5 @@
 info:
-  title: Twilio Proxy API
+  title: Twilio - Proxy
   license:
     name: Apache 2.0
     url: https://www.apache.org/licenses/LICENSE-2.0.html
@@ -12,31 +12,11 @@ paths:
         Retrieve a list of Interactions for a given
         [Session](https://www.twilio.com/docs/proxy/api/session).
       tags:
-        - Retrieve
-        - Service
-        - Session
-        - Interaction
-        - Services
-        - Service
-        - Sid
-        - Sessions
-        - Session
-        - Interactions
-      summary: Retrieve Service Session Interaction
+        - ProxyV1Interaction
     delete:
       description: Delete a specific Interaction.
       tags:
-        - Delete
-        - Service
-        - Session
-        - Interaction
-        - Services
-        - Service
-        - Sid
-        - Sessions
-        - Session
-        - Interactions
-      summary: Delete Service Session Interaction
+        - ProxyV1Interaction
   /v1/Services/{ServiceSid}/Sessions/{SessionSid}/Interactions:
     description: 'TODO: Resource-level docs'
     get:
@@ -44,17 +24,7 @@ paths:
         Retrieve a list of all Interactions for a Session. A maximum of 100
         records will be returned per page.
       tags:
-        - Retrieve
-        - Service
-        - Session
-        - Interactions
-        - Services
-        - Service
-        - Sid
-        - Sessions
-        - Session
-        - Interactions
-      summary: Retrieve Service Session Interactions
+        - ProxyV1Interaction
   /v1/Services/{ServiceSid}/Sessions/{SessionSid}/Participants/{ParticipantSid}/MessageInteractions:
     description: 'TODO: Resource-level docs'
     post:
@@ -63,78 +33,23 @@ paths:
         one [Participant](https://www.twilio.com/docs/proxy/api/participant). 
         The `inbound` properties for the Interaction will always be empty.
       tags:
-        - Create
-        - Service
-        - Session
-        - Participant
-        - Interaction
-        - Services
-        - Service
-        - Sid
-        - Sessions
-        - Session
-        - Interactions
-        - Participants
-        - Participant
-        - Message
-      summary: Create Service Session Participant Interaction
+        - ProxyV1MessageInteraction
     get:
       description: ''
       tags:
-        - Retrieve
-        - Service
-        - Session
-        - Participant
-        - Interaction
-        - Services
-        - Service
-        - Sid
-        - Sessions
-        - Session
-        - Interactions
-        - Participants
-        - Participant
-        - Message
-      summary: Retrieve Service Session Participant Interaction
+        - ProxyV1MessageInteraction
   /v1/Services/{ServiceSid}/Sessions/{SessionSid}/Participants/{ParticipantSid}/MessageInteractions/{Sid}:
     description: 'TODO: Resource-level docs'
     get:
       description: ''
       tags:
-        - Retrieve
-        - Service
-        - Session
-        - Participant
-        - Interactions
-        - Services
-        - Service
-        - Sid
-        - Sessions
-        - Session
-        - Interactions
-        - Participants
-        - Participant
-        - Message
-      summary: Retrieve Service Session Participant Interactions
+        - ProxyV1MessageInteraction
   /v1/Services/{ServiceSid}/Sessions/{SessionSid}/Participants/{Sid}:
     description: 'TODO: Resource-level docs'
     get:
       description: Fetch a specific Participant.
       tags:
-        - Retrieve
-        - Service
-        - Session
-        - Participant
-        - Services
-        - Service
-        - Sid
-        - Sessions
-        - Session
-        - Interactions
-        - Participants
-        - Participant
-        - Message
-      summary: Retrieve Service Session Participant
+        - ProxyV1Participant
     delete:
       description: >-
         Delete a specific Participant. This is a soft-delete. The participant
@@ -142,210 +57,57 @@ paths:
         are only permanently deleted when the
         [Session](https://www.twilio.com/docs/proxy/api/session) is deleted.
       tags:
-        - Delete
-        - Service
-        - Session
-        - Participant
-        - Services
-        - Service
-        - Sid
-        - Sessions
-        - Session
-        - Interactions
-        - Participants
-        - Participant
-        - Message
-      summary: Delete Service Session Participant
+        - ProxyV1Participant
   /v1/Services/{ServiceSid}/Sessions/{SessionSid}/Participants:
     description: 'TODO: Resource-level docs'
     get:
       description: Retrieve a list of all Participants in a Session.
       tags:
-        - Retrieve
-        - Service
-        - Session
-        - Participants
-        - Services
-        - Service
-        - Sid
-        - Sessions
-        - Session
-        - Interactions
-        - Participants
-        - Participant
-        - Message
-      summary: Retrieve Service Session Participants
+        - ProxyV1Participant
     post:
       description: Add a new Participant to the Session
       tags:
-        - Create
-        - Service
-        - Session
-        - Participant
-        - Services
-        - Service
-        - Sid
-        - Sessions
-        - Session
-        - Interactions
-        - Participants
-        - Participant
-        - Message
-      summary: Create Service Session Participant
+        - ProxyV1Participant
   /v1/Services/{ServiceSid}/PhoneNumbers:
     description: 'TODO: Resource-level docs'
     post:
       description: Add a Phone Number to a Service's Proxy Number Pool.
       tags:
-        - Create
-        - Service
-        - Phone
-        - Number
-        - Services
-        - Service
-        - Sid
-        - Sessions
-        - Session
-        - Interactions
-        - Participants
-        - Participant
-        - Message
-        - Phone
-        - Numbers
-      summary: Create Service Phone Number
+        - ProxyV1PhoneNumber
     get:
       description: >-
         Retrieve a list of all Phone Numbers in the Proxy Number Pool for a
         Service. A maximum of 100 records will be returned per page.
       tags:
-        - Retrieve
-        - Service
-        - Phone
-        - Numbers
-        - Services
-        - Service
-        - Sid
-        - Sessions
-        - Session
-        - Interactions
-        - Participants
-        - Participant
-        - Message
-        - Phone
-        - Numbers
-      summary: Retrieve Service Phone Numbers
+        - ProxyV1PhoneNumber
   /v1/Services/{ServiceSid}/PhoneNumbers/{Sid}:
     description: 'TODO: Resource-level docs'
     delete:
       description: Delete a specific Phone Number from a Service.
       tags:
-        - Delete
-        - Service
-        - Phone
-        - Number
-        - Services
-        - Service
-        - Sid
-        - Sessions
-        - Session
-        - Interactions
-        - Participants
-        - Participant
-        - Message
-        - Phone
-        - Numbers
-      summary: Delete Service Phone Number
+        - ProxyV1PhoneNumber
     get:
       description: Fetch a specific Phone Number.
       tags:
-        - Retrieve
-        - Service
-        - Phone
-        - Number
-        - Services
-        - Service
-        - Sid
-        - Sessions
-        - Session
-        - Interactions
-        - Participants
-        - Participant
-        - Message
-        - Phone
-        - Numbers
-      summary: Retrieve Service Phone Number
+        - ProxyV1PhoneNumber
     post:
       description: Update a specific Proxy Number.
       tags:
-        - Update
-        - Service
-        - Phone
-        - Number
-        - Services
-        - Service
-        - Sid
-        - Sessions
-        - Session
-        - Interactions
-        - Participants
-        - Participant
-        - Message
-        - Phone
-        - Numbers
-      summary: Update Service Phone Number
+        - ProxyV1PhoneNumber
   /v1/Services/{Sid}:
     description: 'TODO: Resource-level docs'
     get:
       description: Fetch a specific Service.
       tags:
-        - Retrieve
-        - Service
-        - Services
-        - Service
-        - Sid
-        - Sessions
-        - Session
-        - Interactions
-        - Participants
-        - Participant
-        - Message
-        - Phone
-        - Numbers
-      summary: Retrieve Service
+        - ProxyV1Service
     delete:
       description: Delete a specific Service.
       tags:
-        - Delete
-        - Service
-        - Services
-        - Service
-        - Sid
-        - Sessions
-        - Session
-        - Interactions
-        - Participants
-        - Participant
-        - Message
-        - Phone
-        - Numbers
-      summary: Delete Service
+        - ProxyV1Service
     post:
       description: Update a specific Service.
       tags:
-        - Update
-        - Service
-        - Services
-        - Service
-        - Sid
-        - Sessions
-        - Session
-        - Interactions
-        - Participants
-        - Participant
-        - Message
-        - Phone
-        - Numbers
-      summary: Update Service
+        - ProxyV1Service
   /v1/Services:
     description: 'TODO: Resource-level docs'
     get:
@@ -353,93 +115,25 @@ paths:
         Retrieve a list of all Services for Twilio Proxy. A maximum of 100
         records will be returned per page.
       tags:
-        - Retrieve
-        - Services
-        - Services
-        - Service
-        - Sid
-        - Sessions
-        - Session
-        - Interactions
-        - Participants
-        - Participant
-        - Message
-        - Phone
-        - Numbers
-      summary: Retrieve Services
+        - ProxyV1Service
     post:
       description: Create a new Service for Twilio Proxy
       tags:
-        - Create
-        - Service
-        - Services
-        - Service
-        - Sid
-        - Sessions
-        - Session
-        - Interactions
-        - Participants
-        - Participant
-        - Message
-        - Phone
-        - Numbers
-      summary: Create Service
+        - ProxyV1Service
   /v1/Services/{ServiceSid}/Sessions/{Sid}:
     description: 'TODO: Resource-level docs'
     get:
       description: Fetch a specific Session.
       tags:
-        - Retrieve
-        - Service
-        - Session
-        - Services
-        - Service
-        - Sid
-        - Sessions
-        - Session
-        - Interactions
-        - Participants
-        - Participant
-        - Message
-        - Phone
-        - Numbers
-      summary: Retrieve Service Session
+        - ProxyV1Session
     delete:
       description: Delete a specific Session.
       tags:
-        - Delete
-        - Service
-        - Session
-        - Services
-        - Service
-        - Sid
-        - Sessions
-        - Session
-        - Interactions
-        - Participants
-        - Participant
-        - Message
-        - Phone
-        - Numbers
-      summary: Delete Service Session
+        - ProxyV1Session
     post:
       description: Update a specific Session.
       tags:
-        - Update
-        - Service
-        - Session
-        - Services
-        - Service
-        - Sid
-        - Sessions
-        - Session
-        - Interactions
-        - Participants
-        - Participant
-        - Message
-        - Phone
-        - Numbers
-      summary: Update Service Session
+        - ProxyV1Session
   /v1/Services/{ServiceSid}/Sessions:
     description: 'TODO: Resource-level docs'
     get:
@@ -447,172 +141,47 @@ paths:
         Retrieve a list of all Sessions for the Service. A maximum of 100
         records will be returned per page.
       tags:
-        - Retrieve
-        - Service
-        - Sessions
-        - Services
-        - Service
-        - Sid
-        - Sessions
-        - Session
-        - Interactions
-        - Participants
-        - Participant
-        - Message
-        - Phone
-        - Numbers
-      summary: Retrieve Service Sessions
+        - ProxyV1Session
     post:
       description: Create a new Session
       tags:
-        - Create
-        - Service
-        - Session
-        - Services
-        - Service
-        - Sid
-        - Sessions
-        - Session
-        - Interactions
-        - Participants
-        - Participant
-        - Message
-        - Phone
-        - Numbers
-      summary: Create Service Session
+        - ProxyV1Session
   /v1/Services/{ServiceSid}/ShortCodes:
     description: 'TODO: Resource-level docs'
     post:
       description: Add a Short Code to the Proxy Number Pool for the Service.
       tags:
-        - Create
-        - Service
-        - Short
-        - Code
-        - Services
-        - Service
-        - Sid
-        - Sessions
-        - Session
-        - Interactions
-        - Participants
-        - Participant
-        - Message
-        - Phone
-        - Numbers
-        - Short
-        - Codes
-      summary: Create Service Short Code
+        - ProxyV1ShortCode
     get:
       description: >-
         Retrieve a list of all Short Codes in the Proxy Number Pool for the
         Service. A maximum of 100 records will be returned per page.
       tags:
-        - Retrieve
-        - Service
-        - Short
-        - Codes
-        - Services
-        - Service
-        - Sid
-        - Sessions
-        - Session
-        - Interactions
-        - Participants
-        - Participant
-        - Message
-        - Phone
-        - Numbers
-        - Short
-        - Codes
-      summary: Retrieve Service Short Codes
+        - ProxyV1ShortCode
   /v1/Services/{ServiceSid}/ShortCodes/{Sid}:
     description: 'TODO: Resource-level docs'
     delete:
       description: Delete a specific Short Code from a Service.
       tags:
-        - Delete
-        - Service
-        - Short
-        - Code
-        - Services
-        - Service
-        - Sid
-        - Sessions
-        - Session
-        - Interactions
-        - Participants
-        - Participant
-        - Message
-        - Phone
-        - Numbers
-        - Short
-        - Codes
-      summary: Delete Service Short Code
+        - ProxyV1ShortCode
     get:
       description: Fetch a specific Short Code.
       tags:
-        - Retrieve
-        - Service
-        - Short
-        - Code
-        - Services
-        - Service
-        - Sid
-        - Sessions
-        - Session
-        - Interactions
-        - Participants
-        - Participant
-        - Message
-        - Phone
-        - Numbers
-        - Short
-        - Codes
-      summary: Retrieve Service Short Code
+        - ProxyV1ShortCode
     post:
       description: Update a specific Short Code.
       tags:
-        - Update
-        - Service
-        - Short
-        - Code
-        - Services
-        - Service
-        - Sid
-        - Sessions
-        - Session
-        - Interactions
-        - Participants
-        - Participant
-        - Message
-        - Phone
-        - Numbers
-        - Short
-        - Codes
-      summary: Update Service Short Code
+        - ProxyV1ShortCode
 tags:
-  - name: Tag
-  - name: Proxies
-    description: Needs a description.
-  - name: Services
-    description: Needs a description.
-  - name: ''
-    description: Needs a description.
-  - name: Sessions
-    description: Needs a description.
-  - name: Interactions
-    description: Needs a description.
-  - name: Participants
-    description: Needs a description.
-  - name: Phone Numbers
-    description: Needs a description.
-  - name: Numbers
-    description: Needs a description.
-  - name: Short Codes
-    description: Needs a description.
+  - name: ProxyV1Interaction
+  - name: ProxyV1MessageInteraction
+  - name: ProxyV1Participant
+  - name: ProxyV1PhoneNumber
+  - name: ProxyV1Service
+  - name: ProxyV1Session
+  - name: ProxyV1ShortCode
 x-maturity:
   - name: Beta
     description: >-
       PLEASE NOTE that this is a Beta product that is subject to change. Use it
-      with ca
+      with 

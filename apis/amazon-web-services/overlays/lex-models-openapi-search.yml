@@ -17,13 +17,6 @@ paths:
         versions increment by 1. For more information, see
         <a>versioning-intro</a>. </p> <p> This operation requires permission for
         the <code>lex:CreateBotVersion</code> action. </p>
-      tags:
-        - Create
-        - Bot
-        - Version
-        - Bots
-        - Name
-        - Versions
   /intents/{name}/versions:
     POST:
       summary: CreateIntentVersion
@@ -39,14 +32,6 @@ paths:
         Subsequent versions increment by 1. For more information, see
         <a>versioning-intro</a>. </p> <p>This operation requires permissions to
         perform the <code>lex:CreateIntentVersion</code> action. </p>
-      tags:
-        - Create
-        - Intent
-        - Version
-        - Bots
-        - Name
-        - Versions
-        - Intents
   /slottypes/{name}/versions:
     POST:
       summary: CreateSlotTypeVersion
@@ -63,16 +48,6 @@ paths:
         Subsequent versions increment by 1. For more information, see
         <a>versioning-intro</a>. </p> <p>This operation requires permissions for
         the <code>lex:CreateSlotTypeVersion</code> action.</p>
-      tags:
-        - Create
-        - Slot
-        - Type
-        - Version
-        - Bots
-        - Name
-        - Versions
-        - Intents
-        - Slottypes
   /bots/{name}:
     DELETE:
       summary: DeleteBot
@@ -93,14 +68,6 @@ paths:
         referring alias until the <code>DeleteBot</code> operation is
         successful.</p> <p>This operation requires permissions for the
         <code>lex:DeleteBot</code> action.</p>
-      tags:
-        - Delete
-        - Bot
-        - Bots
-        - Name
-        - Versions
-        - Intents
-        - Slottypes
   /bots/{botName}/aliases/{name}:
     PUT:
       summary: PutBotAlias
@@ -110,16 +77,6 @@ paths:
         alias points to, replace the alias. For more information about aliases,
         see <a>versioning-aliases</a>.</p> <p>This operation requires
         permissions for the <code>lex:PutBotAlias</code> action. </p>
-      tags:
-        - Put
-        - Bot
-        - Alias
-        - Bots
-        - Name
-        - Versions
-        - Intents
-        - Slottypes
-        - Aliases
   /bots/{botName}/aliases/{aliasName}/channels/{name}:
     GET:
       summary: GetBotChannelAssociation
@@ -127,19 +84,6 @@ paths:
         <p>Returns information about the association between an Amazon Lex bot
         and a messaging platform.</p> <p>This operation requires permissions for
         the <code>lex:GetBotChannelAssociation</code> action.</p>
-      tags:
-        - Get
-        - Bot
-        - Channel
-        - Association
-        - Bots
-        - Name
-        - Versions
-        - Intents
-        - Slottypes
-        - Aliases
-        - Alias
-        - Channels
   /bots/{name}/versions/{version}:
     DELETE:
       summary: DeleteBotVersion
@@ -147,19 +91,6 @@ paths:
         <p>Deletes a specific version of a bot. To delete all versions of a bot,
         use the <a>DeleteBot</a> operation. </p> <p>This operation requires
         permissions for the <code>lex:DeleteBotVersion</code> action.</p>
-      tags:
-        - Delete
-        - Bot
-        - Version
-        - Bots
-        - Name
-        - Versions
-        - Intents
-        - Slottypes
-        - Aliases
-        - Alias
-        - Channels
-        - Version
   /intents/{name}:
     DELETE:
       summary: DeleteIntent
@@ -178,18 +109,6 @@ paths:
         to <code>DeleteIntent</code> is successful. </p> </note> <p> This
         operation requires permission for the <code>lex:DeleteIntent</code>
         action. </p>
-      tags:
-        - Delete
-        - Intent
-        - Bots
-        - Name
-        - Versions
-        - Intents
-        - Slottypes
-        - Aliases
-        - Alias
-        - Channels
-        - Version
   /intents/{name}/versions/{version}:
     GET:
       summary: GetIntent
@@ -197,18 +116,6 @@ paths:
         <p> Returns information about an intent. In addition to the intent name,
         you must specify the intent version. </p> <p> This operation requires
         permissions to perform the <code>lex:GetIntent</code> action. </p>
-      tags:
-        - Get
-        - Intent
-        - Bots
-        - Name
-        - Versions
-        - Intents
-        - Slottypes
-        - Aliases
-        - Alias
-        - Channels
-        - Version
   /slottypes/{name}:
     DELETE:
       summary: DeleteSlotType
@@ -227,19 +134,6 @@ paths:
         and the <code>DeleteSlotType</code> call is successful. </p> </note>
         <p>This operation requires permission for the
         <code>lex:DeleteSlotType</code> action.</p>
-      tags:
-        - Delete
-        - Slot
-        - Type
-        - Bots
-        - Name
-        - Versions
-        - Intents
-        - Slottypes
-        - Aliases
-        - Alias
-        - Channels
-        - Version
   /slottypes/{name}/version/{version}:
     DELETE:
       summary: DeleteSlotTypeVersion
@@ -248,20 +142,6 @@ paths:
         a slot type, use the <a>DeleteSlotType</a> operation. </p> <p>This
         operation requires permissions for the
         <code>lex:DeleteSlotTypeVersion</code> action.</p>
-      tags:
-        - Delete
-        - Slot
-        - Type
-        - Version
-        - Bots
-        - Name
-        - Versions
-        - Intents
-        - Slottypes
-        - Aliases
-        - Alias
-        - Channels
-        - Version
   /bots/{botName}/utterances/{userId}:
     DELETE:
       summary: DeleteUtterances
@@ -277,21 +157,6 @@ paths:
         Utterances stored for use with the <code>GetUtterancesView</code>
         operation are deleted after 15 days.</p> <p>This operation requires
         permissions for the <code>lex:DeleteUtterances</code> action.</p>
-      tags:
-        - Delete
-        - Utterances
-        - Bots
-        - Name
-        - Versions
-        - Intents
-        - Slottypes
-        - Aliases
-        - Alias
-        - Channels
-        - Version
-        - Utterances
-        - User
-        - Id
   /bots/{name}/versions/{versionoralias}:
     GET:
       summary: GetBot
@@ -299,22 +164,6 @@ paths:
         <p>Returns metadata information for a specific bot. You must provide the
         bot name and the bot version or alias. </p> <p> This operation requires
         permissions for the <code>lex:GetBot</code> action. </p>
-      tags:
-        - Get
-        - Bot
-        - Bots
-        - Name
-        - Versions
-        - Intents
-        - Slottypes
-        - Aliases
-        - Alias
-        - Channels
-        - Version
-        - Utterances
-        - User
-        - Id
-        - Versionoralias
   /bots/{botName}/aliases/:
     GET:
       summary: GetBotAliases
@@ -322,23 +171,6 @@ paths:
         <p>Returns a list of aliases for a specified Amazon Lex bot.</p> <p>This
         operation requires permissions for the <code>lex:GetBotAliases</code>
         action.</p>
-      tags:
-        - Get
-        - Bot
-        - Aliases
-        - Bots
-        - Name
-        - Versions
-        - Intents
-        - Slottypes
-        - Aliases
-        - Alias
-        - Channels
-        - Version
-        - Utterances
-        - User
-        - Id
-        - Versionoralias
   /bots/{botName}/aliases/{aliasName}/channels/:
     GET:
       summary: GetBotChannelAssociations
@@ -347,24 +179,6 @@ paths:
         bot. </p> <p>The <code>GetBotChannelAssociations</code> operation
         requires permissions for the <code>lex:GetBotChannelAssociations</code>
         action.</p>
-      tags:
-        - Get
-        - Bot
-        - Channel
-        - Associations
-        - Bots
-        - Name
-        - Versions
-        - Intents
-        - Slottypes
-        - Aliases
-        - Alias
-        - Channels
-        - Version
-        - Utterances
-        - User
-        - Id
-        - Versionoralias
   /bots/{name}/versions/:
     GET:
       summary: GetBotVersions
@@ -378,23 +192,6 @@ paths:
         <p>The <code>GetBotVersions</code> operation always returns at least one
         version, the <code>$LATEST</code> version.</p> <p>This operation
         requires permissions for the <code>lex:GetBotVersions</code> action.</p>
-      tags:
-        - Get
-        - Bot
-        - Versions
-        - Bots
-        - Name
-        - Versions
-        - Intents
-        - Slottypes
-        - Aliases
-        - Alias
-        - Channels
-        - Version
-        - Utterances
-        - User
-        - Id
-        - Versionoralias
   /bots/:
     GET:
       summary: GetBots
@@ -407,22 +204,6 @@ paths:
         the <code>$LATEST</code> version of all of your bots.</p> </li> </ul>
         <p>This operation requires permission for the <code>lex:GetBots</code>
         action.</p>
-      tags:
-        - Get
-        - Bots
-        - Bots
-        - Name
-        - Versions
-        - Intents
-        - Slottypes
-        - Aliases
-        - Alias
-        - Channels
-        - Version
-        - Utterances
-        - User
-        - Id
-        - Versionoralias
   /builtins/intents/{signature}:
     GET:
       summary: GetBuiltinIntent
@@ -430,25 +211,6 @@ paths:
         <p>Returns information about a built-in intent.</p> <p>This operation
         requires permission for the <code>lex:GetBuiltinIntent</code>
         action.</p>
-      tags:
-        - Get
-        - Builtin
-        - Intent
-        - Bots
-        - Name
-        - Versions
-        - Intents
-        - Slottypes
-        - Aliases
-        - Alias
-        - Channels
-        - Version
-        - Utterances
-        - User
-        - Id
-        - Versionoralias
-        - Builtins
-        - Signature
   /builtins/intents/:
     GET:
       summary: GetBuiltinIntents
@@ -456,25 +218,6 @@ paths:
         <p>Gets a list of built-in intents that meet the specified criteria.</p>
         <p>This operation requires permission for the
         <code>lex:GetBuiltinIntents</code> action.</p>
-      tags:
-        - Get
-        - Builtin
-        - Intents
-        - Bots
-        - Name
-        - Versions
-        - Intents
-        - Slottypes
-        - Aliases
-        - Alias
-        - Channels
-        - Version
-        - Utterances
-        - User
-        - Id
-        - Versionoralias
-        - Builtins
-        - Signature
   /builtins/slottypes/:
     GET:
       summary: GetBuiltinSlotTypes
@@ -485,76 +228,18 @@ paths:
         Type Reference</a> in the <i>Alexa Skills Kit</i>.</p> <p>This operation
         requires permission for the <code>lex:GetBuiltInSlotTypes</code>
         action.</p>
-      tags:
-        - Get
-        - Builtin
-        - Slot
-        - Types
-        - Bots
-        - Name
-        - Versions
-        - Intents
-        - Slottypes
-        - Aliases
-        - Alias
-        - Channels
-        - Version
-        - Utterances
-        - User
-        - Id
-        - Versionoralias
-        - Builtins
-        - Signature
   /exports/:
     GET:
       summary: GetExport
       description: >-
         <p>Exports the contents of a Amazon Lex resource in a specified format.
         </p>
-      tags:
-        - Get
-        - Export
-        - Bots
-        - Name
-        - Versions
-        - Intents
-        - Slottypes
-        - Aliases
-        - Alias
-        - Channels
-        - Version
-        - Utterances
-        - User
-        - Id
-        - Versionoralias
-        - Builtins
-        - Signature
-        - Exports
   /imports/{importId}:
     GET:
       summary: GetImport
       description: >-
         <p>Gets information about an import job started with the
         <code>StartImport</code> operation.</p>
-      tags:
-        - Get
-        - Import
-        - Bots
-        - Name
-        - Versions
-        - Intents
-        - Slottypes
-        - Aliases
-        - Alias
-        - Channels
-        - Version
-        - Utterances
-        - User
-        - Id
-        - Versionoralias
-        - Builtins
-        - Signature
-        - Exports
   /intents/{name}/versions/:
     GET:
       summary: GetIntentVersions
@@ -570,26 +255,6 @@ paths:
         one version, the <code>$LATEST</code> version.</p> <p>This operation
         requires permissions for the <code>lex:GetIntentVersions</code>
         action.</p>
-      tags:
-        - Get
-        - Intent
-        - Versions
-        - Bots
-        - Name
-        - Versions
-        - Intents
-        - Slottypes
-        - Aliases
-        - Alias
-        - Channels
-        - Version
-        - Utterances
-        - User
-        - Id
-        - Versionoralias
-        - Builtins
-        - Signature
-        - Exports
   /intents/:
     GET:
       summary: GetIntents
@@ -602,25 +267,6 @@ paths:
         <code>$LATEST</code> version of all intents. </p> </li> </ul> <p> The
         operation requires permission for the <code>lex:GetIntents</code>
         action. </p>
-      tags:
-        - Get
-        - Intents
-        - Bots
-        - Name
-        - Versions
-        - Intents
-        - Slottypes
-        - Aliases
-        - Alias
-        - Channels
-        - Version
-        - Utterances
-        - User
-        - Id
-        - Versionoralias
-        - Builtins
-        - Signature
-        - Exports
   /migrations/{migrationId}:
     GET:
       summary: GetMigration
@@ -628,25 +274,6 @@ paths:
         <p>Provides details about an ongoing or complete migration from an
         Amazon Lex V1 bot to an Amazon Lex V2 bot. Use this operation to view
         the migration alerts and warnings related to the migration.</p>
-      tags:
-        - Get
-        - Migration
-        - Bots
-        - Name
-        - Versions
-        - Intents
-        - Slottypes
-        - Aliases
-        - Alias
-        - Channels
-        - Version
-        - Utterances
-        - User
-        - Id
-        - Versionoralias
-        - Builtins
-        - Signature
-        - Exports
   /migrations:
     POST:
       summary: StartMigration
@@ -656,26 +283,6 @@ paths:
         Lex V2.</p> <p>For more information, see <a
         href="https://docs.aws.amazon.com/lex/latest/dg/migrate.html">Migrating
         a bot</a> in the <i>Amazon Lex developer guide</i>.</p>
-      tags:
-        - Start
-        - Migration
-        - Bots
-        - Name
-        - Versions
-        - Intents
-        - Slottypes
-        - Aliases
-        - Alias
-        - Channels
-        - Version
-        - Utterances
-        - User
-        - Id
-        - Versionoralias
-        - Builtins
-        - Signature
-        - Exports
-        - Migrations
   /slottypes/{name}/versions/{version}:
     GET:
       summary: GetSlotType
@@ -684,27 +291,6 @@ paths:
         addition to specifying the slot type name, you must specify the slot
         type version.</p> <p>This operation requires permissions for the
         <code>lex:GetSlotType</code> action.</p>
-      tags:
-        - Get
-        - Slot
-        - Type
-        - Bots
-        - Name
-        - Versions
-        - Intents
-        - Slottypes
-        - Aliases
-        - Alias
-        - Channels
-        - Version
-        - Utterances
-        - User
-        - Id
-        - Versionoralias
-        - Builtins
-        - Signature
-        - Exports
-        - Migrations
   /slottypes/{name}/versions/:
     GET:
       summary: GetSlotTypeVersions
@@ -720,28 +306,6 @@ paths:
         least one version, the <code>$LATEST</code> version.</p> <p>This
         operation requires permissions for the
         <code>lex:GetSlotTypeVersions</code> action.</p>
-      tags:
-        - Get
-        - Slot
-        - Type
-        - Versions
-        - Bots
-        - Name
-        - Versions
-        - Intents
-        - Slottypes
-        - Aliases
-        - Alias
-        - Channels
-        - Version
-        - Utterances
-        - User
-        - Id
-        - Versionoralias
-        - Builtins
-        - Signature
-        - Exports
-        - Migrations
   /slottypes/:
     GET:
       summary: GetSlotTypes
@@ -754,27 +318,6 @@ paths:
         <code>$LATEST</code> version of all slot types. </p> </li> </ul> <p> The
         operation requires permission for the <code>lex:GetSlotTypes</code>
         action. </p>
-      tags:
-        - Get
-        - Slot
-        - Types
-        - Bots
-        - Name
-        - Versions
-        - Intents
-        - Slottypes
-        - Aliases
-        - Alias
-        - Channels
-        - Version
-        - Utterances
-        - User
-        - Id
-        - Versionoralias
-        - Builtins
-        - Signature
-        - Exports
-        - Migrations
   /bots/{botname}/utterances?view=aggregation:
     GET:
       summary: GetUtterancesView
@@ -801,56 +344,10 @@ paths:
         slots, or if you opted out of participating in improving Amazon Lex,
         utterances are not available.</p> <p>This operation requires permissions
         for the <code>lex:GetUtterancesView</code> action.</p>
-      tags:
-        - Get
-        - Utterances
-        - View
-        - Bots
-        - Name
-        - Versions
-        - Intents
-        - Slottypes
-        - Aliases
-        - Alias
-        - Channels
-        - Version
-        - Utterances
-        - User
-        - Id
-        - Versionoralias
-        - Builtins
-        - Signature
-        - Exports
-        - Migrations
-        - Botname
-        - Utterances?view=aggregation
   /tags/{resourceArn}:
     DELETE:
       summary: UntagResource
       description: <p>Removes tags from a bot, bot alias or bot channel.</p>
-      tags:
-        - Untag
-        - Resource
-        - Bots
-        - Name
-        - Versions
-        - Intents
-        - Slottypes
-        - Aliases
-        - Alias
-        - Channels
-        - Version
-        - Utterances
-        - User
-        - Id
-        - Versionoralias
-        - Builtins
-        - Signature
-        - Exports
-        - Migrations
-        - Botname
-        - Utterances?view=aggregation
-        - Arn
   /bots/{name}/versions/$LATEST:
     PUT:
       summary: PutBot
@@ -872,30 +369,6 @@ paths:
         required fields, Amazon Lex throws an exception.</p> <p>This operation
         requires permissions for the <code>lex:PutBot</code> action. For more
         information, see <a>security-iam</a>.</p>
-      tags:
-        - Put
-        - Bot
-        - Bots
-        - Name
-        - Versions
-        - Intents
-        - Slottypes
-        - Aliases
-        - Alias
-        - Channels
-        - Version
-        - Utterances
-        - User
-        - Id
-        - Versionoralias
-        - Builtins
-        - Signature
-        - Exports
-        - Migrations
-        - Botname
-        - Utterances?view=aggregation
-        - Arn
-        - $LATEST
   /intents/{name}/versions/$LATEST:
     PUT:
       summary: PutIntent
@@ -934,30 +407,6 @@ paths:
         <code>NOT_BUILT</code>.</p> <p>For more information, see
         <a>how-it-works</a>.</p> <p>This operation requires permissions for the
         <code>lex:PutIntent</code> action.</p>
-      tags:
-        - Put
-        - Intent
-        - Bots
-        - Name
-        - Versions
-        - Intents
-        - Slottypes
-        - Aliases
-        - Alias
-        - Channels
-        - Version
-        - Utterances
-        - User
-        - Id
-        - Versionoralias
-        - Builtins
-        - Signature
-        - Exports
-        - Migrations
-        - Botname
-        - Utterances?view=aggregation
-        - Arn
-        - $LATEST
   /slottypes/{name}/versions/$LATEST:
     PUT:
       summary: PutSlotType
@@ -976,57 +425,7 @@ paths:
         the bot's <code>status</code> field is set to
         <code>NOT_BUILT</code>.</p> <p>This operation requires permissions for
         the <code>lex:PutSlotType</code> action.</p>
-      tags:
-        - Put
-        - Slot
-        - Type
-        - Bots
-        - Name
-        - Versions
-        - Intents
-        - Slottypes
-        - Aliases
-        - Alias
-        - Channels
-        - Version
-        - Utterances
-        - User
-        - Id
-        - Versionoralias
-        - Builtins
-        - Signature
-        - Exports
-        - Migrations
-        - Botname
-        - Utterances?view=aggregation
-        - Arn
-        - $LATEST
   /imports/:
     POST:
       summary: StartImport
-      description: <p>Starts a job to import a resource to Amazon Lex.</
-      tags:
-        - Start
-        - Import
-        - Bots
-        - Name
-        - Versions
-        - Intents
-        - Slottypes
-        - Aliases
-        - Alias
-        - Channels
-        - Version
-        - Utterances
-        - User
-        - Id
-        - Versionoralias
-        - Builtins
-        - Signature
-        - Exports
-        - Migrations
-        - Botname
-        - Utterances?view=aggregation
-        - Arn
-        - $LATEST
-        - I
+      description: <p>Starts a job to import a resource to Amazon

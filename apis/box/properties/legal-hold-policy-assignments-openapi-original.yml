@@ -1,0 +1,646 @@
+openapi: 3.1.0
+info:
+  title: Box Legal Hold Policy Assignments API
+  description: Needs a description.
+paths:
+  /legal_hold_policy_assignments:
+    get:
+      operationId: get_legal_hold_policy_assignments
+      summary: List legal hold policy assignments
+      tags:
+        - Legal hold policy assignments
+      x-box-tag: legal_hold_policy_assignments
+      description: Retrieves a list of items a legal hold policy has been assigned to.
+      parameters:
+        - name: policy_id
+          description: The ID of the legal hold policy
+          example: '324432'
+          in: query
+          required: true
+          schema:
+            type: string
+        - name: assign_to_type
+          description: |-
+            Filters the results by the type of item the
+            policy was applied to.
+          example: file
+          in: query
+          schema:
+            type: string
+            enum:
+              - file
+              - file_version
+              - folder
+              - user
+        - name: assign_to_id
+          description: |-
+            Filters the results by the ID of item the
+            policy was applied to.
+          example: '1234323'
+          in: query
+          schema:
+            type: string
+        - name: marker
+          description: >-
+            Defines the position marker at which to begin returning results.
+            This is
+
+            used when paginating using marker-based pagination.
+
+
+            This requires `usemarker` to be set to `true`.
+          in: query
+          required: false
+          example: JV9IRGZmieiBasejOG9yDCRNgd2ymoZIbjsxbJMjIs3kioVii
+          schema:
+            type: string
+        - name: limit
+          description: The maximum number of items to return per page.
+          in: query
+          required: false
+          example: 1000
+          schema:
+            type: integer
+            format: int64
+            maximum: 1000
+        - name: fields
+          description: |-
+            A comma-separated list of attributes to include in the
+            response. This can be used to request fields that are
+            not normally returned in a standard response.
+
+            Be aware that specifying this parameter will have the
+            effect that none of the standard fields are returned in
+            the response unless explicitly specified, instead only
+            fields for the mini representation are returned, additional
+            to the fields requested.
+          in: query
+          example:
+            - id
+            - type
+            - name
+          required: false
+          explode: false
+          schema:
+            type: array
+            items:
+              type: string
+      responses:
+        '200':
+          description: Returns a list of legal hold policy assignments.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/LegalHoldPolicyAssignments'
+        default:
+          description: An unexpected client error.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ClientError'
+    post:
+      operationId: post_legal_hold_policy_assignments
+      summary: Assign legal hold policy
+      tags:
+        - Legal hold policy assignments
+      x-box-tag: legal_hold_policy_assignments
+      description: Assign a legal hold to a file, file version, folder, or user.
+      requestBody:
+        content:
+          application/json:
+            schema:
+              type: object
+              required:
+                - policy_id
+                - assign_to
+              properties:
+                policy_id:
+                  description: The ID of the policy to assign.
+                  example: '123244'
+                  type: string
+                assign_to:
+                  type: object
+                  description: The item to assign the policy to
+                  required:
+                    - type
+                    - id
+                  properties:
+                    type:
+                      type: string
+                      description: The type of item to assign the policy to
+                      example: folder
+                      enum:
+                        - file
+                        - file_version
+                        - folder
+                        - user
+                    id:
+                      type: string
+                      description: The ID of item to assign the policy to
+                      example: '6564564'
+      responses:
+        '201':
+          description: Returns a new legal hold policy assignment.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/LegalHoldPolicyAssignment'
+        default:
+          description: An unexpected client error.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ClientError'
+  /legal_hold_policy_assignments/{legal_hold_policy_assignment_id}:
+    get:
+      operationId: get_legal_hold_policy_assignments_id
+      summary: Get legal hold policy assignment
+      tags:
+        - Legal hold policy assignments
+      x-box-tag: legal_hold_policy_assignments
+      description: Retrieve a legal hold policy assignment.
+      parameters:
+        - name: legal_hold_policy_assignment_id
+          description: The ID of the legal hold policy assignment
+          example: '753465'
+          in: path
+          required: true
+          schema:
+            type: string
+      responses:
+        '200':
+          description: Returns a legal hold policy object.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/LegalHoldPolicyAssignment'
+        default:
+          description: An unexpected client error.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ClientError'
+    delete:
+      operationId: delete_legal_hold_policy_assignments_id
+      x-box-tag: legal_hold_policy_assignments
+      tags:
+        - Legal hold policy assignments
+      summary: Unassign legal hold policy
+      description: |-
+        Remove a legal hold from an item.
+
+        This is an asynchronous process. The policy will not be
+        fully removed yet when the response returns.
+      parameters:
+        - name: legal_hold_policy_assignment_id
+          description: The ID of the legal hold policy assignment
+          example: '753465'
+          in: path
+          required: true
+          schema:
+            type: string
+      responses:
+        '202':
+          description: |-
+            A blank response is returned if the assignment was
+            successfully deleted.
+        default:
+          description: An unexpected client error.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ClientError'
+  /legal_hold_policy_assignments/{legal_hold_policy_assignment_id}/files_on_hold:
+    get:
+      operationId: get_legal_hold_policy_assignments_id_files_on_hold
+      summary: List current file versions for legal hold policy assignment
+      tags:
+        - Legal hold policy assignments
+      x-box-tag: legal_hold_policy_assignments
+      description: >-
+        Get a list of current file versions for a legal hold
+
+        assignment.
+
+
+        In some cases you may want to get previous file versions instead. In
+        these
+
+        cases, use the `GET 
+        /legal_hold_policy_assignments/:id/file_versions_on_hold`
+
+        API instead to return any previous versions of a file for this legal
+        hold
+
+        policy assignment.
+
+
+        Due to ongoing re-architecture efforts this API might not return all
+        file
+
+        versions held for this policy ID. Instead, this API will only return the
+
+        latest file version held in the newly developed architecture. The `GET
+
+        /file_version_legal_holds` API can be used to fetch current and past
+        versions
+
+        of files held within the legacy architecture.
+
+
+        The `GET /legal_hold_policy_assignments?policy_id={id}` API can be used
+        to
+
+        find a list of policy assignments for a given policy ID.
+      parameters:
+        - name: legal_hold_policy_assignment_id
+          description: The ID of the legal hold policy assignment
+          example: '753465'
+          in: path
+          required: true
+          schema:
+            type: string
+        - name: marker
+          description: >-
+            Defines the position marker at which to begin returning results.
+            This is
+
+            used when paginating using marker-based pagination.
+
+
+            This requires `usemarker` to be set to `true`.
+          in: query
+          required: false
+          example: JV9IRGZmieiBasejOG9yDCRNgd2ymoZIbjsxbJMjIs3kioVii
+          schema:
+            type: string
+        - name: limit
+          description: The maximum number of items to return per page.
+          in: query
+          required: false
+          example: 1000
+          schema:
+            type: integer
+            format: int64
+            maximum: 1000
+        - name: fields
+          description: |-
+            A comma-separated list of attributes to include in the
+            response. This can be used to request fields that are
+            not normally returned in a standard response.
+
+            Be aware that specifying this parameter will have the
+            effect that none of the standard fields are returned in
+            the response unless explicitly specified, instead only
+            fields for the mini representation are returned, additional
+            to the fields requested.
+          in: query
+          example:
+            - id
+            - type
+            - name
+          required: false
+          explode: false
+          schema:
+            type: array
+            items:
+              type: string
+      responses:
+        '200':
+          description: >-
+            Returns the list of current file versions held under legal hold for
+            a
+
+            specific legal hold policy assignment.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/FileVersionLegalHolds'
+        default:
+          description: An unexpected client error.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ClientError'
+  /legal_hold_policy_assignments/{legal_hold_policy_assignment_id}/file_versions_on_hold:
+    get:
+      operationId: get_legal_hold_policy_assignments_id_file_versions_on_hold
+      summary: List previous file versions for legal hold policy assignment
+      tags:
+        - Legal hold policy assignments
+      x-box-tag: legal_hold_policy_assignments
+      description: >-
+        Get a list of previous file versions for a legal hold
+
+        assignment.
+
+
+        In some cases you may only need the latest file versions instead. In
+        these
+
+        cases, use the `GET  /legal_hold_policy_assignments/:id/files_on_hold`
+        API
+
+        instead to return any current (latest) versions of a file for this legal
+        hold
+
+        policy assignment.
+
+
+        Due to ongoing re-architecture efforts this API might not return all
+        files
+
+        held for this policy ID. Instead, this API will only return past file
+        versions
+
+        held in the newly developed architecture. The `GET
+        /file_version_legal_holds`
+
+        API can be used to fetch current and past versions of files held within
+        the
+
+        legacy architecture.
+
+
+        The `GET /legal_hold_policy_assignments?policy_id={id}` API can be used
+        to
+
+        find a list of policy assignments for a given policy ID.
+      parameters:
+        - name: legal_hold_policy_assignment_id
+          description: The ID of the legal hold policy assignment
+          example: '753465'
+          in: path
+          required: true
+          schema:
+            type: string
+        - name: marker
+          description: >-
+            Defines the position marker at which to begin returning results.
+            This is
+
+            used when paginating using marker-based pagination.
+
+
+            This requires `usemarker` to be set to `true`.
+          in: query
+          required: false
+          example: JV9IRGZmieiBasejOG9yDCRNgd2ymoZIbjsxbJMjIs3kioVii
+          schema:
+            type: string
+        - name: limit
+          description: The maximum number of items to return per page.
+          in: query
+          required: false
+          example: 1000
+          schema:
+            type: integer
+            format: int64
+            maximum: 1000
+        - name: fields
+          description: |-
+            A comma-separated list of attributes to include in the
+            response. This can be used to request fields that are
+            not normally returned in a standard response.
+
+            Be aware that specifying this parameter will have the
+            effect that none of the standard fields are returned in
+            the response unless explicitly specified, instead only
+            fields for the mini representation are returned, additional
+            to the fields requested.
+          in: query
+          example:
+            - id
+            - type
+            - name
+          required: false
+          explode: false
+          schema:
+            type: array
+            items:
+              type: string
+      responses:
+        '200':
+          description: >-
+            Returns the list of previous file versions held under legal hold for
+            a
+
+            specific legal hold policy assignment.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/FileVersionLegalHolds'
+        default:
+          description: An unexpected client error.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ClientError'
+components:
+  schemas:
+    LegalHoldPolicyAssignments:
+      title: Legal hold policy assignments
+      type: object
+      x-box-resource-id: legal_hold_policy_assignments
+      x-box-tag: legal_hold_policy_assignments
+      description: A list of legal hold policies assignments.
+      allOf:
+        - type: object
+          description: |-
+            The part of an API response that describes marker
+            based pagination
+          properties:
+            limit:
+              description: >-
+                The limit that was used for these entries. This will be the same
+                as the
+
+                `limit` query parameter unless that value exceeded the maximum
+                value
+
+                allowed. The maximum value varies by API.
+              example: 1000
+              type: integer
+              format: int64
+            next_marker:
+              description: The marker for the start of the next page of results.
+              example: JV9IRGZmieiBasejOG9yDCRNgd2ymoZIbjsxbJMjIs3kioVii
+              type: string
+              nullable: true
+            prev_marker:
+              description: The marker for the start of the previous page of results.
+              example: JV9IRGZmieiBasejOG9yDCRNgd2ymoZIbjsxbJMjIs3kioVih
+              type: string
+              nullable: true
+        - properties:
+            entries:
+              type: array
+              description: |-
+                A list of legal hold
+                policy assignments
+              items:
+                $ref: '#/components/schemas/LegalHoldPolicyAssignment'
+    ClientError:
+      title: Client error
+      type: object
+      x-box-resource-id: client_error
+      description: A generic error
+      properties:
+        type:
+          description: error
+          example: error
+          type: string
+          enum:
+            - error
+          nullable: false
+        status:
+          description: The HTTP status of the response.
+          example: 400
+          type: integer
+          format: int32
+          nullable: false
+        code:
+          description: A Box-specific error code
+          example: item_name_invalid
+          type: string
+          enum:
+            - created
+            - accepted
+            - no_content
+            - redirect
+            - not_modified
+            - bad_request
+            - unauthorized
+            - forbidden
+            - not_found
+            - method_not_allowed
+            - conflict
+            - precondition_failed
+            - too_many_requests
+            - internal_server_error
+            - unavailable
+            - item_name_invalid
+            - insufficient_scope
+        message:
+          description: A short message describing the error.
+          example: Method Not Allowed
+          type: string
+          nullable: false
+        context_info:
+          description: |-
+            A free-form object that contains additional context
+            about the error. The possible fields are defined on
+            a per-endpoint basis. `message` is only one example.
+          type: object
+          nullable: true
+          properties:
+            message:
+              type: string
+              description: More details on the error.
+              example: Something went wrong.
+        help_url:
+          description: A URL that links to more information about why this error occurred.
+          example: >-
+            https://developer.box.com/guides/api-calls/permissions-and-errors/common-errors/
+          type: string
+          nullable: false
+        request_id:
+          description: |-
+            A unique identifier for this response, which can be used
+            when contacting Box support.
+          type: string
+          example: abcdef123456
+          nullable: false
+    LegalHoldPolicyAssignment:
+      title: Legal hold policy assignment
+      type: object
+      x-box-resource-id: legal_hold_policy_assignment
+      x-box-tag: legal_hold_policy_assignments
+      description: |-
+        Legal Hold Assignments are used to assign Legal Hold
+        Policies to Users, Folders, Files, or File Versions.
+
+        Creating a Legal Hold Assignment puts a hold
+        on the File-Versions that belong to the Assignment's
+        'apply-to' entity.
+      allOf:
+        - $ref: '#/components/schemas/LegalHoldPolicyAssignment--Base'
+        - properties:
+            legal_hold_policy:
+              allOf:
+                - $ref: '#/components/schemas/LegalHoldPolicy--Mini'
+                - description: |-
+                    The policy that the legal hold policy assignment
+                    is part of
+            assigned_to:
+              allOf:
+                - oneOf:
+                    - $ref: '#/components/schemas/File'
+                    - $ref: '#/components/schemas/Folder'
+                    - $ref: '#/components/schemas/WebLink'
+                - description: |-
+                    The item that the the legal hold policy
+                    is assigned to. Includes type and ID.
+            assigned_by:
+              allOf:
+                - $ref: '#/components/schemas/User--Mini'
+                - description: |-
+                    The user who created the legal hold policy
+                    assignment
+            assigned_at:
+              type: string
+              format: date-time
+              description: |-
+                When the legal hold policy assignment object was
+                created
+              example: '2012-12-12T10:53:43-08:00'
+            deleted_at:
+              type: string
+              format: date-time
+              description: |-
+                When the assignment release request was sent.
+                (Because it can take time for an assignment to fully
+                delete, this isn't quite the same time that the
+                assignment is fully deleted). If null, Assignment
+                was not deleted.
+              example: '2012-12-12T10:53:43-08:00'
+    FileVersionLegalHolds:
+      title: File version legal holds
+      type: object
+      x-box-resource-id: file_version_legal_holds
+      x-box-tag: file_version_legal_holds
+      description: A list of file version legal holds.
+      allOf:
+        - type: object
+          description: |-
+            The part of an API response that describes marker
+            based pagination
+          properties:
+            limit:
+              description: >-
+                The limit that was used for these entries. This will be the same
+                as the
+
+                `limit` query parameter unless that value exceeded the maximum
+                value
+
+                allowed. The maximum value varies by API.
+              example: 1000
+              type: integer
+              format: int64
+            next_marker:
+              description: The marker for the start of the next page of results.
+              example: JV9IRGZmieiBasejOG9yDCRNgd2ymoZIbjsxbJMjIs3kioVii
+              type: string
+              nullable: true
+            prev_marker:
+              description: The marker for the start of the previous page of results.
+              example: JV9IRGZmieiBasejOG9yDCRNgd2ymoZIbjsxbJMjIs3kioVih
+              type: string
+              nullable: true
+        - properties:
+            entries:
+              type: array
+              description: A list of file version legal holds
+              items:
+                $ref: '#/components/schemas/FileVersionLegalHold'

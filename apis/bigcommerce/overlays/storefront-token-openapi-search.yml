@@ -1,0 +1,46 @@
+openapi: 3.0.1
+info:
+  title: Storefront Token
+  version: ''
+tags:
+  - name: API Token
+  - name: Customer Impersonation Token
+paths:
+  /storefront/api-token:
+    parameters:
+      - null
+    post:
+      tags:
+        - API Token
+      summary: Create a Token
+      description: |-
+        Creates a Storefront API token.
+
+        **Required Scopes**
+        * `Manage` `Storefront API Tokens`
+    delete:
+      tags:
+        - API Token
+      summary: Revoke a Token
+      description: >-
+        Revoke access for a Storefront API token. Only revoke compromised tokens
+        under emergency situations. Let uncompromised short-lived tokens expire
+        naturally, as you do not need to revoke these.
+  /storefront/api-token-customer-impersonation:
+    parameters:
+      - null
+    post:
+      tags:
+        - Customer Impersonation Token
+      summary: Create a Token
+      description: >-
+        Returns a Storefront API token that allows your application to
+        impersonate customers when making GraphQL `POST` requests. For more
+        information on how to use the returned token, see [customer
+        impersonation
+        tokens](/docs/rest-authentication/tokens/customer-impersonation-token#create-a-token).
+
+
+        **Required Scopes**
+
+        * `Manage` `Storefront API Customer Impersonation Token

@@ -1,0 +1,77 @@
+openapi: 3.0.1
+info:
+  title: Redirects
+  version: ''
+tags:
+  - name: Redirects
+  - name: Import-Export
+paths:
+  /storefront/redirects:
+    parameters:
+      - null
+    get:
+      tags:
+        - Redirects
+      summary: Get Redirects
+      description: Returns a collection of the store's 301 redirects across all sites.
+    put:
+      tags:
+        - Redirects
+      summary: Upsert Redirects
+      description: Upserts new redirect data across all storefronts.
+    delete:
+      tags:
+        - Redirects
+      summary: Delete Redirects
+      description: Deletes redirects.
+  /storefront/redirects/imex/jobs:
+    parameters:
+      - null
+    get:
+      tags:
+        - Import-Export
+      summary: Get Redirect Import-Export Jobs
+      description: Returns a collection of the storeʼs 301 redirects across all sites.
+  /storefront/redirects/imex/export:
+    parameters:
+      - null
+    post:
+      tags:
+        - Import-Export
+      summary: Create Redirects Export Job
+      description: Creates a new 301 Redirects export job.
+  /storefront/redirects/imex/import:
+    parameters:
+      - null
+    post:
+      tags:
+        - Import-Export
+      summary: Create Redirects Import Job
+      description: Creates a new 301 Redirects import job.
+  /storefront/redirects/imex/export/{uuid}/events:
+    parameters:
+      - null
+      - null
+    get:
+      tags:
+        - Import-Export
+      summary: Open Redirect Export Event Stream
+      description: Opens an event stream to receive live updates from an export job.
+  /storefront/redirects/imex/import/{uuid}/events:
+    parameters:
+      - null
+      - null
+    get:
+      tags:
+        - Import-Export
+      summary: Open Redirect Import Event Stream
+      description: Opens an event stream to receive live updates from an import job.
+  /storefront/redirects/imex/export/{uuid}/download:
+    parameters:
+      - null
+      - null
+    get:
+      tags:
+        - Import-Export
+      summary: Download Redirect Export
+      description: Downloads the CSV file containing the results of an export jo

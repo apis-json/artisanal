@@ -1,0 +1,139 @@
+openapi: 3.0.3
+info:
+  title: Catalog - Product Modifiers
+  version: ''
+tags:
+  - name: Product Modifiers
+  - name: Values
+  - name: Images
+paths:
+  /catalog/products/{product_id}/modifiers:
+    get:
+      tags:
+        - Product Modifiers
+      summary: Get All Product Modifiers
+      description: >-
+        Returns a list of all *Product Modifiers*. Optional parameters can be
+        passed in.
+    post:
+      tags:
+        - Product Modifiers
+      summary: Create a Product Modifier
+      description: >-
+        Creates a *Product Modifier*.
+
+
+        **Required Fields**
+
+        * `required`
+
+        * `display_name`
+
+        * `type`
+
+
+        **Read-Only Fields**
+
+        * `id`
+
+
+        **Notes**
+
+        It takes two separate requests to create a new checkbox modifier with
+        option values. Perform a request to create a modifier, then perform a
+        second request to update option values.
+    parameters:
+      - null
+      - null
+  /catalog/products/{product_id}/modifiers/{modifier_id}:
+    get:
+      tags:
+        - Product Modifiers
+      summary: Get a Product Modifier
+      description: >-
+        Returns a single *Product Modifier*. Optional parameters can be passed
+        in.
+    put:
+      tags:
+        - Product Modifiers
+      summary: Update a Product Modifier
+      description: Updates a *Product Modifier*.
+    delete:
+      tags:
+        - Product Modifiers
+      summary: Delete a Product Modifier
+      description: Deletes a *Product Modifier*.
+    parameters:
+      - null
+      - null
+      - null
+  /catalog/products/{product_id}/modifiers/{modifier_id}/values:
+    get:
+      tags:
+        - Values
+      summary: Get All Product Modifier Values
+      description: >-
+        Returns a list of all product *Modifier Values*. Optional parameters can
+        be passed in.
+    post:
+      tags:
+        - Values
+      summary: Create Product Modifier Value
+      description: |-
+        Creates a *Modifier Value*.
+
+        **Required Fields**
+        * label
+        * sort_order
+
+        **Read-Only Fields**
+        * id
+    parameters:
+      - null
+      - null
+      - null
+  /catalog/products/{product_id}/modifiers/{modifier_id}/values/{value_id}:
+    get:
+      tags:
+        - Values
+      summary: Get a Product Modifier Value
+      description: Returns a single *Modifier Value*. Optional parameters can be passed in.
+    put:
+      tags:
+        - Values
+      summary: Update a Product Modifier Value
+      description: |-
+        Updates a *Modifier Value*.
+
+        **Required Fields**
+        * none
+
+        **Read-Only Fields**
+        * id
+    delete:
+      tags:
+        - Values
+      summary: Delete Product Modifier Value
+      description: Deletes a *Modifier Value*.
+    parameters:
+      - null
+      - null
+      - null
+      - null
+  /catalog/products/{product_id}/modifiers/{modifier_id}/values/{value_id}/image:
+    post:
+      tags:
+        - Images
+      summary: Create Product Modifier Image
+      description: |-
+        Creates a *Modifier Image*.
+
+        The image will show on the storefront when the value is selected.
+
+         **Required Fields**
+        - image_file: Form posts are the only accepted upload option.
+    parameters:
+      - null
+      - null
+      - null
+      - nu

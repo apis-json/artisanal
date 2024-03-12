@@ -1,0 +1,34 @@
+openapi: 3.1.0
+info:
+  title: Box Folder Locks API
+paths:
+  /folder_locks:
+    get:
+      summary: List folder locks
+      tags:
+        - Folder Locks
+      description: |-
+        Retrieves folder lock details for a given folder.
+
+        You must be authenticated as the owner or co-owner of the folder to
+        use this endpoint.
+    post:
+      summary: Create folder lock
+      tags:
+        - Folder Locks
+      description: |-
+        Creates a folder lock on a folder, preventing it from being moved and/or
+        deleted.
+
+        You must be authenticated as the owner or co-owner of the folder to
+        use this endpoint.
+  /folder_locks/{folder_lock_id}:
+    delete:
+      summary: Delete folder lock
+      description: |-
+        Deletes a folder lock on a given folder.
+
+        You must be authenticated as the owner or co-owner of the folder to
+        use this endpoint.
+      tags:
+        - Folder Loc

@@ -1,0 +1,38 @@
+openapi: 3.1.0
+info:
+  title: Box Collaboration Whitelist Exempt Targets API
+paths:
+  /collaboration_whitelist_exempt_targets:
+    get:
+      summary: List users exempt from collaboration domain restrictions
+      tags:
+        - Domain restrictions (User exemptions)
+      description: |-
+        Returns a list of users who have been exempt from the collaboration
+        domain restrictions.
+    post:
+      summary: Create user exemption from collaboration domain restrictions
+      tags:
+        - Domain restrictions (User exemptions)
+      description: >-
+        Exempts a user from the restrictions set out by the allowed list of
+        domains
+
+        for collaborations.
+  /collaboration_whitelist_exempt_targets/{collaboration_whitelist_exempt_target_id}:
+    get:
+      summary: Get user exempt from collaboration domain restrictions
+      tags:
+        - Domain restrictions (User exemptions)
+      description: |-
+        Returns a users who has been exempt from the collaboration
+        domain restrictions.
+    delete:
+      summary: Remove user from list of users exempt from domain restrictions
+      tags:
+        - Domain restrictions (User exemptions)
+      description: >-
+        Removes a user's exemption from the restrictions set out by the allowed
+        list
+
+        of domains for collaboration

@@ -1,0 +1,492 @@
+openapi: 3.1.0
+info:
+  title: Box Shared Items#web Links API
+  description: Needs a description.
+paths:
+  /shared_items#web_links:
+    get:
+      operationId: get_shared_items#web_links
+      summary: Find web link for shared link
+      tags:
+        - Shared links (Web Links)
+      x-box-tag: shared_links_web_links
+      x-box-enable-explorer: true
+      description: |-
+        Returns the web link represented by a shared link.
+
+        A shared web link can be represented by a shared link,
+        which can originate within the current enterprise or within another.
+
+        This endpoint allows an application to retrieve information about a
+        shared web link when only given a shared link.
+      parameters:
+        - name: if-none-match
+          description: |-
+            Ensures an item is only returned if it has changed.
+
+            Pass in the item's last observed `etag` value
+            into this header and the endpoint will fail
+            with a `304 Not Modified` if the item has not
+            changed since.
+          in: header
+          required: false
+          example: '1'
+          schema:
+            type: string
+        - name: fields
+          description: |-
+            A comma-separated list of attributes to include in the
+            response. This can be used to request fields that are
+            not normally returned in a standard response.
+
+            Be aware that specifying this parameter will have the
+            effect that none of the standard fields are returned in
+            the response unless explicitly specified, instead only
+            fields for the mini representation are returned, additional
+            to the fields requested.
+          in: query
+          example:
+            - id
+            - type
+            - name
+          required: false
+          explode: false
+          schema:
+            type: array
+            items:
+              type: string
+        - name: boxapi
+          description: |-
+            A header containing the shared link and optional password for the
+            shared link.
+
+            The format for this header is as follows.
+
+            `shared_link=[link]&shared_link_password=[password]`
+          example: shared_link=[link]&shared_link_password=[password]
+          in: header
+          required: true
+          schema:
+            type: string
+      responses:
+        '200':
+          description: |-
+            Returns a full file resource if the shared link is valid and
+            the user has access to it.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/WebLink'
+        '304':
+          description: >-
+            Returns an empty response when the `If-None-Match` header matches
+
+            the current `etag` value of the folder. This indicates that the
+            folder
+
+            has not changed since it was last requested.
+        default:
+          description: An unexpected client error.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ClientError'
+components:
+  schemas:
+    WebLink:
+      title: Web link
+      type: object
+      x-box-resource-id: web_link
+      x-box-variant: standard
+      description: |-
+        Web links are objects that point to URLs. These objects
+        are also known as bookmarks within the Box web application.
+
+        Web link objects are treated similarly to file objects,
+        they will also support most actions that apply to regular files.
+      allOf:
+        - $ref: '#/components/schemas/WebLink--Mini'
+        - properties:
+            parent:
+              allOf:
+                - $ref: '#/components/schemas/Folder--Mini'
+                - description: The parent object the web link belongs to
+            description:
+              type: string
+              example: Example page
+              description: |-
+                The description accompanying the web link. This is
+                visible within the Box web application.
+            path_collection:
+              allOf:
+                - title: Path collection
+                  description: A list of parent folders for an item.
+                  type: object
+                  required:
+                    - total_count
+                    - entries
+                  properties:
+                    total_count:
+                      description: The number of folders in this list.
+                      example: 1
+                      type: integer
+                      format: int64
+                      nullable: false
+                    entries:
+                      type: array
+                      description: The parent folders for this item
+                      nullable: false
+                      items:
+                        $ref: '#/components/schemas/Folder--Mini'
+                - description: |-
+                    The tree of folders that this web link is contained in,
+                    starting at the root.
+                - nullable: false
+            created_at:
+              type: string
+              format: date-time
+              description: When this file was created on Box’s servers.
+              example: '2012-12-12T10:53:43-08:00'
+            modified_at:
+              type: string
+              format: date-time
+              description: |-
+                When this file was last updated on the Box
+                servers.
+              example: '2012-12-12T10:53:43-08:00'
+            trashed_at:
+              type: string
+              format: date-time
+              nullable: true
+              description: When this file was moved to the trash.
+              example: '2012-12-12T10:53:43-08:00'
+            purged_at:
+              type: string
+              format: date-time
+              nullable: true
+              description: When this file will be permanently deleted.
+              example: '2012-12-12T10:53:43-08:00'
+            created_by:
+              allOf:
+                - $ref: '#/components/schemas/User--Mini'
+                - description: The user who created this web link
+            modified_by:
+              allOf:
+                - $ref: '#/components/schemas/User--Mini'
+                - description: The user who last modified this web link
+            owned_by:
+              allOf:
+                - $ref: '#/components/schemas/User--Mini'
+                - description: The user who owns this web link
+            shared_link:
+              allOf:
+                - title: Shared link
+                  description: >-
+                    Shared links provide direct, read-only access to files or
+                    folder on Box.
+
+
+                    Shared links with open access level allow anyone with the
+                    URL
+
+                    to access the item, while shared links with company or
+                    collaborators access
+
+                    levels can only be accessed by appropriately authenticated
+                    Box users.
+                  type: object
+                  required:
+                    - url
+                    - accessed
+                    - effective_access
+                    - effective_permission
+                    - is_password_enabled
+                    - download_count
+                    - preview_count
+                  properties:
+                    url:
+                      type: string
+                      format: url
+                      description: >-
+                        The URL that can be used to access the item on Box.
+
+
+                        This URL will display the item in Box's preview UI where
+                        the file
+
+                        can be downloaded if allowed.
+
+
+                        This URL will continue to work even when a custom
+                        `vanity_url`
+
+                        has been set for this shared link.
+                      example: https://www.box.com/s/vspke7y05sb214wjokpk
+                      nullable: false
+                    download_url:
+                      type: string
+                      format: url
+                      x-box-premium-feature: true
+                      description: >-
+                        A URL that can be used to download the file. This URL
+                        can be used in
+
+                        a browser to download the file. This URL includes the
+                        file
+
+                        extension so that the file will be saved with the right
+                        file type.
+
+
+                        This property will be `null` for folders.
+                      example: >-
+                        https://www.box.com/shared/static/rh935iit6ewrmw0unyul.jpeg
+                      nullable: true
+                    vanity_url:
+                      type: string
+                      format: url
+                      description: >-
+                        The "Custom URL" that can also be used to preview the
+                        item on Box.  Custom
+
+                        URLs can only be created or modified in the Box Web
+                        application.
+                      example: https://acme.app.box.com/v/my_url/
+                      nullable: true
+                    vanity_name:
+                      type: string
+                      description: >-
+                        The custom name of a shared link, as used in the
+                        `vanity_url` field.
+                      example: my_url
+                      nullable: true
+                    access:
+                      type: string
+                      description: >-
+                        The access level for this shared link.
+
+
+                        * `open` - provides access to this item to anyone with
+                        this link
+
+                        * `company` - only provides access to this item to
+                        people the same company
+
+                        * `collaborators` - only provides access to this item to
+                        people who are
+                           collaborators on this item
+
+                        If this field is omitted when creating the shared link,
+                        the access level
+
+                        will be set to the default access level specified by the
+                        enterprise admin.
+                      enum:
+                        - open
+                        - company
+                        - collaborators
+                      example: open
+                      nullable: false
+                    effective_access:
+                      type: string
+                      description: >-
+                        The effective access level for the shared link. This can
+                        be a more
+
+                        restrictive access level than the value in the `access`
+                        field when the
+
+                        enterprise settings restrict the allowed access levels.
+                      enum:
+                        - open
+                        - company
+                        - collaborators
+                      example: company
+                      nullable: false
+                    effective_permission:
+                      type: string
+                      description: |-
+                        The effective permissions for this shared link.
+                        These result in the more restrictive combination of
+                        the share link permissions and the item permissions set
+                        by the administrator, the owner, and any ancestor item
+                        such as a folder.
+                      enum:
+                        - can_edit
+                        - can_download
+                        - can_preview
+                        - no_access
+                      example: can_download
+                      nullable: false
+                    unshared_at:
+                      type: string
+                      format: date-time
+                      description: >-
+                        The date and time when this link will be unshared. This
+                        field can only be
+
+                        set by users with paid accounts.
+                      example: '2018-04-13T13:53:23-07:00'
+                      nullable: true
+                    is_password_enabled:
+                      type: boolean
+                      description: >-
+                        Defines if the shared link requires a password to access
+                        the item.
+                      example: true
+                      nullable: false
+                    permissions:
+                      type: object
+                      description: >-
+                        Defines if this link allows a user to preview, edit, and
+                        download an item.
+
+                        These permissions refer to the shared link only and
+
+                        do not supersede permissions applied to the item itself.
+                      required:
+                        - can_download
+                        - can_preview
+                        - can_edit
+                      properties:
+                        can_download:
+                          type: boolean
+                          example: true
+                          nullable: false
+                          description: >-
+                            Defines if the shared link allows for the item to be
+                            downloaded. For
+
+                            shared links on folders, this also applies to any
+                            items in the folder.
+
+
+                            This value can be set to `true` when the effective
+                            access level is
+
+                            set to `open` or `company`, not `collaborators`.
+                        can_preview:
+                          type: boolean
+                          example: true
+                          nullable: false
+                          description: >-
+                            Defines if the shared link allows for the item to be
+                            previewed.
+
+
+                            This value is always `true`. For shared links on
+                            folders this also
+
+                            applies to any items in the folder.
+                        can_edit:
+                          type: boolean
+                          example: false
+                          nullable: false
+                          description: >-
+                            Defines if the shared link allows for the item to be
+                            edited.
+
+
+                            This value can only be `true` if `can_download` is
+                            also `true` and if
+
+                            the item has a type of `file`.
+                    download_count:
+                      type: integer
+                      example: 3
+                      description: The number of times this item has been downloaded.
+                      nullable: false
+                    preview_count:
+                      type: integer
+                      example: 3
+                      description: The number of times this item has been previewed.
+                      nullable: false
+                - description: |-
+                    The shared link object for this item. Will be
+                    `null` if no shared link has been created.
+                - nullable: true
+            item_status:
+              type: string
+              example: active
+              enum:
+                - active
+                - trashed
+                - deleted
+              description: >-
+                Whether this item is deleted or not. Values include `active`,
+
+                `trashed` if the file has been moved to the trash, and `deleted`
+                if
+
+                the file has been permanently deleted
+    ClientError:
+      title: Client error
+      type: object
+      x-box-resource-id: client_error
+      description: A generic error
+      properties:
+        type:
+          description: error
+          example: error
+          type: string
+          enum:
+            - error
+          nullable: false
+        status:
+          description: The HTTP status of the response.
+          example: 400
+          type: integer
+          format: int32
+          nullable: false
+        code:
+          description: A Box-specific error code
+          example: item_name_invalid
+          type: string
+          enum:
+            - created
+            - accepted
+            - no_content
+            - redirect
+            - not_modified
+            - bad_request
+            - unauthorized
+            - forbidden
+            - not_found
+            - method_not_allowed
+            - conflict
+            - precondition_failed
+            - too_many_requests
+            - internal_server_error
+            - unavailable
+            - item_name_invalid
+            - insufficient_scope
+        message:
+          description: A short message describing the error.
+          example: Method Not Allowed
+          type: string
+          nullable: false
+        context_info:
+          description: |-
+            A free-form object that contains additional context
+            about the error. The possible fields are defined on
+            a per-endpoint basis. `message` is only one example.
+          type: object
+          nullable: true
+          properties:
+            message:
+              type: string
+              description: More details on the error.
+              example: Something went wrong.
+        help_url:
+          description: A URL that links to more information about why this error occurred.
+          example: >-
+            https://developer.box.com/guides/api-calls/permissions-and-errors/common-errors/
+          type: string
+          nullable: false
+        request_id:
+          description: |-
+            A unique identifier for this response, which can be used
+            when contacting Box support.
+          type: string
+          example: abcdef123456
+          nullable: false

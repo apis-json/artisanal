@@ -1,5 +1,5 @@
 info:
-  title: Twilio Super SIM API
+  title: Twilio - Supersim
   license:
     name: Apache 2.0
     url: https://www.apache.org/licenses/LICENSE-2.0.html
@@ -10,55 +10,23 @@ paths:
     get:
       description: Retrieve a list of Billing Periods for a Super SIM.
       tags:
-        - Retrieve
-        - Billing
-        - Periods
-        - Sims
-        - Sim
-        - Sid
-        - Billing
-        - Periods
-      summary: Retrieve SIM Billing Periods
+        - SupersimV1BillingPeriod
   /v1/ESimProfiles:
     description: eSIM Profiles that can be loaded onto consumer eUICC SIMs
     post:
       description: Order an eSIM Profile.
       tags:
-        - Create
-        - Profile
-        - Sims
-        - Sim
-        - Sid
-        - Billing
-        - Periods
-        - Profiles
-      summary: Create ESIM Profile
+        - SupersimV1EsimProfile
     get:
       description: Retrieve a list of eSIM Profiles.
       tags:
-        - Retrieve
-        - Profiles
-        - Sims
-        - Sim
-        - Sid
-        - Billing
-        - Periods
-        - Profiles
-      summary: Retrieve ESIM Profiles
+        - SupersimV1EsimProfile
   /v1/ESimProfiles/{Sid}:
     description: eSIM Profiles that can be loaded onto consumer eUICC SIMs
     get:
       description: Fetch an eSIM Profile.
       tags:
-        - Retrieve
-        - Profile
-        - Sims
-        - Sim
-        - Sid
-        - Billing
-        - Periods
-        - Profiles
-      summary: Retrieve ESIM Profile
+        - SupersimV1EsimProfile
   /v1/Fleets:
     description: >-
       Configure shared settings inherited by all Super SIMs assigned to the
@@ -66,29 +34,11 @@ paths:
     post:
       description: Create a Fleet
       tags:
-        - Create
-        - Fleets
-        - Sims
-        - Sim
-        - Sid
-        - Billing
-        - Periods
-        - Profiles
-        - Fleets
-      summary: Create Fleets
+        - SupersimV1Fleet
     get:
       description: Retrieve a list of Fleets from your account.
       tags:
-        - Retrieve
-        - Fleets
-        - Sims
-        - Sim
-        - Sid
-        - Billing
-        - Periods
-        - Profiles
-        - Fleets
-      summary: Retrieve Fleets
+        - SupersimV1Fleet
   /v1/Fleets/{Sid}:
     description: >-
       Configure shared settings inherited by all Super SIMs assigned to the
@@ -96,564 +46,154 @@ paths:
     get:
       description: Fetch a Fleet instance from your account.
       tags:
-        - Retrieve
-        - Fleet
-        - Sims
-        - Sim
-        - Sid
-        - Billing
-        - Periods
-        - Profiles
-        - Fleets
-      summary: Retrieve Fleet
+        - SupersimV1Fleet
     post:
       description: >-
         Updates the given properties of a Super SIM Fleet instance from your
         account.
       tags:
-        - Update
-        - Fleet
-        - Sims
-        - Sim
-        - Sid
-        - Billing
-        - Periods
-        - Profiles
-        - Fleets
-      summary: Update Fleet
+        - SupersimV1Fleet
   /v1/IpCommands:
     description: Machine-to-machine IP Commands sent to/from Super SIMs
     post:
       description: Send an IP Command to a Super SIM.
       tags:
-        - Create
-        - Command
-        - Sims
-        - Sim
-        - Sid
-        - Billing
-        - Periods
-        - Profiles
-        - Fleets
-        - Ip
-        - Commands
-      summary: Create IP Command
+        - SupersimV1IpCommand
     get:
       description: Retrieve a list of IP Commands from your account.
       tags:
-        - Retrieve
-        - Commands
-        - Sims
-        - Sim
-        - Sid
-        - Billing
-        - Periods
-        - Profiles
-        - Fleets
-        - Ip
-        - Commands
-      summary: Retrieve IP Commands
+        - SupersimV1IpCommand
   /v1/IpCommands/{Sid}:
     description: Machine-to-machine IP Commands sent to/from Super SIMs
     get:
       description: Fetch IP Command instance from your account.
       tags:
-        - Retrieve
-        - Command
-        - Sims
-        - Sim
-        - Sid
-        - Billing
-        - Periods
-        - Profiles
-        - Fleets
-        - Ip
-        - Commands
-      summary: Retrieve IP Command
+        - SupersimV1IpCommand
   /v1/Networks/{Sid}:
     description: Mobile operator networks to which Super SIMs can connect
     get:
       description: Fetch a Network resource.
       tags:
-        - Retrieve
-        - Network
-        - Sims
-        - Sim
-        - Sid
-        - Billing
-        - Periods
-        - Profiles
-        - Fleets
-        - Ip
-        - Commands
-        - Networks
-      summary: Retrieve Network
+        - SupersimV1Network
   /v1/Networks:
     description: Mobile operator networks to which Super SIMs can connect
     get:
       description: Retrieve a list of Network resources.
       tags:
-        - Retrieve
-        - Networks
-        - Sims
-        - Sim
-        - Sid
-        - Billing
-        - Periods
-        - Profiles
-        - Fleets
-        - Ip
-        - Commands
-        - Networks
-      summary: Retrieve Networks
+        - SupersimV1Network
   /v1/NetworkAccessProfiles:
     description: 'TODO: Resource-level docs'
     post:
       description: Create a new Network Access Profile
       tags:
-        - Create
-        - Network
-        - Access
-        - Profile
-        - Sims
-        - Sim
-        - Sid
-        - Billing
-        - Periods
-        - Profiles
-        - Fleets
-        - Ip
-        - Commands
-        - Networks
-        - Network
-        - Access
-      summary: Create Network Access Profile
+        - SupersimV1NetworkAccessProfile
     get:
       description: Retrieve a list of Network Access Profiles from your account.
       tags:
-        - Retrieve
-        - Network
-        - Access
-        - Profiles
-        - Sims
-        - Sim
-        - Sid
-        - Billing
-        - Periods
-        - Profiles
-        - Fleets
-        - Ip
-        - Commands
-        - Networks
-        - Network
-        - Access
-      summary: Retrieve Network Access Profiles
+        - SupersimV1NetworkAccessProfile
   /v1/NetworkAccessProfiles/{Sid}:
     description: 'TODO: Resource-level docs'
     get:
       description: Fetch a Network Access Profile instance from your account.
       tags:
-        - Retrieve
-        - Network
-        - Access
-        - Profiles
-        - Sims
-        - Sim
-        - Sid
-        - Billing
-        - Periods
-        - Profiles
-        - Fleets
-        - Ip
-        - Commands
-        - Networks
-        - Network
-        - Access
-      summary: Retrieve Network Access Profiles
+        - SupersimV1NetworkAccessProfile
     post:
       description: >-
         Updates the given properties of a Network Access Profile in your
         account.
       tags:
-        - Create
-        - Network
-        - Access
-        - Profile
-        - Sims
-        - Sim
-        - Sid
-        - Billing
-        - Periods
-        - Profiles
-        - Fleets
-        - Ip
-        - Commands
-        - Networks
-        - Network
-        - Access
-      summary: Create Network Access Profile
+        - SupersimV1NetworkAccessProfile
   /v1/NetworkAccessProfiles/{NetworkAccessProfileSid}/Networks:
     description: Mobile operator networks which Network Access Profiles allow access to
     get:
       description: Retrieve a list of Network Access Profile resource's Network resource.
       tags:
-        - Retrieve
-        - Network
-        - Access
-        - Profile
-        - Networks
-        - Sims
-        - Sim
-        - Sid
-        - Billing
-        - Periods
-        - Profiles
-        - Fleets
-        - Ip
-        - Commands
-        - Networks
-        - Network
-        - Access
-        - Profile
-      summary: Retrieve Network Access Profile Networks
+        - SupersimV1NetworkAccessProfileNetwork
     post:
       description: Add a Network resource to the Network Access Profile resource.
       tags:
-        - Create
-        - Network
-        - Access
-        - Profile
-        - Sims
-        - Sim
-        - Sid
-        - Billing
-        - Periods
-        - Profiles
-        - Fleets
-        - Ip
-        - Commands
-        - Networks
-        - Network
-        - Access
-        - Profile
-      summary: Create Network Access Profile Network
+        - SupersimV1NetworkAccessProfileNetwork
   /v1/NetworkAccessProfiles/{NetworkAccessProfileSid}/Networks/{Sid}:
     description: Mobile operator networks which Network Access Profiles allow access to
     delete:
       description: Remove a Network resource from the Network Access Profile resource's.
       tags:
-        - Delete
-        - Network
-        - Access
-        - Profile
-        - Sims
-        - Sim
-        - Sid
-        - Billing
-        - Periods
-        - Profiles
-        - Fleets
-        - Ip
-        - Commands
-        - Networks
-        - Network
-        - Access
-        - Profile
-      summary: Delete Network Access Profile Network
+        - SupersimV1NetworkAccessProfileNetwork
     get:
       description: Fetch a Network Access Profile resource's Network resource.
       tags:
-        - Retrieve
-        - Network
-        - Access
-        - Profile
-        - Sims
-        - Sim
-        - Sid
-        - Billing
-        - Periods
-        - Profiles
-        - Fleets
-        - Ip
-        - Commands
-        - Networks
-        - Network
-        - Access
-        - Profile
-      summary: Retrieve Network Access Profile Network
+        - SupersimV1NetworkAccessProfileNetwork
   /v1/SettingsUpdates:
     description: 'TODO: Resource-level docs'
     get:
       description: Retrieve a list of Settings Updates.
       tags:
-        - Retrieve
-        - Settings
-        - Update
-        - Sims
-        - Sim
-        - Sid
-        - Billing
-        - Periods
-        - Profiles
-        - Fleets
-        - Ip
-        - Commands
-        - Networks
-        - Network
-        - Access
-        - Profile
-        - Settings
-        - Updates
-      summary: Retrieve Settings Update
+        - SupersimV1SettingsUpdate
   /v1/Sims:
     description: Individual IoT Super SIMs
     post:
       description: Register a Super SIM to your Account
       tags:
-        - Create
-        - Sims
-        - Sim
-        - Sid
-        - Billing
-        - Periods
-        - Profiles
-        - Fleets
-        - Ip
-        - Commands
-        - Networks
-        - Network
-        - Access
-        - Profile
-        - Settings
-        - Updates
-      summary: Create SIM
+        - SupersimV1Sim
     get:
       description: Retrieve a list of Super SIMs from your account.
       tags:
-        - Retrieve
-        - Sims
-        - Sim
-        - Sid
-        - Billing
-        - Periods
-        - Profiles
-        - Fleets
-        - Ip
-        - Commands
-        - Networks
-        - Network
-        - Access
-        - Profile
-        - Settings
-        - Updates
-      summary: Retrieve SIM
+        - SupersimV1Sim
   /v1/Sims/{Sid}:
     description: Individual IoT Super SIMs
     get:
       description: Fetch a Super SIM instance from your account.
       tags:
-        - Retrieve
-        - Sims
-        - Sim
-        - Sid
-        - Billing
-        - Periods
-        - Profiles
-        - Fleets
-        - Ip
-        - Commands
-        - Networks
-        - Network
-        - Access
-        - Profile
-        - Settings
-        - Updates
-      summary: Retrieve SIM
+        - SupersimV1Sim
     post:
       description: Updates the given properties of a Super SIM instance from your account.
       tags:
-        - Update
-        - Sims
-        - Sim
-        - Sid
-        - Billing
-        - Periods
-        - Profiles
-        - Fleets
-        - Ip
-        - Commands
-        - Networks
-        - Network
-        - Access
-        - Profile
-        - Settings
-        - Updates
-      summary: Update SIM
+        - SupersimV1Sim
   /v1/Sims/{SimSid}/IpAddresses:
     description: IP Addresses for a Super SIM configured to use a VPN connection
     get:
       description: Retrieve a list of IP Addresses for the given Super SIM.
       tags:
-        - Retrieve
-        - Ddress
-        - Sims
-        - Sim
-        - Sid
-        - Billing
-        - Periods
-        - Profiles
-        - Fleets
-        - Ip
-        - Commands
-        - Networks
-        - Network
-        - Access
-        - Profile
-        - Settings
-        - Updates
-        - Addresses
-      summary: Retrieve SIM IP ADdress
+        - SupersimV1SimIpAddress
   /v1/SmsCommands:
     description: Machine-to-machine SMS Commands sent to/from SIMs
     post:
       description: Send SMS Command to a Sim.
       tags:
-        - Create
-        - Command
-        - Sims
-        - Sim
-        - Sid
-        - Billing
-        - Periods
-        - Profiles
-        - Fleets
-        - Ip
-        - Commands
-        - Networks
-        - Network
-        - Access
-        - Profile
-        - Settings
-        - Updates
-        - Addresses
-        - Sms
-      summary: Create SMS Command
+        - SupersimV1SmsCommand
     get:
       description: Retrieve a list of SMS Commands from your account.
       tags:
-        - Retrieve
-        - Commands
-        - Sims
-        - Sim
-        - Sid
-        - Billing
-        - Periods
-        - Profiles
-        - Fleets
-        - Ip
-        - Commands
-        - Networks
-        - Network
-        - Access
-        - Profile
-        - Settings
-        - Updates
-        - Addresses
-        - Sms
-      summary: Retrieve SMS Commands
+        - SupersimV1SmsCommand
   /v1/SmsCommands/{Sid}:
     description: Machine-to-machine SMS Commands sent to/from SIMs
     get:
       description: Fetch SMS Command instance from your account.
       tags:
-        - Retrieve
-        - Command
-        - Sims
-        - Sim
-        - Sid
-        - Billing
-        - Periods
-        - Profiles
-        - Fleets
-        - Ip
-        - Commands
-        - Networks
-        - Network
-        - Access
-        - Profile
-        - Settings
-        - Updates
-        - Addresses
-        - Sms
-      summary: Retrieve SMS Command
+        - SupersimV1SmsCommand
   /v1/UsageRecords:
     description: Usage information for Sim resources
     get:
       description: List UsageRecords
       tags:
-        - Retrieve
-        - Usage
-        - Records
-        - Sims
-        - Sim
-        - Sid
-        - Billing
-        - Periods
-        - Profiles
-        - Fleets
-        - Ip
-        - Commands
-        - Networks
-        - Network
-        - Access
-        - Profile
-        - Settings
-        - Updates
-        - Addresses
-        - Sms
-        - Usage
-        - Records
-      summary: Retrieve Usage Records
+        - SupersimV1UsageRecord
 tags:
-  - name: Tag
-  - name: SIM
-    description: Needs a description.
-  - name: Billing
-    description: Needs a description.
-  - name: Periods
-    description: Needs a description.
-  - name: ESIM
-    description: Needs a description.
-  - name: Profiles
-    description: Needs a description.
-  - name: Fleets
-    description: Needs a description.
-  - name: IP Commands
-    description: Needs a description.
-  - name: Network
-    description: Needs a description.
-  - name: Networks
-    description: Needs a description.
-  - name: Access
-    description: Needs a description.
-  - name: Settings
-    description: Needs a description.
-  - name: Update
-    description: Needs a description.
-  - name: IP Addresses
-    description: Needs a description.
-  - name: SMS
-    description: Needs a description.
-  - name: Commands
-    description: Needs a description.
-  - name: Usage
-    description: Needs a description.
-  - name: Records
-    description: Needs a description.
+  - name: SupersimV1BillingPeriod
+  - name: SupersimV1EsimProfile
+  - name: SupersimV1Fleet
+  - name: SupersimV1IpCommand
+  - name: SupersimV1Network
+  - name: SupersimV1NetworkAccessProfile
+  - name: SupersimV1NetworkAccessProfileNetwork
+  - name: SupersimV1SettingsUpdate
+  - name: SupersimV1Sim
+  - name: SupersimV1SimIpAddress
+  - name: SupersimV1SmsCommand
+  - name: SupersimV1UsageRecord
 x-maturity:
   - name: GA
     description: This product is Generally Available.
   - name: Beta
     description: >-
       PLEASE NOTE that this is a Beta product that is subject to change. Use it
-      with ca
+      with 

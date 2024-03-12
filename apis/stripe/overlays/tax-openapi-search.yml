@@ -7,57 +7,16 @@ paths:
       description: >-
         <p>Calculates tax based on input and returns a Tax
         <code>Calculation</code> object.</p>
-      summary: Calculate Tax
-      tags:
-        - Calculate
-        - Tax
-        - V1
-        - Tax
-        - Calculations
   /v1/tax/calculations/{calculation}/line_items:
     get:
       description: >-
         <p>Retrieves the line items of a persisted tax calculation as a
         collection.</p>
-      summary: Retrieve Tax Calculation Line Items
-      tags:
-        - Retrieve
-        - Tax
-        - Calculation
-        - Line
-        - Items
-        - V1
-        - Tax
-        - Calculations
-        - Calculation
-        - Line_items
   /v1/tax/registrations:
     get:
       description: <p>Returns a list of Tax <code>Registration</code> objects.</p>
-      summary: Retrieve Tax Registrations
-      tags:
-        - Retrieve
-        - Tax
-        - Registrations
-        - V1
-        - Tax
-        - Calculations
-        - Calculation
-        - Line_items
-        - Registrations
     post:
       description: <p>Creates a new Tax <code>Registration</code> object.</p>
-      summary: Create Tax Registration
-      tags:
-        - Create
-        - Tax
-        - Registration
-        - V1
-        - Tax
-        - Calculations
-        - Calculation
-        - Line_items
-        - Registrations
   /v1/tax/registrations/{id}:
     post:
       description: >-
@@ -67,292 +26,52 @@ paths:
         <p>A registration cannot be deleted after it has been created. If you
         wish to end a registration you may do so by setting
         <code>expires_at</code>.</p>
-      summary: Retrieve Tax Registration
-      tags:
-        - Retrieve
-        - Tax
-        - Registration
-        - V1
-        - Tax
-        - Calculations
-        - Calculation
-        - Line_items
-        - Registrations
-        - Id
   /v1/tax/settings:
     get:
       description: <p>Retrieves Tax <code>Settings</code> for a merchant.</p>
-      summary: Retrieve Tax Settings
-      tags:
-        - Retrieve
-        - Tax
-        - Settings
-        - V1
-        - Tax
-        - Calculations
-        - Calculation
-        - Line_items
-        - Registrations
-        - Id
-        - Settings
     post:
       description: >-
         <p>Updates Tax <code>Settings</code> parameters used in tax
         calculations. All parameters are editable but none can be removed once
         set.</p>
-      summary: Update Tax Registration
-      tags:
-        - Update
-        - Tax
-        - Registration
-        - V1
-        - Tax
-        - Calculations
-        - Calculation
-        - Line_items
-        - Registrations
-        - Id
-        - Settings
   /v1/tax/transactions/create_from_calculation:
     post:
       description: <p>Creates a Tax <code>Transaction</code> from a calculation.</p>
-      summary: Create Tax Transaction
-      tags:
-        - Create
-        - Tax
-        - Transaction
-        - V1
-        - Tax
-        - Calculations
-        - Calculation
-        - Line_items
-        - Registrations
-        - Id
-        - Settings
-        - Transactions
-        - Create_from_calculation
   /v1/tax/transactions/create_reversal:
     post:
       description: >-
         <p>Partially or fully reverses a previously created
         <code>Transaction</code>.</p>
-      summary: Reverse Tax Transaction
-      tags:
-        - Reverse
-        - Tax
-        - Transaction
-        - V1
-        - Tax
-        - Calculations
-        - Calculation
-        - Line_items
-        - Registrations
-        - Id
-        - Settings
-        - Transactions
-        - Create_from_calculation
-        - Create_reversal
   /v1/tax/transactions/{transaction}:
     get:
       description: <p>Retrieves a Tax <code>Transaction</code> object.</p>
-      summary: Retrieve Tax Transaction
-      tags:
-        - Retrieve
-        - Tax
-        - Transaction
-        - V1
-        - Tax
-        - Calculations
-        - Calculation
-        - Line_items
-        - Registrations
-        - Id
-        - Settings
-        - Transactions
-        - Create_from_calculation
-        - Create_reversal
-        - Transaction
   /v1/tax/transactions/{transaction}/line_items:
     get:
       description: >-
         <p>Retrieves the line items of a committed standalone transaction as a
         collection.</p>
-      summary: Retrieve Tax Transaction Line Items
-      tags:
-        - Retrieve
-        - Tax
-        - Transaction
-        - Line
-        - Items
-        - V1
-        - Tax
-        - Calculations
-        - Calculation
-        - Line_items
-        - Registrations
-        - Id
-        - Settings
-        - Transactions
-        - Create_from_calculation
-        - Create_reversal
-        - Transaction
   /v1/tax_codes:
     get:
       description: >-
         <p>A list of <a href="https://stripe.com/docs/tax/tax-categories">all
         tax codes available</a> to add to Products in order to allow specific
         tax calculations.</p>
-      summary: Retrieve Tax Codes
-      tags:
-        - Retrieve
-        - Tax
-        - Codes
-        - V1
-        - Tax
-        - Calculations
-        - Calculation
-        - Line_items
-        - Registrations
-        - Id
-        - Settings
-        - Transactions
-        - Create_from_calculation
-        - Create_reversal
-        - Transaction
-        - Tax_codes
   /v1/tax_codes/{id}:
     get:
       description: >-
         <p>Retrieves the details of an existing tax code. Supply the unique tax
         code ID and Stripe will return the corresponding tax code
         information.</p>
-      summary: Retrieve Tax Code
-      tags:
-        - Retrieve
-        - Tax
-        - Code
-        - V1
-        - Tax
-        - Calculations
-        - Calculation
-        - Line_items
-        - Registrations
-        - Id
-        - Settings
-        - Transactions
-        - Create_from_calculation
-        - Create_reversal
-        - Transaction
-        - Tax_codes
   /v1/tax_rates:
     get:
       description: >-
         <p>Returns a list of your tax rates. Tax rates are returned sorted by
         creation date, with the most recently created tax rates appearing
         first.</p>
-      summary: Retrieve Tax Rates
-      tags:
-        - Retrieve
-        - Tax
-        - Rates
-        - V1
-        - Tax
-        - Calculations
-        - Calculation
-        - Line_items
-        - Registrations
-        - Id
-        - Settings
-        - Transactions
-        - Create_from_calculation
-        - Create_reversal
-        - Transaction
-        - Tax_codes
-        - Tax_rates
     post:
       description: <p>Creates a new tax rate.</p>
-      summary: Create Tax Rate
-      tags:
-        - Create
-        - Tax
-        - Rate
-        - V1
-        - Tax
-        - Calculations
-        - Calculation
-        - Line_items
-        - Registrations
-        - Id
-        - Settings
-        - Transactions
-        - Create_from_calculation
-        - Create_reversal
-        - Transaction
-        - Tax_codes
-        - Tax_rates
   /v1/tax_rates/{tax_rate}:
     get:
       description: <p>Retrieves a tax rate with the given ID</p>
-      summary: Retrieve Tax Rate
-      tags:
-        - Retrieve
-        - Tax
-        - Rate
-        - V1
-        - Tax
-        - Calculations
-        - Calculation
-        - Line_items
-        - Registrations
-        - Id
-        - Settings
-        - Transactions
-        - Create_from_calculation
-        - Create_reversal
-        - Transaction
-        - Tax_codes
-        - Tax_rates
-        - Tax_rate
     post:
-      description: <p>Updates an existing tax rate.</p>
-      summary: Update Tax Rate
-      tags:
-        - Update
-        - Tax
-        - Rate
-        - V1
-        - Tax
-        - Calculations
-        - Calculation
-        - Line_items
-        - Registrations
-        - Id
-        - Settings
-        - Transactions
-        - Create_from_calculation
-        - Create_reversal
-        - Transaction
-        - Tax_codes
-        - Tax_rates
-        - Tax_rate
-tags:
-  - name: Calculate
-    description: Needs a description.
-  - name: Taxes
-    description: Needs a description.
-  - name: Lines
-    description: Needs a description.
-  - name: Items
-    description: Needs a description.
-  - name: Registrations
-    description: Needs a description.
-  - name: Settings
-    description: Needs a description.
-  - name: Transactions
-    description: Needs a description.
-  - name: Reverse
-    description: Needs a description.
-  - name: Codes
-    description: Needs a description.
-  - name: Rates
-    description: Needs a descriptio
+      description: <p>Updates an existing tax r

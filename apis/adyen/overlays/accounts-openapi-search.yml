@@ -9,37 +9,42 @@ x-groups:
   - Verification
 tags:
   - name: Account holders
-  - name: Verification
+  - name: Verifications
   - name: Accounts
 paths:
   /checkAccountHolder:
     post:
       tags:
+        - Trigger
         - Verification
+        - Account
+        - Holder
       summary: Trigger verification
       description: >-
         Triggers the verification of an account holder even if the checks are
         not yet required for the volume that they are currently processing.
-      x-addedInVersion: '5'
-      x-groupName: Verification
-      x-sortIndex: 3
-      x-methodName: checkAccountHolder
   /closeAccount:
     post:
       tags:
-        - Accounts
+        - Close
+        - An
+        - Account
+        - Account
+        - Holder
       summary: Close an account
       description: >-
         Closes an account. If an account is closed, you cannot process
         transactions, pay out its funds, or reopen it. If payments are made to a
         closed account, the payments are sent to your liable account.
-      x-groupName: Accounts
-      x-sortIndex: 3
-      x-methodName: closeAccount
   /closeAccountHolder:
     post:
       tags:
-        - Account holders
+        - Close
+        - An
+        - Account
+        - Holder
+        - Account
+        - Holder
       summary: Close an account holder
       description: >-
         Changes the [status of an account
@@ -49,35 +54,40 @@ paths:
         made to an account of an account holder with a **Closed**
         [`status`](https://docs.adyen.com/api-explorer/#/Account/latest/post/getAccountHolder__resParam_verification-accountHolder-checks-status),
         the payments are sent to your liable account.
-      x-groupName: Account holders
-      x-sortIndex: 7
-      x-methodName: closeAccountHolder
   /closeStores:
     post:
       tags:
-        - Account holders
+        - Close
+        - Stores
+        - Account
+        - Holder
+        - Stores
       summary: Close stores
       description: Closes stores associated with an account holder.
-      x-addedInVersion: '5'
-      x-groupName: Account holders
-      x-sortIndex: 9
-      x-methodName: closeStores
   /createAccount:
     post:
       tags:
-        - Accounts
+        - Create
+        - An
+        - Account
+        - Account
+        - Holder
+        - Stores
       summary: Create an account
       description: >-
         Creates an account under an account holder. An account holder can have
         [multiple
         accounts](https://docs.adyen.com/marketplaces-and-platforms/classic/account-holders-and-accounts#create-additional-accounts).
-      x-groupName: Accounts
-      x-sortIndex: 1
-      x-methodName: createAccount
   /createAccountHolder:
     post:
       tags:
-        - Account holders
+        - Create
+        - An
+        - Account
+        - Holder
+        - Account
+        - Holder
+        - Stores
       summary: Create an account holder
       description: >-
         Creates an account holder that [represents the sub-merchant's
@@ -86,106 +96,207 @@ paths:
         depend on the sub-merchant's legal entity type. For more information,
         refer to [Account holder and
         accounts](https://docs.adyen.com/marketplaces-and-platforms/classic/account-holders-and-accounts#legal-entity-types).
-      x-groupName: Account holders
-      x-sortIndex: 1
-      x-methodName: createAccountHolder
   /deleteBankAccounts:
     post:
       tags:
-        - Verification
+        - Delete
+        - Bank
+        - Accounts
+        - Account
+        - Holder
+        - Stores
+        - Bank
+        - Accounts
       summary: Delete bank accounts
       description: 'Deletes bank accounts associated with an account holder. '
-      x-groupName: Verification
-      x-sortIndex: 4
-      x-methodName: deleteBankAccounts
   /deleteLegalArrangements:
     post:
       tags:
-        - Verification
+        - Delete
+        - Legal
+        - Arrangements
+        - Account
+        - Holder
+        - Stores
+        - Bank
+        - Accounts
+        - Legal
+        - Arrangements
       summary: Delete legal arrangements
       description: >-
         Deletes legal arrangements and/or legal arrangement entities associated
         with an account holder.
-      x-groupName: Verification
-      x-sortIndex: 6
-      x-methodName: deleteLegalArrangements
   /deletePayoutMethods:
     post:
       tags:
-        - Verification
+        - Delete
+        - Payout
+        - Methods
+        - Account
+        - Holder
+        - Stores
+        - Bank
+        - Accounts
+        - Legal
+        - Arrangements
+        - Payout
+        - Methods
       summary: Delete payout methods
       description: Deletes payout methods associated with an account holder.
-      x-addedInVersion: '5'
-      x-groupName: Verification
-      x-sortIndex: 5
-      x-methodName: deletePayoutMethods
   /deleteShareholders:
     post:
       tags:
-        - Verification
+        - Delete
+        - Shareholders
+        - Account
+        - Holder
+        - Stores
+        - Bank
+        - Accounts
+        - Legal
+        - Arrangements
+        - Payout
+        - Methods
+        - Shareholders
       summary: Delete shareholders
       description: Deletes shareholders associated with an account holder.
-      x-groupName: Verification
-      x-sortIndex: 7
-      x-methodName: deleteShareholders
   /deleteSignatories:
     post:
       tags:
-        - Verification
+        - Delete
+        - Signatories
+        - Account
+        - Holder
+        - Stores
+        - Bank
+        - Accounts
+        - Legal
+        - Arrangements
+        - Payout
+        - Methods
+        - Shareholders
+        - Signatories
       summary: Delete signatories
       description: Deletes signatories associated with an account holder.
-      x-groupName: Verification
-      x-sortIndex: 8
-      x-methodName: deleteSignatories
   /getAccountHolder:
     post:
       tags:
-        - Account holders
+        - Get
+        - An
+        - Account
+        - Holder
+        - Account
+        - Holder
+        - Stores
+        - Bank
+        - Accounts
+        - Legal
+        - Arrangements
+        - Payout
+        - Methods
+        - Shareholders
+        - Signatories
       summary: Get an account holder
       description: Returns the details of an account holder.
-      x-groupName: Account holders
-      x-sortIndex: 2
-      x-methodName: getAccountHolder
   /getTaxForm:
     post:
       tags:
-        - Account holders
+        - Get
+        - Tax
+        - Form
+        - Account
+        - Holder
+        - Stores
+        - Bank
+        - Accounts
+        - Legal
+        - Arrangements
+        - Payout
+        - Methods
+        - Shareholders
+        - Signatories
+        - Tax
+        - Form
       summary: Get a tax form
       description: >-
         Generates a tax form for account holders operating in the US. For more
         information, refer to [Providing tax
         forms](https://docs.adyen.com/marketplaces-and-platforms/classic/tax-forms).
-      x-groupName: Account holders
-      x-sortIndex: 8
-      x-methodName: getTaxForm
   /getUploadedDocuments:
     post:
       tags:
-        - Verification
+        - Get
+        - Documents
+        - Account
+        - Holder
+        - Stores
+        - Bank
+        - Accounts
+        - Legal
+        - Arrangements
+        - Payout
+        - Methods
+        - Shareholders
+        - Signatories
+        - Tax
+        - Form
+        - Uploaded
+        - Documents
       summary: Get documents
       description: >
         Returns documents that were previously uploaded for an account holder.
         Adyen uses the documents during the [verification
         process](https://docs.adyen.com/marketplaces-and-platforms/classic/verification-process).
-      x-groupName: Verification
-      x-sortIndex: 2
-      x-methodName: getUploadedDocuments
   /suspendAccountHolder:
     post:
       tags:
-        - Account holders
+        - Suspend
+        - An
+        - Account
+        - Holder
+        - Account
+        - Holder
+        - Stores
+        - Bank
+        - Accounts
+        - Legal
+        - Arrangements
+        - Payout
+        - Methods
+        - Shareholders
+        - Signatories
+        - Tax
+        - Form
+        - Uploaded
+        - Documents
       summary: Suspend an account holder
       description: >-
         Changes the [status of an account
         holder](https://docs.adyen.com/marketplaces-and-platforms/classic/account-holders-and-accounts#account-holder-statuses)
         to **Suspended**.
-      x-groupName: Account holders
-      x-sortIndex: 5
-      x-methodName: suspendAccountHolder
   /unSuspendAccountHolder:
     post:
       tags:
-        - Account holders
+        - Unsuspend
+        - An
+        - Account
+        - Holder
+        - Account
+        - Holder
+        - Stores
+        - Bank
+        - Accounts
+        - Legal
+        - Arrangements
+        - Payout
+        - Methods
+        - Shareholders
+        - Signatories
+        - Tax
+        - Form
+        - Uploaded
+        - Documents
+        - Suspend
       summary: Unsuspend an account holder
       description: >-
         Changes the [status of an account
@@ -202,22 +313,53 @@ paths:
         You can only unsuspend account holders if they do not have verification
         checks with a **FAILED**
         [`status`](https://docs.adyen.com/api-explorer/#/Account/latest/post/getAccountHolder__resParam_verification-accountHolder-checks-status).
-      x-groupName: Account holders
-      x-sortIndex: 6
-      x-methodName: unSuspendAccountHolder
   /updateAccount:
     post:
       tags:
+        - Update
+        - An
+        - Account
+        - Account
+        - Holder
+        - Stores
+        - Bank
         - Accounts
+        - Legal
+        - Arrangements
+        - Payout
+        - Methods
+        - Shareholders
+        - Signatories
+        - Tax
+        - Form
+        - Uploaded
+        - Documents
+        - Suspend
       summary: Update an account
       description: Updates the description or payout schedule of an account.
-      x-groupName: Accounts
-      x-sortIndex: 2
-      x-methodName: updateAccount
   /updateAccountHolder:
     post:
       tags:
-        - Account holders
+        - Update
+        - An
+        - Account
+        - Holder
+        - Account
+        - Holder
+        - Stores
+        - Bank
+        - Accounts
+        - Legal
+        - Arrangements
+        - Payout
+        - Methods
+        - Shareholders
+        - Signatories
+        - Tax
+        - Form
+        - Uploaded
+        - Documents
+        - Suspend
       summary: Update an account holder
       description: >+
         Updates the `accountHolderDetails` and `processingTier` of an account
@@ -251,27 +393,58 @@ paths:
         To add a bank account or shareholder, provide the bank account or
         shareholder details without a `bankAccountUUID` or a `shareholderCode`.
 
-      x-groupName: Account holders
-      x-sortIndex: 3
-      x-methodName: updateAccountHolder
   /updateAccountHolderState:
     post:
       tags:
-        - Account holders
+        - Update
+        - Payout
+        - Or
+        - Processing
+        - State
+        - Account
+        - Holder
+        - Stores
+        - Bank
+        - Accounts
+        - Legal
+        - Arrangements
+        - Payout
+        - Methods
+        - Shareholders
+        - Signatories
+        - Tax
+        - Form
+        - Uploaded
+        - Documents
+        - Suspend
+        - State
       summary: Update payout or processing state
       description: Disables or enables the processing or payout state of an account holder.
-      x-groupName: Account holders
-      x-sortIndex: 4
-      x-methodName: updateAccountHolderState
   /uploadDocument:
     post:
       tags:
-        - Verification
+        - Upload
+        - Document
+        - Account
+        - Holder
+        - Stores
+        - Bank
+        - Accounts
+        - Legal
+        - Arrangements
+        - Payout
+        - Methods
+        - Shareholders
+        - Signatories
+        - Tax
+        - Form
+        - Uploaded
+        - Documents
+        - Suspend
+        - State
+        - Document
       summary: Upload a document
       description: >-
         Uploads a document for an account holder. Adyen uses the documents
         during the [verification
-        process](https://docs.adyen.com/marketplaces-and-platforms/classic/verification-process).
-      x-groupName: Verification
-      x-sortIndex: 1
-      x-methodName: uploadDocument
+        process](https://docs.adyen.com/marketplaces-and-platforms/classi

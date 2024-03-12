@@ -1,0 +1,267 @@
+openapi: 3.0.3
+info:
+  title: Catalog - Categories
+  version: ''
+tags:
+  - name: Batch metafields
+  - name: Metafields
+  - name: Images
+  - name: Sort Order
+  - name: Categories (deprecated)
+paths:
+  /catalog/categories:
+    get:
+      tags:
+        - Categories (deprecated)
+      summary: Get All Categories
+      description: >-
+        When possible, use the [Catalog Trees - Get all
+        categories](/docs/rest-catalog/category-trees/categories#get-all-categories)
+        endpoint instead.
+
+
+        Returns a list of *Categories*. Optional filter parameters can be passed
+        in.
+
+
+        **Note:**
+
+        The default rate limit for this endpoint is 40 concurrent requests.
+    post:
+      tags:
+        - Categories (deprecated)
+      summary: Create a Category
+      description: "When possible, use the [Category Trees - Create categories](/docs/rest-catalog/category-trees/categories#create-categories) endpoint instead.\n\nCreates a *Category*.\n\nUse this endpoint when an API only works with categories of a default BigCommerce storefront (`channel_id=1`). \n\nUse the [Create categories](/docs/rest-catalog/category-trees/categories#create-categories) endpoint when an API works with categories across different category trees that belong to different storefront channels.\n\n**Required Fields**:\n- `parent_id`: \n\t- To create a child category, set the `parent_id` to the parent category.\n\t- To create a top level category, set the `parent_id` to `0`.\n- `name`\n\n**Read-Only Fields**:\n- `id`\n\n**Limits**:\n- 16,000 categories per store limit.\n- 1,000 categories per product limit.\n- 50 characters category name length.\n- 8 levels of category depth limit.\n- 65,642 characters category description length limit.\n\n **Note:**\n The default rate limit for this endpoint is 40 concurrent requests.\n"
+    delete:
+      tags:
+        - Categories (deprecated)
+      summary: Delete Categories
+      description: >-
+        When possible, use the [Category Trees - Delete
+        categories](/docs/rest-catalog/category-trees/categories#delete-categories)
+        endpoint instead.
+
+
+        Deletes *Category* objects. At least one filter parameter is required to
+        perform the `DELETE` operation.
+
+
+        **Usage Notes**
+
+
+        - Sending a `DELETE`request without specifying a filter parameter will
+        result in a `422` error. 
+
+        - Sending a `DELETE` request for a category that contains products will
+        result in a `422` error. Move products to a new category by sending a
+        `PUT` request to the `/catalog/products/{product_id}` endpoint before
+        deleting a category.
+    parameters:
+      - null
+  /catalog/categories/{category_id}:
+    get:
+      tags:
+        - Categories (deprecated)
+      summary: Get a Category
+      description: >-
+        When possible, use the [Catalog Trees - Get all
+        categories](/docs/rest-catalog/category-trees/categories#get-all-categories)
+        endpoint instead. You can provide a category identifier using query
+        parameters to retrieve a single category.
+
+
+        Returns a single *Category*. Optional parameters can be passed in.
+
+
+        **Note:**
+
+        The default rate limit for this endpoint is 40 concurrent requests.
+    put:
+      tags:
+        - Categories (deprecated)
+      summary: Update a Category
+      description: >-
+        When possible, use the [Catalog Trees - Update
+        categories](/docs/rest-catalog/category-trees/categories#update-categories)
+        endpoint instead.
+
+
+        Updates a *Category*.
+
+
+        **Required Fields**
+
+        * none
+
+
+        **Read-Only Fields**
+
+        - id
+
+
+        **Note:** 
+
+        The default rate limit for this endpoint is 40 concurrent requests.
+    delete:
+      tags:
+        - Categories (deprecated)
+      summary: Delete a Category
+      description: >-
+        When possible, use the [Category Trees - Delete
+        categories](/docs/rest-catalog/category-trees/categories#delete-categories)
+        endpoint instead. You can provide a category identifier using query
+        parameters to delete a single category.
+
+
+        Deletes a *Category*.
+
+
+        **Note:**
+
+        The default rate limit for this endpoint is 40 concurrent requests.
+    parameters:
+      - null
+      - null
+  /catalog/categories/{category_id}/metafields:
+    get:
+      tags:
+        - Metafields
+      summary: Get Category Metafields
+      description: >-
+        Returns a list of *Metafields* on a *Category*. Optional filter
+        parameters can be passed in.
+    post:
+      tags:
+        - Metafields
+      summary: Create a Category Metafield
+      description: >-
+        Creates a *Category Metafield*.
+
+
+        **Required Fields:**
+
+        - permission_set
+
+        - namespace
+
+        - key
+
+        - value
+
+
+        **Read-Only Fields**
+
+        - id
+
+
+        **Note:** The maximum number of metafields allowed on each order,
+        product, category, variant, or brand is 250 per client ID. For more
+        information, see [Platform Limits (Help
+        Center)](https://support.bigcommerce.com/s/article/Platform-Limits) in
+        the Help Center.
+    parameters:
+      - null
+      - null
+  /catalog/categories/{category_id}/metafields/{metafield_id}:
+    get:
+      tags:
+        - Metafields
+      summary: Get a Category Metafield
+      description: >-
+        Returns a single *Category Metafield*. Optional parameters can be passed
+        in.
+    put:
+      tags:
+        - Metafields
+      summary: Update a Category Metafield
+      description: "Updates a *Category Metafield*.\n\n**Required Fields**\n* none\n\n**Read-Only Fields**\n* id\n* These fields can only be modified by the app (API credentials) that created the metafield:\n\t* namespace\n\t* key\n\t* permission_set\n\n**Usage Notes**\n* Attempting to modify `namespace`, `key`, and `permission_set` fields using a client ID different from the one used to create those metafields will result in a 403 error message. "
+    delete:
+      tags:
+        - Metafields
+      summary: Delete a Category Metafield
+      description: Deletes a *Category Metafield*.
+    parameters:
+      - null
+      - null
+      - null
+  /catalog/categories/{category_id}/image:
+    post:
+      tags:
+        - Images
+      summary: Create a Category Image
+      description: >-
+        Create a *Category Image*.
+
+         **Required Fields**
+        - image_file: Form posts are the only accepted upload option.
+
+
+        Only one image at a time can be created.
+
+        Limit image size to 1MB.
+
+        To update a *Category Image*, use the [Update
+        categories](/docs/rest-catalog/category-trees/categories#update-categories)
+        endpoint and an `image_url`.
+    delete:
+      tags:
+        - Images
+      summary: Delete a Category Image
+      description: Deletes a *Category Image*.
+    parameters:
+      - null
+      - null
+  /catalog/categories/{category_id}/products/sort-order:
+    get:
+      tags:
+        - Sort Order
+      summary: Get Product Sort Order
+      description: >-
+        Returns a list of products and their sort order for a specific category.
+
+
+        **Usage Notes**
+
+        * Data pairs are displayed in ascending order based on products'
+        `sort_order` values.
+
+        * `null` values are allowed for products without specified `sort_order`
+        values.
+
+        * Products with `sort_order` value of `null` will be displayed after
+        products with valid numerical values.
+
+        * The priorities for determining product sort order on a storefront are
+        the following:
+          - Priority 1: Manually specified sort order on Category Level (API).
+          - Priority 2: Manually specified sort order on Product (Global) Level (UI/API).
+          - Priority 3: Default sorting by Product ID (newly added products go first) (UI/API).
+    put:
+      tags:
+        - Sort Order
+      summary: Update Product Sort Order
+      description: Updates sort order of products within a specific category.
+    parameters:
+      - null
+      - null
+  /catalog/categories/metafields:
+    get:
+      summary: Get All Category Metafields
+      tags:
+        - Batch metafields
+      description: Get all category metafields.
+    post:
+      summary: Create multiple Metafields
+      tags:
+        - Batch metafields
+      description: Create multiple metafields.
+    put:
+      summary: Update multiple Metafields
+      tags:
+        - Batch metafields
+      description: Create multiple metafields.
+    delete:
+      summary: Delete All Metafields
+      tags:
+        - Batch metafields
+      description: Delete all category metafield

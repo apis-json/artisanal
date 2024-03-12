@@ -1,0 +1,32 @@
+openapi: 3.1.0
+info:
+  title: Box Task Assignments API
+paths:
+  /task_assignments:
+    post:
+      summary: Assign task
+      tags:
+        - Task assignments
+      description: |-
+        Assigns a task to a user.
+
+        A task can be assigned to more than one user by creating multiple
+        assignments.
+  /task_assignments/{task_assignment_id}:
+    get:
+      summary: Get task assignment
+      tags:
+        - Task assignments
+      description: Retrieves information about a task assignment.
+    put:
+      summary: Update task assignment
+      tags:
+        - Task assignments
+      description: |-
+        Updates a task assignment. This endpoint can be
+        used to update the state of a task assigned to a user.
+    delete:
+      summary: Unassign task
+      tags:
+        - Task assignments
+      description: Deletes a specific task assignmen

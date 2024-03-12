@@ -6,10 +6,6 @@ paths:
     GET:
       summary: ReadJob
       description: <p>The ReadJob operation returns detailed information about a job.</p>
-      tags:
-        - Read
-        - Job
-        - Id
   /2012-09-25/jobs:
     POST:
       summary: CreateJob
@@ -20,29 +16,12 @@ paths:
         your jobs (for example, one output for the Kindle Fire and another
         output for the Apple iPhone 4s), you currently must use the Elastic
         Transcoder API to list the jobs (as opposed to the AWS Console).</p>
-      tags:
-        - Create
-        - Job
-        - Id
-        - '2012'
-        - '09'
-        - '25'
-        - Jobs
   /2012-09-25/pipelines:
     GET:
       summary: ListPipelines
       description: >-
         <p>The ListPipelines operation gets a list of the pipelines associated
         with the current AWS account.</p>
-      tags:
-        - List
-        - Pipelines
-        - Id
-        - '2012'
-        - '09'
-        - '25'
-        - Jobs
-        - Pipelines
   /2012-09-25/presets:
     GET:
       summary: ListPresets
@@ -50,16 +29,6 @@ paths:
         <p>The ListPresets operation gets a list of the default presets included
         with Elastic Transcoder and the presets that you've added in an AWS
         region.</p>
-      tags:
-        - List
-        - Presets
-        - Id
-        - '2012'
-        - '09'
-        - '25'
-        - Jobs
-        - Pipelines
-        - Presets
   /2012-09-25/pipelines/{Id}:
     PUT:
       summary: UpdatePipeline
@@ -70,32 +39,12 @@ paths:
         and that Elastic Transcoder has not started to process are affected in
         addition to jobs that you submit after you change settings. </p>
         </important>
-      tags:
-        - Update
-        - Pipeline
-        - Id
-        - '2012'
-        - '09'
-        - '25'
-        - Jobs
-        - Pipelines
-        - Presets
   /2012-09-25/presets/{Id}:
     GET:
       summary: ReadPreset
       description: >-
         <p>The ReadPreset operation gets detailed information about a
         preset.</p>
-      tags:
-        - Read
-        - Preset
-        - Id
-        - '2012'
-        - '09'
-        - '25'
-        - Jobs
-        - Pipelines
-        - Presets
   /2012-09-25/jobsByPipeline/{PipelineId}:
     GET:
       summary: ListJobsByPipeline
@@ -104,20 +53,6 @@ paths:
         a pipeline.</p> <p>Elastic Transcoder returns all of the jobs currently
         in the specified pipeline. The response body contains one element for
         each job that satisfies the search criteria.</p>
-      tags:
-        - List
-        - Jobs
-        - By
-        - Pipeline
-        - Id
-        - '2012'
-        - '09'
-        - '25'
-        - Jobs
-        - Pipelines
-        - Presets
-        - By
-        - Pipeline
   /2012-09-25/jobsByStatus/{Status}:
     GET:
       summary: ListJobsByStatus
@@ -125,21 +60,6 @@ paths:
         <p>The ListJobsByStatus operation gets a list of jobs that have a
         specified status. The response body contains one element for each job
         that satisfies the search criteria.</p>
-      tags:
-        - List
-        - Jobs
-        - By
-        - Status
-        - Id
-        - '2012'
-        - '09'
-        - '25'
-        - Jobs
-        - Pipelines
-        - Presets
-        - By
-        - Pipeline
-        - Status
   /2012-09-25/roleTests:
     POST:
       summary: TestRole
@@ -151,20 +71,6 @@ paths:
         process. The action attempts to assume the specified IAM role, checks
         read access to the input and output buckets, and tries to send a test
         notification to Amazon SNS topics that you specify.</p>
-      tags:
-        - Test
-        - Role
-        - Id
-        - '2012'
-        - '09'
-        - '25'
-        - Jobs
-        - Pipelines
-        - Presets
-        - By
-        - Pipeline
-        - Status
-        - Tests
   /2012-09-25/pipelines/{Id}/notifications:
     POST:
       summary: UpdatePipelineNotifications
@@ -173,22 +79,6 @@ paths:
         Simple Notification Service (Amazon SNS) notifications for a
         pipeline.</p> <p>When you update notifications for a pipeline, Elastic
         Transcoder returns the values that you specified in the request.</p>
-      tags:
-        - Update
-        - Pipeline
-        - Notifications
-        - Id
-        - '2012'
-        - '09'
-        - '25'
-        - Jobs
-        - Pipelines
-        - Presets
-        - By
-        - Pipeline
-        - Status
-        - Tests
-        - Notifications
   /2012-09-25/pipelines/{Id}/status:
     POST:
       summary: UpdatePipelineStatus
@@ -199,20 +89,4 @@ paths:
         more jobs. You can't cancel jobs after Elastic Transcoder has started
         processing them; if you pause the pipeline to which you submitted the
         jobs, you have more time to get the job IDs for the jobs that you want
-        to cancel, and to send a <a>CancelJob</a> request. </
-      tags:
-        - Update
-        - Pipeline
-        - Status
-        - Id
-        - '2012'
-        - '09'
-        - '25'
-        - Jobs
-        - Pipelines
-        - Presets
-        - By
-        - Pipeline
-        - Status
-        - Tests
-        - Notific
+        to cancel, and to send a <a>CancelJob</a> reque

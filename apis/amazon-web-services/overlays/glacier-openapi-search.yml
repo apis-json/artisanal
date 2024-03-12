@@ -46,17 +46,6 @@ paths:
         Large Archives in Parts (Multipart Upload)</a> and <a
         href="https://docs.aws.amazon.com/amazonglacier/latest/dev/api-upload-part.html">Upload
         Part </a> in the <i>Amazon Glacier Developer Guide</i>.</p>
-      tags:
-        - Upload
-        - Multipart
-        - Part
-        - Id
-        - Vaults
-        - Vault
-        - Name
-        - Multipart
-        - Uploads
-        - Upload
   /{accountId}/vaults/{vaultName}/lock-policy:
     POST:
       summary: InitiateVaultLock
@@ -89,19 +78,6 @@ paths:
         is in the <code>InProgress</code> state you must call
         <a>AbortVaultLock</a> before you can initiate a new vault lock policy.
         </p>
-      tags:
-        - Initiate
-        - Vault
-        - Lock
-        - Id
-        - Vaults
-        - Vault
-        - Name
-        - Multipart
-        - Uploads
-        - Upload
-        - Lock
-        - Policy
   /{accountId}/vaults/{vaultName}/tags?operation=add:
     POST:
       summary: AddTagsToVault
@@ -114,21 +90,6 @@ paths:
         value will be overwritten. For more information about tags, see <a
         href="https://docs.aws.amazon.com/amazonglacier/latest/dev/tagging.html">Tagging
         Amazon S3 Glacier Resources</a>. </p>
-      tags:
-        - Add
-        - Tags
-        - To
-        - Vault
-        - Id
-        - Vaults
-        - Vault
-        - Name
-        - Multipart
-        - Uploads
-        - Upload
-        - Lock
-        - Policy
-        - Tags?operation=add
   /{accountId}/vaults/{vaultName}/lock-policy/{lockId}:
     POST:
       summary: CompleteVaultLock
@@ -150,20 +111,6 @@ paths:
         error. If an invalid lock ID is passed in the request when the vault
         lock is in the <code>InProgress</code> state, the operation throws an
         <code>InvalidParameter</code> error.</p>
-      tags:
-        - Complete
-        - Vault
-        - Lock
-        - Id
-        - Vaults
-        - Vault
-        - Name
-        - Multipart
-        - Uploads
-        - Upload
-        - Lock
-        - Policy
-        - Tags?operation=add
   /{accountId}/vaults/{vaultName}:
     GET:
       summary: DescribeVault
@@ -191,19 +138,6 @@ paths:
         Vault Metadata in Amazon S3 Glacier</a> and <a
         href="https://docs.aws.amazon.com/amazonglacier/latest/dev/api-vault-get.html">Describe
         Vault </a> in the <i>Amazon Glacier Developer Guide</i>. </p>
-      tags:
-        - Describe
-        - Vault
-        - Id
-        - Vaults
-        - Vault
-        - Name
-        - Multipart
-        - Uploads
-        - Upload
-        - Lock
-        - Policy
-        - Tags?operation=add
   /{accountId}/vaults/{vaultName}/archives/{archiveId}:
     DELETE:
       summary: DeleteArchive
@@ -230,21 +164,6 @@ paths:
         an Archive in Amazon Glacier</a> and <a
         href="https://docs.aws.amazon.com/amazonglacier/latest/dev/api-archive-delete.html">Delete
         Archive</a> in the <i>Amazon Glacier Developer Guide</i>. </p>
-      tags:
-        - Delete
-        - Archive
-        - Id
-        - Vaults
-        - Vault
-        - Name
-        - Multipart
-        - Uploads
-        - Upload
-        - Lock
-        - Policy
-        - Tags?operation=add
-        - Archives
-        - Archive
   /{accountId}/vaults/{vaultName}/access-policy:
     PUT:
       summary: SetVaultAccessPolicy
@@ -258,24 +177,6 @@ paths:
         policies, see <a
         href="https://docs.aws.amazon.com/amazonglacier/latest/dev/vault-access-policy.html">Amazon
         Glacier Access Control with Vault Access Policies</a>. </p>
-      tags:
-        - Set
-        - Vault
-        - Access
-        - Policy
-        - Id
-        - Vaults
-        - Vault
-        - Name
-        - Multipart
-        - Uploads
-        - Upload
-        - Lock
-        - Policy
-        - Tags?operation=add
-        - Archives
-        - Archive
-        - Access
   /{accountId}/vaults/{vaultName}/notification-configuration:
     PUT:
       summary: SetVaultNotifications
@@ -312,25 +213,6 @@ paths:
         href="https://docs.aws.amazon.com/amazonglacier/latest/dev/api-vault-notifications-put.html">Set
         Vault Notification Configuration </a> in the <i>Amazon Glacier Developer
         Guide</i>. </p>
-      tags:
-        - Set
-        - Vault
-        - Notifications
-        - Id
-        - Vaults
-        - Vault
-        - Name
-        - Multipart
-        - Uploads
-        - Upload
-        - Lock
-        - Policy
-        - Tags?operation=add
-        - Archives
-        - Archive
-        - Access
-        - Notification
-        - Configuration
   /{accountId}/vaults/{vaultName}/jobs/{jobId}:
     GET:
       summary: DescribeJob
@@ -355,26 +237,6 @@ paths:
         the underlying REST API <a
         href="https://docs.aws.amazon.com/amazonglacier/latest/dev/api-describe-job-get.html">Describe
         Job</a> in the <i>Amazon Glacier Developer Guide</i>. </p>
-      tags:
-        - Describe
-        - Job
-        - Id
-        - Vaults
-        - Vault
-        - Name
-        - Multipart
-        - Uploads
-        - Upload
-        - Lock
-        - Policy
-        - Tags?operation=add
-        - Archives
-        - Archive
-        - Access
-        - Notification
-        - Configuration
-        - Jobs
-        - Job
   /{accountId}/policies/data-retrieval:
     PUT:
       summary: SetDataRetrievalPolicy
@@ -387,31 +249,6 @@ paths:
         enacted. For more information about data retrieval policies, see <a
         href="https://docs.aws.amazon.com/amazonglacier/latest/dev/data-retrieval-policy.html">Amazon
         Glacier Data Retrieval Policies</a>. </p>
-      tags:
-        - Set
-        - Data
-        - Retrieval
-        - Policy
-        - Id
-        - Vaults
-        - Vault
-        - Name
-        - Multipart
-        - Uploads
-        - Upload
-        - Lock
-        - Policy
-        - Tags?operation=add
-        - Archives
-        - Archive
-        - Access
-        - Notification
-        - Configuration
-        - Jobs
-        - Job
-        - Policies
-        - Data
-        - Retrieval
   /{accountId}/vaults/{vaultName}/jobs/{jobId}/output:
     GET:
       summary: GetJobOutput
@@ -457,31 +294,6 @@ paths:
         an Archive</a>, and <a
         href="https://docs.aws.amazon.com/amazonglacier/latest/dev/api-job-output-get.html">Get
         Job Output </a> </p>
-      tags:
-        - Get
-        - Job
-        - Output
-        - Id
-        - Vaults
-        - Vault
-        - Name
-        - Multipart
-        - Uploads
-        - Upload
-        - Lock
-        - Policy
-        - Tags?operation=add
-        - Archives
-        - Archive
-        - Access
-        - Notification
-        - Configuration
-        - Jobs
-        - Job
-        - Policies
-        - Data
-        - Retrieval
-        - Output
   /{accountId}/vaults/{vaultName}/jobs:
     GET:
       summary: ListJobs
@@ -522,30 +334,6 @@ paths:
         REST API <a
         href="https://docs.aws.amazon.com/amazonglacier/latest/dev/api-jobs-get.html">List
         Jobs</a>. </p>
-      tags:
-        - List
-        - Jobs
-        - Id
-        - Vaults
-        - Vault
-        - Name
-        - Multipart
-        - Uploads
-        - Upload
-        - Lock
-        - Policy
-        - Tags?operation=add
-        - Archives
-        - Archive
-        - Access
-        - Notification
-        - Configuration
-        - Jobs
-        - Job
-        - Policies
-        - Data
-        - Retrieval
-        - Output
   /{accountId}/vaults/{vaultName}/multipart-uploads:
     GET:
       summary: ListMultipartUploads
@@ -580,64 +368,12 @@ paths:
         with Archives in Amazon S3 Glacier</a> and <a
         href="https://docs.aws.amazon.com/amazonglacier/latest/dev/api-multipart-list-uploads.html">List
         Multipart Uploads </a> in the <i>Amazon Glacier Developer Guide</i>.</p>
-      tags:
-        - List
-        - Multipart
-        - Uploads
-        - Id
-        - Vaults
-        - Vault
-        - Name
-        - Multipart
-        - Uploads
-        - Upload
-        - Lock
-        - Policy
-        - Tags?operation=add
-        - Archives
-        - Archive
-        - Access
-        - Notification
-        - Configuration
-        - Jobs
-        - Job
-        - Policies
-        - Data
-        - Retrieval
-        - Output
   /{accountId}/provisioned-capacity:
     POST:
       summary: PurchaseProvisionedCapacity
       description: >-
         <p>This operation purchases a provisioned capacity unit for an AWS
         account. </p>
-      tags:
-        - Purchase
-        - Provisioned
-        - Capacity
-        - Id
-        - Vaults
-        - Vault
-        - Name
-        - Multipart
-        - Uploads
-        - Upload
-        - Lock
-        - Policy
-        - Tags?operation=add
-        - Archives
-        - Archive
-        - Access
-        - Notification
-        - Configuration
-        - Jobs
-        - Job
-        - Policies
-        - Data
-        - Retrieval
-        - Output
-        - Provisioned
-        - Capacity
   /{accountId}/vaults/{vaultName}/tags:
     GET:
       summary: ListTagsForVault
@@ -647,35 +383,6 @@ paths:
         tags, see <a
         href="https://docs.aws.amazon.com/amazonglacier/latest/dev/tagging.html">Tagging
         Amazon S3 Glacier Resources</a>.</p>
-      tags:
-        - List
-        - Tags
-        - For
-        - Vault
-        - Id
-        - Vaults
-        - Vault
-        - Name
-        - Multipart
-        - Uploads
-        - Upload
-        - Lock
-        - Policy
-        - Tags?operation=add
-        - Archives
-        - Archive
-        - Access
-        - Notification
-        - Configuration
-        - Jobs
-        - Job
-        - Policies
-        - Data
-        - Retrieval
-        - Output
-        - Provisioned
-        - Capacity
-        - Tags
   /{accountId}/vaults:
     GET:
       summary: ListVaults
@@ -702,33 +409,6 @@ paths:
         Vault Metadata in Amazon S3 Glacier</a> and <a
         href="https://docs.aws.amazon.com/amazonglacier/latest/dev/api-vaults-get.html">List
         Vaults </a> in the <i>Amazon Glacier Developer Guide</i>. </p>
-      tags:
-        - List
-        - Vaults
-        - Id
-        - Vaults
-        - Vault
-        - Name
-        - Multipart
-        - Uploads
-        - Upload
-        - Lock
-        - Policy
-        - Tags?operation=add
-        - Archives
-        - Archive
-        - Access
-        - Notification
-        - Configuration
-        - Jobs
-        - Job
-        - Policies
-        - Data
-        - Retrieval
-        - Output
-        - Provisioned
-        - Capacity
-        - Tags
   /{accountId}/vaults/{vaultName}/tags?operation=remove:
     POST:
       summary: RemoveTagsFromVault
@@ -739,36 +419,6 @@ paths:
         Amazon S3 Glacier Resources</a>. This operation is idempotent. The
         operation will be successful, even if there are no tags attached to the
         vault. </p>
-      tags:
-        - Remove
-        - Tags
-        - From
-        - Vault
-        - Id
-        - Vaults
-        - Vault
-        - Name
-        - Multipart
-        - Uploads
-        - Upload
-        - Lock
-        - Policy
-        - Tags?operation=add
-        - Archives
-        - Archive
-        - Access
-        - Notification
-        - Configuration
-        - Jobs
-        - Job
-        - Policies
-        - Data
-        - Retrieval
-        - Output
-        - Provisioned
-        - Capacity
-        - Tags
-        - Tags?operation=remove
   /{accountId}/vaults/{vaultName}/archives:
     POST:
       summary: UploadArchive
@@ -807,32 +457,4 @@ paths:
         href="https://docs.aws.amazon.com/amazonglacier/latest/dev/uploading-an-archive.html">Uploading
         an Archive in Amazon Glacier</a> and <a
         href="https://docs.aws.amazon.com/amazonglacier/latest/dev/api-archive-post.html">Upload
-        Archive</a> in the <i>Amazon Glacier Developer Guide</i>. </
-      tags:
-        - Upload
-        - Archive
-        - Id
-        - Vaults
-        - Vault
-        - Name
-        - Multipart
-        - Uploads
-        - Upload
-        - Lock
-        - Policy
-        - Tags?operation=add
-        - Archives
-        - Archive
-        - Access
-        - Notification
-        - Configuration
-        - Jobs
-        - Job
-        - Policies
-        - Data
-        - Retrieval
-        - Output
-        - Provisioned
-        - Capacity
-        - Tags
-        - Tags?operation=
+        Archive</a> in the <i>Amazon Glacier Developer Guide</

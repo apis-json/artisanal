@@ -1,5 +1,5 @@
 info:
-  title: Twilio Voice API
+  title: Twilio - Voice
   license:
     name: Apache 2.0
     url: https://www.apache.org/licenses/LICENSE-2.0.html
@@ -12,14 +12,7 @@ paths:
         Delete an archived call record from Bulk Export. Note: this does not
         also delete the record from the Voice API.
       tags:
-        - Delete
-        - Archive
-        - Call
-        - Archives
-        - Date
-        - Calls
-        - Sid
-      summary: Delete Archive Call
+        - VoiceV1ArchivedCall
   /v1/ByocTrunks:
     description: >-
       BYOC Trunks allow you to bring your own voice carrier to Twilio, enabling
@@ -27,27 +20,11 @@ paths:
     post:
       description: ''
       tags:
-        - Create
-        - Trunk
-        - Archives
-        - Date
-        - Calls
-        - Sid
-        - Byoc
-        - Trunks
-      summary: Create BYOC Trunk
+        - VoiceV1ByocTrunk
     get:
       description: ''
       tags:
-        - Retrieve
-        - Trunks
-        - Archives
-        - Date
-        - Calls
-        - Sid
-        - Byoc
-        - Trunks
-      summary: Retrieve BYOC Trunks
+        - VoiceV1ByocTrunk
   /v1/ByocTrunks/{Sid}:
     description: >-
       BYOC Trunks allow you to bring your own voice carrier to Twilio, enabling
@@ -55,39 +32,15 @@ paths:
     get:
       description: ''
       tags:
-        - Retrieve
-        - Trunk
-        - Archives
-        - Date
-        - Calls
-        - Sid
-        - Byoc
-        - Trunks
-      summary: Retrieve BYOC Trunk
+        - VoiceV1ByocTrunk
     post:
       description: ''
       tags:
-        - Update
-        - Trunk
-        - Archives
-        - Date
-        - Calls
-        - Sid
-        - Byoc
-        - Trunks
-      summary: Update BYOC Trunk
+        - VoiceV1ByocTrunk
     delete:
       description: ''
       tags:
-        - Delete
-        - Trunk
-        - Archives
-        - Date
-        - Calls
-        - Sid
-        - Byoc
-        - Trunks
-      summary: Delete BYOC Trunk
+        - VoiceV1ByocTrunk
   /v1/ConnectionPolicies:
     description: >-
       Connection Policy for sending traffic to your communications
@@ -95,33 +48,11 @@ paths:
     post:
       description: ''
       tags:
-        - Create
-        - Connection
-        - Policy
-        - Archives
-        - Date
-        - Calls
-        - Sid
-        - Byoc
-        - Trunks
-        - Connection
-        - Policies
-      summary: Create Connection Policy
+        - VoiceV1ConnectionPolicy
     get:
       description: ''
       tags:
-        - Retrieve
-        - Connection
-        - Policies
-        - Archives
-        - Date
-        - Calls
-        - Sid
-        - Byoc
-        - Trunks
-        - Connection
-        - Policies
-      summary: Retrieve Connection Policies
+        - VoiceV1ConnectionPolicy
   /v1/ConnectionPolicies/{Sid}:
     description: >-
       Connection Policy for sending traffic to your communications
@@ -129,142 +60,39 @@ paths:
     get:
       description: ''
       tags:
-        - Retrieve
-        - Connection
-        - Policy
-        - Archives
-        - Date
-        - Calls
-        - Sid
-        - Byoc
-        - Trunks
-        - Connection
-        - Policies
-      summary: Retrieve Connection Policy
+        - VoiceV1ConnectionPolicy
     post:
       description: ''
       tags:
-        - Update
-        - Connection
-        - Policy
-        - Archives
-        - Date
-        - Calls
-        - Sid
-        - Byoc
-        - Trunks
-        - Connection
-        - Policies
-      summary: Update Connection Policy
+        - VoiceV1ConnectionPolicy
     delete:
       description: ''
       tags:
-        - Delete
-        - Connection
-        - Policy
-        - Archives
-        - Date
-        - Calls
-        - Sid
-        - Byoc
-        - Trunks
-        - Connection
-        - Policies
-      summary: Delete Connection Policy
+        - VoiceV1ConnectionPolicy
   /v1/ConnectionPolicies/{ConnectionPolicySid}/Targets:
     description: Network element entry points into your communications infrastructure
     post:
       description: ''
       tags:
-        - Create
-        - Connection
-        - Policies
-        - Target
-        - Archives
-        - Date
-        - Calls
-        - Sid
-        - Byoc
-        - Trunks
-        - Connection
-        - Policies
-        - Policy
-        - Targets
-      summary: Create Connection Policies Target
+        - VoiceV1ConnectionPolicyTarget
     get:
       description: ''
       tags:
-        - Retrieve
-        - Connection
-        - Policies
-        - Targets
-        - Archives
-        - Date
-        - Calls
-        - Sid
-        - Byoc
-        - Trunks
-        - Connection
-        - Policies
-        - Policy
-        - Targets
-      summary: Retrieve Connection Policies Targets
+        - VoiceV1ConnectionPolicyTarget
   /v1/ConnectionPolicies/{ConnectionPolicySid}/Targets/{Sid}:
     description: Network element entry points into your communications infrastructure
     get:
       description: ''
       tags:
-        - Retrieve
-        - Connection
-        - Policies
-        - Target
-        - Archives
-        - Date
-        - Calls
-        - Sid
-        - Byoc
-        - Trunks
-        - Connection
-        - Policies
-        - Policy
-        - Targets
-      summary: Retrieve Connection Policies Target
+        - VoiceV1ConnectionPolicyTarget
     post:
       description: ''
       tags:
-        - Update
-        - Connection
-        - Policies
-        - Target
-        - Archives
-        - Date
-        - Calls
-        - Sid
-        - Byoc
-        - Trunks
-        - Connection
-        - Policies
-        - Policy
-        - Targets
-      summary: Update Connection Policies Target
+        - VoiceV1ConnectionPolicyTarget
     delete:
       description: ''
       tags:
-        - Delete
-        - Connection
-        - Policies
-        - Target
-        - Archives
-        - Date
-        - Calls
-        - Sid
-        - Byoc
-        - Trunks
-        - Connection
-        - Policies
-        - Policy
-        - Targets
-      summary: Delete Connection Policies Target
+        - VoiceV1ConnectionPolicyTarget
   /v1/DialingPermissions:
     description: 'TODO: Resource-level docs'
   /v1/DialingPermissions/Countries/{IsoCode}:
@@ -274,51 +102,13 @@ paths:
         Retrieve voice dialing country permissions identified by the given ISO
         country code
       tags:
-        - Retrieve
-        - Dialing
-        - Permission
-        - Country
-        - Archives
-        - Date
-        - Calls
-        - Sid
-        - Byoc
-        - Trunks
-        - Connection
-        - Policies
-        - Policy
-        - Targets
-        - Dialing
-        - Permissions
-        - Countries
-        - Iso
-        - Code
-      summary: Retrieve Dialing Permission Country
+        - VoiceV1Country
   /v1/DialingPermissions/Countries:
     description: 'TODO: Resource-level docs'
     get:
       description: Retrieve all voice dialing country permissions for this account
       tags:
-        - Retrieve
-        - Dialing
-        - Permission
-        - Countries
-        - Archives
-        - Date
-        - Calls
-        - Sid
-        - Byoc
-        - Trunks
-        - Connection
-        - Policies
-        - Policy
-        - Targets
-        - Dialing
-        - Permissions
-        - Countries
-        - Iso
-        - Code
-      summary: Retrieve Dialing Permission Countries
+        - VoiceV1Country
   /v1/DialingPermissions/BulkCountryUpdates:
     description: 'TODO: Resource-level docs'
     post:
@@ -327,30 +117,7 @@ paths:
         of one or more countries identified by the corresponding [ISO country
         code](https://en.wikipedia.org/wiki/ISO_3166-1_alpha-2)
       tags:
-        - Update
-        - Dialing
-        - Permission
-        - Bulk
-        - Country
-        - Archives
-        - Date
-        - Calls
-        - Sid
-        - Byoc
-        - Trunks
-        - Connection
-        - Policies
-        - Policy
-        - Targets
-        - Dialing
-        - Permissions
-        - Countries
-        - Iso
-        - Code
-        - Bulk
-        - Country
-        - Updates
-      summary: Update Dialing Permission Bulk Country
+        - VoiceV1BulkCountryUpdate
   /v1/DialingPermissions/Countries/{IsoCode}/HighRiskSpecialPrefixes:
     description: 'TODO: Resource-level docs'
     get:
@@ -359,95 +126,17 @@ paths:
         corresponding to the [ISO country
         code](https://en.wikipedia.org/wiki/ISO_3166-1_alpha-2)
       tags:
-        - Retrieve
-        - Dialing
-        - Permission
-        - Countries
-        - High
-        - Risk
-        - Archives
-        - Date
-        - Calls
-        - Sid
-        - Byoc
-        - Trunks
-        - Connection
-        - Policies
-        - Policy
-        - Targets
-        - Dialing
-        - Permissions
-        - Countries
-        - Iso
-        - Code
-        - Bulk
-        - Country
-        - Updates
-        - High
-        - Risk
-        - Special
-        - Prefixes
-      summary: Retrieve Dialing Permission Countries High Risk
+        - VoiceV1HighriskSpecialPrefix
   /v1/Settings:
     description: 'TODO: Resource-level docs'
     get:
       description: Retrieve voice dialing permissions inheritance for the sub-account
       tags:
-        - Retrieve
-        - Settings
-        - Archives
-        - Date
-        - Calls
-        - Sid
-        - Byoc
-        - Trunks
-        - Connection
-        - Policies
-        - Policy
-        - Targets
-        - Dialing
-        - Permissions
-        - Countries
-        - Iso
-        - Code
-        - Bulk
-        - Country
-        - Updates
-        - High
-        - Risk
-        - Special
-        - Prefixes
-        - Settings
-      summary: Retrieve Settings
+        - VoiceV1Settings
     post:
       description: Update voice dialing permissions inheritance for the sub-account
       tags:
-        - Update
-        - Settings
-        - Archives
-        - Date
-        - Calls
-        - Sid
-        - Byoc
-        - Trunks
-        - Connection
-        - Policies
-        - Policy
-        - Targets
-        - Dialing
-        - Permissions
-        - Countries
-        - Iso
-        - Code
-        - Bulk
-        - Country
-        - Updates
-        - High
-        - Risk
-        - Special
-        - Prefixes
-        - Settings
-      summary: Update Settings
+        - VoiceV1Settings
   /v1/IpRecords:
     description: >-
       IP Records hold information about the IP addresses and ranges
@@ -456,65 +145,11 @@ paths:
     post:
       description: ''
       tags:
-        - Create
-        - Record
-        - Archives
-        - Date
-        - Calls
-        - Sid
-        - Byoc
-        - Trunks
-        - Connection
-        - Policies
-        - Policy
-        - Targets
-        - Dialing
-        - Permissions
-        - Countries
-        - Iso
-        - Code
-        - Bulk
-        - Country
-        - Updates
-        - High
-        - Risk
-        - Special
-        - Prefixes
-        - Settings
-        - Ip
-        - Records
-      summary: Create IP Record
+        - VoiceV1IpRecord
     get:
       description: ''
       tags:
-        - Retrieve
-        - Records
-        - Archives
-        - Date
-        - Calls
-        - Sid
-        - Byoc
-        - Trunks
-        - Connection
-        - Policies
-        - Policy
-        - Targets
-        - Dialing
-        - Permissions
-        - Countries
-        - Iso
-        - Code
-        - Bulk
-        - Country
-        - Updates
-        - High
-        - Risk
-        - Special
-        - Prefixes
-        - Settings
-        - Ip
-        - Records
-      summary: Retrieve IP Records
+        - VoiceV1IpRecord
   /v1/IpRecords/{Sid}:
     description: >-
       IP Records hold information about the IP addresses and ranges
@@ -523,96 +158,15 @@ paths:
     get:
       description: ''
       tags:
-        - Retrieve
-        - Record
-        - Archives
-        - Date
-        - Calls
-        - Sid
-        - Byoc
-        - Trunks
-        - Connection
-        - Policies
-        - Policy
-        - Targets
-        - Dialing
-        - Permissions
-        - Countries
-        - Iso
-        - Code
-        - Bulk
-        - Country
-        - Updates
-        - High
-        - Risk
-        - Special
-        - Prefixes
-        - Settings
-        - Ip
-        - Records
-      summary: Retrieve IP Record
+        - VoiceV1IpRecord
     post:
       description: ''
       tags:
-        - Update
-        - Record
-        - Archives
-        - Date
-        - Calls
-        - Sid
-        - Byoc
-        - Trunks
-        - Connection
-        - Policies
-        - Policy
-        - Targets
-        - Dialing
-        - Permissions
-        - Countries
-        - Iso
-        - Code
-        - Bulk
-        - Country
-        - Updates
-        - High
-        - Risk
-        - Special
-        - Prefixes
-        - Settings
-        - Ip
-        - Records
-      summary: Update IP Record
+        - VoiceV1IpRecord
     delete:
       description: ''
       tags:
-        - Delete
-        - Record
-        - Archives
-        - Date
-        - Calls
-        - Sid
-        - Byoc
-        - Trunks
-        - Connection
-        - Policies
-        - Policy
-        - Targets
-        - Dialing
-        - Permissions
-        - Countries
-        - Iso
-        - Code
-        - Bulk
-        - Country
-        - Updates
-        - High
-        - Risk
-        - Special
-        - Prefixes
-        - Settings
-        - Ip
-        - Records
-      summary: Delete IP Record
+        - VoiceV1IpRecord
   /v1/SourceIpMappings:
     description: >-
       With Source IP Mappings, Twilio can recognize your SIP requests based on
@@ -621,71 +175,11 @@ paths:
     post:
       description: ''
       tags:
-        - Create
-        - Source
-        - Mapping
-        - Archives
-        - Date
-        - Calls
-        - Sid
-        - Byoc
-        - Trunks
-        - Connection
-        - Policies
-        - Policy
-        - Targets
-        - Dialing
-        - Permissions
-        - Countries
-        - Iso
-        - Code
-        - Bulk
-        - Country
-        - Updates
-        - High
-        - Risk
-        - Special
-        - Prefixes
-        - Settings
-        - Ip
-        - Records
-        - Source
-        - Mappings
-      summary: Create Source IP Mapping
+        - VoiceV1SourceIpMapping
     get:
       description: ''
       tags:
-        - Retrieve
-        - Source
-        - Mappings
-        - Archives
-        - Date
-        - Calls
-        - Sid
-        - Byoc
-        - Trunks
-        - Connection
-        - Policies
-        - Policy
-        - Targets
-        - Dialing
-        - Permissions
-        - Countries
-        - Iso
-        - Code
-        - Bulk
-        - Country
-        - Updates
-        - High
-        - Risk
-        - Special
-        - Prefixes
-        - Settings
-        - Ip
-        - Records
-        - Source
-        - Mappings
-      summary: Retrieve Source IP Mappings
+        - VoiceV1SourceIpMapping
   /v1/SourceIpMappings/{Sid}:
     description: >-
       With Source IP Mappings, Twilio can recognize your SIP requests based on
@@ -694,151 +188,26 @@ paths:
     get:
       description: ''
       tags:
-        - Retrieve
-        - Source
-        - Mapping
-        - Archives
-        - Date
-        - Calls
-        - Sid
-        - Byoc
-        - Trunks
-        - Connection
-        - Policies
-        - Policy
-        - Targets
-        - Dialing
-        - Permissions
-        - Countries
-        - Iso
-        - Code
-        - Bulk
-        - Country
-        - Updates
-        - High
-        - Risk
-        - Special
-        - Prefixes
-        - Settings
-        - Ip
-        - Records
-        - Source
-        - Mappings
-      summary: Retrieve Source IP Mapping
+        - VoiceV1SourceIpMapping
     post:
       description: ''
       tags:
-        - Update
-        - Source
-        - Mapping
-        - Archives
-        - Date
-        - Calls
-        - Sid
-        - Byoc
-        - Trunks
-        - Connection
-        - Policies
-        - Policy
-        - Targets
-        - Dialing
-        - Permissions
-        - Countries
-        - Iso
-        - Code
-        - Bulk
-        - Country
-        - Updates
-        - High
-        - Risk
-        - Special
-        - Prefixes
-        - Settings
-        - Ip
-        - Records
-        - Source
-        - Mappings
-      summary: Update Source IP Mapping
+        - VoiceV1SourceIpMapping
     delete:
       description: ''
       tags:
-        - Delete
-        - Source
-        - Mapping
-        - Archives
-        - Date
-        - Calls
-        - Sid
-        - Byoc
-        - Trunks
-        - Connection
-        - Policies
-        - Policy
-        - Targets
-        - Dialing
-        - Permissions
-        - Countries
-        - Iso
-        - Code
-        - Bulk
-        - Country
-        - Updates
-        - High
-        - Risk
-        - Special
-        - Prefixes
-        - Settings
-        - Ip
-        - Records
-        - Source
-        - Mappings
-      summary: Delete Source IP Mapping
+        - VoiceV1SourceIpMapping
 tags:
-  - name: Tag
-  - name: Voice
-    description: Needs a description.
-  - name: ''
-    description: Needs a description.
-  - name: Archives
-    description: Needs a description.
-  - name: Calls
-    description: Needs a description.
-  - name: BYOC
-    description: Needs a description.
-  - name: Trunks
-    description: Needs a description.
-  - name: Connections
-    description: Needs a description.
-  - name: Policies
-    description: Needs a description.
-  - name: Targets
-    description: Needs a description.
-  - name: Dialing
-    description: Needs a description.
-  - name: Permissions
-    description: Needs a description.
-  - name: Countries
-    description: Needs a description.
-  - name: ISO
-    description: Needs a description.
-  - name: Bulk
-    description: Needs a description.
-  - name: High
-    description: Needs a description.
-  - name: Risk
-    description: Needs a description.
-  - name: Settings
-    description: Needs a description.
-  - name: IP Address
-    description: Needs a description.
-  - name: Record
-    description: Needs a description.
-  - name: Records
-    description: Needs a description.
-  - name: Source
-    description: Needs a description.
-  - name: Mapping
-    description: Needs a description.
+  - name: VoiceV1ArchivedCall
+  - name: VoiceV1BulkCountryUpdate
+  - name: VoiceV1ByocTrunk
+  - name: VoiceV1ConnectionPolicy
+  - name: VoiceV1ConnectionPolicyTarget
+  - name: VoiceV1Country
+  - name: VoiceV1HighriskSpecialPrefix
+  - name: VoiceV1IpRecord
+  - name: VoiceV1Settings
+  - name: VoiceV1SourceIpMapping
 x-maturity:
   - name: GA
     description: This product is Generally Available.
@@ -850,4 +219,4 @@ x-maturity:
     description: >-
       PLEASE NOTE that this is a Preview product that is subject to change. Use
       it with caution. If you currently do not have developer preview access,
-      please contact https://www.twilio.com/help/co
+      please contact https://www.twilio.com/help/

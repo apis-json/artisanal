@@ -1,0 +1,429 @@
+openapi: 3.1.0
+info:
+  title: Box Shield Information Barrier Segments API
+  description: Needs a description.
+paths:
+  /shield_information_barrier_segments/{shield_information_barrier_segment_id}:
+    get:
+      operationId: get_shield_information_barrier_segments_id
+      summary: Get shield information barrier segment with specified ID
+      tags:
+        - Shield information barrier segments
+      x-box-tag: shield_information_barrier_segments
+      description: Retrieves shield information barrier segment based on provided ID..
+      parameters:
+        - name: shield_information_barrier_segment_id
+          description: The ID of the shield information barrier segment.
+          example: '3423'
+          required: true
+          in: path
+          schema:
+            type: string
+      responses:
+        '200':
+          description: Returns the shield information barrier segment object.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ShieldInformationBarrierSegment'
+        '404':
+          description: |-
+            Returns a `not_found` error if the
+            shield information barrier segment was not found.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ClientError'
+        default:
+          description: An unexpected client error.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ClientError'
+    delete:
+      operationId: delete_shield_information_barrier_segments_id
+      summary: Delete shield information barrier segment
+      tags:
+        - Shield information barrier segments
+      x-box-tag: shield_information_barrier_segments
+      description: |-
+        Deletes the shield information barrier segment
+        based on provided ID.
+      parameters:
+        - name: shield_information_barrier_segment_id
+          description: The ID of the shield information barrier segment.
+          example: '3423'
+          required: true
+          in: path
+          schema:
+            type: string
+      responses:
+        '204':
+          description: Empty body in response
+        '404':
+          description: |-
+            Returns a `not_found` error if the shield information
+            barrier segment with specified ID was not found.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ClientError'
+        default:
+          description: An unexpected client error.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ClientError'
+    put:
+      operationId: put_shield_information_barrier_segments_id
+      summary: Update shield information barrier segment with specified ID
+      tags:
+        - Shield information barrier segments
+      x-box-tag: shield_information_barrier_segments
+      description: Updates the shield information barrier segment based on provided ID..
+      parameters:
+        - name: shield_information_barrier_segment_id
+          description: The ID of the shield information barrier segment.
+          example: '3423'
+          required: true
+          in: path
+          schema:
+            type: string
+      requestBody:
+        content:
+          application/json:
+            schema:
+              type: object
+              description: |-
+                An object containing update(s) to be made on the Shield
+                Information Barrier Segment. Possible properties include
+                'name' and 'description', the value in object is the update.
+              properties:
+                name:
+                  type: string
+                  pattern: \S+
+                  example: Investment Banking
+                  description: The updated name for the shield information barrier segment.
+                description:
+                  type: string
+                  nullable: true
+                  example: |-
+                    'Corporate division that engages in advisory_based
+                    financial transactions on behalf of individuals,
+                    corporations, and governments.'
+                  description: |-
+                    The updated description for
+                    the shield information barrier segment.
+      responses:
+        '200':
+          description: Returns the updated shield information barrier segment object.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ShieldInformationBarrierSegment'
+        '404':
+          description: |-
+            Returns a `not_found` error if the shield information
+            Barrier Segment was not found.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ClientError'
+        '409':
+          description: |-
+            Returns an error if there exists a shield information
+            Barrier Segment with the same name.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ClientError'
+        default:
+          description: An unexpected client error.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ClientError'
+  /shield_information_barrier_segments:
+    get:
+      operationId: get_shield_information_barrier_segments
+      summary: List shield information barrier segments
+      tags:
+        - Shield information barrier segments
+      x-box-tag: shield_information_barrier_segments
+      description: |-
+        Retrieves a list of shield information barrier segment objects
+        for the specified Information Barrier ID.
+      parameters:
+        - name: shield_information_barrier_id
+          description: The ID of the shield information barrier.
+          example: '1910967'
+          in: query
+          required: true
+          schema:
+            type: string
+        - name: marker
+          description: >-
+            Defines the position marker at which to begin returning results.
+            This is
+
+            used when paginating using marker-based pagination.
+
+
+            This requires `usemarker` to be set to `true`.
+          in: query
+          required: false
+          example: JV9IRGZmieiBasejOG9yDCRNgd2ymoZIbjsxbJMjIs3kioVii
+          schema:
+            type: string
+        - name: limit
+          description: The maximum number of items to return per page.
+          in: query
+          required: false
+          example: 1000
+          schema:
+            type: integer
+            format: int64
+            maximum: 1000
+      responses:
+        '200':
+          description: >-
+            Returns a paginated list of shield information barrier segment
+            objects.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ShieldInformationBarrierSegments'
+        '404':
+          description: |-
+            Returns a `not_found` error if the shield information
+            Barrier of given ID was not found.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ClientError'
+        default:
+          description: An unexpected client error.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ClientError'
+    post:
+      operationId: post_shield_information_barrier_segments
+      summary: Create shield information barrier segment
+      tags:
+        - Shield information barrier segments
+      x-box-tag: shield_information_barrier_segments
+      description: Creates a shield information barrier segment.
+      requestBody:
+        content:
+          application/json:
+            schema:
+              type: object
+              required:
+                - shield_information_barrier
+                - name
+              properties:
+                shield_information_barrier:
+                  $ref: '#/components/schemas/ShieldInformationBarrier--Base'
+                name:
+                  type: string
+                  example: Investment Banking
+                  description: Name of the shield information barrier segment
+                description:
+                  type: string
+                  example: |-
+                    'Corporate division that engages in
+                     advisory_based financial
+                    transactions on behalf of individuals,
+                    corporations, and governments.'
+                  description: Description of the shield information barrier segment
+      responses:
+        '201':
+          description: Returns a new shield information barrier segment object.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ShieldInformationBarrierSegment'
+        '404':
+          description: |-
+            Returns an error if the shield information barrier
+            was not found.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ClientError'
+        '409':
+          description: |-
+            Returns an error if there exists an shield information 
+            barrier segment with same name.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ClientError'
+        default:
+          description: An unexpected client error.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ClientError'
+components:
+  schemas:
+    ShieldInformationBarrierSegment:
+      title: Shield information barrier segment
+      type: object
+      x-box-resource-id: shield_information_barrier_segment
+      x-box-tag: shield_information_barrier_segments
+      description: A shield information barrier segment object
+      properties:
+        id:
+          type: string
+          example: '11446498'
+          description: The unique identifier for the shield information barrier segment
+        type:
+          type: string
+          description: The type of the shield information barrier segment
+          example: shield_information_barrier_segment
+          enum:
+            - shield_information_barrier_segment
+        shield_information_barrier:
+          $ref: '#/components/schemas/ShieldInformationBarrier--Base'
+        name:
+          type: string
+          example: Investment Banking
+          description: Name of the shield information barrier segment
+        description:
+          type: string
+          example: |-
+            'Corporate division that engages in advisory_based financial
+             transactions on behalf of individuals, corporations, and governments.'
+          description: Description of the shield information barrier segment
+        created_at:
+          type: string
+          format: date-time
+          example: '2020-06-26T18:44:45.869Z'
+          description: |-
+            ISO date time string when this shield information
+            barrier object was created.
+        created_by:
+          allOf:
+            - $ref: '#/components/schemas/User--Base'
+            - description: The user who created this shield information barrier segment.
+        updated_at:
+          type: string
+          format: date-time
+          example: '2020-07-26T18:44:45.869Z'
+          description: |-
+            ISO date time string when this
+            shield information barrier segment was updated.
+        updated_by:
+          allOf:
+            - $ref: '#/components/schemas/User--Base'
+            - description: The user that updated this shield information barrier segment.
+    ClientError:
+      title: Client error
+      type: object
+      x-box-resource-id: client_error
+      description: A generic error
+      properties:
+        type:
+          description: error
+          example: error
+          type: string
+          enum:
+            - error
+          nullable: false
+        status:
+          description: The HTTP status of the response.
+          example: 400
+          type: integer
+          format: int32
+          nullable: false
+        code:
+          description: A Box-specific error code
+          example: item_name_invalid
+          type: string
+          enum:
+            - created
+            - accepted
+            - no_content
+            - redirect
+            - not_modified
+            - bad_request
+            - unauthorized
+            - forbidden
+            - not_found
+            - method_not_allowed
+            - conflict
+            - precondition_failed
+            - too_many_requests
+            - internal_server_error
+            - unavailable
+            - item_name_invalid
+            - insufficient_scope
+        message:
+          description: A short message describing the error.
+          example: Method Not Allowed
+          type: string
+          nullable: false
+        context_info:
+          description: |-
+            A free-form object that contains additional context
+            about the error. The possible fields are defined on
+            a per-endpoint basis. `message` is only one example.
+          type: object
+          nullable: true
+          properties:
+            message:
+              type: string
+              description: More details on the error.
+              example: Something went wrong.
+        help_url:
+          description: A URL that links to more information about why this error occurred.
+          example: >-
+            https://developer.box.com/guides/api-calls/permissions-and-errors/common-errors/
+          type: string
+          nullable: false
+        request_id:
+          description: |-
+            A unique identifier for this response, which can be used
+            when contacting Box support.
+          type: string
+          example: abcdef123456
+          nullable: false
+    ShieldInformationBarrierSegments:
+      title: List of Shield Information Barrier Segments
+      type: object
+      x-box-resource-id: shield_information_barrier_segments
+      x-box-tag: shield_information_barrier_segments
+      description: List of Shield Information Barrier Segment objects
+      allOf:
+        - type: object
+          description: |-
+            The part of an API response that describes marker
+            based pagination
+          properties:
+            limit:
+              description: >-
+                The limit that was used for these entries. This will be the same
+                as the
+
+                `limit` query parameter unless that value exceeded the maximum
+                value
+
+                allowed. The maximum value varies by API.
+              example: 1000
+              type: integer
+              format: int64
+            next_marker:
+              description: The marker for the start of the next page of results.
+              example: JV9IRGZmieiBasejOG9yDCRNgd2ymoZIbjsxbJMjIs3kioVii
+              type: string
+              nullable: true
+        - properties:
+            entries:
+              type: array
+              description: |-
+                A list of shield information barrier
+                segments
+              items:
+                $ref: '#/components/schemas/ShieldInformationBarrierSegment'

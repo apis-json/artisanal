@@ -6,27 +6,10 @@ paths:
     PUT:
       summary: ConfigureLogsForChannel
       description: <p>Configures Amazon CloudWatch log settings for a channel.</p>
-      tags:
-        - Configure
-        - Logs
-        - For
-        - Channel
-        - Logs
-        - Channel
   /configureLogs/playbackConfiguration:
     PUT:
       summary: ConfigureLogsForPlaybackConfiguration
       description: <p>Amazon CloudWatch log settings for a playback configuration.</p>
-      tags:
-        - Configure
-        - Logs
-        - For
-        - Playback
-        - Configuration
-        - Logs
-        - Channel
-        - Playback
-        - Configuration
   /channel/{ChannelName}:
     PUT:
       summary: UpdateChannel
@@ -34,30 +17,10 @@ paths:
         <p>Updates a channel. For information about MediaTailor channels, see <a
         href="https://docs.aws.amazon.com/mediatailor/latest/ug/channel-assembly-channels.html">Working
         with channels</a> in the <i>MediaTailor User Guide</i>.</p>
-      tags:
-        - Update
-        - Channel
-        - Logs
-        - Channel
-        - Playback
-        - Configuration
-        - Name
   /sourceLocation/{SourceLocationName}/liveSource/{LiveSourceName}:
     PUT:
       summary: UpdateLiveSource
       description: <p>Updates a live source's configuration.</p>
-      tags:
-        - Update
-        - Live
-        - Source
-        - Logs
-        - Channel
-        - Playback
-        - Configuration
-        - Name
-        - Location
-        - Source
-        - Live
   /prefetchSchedule/{PlaybackConfigurationName}/{Name}:
     GET:
       summary: GetPrefetchSchedule
@@ -68,36 +31,10 @@ paths:
         prefetching, see <a
         href="https://docs.aws.amazon.com/mediatailor/latest/ug/prefetching-ads.html">Using
         ad prefetching</a> in the <i>MediaTailor User Guide</i>.</p>
-      tags:
-        - Get
-        - Prefetch
-        - Schedule
-        - Logs
-        - Channel
-        - Playback
-        - Configuration
-        - Name
-        - Location
-        - Source
-        - Live
-        - Schedule
   /channel/{ChannelName}/program/{ProgramName}:
     PUT:
       summary: UpdateProgram
       description: <p>Updates a program within a channel.</p>
-      tags:
-        - Update
-        - Program
-        - Logs
-        - Channel
-        - Playback
-        - Configuration
-        - Name
-        - Location
-        - Source
-        - Live
-        - Schedule
-        - Program
   /sourceLocation/{SourceLocationName}:
     PUT:
       summary: UpdateSourceLocation
@@ -106,61 +43,16 @@ paths:
         sources. For more information about source locations, see <a
         href="https://docs.aws.amazon.com/mediatailor/latest/ug/channel-assembly-source-locations.html">Working
         with source locations</a> in the <i>MediaTailor User Guide</i>.</p>
-      tags:
-        - Update
-        - Source
-        - Location
-        - Logs
-        - Channel
-        - Playback
-        - Configuration
-        - Name
-        - Location
-        - Source
-        - Live
-        - Schedule
-        - Program
   /sourceLocation/{SourceLocationName}/vodSource/{VodSourceName}:
     PUT:
       summary: UpdateVodSource
       description: <p>Updates a VOD source's configuration.</p>
-      tags:
-        - Update
-        - Vod
-        - Source
-        - Logs
-        - Channel
-        - Playback
-        - Configuration
-        - Name
-        - Location
-        - Source
-        - Live
-        - Schedule
-        - Program
-        - Vod
   /channel/{ChannelName}/policy:
     PUT:
       summary: PutChannelPolicy
       description: >-
         <p>Creates an IAM policy for the channel. IAM policies are used to
         control access to your channel.</p>
-      tags:
-        - Put
-        - Channel
-        - Policy
-        - Logs
-        - Channel
-        - Playback
-        - Configuration
-        - Name
-        - Location
-        - Source
-        - Live
-        - Schedule
-        - Program
-        - Vod
-        - Policy
   /playbackConfiguration/{Name}:
     GET:
       summary: GetPlaybackConfiguration
@@ -169,112 +61,28 @@ paths:
         configurations, see <a
         href="https://docs.aws.amazon.com/mediatailor/latest/ug/configurations.html">Working
         with configurations in AWS Elemental MediaTailor</a>.</p>
-      tags:
-        - Get
-        - Playback
-        - Configuration
-        - Logs
-        - Channel
-        - Playback
-        - Configuration
-        - Name
-        - Location
-        - Source
-        - Live
-        - Schedule
-        - Program
-        - Vod
-        - Policy
   /channel/{ChannelName}/schedule:
     GET:
       summary: GetChannelSchedule
       description: <p>Retrieves information about your channel's schedule.</p>
-      tags:
-        - Get
-        - Channel
-        - Schedule
-        - Logs
-        - Channel
-        - Playback
-        - Configuration
-        - Name
-        - Location
-        - Source
-        - Live
-        - Schedule
-        - Program
-        - Vod
-        - Policy
   /alerts:
     GET:
       summary: ListAlerts
       description: >-
         <p>Lists the alerts that are associated with a MediaTailor channel
         assembly resource.</p>
-      tags:
-        - List
-        - Alerts
-        - Logs
-        - Channel
-        - Playback
-        - Configuration
-        - Name
-        - Location
-        - Source
-        - Live
-        - Schedule
-        - Program
-        - Vod
-        - Policy
-        - Alerts
   /channels:
     GET:
       summary: ListChannels
       description: >-
         <p>Retrieves information about the channels that are associated with the
         current AWS account.</p>
-      tags:
-        - List
-        - Channels
-        - Logs
-        - Channel
-        - Playback
-        - Configuration
-        - Name
-        - Location
-        - Source
-        - Live
-        - Schedule
-        - Program
-        - Vod
-        - Policy
-        - Alerts
-        - Channels
   /sourceLocation/{SourceLocationName}/liveSources:
     GET:
       summary: ListLiveSources
       description: >-
         <p>Lists the live sources contained in a source location. A source
         represents a piece of content.</p>
-      tags:
-        - List
-        - Live
-        - Sources
-        - Logs
-        - Channel
-        - Playback
-        - Configuration
-        - Name
-        - Location
-        - Source
-        - Live
-        - Schedule
-        - Program
-        - Vod
-        - Policy
-        - Alerts
-        - Channels
-        - Sources
   /playbackConfigurations:
     GET:
       summary: ListPlaybackConfigurations
@@ -283,132 +91,26 @@ paths:
         MediaTailor configurations, see <a
         href="https://docs.aws.amazon.com/mediatailor/latest/ug/configurations.html">Working
         with Configurations in AWS Elemental MediaTailor</a>.</p>
-      tags:
-        - List
-        - Playback
-        - Configurations
-        - Logs
-        - Channel
-        - Playback
-        - Configuration
-        - Name
-        - Location
-        - Source
-        - Live
-        - Schedule
-        - Program
-        - Vod
-        - Policy
-        - Alerts
-        - Channels
-        - Sources
-        - Configurations
   /prefetchSchedule/{PlaybackConfigurationName}:
     POST:
       summary: ListPrefetchSchedules
       description: <p>Lists the prefetch schedules for a playback configuration.</p>
-      tags:
-        - List
-        - Prefetch
-        - Schedules
-        - Logs
-        - Channel
-        - Playback
-        - Configuration
-        - Name
-        - Location
-        - Source
-        - Live
-        - Schedule
-        - Program
-        - Vod
-        - Policy
-        - Alerts
-        - Channels
-        - Sources
-        - Configurations
   /sourceLocations:
     GET:
       summary: ListSourceLocations
       description: >-
         <p>Lists the source locations for a channel. A source location defines
         the host server URL, and contains a list of sources.</p>
-      tags:
-        - List
-        - Source
-        - Locations
-        - Logs
-        - Channel
-        - Playback
-        - Configuration
-        - Name
-        - Location
-        - Source
-        - Live
-        - Schedule
-        - Program
-        - Vod
-        - Policy
-        - Alerts
-        - Channels
-        - Sources
-        - Configurations
-        - Locations
   /tags/{ResourceArn}:
     DELETE:
       summary: UntagResource
       description: <p>The resource to untag.</p>
-      tags:
-        - Untag
-        - Resource
-        - Logs
-        - Channel
-        - Playback
-        - Configuration
-        - Name
-        - Location
-        - Source
-        - Live
-        - Schedule
-        - Program
-        - Vod
-        - Policy
-        - Alerts
-        - Channels
-        - Sources
-        - Configurations
-        - Locations
-        - Resource
-        - Arn
   /sourceLocation/{SourceLocationName}/vodSources:
     GET:
       summary: ListVodSources
       description: >-
         <p>Lists the VOD sources contained in a source location. A source
         represents a piece of content.</p>
-      tags:
-        - List
-        - Vod
-        - Sources
-        - Logs
-        - Channel
-        - Playback
-        - Configuration
-        - Name
-        - Location
-        - Source
-        - Live
-        - Schedule
-        - Program
-        - Vod
-        - Policy
-        - Alerts
-        - Channels
-        - Sources
-        - Configurations
-        - Locations
-        - Resource
-        - Arn
   /playbackConfiguration:
     PUT:
       summary: PutPlaybackConfiguration
@@ -417,29 +119,6 @@ paths:
         configurations, see <a
         href="https://docs.aws.amazon.com/mediatailor/latest/ug/configurations.html">Working
         with configurations in AWS Elemental MediaTailor</a>.</p>
-      tags:
-        - Put
-        - Playback
-        - Configuration
-        - Logs
-        - Channel
-        - Playback
-        - Configuration
-        - Name
-        - Location
-        - Source
-        - Live
-        - Schedule
-        - Program
-        - Vod
-        - Policy
-        - Alerts
-        - Channels
-        - Sources
-        - Configurations
-        - Locations
-        - Resource
-        - Arn
   /channel/{ChannelName}/start:
     PUT:
       summary: StartChannel
@@ -447,57 +126,10 @@ paths:
         <p>Starts a channel. For information about MediaTailor channels, see <a
         href="https://docs.aws.amazon.com/mediatailor/latest/ug/channel-assembly-channels.html">Working
         with channels</a> in the <i>MediaTailor User Guide</i>.</p>
-      tags:
-        - Start
-        - Channel
-        - Logs
-        - Channel
-        - Playback
-        - Configuration
-        - Name
-        - Location
-        - Source
-        - Live
-        - Schedule
-        - Program
-        - Vod
-        - Policy
-        - Alerts
-        - Channels
-        - Sources
-        - Configurations
-        - Locations
-        - Resource
-        - Arn
-        - Start
   /channel/{ChannelName}/stop:
     PUT:
       summary: StopChannel
       description: >-
         <p>Stops a channel. For information about MediaTailor channels, see <a
         href="https://docs.aws.amazon.com/mediatailor/latest/ug/channel-assembly-channels.html">Working
-        with channels</a> in the <i>MediaTailor User Guide</i>.</
-      tags:
-        - Stop
-        - Channel
-        - Logs
-        - Channel
-        - Playback
-        - Configuration
-        - Name
-        - Location
-        - Source
-        - Live
-        - Schedule
-        - Program
-        - Vod
-        - Policy
-        - Alerts
-        - Channels
-        - Sources
-        - Configurations
-        - Locations
-        - Resource
-        - Arn
-        - Start
-        - nu
+        with channels</a> in the <i>MediaTailor User Guide<

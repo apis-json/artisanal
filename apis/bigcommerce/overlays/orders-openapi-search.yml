@@ -1,0 +1,289 @@
+openapi: 3.0.3
+info:
+  title: Orders V3
+  version: ''
+  license:
+    name: ''
+tags:
+  - name: Metafields
+  - name: Payment Actions
+  - name: Transactions
+  - name: Order Settings
+  - name: Batch metafields
+paths:
+  /orders/{order_id}/payment_actions/capture:
+    post:
+      summary: Capture order payment
+      description: >-
+        Capture the payment for an order. When there are no payment method
+        validation issues, the capture process is successful, the
+        `payment_status` updates to `capture pending`, and the payment request
+        is scheduled. The payment request itself occurs asynchronously.
+
+        Requires at least one of the following scopes:
+
+        * `store_v2_orders`
+
+        * `store_v2_transactions`
+      tags:
+        - Payment Actions
+    parameters:
+      - null
+      - null
+  /orders/{order_id}/payment_actions/void:
+    post:
+      summary: Void
+      description: >-
+        Void the payment for an order. When there are no payment method
+        validation issues, the void process is successful, the `payment_status`
+        updates to `void pending`, and the void payment request is scheduled.
+        The payment request itself occurs asynchronously.
+
+
+        Requires at least one of the following scopes:
+
+        * `store_v2_orders`
+
+        * `store_v2_transactions`
+      tags:
+        - Payment Actions
+    parameters:
+      - null
+      - null
+  /orders/{order_id}/transactions:
+    parameters:
+      - null
+      - null
+    get:
+      tags:
+        - Transactions
+      description: >-
+        Returns an **orderʼs** transactions.
+
+
+        **Usage Notes**
+
+        * Depending on the payment method, different information will be
+        available (not all payment gateways return full card or fraud detail).
+
+
+
+        Requires at least one of the following scopes:
+
+        * `store_v2_transactions_read_only`
+
+        * `store_v2_transactions`
+      summary: Get Transactions
+  /orders/{order_id}/payment_actions/refund_quotes:
+    post:
+      summary: Create a Refund Quote
+      description: >-
+        Calculate the tax amount, total refund amount and get available payment
+        options for an order refund by providing items and costs or quantities
+        to refund.
+
+
+        Requires at least one of the following scopes:
+
+        * `store_v2_orders`
+
+        * `store_v2_transactions`
+
+
+        **Note:**
+
+        Order refunds are processed consecutively. Processing synchronous
+        refunds on an order are not yet supported.
+      tags:
+        - Payment Actions
+    parameters:
+      - null
+      - null
+  /orders/{order_id}/payment_actions/refunds:
+    post:
+      summary: Create a Refund
+      description: >-
+        Creates a refund. When there are no payment method validation issues,
+        the refund process is successful and the refund payment request is
+        scheduled. The payment request itself occurs asynchronously.
+
+
+        Requires at least one of the following scopes:
+
+        * `store_v2_orders`
+
+        * `store_v2_transactions`
+
+
+        **Note:**
+
+        Order refunds are processed consecutively. Processing synchronous
+        refunds on an order are not yet supported.
+      tags:
+        - Payment Actions
+    get:
+      summary: Get Refunds for Order
+      description: >-
+        Returns a list of refunds ordered by refund ID in ascending order for
+        the given order.
+
+
+        Requires at least one of the following scopes:
+
+        * `store_v2_transactions_read_only`
+
+        * `store_v2_transactions`
+
+        * `store_v2_orders_read_only`
+
+        * `store_v2_orders`
+      tags:
+        - Payment Actions
+    parameters:
+      - null
+      - null
+  /orders/payment_actions/refunds/{refund_id}:
+    parameters:
+      - null
+      - null
+    get:
+      summary: Get a Refund
+      description: Returns a refund by refund ID.
+      tags:
+        - Payment Actions
+  /orders/payment_actions/refunds:
+    parameters:
+      - null
+    get:
+      summary: Get All Refunds
+      description: |-
+        Returns a list of refunds ordered by refund ID in ascending order.
+
+        Requires at least one of the following scopes:
+        * `store_v2_transactions_read_only`
+        * `store_v2_transactions`
+        * `store_v2_orders_read_only`
+        * `store_v2_orders`
+      tags:
+        - Payment Actions
+  /orders/payment_actions/refund_quotes:
+    post:
+      summary: Create Refund Quotes - BATCH
+      description: >-
+        Calculate the tax amount, total refund amount and get available payment
+        options for an order refund by providing items and costs or quantities
+        to refund.
+
+
+        This endpoint will accept a batch of one or more.
+
+
+        Requires at least one of the following scopes:
+
+        * `store_v2_orders`
+
+        * `store_v2_transactions`
+      tags:
+        - Payment Actions
+  /orders/{order_id}/metafields:
+    parameters:
+      - null
+      - null
+    get:
+      summary: Get Order Metafields
+      tags:
+        - Metafields
+      description: >
+        Gets a `Metafield` object list, by `order_id`.
+
+
+        The maximum number of metafields allowed on each order, product,
+        category, variant, or brand is 250 per client ID.
+    post:
+      summary: Create Metafields
+      tags:
+        - Metafields
+      description: >-
+        Creates an order `Metafield`.
+
+
+        The maximum number of metafields allowed on each order, product,
+        category, variant, or brand is 250 per client ID.
+  /orders/{order_id}/metafields/{metafield_id}:
+    parameters:
+      - null
+      - null
+      - null
+    get:
+      summary: Get a Metafield
+      tags:
+        - Metafields
+      description: |
+        Gets a `Metafield`, by `order_id`.
+    put:
+      summary: Update a Metafield
+      tags:
+        - Metafields
+      description: >-
+        Updates a `Metafield` object.
+
+
+        The maxiumum number of metafields allowed on each order, product,
+        category, variant, or brand is 250 per client ID.
+    delete:
+      summary: Delete a Metafield
+      tags:
+        - Metafields
+      description: |
+        Deletes a `Metafield`.
+  /orders/settings:
+    get:
+      summary: Get Global Order Settings
+      description: Returns global order settings.
+      tags:
+        - Order Settings
+    put:
+      summary: Update Global Order Settings
+      description: Updates global order settings.
+      tags:
+        - Order Settings
+    parameters:
+      - null
+  /orders/settings/channels/{channel_id}:
+    get:
+      summary: Get Channel Order Settings
+      description: Returns order settings for a specific channel.
+      tags:
+        - Order Settings
+    put:
+      summary: Update Channel Order Settings
+      description: |-
+        Updates order settings for a specific channel.
+
+         **Note:** You must override both notifications `email_addresses` or neither, i.e. either both notification `email_addresses` are an array of valid email addresses, or both `email_addresses` must be null. You may not have one set to an array of addresses and the other set to `null`.
+      tags:
+        - Order Settings
+    parameters:
+      - null
+      - null
+  /orders/metafields:
+    get:
+      summary: Get All Order Metafields
+      tags:
+        - Batch metafields
+      description: Get all order metafields.
+    post:
+      summary: Create multiple Metafields
+      tags:
+        - Batch metafields
+      description: Create multiple metafields.
+    put:
+      summary: Update multiple Metafields
+      tags:
+        - Batch metafields
+      description: Create multiple metafields.
+    delete:
+      summary: Delete All Metafields
+      tags:
+        - Batch metafields
+      description: Delete all order metafield

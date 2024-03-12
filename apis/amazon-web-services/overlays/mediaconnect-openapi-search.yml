@@ -6,23 +6,10 @@ paths:
     POST:
       summary: AddBridgeOutputs
       description: Adds outputs to an existing bridge.
-      tags:
-        - Add
-        - Bridge
-        - Outputs
-        - Arn
-        - Outputs
   /v1/bridges/{bridgeArn}/sources:
     POST:
       summary: AddBridgeSources
       description: Adds sources to an existing bridge.
-      tags:
-        - Add
-        - Bridge
-        - Sources
-        - Arn
-        - Outputs
-        - Sources
   /v1/flows/{flowArn}/mediaStreams:
     POST:
       summary: AddFlowMediaStreams
@@ -30,250 +17,68 @@ paths:
         Adds media streams to an existing flow. After you add a media stream to
         a flow, you can associate it with a source and/or an output that uses
         the ST 2110 JPEG XS or CDI protocol.
-      tags:
-        - Add
-        - Flow
-        - Media
-        - Streams
-        - Arn
-        - Outputs
-        - Sources
-        - Media
-        - Streams
   /v1/flows/{flowArn}/outputs:
     POST:
       summary: AddFlowOutputs
       description: >-
         Adds outputs to an existing flow. You can create up to 50 outputs per
         flow.
-      tags:
-        - Add
-        - Flow
-        - Outputs
-        - Arn
-        - Outputs
-        - Sources
-        - Media
-        - Streams
   /v1/flows/{flowArn}/source:
     POST:
       summary: AddFlowSources
       description: Adds Sources to flow
-      tags:
-        - Add
-        - Flow
-        - Sources
-        - Arn
-        - Outputs
-        - Sources
-        - Media
-        - Streams
-        - Source
   /v1/flows/{flowArn}/vpcInterfaces:
     POST:
       summary: AddFlowVpcInterfaces
       description: Adds VPC interfaces to flow
-      tags:
-        - Add
-        - Flow
-        - Vpc
-        - Interfaces
-        - Arn
-        - Outputs
-        - Sources
-        - Media
-        - Streams
-        - Source
-        - Vpc
-        - Interfaces
   /v1/bridges:
     GET:
       summary: ListBridges
       description: >-
         Displays a list of bridges that are associated with this account and an
         optionally specified Arn. This request returns a paginated result.
-      tags:
-        - List
-        - Bridges
-        - Arn
-        - Outputs
-        - Sources
-        - Media
-        - Streams
-        - Source
-        - Vpc
-        - Interfaces
-        - V1
-        - Bridges
   /v1/flows:
     GET:
       summary: ListFlows
       description: >-
         Displays a list of flows that are associated with this account. This
         request returns a paginated result.
-      tags:
-        - List
-        - Flows
-        - Arn
-        - Outputs
-        - Sources
-        - Media
-        - Streams
-        - Source
-        - Vpc
-        - Interfaces
-        - V1
-        - Bridges
-        - Flows
   /v1/gateways:
     GET:
       summary: ListGateways
       description: >-
         Displays a list of gateways that are associated with this account. This
         request returns a paginated result.
-      tags:
-        - List
-        - Gateways
-        - Arn
-        - Outputs
-        - Sources
-        - Media
-        - Streams
-        - Source
-        - Vpc
-        - Interfaces
-        - V1
-        - Bridges
-        - Flows
-        - Gateways
   /v1/bridges/{bridgeArn}:
     PUT:
       summary: UpdateBridge
       description: Updates the bridge
-      tags:
-        - Update
-        - Bridge
-        - Arn
-        - Outputs
-        - Sources
-        - Media
-        - Streams
-        - Source
-        - Vpc
-        - Interfaces
-        - V1
-        - Bridges
-        - Flows
-        - Gateways
   /v1/flows/{flowArn}:
     PUT:
       summary: UpdateFlow
       description: Updates flow
-      tags:
-        - Update
-        - Flow
-        - Arn
-        - Outputs
-        - Sources
-        - Media
-        - Streams
-        - Source
-        - Vpc
-        - Interfaces
-        - V1
-        - Bridges
-        - Flows
-        - Gateways
   /v1/gateways/{gatewayArn}:
     GET:
       summary: DescribeGateway
       description: >-
         Displays the details of a gateway. The response includes the gateway
         ARN, name, and CIDR blocks, as well as details about the networks.
-      tags:
-        - Describe
-        - Gateway
-        - Arn
-        - Outputs
-        - Sources
-        - Media
-        - Streams
-        - Source
-        - Vpc
-        - Interfaces
-        - V1
-        - Bridges
-        - Flows
-        - Gateways
   /v1/gateway-instances/{gatewayInstanceArn}:
     PUT:
       summary: UpdateGatewayInstance
       description: Updates the configuration of an existing Gateway Instance.
-      tags:
-        - Update
-        - Gateway
-        - Instance
-        - Arn
-        - Outputs
-        - Sources
-        - Media
-        - Streams
-        - Source
-        - Vpc
-        - Interfaces
-        - V1
-        - Bridges
-        - Flows
-        - Gateways
-        - Instance
   /v1/flows/{flowArn}/source-metadata:
     GET:
       summary: DescribeFlowSourceMetadata
       description: >-
         Displays details of the flow's source stream. The response contains
         information about the contents of the stream and its programs.
-      tags:
-        - Describe
-        - Flow
-        - Source
-        - Metadata
-        - Arn
-        - Outputs
-        - Sources
-        - Media
-        - Streams
-        - Source
-        - Vpc
-        - Interfaces
-        - V1
-        - Bridges
-        - Flows
-        - Gateways
-        - Instance
-        - Metadata
   /v1/offerings/{offeringArn}:
     POST:
       summary: PurchaseOffering
       description: >-
         Submits a request to purchase an offering. If you already have an active
         reservation, you can't purchase another offering.
-      tags:
-        - Purchase
-        - Offering
-        - Arn
-        - Outputs
-        - Sources
-        - Media
-        - Streams
-        - Source
-        - Vpc
-        - Interfaces
-        - V1
-        - Bridges
-        - Flows
-        - Gateways
-        - Instance
-        - Metadata
   /v1/reservations/{reservationArn}:
     GET:
       summary: DescribeReservation
@@ -282,70 +87,16 @@ paths:
         reservation name, state, start date and time, and the details of the
         offering that make up the rest of the reservation (such as price,
         duration, and outbound bandwidth).
-      tags:
-        - Describe
-        - Reservation
-        - Arn
-        - Outputs
-        - Sources
-        - Media
-        - Streams
-        - Source
-        - Vpc
-        - Interfaces
-        - V1
-        - Bridges
-        - Flows
-        - Gateways
-        - Instance
-        - Metadata
   /v1/flows/{flowArn}/entitlements:
     POST:
       summary: GrantFlowEntitlements
       description: Grants entitlements to an existing flow.
-      tags:
-        - Grant
-        - Flow
-        - Entitlements
-        - Arn
-        - Outputs
-        - Sources
-        - Media
-        - Streams
-        - Source
-        - Vpc
-        - Interfaces
-        - V1
-        - Bridges
-        - Flows
-        - Gateways
-        - Instance
-        - Metadata
-        - Entitlements
   /v1/entitlements:
     GET:
       summary: ListEntitlements
       description: >-
         Displays a list of all entitlements that have been granted to this
         account. This request returns 20 results per page.
-      tags:
-        - List
-        - Entitlements
-        - Arn
-        - Outputs
-        - Sources
-        - Media
-        - Streams
-        - Source
-        - Vpc
-        - Interfaces
-        - V1
-        - Bridges
-        - Flows
-        - Gateways
-        - Instance
-        - Metadata
-        - Entitlements
   /v1/gateway-instances:
     GET:
       summary: ListGatewayInstances
@@ -354,27 +105,6 @@ paths:
         request returns a paginated result. You can use the filterArn property
         to display only the instances associated with the selected Gateway
         Amazon Resource Name (ARN).
-      tags:
-        - List
-        - Gateway
-        - Instances
-        - Arn
-        - Outputs
-        - Sources
-        - Media
-        - Streams
-        - Source
-        - Vpc
-        - Interfaces
-        - V1
-        - Bridges
-        - Flows
-        - Gateways
-        - Instance
-        - Metadata
-        - Entitlements
-        - Gateway
-        - Instances
   /v1/offerings:
     GET:
       summary: ListOfferings
@@ -383,27 +113,6 @@ paths:
         the current AWS Region. If you have an active reservation (which means
         you've purchased an offering that has already started and hasn't expired
         yet), your account isn't eligible for other offerings.
-      tags:
-        - List
-        - Offerings
-        - Arn
-        - Outputs
-        - Sources
-        - Media
-        - Streams
-        - Source
-        - Vpc
-        - Interfaces
-        - V1
-        - Bridges
-        - Flows
-        - Gateways
-        - Instance
-        - Metadata
-        - Entitlements
-        - Gateway
-        - Instances
-        - Offerings
   /v1/reservations:
     GET:
       summary: ListReservations
@@ -411,203 +120,30 @@ paths:
         Displays a list of all reservations that have been purchased by this
         account in the current AWS Region. This list includes all reservations
         in all states (such as active and expired).
-      tags:
-        - List
-        - Reservations
-        - Arn
-        - Outputs
-        - Sources
-        - Media
-        - Streams
-        - Source
-        - Vpc
-        - Interfaces
-        - V1
-        - Bridges
-        - Flows
-        - Gateways
-        - Instance
-        - Metadata
-        - Entitlements
-        - Gateway
-        - Instances
-        - Offerings
-        - Reservations
   /tags/{resourceArn}:
     DELETE:
       summary: UntagResource
       description: Deletes specified tags from a resource.
-      tags:
-        - Untag
-        - Resource
-        - Arn
-        - Outputs
-        - Sources
-        - Media
-        - Streams
-        - Source
-        - Vpc
-        - Interfaces
-        - V1
-        - Bridges
-        - Flows
-        - Gateways
-        - Instance
-        - Metadata
-        - Entitlements
-        - Gateway
-        - Instances
-        - Offerings
-        - Reservations
   /v1/bridges/{bridgeArn}/outputs/{outputName}:
     PUT:
       summary: UpdateBridgeOutput
       description: Updates an existing bridge output.
-      tags:
-        - Update
-        - Bridge
-        - Output
-        - Arn
-        - Outputs
-        - Sources
-        - Media
-        - Streams
-        - Source
-        - Vpc
-        - Interfaces
-        - V1
-        - Bridges
-        - Flows
-        - Gateways
-        - Instance
-        - Metadata
-        - Entitlements
-        - Gateway
-        - Instances
-        - Offerings
-        - Reservations
-        - Output
-        - Name
   /v1/bridges/{bridgeArn}/sources/{sourceName}:
     PUT:
       summary: UpdateBridgeSource
       description: Updates an existing bridge source.
-      tags:
-        - Update
-        - Bridge
-        - Source
-        - Arn
-        - Outputs
-        - Sources
-        - Media
-        - Streams
-        - Source
-        - Vpc
-        - Interfaces
-        - V1
-        - Bridges
-        - Flows
-        - Gateways
-        - Instance
-        - Metadata
-        - Entitlements
-        - Gateway
-        - Instances
-        - Offerings
-        - Reservations
-        - Output
-        - Name
   /v1/flows/{flowArn}/mediaStreams/{mediaStreamName}:
     PUT:
       summary: UpdateFlowMediaStream
       description: Updates an existing media stream.
-      tags:
-        - Update
-        - Flow
-        - Media
-        - Stream
-        - Arn
-        - Outputs
-        - Sources
-        - Media
-        - Streams
-        - Source
-        - Vpc
-        - Interfaces
-        - V1
-        - Bridges
-        - Flows
-        - Gateways
-        - Instance
-        - Metadata
-        - Entitlements
-        - Gateway
-        - Instances
-        - Offerings
-        - Reservations
-        - Output
-        - Name
-        - Stream
   /v1/flows/{flowArn}/outputs/{outputArn}:
     PUT:
       summary: UpdateFlowOutput
       description: Updates an existing flow output.
-      tags:
-        - Update
-        - Flow
-        - Output
-        - Arn
-        - Outputs
-        - Sources
-        - Media
-        - Streams
-        - Source
-        - Vpc
-        - Interfaces
-        - V1
-        - Bridges
-        - Flows
-        - Gateways
-        - Instance
-        - Metadata
-        - Entitlements
-        - Gateway
-        - Instances
-        - Offerings
-        - Reservations
-        - Output
-        - Name
-        - Stream
   /v1/flows/{flowArn}/source/{sourceArn}:
     PUT:
       summary: UpdateFlowSource
       description: Updates the source of a flow.
-      tags:
-        - Update
-        - Flow
-        - Source
-        - Arn
-        - Outputs
-        - Sources
-        - Media
-        - Streams
-        - Source
-        - Vpc
-        - Interfaces
-        - V1
-        - Bridges
-        - Flows
-        - Gateways
-        - Instance
-        - Metadata
-        - Entitlements
-        - Gateway
-        - Instances
-        - Offerings
-        - Reservations
-        - Output
-        - Name
-        - Stream
   /v1/flows/{flowArn}/vpcInterfaces/{vpcInterfaceName}:
     DELETE:
       summary: RemoveFlowVpcInterface
@@ -617,34 +153,6 @@ paths:
         with it. If the VPC interface is referenced by a Source or Output, you
         must first delete or update the Source or Output to no longer reference
         the VPC interface.
-      tags:
-        - Remove
-        - Flow
-        - Vpc
-        - Interface
-        - Arn
-        - Outputs
-        - Sources
-        - Media
-        - Streams
-        - Source
-        - Vpc
-        - Interfaces
-        - V1
-        - Bridges
-        - Flows
-        - Gateways
-        - Instance
-        - Metadata
-        - Entitlements
-        - Gateway
-        - Instances
-        - Offerings
-        - Reservations
-        - Output
-        - Name
-        - Stream
-        - Interface
   /v1/flows/{flowArn}/entitlements/{entitlementArn}:
     PUT:
       summary: UpdateFlowEntitlement
@@ -652,126 +160,15 @@ paths:
         You can change an entitlement's description, subscribers, and
         encryption. If you change the subscribers, the service will remove the
         outputs that are are used by the subscribers that are removed.
-      tags:
-        - Update
-        - Flow
-        - Entitlement
-        - Arn
-        - Outputs
-        - Sources
-        - Media
-        - Streams
-        - Source
-        - Vpc
-        - Interfaces
-        - V1
-        - Bridges
-        - Flows
-        - Gateways
-        - Instance
-        - Metadata
-        - Entitlements
-        - Gateway
-        - Instances
-        - Offerings
-        - Reservations
-        - Output
-        - Name
-        - Stream
-        - Interface
-        - Entitlement
   /v1/flows/start/{flowArn}:
     POST:
       summary: StartFlow
       description: Starts a flow.
-      tags:
-        - Start
-        - Flow
-        - Arn
-        - Outputs
-        - Sources
-        - Media
-        - Streams
-        - Source
-        - Vpc
-        - Interfaces
-        - V1
-        - Bridges
-        - Flows
-        - Gateways
-        - Instance
-        - Metadata
-        - Entitlements
-        - Gateway
-        - Instances
-        - Offerings
-        - Reservations
-        - Output
-        - Name
-        - Stream
-        - Interface
-        - Entitlement
   /v1/flows/stop/{flowArn}:
     POST:
       summary: StopFlow
       description: Stops a flow.
-      tags:
-        - Stop
-        - Flow
-        - Arn
-        - Outputs
-        - Sources
-        - Media
-        - Streams
-        - Source
-        - Vpc
-        - Interfaces
-        - V1
-        - Bridges
-        - Flows
-        - Gateways
-        - Instance
-        - Metadata
-        - Entitlements
-        - Gateway
-        - Instances
-        - Offerings
-        - Reservations
-        - Output
-        - Name
-        - Stream
-        - Interface
-        - Entitlement
   /v1/bridges/{bridgeArn}/state:
     PUT:
       summary: UpdateBridgeState
-      description: Updates the bridge sta
-      tags:
-        - Update
-        - Bridge
-        - State
-        - Arn
-        - Outputs
-        - Sources
-        - Media
-        - Streams
-        - Source
-        - Vpc
-        - Interfaces
-        - V1
-        - Bridges
-        - Flows
-        - Gateways
-        - Instance
-        - Metadata
-        - Entitlements
-        - Gateway
-        - Instances
-        - Offerings
-        - Reservations
-        - Output
-        - Name
-        - Stream
-        - Interface
-        - Entitlement
-        - null
+      description: Updates the brid

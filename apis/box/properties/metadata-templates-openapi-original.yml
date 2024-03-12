@@ -1,0 +1,1894 @@
+openapi: 3.1.0
+info:
+  title: Box Metadata Templates API
+  description: Needs a description.
+paths:
+  /metadata_templates:
+    get:
+      operationId: get_metadata_templates
+      summary: Find metadata template by instance ID
+      tags:
+        - Metadata templates
+      x-box-tag: metadata_templates
+      x-box-sanitized: true
+      description: |-
+        Finds a metadata template by searching for the ID of an instance of the
+        template.
+      parameters:
+        - name: metadata_instance_id
+          description: The ID of an instance of the metadata template to find.
+          example: 01234500-12f1-1234-aa12-b1d234cb567e
+          in: query
+          required: true
+          schema:
+            type: string
+            format: uuid
+      responses:
+        '200':
+          description: |-
+            Returns a list containing the 1 metadata template that matches the
+            instance ID.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/MetadataTemplates'
+        '400':
+          description: Returned when the request parameters are not valid.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ClientError'
+        default:
+          description: An unexpected client error.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ClientError'
+  /metadata_templates/enterprise/securityClassification-6VMVochwUWo/schema:
+    get:
+      operationId: >-
+        get_metadata_templates_enterprise_securityClassification-6VMVochwUWo_schema
+      summary: List all classifications
+      tags:
+        - Classifications
+      x-box-tag: classifications
+      x-box-sanitized: true
+      description: >-
+        Retrieves the classification metadata template and lists all the
+
+        classifications available to this enterprise.
+
+
+        This API can also be called by including the enterprise ID in the
+
+        URL explicitly, for example
+
+        `/metadata_templates/enterprise_12345/securityClassification-6VMVochwUWo/schema`.
+      responses:
+        '200':
+          description: >-
+            Returns the `securityClassification` metadata template, which
+            contains
+
+            a `Box__Security__Classification__Key` field that lists all the
+
+            classifications available to this enterprise.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ClassificationTemplate'
+        '400':
+          description: Returned if any of the request parameters are not valid.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ClientError'
+        '404':
+          description: |-
+            Returned when a template name is not correct. Please make sure
+            the URL for the request is correct.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ClientError'
+        default:
+          description: An unexpected client error.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ClientError'
+  /metadata_templates/enterprise/securityClassification-6VMVochwUWo/schema#add:
+    put:
+      operationId: >-
+        put_metadata_templates_enterprise_securityClassification-6VMVochwUWo_schema#add
+      summary: Add classification
+      tags:
+        - Classifications
+      x-box-tag: classifications
+      description: >-
+        Adds one or more new classifications to the list of classifications
+
+        available to the enterprise.
+
+
+        This API can also be called by including the enterprise ID in the
+
+        URL explicitly, for example
+
+        `/metadata_templates/enterprise_12345/securityClassification-6VMVochwUWo/schema`.
+      requestBody:
+        content:
+          application/json:
+            schema:
+              required:
+                - items
+              description: |-
+                An array that contains one or more classifications to add to
+                the enterprise's list of classifications.
+              type: array
+              items:
+                type: object
+                description: A single classification to add to the enterprise.
+                required:
+                  - op
+                  - fieldKey
+                  - data
+                properties:
+                  op:
+                    type: string
+                    example: addEnumOption
+                    description: |-
+                      The type of change to perform on the classification
+                      object.
+                    enum:
+                      - addEnumOption
+                  fieldKey:
+                    type: string
+                    example: Box__Security__Classification__Key
+                    description: |-
+                      Defines classifications 
+                      available in the enterprise.
+                    enum:
+                      - Box__Security__Classification__Key
+                  data:
+                    type: object
+                    required:
+                      - key
+                    description: The details of the classification to add.
+                    properties:
+                      key:
+                        type: string
+                        example: Sensitive
+                        description: >-
+                          The label of the classification as shown in the web
+                          and
+
+                          mobile interfaces. This is the only field required to
+
+                          add a classification.
+                      staticConfig:
+                        type: object
+                        description: A static configuration for the classification.
+                        properties:
+                          classification:
+                            type: object
+                            description: Additional details for the classification.
+                            properties:
+                              classificationDefinition:
+                                type: string
+                                example: Sensitive information that must not be shared.
+                                description: A longer description of the classification.
+                              colorID:
+                                type: integer
+                                format: int64
+                                example: 4
+                                description: >-
+                                  An internal Box identifier used to assign a
+                                  color to
+
+                                  a classification label.
+
+
+                                  Mapping between a `colorID` and a color may
+                                  change
+
+                                  without notice. Currently, the color mappings
+                                  are as
+
+                                  follows.
+
+
+                                  * `0`: Yellow
+
+                                  * `1`: Orange
+
+                                  * `2`: Watermelon red
+
+                                  * `3`: Purple rain
+
+                                  * `4`: Light blue
+
+                                  * `5`: Dark blue
+
+                                  * `6`: Light green
+
+                                  * `7`: Gray
+      responses:
+        '200':
+          description: >-
+            Returns the updated `securityClassification` metadata template,
+            which
+
+            contains a `Box__Security__Classification__Key` field that lists all
+
+            the classifications available to this enterprise.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ClassificationTemplate'
+        '400':
+          description: Returned if any of the request parameters are not valid.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ClientError'
+        '404':
+          description: |-
+            Returned when a template name is not correct. Please make sure
+            the URL for the request is correct.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ClientError'
+        default:
+          description: An unexpected client error.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ClientError'
+  /metadata_templates/enterprise/securityClassification-6VMVochwUWo/schema#update:
+    put:
+      operationId: >-
+        put_metadata_templates_enterprise_securityClassification-6VMVochwUWo_schema#update
+      summary: Update classification
+      tags:
+        - Classifications
+      x-box-tag: classifications
+      x-box-sanitized: true
+      description: >-
+        Updates the labels and descriptions of one or more classifications
+
+        available to the enterprise.
+
+
+        This API can also be called by including the enterprise ID in the
+
+        URL explicitly, for example
+
+        `/metadata_templates/enterprise_12345/securityClassification-6VMVochwUWo/schema`.
+      requestBody:
+        content:
+          application/json-patch+json:
+            schema:
+              description: An array that contains one or more classifications to update.
+              type: array
+              required:
+                - items
+              items:
+                type: object
+                description: A single classification to update.
+                required:
+                  - op
+                  - fieldKey
+                  - enumOptionKey
+                  - data
+                properties:
+                  op:
+                    type: string
+                    example: editEnumOption
+                    description: |-
+                      The type of change to perform on the classification
+                      object.
+                    enum:
+                      - editEnumOption
+                  fieldKey:
+                    type: string
+                    example: Box__Security__Classification__Key
+                    description: |-
+                      Defines classifications 
+                      available in the enterprise.
+                    enum:
+                      - Box__Security__Classification__Key
+                  enumOptionKey:
+                    type: string
+                    example: Sensitive
+                    description: The original label of the classification to change.
+                  data:
+                    type: object
+                    required:
+                      - key
+                    description: The details of the updated classification.
+                    properties:
+                      key:
+                        type: string
+                        example: Very Sensitive
+                        description: |-
+                          A new label for the classification, as it will be
+                          shown in the web and mobile interfaces.
+                      staticConfig:
+                        type: object
+                        description: A static configuration for the classification.
+                        properties:
+                          classification:
+                            type: object
+                            description: Additional details for the classification.
+                            properties:
+                              classificationDefinition:
+                                type: string
+                                example: Sensitive information that must not be shared.
+                                description: A longer description of the classification.
+                              colorID:
+                                type: integer
+                                format: int64
+                                example: 4
+                                description: >-
+                                  An internal Box identifier used to assign a
+                                  color to
+
+                                  a classification label.
+
+
+                                  Mapping between a `colorID` and a color may
+                                  change
+
+                                  without notice. Currently, the color mappings
+                                  are as
+
+                                  follows.
+
+
+                                  * `0`: Yellow
+
+                                  * `1`: Orange
+
+                                  * `2`: Watermelon red
+
+                                  * `3`: Purple rain
+
+                                  * `4`: Light blue
+
+                                  * `5`: Dark blue
+
+                                  * `6`: Light green
+
+                                  * `7`: Gray
+      responses:
+        '200':
+          description: >-
+            Returns the updated `securityClassification` metadata template,
+            which
+
+            contains a `Box__Security__Classification__Key` field that lists all
+
+            the classifications available to this enterprise.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ClassificationTemplate'
+        '400':
+          description: Returned if any of the request parameters are not valid.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ClientError'
+        '404':
+          description: |-
+            Returned when a template name is not correct. Please make sure
+            the URL for the request is correct.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ClientError'
+        default:
+          description: An unexpected client error.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ClientError'
+  /metadata_templates/{scope}/{template_key}/schema:
+    get:
+      operationId: get_metadata_templates_id_id_schema
+      summary: Get metadata template by name
+      tags:
+        - Metadata templates
+      x-box-tag: metadata_templates
+      x-box-sanitized: true
+      description: >-
+        Retrieves a metadata template by its `scope` and `templateKey` values.
+
+
+        To find the `scope` and `templateKey` for a template, list all templates
+        for
+
+        an enterprise or globally, or list all templates applied to a file or
+        folder.
+      parameters:
+        - name: scope
+          description: The scope of the metadata template
+          example: global
+          in: path
+          required: true
+          schema:
+            type: string
+            enum:
+              - global
+              - enterprise
+        - name: template_key
+          description: The name of the metadata template
+          example: properties
+          in: path
+          required: true
+          schema:
+            type: string
+      responses:
+        '200':
+          description: |-
+            Returns the metadata template matching the `scope`
+            and `template` name.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/MetadataTemplate'
+        '400':
+          description: >-
+            Returned if any of the request parameters are not valid.
+
+
+            * `bad_request`: Often returned when the scope of the template is
+            not
+              recognised. Please make sure to use either `enterprise` or `global` as
+              the `scope` value.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ClientError'
+        '404':
+          description: >-
+            Returned when a template with the given `scope` and `template_key`
+            can not
+
+            be found.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ClientError'
+        default:
+          description: An unexpected client error.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ClientError'
+    put:
+      operationId: put_metadata_templates_id_id_schema
+      tags:
+        - Metadata templates
+      x-box-tag: metadata_templates
+      x-box-sanitized: true
+      summary: Update metadata template
+      description: >-
+        Updates a metadata template.
+
+
+        The metadata template can only be updated if the template
+
+        already exists.
+
+
+        The update is applied atomically. If any errors occur during the
+
+        application of the operations, the metadata template will not be
+        changed.
+      parameters:
+        - name: scope
+          description: The scope of the metadata template
+          example: global
+          in: path
+          required: true
+          schema:
+            type: string
+            enum:
+              - global
+              - enterprise
+        - name: template_key
+          description: The name of the metadata template
+          example: properties
+          in: path
+          required: true
+          schema:
+            type: string
+      requestBody:
+        content:
+          application/json-patch+json:
+            schema:
+              description: |-
+                A [JSON-Patch](https://tools.ietf.org/html/rfc6902)
+                specification for the changes to make to the metadata
+                template.
+
+                The changes are represented as a JSON array of
+                operation objects.
+              type: array
+              items:
+                title: A metadata template update operation
+                description: >-
+                  A [JSON-Patch](https://tools.ietf.org/html/rfc6902) operation
+                  for a
+
+                  change to make to the metadata instance.
+                type: object
+                required:
+                  - op
+                properties:
+                  op:
+                    type: string
+                    example: addEnumOption
+                    enum:
+                      - editTemplate
+                      - addField
+                      - reorderFields
+                      - addEnumOption
+                      - reorderEnumOptions
+                      - reorderMultiSelectOptions
+                      - addMultiSelectOption
+                      - editField
+                      - removeField
+                      - editEnumOption
+                      - removeEnumOption
+                      - editMultiSelectOption
+                      - removeMultiSelectOption
+                    description: >-
+                      The type of change to perform on the template. Some
+
+                      of these are hazardous as they will change existing
+                      templates.
+                  data:
+                    type: object
+                    description: >-
+                      The data for the operation. This will vary depending on
+                      the
+
+                      operation being performed.
+                    example:
+                      name: Aaron Levie
+                    additionalProperties:
+                      allOf:
+                        - {}
+                        - example: Aaron Levie
+                        - description: >-
+                            A value for each of the fields that are present
+
+                            on the metadata template.
+
+                            For the `global.properties` template this can be
+
+                            a list of zero or more fields,
+
+                            as this template allows for any generic key-value
+                            pairs 
+
+                            to be stored stored in the template.
+                      x-box-example-key: name
+                  fieldKey:
+                    type: string
+                    example: category
+                    description: >-
+                      For operations that affect a single field this defines the
+                      key of
+
+                      the field that is affected.
+                  fieldKeys:
+                    type: array
+                    items:
+                      type: string
+                    example:
+                      - category
+                      - name
+                    description: >-
+                      For operations that affect multiple fields this defines
+                      the keys
+
+                      of the fields that are affected.
+                  enumOptionKey:
+                    description: >-
+                      For operations that affect a single `enum` option this
+                      defines
+
+                      the key of the option that is affected.
+                    type: string
+                    example: option1
+                  enumOptionKeys:
+                    description: >-
+                      For operations that affect multiple `enum` options this
+                      defines
+
+                      the keys of the options that are affected.
+                    type: array
+                    items:
+                      type: string
+                    example:
+                      - option1
+                      - option2
+                      - option3
+                  multiSelectOptionKey:
+                    description: >-
+                      For operations that affect a single multi select option
+                      this
+
+                      defines the key of the option that is affected.
+                    type: string
+                    example: option1
+                  multiSelectOptionKeys:
+                    description: >-
+                      For operations that affect multiple multi select options
+                      this
+
+                      defines the keys of the options that are affected.
+                    type: array
+                    items:
+                      type: string
+                    example:
+                      - option1
+                      - option2
+                      - option3
+      responses:
+        '200':
+          description: |-
+            Returns the updated metadata template, with the
+            custom template data included.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/MetadataTemplate'
+        '400':
+          description: The request body does not contain a valid metadata schema.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ClientError'
+        '403':
+          description: |-
+            The request body contains a scope that the user is not
+            allowed to create templates for.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ClientError'
+        '404':
+          description: The requested template could not be found
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ClientError'
+        default:
+          description: An unexpected client error.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ClientError'
+    delete:
+      operationId: delete_metadata_templates_id_id_schema
+      summary: Remove metadata template
+      tags:
+        - Metadata templates
+      x-box-tag: metadata_templates
+      x-box-sanitized: true
+      description: |-
+        Delete a metadata template and its instances.
+        This deletion is permanent and can not be reversed.
+      parameters:
+        - name: scope
+          description: The scope of the metadata template
+          example: global
+          in: path
+          required: true
+          schema:
+            type: string
+            enum:
+              - global
+              - enterprise
+        - name: template_key
+          description: The name of the metadata template
+          example: properties
+          in: path
+          required: true
+          schema:
+            type: string
+      responses:
+        '204':
+          description: |-
+            Returns an empty response when the metadata
+            template is successfully deleted.
+        '400':
+          description: Request body does not contain a valid metadata schema.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ClientError'
+        '403':
+          description: |-
+            Request body contains a scope that the user is not allowed to
+            create a template for.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ClientError'
+        default:
+          description: An unexpected client error.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ClientError'
+  /metadata_templates/{template_id}:
+    get:
+      operationId: get_metadata_templates_id
+      summary: Get metadata template by ID
+      tags:
+        - Metadata templates
+      x-box-tag: metadata_templates
+      x-box-sanitized: true
+      description: Retrieves a metadata template by its ID.
+      parameters:
+        - name: template_id
+          schema:
+            type: string
+          required: true
+          in: path
+          example: f7a9891f
+          description: The ID of the template
+      responses:
+        '200':
+          description: Returns the metadata template that matches the ID.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/MetadataTemplate'
+        '400':
+          description: >-
+            Returned if any of the request parameters are not valid.
+
+
+            * `bad_request`: Often returned with a message when the ID of the
+            template
+              is not recognised.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/MetadataTemplate'
+        default:
+          description: An unexpected client error.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ClientError'
+  /metadata_templates/global:
+    get:
+      operationId: get_metadata_templates_global
+      summary: List all global metadata templates
+      tags:
+        - Metadata templates
+      x-box-tag: metadata_templates
+      x-box-sanitized: true
+      description: |-
+        Used to retrieve all generic, global metadata templates available to all
+        enterprises using Box.
+      parameters:
+        - name: marker
+          description: >-
+            Defines the position marker at which to begin returning results.
+            This is
+
+            used when paginating using marker-based pagination.
+
+
+            This requires `usemarker` to be set to `true`.
+          in: query
+          required: false
+          example: JV9IRGZmieiBasejOG9yDCRNgd2ymoZIbjsxbJMjIs3kioVii
+          schema:
+            type: string
+        - name: limit
+          description: The maximum number of items to return per page.
+          in: query
+          required: false
+          example: 1000
+          schema:
+            type: integer
+            format: int64
+            maximum: 1000
+      responses:
+        '200':
+          description: |-
+            Returns all of the metadata templates available to all enterprises
+            and their corresponding schema.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/MetadataTemplates'
+        '400':
+          description: Returned when the request parameters are not valid.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ClientError'
+        default:
+          description: An unexpected client error.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ClientError'
+  /metadata_templates/enterprise:
+    get:
+      operationId: get_metadata_templates_enterprise
+      summary: List all metadata templates for enterprise
+      tags:
+        - Metadata templates
+      x-box-tag: metadata_templates
+      x-box-sanitized: true
+      description: >-
+        Used to retrieve all metadata templates created to be used specifically
+        within
+
+        the user's enterprise
+      parameters:
+        - name: marker
+          description: >-
+            Defines the position marker at which to begin returning results.
+            This is
+
+            used when paginating using marker-based pagination.
+
+
+            This requires `usemarker` to be set to `true`.
+          in: query
+          required: false
+          example: JV9IRGZmieiBasejOG9yDCRNgd2ymoZIbjsxbJMjIs3kioVii
+          schema:
+            type: string
+        - name: limit
+          description: The maximum number of items to return per page.
+          in: query
+          required: false
+          example: 1000
+          schema:
+            type: integer
+            format: int64
+            maximum: 1000
+      responses:
+        '200':
+          description: |-
+            Returns all of the metadata templates within an enterprise
+            and their corresponding schema.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/MetadataTemplates'
+        '400':
+          description: Returned when the request parameters are not valid.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ClientError'
+        default:
+          description: An unexpected client error.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ClientError'
+  /metadata_templates/schema:
+    post:
+      operationId: post_metadata_templates_schema
+      summary: Create metadata template
+      tags:
+        - Metadata templates
+      description: |-
+        Creates a new metadata template that can be applied to
+        files and folders.
+      x-box-tag: metadata_templates
+      x-box-requires-admin: true
+      x-box-sanitized: true
+      requestBody:
+        content:
+          application/json:
+            schema:
+              type: object
+              required:
+                - scope
+                - displayName
+              properties:
+                scope:
+                  type: string
+                  description: >-
+                    The scope of the metadata template to create. Applications
+                    can
+
+                    only create templates for use within the authenticated
+                    user's
+
+                    enterprise.
+
+
+                    This value needs to be set to `enterprise`, as `global`
+                    scopes can
+
+                    not be created by applications.
+                  example: enterprise
+                templateKey:
+                  type: string
+                  example: productInfo
+                  description: >-
+                    A unique identifier for the template. This identifier needs
+                    to be
+
+                    unique across the enterprise for which the metadata template
+                    is
+
+                    being created.
+
+
+                    When not provided, the API will create a unique
+                    `templateKey`
+
+                    based on the value of the `displayName`.
+                  maxLength: 64
+                  pattern: ^[a-zA-Z_][-a-zA-Z0-9_]*$
+                displayName:
+                  type: string
+                  description: The display name of the template.
+                  maxLength: 4096
+                  example: Product Info
+                hidden:
+                  type: boolean
+                  example: true
+                  description: >-
+                    Defines if this template is visible in the Box web app UI,
+                    or if
+
+                    it is purely intended for usage through the API.
+                  default: false
+                fields:
+                  type: array
+                  description: >-
+                    An ordered list of template fields which are part of the
+                    template.
+
+                    Each field can be a regular text field, date field, number
+                    field,
+
+                    as well as a single or multi-select list.
+                  items:
+                    title: Metadata Field (Write)
+                    description: >-
+                      A field within a metadata template. Fields can be a basic
+                      text, date, or
+
+                      number field, or a list of options.
+                    required:
+                      - type
+                      - key
+                      - displayName
+                    type: object
+                    properties:
+                      type:
+                        type: string
+                        example: string
+                        description: >-
+                          The type of field. The basic fields are a `string`
+                          field for text, a
+
+                          `float` field for numbers, and a `date` fields to
+                          present the user with a
+
+                          date-time picker.
+
+
+                          Additionally, metadata templates support an `enum`
+                          field for a basic list
+
+                          of items, and ` multiSelect` field for a similar list
+                          of items where the
+
+                          user can select more than one value.
+                        enum:
+                          - string
+                          - float
+                          - date
+                          - enum
+                          - multiSelect
+                      key:
+                        type: string
+                        example: category
+                        description: |-
+                          A unique identifier for the field. The identifier must
+                          be unique within the template to which it belongs.
+                        maxLength: 256
+                      displayName:
+                        type: string
+                        example: Category
+                        description: >-
+                          The display name of the field as it is shown to the
+                          user in the web and
+
+                          mobile apps.
+                        maxLength: 4096
+                      description:
+                        type: string
+                        example: The category
+                        description: >-
+                          A description of the field. This is not shown to the
+                          user.
+                        maxLength: 4096
+                      hidden:
+                        type: boolean
+                        example: true
+                        description: >-
+                          Whether this field is hidden in the UI for the user
+                          and can only be set
+
+                          through the API instead.
+                      options:
+                        description: >-
+                          A list of options for this field. This is used in
+                          combination with the
+
+                          `enum` and `multiSelect` field types.
+                        type: array
+                        items:
+                          title: Metadata Option (Write)
+                          type: object
+                          description: >-
+                            An option for a Metadata Template Field.
+
+
+                            Options only need to be provided for fields of type
+                            `enum` and `multiSelect`.
+
+                            Options represent the value(s) a user can select for
+                            the field either through
+
+                            the UI or through the API.
+                          required:
+                            - key
+                          properties:
+                            key:
+                              description: >-
+                                The text value of the option. This represents
+                                both the display name of the
+
+                                option and the internal key used when updating
+                                templates.
+                              example: Category 1
+                              type: string
+                copyInstanceOnItemCopy:
+                  type: boolean
+                  description: >-
+                    Whether or not to copy any metadata attached to a file or
+                    folder
+
+                    when it is copied. By default, metadata is not copied along
+                    with a
+
+                    file or folder when it is copied.
+                  default: false
+                  example: true
+      responses:
+        '201':
+          description: The schema representing the metadata template created.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/MetadataTemplate'
+        '400':
+          description: >-
+            Returned if the request parameters or body is not valid.
+
+
+            * `bad_request` when the body does not contain a valid request. In
+            many
+
+            cases this response will include extra details on what fields are
+            missing.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ClientError'
+        '403':
+          description: >-
+            Returned when the user does not have the permission to create the
+            metadata
+
+            template. This can happen for a few reasons, most commonly when the
+            user
+
+            does not have (co-)admin permissions, or the application tries to
+            create a
+
+            template with the `global` scope.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ClientError'
+        default:
+          description: An unexpected client error.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ClientError'
+  /metadata_templates/schema#classifications:
+    post:
+      operationId: post_metadata_templates_schema#classifications
+      summary: Add initial classifications
+      tags:
+        - Classifications
+      x-box-tag: classifications
+      x-box-sanitized: true
+      description: |-
+        When an enterprise does not yet have any classifications, this API call
+        initializes the classification template with an initial set of
+        classifications.
+
+        If an enterprise already has a classification, the template will already
+        exist and instead an API call should be made to add additional
+        classifications.
+      requestBody:
+        content:
+          application/json:
+            schema:
+              type: object
+              required:
+                - scope
+                - displayName
+                - fields
+                - templateKey
+              properties:
+                scope:
+                  type: string
+                  description: >-
+                    The scope in which to create the classifications. This
+                    should
+
+                    be `enterprise` or `enterprise_{id}` where `id` is the
+                    unique
+
+                    ID of the enterprise.
+                  example: enterprise
+                  enum:
+                    - enterprise
+                templateKey:
+                  type: string
+                  example: securityClassification-6VMVochwUWo
+                  description: Defines the list of metadata templates.
+                  enum:
+                    - securityClassification-6VMVochwUWo
+                displayName:
+                  type: string
+                  description: |-
+                    The name of the
+                    template as shown in web and mobile interfaces.
+                  example: Classification
+                  enum:
+                    - Classification
+                hidden:
+                  type: boolean
+                  example: false
+                  description: |-
+                    Determines if the classification template is
+                    hidden or available on web and mobile
+                    devices.
+                copyInstanceOnItemCopy:
+                  type: boolean
+                  example: false
+                  description: |-
+                    Determines if classifications are
+                    copied along when the file or folder is
+                    copied.
+                fields:
+                  type: array
+                  description: |-
+                    The classification template requires exactly
+                    one field, which holds
+                    all the valid classification values.
+                  items:
+                    required:
+                      - type
+                      - key
+                      - displayName
+                      - options
+                    type: object
+                    description: |-
+                      The `enum` field which holds all the valid classification
+                      values.
+                    properties:
+                      type:
+                        type: string
+                        example: enum
+                        description: |-
+                          The type of the field
+                          that is always enum.
+                        enum:
+                          - enum
+                      key:
+                        type: string
+                        example: Box__Security__Classification__Key
+                        description: |-
+                          Defines classifications 
+                          available in the enterprise.
+                        enum:
+                          - Box__Security__Classification__Key
+                      displayName:
+                        type: string
+                        example: Classification
+                        description: A display name for the classification.
+                        enum:
+                          - Classification
+                      hidden:
+                        type: boolean
+                        example: false
+                        description: |-
+                          Determines if the classification
+                          template is
+                          hidden or available on
+                          web and mobile
+                          devices.
+                      options:
+                        type: array
+                        description: |-
+                          The actual list of classifications that are present on
+                          this template.
+                        items:
+                          required:
+                            - key
+                          type: object
+                          description: An individual classification.
+                          properties:
+                            key:
+                              type: string
+                              description: >-
+                                The display name and key this classification.
+                                This
+
+                                will be show in the Box UI.
+                              example: Sensitive
+                            staticConfig:
+                              type: object
+                              description: Additional information about the classification.
+                              properties:
+                                classification:
+                                  type: object
+                                  description: >-
+                                    Additional information about the
+                                    classification.
+                                  properties:
+                                    classificationDefinition:
+                                      type: string
+                                      example: Sensitive information
+                                      description: >-
+                                        A longer description of the
+                                        classification.
+                                    colorID:
+                                      type: integer
+                                      format: int64
+                                      example: 4
+                                      description: >-
+                                        An identifier used to assign a color to
+
+                                        a classification label.
+
+
+                                        Mapping between a `colorID` and a color
+                                        may
+
+                                        change without notice. Currently, the
+                                        color
+
+                                        mappings are as follows.
+
+
+                                        * `0`: Yellow
+
+                                        * `1`: Orange
+
+                                        * `2`: Watermelon red
+
+                                        * `3`: Purple rain
+
+                                        * `4`: Light blue
+
+                                        * `5`: Dark blue
+
+                                        * `6`: Light green
+
+                                        * `7`: Gray
+      responses:
+        '200':
+          description: |-
+            Returns a new `securityClassification` metadata template, which
+            contains a `Box__Security__Classification__Key` field that lists all
+            the classifications available to this enterprise.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ClassificationTemplate'
+        '400':
+          description: Returned if any of the request parameters are not valid.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ClientError'
+        '404':
+          description: |-
+            Returned when a template name is not correct. Please make sure
+            the URL for the request is correct.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ClientError'
+        default:
+          description: An unexpected client error.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ClientError'
+components:
+  schemas:
+    MetadataTemplates:
+      title: Metadata templates
+      type: object
+      x-box-resource-id: metadata_templates
+      x-box-tag: metadata_templates
+      description: A list of metadata templates
+      allOf:
+        - type: object
+          description: |-
+            The part of an API response that describes marker
+            based pagination
+          properties:
+            limit:
+              description: >-
+                The limit that was used for these entries. This will be the same
+                as the
+
+                `limit` query parameter unless that value exceeded the maximum
+                value
+
+                allowed. The maximum value varies by API.
+              example: 1000
+              type: integer
+              format: int64
+            next_marker:
+              description: The marker for the start of the next page of results.
+              example: JV9IRGZmieiBasejOG9yDCRNgd2ymoZIbjsxbJMjIs3kioVii
+              type: string
+              nullable: true
+            prev_marker:
+              description: The marker for the start of the previous page of results.
+              example: JV9IRGZmieiBasejOG9yDCRNgd2ymoZIbjsxbJMjIs3kioVih
+              type: string
+              nullable: true
+        - properties:
+            entries:
+              type: array
+              description: A list of metadata templates
+              items:
+                $ref: '#/components/schemas/MetadataTemplate'
+    ClientError:
+      title: Client error
+      type: object
+      x-box-resource-id: client_error
+      description: A generic error
+      properties:
+        type:
+          description: error
+          example: error
+          type: string
+          enum:
+            - error
+          nullable: false
+        status:
+          description: The HTTP status of the response.
+          example: 400
+          type: integer
+          format: int32
+          nullable: false
+        code:
+          description: A Box-specific error code
+          example: item_name_invalid
+          type: string
+          enum:
+            - created
+            - accepted
+            - no_content
+            - redirect
+            - not_modified
+            - bad_request
+            - unauthorized
+            - forbidden
+            - not_found
+            - method_not_allowed
+            - conflict
+            - precondition_failed
+            - too_many_requests
+            - internal_server_error
+            - unavailable
+            - item_name_invalid
+            - insufficient_scope
+        message:
+          description: A short message describing the error.
+          example: Method Not Allowed
+          type: string
+          nullable: false
+        context_info:
+          description: |-
+            A free-form object that contains additional context
+            about the error. The possible fields are defined on
+            a per-endpoint basis. `message` is only one example.
+          type: object
+          nullable: true
+          properties:
+            message:
+              type: string
+              description: More details on the error.
+              example: Something went wrong.
+        help_url:
+          description: A URL that links to more information about why this error occurred.
+          example: >-
+            https://developer.box.com/guides/api-calls/permissions-and-errors/common-errors/
+          type: string
+          nullable: false
+        request_id:
+          description: |-
+            A unique identifier for this response, which can be used
+            when contacting Box support.
+          type: string
+          example: abcdef123456
+          nullable: false
+    ClassificationTemplate:
+      title: Classification Template
+      type: object
+      x-box-resource-id: classification_template
+      x-box-tag: classifications
+      description: |-
+        A metadata template that holds the security classifications
+        defined by an enterprise.
+      required:
+        - id
+        - type
+        - scope
+        - displayName
+        - fields
+        - templateKey
+      properties:
+        id:
+          type: string
+          example: 58063d82-4128-7b43-bba9-92f706befcdf
+          description: The ID of the classification template.
+        type:
+          type: string
+          description: '`metadata_template`'
+          example: metadata_template
+          enum:
+            - metadata_template
+          nullable: false
+        scope:
+          type: string
+          description: |-
+            The scope of the classification template. This is in the format
+            `enterprise_{id}` where the `id` is the enterprise ID.
+          example: enterprise_123456
+        templateKey:
+          type: string
+          example: securityClassification-6VMVochwUWo
+          description: '`securityClassification-6VMVochwUWo`'
+          enum:
+            - securityClassification-6VMVochwUWo
+        displayName:
+          type: string
+          example: Classification
+          description: The name of this template as shown in web and mobile interfaces.
+          enum:
+            - Classification
+        hidden:
+          type: boolean
+          example: false
+          description: |-
+            Determines if the
+            template is always available in web and mobile interfaces.
+        copyInstanceOnItemCopy:
+          type: boolean
+          example: true
+          description: |-
+            Determines if 
+            classifications are
+            copied along when the file or folder is
+            copied.
+        fields:
+          type: array
+          maxItems: 1
+          minItems: 1
+          description: >-
+            A list of fields for this classification template. This includes
+
+            only one field, the `Box__Security__Classification__Key`, which
+            defines
+
+            the different classifications available in this enterprise.
+          items:
+            type: object
+            required:
+              - id
+              - type
+              - key
+              - displayName
+              - options
+            description: |-
+              The metadata template field that represents the available
+              classifications.
+            properties:
+              id:
+                type: string
+                example: 822227e0-47a5-921b-88a8-494760b2e6d2
+                description: The unique ID of the field.
+              type:
+                type: string
+                example: enum
+                description: The array item type.
+                enum:
+                  - enum
+              key:
+                type: string
+                example: Box__Security__Classification__Key
+                description: |-
+                  Defines classifications 
+                  available in the enterprise.
+                enum:
+                  - Box__Security__Classification__Key
+              displayName:
+                type: string
+                example: Classification
+                description: '`Classification`'
+                enum:
+                  - Classification
+              hidden:
+                type: boolean
+                example: false
+                description: Classifications are always visible to web and mobile users.
+              options:
+                type: array
+                description: A list of classifications available in this enterprise.
+                minItems: 1
+                items:
+                  required:
+                    - key
+                    - id
+                  type: object
+                  description: A single classification available in this enterprise.
+                  properties:
+                    id:
+                      type: string
+                      example: 46aea176-3483-4431-856c-6b5b13d1cc50
+                      description: The unique ID of this classification.
+                    key:
+                      type: string
+                      example: Sensitive
+                      description: The display name and key for this classification.
+                    staticConfig:
+                      type: object
+                      description: Additional information about the classification.
+                      properties:
+                        classification:
+                          type: object
+                          description: >-
+                            Additional information about the classification.
+
+
+                            This is not an exclusive list of properties, and
+
+                            more object fields might be returned. These fields
+
+                            are used for internal Box Shield and Box Governance
+
+                            purposes and no additional value must be derived
+                            from
+
+                            these fields.
+                          properties:
+                            classificationDefinition:
+                              type: string
+                              example: Sensitive information
+                              description: A longer description of the classification.
+                            colorID:
+                              type: integer
+                              format: int64
+                              example: 4
+                              description: >-
+                                An internal Box identifier used to assign a
+                                color to
+
+                                a classification label.
+
+
+                                Mapping between a `colorID` and a color may
+                                change
+
+                                without notice. Currently, the color mappings
+                                are as
+
+                                follows.
+
+
+                                * `0`: Yellow
+
+                                * `1`: Orange
+
+                                * `2`: Watermelon red
+
+                                * `3`: Purple rain
+
+                                * `4`: Light blue
+
+                                * `5`: Dark blue
+
+                                * `6`: Light green
+
+                                * `7`: Gray
+    MetadataTemplate:
+      title: Metadata template
+      type: object
+      x-box-resource-id: metadata_template
+      x-box-tag: metadata_templates
+      description: A template for metadata that can be applied to files and folders
+      required:
+        - type
+        - id
+      properties:
+        id:
+          type: string
+          example: 58063d82-4128-7b43-bba9-92f706befcdf
+          description: The ID of the metadata template.
+        type:
+          type: string
+          description: '`metadata_template`'
+          example: metadata_template
+          enum:
+            - metadata_template
+          nullable: false
+        scope:
+          type: string
+          description: >-
+            The scope of the metadata template can either be `global` or
+
+            `enterprise_*`. The `global` scope is used for templates that are
+
+            available to any Box enterprise. The `enterprise_*` scope represents
+
+            templates that have been created within a specific enterprise, where
+            `*`
+
+            will be the ID of that enterprise.
+          example: enterprise_123456
+        templateKey:
+          type: string
+          example: productInfo
+          description: >-
+            A unique identifier for the template. This identifier is unique
+            across
+
+            the `scope` of the enterprise to which the metadata template is
+            being
+
+            applied, yet is not necessarily unique across different enterprises.
+          maxLength: 64
+          pattern: ^[a-zA-Z_][-a-zA-Z0-9_]*$
+        displayName:
+          type: string
+          description: >-
+            The display name of the template. This can be seen in the Box web
+            app
+
+            and mobile apps.
+          maxLength: 4096
+          example: Product Info
+        hidden:
+          type: boolean
+          example: true
+          description: |-
+            Defines if this template is visible in the Box web app UI, or if
+            it is purely intended for usage through the API.
+        fields:
+          type: array
+          description: >-
+            An ordered list of template fields which are part of the template.
+            Each
+
+            field can be a regular text field, date field, number field, as well
+            as a
+
+            single or multi-select list.
+          items:
+            type: object
+            description: >-
+              A field within a metadata template. Fields can be a basic text,
+              date, or
+
+              number field, or a list of options.
+            allOf:
+              - title: Metadata Field (Read)
+                description: >-
+                  A field within a metadata template. Fields can be a basic
+                  text, date, or
+
+                  number field, or a list of options.
+                required:
+                  - type
+                  - key
+                  - displayName
+                type: object
+                properties:
+                  type:
+                    type: string
+                    example: string
+                    description: >-
+                      The type of field. The basic fields are a `string` field
+                      for text, a
+
+                      `float` field for numbers, and a `date` fields to present
+                      the user with a
+
+                      date-time picker.
+
+
+                      Additionally, metadata templates support an `enum` field
+                      for a basic list
+
+                      of items, and ` multiSelect` field for a similar list of
+                      items where the
+
+                      user can select more than one value.
+
+
+                      **Note**: The `integer` value is deprecated.
+
+                      It is still present in the response,
+
+                      but cannot be used in the POST request.
+                    enum:
+                      - string
+                      - float
+                      - date
+                      - enum
+                      - multiSelect
+                      - integer
+                  key:
+                    type: string
+                    example: category
+                    description: |-
+                      A unique identifier for the field. The identifier must
+                      be unique within the template to which it belongs.
+                    maxLength: 256
+                  displayName:
+                    type: string
+                    example: Category
+                    description: >-
+                      The display name of the field as it is shown to the user
+                      in the web and
+
+                      mobile apps.
+                    maxLength: 4096
+                  description:
+                    type: string
+                    example: The category
+                    description: A description of the field. This is not shown to the user.
+                    maxLength: 4096
+                  hidden:
+                    type: boolean
+                    example: true
+                    description: >-
+                      Whether this field is hidden in the UI for the user and
+                      can only be set
+
+                      through the API instead.
+                  options:
+                    description: >-
+                      A list of options for this field. This is used in
+                      combination with the
+
+                      `enum` and `multiSelect` field types.
+                    type: array
+                    items:
+                      title: Metadata Option (Write)
+                      type: object
+                      description: >-
+                        An option for a Metadata Template Field.
+
+
+                        Options only need to be provided for fields of type
+                        `enum` and `multiSelect`.
+
+                        Options represent the value(s) a user can select for the
+                        field either through
+
+                        the UI or through the API.
+                      required:
+                        - key
+                      properties:
+                        key:
+                          description: >-
+                            The text value of the option. This represents both
+                            the display name of the
+
+                            option and the internal key used when updating
+                            templates.
+                          example: Category 1
+                          type: string
+              - properties:
+                  id:
+                    type: string
+                    example: 822227e0-47a5-921b-88a8-494760b2e6d2
+                    description: The unique ID of the metadata template field.
+                  options:
+                    description: >-
+                      A list of options for this field. This is used in
+                      combination
+
+                      with the `enum` and `multiSelect` field types.
+                    type: array
+                    items:
+                      type: object
+                      description: >-
+                        An option for a Metadata Template Field.
+
+
+                        Options are only present for fields of type `enum` and
+
+                        `multiSelect`. Options represent the value(s) a user can
+
+                        select for the field either through the UI or through
+                        the API.
+                      allOf:
+                        - title: Metadata Option (Write)
+                          type: object
+                          description: >-
+                            An option for a Metadata Template Field.
+
+
+                            Options only need to be provided for fields of type
+                            `enum` and `multiSelect`.
+
+                            Options represent the value(s) a user can select for
+                            the field either through
+
+                            the UI or through the API.
+                          required:
+                            - key
+                          properties:
+                            key:
+                              description: >-
+                                The text value of the option. This represents
+                                both the display name of the
+
+                                option and the internal key used when updating
+                                templates.
+                              example: Category 1
+                              type: string
+                        - properties:
+                            id:
+                              type: string
+                              example: 45dc2849-a4a7-40a9-a751-4a699a589190
+                              description: >-
+                                The internal unique identifier of the the
+                                option.
+        copyInstanceOnItemCopy:
+          type: boolean
+          description: >-
+            Whether or not to include the metadata when a file or folder is
+            copied.
+          example: true

@@ -1,0 +1,143 @@
+openapi: 3.0.1
+info:
+  title: Storefront Carts
+tags:
+  - name: Cart
+  - name: Cart Items
+  - name: Cart Currency
+paths:
+  /carts:
+    get:
+      tags:
+        - Cart
+      summary: Get a Cart
+      description: >-
+        Returns a *Cart*.
+
+
+        > #### Note
+
+        > * Substitute your storefront domain for `yourstore.example.com`. 
+
+        > * The Send a Test Request feature is not currently supported for this
+        endpoint.  
+    post:
+      tags:
+        - Cart
+      summary: Create a Cart
+      description: >-
+        Creates a *Cart*.
+
+
+        > #### Note
+
+        > * Substitute your storefront domain for `yourstore.example.com`. 
+
+        > * The Send a Test Request feature is not currently supported for this
+        endpoint.  
+  /carts/{cartId}:
+    delete:
+      tags:
+        - Cart
+      summary: Delete a Cart
+      description: >-
+        Deletes a *Cart*. Once a *Cart* has been deleted it can not be
+        recovered.
+
+
+
+        > #### Note
+
+        > * Substitute your storefront domain for `yourstore.example.com`. 
+
+        > * The Send a Test Request feature is not currently supported for this
+        endpoint.  
+  /carts/{cartId}/items:
+    post:
+      tags:
+        - Cart Items
+      summary: Add Cart Line Items
+      description: >-
+        Adds a line items to the *Cart*.
+
+
+        > #### Notes
+
+        > * Substitute your storefront domain for `yourstore.example.com`. 
+
+        > * The Send a Test Request feature is not currently supported for this
+        endpoint.  
+
+        > * Please note that this API endpoint is not concurrent safe, meaning
+        multiple simultaneous requests could result in unexpected and
+        inconsistent results.
+  /carts/{cartId}/items/{itemId}:
+    put:
+      tags:
+        - Cart Items
+      summary: Update Cart Line Item
+      description: >-
+        Updates a *Cart* line item. Updates an existing, single line item
+        quantity and the price of custom items in a cart.
+
+
+        If a modified product or variant needs to be changed or updated, you can
+        remove and re-add the product to the cart with the correct variants
+        using the [Delete Cart Line
+        Item](/docs/rest-storefront/carts/cart-items#delete-cart-line-item) and
+        the [Add Cart Line
+        Items](/docs/rest-storefront/carts/cart-items#add-cart-line-items)
+        endpoints. You can also use carts mutations that are part of the
+        [GraphQL Storefront
+        API](/docs/storefront/cart-checkout/guide/graphql-storefront).
+
+
+
+        > #### Notes
+
+        > * Substitute your storefront domain for `yourstore.example.com`. 
+
+        > * The Send a Test Request feature is not currently supported for this
+        endpoint. 
+
+        > * Please note that this API endpoint is not concurrent safe, meaning
+        multiple simultaneous requests could result in unexpected and
+        inconsistent results.
+    delete:
+      tags:
+        - Cart Items
+      summary: Delete Cart Line Item
+      description: >-
+        Deletes a *Cart* line item.
+
+
+        Removing the last `line_item` in the *Cart* deletes the *Cart*.
+
+
+        > #### Note
+
+        > * Substitute your storefront domain for `yourstore.example.com`. 
+
+        > * The Send a Test Request feature is not currently supported for this
+        endpoint.  
+  /carts/{cartId}/currency:
+    post:
+      tags:
+        - Cart Currency
+      summary: Update Cart Currency
+      description: >-
+        Update currency of the *Cart*. 
+
+        Promotions and gift certificates that don't apply to the new currency
+        will be removed from your cart.
+
+        You cannot update the cart currency if the draft order cart or the cart
+        contains a manual discount.
+
+
+        > #### Note
+
+        > * Substitute your storefront domain for `yourstore.example.com`. 
+
+        > * The Send a Test Request feature is not currently supported for this
+        endpoint.

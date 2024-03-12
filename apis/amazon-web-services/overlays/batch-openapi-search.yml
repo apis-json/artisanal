@@ -20,11 +20,6 @@ paths:
         aren't canceled. However, the API operation still succeeds, even if no
         job is canceled. These jobs must be terminated with the
         <a>TerminateJob</a> operation.</p>
-      tags:
-        - Cancel
-        - Job
-        - V1
-        - Canceljob
   /v1/createcomputeenvironment:
     POST:
       summary: CreateComputeEnvironment
@@ -113,13 +108,6 @@ paths:
         version of the launch template is evaluated up at the time of the
         infrastructure update, even if the <code>launchTemplate</code> wasn't
         updated.</p> </note>
-      tags:
-        - Create
-        - Compute
-        - Environment
-        - V1
-        - Canceljob
-        - Createcomputeenvironment
   /v1/createjobqueue:
     POST:
       summary: CreateJobQueue
@@ -132,27 +120,10 @@ paths:
         example, if a compute environment is associated with more than one job
         queue, the job queue with a higher priority is given preference for
         scheduling jobs to that compute environment.</p>
-      tags:
-        - Create
-        - Job
-        - Queue
-        - V1
-        - Canceljob
-        - Createcomputeenvironment
-        - Createjobqueue
   /v1/createschedulingpolicy:
     POST:
       summary: CreateSchedulingPolicy
       description: <p>Creates an Batch scheduling policy.</p>
-      tags:
-        - Create
-        - Scheduling
-        - Policy
-        - V1
-        - Canceljob
-        - Createcomputeenvironment
-        - Createjobqueue
-        - Createschedulingpolicy
   /v1/deletecomputeenvironment:
     POST:
       summary: DeleteComputeEnvironment
@@ -165,16 +136,6 @@ paths:
         active jobs on that compute environment before deleting the compute
         environment. If this isn't done, the compute environment enters an
         invalid state.</p>
-      tags:
-        - Delete
-        - Compute
-        - Environment
-        - V1
-        - Canceljob
-        - Createcomputeenvironment
-        - Createjobqueue
-        - Createschedulingpolicy
-        - Deletecomputeenvironment
   /v1/deletejobqueue:
     POST:
       summary: DeleteJobQueue
@@ -185,54 +146,18 @@ paths:
         are terminated at a rate of about 16 jobs each second.</p> <p>It's not
         necessary to disassociate compute environments from a queue before
         submitting a <code>DeleteJobQueue</code> request.</p>
-      tags:
-        - Delete
-        - Job
-        - Queue
-        - V1
-        - Canceljob
-        - Createcomputeenvironment
-        - Createjobqueue
-        - Createschedulingpolicy
-        - Deletecomputeenvironment
-        - Deletejobqueue
   /v1/deleteschedulingpolicy:
     POST:
       summary: DeleteSchedulingPolicy
       description: >-
         <p>Deletes the specified scheduling policy.</p> <p>You can't delete a
         scheduling policy that's used in any job queues.</p>
-      tags:
-        - Delete
-        - Scheduling
-        - Policy
-        - V1
-        - Canceljob
-        - Createcomputeenvironment
-        - Createjobqueue
-        - Createschedulingpolicy
-        - Deletecomputeenvironment
-        - Deletejobqueue
-        - Deleteschedulingpolicy
   /v1/deregisterjobdefinition:
     POST:
       summary: DeregisterJobDefinition
       description: >-
         <p>Deregisters an Batch job definition. Job definitions are permanently
         deleted after 180 days.</p>
-      tags:
-        - Deregister
-        - Job
-        - Definition
-        - V1
-        - Canceljob
-        - Createcomputeenvironment
-        - Createjobqueue
-        - Createschedulingpolicy
-        - Deletecomputeenvironment
-        - Deletejobqueue
-        - Deleteschedulingpolicy
-        - Deregisterjobdefinition
   /v1/describecomputeenvironments:
     POST:
       summary: DescribeComputeEnvironments
@@ -242,20 +167,6 @@ paths:
         <code>DescribeComputeEnvironment</code> operation to determine the
         <code>ecsClusterArn</code> that you launch your Amazon ECS container
         instances into.</p>
-      tags:
-        - Describe
-        - Compute
-        - Environments
-        - V1
-        - Canceljob
-        - Createcomputeenvironment
-        - Createjobqueue
-        - Createschedulingpolicy
-        - Deletecomputeenvironment
-        - Deletejobqueue
-        - Deleteschedulingpolicy
-        - Deregisterjobdefinition
-        - Describecomputeenvironments
   /v1/describejobdefinitions:
     POST:
       summary: DescribeJobDefinitions
@@ -263,83 +174,18 @@ paths:
         <p>Describes a list of job definitions. You can specify a
         <code>status</code> (such as <code>ACTIVE</code>) to only return job
         definitions that match that status.</p>
-      tags:
-        - Describe
-        - Job
-        - Definitions
-        - V1
-        - Canceljob
-        - Createcomputeenvironment
-        - Createjobqueue
-        - Createschedulingpolicy
-        - Deletecomputeenvironment
-        - Deletejobqueue
-        - Deleteschedulingpolicy
-        - Deregisterjobdefinition
-        - Describecomputeenvironments
-        - Describejobdefinitions
   /v1/describejobqueues:
     POST:
       summary: DescribeJobQueues
       description: <p>Describes one or more of your job queues.</p>
-      tags:
-        - Describe
-        - Job
-        - Queues
-        - V1
-        - Canceljob
-        - Createcomputeenvironment
-        - Createjobqueue
-        - Createschedulingpolicy
-        - Deletecomputeenvironment
-        - Deletejobqueue
-        - Deleteschedulingpolicy
-        - Deregisterjobdefinition
-        - Describecomputeenvironments
-        - Describejobdefinitions
-        - Describejobqueues
   /v1/describejobs:
     POST:
       summary: DescribeJobs
       description: <p>Describes a list of Batch jobs.</p>
-      tags:
-        - Describe
-        - Jobs
-        - V1
-        - Canceljob
-        - Createcomputeenvironment
-        - Createjobqueue
-        - Createschedulingpolicy
-        - Deletecomputeenvironment
-        - Deletejobqueue
-        - Deleteschedulingpolicy
-        - Deregisterjobdefinition
-        - Describecomputeenvironments
-        - Describejobdefinitions
-        - Describejobqueues
-        - Describejobs
   /v1/describeschedulingpolicies:
     POST:
       summary: DescribeSchedulingPolicies
       description: <p>Describes one or more of your scheduling policies.</p>
-      tags:
-        - Describe
-        - Scheduling
-        - Policies
-        - V1
-        - Canceljob
-        - Createcomputeenvironment
-        - Createjobqueue
-        - Createschedulingpolicy
-        - Deletecomputeenvironment
-        - Deletejobqueue
-        - Deleteschedulingpolicy
-        - Deregisterjobdefinition
-        - Describecomputeenvironments
-        - Describejobdefinitions
-        - Describejobqueues
-        - Describejobs
-        - Describeschedulingpolicies
   /v1/listjobs:
     POST:
       summary: ListJobs
@@ -352,98 +198,18 @@ paths:
         filter the results by job status with the <code>jobStatus</code>
         parameter. If you don't specify a status, only <code>RUNNING</code> jobs
         are returned.</p>
-      tags:
-        - List
-        - Jobs
-        - V1
-        - Canceljob
-        - Createcomputeenvironment
-        - Createjobqueue
-        - Createschedulingpolicy
-        - Deletecomputeenvironment
-        - Deletejobqueue
-        - Deleteschedulingpolicy
-        - Deregisterjobdefinition
-        - Describecomputeenvironments
-        - Describejobdefinitions
-        - Describejobqueues
-        - Describejobs
-        - Describeschedulingpolicies
-        - Listjobs
   /v1/listschedulingpolicies:
     POST:
       summary: ListSchedulingPolicies
       description: <p>Returns a list of Batch scheduling policies.</p>
-      tags:
-        - List
-        - Scheduling
-        - Policies
-        - V1
-        - Canceljob
-        - Createcomputeenvironment
-        - Createjobqueue
-        - Createschedulingpolicy
-        - Deletecomputeenvironment
-        - Deletejobqueue
-        - Deleteschedulingpolicy
-        - Deregisterjobdefinition
-        - Describecomputeenvironments
-        - Describejobdefinitions
-        - Describejobqueues
-        - Describejobs
-        - Describeschedulingpolicies
-        - Listjobs
-        - Listschedulingpolicies
   /v1/tags/{resourceArn}:
     DELETE:
       summary: UntagResource
       description: <p>Deletes specified tags from an Batch resource.</p>
-      tags:
-        - Untag
-        - Resource
-        - V1
-        - Canceljob
-        - Createcomputeenvironment
-        - Createjobqueue
-        - Createschedulingpolicy
-        - Deletecomputeenvironment
-        - Deletejobqueue
-        - Deleteschedulingpolicy
-        - Deregisterjobdefinition
-        - Describecomputeenvironments
-        - Describejobdefinitions
-        - Describejobqueues
-        - Describejobs
-        - Describeschedulingpolicies
-        - Listjobs
-        - Listschedulingpolicies
-        - Arn
   /v1/registerjobdefinition:
     POST:
       summary: RegisterJobDefinition
       description: <p>Registers an Batch job definition.</p>
-      tags:
-        - Register
-        - Job
-        - Definition
-        - V1
-        - Canceljob
-        - Createcomputeenvironment
-        - Createjobqueue
-        - Createschedulingpolicy
-        - Deletecomputeenvironment
-        - Deletejobqueue
-        - Deleteschedulingpolicy
-        - Deregisterjobdefinition
-        - Describecomputeenvironments
-        - Describejobdefinitions
-        - Describejobqueues
-        - Describejobs
-        - Describeschedulingpolicies
-        - Listjobs
-        - Listschedulingpolicies
-        - Arn
-        - Registerjobdefinition
   /v1/submitjob:
     POST:
       summary: SubmitJob
@@ -462,28 +228,6 @@ paths:
         can't be guaranteed to run for more than 14 days. This is because, after
         14 days, Fargate resources might become unavailable and job might be
         terminated.</p> </important>
-      tags:
-        - Submit
-        - Job
-        - V1
-        - Canceljob
-        - Createcomputeenvironment
-        - Createjobqueue
-        - Createschedulingpolicy
-        - Deletecomputeenvironment
-        - Deletejobqueue
-        - Deleteschedulingpolicy
-        - Deregisterjobdefinition
-        - Describecomputeenvironments
-        - Describejobdefinitions
-        - Describejobqueues
-        - Describejobs
-        - Describeschedulingpolicies
-        - Listjobs
-        - Listschedulingpolicies
-        - Arn
-        - Registerjobdefinition
-        - Submitjob
   /v1/terminatejob:
     POST:
       summary: TerminateJob
@@ -492,116 +236,15 @@ paths:
         <code>STARTING</code> or <code>RUNNING</code> state are terminated,
         which causes them to transition to <code>FAILED</code>. Jobs that have
         not progressed to the <code>STARTING</code> state are cancelled.</p>
-      tags:
-        - Terminate
-        - Job
-        - V1
-        - Canceljob
-        - Createcomputeenvironment
-        - Createjobqueue
-        - Createschedulingpolicy
-        - Deletecomputeenvironment
-        - Deletejobqueue
-        - Deleteschedulingpolicy
-        - Deregisterjobdefinition
-        - Describecomputeenvironments
-        - Describejobdefinitions
-        - Describejobqueues
-        - Describejobs
-        - Describeschedulingpolicies
-        - Listjobs
-        - Listschedulingpolicies
-        - Arn
-        - Registerjobdefinition
-        - Submitjob
-        - Terminatejob
   /v1/updatecomputeenvironment:
     POST:
       summary: UpdateComputeEnvironment
       description: <p>Updates an Batch compute environment.</p>
-      tags:
-        - Update
-        - Compute
-        - Environment
-        - V1
-        - Canceljob
-        - Createcomputeenvironment
-        - Createjobqueue
-        - Createschedulingpolicy
-        - Deletecomputeenvironment
-        - Deletejobqueue
-        - Deleteschedulingpolicy
-        - Deregisterjobdefinition
-        - Describecomputeenvironments
-        - Describejobdefinitions
-        - Describejobqueues
-        - Describejobs
-        - Describeschedulingpolicies
-        - Listjobs
-        - Listschedulingpolicies
-        - Arn
-        - Registerjobdefinition
-        - Submitjob
-        - Terminatejob
-        - Updatecomputeenvironment
   /v1/updatejobqueue:
     POST:
       summary: UpdateJobQueue
       description: <p>Updates a job queue.</p>
-      tags:
-        - Update
-        - Job
-        - Queue
-        - V1
-        - Canceljob
-        - Createcomputeenvironment
-        - Createjobqueue
-        - Createschedulingpolicy
-        - Deletecomputeenvironment
-        - Deletejobqueue
-        - Deleteschedulingpolicy
-        - Deregisterjobdefinition
-        - Describecomputeenvironments
-        - Describejobdefinitions
-        - Describejobqueues
-        - Describejobs
-        - Describeschedulingpolicies
-        - Listjobs
-        - Listschedulingpolicies
-        - Arn
-        - Registerjobdefinition
-        - Submitjob
-        - Terminatejob
-        - Updatecomputeenvironment
-        - Updatejobqueue
   /v1/updateschedulingpolicy:
     POST:
       summary: UpdateSchedulingPolicy
-      description: <p>Updates a scheduling policy.</
-      tags:
-        - Update
-        - Scheduling
-        - Policy
-        - V1
-        - Canceljob
-        - Createcomputeenvironment
-        - Createjobqueue
-        - Createschedulingpolicy
-        - Deletecomputeenvironment
-        - Deletejobqueue
-        - Deleteschedulingpolicy
-        - Deregisterjobdefinition
-        - Describecomputeenvironments
-        - Describejobdefinitions
-        - Describejobqueues
-        - Describejobs
-        - Describeschedulingpolicies
-        - Listjobs
-        - Listschedulingpolicies
-        - Arn
-        - Registerjobdefinition
-        - Submitjob
-        - Terminatejob
-        - Updatecomputeenvironment
-        - Updatejobqueue
-        - Updatescheduling
+      description: <p>Updates a scheduling pol

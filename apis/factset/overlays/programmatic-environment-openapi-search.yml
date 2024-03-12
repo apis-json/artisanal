@@ -1,0 +1,42 @@
+openapi: 3.0.0
+info:
+  title: FPE API
+paths:
+  /analytics/quant/fpe/v1/calculations:
+    post:
+      tags:
+        - Calculations
+      summary: Starts a new script calculation
+      description: This endpoint takes a python script and starts executing it within FPE
+  /analytics/quant/fpe/v1/calculations/{id}:
+    get:
+      tags:
+        - Calculations
+      summary: Get calculation status by id
+      description: >-
+        This is the endpoint to check on the progress of a previous calculation
+        request.
+  /analytics/quant/fpe/v1/calculations/{id}/output:
+    get:
+      tags:
+        - Calculations
+      summary: Get calculation output for a specific calculation
+      description: This endpoint returns the specified output from the calculation.
+  /analytics/quant/fpe/v1/calculations/{id}/log:
+    get:
+      tags:
+        - Calculations
+      summary: Get calculation log for a specific calculation
+      description: This endpoint returns the log from the calculation.
+  /analytics/quant/fpe/v1/files/{server}/{file}:
+    post:
+      tags:
+        - Files
+      summary: Starts a file upload
+      description: This endpoint takes a file and uploads it
+  /analytics/quant/fpe/v1/files/uploads/{id}:
+    get:
+      tags:
+        - Files
+      summary: Get upload status by id
+      description: This is the endpoint to check on the progress of a previous uplo

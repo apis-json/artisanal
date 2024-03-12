@@ -10,42 +10,16 @@ paths:
         workspace does not already have an alert manager definition, don't use
         this operation to create it. Instead, use
         <code>CreateAlertManagerDefinition</code>.</p>
-      tags:
-        - Put
-        - Alert
-        - Manager
-        - Definition
-        - Id
-        - Alertmanager
-        - Definition
   /workspaces/{workspaceId}/logging:
     PUT:
       summary: UpdateLoggingConfiguration
       description: >-
         <p>Updates the log group ARN or the workspace ID of the current logging
         configuration.</p>
-      tags:
-        - Update
-        - Logging
-        - Configuration
-        - Id
-        - Alertmanager
-        - Definition
-        - Logging
   /workspaces/{workspaceId}/rulegroupsnamespaces:
     GET:
       summary: ListRuleGroupsNamespaces
       description: <p>Returns a list of rule groups namespaces in a workspace.</p>
-      tags:
-        - List
-        - Rule
-        - Groups
-        - Namespaces
-        - Id
-        - Alertmanager
-        - Definition
-        - Logging
-        - Rulegroupsnamespaces
   /scrapers:
     GET:
       summary: ListScrapers
@@ -53,31 +27,12 @@ paths:
         <p>The <code>ListScrapers</code> operation lists all of the scrapers in
         your account. This includes scrapers being created or deleted. You can
         optionally filter the returned list.</p>
-      tags:
-        - List
-        - Scrapers
-        - Id
-        - Alertmanager
-        - Definition
-        - Logging
-        - Rulegroupsnamespaces
-        - Scrapers
   /workspaces:
     GET:
       summary: ListWorkspaces
       description: >-
         <p>Lists all of the Amazon Managed Service for Prometheus workspaces in
         your account. This includes workspaces being created or deleted. </p>
-      tags:
-        - List
-        - Workspaces
-        - Id
-        - Alertmanager
-        - Definition
-        - Logging
-        - Rulegroupsnamespaces
-        - Scrapers
-        - Workspaces
   /workspaces/{workspaceId}/rulegroupsnamespaces/{name}:
     PUT:
       summary: PutRuleGroupsNamespace
@@ -89,51 +44,16 @@ paths:
         namespace, use <code>CreateRuleGroupsNamespace</code>.</p> <p>You can't
         use this operation to add tags to an existing rule groups namespace.
         Instead, use <code>TagResource</code>.</p>
-      tags:
-        - Put
-        - Rule
-        - Groups
-        - Namespace
-        - Id
-        - Alertmanager
-        - Definition
-        - Logging
-        - Rulegroupsnamespaces
-        - Scrapers
-        - Workspaces
-        - Name
   /scrapers/{scraperId}:
     GET:
       summary: DescribeScraper
       description: >-
         <p>The <code>DescribeScraper</code> operation displays information about
         an existing scraper.</p>
-      tags:
-        - Describe
-        - Scraper
-        - Id
-        - Alertmanager
-        - Definition
-        - Logging
-        - Rulegroupsnamespaces
-        - Scrapers
-        - Workspaces
-        - Name
   /workspaces/{workspaceId}:
     GET:
       summary: DescribeWorkspace
       description: <p>Returns information about an existing workspace. </p>
-      tags:
-        - Describe
-        - Workspace
-        - Id
-        - Alertmanager
-        - Definition
-        - Logging
-        - Rulegroupsnamespaces
-        - Scrapers
-        - Workspaces
-        - Name
   /scraperconfiguration:
     GET:
       summary: GetDefaultScraperConfiguration
@@ -141,20 +61,6 @@ paths:
         <p>The <code>GetDefaultScraperConfiguration</code> operation returns the
         default scraper configuration used when Amazon EKS creates a scraper for
         you.</p>
-      tags:
-        - Get
-        - Default
-        - Scraper
-        - Configuration
-        - Id
-        - Alertmanager
-        - Definition
-        - Logging
-        - Rulegroupsnamespaces
-        - Scrapers
-        - Workspaces
-        - Name
-        - Scraperconfiguration
   /tags/{resourceArn}:
     DELETE:
       summary: UntagResource
@@ -162,35 +68,7 @@ paths:
         <p>Removes the specified tags from an Amazon Managed Service for
         Prometheus resource. The only resources that can be tagged are
         workspaces and rule groups namespaces. </p>
-      tags:
-        - Untag
-        - Resource
-        - Id
-        - Alertmanager
-        - Definition
-        - Logging
-        - Rulegroupsnamespaces
-        - Scrapers
-        - Workspaces
-        - Name
-        - Scraperconfiguration
-        - Arn
   /workspaces/{workspaceId}/alias:
     POST:
       summary: UpdateWorkspaceAlias
-      description: <p>Updates the alias of an existing workspace. </
-      tags:
-        - Update
-        - Workspace
-        - Alias
-        - Id
-        - Alertmanager
-        - Definition
-        - Logging
-        - Rulegroupsnamespaces
-        - Scrapers
-        - Workspaces
-        - Name
-        - Scraperconfiguration
-        - Arn
-        - null
+      description: <p>Updates the alias of an existing worksp

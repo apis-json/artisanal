@@ -8,204 +8,56 @@ paths:
       description: >-
         <p>Returns a list of the Scram Secrets associated with an Amazon MSK
         cluster.</p>
-      tags:
-        - List
-        - Scram
-        - Secrets
-        - Arn
-        - Scram
-        - Secrets
   /v1/clusters:
     GET:
       summary: ListClusters
       description: <p>Returns a list of all the MSK clusters in the current Region.</p>
-      tags:
-        - List
-        - Clusters
-        - Arn
-        - Scram
-        - Secrets
-        - V1
-        - Clusters
   /api/v2/clusters:
     GET:
       summary: ListClustersV2
       description: <p>Returns a list of all the MSK clusters in the current Region.</p>
-      tags:
-        - List
-        - Clusters
-        - V2
-        - Arn
-        - Scram
-        - Secrets
-        - V1
-        - Clusters
-        - Api
-        - V2
   /replication/v1/replicators:
     GET:
       summary: ListReplicators
       description: <p>Lists the replicators.</p>
-      tags:
-        - List
-        - Replicators
-        - Arn
-        - Scram
-        - Secrets
-        - V1
-        - Clusters
-        - Api
-        - V2
-        - Replication
-        - Replicators
   /v1/configurations:
     GET:
       summary: ListConfigurations
       description: <p>Returns a list of all the MSK configurations in this Region.</p>
-      tags:
-        - List
-        - Configurations
-        - Arn
-        - Scram
-        - Secrets
-        - V1
-        - Clusters
-        - Api
-        - V2
-        - Replication
-        - Replicators
-        - Configurations
   /v1/vpc-connection:
     POST:
       summary: CreateVpcConnection
       description: <p>Creates a new Amazon MSK VPC connection.</p>
-      tags:
-        - Create
-        - Vpc
-        - Connection
-        - Arn
-        - Scram
-        - Secrets
-        - V1
-        - Clusters
-        - Api
-        - V2
-        - Replication
-        - Replicators
-        - Configurations
-        - Vpc
-        - Connection
   /v1/clusters/{clusterArn}:
     GET:
       summary: DescribeCluster
       description: >-
         <p>Returns a description of the MSK cluster whose Amazon Resource Name
         (ARN) is specified in the request.</p>
-      tags:
-        - Describe
-        - Cluster
-        - Arn
-        - Scram
-        - Secrets
-        - V1
-        - Clusters
-        - Api
-        - V2
-        - Replication
-        - Replicators
-        - Configurations
-        - Vpc
-        - Connection
   /v1/clusters/{clusterArn}/policy:
     PUT:
       summary: PutClusterPolicy
       description: >-
         <p>Creates or updates the specified MSK cluster policy. If updating the
         policy, the currentVersion field is required in the request payload.</p>
-      tags:
-        - Put
-        - Cluster
-        - Policy
-        - Arn
-        - Scram
-        - Secrets
-        - V1
-        - Clusters
-        - Api
-        - V2
-        - Replication
-        - Replicators
-        - Configurations
-        - Vpc
-        - Connection
-        - Policy
   /v1/configurations/{arn}:
     PUT:
       summary: UpdateConfiguration
       description: >-
         <p>Updates an existing MSK configuration. The configuration must be in
         the Active state.</p>
-      tags:
-        - Update
-        - Configuration
-        - Arn
-        - Scram
-        - Secrets
-        - V1
-        - Clusters
-        - Api
-        - V2
-        - Replication
-        - Replicators
-        - Configurations
-        - Vpc
-        - Connection
-        - Policy
   /replication/v1/replicators/{replicatorArn}:
     GET:
       summary: DescribeReplicator
       description: >-
         <p>Returns a description of the Kafka Replicator whose Amazon Resource
         Name (ARN) is specified in the request.</p>
-      tags:
-        - Describe
-        - Replicator
-        - Arn
-        - Scram
-        - Secrets
-        - V1
-        - Clusters
-        - Api
-        - V2
-        - Replication
-        - Replicators
-        - Configurations
-        - Vpc
-        - Connection
-        - Policy
   /v1/vpc-connection/{arn}:
     GET:
       summary: DescribeVpcConnection
       description: >-
         <p>Displays information about the specified Amazon MSK VPC
         connection.</p>
-      tags:
-        - Describe
-        - Vpc
-        - Connection
-        - Arn
-        - Scram
-        - Secrets
-        - V1
-        - Clusters
-        - Api
-        - V2
-        - Replication
-        - Replicators
-        - Configurations
-        - Vpc
-        - Connection
-        - Policy
   /api/v2/clusters/{clusterArn}:
     GET:
       summary: DescribeClusterV2
@@ -213,452 +65,74 @@ paths:
         <p>Returns a description of the MSK cluster of either the provisioned or
         the serverless type whose Amazon Resource Name (ARN) is specified in the
         request.</p>
-      tags:
-        - Describe
-        - Cluster
-        - V2
-        - Arn
-        - Scram
-        - Secrets
-        - V1
-        - Clusters
-        - Api
-        - V2
-        - Replication
-        - Replicators
-        - Configurations
-        - Vpc
-        - Connection
-        - Policy
   /v1/operations/{clusterOperationArn}:
     GET:
       summary: DescribeClusterOperation
       description: >-
         <p>Returns a description of the cluster operation specified by the
         ARN.</p>
-      tags:
-        - Describe
-        - Cluster
-        - Operation
-        - Arn
-        - Scram
-        - Secrets
-        - V1
-        - Clusters
-        - Api
-        - V2
-        - Replication
-        - Replicators
-        - Configurations
-        - Vpc
-        - Connection
-        - Policy
-        - Operation
   /api/v2/operations/{clusterOperationArn}:
     GET:
       summary: DescribeClusterOperationV2
       description: >-
         <p>Returns a description of the cluster operation specified by the
         ARN.</p>
-      tags:
-        - Describe
-        - Cluster
-        - Operation
-        - V2
-        - Arn
-        - Scram
-        - Secrets
-        - V1
-        - Clusters
-        - Api
-        - V2
-        - Replication
-        - Replicators
-        - Configurations
-        - Vpc
-        - Connection
-        - Policy
-        - Operation
   /v1/configurations/{arn}/revisions/{revision}:
     GET:
       summary: DescribeConfigurationRevision
       description: <p>Returns a description of this revision of the configuration.</p>
-      tags:
-        - Describe
-        - Configuration
-        - Revision
-        - Arn
-        - Scram
-        - Secrets
-        - V1
-        - Clusters
-        - Api
-        - V2
-        - Replication
-        - Replicators
-        - Configurations
-        - Vpc
-        - Connection
-        - Policy
-        - Operation
-        - Revisions
-        - Revision
   /v1/clusters/{clusterArn}/bootstrap-brokers:
     GET:
       summary: GetBootstrapBrokers
       description: <p>A list of brokers that a client application can use to bootstrap.</p>
-      tags:
-        - Get
-        - Bootstrap
-        - Brokers
-        - Arn
-        - Scram
-        - Secrets
-        - V1
-        - Clusters
-        - Api
-        - V2
-        - Replication
-        - Replicators
-        - Configurations
-        - Vpc
-        - Connection
-        - Policy
-        - Operation
-        - Revisions
-        - Revision
-        - Bootstrap
-        - Brokers
   /v1/compatible-kafka-versions:
     GET:
       summary: GetCompatibleKafkaVersions
       description: >-
         <p>Gets the Apache Kafka versions to which you can update the MSK
         cluster.</p>
-      tags:
-        - Get
-        - Compatible
-        - Kafka
-        - Versions
-        - Arn
-        - Scram
-        - Secrets
-        - V1
-        - Clusters
-        - Api
-        - V2
-        - Replication
-        - Replicators
-        - Configurations
-        - Vpc
-        - Connection
-        - Policy
-        - Operation
-        - Revisions
-        - Revision
-        - Bootstrap
-        - Brokers
-        - Compatible
-        - Kafka
-        - Versions
   /v1/clusters/{clusterArn}/client-vpc-connections:
     GET:
       summary: ListClientVpcConnections
       description: <p>Displays a list of client VPC connections.</p>
-      tags:
-        - List
-        - Client
-        - Vpc
-        - Connections
-        - Arn
-        - Scram
-        - Secrets
-        - V1
-        - Clusters
-        - Api
-        - V2
-        - Replication
-        - Replicators
-        - Configurations
-        - Vpc
-        - Connection
-        - Policy
-        - Operation
-        - Revisions
-        - Revision
-        - Bootstrap
-        - Brokers
-        - Compatible
-        - Kafka
-        - Versions
-        - Client
-        - Connections
   /v1/clusters/{clusterArn}/operations:
     GET:
       summary: ListClusterOperations
       description: >-
         <p>Returns a list of all the operations that have been performed on the
         specified MSK cluster.</p>
-      tags:
-        - List
-        - Cluster
-        - Operations
-        - Arn
-        - Scram
-        - Secrets
-        - V1
-        - Clusters
-        - Api
-        - V2
-        - Replication
-        - Replicators
-        - Configurations
-        - Vpc
-        - Connection
-        - Policy
-        - Operation
-        - Revisions
-        - Revision
-        - Bootstrap
-        - Brokers
-        - Compatible
-        - Kafka
-        - Versions
-        - Client
-        - Connections
-        - Operations
   /api/v2/clusters/{clusterArn}/operations:
     GET:
       summary: ListClusterOperationsV2
       description: >-
         <p>Returns a list of all the operations that have been performed on the
         specified MSK cluster.</p>
-      tags:
-        - List
-        - Cluster
-        - Operations
-        - V2
-        - Arn
-        - Scram
-        - Secrets
-        - V1
-        - Clusters
-        - Api
-        - V2
-        - Replication
-        - Replicators
-        - Configurations
-        - Vpc
-        - Connection
-        - Policy
-        - Operation
-        - Revisions
-        - Revision
-        - Bootstrap
-        - Brokers
-        - Compatible
-        - Kafka
-        - Versions
-        - Client
-        - Connections
-        - Operations
   /v1/configurations/{arn}/revisions:
     GET:
       summary: ListConfigurationRevisions
       description: <p>Returns a list of all the revisions of an MSK configuration.</p>
-      tags:
-        - List
-        - Configuration
-        - Revisions
-        - Arn
-        - Scram
-        - Secrets
-        - V1
-        - Clusters
-        - Api
-        - V2
-        - Replication
-        - Replicators
-        - Configurations
-        - Vpc
-        - Connection
-        - Policy
-        - Operation
-        - Revisions
-        - Revision
-        - Bootstrap
-        - Brokers
-        - Compatible
-        - Kafka
-        - Versions
-        - Client
-        - Connections
-        - Operations
   /v1/kafka-versions:
     GET:
       summary: ListKafkaVersions
       description: <p>Returns a list of Apache Kafka versions.</p>
-      tags:
-        - List
-        - Kafka
-        - Versions
-        - Arn
-        - Scram
-        - Secrets
-        - V1
-        - Clusters
-        - Api
-        - V2
-        - Replication
-        - Replicators
-        - Configurations
-        - Vpc
-        - Connection
-        - Policy
-        - Operation
-        - Revisions
-        - Revision
-        - Bootstrap
-        - Brokers
-        - Compatible
-        - Kafka
-        - Versions
-        - Client
-        - Connections
-        - Operations
   /v1/clusters/{clusterArn}/nodes:
     GET:
       summary: ListNodes
       description: <p>Returns a list of the broker nodes in the cluster.</p>
-      tags:
-        - List
-        - Nodes
-        - Arn
-        - Scram
-        - Secrets
-        - V1
-        - Clusters
-        - Api
-        - V2
-        - Replication
-        - Replicators
-        - Configurations
-        - Vpc
-        - Connection
-        - Policy
-        - Operation
-        - Revisions
-        - Revision
-        - Bootstrap
-        - Brokers
-        - Compatible
-        - Kafka
-        - Versions
-        - Client
-        - Connections
-        - Operations
-        - Nodes
   /v1/tags/{resourceArn}:
     DELETE:
       summary: UntagResource
       description: >-
         <p>Removes the tags associated with the keys that are provided in the
         query.</p>
-      tags:
-        - Untag
-        - Resource
-        - Arn
-        - Scram
-        - Secrets
-        - V1
-        - Clusters
-        - Api
-        - V2
-        - Replication
-        - Replicators
-        - Configurations
-        - Vpc
-        - Connection
-        - Policy
-        - Operation
-        - Revisions
-        - Revision
-        - Bootstrap
-        - Brokers
-        - Compatible
-        - Kafka
-        - Versions
-        - Client
-        - Connections
-        - Operations
-        - Nodes
   /v1/vpc-connections:
     GET:
       summary: ListVpcConnections
       description: <p>Displays a list of Amazon MSK VPC connections.</p>
-      tags:
-        - List
-        - Vpc
-        - Connections
-        - Arn
-        - Scram
-        - Secrets
-        - V1
-        - Clusters
-        - Api
-        - V2
-        - Replication
-        - Replicators
-        - Configurations
-        - Vpc
-        - Connection
-        - Policy
-        - Operation
-        - Revisions
-        - Revision
-        - Bootstrap
-        - Brokers
-        - Compatible
-        - Kafka
-        - Versions
-        - Client
-        - Connections
-        - Operations
-        - Nodes
   /v1/clusters/{clusterArn}/reboot-broker:
     PUT:
       summary: RebootBroker
       description: <p>Executes a reboot on a broker.</p>
-      tags:
-        - Reboot
-        - Broker
-        - Arn
-        - Scram
-        - Secrets
-        - V1
-        - Clusters
-        - Api
-        - V2
-        - Replication
-        - Replicators
-        - Configurations
-        - Vpc
-        - Connection
-        - Policy
-        - Operation
-        - Revisions
-        - Revision
-        - Bootstrap
-        - Brokers
-        - Compatible
-        - Kafka
-        - Versions
-        - Client
-        - Connections
-        - Operations
-        - Nodes
-        - Reboot
-        - Broker
   /v1/clusters/{clusterArn}/nodes/count:
     PUT:
       summary: UpdateBrokerCount
@@ -666,235 +140,28 @@ paths:
         <p>Updates the number of broker nodes in the cluster. You can use this
         operation to increase the number of brokers in an existing cluster. You
         can't decrease the number of brokers.</p>
-      tags:
-        - Update
-        - Broker
-        - Count
-        - Arn
-        - Scram
-        - Secrets
-        - V1
-        - Clusters
-        - Api
-        - V2
-        - Replication
-        - Replicators
-        - Configurations
-        - Vpc
-        - Connection
-        - Policy
-        - Operation
-        - Revisions
-        - Revision
-        - Bootstrap
-        - Brokers
-        - Compatible
-        - Kafka
-        - Versions
-        - Client
-        - Connections
-        - Operations
-        - Nodes
-        - Reboot
-        - Broker
-        - Count
   /v1/clusters/{clusterArn}/nodes/type:
     PUT:
       summary: UpdateBrokerType
       description: <p>Updates all the brokers in the cluster to the specified type.</p>
-      tags:
-        - Update
-        - Broker
-        - Type
-        - Arn
-        - Scram
-        - Secrets
-        - V1
-        - Clusters
-        - Api
-        - V2
-        - Replication
-        - Replicators
-        - Configurations
-        - Vpc
-        - Connection
-        - Policy
-        - Operation
-        - Revisions
-        - Revision
-        - Bootstrap
-        - Brokers
-        - Compatible
-        - Kafka
-        - Versions
-        - Client
-        - Connections
-        - Operations
-        - Nodes
-        - Reboot
-        - Broker
-        - Count
-        - Type
   /v1/clusters/{clusterArn}/nodes/storage:
     PUT:
       summary: UpdateBrokerStorage
       description: <p>Updates the EBS storage associated with MSK brokers.</p>
-      tags:
-        - Update
-        - Broker
-        - Storage
-        - Arn
-        - Scram
-        - Secrets
-        - V1
-        - Clusters
-        - Api
-        - V2
-        - Replication
-        - Replicators
-        - Configurations
-        - Vpc
-        - Connection
-        - Policy
-        - Operation
-        - Revisions
-        - Revision
-        - Bootstrap
-        - Brokers
-        - Compatible
-        - Kafka
-        - Versions
-        - Client
-        - Connections
-        - Operations
-        - Nodes
-        - Reboot
-        - Broker
-        - Count
-        - Type
-        - Storage
   /v1/clusters/{clusterArn}/connectivity:
     PUT:
       summary: UpdateConnectivity
       description: <p>Updates the connectivity configuration for the MSK cluster.</p>
-      tags:
-        - Update
-        - Connectivity
-        - Arn
-        - Scram
-        - Secrets
-        - V1
-        - Clusters
-        - Api
-        - V2
-        - Replication
-        - Replicators
-        - Configurations
-        - Vpc
-        - Connection
-        - Policy
-        - Operation
-        - Revisions
-        - Revision
-        - Bootstrap
-        - Brokers
-        - Compatible
-        - Kafka
-        - Versions
-        - Client
-        - Connections
-        - Operations
-        - Nodes
-        - Reboot
-        - Broker
-        - Count
-        - Type
-        - Storage
-        - Connectivity
   /v1/clusters/{clusterArn}/configuration:
     PUT:
       summary: UpdateClusterConfiguration
       description: >-
         <p>Updates the cluster with the configuration that is specified in the
         request body.</p>
-      tags:
-        - Update
-        - Cluster
-        - Configuration
-        - Arn
-        - Scram
-        - Secrets
-        - V1
-        - Clusters
-        - Api
-        - V2
-        - Replication
-        - Replicators
-        - Configurations
-        - Vpc
-        - Connection
-        - Policy
-        - Operation
-        - Revisions
-        - Revision
-        - Bootstrap
-        - Brokers
-        - Compatible
-        - Kafka
-        - Versions
-        - Client
-        - Connections
-        - Operations
-        - Nodes
-        - Reboot
-        - Broker
-        - Count
-        - Type
-        - Storage
-        - Connectivity
-        - Configuration
   /v1/clusters/{clusterArn}/version:
     PUT:
       summary: UpdateClusterKafkaVersion
       description: <p>Updates the Apache Kafka version for the cluster.</p>
-      tags:
-        - Update
-        - Cluster
-        - Kafka
-        - Version
-        - Arn
-        - Scram
-        - Secrets
-        - V1
-        - Clusters
-        - Api
-        - V2
-        - Replication
-        - Replicators
-        - Configurations
-        - Vpc
-        - Connection
-        - Policy
-        - Operation
-        - Revisions
-        - Revision
-        - Bootstrap
-        - Brokers
-        - Compatible
-        - Kafka
-        - Versions
-        - Client
-        - Connections
-        - Operations
-        - Nodes
-        - Reboot
-        - Broker
-        - Count
-        - Type
-        - Storage
-        - Connectivity
-        - Configuration
-        - Version
   /v1/clusters/{clusterArn}/monitoring:
     PUT:
       summary: UpdateMonitoring
@@ -903,173 +170,19 @@ paths:
         operation to specify which Apache Kafka metrics you want Amazon MSK to
         send to Amazon CloudWatch. You can also specify settings for open
         monitoring with Prometheus.</p>
-      tags:
-        - Update
-        - Monitoring
-        - Arn
-        - Scram
-        - Secrets
-        - V1
-        - Clusters
-        - Api
-        - V2
-        - Replication
-        - Replicators
-        - Configurations
-        - Vpc
-        - Connection
-        - Policy
-        - Operation
-        - Revisions
-        - Revision
-        - Bootstrap
-        - Brokers
-        - Compatible
-        - Kafka
-        - Versions
-        - Client
-        - Connections
-        - Operations
-        - Nodes
-        - Reboot
-        - Broker
-        - Count
-        - Type
-        - Storage
-        - Connectivity
-        - Configuration
-        - Version
-        - Monitoring
   /replication/v1/replicators/{replicatorArn}/replication-info:
     PUT:
       summary: UpdateReplicationInfo
       description: <p>Updates replication info of a replicator.</p>
-      tags:
-        - Update
-        - Replication
-        - Info
-        - Arn
-        - Scram
-        - Secrets
-        - V1
-        - Clusters
-        - Api
-        - V2
-        - Replication
-        - Replicators
-        - Configurations
-        - Vpc
-        - Connection
-        - Policy
-        - Operation
-        - Revisions
-        - Revision
-        - Bootstrap
-        - Brokers
-        - Compatible
-        - Kafka
-        - Versions
-        - Client
-        - Connections
-        - Operations
-        - Nodes
-        - Reboot
-        - Broker
-        - Count
-        - Type
-        - Storage
-        - Connectivity
-        - Configuration
-        - Version
-        - Monitoring
-        - Info
   /v1/clusters/{clusterArn}/security:
     PATCH:
       summary: UpdateSecurity
       description: >-
         <p>You can use this operation to update the encrypting and
         authentication settings for an existing cluster.</p>
-      tags:
-        - Update
-        - Security
-        - Arn
-        - Scram
-        - Secrets
-        - V1
-        - Clusters
-        - Api
-        - V2
-        - Replication
-        - Replicators
-        - Configurations
-        - Vpc
-        - Connection
-        - Policy
-        - Operation
-        - Revisions
-        - Revision
-        - Bootstrap
-        - Brokers
-        - Compatible
-        - Kafka
-        - Versions
-        - Client
-        - Connections
-        - Operations
-        - Nodes
-        - Reboot
-        - Broker
-        - Count
-        - Type
-        - Storage
-        - Connectivity
-        - Configuration
-        - Version
-        - Monitoring
-        - Info
-        - Security
   /v1/clusters/{clusterArn}/storage:
     PUT:
       summary: UpdateStorage
       description: >-
         <p>Updates cluster broker volume size (or) sets cluster storage mode to
-        TIERED.</
-      tags:
-        - Update
-        - Storage
-        - Arn
-        - Scram
-        - Secrets
-        - V1
-        - Clusters
-        - Api
-        - V2
-        - Replication
-        - Replicators
-        - Configurations
-        - Vpc
-        - Connection
-        - Policy
-        - Operation
-        - Revisions
-        - Revision
-        - Bootstrap
-        - Brokers
-        - Compatible
-        - Kafka
-        - Versions
-        - Client
-        - Connections
-        - Operations
-        - Nodes
-        - Reboot
-        - Broker
-        - Count
-        - Type
-        - Storage
-        - Connectivity
-        - Configuration
-        - Version
-        - Monitoring
-        - Info
-        - Se
+        TIE

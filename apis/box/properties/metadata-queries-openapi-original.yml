@@ -1,0 +1,208 @@
+openapi: 3.1.0
+info:
+  title: Box Metadata Queries API
+  description: Needs a description.
+paths:
+  /metadata_queries/execute_read:
+    post:
+      operationId: post_metadata_queries_execute_read
+      summary: Query files/folders by metadata
+      tags:
+        - Search
+      x-box-tag: search
+      x-box-sanitized: true
+      x-box-enable-explorer: true
+      description: >-
+        Create a search using SQL-like syntax to return items that match
+        specific
+
+        metadata.
+
+
+        By default, this endpoint returns only the most basic info about the
+        items for
+
+        which the query matches. To get additional fields for each item,
+        including any
+
+        of the metadata, use the `fields` attribute in the query.
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/MetadataQuery'
+      responses:
+        '200':
+          description: Returns a list of files and folders that match this metadata query.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/MetadataQueryResults'
+        '400':
+          description: >-
+            Returns an error when the request body is not valid.
+
+
+            * `invalid_query` - Any of the provided body parameters might be
+
+            incorrect. This can mean the `query` is incorrect, as well as some
+            cases
+
+            where the `from` value does not represent a valid template.
+
+            * `unexpected_json_type` - An argument from the `query` string is
+            not
+
+            present in `query_param`. For example, `query` of `name = :name`
+            requires
+
+            the `query_param` to include a value for the `name` argument, for
+            example
+
+            `{ "name": "Box, Inc" }`.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ClientError'
+        '404':
+          description: >-
+            Returns an error when a metadata template with the given `scope` and
+
+            `templateKey` can not be found. The error response will include
+            extra
+
+            details.
+
+
+            * `instance_not_found` - The template was not found. Please make
+            sure
+
+            to use the full template scope including the enterprise ID, like
+
+            `enterprise_12345`.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ClientError'
+        default:
+          description: An unexpected client error.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ClientError'
+components:
+  schemas:
+    MetadataQueryResults:
+      title: Metadata query search results
+      type: object
+      x-box-tag: search
+      x-box-resource-id: metadata_query_results
+      description: A page of files and folders that matched the metadata query.
+      properties:
+        entries:
+          description: >-
+            The mini representation of the files and folders that match the
+            search
+
+            terms.
+
+
+            By default, this endpoint returns only the most basic info about the
+
+            items. To get additional fields for each item, including any of the
+
+            metadata, use the `fields` attribute in the query.
+          type: array
+          x-box-resource-variant: 1
+          items:
+            oneOf:
+              - $ref: '#/components/schemas/File'
+              - $ref: '#/components/schemas/Folder'
+        limit:
+          description: >-
+            The limit that was used for this search. This will be the same as
+            the
+
+            `limit` query parameter unless that value exceeded the maximum value
+
+            allowed.
+          default: 100
+          example: 100
+          type: integer
+          format: int64
+        next_marker:
+          description: The marker for the start of the next page of results.
+          example: >-
+            0!-M7487OpVfBTNBV-XsQjU50gQFlbFFu5nArMWD7Ck61GH_Qo40M1S2xN5zWZPBzEjaQS1SOjJiQoo5BsXEl1bCVLRZ2pTqo4SKp9tyqzWQK2L51KR_nC1EgF5I_TJSFw7uO2Bx4HweGETOjh5_2oPSWw5iMkM-OvGApeR0lGFO48FDKoyzJyLgz5aogxoKd8VE09CesOOnTnmZvrW0puylDc-hFjY5YLmWFBKox3SOWiSDwKFkmZGNHyjEzza1nSwbZg6CYsAdGsDwGJhuCeTNsFzP5Mo5qx9wMloS0lSPuf2CcBInbIJzl2CKlXF3FvqhANttpm2nzdBTQRSoJyJnjVBpf4Q_HjV2eb4KIZBBlLy067UCVdv2AAWQFd5E2i6s1YiGRTtgMEZntOSUYD4IYLMWWm5Ra7ke_SP32SL3GSjbBQYIyCVQ..
+          type: string
+    ClientError:
+      title: Client error
+      type: object
+      x-box-resource-id: client_error
+      description: A generic error
+      properties:
+        type:
+          description: error
+          example: error
+          type: string
+          enum:
+            - error
+          nullable: false
+        status:
+          description: The HTTP status of the response.
+          example: 400
+          type: integer
+          format: int32
+          nullable: false
+        code:
+          description: A Box-specific error code
+          example: item_name_invalid
+          type: string
+          enum:
+            - created
+            - accepted
+            - no_content
+            - redirect
+            - not_modified
+            - bad_request
+            - unauthorized
+            - forbidden
+            - not_found
+            - method_not_allowed
+            - conflict
+            - precondition_failed
+            - too_many_requests
+            - internal_server_error
+            - unavailable
+            - item_name_invalid
+            - insufficient_scope
+        message:
+          description: A short message describing the error.
+          example: Method Not Allowed
+          type: string
+          nullable: false
+        context_info:
+          description: |-
+            A free-form object that contains additional context
+            about the error. The possible fields are defined on
+            a per-endpoint basis. `message` is only one example.
+          type: object
+          nullable: true
+          properties:
+            message:
+              type: string
+              description: More details on the error.
+              example: Something went wrong.
+        help_url:
+          description: A URL that links to more information about why this error occurred.
+          example: >-
+            https://developer.box.com/guides/api-calls/permissions-and-errors/common-errors/
+          type: string
+          nullable: false
+        request_id:
+          description: |-
+            A unique identifier for this response, which can be used
+            when contacting Box support.
+          type: string
+          example: abcdef123456
+          nullable: false

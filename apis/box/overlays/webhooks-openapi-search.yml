@@ -1,0 +1,44 @@
+openapi: 3.1.0
+info:
+  title: Box Webhooks API
+paths:
+  /webhooks:
+    get:
+      summary: List all webhooks
+      tags:
+        - Webhooks
+      description: >-
+        Returns all defined webhooks for the requesting application.
+
+
+        This API only returns webhooks that are applied to files or folders that
+        are
+
+        owned by the authenticated user. This means that an admin can not see
+        webhooks
+
+        created by a service account unless the admin has access to those
+        folders, and
+
+        vice versa.
+    post:
+      summary: Create webhook
+      tags:
+        - Webhooks
+      description: Creates a webhook.
+  /webhooks/{webhook_id}:
+    get:
+      tags:
+        - Webhooks
+      summary: Get webhook
+      description: Retrieves a specific webhook
+    put:
+      summary: Update webhook
+      tags:
+        - Webhooks
+      description: Updates a webhook.
+    delete:
+      summary: Remove webhook
+      tags:
+        - Webhooks
+      description: Deletes a webhoo

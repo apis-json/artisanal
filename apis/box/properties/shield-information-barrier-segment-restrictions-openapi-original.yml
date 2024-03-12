@@ -1,0 +1,392 @@
+openapi: 3.1.0
+info:
+  title: Box Shield Information Barrier Segment Restrictions API
+  description: Needs a description.
+paths:
+  /shield_information_barrier_segment_restrictions/{shield_information_barrier_segment_restriction_id}:
+    get:
+      operationId: get_shield_information_barrier_segment_restrictions_id
+      summary: Get shield information barrier segment restriction by ID
+      tags:
+        - Shield information barrier segment restrictions
+      x-box-tag: shield_information_barrier_segment_restrictions
+      description: |-
+        Retrieves a shield information barrier segment
+        restriction based on provided ID.
+      parameters:
+        - name: shield_information_barrier_segment_restriction_id
+          description: The ID of the shield information barrier segment Restriction.
+          example: '4563'
+          in: path
+          required: true
+          schema:
+            type: string
+      responses:
+        '200':
+          description: |-
+            Returns the shield information barrier segment
+            restriction object.
+          content:
+            application/json:
+              schema:
+                $ref: >-
+                  #/components/schemas/ShieldInformationBarrierSegmentRestriction
+        '404':
+          description: |-
+            Returns a `not_found` error if the
+            shield information barrier segment
+            restriction was not found.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ClientError'
+        default:
+          description: An unexpected client error.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ClientError'
+    delete:
+      operationId: delete_shield_information_barrier_segment_restrictions_id
+      summary: Delete shield information barrier segment restriction by ID
+      tags:
+        - Shield information barrier segment restrictions
+      x-box-tag: shield_information_barrier_segment_restrictions
+      description: |-
+        Delete shield information barrier segment restriction
+        based on provided ID.
+      parameters:
+        - name: shield_information_barrier_segment_restriction_id
+          description: The ID of the shield information barrier segment Restriction.
+          example: '4563'
+          in: path
+          required: true
+          schema:
+            type: string
+      responses:
+        '204':
+          description: Empty body in response
+        '404':
+          description: |-
+            Returns a `not_found` error if the
+            shield information barrier segment restriction was not found.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ClientError'
+        default:
+          description: An unexpected client error.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ClientError'
+  /shield_information_barrier_segment_restrictions:
+    get:
+      operationId: get_shield_information_barrier_segment_restrictions
+      summary: List shield information barrier segment restrictions
+      tags:
+        - Shield information barrier segment restrictions
+      x-box-tag: shield_information_barrier_segment_restrictions
+      description: |-
+        Lists shield information barrier segment restrictions
+        based on provided segment ID.
+      parameters:
+        - name: shield_information_barrier_segment_id
+          description: The ID of the shield information barrier segment.
+          example: '3423'
+          required: true
+          in: query
+          schema:
+            type: string
+        - name: marker
+          description: >-
+            Defines the position marker at which to begin returning results.
+            This is
+
+            used when paginating using marker-based pagination.
+
+
+            This requires `usemarker` to be set to `true`.
+          in: query
+          required: false
+          example: JV9IRGZmieiBasejOG9yDCRNgd2ymoZIbjsxbJMjIs3kioVii
+          schema:
+            type: string
+        - name: limit
+          description: The maximum number of items to return per page.
+          in: query
+          required: false
+          example: 1000
+          schema:
+            type: integer
+            format: int64
+            maximum: 1000
+      responses:
+        '200':
+          description: |-
+            Returns a paginated list of
+            shield information barrier segment restriction objects.
+          content:
+            application/json:
+              schema:
+                $ref: >-
+                  #/components/schemas/ShieldInformationBarrierSegmentRestrictions
+        default:
+          description: An unexpected client error.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ClientError'
+    post:
+      operationId: post_shield_information_barrier_segment_restrictions
+      summary: Create shield information barrier segment restriction
+      tags:
+        - Shield information barrier segment restrictions
+      x-box-tag: shield_information_barrier_segment_restrictions
+      description: |-
+        Creates a shield information barrier
+        segment restriction object.
+      requestBody:
+        content:
+          application/json:
+            schema:
+              type: object
+              required:
+                - type
+                - shield_information_barrier_segment
+                - restricted_segment
+              properties:
+                type:
+                  type: string
+                  description: |-
+                    The type of the shield barrier segment
+                    restriction for this member.
+                  example: shield_information_barrier_segment_restriction
+                  enum:
+                    - shield_information_barrier_segment_restriction
+                shield_information_barrier:
+                  $ref: '#/components/schemas/ShieldInformationBarrier--Base'
+                shield_information_barrier_segment:
+                  type: object
+                  properties:
+                    id:
+                      type: string
+                      example: '1910967'
+                      description: |-
+                        The ID reference of the requesting
+                        shield information barrier segment.
+                    type:
+                      type: string
+                      description: The type of the shield barrier segment for this member.
+                      example: shield_information_barrier_segment
+                      enum:
+                        - shield_information_barrier_segment
+                  description: |-
+                    The `type` and `id` of the requested
+                    shield information barrier segment.
+                restricted_segment:
+                  type: object
+                  properties:
+                    id:
+                      type: string
+                      example: '1910967'
+                      description: |-
+                        The ID reference of the restricted
+                        shield information barrier segment.
+                    type:
+                      type: string
+                      example: shield_information_barrier_segment
+                      description: |-
+                        The type of the restricted shield
+                        information barrier segment.
+                      enum:
+                        - shield_information_barrier_segment
+                  description: |-
+                    The `type` and `id` of the restricted
+                    shield information barrier segment.
+      responses:
+        '201':
+          description: |-
+            Returns the newly created Shield
+            Information Barrier Segment Restriction object.
+          content:
+            application/json:
+              schema:
+                $ref: >-
+                  #/components/schemas/ShieldInformationBarrierSegmentRestriction
+        '404':
+          description: |-
+            Returns a `not_found` error if the
+            shield information barrier or segment was not found.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ClientError'
+        default:
+          description: An unexpected client error.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ClientError'
+components:
+  schemas:
+    ShieldInformationBarrierSegmentRestriction:
+      title: Shield information barrier segment restriction
+      type: object
+      x-box-resource-id: shield_information_barrier_segment_restriction
+      x-box-tag: shield_information_barrier_segment_restrictions
+      x-box-variants:
+        - base
+        - mini
+        - standard
+      x-box-variant: standard
+      description: |-
+        A standard representation of a
+        segment restriction of a shield information barrier
+        object
+      required:
+        - shield_information_barrier_segment
+        - restricted_segment
+      allOf:
+        - $ref: >-
+            #/components/schemas/ShieldInformationBarrierSegmentRestriction--Mini
+        - properties:
+            shield_information_barrier:
+              $ref: '#/components/schemas/ShieldInformationBarrier--Base'
+            created_at:
+              type: string
+              format: date-time
+              example: '2020-06-26T18:44:45.869Z'
+              description: |-
+                ISO date time string when this
+                shield information barrier
+                Segment Restriction object was created.
+            created_by:
+              allOf:
+                - $ref: '#/components/schemas/User--Base'
+                - description: >-
+                    The user who created this shield information barrier segment
+                    Restriction.
+            updated_at:
+              type: string
+              format: date-time
+              example: '2020-07-26T18:44:45.869Z'
+              description: |-
+                ISO date time string when this
+                shield information barrier segment
+                Restriction was updated.
+            updated_by:
+              allOf:
+                - $ref: '#/components/schemas/User--Base'
+                - description: >-
+                    The user that updated this shield information barrier
+                    segment Restriction.
+    ClientError:
+      title: Client error
+      type: object
+      x-box-resource-id: client_error
+      description: A generic error
+      properties:
+        type:
+          description: error
+          example: error
+          type: string
+          enum:
+            - error
+          nullable: false
+        status:
+          description: The HTTP status of the response.
+          example: 400
+          type: integer
+          format: int32
+          nullable: false
+        code:
+          description: A Box-specific error code
+          example: item_name_invalid
+          type: string
+          enum:
+            - created
+            - accepted
+            - no_content
+            - redirect
+            - not_modified
+            - bad_request
+            - unauthorized
+            - forbidden
+            - not_found
+            - method_not_allowed
+            - conflict
+            - precondition_failed
+            - too_many_requests
+            - internal_server_error
+            - unavailable
+            - item_name_invalid
+            - insufficient_scope
+        message:
+          description: A short message describing the error.
+          example: Method Not Allowed
+          type: string
+          nullable: false
+        context_info:
+          description: |-
+            A free-form object that contains additional context
+            about the error. The possible fields are defined on
+            a per-endpoint basis. `message` is only one example.
+          type: object
+          nullable: true
+          properties:
+            message:
+              type: string
+              description: More details on the error.
+              example: Something went wrong.
+        help_url:
+          description: A URL that links to more information about why this error occurred.
+          example: >-
+            https://developer.box.com/guides/api-calls/permissions-and-errors/common-errors/
+          type: string
+          nullable: false
+        request_id:
+          description: |-
+            A unique identifier for this response, which can be used
+            when contacting Box support.
+          type: string
+          example: abcdef123456
+          nullable: false
+    ShieldInformationBarrierSegmentRestrictions:
+      title: List of Shield Information Barrier Segment Restrictions
+      type: object
+      x-box-resource-id: shield_information_barrier_segment_restrictions
+      x-box-tag: shield_information_barrier_segment_restrictions
+      description: List of shield information barrier segment restriction objects
+      allOf:
+        - type: object
+          description: |-
+            The part of an API response that describes marker
+            based pagination
+          properties:
+            limit:
+              description: >-
+                The limit that was used for these entries. This will be the same
+                as the
+
+                `limit` query parameter unless that value exceeded the maximum
+                value
+
+                allowed. The maximum value varies by API.
+              example: 1000
+              type: integer
+              format: int64
+            next_marker:
+              description: The marker for the start of the next page of results.
+              example: JV9IRGZmieiBasejOG9yDCRNgd2ymoZIbjsxbJMjIs3kioVii
+              type: string
+              nullable: true
+        - properties:
+            entries:
+              type: array
+              description: |-
+                A list of shield information barrier
+                segment restriction objects
+              items:
+                $ref: >-
+                  #/components/schemas/ShieldInformationBarrierSegmentRestriction

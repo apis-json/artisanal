@@ -11,25 +11,12 @@ paths:
         the organization's management account or a delegated administrator runs
         this API, it will return success (<code>HTTP 200</code>) but no
         content.</p> </note>
-      tags:
-        - Get
-        - Administrator
-        - Account
-        - Id
-        - Administrator
   /detector/{detectorId}/master:
     GET:
       summary: GetMasterAccount
       description: >-
         <p>Provides the details for the GuardDuty administrator account
         associated with the current GuardDuty member account.</p>
-      tags:
-        - Get
-        - Master
-        - Account
-        - Id
-        - Administrator
-        - Master
   /detector/{detectorId}/findings/archive:
     POST:
       summary: ArchiveFindings
@@ -38,43 +25,16 @@ paths:
         IDs.</p> <note> <p>Only the administrator account can archive findings.
         Member accounts don't have permission to archive findings from their
         accounts.</p> </note>
-      tags:
-        - Archive
-        - Findings
-        - Id
-        - Administrator
-        - Master
-        - Findings
-        - Archive
   /detector:
     GET:
       summary: ListDetectors
       description: >-
         <p>Lists detectorIds of all the existing Amazon GuardDuty detector
         resources.</p>
-      tags:
-        - List
-        - Detectors
-        - Id
-        - Administrator
-        - Master
-        - Findings
-        - Archive
-        - Detector
   /detector/{detectorId}/filter:
     GET:
       summary: ListFilters
       description: <p>Returns a paginated list of the current filters.</p>
-      tags:
-        - List
-        - Filters
-        - Id
-        - Administrator
-        - Master
-        - Findings
-        - Archive
-        - Detector
-        - Filter
   /detector/{detectorId}/ipset:
     GET:
       summary: ListIPSets
@@ -82,56 +42,18 @@ paths:
         <p>Lists the IPSets of the GuardDuty service specified by the detector
         ID. If you use this operation from a member account, the IPSets returned
         are the IPSets from the associated administrator account.</p>
-      tags:
-        - List
-        - Sets
-        - Id
-        - Administrator
-        - Master
-        - Findings
-        - Archive
-        - Detector
-        - Filter
-        - Ipset
   /detector/{detectorId}/member:
     GET:
       summary: ListMembers
       description: >-
         <p>Lists details about all member accounts for the current GuardDuty
         administrator account.</p>
-      tags:
-        - List
-        - Members
-        - Id
-        - Administrator
-        - Master
-        - Findings
-        - Archive
-        - Detector
-        - Filter
-        - Ipset
-        - Member
   /detector/{detectorId}/publishingDestination:
     GET:
       summary: ListPublishingDestinations
       description: >-
         <p>Returns a list of publishing destinations associated with the
         specified <code>detectorId</code>.</p>
-      tags:
-        - List
-        - Publishing
-        - Destinations
-        - Id
-        - Administrator
-        - Master
-        - Findings
-        - Archive
-        - Detector
-        - Filter
-        - Ipset
-        - Member
-        - Publishing
-        - Destination
   /detector/{detectorId}/findings/create:
     POST:
       summary: CreateSampleFindings
@@ -139,22 +61,6 @@ paths:
         <p>Generates sample findings of types specified by the list of finding
         types. If 'NULL' is specified for <code>findingTypes</code>, the API
         generates sample findings of all supported finding types.</p>
-      tags:
-        - Create
-        - Sample
-        - Findings
-        - Id
-        - Administrator
-        - Master
-        - Findings
-        - Archive
-        - Detector
-        - Filter
-        - Ipset
-        - Member
-        - Publishing
-        - Destination
-        - Create
   /detector/{detectorId}/threatintelset:
     GET:
       summary: ListThreatIntelSets
@@ -163,48 +69,12 @@ paths:
         detector ID. If you use this operation from a member account, the
         ThreatIntelSets associated with the administrator account are
         returned.</p>
-      tags:
-        - List
-        - Threat
-        - Intel
-        - Sets
-        - Id
-        - Administrator
-        - Master
-        - Findings
-        - Archive
-        - Detector
-        - Filter
-        - Ipset
-        - Member
-        - Publishing
-        - Destination
-        - Create
-        - Threatintelset
   /invitation/decline:
     POST:
       summary: DeclineInvitations
       description: >-
         <p>Declines invitations sent to the current member account by Amazon Web
         Services accounts specified by their account IDs.</p>
-      tags:
-        - Decline
-        - Invitations
-        - Id
-        - Administrator
-        - Master
-        - Findings
-        - Archive
-        - Detector
-        - Filter
-        - Ipset
-        - Member
-        - Publishing
-        - Destination
-        - Create
-        - Threatintelset
-        - Invitation
-        - Decline
   /detector/{detectorId}:
     POST:
       summary: UpdateDetector
@@ -215,100 +85,20 @@ paths:
         where GuardDuty is presently supported. For more information, see <a
         href="https://docs.aws.amazon.com/guardduty/latest/ug/guardduty_regions.html">Regions
         and endpoints</a>.</p>
-      tags:
-        - Update
-        - Detector
-        - Id
-        - Administrator
-        - Master
-        - Findings
-        - Archive
-        - Detector
-        - Filter
-        - Ipset
-        - Member
-        - Publishing
-        - Destination
-        - Create
-        - Threatintelset
-        - Invitation
-        - Decline
   /detector/{detectorId}/filter/{filterName}:
     POST:
       summary: UpdateFilter
       description: <p>Updates the filter specified by the filter name.</p>
-      tags:
-        - Update
-        - Filter
-        - Id
-        - Administrator
-        - Master
-        - Findings
-        - Archive
-        - Detector
-        - Filter
-        - Ipset
-        - Member
-        - Publishing
-        - Destination
-        - Create
-        - Threatintelset
-        - Invitation
-        - Decline
-        - Name
   /detector/{detectorId}/ipset/{ipSetId}:
     POST:
       summary: UpdateIPSet
       description: <p>Updates the IPSet specified by the IPSet ID.</p>
-      tags:
-        - Update
-        - Set
-        - Id
-        - Administrator
-        - Master
-        - Findings
-        - Archive
-        - Detector
-        - Filter
-        - Ipset
-        - Member
-        - Publishing
-        - Destination
-        - Create
-        - Threatintelset
-        - Invitation
-        - Decline
-        - Name
-        - Ip
-        - Set
   /invitation/delete:
     POST:
       summary: DeleteInvitations
       description: >-
         <p>Deletes invitations sent to the current member account by Amazon Web
         Services accounts specified by their account IDs.</p>
-      tags:
-        - Delete
-        - Invitations
-        - Id
-        - Administrator
-        - Master
-        - Findings
-        - Archive
-        - Detector
-        - Filter
-        - Ipset
-        - Member
-        - Publishing
-        - Destination
-        - Create
-        - Threatintelset
-        - Invitation
-        - Decline
-        - Name
-        - Ip
-        - Set
-        - Delete
   /detector/{detectorId}/member/delete:
     POST:
       summary: DeleteMembers
@@ -319,87 +109,16 @@ paths:
         organization set to <code>ALL</code>, you'll receive an error if you
         attempt to disable GuardDuty for a member account in your
         organization.</p>
-      tags:
-        - Delete
-        - Members
-        - Id
-        - Administrator
-        - Master
-        - Findings
-        - Archive
-        - Detector
-        - Filter
-        - Ipset
-        - Member
-        - Publishing
-        - Destination
-        - Create
-        - Threatintelset
-        - Invitation
-        - Decline
-        - Name
-        - Ip
-        - Set
-        - Delete
   /detector/{detectorId}/publishingDestination/{destinationId}:
     POST:
       summary: UpdatePublishingDestination
       description: >-
         <p>Updates information about the publishing destination specified by the
         <code>destinationId</code>.</p>
-      tags:
-        - Update
-        - Publishing
-        - Destination
-        - Id
-        - Administrator
-        - Master
-        - Findings
-        - Archive
-        - Detector
-        - Filter
-        - Ipset
-        - Member
-        - Publishing
-        - Destination
-        - Create
-        - Threatintelset
-        - Invitation
-        - Decline
-        - Name
-        - Ip
-        - Set
-        - Delete
   /detector/{detectorId}/threatintelset/{threatIntelSetId}:
     POST:
       summary: UpdateThreatIntelSet
       description: <p>Updates the ThreatIntelSet specified by the ThreatIntelSet ID.</p>
-      tags:
-        - Update
-        - Threat
-        - Intel
-        - Set
-        - Id
-        - Administrator
-        - Master
-        - Findings
-        - Archive
-        - Detector
-        - Filter
-        - Ipset
-        - Member
-        - Publishing
-        - Destination
-        - Create
-        - Threatintelset
-        - Invitation
-        - Decline
-        - Name
-        - Ip
-        - Set
-        - Delete
-        - Threat
-        - Intel
   /detector/{detectorId}/malware-scans:
     POST:
       summary: DescribeMalwareScans
@@ -412,33 +131,6 @@ paths:
         supported. For more information, see <a
         href="https://docs.aws.amazon.com/guardduty/latest/ug/guardduty_regions.html">Regions
         and endpoints</a>.</p>
-      tags:
-        - Describe
-        - Malware
-        - Scans
-        - Id
-        - Administrator
-        - Master
-        - Findings
-        - Archive
-        - Detector
-        - Filter
-        - Ipset
-        - Member
-        - Publishing
-        - Destination
-        - Create
-        - Threatintelset
-        - Invitation
-        - Decline
-        - Name
-        - Ip
-        - Set
-        - Delete
-        - Threat
-        - Intel
-        - Malware
-        - Scans
   /detector/{detectorId}/admin:
     POST:
       summary: UpdateOrganizationConfiguration
@@ -452,34 +144,6 @@ paths:
         see <a
         href="https://docs.aws.amazon.com/guardduty/latest/ug/guardduty_regions.html">Regions
         and endpoints</a>.</p>
-      tags:
-        - Update
-        - Organization
-        - Configuration
-        - Id
-        - Administrator
-        - Master
-        - Findings
-        - Archive
-        - Detector
-        - Filter
-        - Ipset
-        - Member
-        - Publishing
-        - Destination
-        - Create
-        - Threatintelset
-        - Invitation
-        - Decline
-        - Name
-        - Ip
-        - Set
-        - Delete
-        - Threat
-        - Intel
-        - Malware
-        - Scans
-        - Admin
   /admin/disable:
     POST:
       summary: DisableOrganizationAdminAccount
@@ -487,36 +151,6 @@ paths:
         <p>Removes the existing GuardDuty delegated administrator of the
         organization. Only the organization's management account can run this
         API operation.</p>
-      tags:
-        - Disable
-        - Organization
-        - Admin
-        - Account
-        - Id
-        - Administrator
-        - Master
-        - Findings
-        - Archive
-        - Detector
-        - Filter
-        - Ipset
-        - Member
-        - Publishing
-        - Destination
-        - Create
-        - Threatintelset
-        - Invitation
-        - Decline
-        - Name
-        - Ip
-        - Set
-        - Delete
-        - Threat
-        - Intel
-        - Malware
-        - Scans
-        - Admin
-        - Disable
   /detector/{detectorId}/administrator/disassociate:
     POST:
       summary: DisassociateFromAdministratorAccount
@@ -537,37 +171,6 @@ paths:
         configuration for your organization set to <code>ALL</code>, you'll
         receive an error if you attempt to disable GuardDuty in a member
         account.</p>
-      tags:
-        - Disassociate
-        - From
-        - Administrator
-        - Account
-        - Id
-        - Administrator
-        - Master
-        - Findings
-        - Archive
-        - Detector
-        - Filter
-        - Ipset
-        - Member
-        - Publishing
-        - Destination
-        - Create
-        - Threatintelset
-        - Invitation
-        - Decline
-        - Name
-        - Ip
-        - Set
-        - Delete
-        - Threat
-        - Intel
-        - Malware
-        - Scans
-        - Admin
-        - Disable
-        - Disassociate
   /detector/{detectorId}/master/disassociate:
     POST:
       summary: DisassociateFromMasterAccount
@@ -585,37 +188,6 @@ paths:
         administrator must invoke the <a
         href="https://docs.aws.amazon.com/guardduty/latest/APIReference/API_DeleteMembers.html">DeleteMembers</a>
         API.</p>
-      tags:
-        - Disassociate
-        - From
-        - Master
-        - Account
-        - Id
-        - Administrator
-        - Master
-        - Findings
-        - Archive
-        - Detector
-        - Filter
-        - Ipset
-        - Member
-        - Publishing
-        - Destination
-        - Create
-        - Threatintelset
-        - Invitation
-        - Decline
-        - Name
-        - Ip
-        - Set
-        - Delete
-        - Threat
-        - Intel
-        - Malware
-        - Scans
-        - Admin
-        - Disable
-        - Disassociate
   /detector/{detectorId}/member/disassociate:
     POST:
       summary: DisassociateMembers
@@ -636,35 +208,6 @@ paths:
         configuration for your organization set to <code>ALL</code>, you'll
         receive an error if you attempt to disassociate a member account before
         removing them from your organization.</p>
-      tags:
-        - Disassociate
-        - Members
-        - Id
-        - Administrator
-        - Master
-        - Findings
-        - Archive
-        - Detector
-        - Filter
-        - Ipset
-        - Member
-        - Publishing
-        - Destination
-        - Create
-        - Threatintelset
-        - Invitation
-        - Decline
-        - Name
-        - Ip
-        - Set
-        - Delete
-        - Threat
-        - Intel
-        - Malware
-        - Scans
-        - Admin
-        - Disable
-        - Disassociate
   /admin/enable:
     POST:
       summary: EnableOrganizationAdminAccount
@@ -672,38 +215,6 @@ paths:
         <p>Designates an Amazon Web Services account within the organization as
         your GuardDuty delegated administrator. Only the organization's
         management account can run this API operation.</p>
-      tags:
-        - Enable
-        - Organization
-        - Admin
-        - Account
-        - Id
-        - Administrator
-        - Master
-        - Findings
-        - Archive
-        - Detector
-        - Filter
-        - Ipset
-        - Member
-        - Publishing
-        - Destination
-        - Create
-        - Threatintelset
-        - Invitation
-        - Decline
-        - Name
-        - Ip
-        - Set
-        - Delete
-        - Threat
-        - Intel
-        - Malware
-        - Scans
-        - Admin
-        - Disable
-        - Disassociate
-        - Enable
   /detector/{detectorId}/coverage/statistics:
     POST:
       summary: GetCoverageStatistics
@@ -713,116 +224,16 @@ paths:
         resources associated with the active member accounts in your
         organization who have enabled Runtime Monitoring and have the GuardDuty
         security agent running on their resources.</p>
-      tags:
-        - Get
-        - Coverage
-        - Statistics
-        - Id
-        - Administrator
-        - Master
-        - Findings
-        - Archive
-        - Detector
-        - Filter
-        - Ipset
-        - Member
-        - Publishing
-        - Destination
-        - Create
-        - Threatintelset
-        - Invitation
-        - Decline
-        - Name
-        - Ip
-        - Set
-        - Delete
-        - Threat
-        - Intel
-        - Malware
-        - Scans
-        - Admin
-        - Disable
-        - Disassociate
-        - Enable
-        - Coverage
-        - Statistics
   /detector/{detectorId}/findings/get:
     POST:
       summary: GetFindings
       description: <p>Describes Amazon GuardDuty findings specified by finding IDs.</p>
-      tags:
-        - Get
-        - Findings
-        - Id
-        - Administrator
-        - Master
-        - Findings
-        - Archive
-        - Detector
-        - Filter
-        - Ipset
-        - Member
-        - Publishing
-        - Destination
-        - Create
-        - Threatintelset
-        - Invitation
-        - Decline
-        - Name
-        - Ip
-        - Set
-        - Delete
-        - Threat
-        - Intel
-        - Malware
-        - Scans
-        - Admin
-        - Disable
-        - Disassociate
-        - Enable
-        - Coverage
-        - Statistics
-        - Get
   /detector/{detectorId}/findings/statistics:
     POST:
       summary: GetFindingsStatistics
       description: >-
         <p>Lists Amazon GuardDuty findings statistics for the specified detector
         ID.</p>
-      tags:
-        - Get
-        - Findings
-        - Statistics
-        - Id
-        - Administrator
-        - Master
-        - Findings
-        - Archive
-        - Detector
-        - Filter
-        - Ipset
-        - Member
-        - Publishing
-        - Destination
-        - Create
-        - Threatintelset
-        - Invitation
-        - Decline
-        - Name
-        - Ip
-        - Set
-        - Delete
-        - Threat
-        - Intel
-        - Malware
-        - Scans
-        - Admin
-        - Disable
-        - Disassociate
-        - Enable
-        - Coverage
-        - Statistics
-        - Get
   /invitation/count:
     GET:
       summary: GetInvitationsCount
@@ -830,41 +241,6 @@ paths:
         <p>Returns the count of all GuardDuty membership invitations that were
         sent to the current member account except the currently accepted
         invitation.</p>
-      tags:
-        - Get
-        - Invitations
-        - Count
-        - Id
-        - Administrator
-        - Master
-        - Findings
-        - Archive
-        - Detector
-        - Filter
-        - Ipset
-        - Member
-        - Publishing
-        - Destination
-        - Create
-        - Threatintelset
-        - Invitation
-        - Decline
-        - Name
-        - Ip
-        - Set
-        - Delete
-        - Threat
-        - Intel
-        - Malware
-        - Scans
-        - Admin
-        - Disable
-        - Disassociate
-        - Enable
-        - Coverage
-        - Statistics
-        - Get
-        - Count
   /detector/{detectorId}/malware-scan-settings:
     POST:
       summary: UpdateMalwareScanSettings
@@ -875,44 +251,6 @@ paths:
         more information, see <a
         href="https://docs.aws.amazon.com/guardduty/latest/ug/guardduty_regions.html">Regions
         and endpoints</a>.</p>
-      tags:
-        - Update
-        - Malware
-        - Scan
-        - Settings
-        - Id
-        - Administrator
-        - Master
-        - Findings
-        - Archive
-        - Detector
-        - Filter
-        - Ipset
-        - Member
-        - Publishing
-        - Destination
-        - Create
-        - Threatintelset
-        - Invitation
-        - Decline
-        - Name
-        - Ip
-        - Set
-        - Delete
-        - Threat
-        - Intel
-        - Malware
-        - Scans
-        - Admin
-        - Disable
-        - Disassociate
-        - Enable
-        - Coverage
-        - Statistics
-        - Get
-        - Count
-        - Scan
-        - Settings
   /detector/{detectorId}/member/detector/get:
     POST:
       summary: GetMemberDetectors
@@ -923,85 +261,12 @@ paths:
         where GuardDuty is presently supported. For more information, see <a
         href="https://docs.aws.amazon.com/guardduty/latest/ug/guardduty_regions.html">Regions
         and endpoints</a>.</p>
-      tags:
-        - Get
-        - Member
-        - Detectors
-        - Id
-        - Administrator
-        - Master
-        - Findings
-        - Archive
-        - Detector
-        - Filter
-        - Ipset
-        - Member
-        - Publishing
-        - Destination
-        - Create
-        - Threatintelset
-        - Invitation
-        - Decline
-        - Name
-        - Ip
-        - Set
-        - Delete
-        - Threat
-        - Intel
-        - Malware
-        - Scans
-        - Admin
-        - Disable
-        - Disassociate
-        - Enable
-        - Coverage
-        - Statistics
-        - Get
-        - Count
-        - Scan
-        - Settings
   /detector/{detectorId}/member/get:
     POST:
       summary: GetMembers
       description: >-
         <p>Retrieves GuardDuty member accounts (of the current GuardDuty
         administrator account) specified by the account IDs.</p>
-      tags:
-        - Get
-        - Members
-        - Id
-        - Administrator
-        - Master
-        - Findings
-        - Archive
-        - Detector
-        - Filter
-        - Ipset
-        - Member
-        - Publishing
-        - Destination
-        - Create
-        - Threatintelset
-        - Invitation
-        - Decline
-        - Name
-        - Ip
-        - Set
-        - Delete
-        - Threat
-        - Intel
-        - Malware
-        - Scans
-        - Admin
-        - Disable
-        - Disassociate
-        - Enable
-        - Coverage
-        - Statistics
-        - Get
-        - Count
-        - Scan
-        - Settings
   /organization/statistics:
     GET:
       summary: GetOrganizationStatistics
@@ -1012,94 +277,12 @@ paths:
         API.</p> <p>When you create a new Amazon Web Services organization, it
         might take up to 24 hours to generate the statistics for the entire
         organization.</p>
-      tags:
-        - Get
-        - Organization
-        - Statistics
-        - Id
-        - Administrator
-        - Master
-        - Findings
-        - Archive
-        - Detector
-        - Filter
-        - Ipset
-        - Member
-        - Publishing
-        - Destination
-        - Create
-        - Threatintelset
-        - Invitation
-        - Decline
-        - Name
-        - Ip
-        - Set
-        - Delete
-        - Threat
-        - Intel
-        - Malware
-        - Scans
-        - Admin
-        - Disable
-        - Disassociate
-        - Enable
-        - Coverage
-        - Statistics
-        - Get
-        - Count
-        - Scan
-        - Settings
-        - Organization
   /detector/{detectorId}/freeTrial/daysRemaining:
     POST:
       summary: GetRemainingFreeTrialDays
       description: >-
         <p>Provides the number of days left for each data source used in the
         free trial period.</p>
-      tags:
-        - Get
-        - Remaining
-        - Free
-        - Trial
-        - Days
-        - Id
-        - Administrator
-        - Master
-        - Findings
-        - Archive
-        - Detector
-        - Filter
-        - Ipset
-        - Member
-        - Publishing
-        - Destination
-        - Create
-        - Threatintelset
-        - Invitation
-        - Decline
-        - Name
-        - Ip
-        - Set
-        - Delete
-        - Threat
-        - Intel
-        - Malware
-        - Scans
-        - Admin
-        - Disable
-        - Disassociate
-        - Enable
-        - Coverage
-        - Statistics
-        - Get
-        - Count
-        - Scan
-        - Settings
-        - Organization
-        - Free
-        - Trial
-        - Days
-        - Remaining
   /detector/{detectorId}/usage/statistics:
     POST:
       summary: GetUsageStatistics
@@ -1111,49 +294,6 @@ paths:
         days to provide a monthly cost estimate. For more information, see <a
         href="https://docs.aws.amazon.com/guardduty/latest/ug/monitoring_costs.html#usage-calculations">Understanding
         How Usage Costs are Calculated</a>.</p>
-      tags:
-        - Get
-        - Usage
-        - Statistics
-        - Id
-        - Administrator
-        - Master
-        - Findings
-        - Archive
-        - Detector
-        - Filter
-        - Ipset
-        - Member
-        - Publishing
-        - Destination
-        - Create
-        - Threatintelset
-        - Invitation
-        - Decline
-        - Name
-        - Ip
-        - Set
-        - Delete
-        - Threat
-        - Intel
-        - Malware
-        - Scans
-        - Admin
-        - Disable
-        - Disassociate
-        - Enable
-        - Coverage
-        - Statistics
-        - Get
-        - Count
-        - Scan
-        - Settings
-        - Organization
-        - Free
-        - Trial
-        - Days
-        - Remaining
-        - Usage
   /detector/{detectorId}/member/invite:
     POST:
       summary: InviteMembers
@@ -1185,49 +325,6 @@ paths:
         also invoke <a
         href="https://docs.aws.amazon.com/guardduty/latest/APIReference/API_DeleteMembers.html">DeleteMembers</a>.
         </p>
-      tags:
-        - Invite
-        - Members
-        - Id
-        - Administrator
-        - Master
-        - Findings
-        - Archive
-        - Detector
-        - Filter
-        - Ipset
-        - Member
-        - Publishing
-        - Destination
-        - Create
-        - Threatintelset
-        - Invitation
-        - Decline
-        - Name
-        - Ip
-        - Set
-        - Delete
-        - Threat
-        - Intel
-        - Malware
-        - Scans
-        - Admin
-        - Disable
-        - Disassociate
-        - Enable
-        - Coverage
-        - Statistics
-        - Get
-        - Count
-        - Scan
-        - Settings
-        - Organization
-        - Free
-        - Trial
-        - Days
-        - Remaining
-        - Usage
-        - Invite
   /detector/{detectorId}/coverage:
     POST:
       summary: ListCoverage
@@ -1237,145 +334,16 @@ paths:
         the active member accounts in your organization.</p> <p>Make sure the
         accounts have Runtime Monitoring enabled and GuardDuty agent running on
         their resources.</p>
-      tags:
-        - List
-        - Coverage
-        - Id
-        - Administrator
-        - Master
-        - Findings
-        - Archive
-        - Detector
-        - Filter
-        - Ipset
-        - Member
-        - Publishing
-        - Destination
-        - Create
-        - Threatintelset
-        - Invitation
-        - Decline
-        - Name
-        - Ip
-        - Set
-        - Delete
-        - Threat
-        - Intel
-        - Malware
-        - Scans
-        - Admin
-        - Disable
-        - Disassociate
-        - Enable
-        - Coverage
-        - Statistics
-        - Get
-        - Count
-        - Scan
-        - Settings
-        - Organization
-        - Free
-        - Trial
-        - Days
-        - Remaining
-        - Usage
-        - Invite
   /detector/{detectorId}/findings:
     POST:
       summary: ListFindings
       description: <p>Lists Amazon GuardDuty findings for the specified detector ID.</p>
-      tags:
-        - List
-        - Findings
-        - Id
-        - Administrator
-        - Master
-        - Findings
-        - Archive
-        - Detector
-        - Filter
-        - Ipset
-        - Member
-        - Publishing
-        - Destination
-        - Create
-        - Threatintelset
-        - Invitation
-        - Decline
-        - Name
-        - Ip
-        - Set
-        - Delete
-        - Threat
-        - Intel
-        - Malware
-        - Scans
-        - Admin
-        - Disable
-        - Disassociate
-        - Enable
-        - Coverage
-        - Statistics
-        - Get
-        - Count
-        - Scan
-        - Settings
-        - Organization
-        - Free
-        - Trial
-        - Days
-        - Remaining
-        - Usage
-        - Invite
   /invitation:
     GET:
       summary: ListInvitations
       description: >-
         <p>Lists all GuardDuty membership invitations that were sent to the
         current Amazon Web Services account.</p>
-      tags:
-        - List
-        - Invitations
-        - Id
-        - Administrator
-        - Master
-        - Findings
-        - Archive
-        - Detector
-        - Filter
-        - Ipset
-        - Member
-        - Publishing
-        - Destination
-        - Create
-        - Threatintelset
-        - Invitation
-        - Decline
-        - Name
-        - Ip
-        - Set
-        - Delete
-        - Threat
-        - Intel
-        - Malware
-        - Scans
-        - Admin
-        - Disable
-        - Disassociate
-        - Enable
-        - Coverage
-        - Statistics
-        - Get
-        - Count
-        - Scan
-        - Settings
-        - Organization
-        - Free
-        - Trial
-        - Days
-        - Remaining
-        - Usage
-        - Invite
   /admin:
     GET:
       summary: ListOrganizationAdminAccounts
@@ -1383,99 +351,10 @@ paths:
         <p>Lists the accounts designated as GuardDuty delegated administrators.
         Only the organization's management account can run this API
         operation.</p>
-      tags:
-        - List
-        - Organization
-        - Admin
-        - Accounts
-        - Id
-        - Administrator
-        - Master
-        - Findings
-        - Archive
-        - Detector
-        - Filter
-        - Ipset
-        - Member
-        - Publishing
-        - Destination
-        - Create
-        - Threatintelset
-        - Invitation
-        - Decline
-        - Name
-        - Ip
-        - Set
-        - Delete
-        - Threat
-        - Intel
-        - Malware
-        - Scans
-        - Admin
-        - Disable
-        - Disassociate
-        - Enable
-        - Coverage
-        - Statistics
-        - Get
-        - Count
-        - Scan
-        - Settings
-        - Organization
-        - Free
-        - Trial
-        - Days
-        - Remaining
-        - Usage
-        - Invite
   /tags/{resourceArn}:
     DELETE:
       summary: UntagResource
       description: <p>Removes tags from a resource.</p>
-      tags:
-        - Untag
-        - Resource
-        - Id
-        - Administrator
-        - Master
-        - Findings
-        - Archive
-        - Detector
-        - Filter
-        - Ipset
-        - Member
-        - Publishing
-        - Destination
-        - Create
-        - Threatintelset
-        - Invitation
-        - Decline
-        - Name
-        - Ip
-        - Set
-        - Delete
-        - Threat
-        - Intel
-        - Malware
-        - Scans
-        - Admin
-        - Disable
-        - Disassociate
-        - Enable
-        - Coverage
-        - Statistics
-        - Get
-        - Count
-        - Scan
-        - Settings
-        - Organization
-        - Free
-        - Trial
-        - Days
-        - Remaining
-        - Usage
-        - Invite
-        - Arn
   /malware-scan/start:
     POST:
       summary: StartMalwareScan
@@ -1484,52 +363,6 @@ paths:
         create the <a
         href="https://docs.aws.amazon.com/guardduty/latest/ug/slr-permissions-malware-protection.html">Service-linked
         role </a> in the corresponding account.</p>
-      tags:
-        - Start
-        - Malware
-        - Scan
-        - Id
-        - Administrator
-        - Master
-        - Findings
-        - Archive
-        - Detector
-        - Filter
-        - Ipset
-        - Member
-        - Publishing
-        - Destination
-        - Create
-        - Threatintelset
-        - Invitation
-        - Decline
-        - Name
-        - Ip
-        - Set
-        - Delete
-        - Threat
-        - Intel
-        - Malware
-        - Scans
-        - Admin
-        - Disable
-        - Disassociate
-        - Enable
-        - Coverage
-        - Statistics
-        - Get
-        - Count
-        - Scan
-        - Settings
-        - Organization
-        - Free
-        - Trial
-        - Days
-        - Remaining
-        - Usage
-        - Invite
-        - Arn
-        - Start
   /detector/{detectorId}/member/start:
     POST:
       summary: StartMonitoringMembers
@@ -1539,52 +372,6 @@ paths:
         monitoring with the <a
         href="https://docs.aws.amazon.com/guardduty/latest/APIReference/API_StopMonitoringMembers.html">StopMonitoringMembers</a>
         operation.</p>
-      tags:
-        - Start
-        - Monitoring
-        - Members
-        - Id
-        - Administrator
-        - Master
-        - Findings
-        - Archive
-        - Detector
-        - Filter
-        - Ipset
-        - Member
-        - Publishing
-        - Destination
-        - Create
-        - Threatintelset
-        - Invitation
-        - Decline
-        - Name
-        - Ip
-        - Set
-        - Delete
-        - Threat
-        - Intel
-        - Malware
-        - Scans
-        - Admin
-        - Disable
-        - Disassociate
-        - Enable
-        - Coverage
-        - Statistics
-        - Get
-        - Count
-        - Scan
-        - Settings
-        - Organization
-        - Free
-        - Trial
-        - Days
-        - Remaining
-        - Usage
-        - Invite
-        - Arn
-        - Start
   /detector/{detectorId}/member/stop:
     POST:
       summary: StopMonitoringMembers
@@ -1595,159 +382,16 @@ paths:
         configuration for your organization set to <code>ALL</code>, you'll
         receive an error if you attempt to stop monitoring the member accounts
         in your organization.</p>
-      tags:
-        - Stop
-        - Monitoring
-        - Members
-        - Id
-        - Administrator
-        - Master
-        - Findings
-        - Archive
-        - Detector
-        - Filter
-        - Ipset
-        - Member
-        - Publishing
-        - Destination
-        - Create
-        - Threatintelset
-        - Invitation
-        - Decline
-        - Name
-        - Ip
-        - Set
-        - Delete
-        - Threat
-        - Intel
-        - Malware
-        - Scans
-        - Admin
-        - Disable
-        - Disassociate
-        - Enable
-        - Coverage
-        - Statistics
-        - Get
-        - Count
-        - Scan
-        - Settings
-        - Organization
-        - Free
-        - Trial
-        - Days
-        - Remaining
-        - Usage
-        - Invite
-        - Arn
-        - Start
-        - Stop
   /detector/{detectorId}/findings/unarchive:
     POST:
       summary: UnarchiveFindings
       description: >-
         <p>Unarchives GuardDuty findings specified by the
         <code>findingIds</code>.</p>
-      tags:
-        - Unarchive
-        - Findings
-        - Id
-        - Administrator
-        - Master
-        - Findings
-        - Archive
-        - Detector
-        - Filter
-        - Ipset
-        - Member
-        - Publishing
-        - Destination
-        - Create
-        - Threatintelset
-        - Invitation
-        - Decline
-        - Name
-        - Ip
-        - Set
-        - Delete
-        - Threat
-        - Intel
-        - Malware
-        - Scans
-        - Admin
-        - Disable
-        - Disassociate
-        - Enable
-        - Coverage
-        - Statistics
-        - Get
-        - Count
-        - Scan
-        - Settings
-        - Organization
-        - Free
-        - Trial
-        - Days
-        - Remaining
-        - Usage
-        - Invite
-        - Arn
-        - Start
-        - Stop
-        - Unarchive
   /detector/{detectorId}/findings/feedback:
     POST:
       summary: UpdateFindingsFeedback
       description: <p>Marks the specified GuardDuty findings as useful or not useful.</p>
-      tags:
-        - Update
-        - Findings
-        - Feedback
-        - Id
-        - Administrator
-        - Master
-        - Findings
-        - Archive
-        - Detector
-        - Filter
-        - Ipset
-        - Member
-        - Publishing
-        - Destination
-        - Create
-        - Threatintelset
-        - Invitation
-        - Decline
-        - Name
-        - Ip
-        - Set
-        - Delete
-        - Threat
-        - Intel
-        - Malware
-        - Scans
-        - Admin
-        - Disable
-        - Disassociate
-        - Enable
-        - Coverage
-        - Statistics
-        - Get
-        - Count
-        - Scan
-        - Settings
-        - Organization
-        - Free
-        - Trial
-        - Days
-        - Remaining
-        - Usage
-        - Invite
-        - Arn
-        - Start
-        - Stop
-        - Unarchive
-        - Feedback
   /detector/{detectorId}/member/detector/update:
     POST:
       summary: UpdateMemberDetectors
@@ -1757,54 +401,4 @@ paths:
         available in all the Amazon Web Services Regions where GuardDuty is
         presently supported. For more information, see <a
         href="https://docs.aws.amazon.com/guardduty/latest/ug/guardduty_regions.html">Regions
-        and endpoints</a>.</
-      tags:
-        - Update
-        - Member
-        - Detectors
-        - Id
-        - Administrator
-        - Master
-        - Findings
-        - Archive
-        - Detector
-        - Filter
-        - Ipset
-        - Member
-        - Publishing
-        - Destination
-        - Create
-        - Threatintelset
-        - Invitation
-        - Decline
-        - Name
-        - Ip
-        - Set
-        - Delete
-        - Threat
-        - Intel
-        - Malware
-        - Scans
-        - Admin
-        - Disable
-        - Disassociate
-        - Enable
-        - Coverage
-        - Statistics
-        - Get
-        - Count
-        - Scan
-        - Settings
-        - Organization
-        - Free
-        - Trial
-        - Days
-        - Remaining
-        - Usage
-        - Invite
-        - Arn
-        - Start
-        - Stop
-        - Unarchive
-        - Feedback
-        - null
+        and endpoints<
