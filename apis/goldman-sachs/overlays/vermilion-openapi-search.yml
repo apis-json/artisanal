@@ -1,0 +1,167 @@
+openapi: 3.0.0
+info:
+  title: VRS API documentation
+  license:
+    name: Apache License, Version 2.0
+    url: https://www.apache.org/licenses/LICENSE-2.0
+externalDocs:
+  description: API Documentation
+  url: https://developer.factset.com/api-catalog/vermilion-api
+tags:
+  - name: Datasource
+  - name: Entities
+  - name: Reports
+  - name: Report instance
+  - name: SCIM
+paths:
+  /v1/{tenant}/data-sources:
+    get:
+      tags:
+        - Datasource
+      summary: Lists all datasources
+      description: List all datasources the user has permission to see
+  /v1/{tenant}/data-sources/{dataSourceCode}:
+    get:
+      tags:
+        - Datasource
+      summary: Gets a datasource
+      description: Gets a datasource based on the code passed
+  /v1/{tenant}/data-sources/{dataSourceCode}/data:
+    get:
+      tags:
+        - Datasource
+      summary: Gets the data for the datasource
+      description: >-
+        Gets the data for the datasource. There are optional query parameters to
+        filter the data
+  /v1/{tenant}/entities/{entityCode}/values:
+    get:
+      tags:
+        - Entity
+      summary: Gets the entity values
+      description: Gets the entity values for the specified entity
+  /v1/{tenant}/reports:
+    get:
+      tags:
+        - Report
+      summary: Gets all report definitions
+      description: Gets all report definitions the user has permissions for
+  /v1/{tenant}/reports/{reportDefinitionCode}:
+    get:
+      tags:
+        - Report
+      summary: Gets a report definition
+      description: Gets a report defintion based on the code specified
+  /v1/report-instances/generate:
+    post:
+      tags:
+        - Report instance
+      summary: Generates a report
+      description: >-
+        Generates a report using the specified ID and the JSON in the request
+        body
+  /v1/{tenant}/report-instances/{reportInstanceId}:
+    delete:
+      tags:
+        - Report instance
+      summary: Cancels a report generation
+      description: >-
+        Sends a request to cancel a report generation based on the report
+        instance id passed
+    get:
+      tags:
+        - Report instance
+      summary: Gets a report instance based on the ID
+      description: Gets a report instance object based on the ID passed
+  /v1/{tenant}/report-instances:
+    get:
+      tags:
+        - Report instance
+      summary: Gets a list of report instances
+      description: >-
+        Gets a list of report instances. This can be filtered down further by
+        including query parameters in the URL. For example, a report definition
+        id can be added so the only report instances returned are the ones with
+        a matching id
+  /v1/{tenant}/report-instances/{reportInstanceId}/results/{reportFileName}:
+    get:
+      tags:
+        - Report instance
+      summary: Gets the generated file
+      description: >-
+        Get the generated file for a report instance. Users can fetch the
+        generated report once the genration is finished. The report instance id
+        and the report file name are passed in as path paramters
+  /v1/{tenant}/report-instances/{reportInstanceId}/logs:
+    get:
+      tags:
+        - Report instance
+      summary: Gets a list of logs for the report instance generation
+      description: >-
+        Gets a list of logs for the generated report instance. Allows the user
+        to sort on log message, type and date. Also allows for retrieving of
+        just the errors & warnings'
+  /scim/v2/Users:
+    get:
+      tags:
+        - SCIM
+      summary: Retrieves a list of VRS users
+      description: Retrieves a list of VRS users
+    post:
+      tags:
+        - SCIM
+      summary: Creates a user
+      description: Creates a VRS user
+  /scim/v2/Users/{userId}:
+    get:
+      tags:
+        - SCIM
+      summary: Retrieves a VRS User
+      description: Retrieves a VRS user based on their ID
+    delete:
+      tags:
+        - SCIM
+      summary: Deletes a VRS user
+      description: Deletes a VRS user (this marks them as 'Deleted' in the database)
+    patch:
+      tags:
+        - SCIM
+      summary: Add or remove VRS user attributes
+      description: Adds or removes VRS user attributes based on the JSON properties
+    put:
+      tags:
+        - SCIM
+      summary: Updates a VRS user
+      description: Updates (replaces) a VRS user with the properties in the JSON
+  /scim/v2/Groups:
+    get:
+      tags:
+        - SCIM
+      summary: Retrieves a list of VRS role
+      description: Retrieves a VRS roles
+    post:
+      tags:
+        - SCIM
+      summary: Creates a role
+      description: Creates a VRS role
+  /scim/v2/Groups/{groupId}:
+    get:
+      tags:
+        - SCIM
+      summary: Retrieves a VRS role
+      description: Retrieves a VRS role based on the ID
+    delete:
+      tags:
+        - SCIM
+      summary: Deletes a VRS role
+      description: Deletes a VRS role
+    patch:
+      tags:
+        - SCIM
+      summary: Add or remove a user to/from a group
+      description: Adds or removes a VRS user to/from a VRS role
+    put:
+      tags:
+        - SCIM
+      summary: Updates a VRS Group
+      description: Updates (replaces) a VRS Group with the properties in

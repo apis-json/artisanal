@@ -1,0 +1,39 @@
+openapi: 3.0.0
+info:
+  title: Global Filings API
+  license:
+    name: Apache License, Version 2.0
+    url: https://www.apache.org/licenses/LICENSE-2.0
+externalDocs:
+  description: API Documentation
+  url: https://developer.factset.com/api-catalog/global-filings-api
+paths:
+  /search:
+    get:
+      summary: >-
+        Returns the filings documents and related metadata within FactSet
+        coverage.
+      tags:
+        - Filings API
+      description: >-
+        Returns the filings documents within FactSet coverage along with other
+        response fields
+  /helper:
+    get:
+      tags:
+        - Filings API
+      summary: Returns the static values for various parameters
+      description: >-
+        Returns the static values for sources,formTypes,timeZones,categories
+        based on the specified parameter
+  /count:
+    get:
+      tags:
+        - Filings API
+      summary: Returns the count of filings for specified source
+      description: Returns the count of filings documents along with other response fields.
+tags:
+  - name: Filings API
+    description: >-
+      API provides access to search and download filings documents from various
+      sources.

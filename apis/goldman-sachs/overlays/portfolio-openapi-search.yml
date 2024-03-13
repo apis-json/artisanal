@@ -1,0 +1,61 @@
+openapi: 3.0.1
+info:
+  title: ModelAccounts API
+  license:
+    name: Apache License, Version 2.0
+    url: https://www.apache.org/licenses/LICENSE-2.0
+paths:
+  /analytics/accounts/v3/models/{name}:
+    put:
+      tags:
+        - ModelAccounts
+      summary: Create or update an existing model account
+    delete:
+      tags:
+        - ModelAccounts
+      summary: Delete model account, takes an account path and name and deletes it.
+    get:
+      tags:
+        - ModelAccounts
+      summary: Get account endpoint, takes an account name and returns underlying data
+  /analytics/accounts/v3/models/{name}/symbols/{symbol}:
+    delete:
+      tags:
+        - ModelAccounts
+      summary: >-
+        Delete all entries for a symbol or specific date entries for a symbol
+        from a previously created account.
+    get:
+      tags:
+        - ModelAccounts
+      summary: >-
+        Get account endpoint, takes an account name, symbol and returns
+        underlying data for that symbol
+  /analytics/accounts/v3/models/{name}/dates/{date}:
+    delete:
+      tags:
+        - ModelAccounts
+      summary: >-
+        Delete all entries for a date or specific symbol entries for a date from
+        a previously created account.
+    get:
+      tags:
+        - ModelAccounts
+      summary: >-
+        Get account endpoint, takes an account name, date and returns underlying
+        data for that date
+  /analytics/accounts/v3/models/{name}/dates/{date}/symbols/{symbol}:
+    get:
+      tags:
+        - ModelAccounts
+      summary: Get account endpoint, takes an account name and returns underlying data
+  /analytics/accounts/v3/models/{name}/schema:
+    get:
+      tags:
+        - ModelAccounts
+      summary: >-
+        Get account schema endpoint, takes an account name and returns its
+        schema
+externalDocs:
+  description: API Documentation
+  url: https://developer.factset.com/ap

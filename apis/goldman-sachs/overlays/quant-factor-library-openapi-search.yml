@@ -1,0 +1,43 @@
+openapi: 3.0.0
+info:
+  title: FactSet Quant Factor Library API
+  license:
+    name: License Information
+    url: http://www.factset.com/api/license.html
+tags:
+  - name: Factors
+    description: Fetch Quant Factors for large list of ids
+  - name: Helper
+    description: Fetch all available factors that can be used within the /factors endpoint
+paths:
+  /factset-quant-factor-library/v1/factors:
+    get:
+      summary: Retrieves Quant Factors for a small list of ids.
+      description: >
+        Retrieves Quant Factors for a small list of ids. Request an array of
+        specific Factors, or fetch all factors within a Factor Group. Use the
+        `library` endpoint to return a full list of available Factors, Factor
+        Groups, and related meta data.
+      tags:
+        - Factors
+    post:
+      summary: Retrieves Quant Factors for a large list of ids.
+      description: >
+        Retrieves Quant Factors for a large list of ids. Use the `library`
+        endpoint to return a full list of available Factors, Factor Groups, and
+        related meta data.
+      tags:
+        - Factors
+  /factset-quant-factor-library/v1/library:
+    get:
+      summary: Retrieve a list of all available factors with relevant meta data.
+      description: |
+        Fetch the list of all available factors and related meta data.
+      tags:
+        - Helper
+    post:
+      summary: Retrieves a list of all available factors with relevant meta data.
+      description: |
+        Fetch the list of all available factors and related meta data.
+      tags:
+        - nu

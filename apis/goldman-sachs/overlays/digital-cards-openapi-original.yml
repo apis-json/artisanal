@@ -1,0 +1,67 @@
+openapi: 3.0.1
+info:
+  title: FactSet Digital Cards API
+  description: ''
+paths:
+  /v1/company/{component}/adaptive-card:
+    parameters:
+      - name: component
+        in: path
+        required: true
+        description: Card name
+        schema:
+          type: string
+          enum:
+            - profile
+            - event-calendar
+      - name: ids
+        in: query
+        required: true
+        description: Public company tickers (comma delimited)
+        schema:
+          type: string
+          default: FDS-US
+      - name: format
+        in: query
+        description: >-
+          Return data in different format. By default adaptive cards will be
+          returned in key (ticker) value (adaptive card) pairs in a object.
+          Table option would return adaptive cards in an array
+        schema:
+          type: string
+          enum:
+            - table
+      - name: thumbnail
+        in: query
+        description: Whether or not to include a thumbnail card in the return data
+        schema:
+          type: boolean
+          enum:
+            - true
+            - false
+    get:
+      tags:
+        - Digital Card
+      summary: Retrieve Multiple Digital Cards in Microsoft Adaptive Card Format.
+  /v1/company/{component}/adaptive-card/{id}:
+    parameters:
+      - name: component
+        in: path
+        required: true
+        description: Card name
+        schema:
+          type: string
+          enum:
+            - profile
+            - event-calendar
+      - name: id
+        in: path
+        required: true
+        description: Public company ticker
+        schema:
+          type: string
+          default: FDS-US
+    get:
+      tags:
+        - Digital Card
+      summary: Retrieve One Digital Card in Microsoft Adaptive Card Format.

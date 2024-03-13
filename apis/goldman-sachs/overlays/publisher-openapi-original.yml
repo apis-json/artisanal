@@ -1,0 +1,74 @@
+openapi: 3.0.1
+info:
+  title: Publisher API
+  license:
+    name: Apache License 2.0
+    url: http://www.apache.org/licenses/LICENSE-2.0.txt
+paths:
+  "/analytics/lookups/v3/accounts/{path}":
+    get:
+      tags:
+      - Accounts
+      summary: Get accounts and sub-directories in a directory
+      description: This endpoint looks up all ACCT and ACTM files and sub-directories
+        in a given directory.
+  "/analytics/lookups/v3/currencies":
+    get:
+      tags:
+      - Currencies
+      summary: Get currencies
+      description: This endpoint lists all the currencies that can be applied to any
+        calculation.
+  "/analytics/engines/pub/v3/documents/{path}":
+    get:
+      tags:
+      - Documents
+      summary: Gets Publisher documents and sub-directories in a directory
+      description: This endpoint looks up all Publisher documents and sub-directories
+        in a given directory.
+  "/analytics/engines/pub/v3/calculations":
+    post:
+      tags:
+      - PubCalculations
+      summary: Create and Run Pub calculation
+      description: "This endpoint runs the Pub calculation specified in the POST body
+        parameters. It can take one or more units as input."
+  "/analytics/engines/pub/v3/calculations/{id}":
+    put:
+      tags:
+      - PubCalculations
+      summary: Create or Update Pub calculation and run it.
+      description: "This endpoint updates and run the Pub calculation specified in
+        the PUT body parameters. This also allows creating new Pub calculations with
+        custom ids. It can take one or more units as input.  Remarks:  *
+        \  Start and and end date must be within the configuration's min and max date
+        range"
+    get:
+      tags:
+      - PubCalculations
+      summary: Get Pub calculation parameters by id
+      description: This is the endpoint that returns the calculation parameters passed
+        for a calculation.
+    delete:
+      tags:
+      - PubCalculations
+      summary: Cancel Pub calculation by id
+      description: This is the endpoint to cancel a previously submitted calculation.
+  "/analytics/engines/pub/v3/calculations/{id}/status":
+    get:
+      tags:
+      - PubCalculations
+      summary: Get Pub calculation status by id
+      description: This is the endpoint to check on the progress of a previously
+        requested calculation. If the calculation has finished computing, the result
+        field in the response body will point to the result url. Otherwise, the
+        calculation is still running and the X-FactSet-Api-PickUp-Progress header
+        will contain a progress percentage.
+  "/analytics/engines/pub/v3/calculations/{id}/units/{unitId}/result":
+    get:
+      tags:
+      - PubCalculations
+      summary: Get Pub calculation result by id
+      description: This is the endpoint to get the result of a previously requested
+        calculation. If the calculation has finished computing, the body of the
+        response will contain the requested document in the specified format.

@@ -1,0 +1,239 @@
+host: api.factset.com
+swagger: '2.0'
+consumes:
+  - application/json
+produces:
+  - application/json
+paths:
+  /company/logo/get:
+    get:
+      tags:
+        - company
+      summary: List of URLs of company logos.
+      description: >-
+        List of URLs for transparent company logos in different sizes and
+        formats.   The different sizes for the rectangular and square formats
+        are: 
+
+         **Small**:
+         * rectangular:  maximum width of 88 pixels and maximum height of 31 pixels.
+         * square:  31 x 31 pixels.
+
+
+         **Medium**: small logo scaled up by 200%.
+
+         **Large**: small logo scaled up by 300%.
+
+         **Vector**: can be rendered at any size.
+info:
+  title: Company Logo API For Digital Portals
+x-interface-version: 1
+x-documenter-version: 5.38.1
+x-api-version: 3.1.0
+tags:
+  - name: company
+    description: company endpoints
+responses:
+  ErrorResponse:
+    description: Generic error response for all errors (400 ... 599 error codes)
+    schema:
+      type: object
+      properties:
+        meta:
+          $ref: '#/definitions/ErrorMetaObject'
+        errors:
+          $ref: '#/definitions/ErrorObject'
+definitions:
+  ErrorMetaObject:
+    type: object
+    properties:
+      status:
+        $ref: '#/definitions/StatusObject'
+  ErrorObject:
+    type: array
+    description: The errors member contains additional information about a failed request.
+    items:
+      type: object
+      properties:
+        details:
+          type: string
+          description: >-
+            A human-readable, unstructured explanation specific to this
+            occurrence of the failure.
+        encryptedDetails:
+          type: string
+          description: >-
+            Base64-encoded, internal details about the error, in addition to
+            "details".
+        type:
+          type: number
+          format: int32
+          description: Internal error type of the Foundation API protocol.
+        attribute:
+          type: array
+          description: >-
+            For a validation error, a reference to the request parameter that
+            failed validation; otherwise, an empty array.
+          items:
+            type: object
+            properties:
+              name:
+                type: string
+                description: Element of the path denoting the request parameter.
+              index:
+                type: number
+                format: int32
+                description: >-
+                  If the attribute "name" designates an array, index of the
+                  array element; otherwise the special value -1.
+            x-property-sort:
+              - name
+              - index
+      x-property-sort:
+        - detail
+        - encryptedDetails
+        - type
+        - attribute
+  AttributesMember:
+    type: array
+    description: Limit the attributes returned in the response to the specified set.
+    items:
+      type: string
+      maxLength: 100
+      exclusiveMaximum: false
+    maxItems: 50
+    uniqueItems: true
+  LanguageMember:
+    type: string
+    format: isoLanguage
+    description: ISO 639-1 code of the language.
+    maxLength: 2
+    minLength: 2
+    exclusiveMinimum: false
+    exclusiveMaximum: false
+  StatusObject:
+    type: object
+    properties:
+      code:
+        type: number
+        format: int32
+        description: >-
+          The HTTP status code of the response, mirroring the code from the
+          Status-Line of the HTTP response message (see [RFC2616] section 6.1).
+    description: The status member contains the status code of the response.
+    required:
+      - code
+  CursorBasedPaginationOutputObject:
+    type: object
+    description: Pagination attributes for the cursor-based pagination strategy.
+    properties:
+      total:
+        type: number
+        format: int32
+        description: Total number of entries in the result set.
+      isEstimatedTotal:
+        type: boolean
+        description: Flag indicating that the value of `total` is estimated.
+      next:
+        type: string
+        description: >-
+          The next cursor position to use in the parameter `pagination.cursor`
+          for an endpoint that supports cursor-based pagination, otherwise
+          `null`.
+      previous:
+        type: string
+        description: >-
+          The previous cursor position to use in the parameter
+          `pagination.cursor` for an endpoint that supports cursor-based
+          pagination. If a previous cursor position is not supported or
+          available, `previous` is `null`.
+    required:
+      - total
+      - isEstimatedTotal
+      - next
+      - previous
+    x-property-sort:
+      - total
+      - isEstimatedTotal
+      - next
+      - previous
+  CursorBasedPaginationOutputObjectWithoutTotal:
+    type: object
+    description: >-
+      Pagination attributes for the cursor-based pagination strategy; a total
+      element count is not supported.
+    properties:
+      next:
+        type: string
+        description: >-
+          The next cursor position to use in the parameter `pagination.cursor`
+          for an endpoint that supports cursor-based pagination, otherwise
+          `null`.
+      previous:
+        type: string
+        description: >-
+          The previous cursor position to use in the parameter
+          `pagination.cursor` for an endpoint that supports cursor-based
+          pagination. If a previous cursor position is not supported or
+          available, `previous` is `null`.
+    required:
+      - next
+      - previous
+    x-property-sort:
+      - next
+      - previous
+  OffsetBasedPaginationOutputObject:
+    type: object
+    description: Pagination attributes for the offset-based pagination strategy.
+    properties:
+      total:
+        type: number
+        format: int32
+        description: Total number of entries in the result set.
+      isEstimatedTotal:
+        type: boolean
+        description: Flag indicating that the value of "total" is estimated.
+    required:
+      - total
+      - isEstimatedTotal
+    x-property-sort:
+      - total
+      - isEstimatedTotal
+  OffsetBasedPaginationOutputObjectWithoutTotal:
+    type: object
+    description: >-
+      Pagination attributes for the offset-based pagination strategy; a total
+      element count is not supported.
+    properties:
+      hasNext:
+        type: boolean
+        description: >-
+          Flag indicating that a subsequent request with the same parameters,
+          except that the parameter `pagination.offset` is incremented by
+          `pagination.limit`, would yield additional results.
+    required:
+      - hasNext
+    x-property-sort:
+      - hasNext
+  PartialOutputObject:
+    type: object
+    properties:
+      isPartial:
+        type: boolean
+        description: >-
+          Flag indicating that the response is a possibly incomplete array or an
+          object containing a possibly incomplete array, due to hitting a
+          processing time limit. If `true`, some matching results might be
+          missing from the array, or elements for matching results might be
+          incorrectly included (for example, when priority sorting would have
+          removed the element). Depending on the use case, such a response may
+          be unsuitable.
+    description: Object denoting that the endpoint response is possibly incomplete.
+    required:
+      - isPartial
+    x-property-sort:
+      - isPartial
+basePath: /wealth/v1
+securityDefinitions:
+  Basic:
+    type: null

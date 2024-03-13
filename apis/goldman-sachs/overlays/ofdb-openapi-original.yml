@@ -1,0 +1,228 @@
+openapi: 3.0.0
+info:
+  title: OFDB API
+  license:
+    name: Apache License, Version 2.0
+    url: https://www.apache.org/licenses/LICENSE-2.0
+tags:
+  - name: Add
+    description: Add new data to a database
+  - name: Create
+    description: Create a new database
+  - name: Delete
+    description: Delete data from a database
+  - name: Get
+    description: Get data from a database
+  - name: Long Running
+    description: Secondary helper routes for long running requests
+  - name: Update
+    description: Update existing data in a database
+paths:
+  /database/jobs/{id}/status:
+    get:
+      tags:
+        - Long Running
+      description: >-
+        Returns the current status of a long running request. The full URL is
+        normally provided for you in the Location header of a long running
+        response.
+  /database/{path}/audit:
+    get:
+      tags:
+        - Get
+      description: >-
+        Returns a list of the most recent "modificationTimes" in long datetime
+        format
+  /database/{path}/audit/jobs/{id}:
+    get:
+      tags:
+        - Long Running
+      description: >-
+        Returns the end results of a long running request. The full URL is
+        normally provided for you in the Location header of a finished long
+        running response.
+  /database/{path}/stats:
+    get:
+      tags:
+        - Get
+      description: Returns a summary of OFDB metadata and data points
+  /database/{path}/stats/jobs/{id}:
+    get:
+      tags:
+        - Long Running
+      description: >-
+        Returns the end results of a long running request. The full URL is
+        normally provided for you in the Location header of a finished long
+        running response.
+  /database/{path}/fields:
+    get:
+      tags:
+        - Get
+      description: Returns all the fields in the database(OFDB, OMS_OFDB, ECONOFDB)
+    post:
+      tags:
+        - Add
+      description: Allows users to add fields to existing OFDBs
+  /database/{path}/fields/jobs/{id}:
+    get:
+      tags:
+        - Long Running
+      description: >-
+        Returns the end results of a long running request. The full URL is
+        normally provided for you in the Location header of a finished long
+        running response.
+  /database/{path}/delete:
+    post:
+      tags:
+        - Delete
+      description: >-
+        Allows users to delete various combinations of symbols, dates, and
+        fields from the desired OFDB
+  /database/{path}/delete/jobs/{id}:
+    get:
+      tags:
+        - Long Running
+      description: >-
+        Returns the end results of a long running request. The full URL is
+        normally provided for you in the Location header of a finished long
+        running response.
+  /database/{path}/symbols:
+    get:
+      tags:
+        - Get
+      description: Returns all the symbols in the database(OFDB, OMS_OFDB, ECONOFDB)
+    post:
+      tags:
+        - Add
+      description: >-
+        Creates a new symbol with single/multiple dates for 3d database(OFDB).
+        Creates a symbol for 2d database(OFDB)
+    put:
+      tags:
+        - Update
+      description: >-
+        Updates existing symbols for single/multiple dates or adds a new
+        symbol/date within a symbol if not present in 3d database(OFDB). Updates
+        an existing symbol field value or adds a new symbol if not present in
+        the 2d database(OFDB)
+  /database/{path}/symbols/jobs/{id}:
+    get:
+      tags:
+        - Long Running
+      description: >-
+        Returns the end results of a long running request. The full URL is
+        normally provided for you in the Location header of a finished long
+        running response.
+  /database/{path}/symbols/{symbol}:
+    put:
+      tags:
+        - Update
+      description: >-
+        Updates an existing symbol field value for single/multiple dates or adds
+        a new symbol/date within a symbol if not present in 3d database(OFDB).
+        Updates an existing symbol field value or adds a new symbol if not
+        present in the 2d database(OFDB)
+    delete:
+      tags:
+        - Delete
+      description: >-
+        Deletes all data specific to the symbol in both 2d and 3d
+        database(OFDB). This includes all the dates related to that symbols in
+        3d database(OFDB)
+  /database/{path}/symbols/{symbol}/jobs/{id}:
+    get:
+      tags:
+        - Long Running
+      description: >-
+        Returns the end results of a long running request. The full URL is
+        normally provided for you in the Location header of a finished long
+        running response.
+  /database/{path}/dates:
+    get:
+      tags:
+        - Get
+      description: Returns all the dates in the database(OFDB, OMS_OFDB, ECONOFDB)
+    post:
+      tags:
+        - Add
+      description: Creates a new date with single/multiple symbols for a 3d database(OFDB).
+    put:
+      tags:
+        - Update
+      description: >-
+        Updates existing dates for single/multiple symbols or adds a new
+        date/symbol within a date if not present in 3d database(OFDB).
+  /database/{path}/dates/jobs/{id}:
+    get:
+      tags:
+        - Long Running
+      description: >-
+        Returns the end results of a long running request. The full URL is
+        normally provided for you in the Location header of a finished long
+        running response.
+  /database/{path}/dates/{date}:
+    put:
+      tags:
+        - Update
+      description: >-
+        Updates an existing date field value for single/multiple symbols or adds
+        a new date/symbol within a date if not present in 3d database(OFDB).
+    delete:
+      tags:
+        - Delete
+      description: >-
+        Deletes all data specific to the date in 3d database(OFDB). This
+        includes all the symbols related to that date
+  /database/{path}/dates/{date}/jobs/{id}:
+    get:
+      tags:
+        - Long Running
+      description: >-
+        Returns the end results of a long running request. The full URL is
+        normally provided for you in the Location header of a finished long
+        running response.
+  /database/{path}/dates/{date}/symbols/{symbol}:
+    delete:
+      tags:
+        - Delete
+      description: Deletes data specific to the symbol and date from a 3d database(OFDB).
+  /database/{path}/dates/{date}/symbols/{symbol}/jobs/{id}:
+    delete:
+      tags:
+        - Delete
+      description: Deletes data specific to the symbol and date from a 3d database(OFDB).
+  /database/{path}:
+    get:
+      tags:
+        - Get
+      description: >-
+        Returns the data in the database(OFDB, OMS_OFDB, ECONOFDB) for the
+        mentioned Symbol or Date. Atleast one parameter(Symbol/Date) is
+        required. For a range of dates symbol parameter is mandatory.
+  /database/{path}/jobs/{id}:
+    get:
+      tags:
+        - Long Running
+      description: >-
+        Returns the end results of a long running request. The full URL is
+        normally provided for you in the Location header of a finished long
+        running response.
+  /database:
+    post:
+      tags:
+        - Create
+      description: >-
+        Creates a 2d or 3d database(OFDB). Users will note that not every field
+        requires all the parameters listed in the schema. Please review FactSet
+        data types on the OA for further guidance.
+  /database/jobs/{id}:
+    get:
+      tags:
+        - Long Running
+      description: >-
+        Returns the end results of a long running request. The full URL is
+        normally provided for you in the Location header of a finished long
+        running response.
+externalDocs:
+  description: API Documentation
+  url: https://developer.factset.com/api-catalog/ofdb-api

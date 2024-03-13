@@ -1,0 +1,1528 @@
+openapi: 3.0.1
+info:
+  title: EMS API
+  description: Allow clients to trade orders.
+  contact:
+    name: FactSet Research Systems
+    url: https://developer.factset.com/contact
+    email: api@factset.com
+  license:
+    name: Apache License, Version 2.0
+    url: https://www.apache.org/licenses/LICENSE-2.0
+  version: 0.3.0
+servers:
+  - url: https://api.factset.com/trading/ems/v0
+    description: Production
+  - url: https://api.uat.factset.com/trading/ems/v0
+    description: UAT
+paths:
+  /orders/create:
+    post:
+      tags:
+        - Orders
+      summary: Send orders to EMS for execution.
+      description: >-
+        This endpoint takes the list of orders and place them on EMS for
+        execution.
+      operationId: create
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/EMSOrdersRoot'
+            examples:
+              Multiple Orders:
+                value:
+                  data:
+                    investorId: MyOrganization
+                    orders:
+                      - clientOrderId: OR0000001
+                        instrument:
+                          symbol: GOOGL
+                        side: buy
+                        orderType: market
+                        orderQuantity: 1000
+                        price: 450
+                        currency: USD
+                        settlementType: regular
+                        handlingInstructions: autoOrderPublic
+                      - clientOrderId: OR0000002
+                        instrument:
+                          symbol: MSFT
+                        side: sell
+                        orderType: limit
+                        orderQuantity: 1000
+                        price: 450
+                        currency: USD
+                        settlementType: regular
+                        handlingInstructions: autoOrderPublic
+                      - clientOrderId: OR0000003
+                        instrument:
+                          symbol: TSLA
+                        side: buy
+                        orderType: marketOnClose
+                        orderQuantity: 1000
+                        price: 450
+                        currency: USD
+                        settlementType: regular
+                        handlingInstructions: autoOrderPublic
+              Single Order (Minimum Fields):
+                summary: Very basic single order with only required fields.
+                value:
+                  data:
+                    investorId: MyOrganization
+                    orders:
+                      - instrument:
+                          symbol: GOOGL
+                        side: buy
+                        orderType: market
+                        orderQuantity: 1000
+                        price: 450
+                        currency: USD
+                        settlementType: regular
+              Single Order:
+                value:
+                  data:
+                    investorId: MyOrganization
+                    orders:
+                      - clientOrderId: OR0000004
+                        instrument:
+                          symbol: GOOGL
+                        side: buy
+                        orderType: market
+                        orderQuantity: 1000
+                        price: 450
+                        stopPrice: 500
+                        strikePrice: 60
+                        currency: USD
+                        isCovered: false
+                        maxShow: 30
+                        maxFloor: 20
+                        settlementType: regular
+                        settlementDate: '20211024'
+                        handlingInstructions: autoOrderPublic
+                        locateRequired: false
+                        account: ACCT1
+                        timeInForce:
+                          tif: goodTillCancel
+              Single order with derivatives (futures/options):
+                value:
+                  data:
+                    investorId: MyOrganization
+                    orders:
+                      - instrument:
+                          symbol: GOOGL
+                          putOrCall: call
+                          underlyingSecurityType: Equity
+                        side: buy
+                        orderType: market
+                        orderQuantity: 1000
+                        price: 450
+                        currency: USD
+                        settlementType: regular
+                        handlingInstructions: autoOrderPublic
+                        account: ACCT1
+      responses:
+        '200':
+          description: Expected response, returns the list of orders.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/EMSOrdersResponseRoot'
+              example:
+                data:
+                  accepted:
+                    OR123456789:
+                      symbol: GOOGL
+                      side: buy
+                      orderType: market
+                      orderQuantity: 2500
+                    OR123456790:
+                      symbol: MSFT
+                      side: buy
+                      orderType: market
+                      orderQuantity: 200
+                  rejected:
+                    OR123456791:
+                      symbol: TSLA
+                      side: buy
+                      orderType: market
+                      orderQuantity: 500
+        '400':
+          description: Invalid post body parameters.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ClientErrorResponse'
+        '401':
+          description: Missing or invalid authentication.
+        '403':
+          description: User is forbidden with current credentials.
+        '415':
+          description: >-
+            Missing/Invalid Content-Type header. Header needs to be set to
+            application/json.
+        '429':
+          description: Rate limit reached. Wait before sending further requests.
+        '500':
+          description: >-
+            Server error. Log the X-DataDirect-Request-Key header to assist in
+            troubleshooting.
+        '503':
+          description: Request timed out. Retry the request in sometime.
+  /orders/replace:
+    post:
+      tags:
+        - Orders
+      summary: Replace the orders on EMS system.
+      description: This endpoint takes the list of orders to be replaced on the EMS system.
+      operationId: replace
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/EMSReplaceOrdersRoot'
+      responses:
+        '200':
+          description: Expected response, returns the list of order ids.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/EMSOrdersResponseRoot'
+              example:
+                data:
+                  accepted:
+                    OR123456789:
+                      symbol: GOOGL
+                      side: buy
+                      orderType: market
+                      orderQuantity: 2500
+                    OR123456790:
+                      symbol: MSFT
+                      side: buy
+                      orderType: market
+                      orderQuantity: 200
+                  rejected:
+                    OR123456791:
+                      symbol: TSLA
+                      side: buy
+                      orderType: market
+                      orderQuantity: 500
+        '400':
+          description: Invalid post body parameters.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ClientErrorResponse'
+        '401':
+          description: Missing or invalid authentication.
+        '403':
+          description: User is forbidden with current credentials.
+        '415':
+          description: >-
+            Missing/Invalid Content-Type header. Header needs to be set to
+            application/json.
+        '429':
+          description: Rate limit reached. Wait before sending further requests.
+        '500':
+          description: >-
+            Server error. Log the X-DataDirect-Request-Key header to assist in
+            troubleshooting.
+        '503':
+          description: Request timed out. Retry the request in sometime.
+  /orders/cancel:
+    post:
+      tags:
+        - Orders
+      summary: Cancel the orders on EMS system.
+      description: >-
+        This endpoint takes the list of orders to be cancelled on the EMS
+        system.
+      operationId: cancel
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/EMSCancelOrdersRoot'
+      responses:
+        '200':
+          description: Expected response, returns the list of order ids.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/EMSOrdersResponseRoot'
+              example:
+                data:
+                  accepted:
+                    OR123456789:
+                      symbol: GOOGL
+                      side: buy
+                      orderType: market
+                      orderQuantity: 2500
+                    OR123456790:
+                      symbol: MSFT
+                      side: buy
+                      orderType: market
+                      orderQuantity: 200
+                  rejected:
+                    OR123456791:
+                      symbol: TSLA
+                      side: buy
+                      orderType: market
+                      orderQuantity: 500
+        '400':
+          description: Invalid post body parameters.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ClientErrorResponse'
+        '401':
+          description: Missing or invalid authentication.
+        '403':
+          description: User is forbidden with current credentials.
+        '415':
+          description: >-
+            Missing/Invalid Content-Type header. Header needs to be set to
+            application/json.
+        '429':
+          description: Rate limit reached. Wait before sending further requests.
+        '500':
+          description: >-
+            Server error. Log the X-DataDirect-Request-Key header to assist in
+            troubleshooting.
+        '503':
+          description: Request timed out. Retry the request in sometime.
+  /child-orders/create:
+    post:
+      tags:
+        - ChildOrders
+      summary: Create Child Orders
+      description: This endpoint is used to create child orders.
+      operationId: createChildOrder
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/EMSChildOrdersRoot'
+      responses:
+        '200':
+          description: Expected response.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/EMSCreateChildOrdersResponseRoot'
+              example:
+                data:
+                  accepted:
+                    '3280015':
+                      basketId: FACTSET_OMS-100823_12345
+                      ticketId: RKPW.3280015
+                      symbol: FDS-USA
+                  rejected:
+                    '3280015':
+                      message: 'Ticket does not exist for ticketid: null'
+                      basketId: FACTSET_OMS-100823_12345
+                      ticketId: RKPW.3280015
+                      symbol: FDS-USA
+        '400':
+          description: Invalid parameters provided.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ClientErrorResponse'
+        '401':
+          description: Missing or invalid authentication.
+        '403':
+          description: User is forbidden with current credentials.
+        '415':
+          description: >-
+            Missing/Invalid Content-Type header. Header needs to be set to
+            application/json.
+        '429':
+          description: Rate limit reached. Wait before sending further requests.
+        '500':
+          description: >-
+            Server error. Log the X-DataDirect-Request-Key header to assist in
+            troubleshooting.
+        '503':
+          description: Request timed out. Retry the request in sometime.
+  /child-orders/replace:
+    post:
+      tags:
+        - ChildOrders
+      summary: Replace the Child Orders on EMS system.
+      description: This endpoint takes the child order to be replaced on the EMS system.
+      operationId: replaceChildOrder
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/EMSReplaceChildOrdersRoot'
+      responses:
+        '200':
+          description: Expected response.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/EMSChildOrdersResponseRoot'
+              example:
+                data:
+                  accepted:
+                    '3280015':
+                      ticketId: RKPW.3280015
+                      symbol: FDS-USA
+                  rejected:
+                    '3280015':
+                      message: 'Ticket does not exist for ticketid: null'
+                      ticketId: RKPW.3280015
+                      symbol: FDS-USA
+        '400':
+          description: Invalid parameters provided.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ClientErrorResponse'
+        '401':
+          description: Missing or invalid authentication.
+        '403':
+          description: User is forbidden with current credentials.
+        '415':
+          description: >-
+            Missing/Invalid Content-Type header. Header needs to be set to
+            application/json.
+        '429':
+          description: Rate limit reached. Wait before sending further requests.
+        '500':
+          description: >-
+            Server error. Log the X-DataDirect-Request-Key header to assist in
+            troubleshooting.
+        '503':
+          description: Request timed out. Retry the request in sometime.
+  /child-orders/cancel:
+    post:
+      tags:
+        - ChildOrders
+      summary: Cancel Child Orders
+      description: This endpoint is to cancel a specific child order.
+      operationId: cancelChildOrder
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/EMSCancelChildOrdersRoot'
+      responses:
+        '200':
+          description: Expected response.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/EMSChildOrdersResponseRoot'
+              example:
+                data:
+                  accepted:
+                    '3280015':
+                      ticketId: RKPW.3280015
+                      symbol: FDS-USA
+                  rejected:
+                    '3280015':
+                      message: 'Ticket does not exist for ticketid: null'
+                      ticketId: RKPW.3280015
+                      symbol: FDS-USA
+        '400':
+          description: Invalid parameters provided.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ClientErrorResponse'
+        '401':
+          description: Missing or invalid authentication.
+        '403':
+          description: User is forbidden with current credentials.
+        '415':
+          description: >-
+            Missing/Invalid Content-Type header. Header needs to be set to
+            application/json.
+        '429':
+          description: Rate limit reached. Wait before sending further requests.
+        '500':
+          description: >-
+            Server error. Log the X-DataDirect-Request-Key header to assist in
+            troubleshooting.
+        '503':
+          description: Request timed out. Retry the request in sometime.
+components:
+  schemas:
+    ClientErrorResponse:
+      type: object
+      properties:
+        errors:
+          type: array
+          items:
+            $ref: '#/components/schemas/Error'
+          description: List of errors
+          nullable: true
+      description: Client Error Response
+    EMSCancelChildOrder:
+      required:
+        - ticketId
+      type: object
+      properties:
+        ticketId:
+          type: string
+          description: Ticket Id for the child order to be cancelled
+          example: RKPW.3280015
+        reason:
+          type: string
+          description: Reason for cancelling the child order
+          nullable: true
+          example: mistyped order quantity to be routed
+      description: EMS Cancel Child Order
+    EMSCancelChildOrders:
+      required:
+        - childOrders
+      type: object
+      properties:
+        childOrders:
+          maxItems: 1
+          minItems: 1
+          type: array
+          items:
+            $ref: '#/components/schemas/EMSCancelChildOrder'
+      description: EMS Cancel Child Orders
+    EMSCancelChildOrdersRoot:
+      type: object
+      properties:
+        data:
+          $ref: '#/components/schemas/EMSCancelChildOrders'
+    EMSCancelOrder:
+      required:
+        - originalClientOrderId
+      type: object
+      properties:
+        originalClientOrderId:
+          type: string
+          description: Unique identifier of the original order, generated in Create.
+        inboundDestination:
+          type: string
+          description: >-
+            To facilitate integration with translators that transform orders
+            into a format compatible with the internal order routing and
+            execution infrastructure.
+          nullable: true
+      description: EMS Cancel Order
+    EMSCancelOrders:
+      type: object
+      properties:
+        investorId:
+          type: string
+          description: Investor Id
+          nullable: true
+          example: DEMO-12345
+        orders:
+          type: array
+          items:
+            $ref: '#/components/schemas/EMSCancelOrder'
+          description: List of orders to cancel
+          nullable: true
+      description: EMS Cancel Orders
+    EMSCancelOrdersRoot:
+      type: object
+      properties:
+        data:
+          $ref: '#/components/schemas/EMSCancelOrders'
+    EMSChildOrder:
+      required:
+        - destination
+        - orderQuantity
+        - orderType
+        - parentId
+      type: object
+      properties:
+        parentId:
+          $ref: '#/components/schemas/ParentId'
+        side:
+          enum:
+            - buy
+            - sell
+            - buyMinus
+            - sellPlus
+            - sellShort
+            - sellShortExempt
+          type: string
+          description: >-
+            Side of the order.If the parent order side is 'buy', valid values
+            are 'buy' or 'buyMinus'. If the parent order side is 'sell', valid
+            values are 'sell' or 'sellPlus'
+          nullable: true
+          example: buy
+        orderType:
+          enum:
+            - market
+            - limit
+            - stop
+            - stopLimit
+            - marketOnClose
+            - limitOrBetter
+          type: string
+          description: Type of the order
+          example: market
+        orderQuantity:
+          minimum: 0
+          type: number
+          description: >-
+            Number of shares/Quantity to be routed. Must be less than or equal
+            to the orderQuantity of the parent order.
+          format: double
+          example: 250
+        price:
+          type: number
+          description: Order price per share.
+          format: double
+          nullable: true
+          example: 450
+        timeInForce:
+          $ref: '#/components/schemas/TimeInForce'
+        handlingInstructions:
+          enum:
+            - autoOrderPrivate
+            - autoOrderPublic
+            - bestExecution
+          type: string
+          description: Instructions for order handling on Broker trading floor.
+          nullable: true
+          example: autoOrderPublic
+        exDestination:
+          type: string
+          description: >-
+            Execution destination as defined by institution when order is
+            entered.
+          default: America Stock Exchange
+          nullable: true
+          example: America Stock Exchange
+        destination:
+          type: string
+          description: >-
+            Represents the designated venue or location to which an order is
+            intended to be routed.
+          example: PAPER
+        stopPrice:
+          type: number
+          description: Stop-loss price to buy/sell stock at market.
+          format: double
+          nullable: true
+          example: 250
+        maxFloor:
+          type: number
+          description: >-
+            Maximum number of shares within an order to be shown on the exchange
+            floor at any given time.
+          format: double
+          nullable: true
+          example: 100
+        minQuantity:
+          type: number
+          description: Minimum quantity of an order to be executed.
+          format: double
+          nullable: true
+          example: 120
+        settlementType:
+          enum:
+            - regular
+            - cash
+            - nextDay
+            - tPlus2
+            - tPlus3
+            - tPlus4
+            - future
+            - whenIssued
+            - sellersOption
+            - tPlus5
+          type: string
+          description: Order settlement period
+          nullable: true
+          example: regular
+        settlementDate:
+          type: string
+          description: Specific date of trade settlement in YYYYMMDD format.
+          nullable: true
+          example: '20230823'
+        executionInstructions:
+          enum:
+            - notHeld
+            - work
+            - goAlong
+            - overTheDay
+            - held
+            - participateDoNotInitiate
+            - strictScale
+            - tryToScale
+            - stayOnBidSide
+            - stayOnOfferSide
+            - noCross
+            - okToCross
+            - callFirst
+            - percentOfVolume
+            - doNotIncrease
+            - doNotReduce
+            - allOrNone
+            - reinstateOnSystemFailure
+            - institutionsOnly
+            - reinstateOnTradingHalt
+            - cancelOnTradingHalt
+            - lastPeg
+            - midPricePeg
+            - nonNegotiable
+            - openingPeg
+            - marketPeg
+            - cancelOnSystemFailure
+            - primaryPeg
+            - suspend
+            - fixedPegToLocalBestBid
+            - customerDisplayInstruction
+            - netting
+            - pegToVWAP
+            - tradeAlong
+            - tryToStop
+            - cancelIfNotBest
+            - trailingStopPeg
+            - strictLimit
+            - ignorePriceValidityChecks
+            - pegToLimitPrice
+            - workToTargetStrategy
+            - intermarketSweep
+            - externalRoutingAllowed
+            - externalRoutingNotAllowed
+            - imbalanceOnly
+            - singleExecutionRequestedForBlockTrade
+            - bestExecution
+          type: string
+          description: Instructions for order handling on exchange trading floor.
+          nullable: true
+          example: notHeld
+        locateRequired:
+          type: boolean
+          description: >-
+            Indicates whether the broker is to locate the stock in conjunction
+            with a short sell order.
+          nullable: true
+          example: false
+        text:
+          maxLength: 250
+          type: string
+          description: Free format text string.
+          nullable: true
+          example: routing 10 orders to PAPER destination
+        profile:
+          type: string
+          description: A name given to broker algo
+          nullable: true
+        userDefinedFields:
+          type: object
+          additionalProperties:
+            type: string
+          description: User defined fields
+          nullable: true
+      description: EMS Child Orders
+    EMSChildOrderInfo:
+      type: object
+      properties:
+        ticketId:
+          type: string
+          description: Ticket Id for the child order
+          nullable: true
+          example: RKPW.3280015
+        symbol:
+          type: string
+          description: Ticker symbol
+          nullable: true
+          example: FDS-USA
+      description: EMS Child Order Info
+    EMSChildOrderRejectedInfo:
+      type: object
+      properties:
+        message:
+          type: string
+          description: Reason for rejection
+          nullable: true
+          example: 'Ticket does not exist for ticketid: null'
+        ticketId:
+          type: string
+          description: Ticket Id for the child order
+          nullable: true
+          example: RKPW.3280015
+        symbol:
+          type: string
+          description: Ticker symbol
+          nullable: true
+          example: FDS-USA
+      description: EMS Child Order Rejected Info
+    EMSChildOrders:
+      required:
+        - childOrders
+      type: object
+      properties:
+        childOrders:
+          maxItems: 1
+          minItems: 1
+          type: array
+          items:
+            $ref: '#/components/schemas/EMSChildOrder'
+    EMSChildOrdersResponse:
+      type: object
+      properties:
+        accepted:
+          type: object
+          additionalProperties:
+            $ref: '#/components/schemas/EMSChildOrderInfo'
+          description: Accepted Orders. Key is the clientOrderId of the request.
+          nullable: true
+        rejected:
+          type: object
+          additionalProperties:
+            $ref: '#/components/schemas/EMSChildOrderRejectedInfo'
+          description: Rejected Orders. Key is the clientOrderId of the request.
+          nullable: true
+      description: EMS Child Orders Response
+    EMSChildOrdersResponseRoot:
+      required:
+        - data
+      type: object
+      properties:
+        data:
+          $ref: '#/components/schemas/EMSChildOrdersResponse'
+      description: EMS Response
+    EMSChildOrdersRoot:
+      type: object
+      properties:
+        data:
+          $ref: '#/components/schemas/EMSChildOrders'
+    EMSCreateChildOrderInfo:
+      type: object
+      properties:
+        basketId:
+          type: string
+          description: Unique identifier assigned to basket order
+          nullable: true
+          example: FACTSET_OMS-100823_12345
+        ticketId:
+          type: string
+          description: Ticket Id for the child order
+          nullable: true
+          example: RKPW.3280015
+        symbol:
+          type: string
+          description: Ticker symbol
+          nullable: true
+          example: FDS-USA
+    EMSCreateChildOrderRejectedInfo:
+      type: object
+      properties:
+        message:
+          type: string
+          description: Reason for rejection
+          nullable: true
+          example: 'Ticket does not exist for ticketid: null'
+        basketId:
+          type: string
+          description: Unique identifier assigned to basket order
+          nullable: true
+          example: FACTSET_OMS-100823_12345
+        ticketId:
+          type: string
+          description: Ticket Id for the child order
+          nullable: true
+          example: RKPW.3280015
+        symbol:
+          type: string
+          description: Ticker symbol
+          nullable: true
+          example: FDS-USA
+    EMSCreateChildOrdersResponse:
+      type: object
+      properties:
+        accepted:
+          type: object
+          additionalProperties:
+            $ref: '#/components/schemas/EMSCreateChildOrderInfo'
+          description: Accepted Orders. Key is the clientOrderId of the request.
+          nullable: true
+        rejected:
+          type: object
+          additionalProperties:
+            $ref: '#/components/schemas/EMSCreateChildOrderRejectedInfo'
+          description: Rejected Orders. Key is the clientOrderId of the request.
+          nullable: true
+    EMSCreateChildOrdersResponseRoot:
+      required:
+        - data
+      type: object
+      properties:
+        data:
+          $ref: '#/components/schemas/EMSCreateChildOrdersResponse'
+      description: EMS Response
+    EMSOrder:
+      required:
+        - instrument
+        - orderType
+        - side
+      type: object
+      properties:
+        clientOrderId:
+          type: string
+          description: Unique id for the order
+          nullable: true
+          example: '12322123'
+        instrument:
+          $ref: '#/components/schemas/Instrument'
+        side:
+          enum:
+            - buy
+            - sell
+            - sellShort
+            - sellShortExempt
+          type: string
+          description: Side of the order.
+          example: buy
+        orderType:
+          enum:
+            - market
+            - limit
+            - stop
+            - stopLimit
+            - marketOnClose
+            - limitOrBetter
+          type: string
+          description: Type of the order
+          example: market
+        orderQuantity:
+          minimum: 0
+          type: number
+          description: Number of shares/Quantity.
+          format: double
+          example: 350
+        price:
+          type: number
+          description: Order price per share
+          format: double
+          nullable: true
+          example: 800
+        stopPrice:
+          type: number
+          description: Stop-loss price to buy/sell stock at market.
+          format: double
+          nullable: true
+          example: 800
+        strikePrice:
+          type: number
+          description: Strike Price for an Option.
+          format: double
+          nullable: true
+          example: 400
+        currency:
+          type: string
+          description: Currency used for price in ISO format.
+          nullable: true
+          example: USD
+        isCovered:
+          type: boolean
+          description: >-
+            Signifies if a specific order is a covered order. A covered order is
+            one that involves an investment strategy with the capability to
+            limit the potential loss of the order.
+          nullable: true
+          example: false
+        maxShow:
+          type: number
+          description: >-
+            Maximum number of shares within an order to be shown to other
+            customers.
+          format: double
+          nullable: true
+          example: 100
+        maxFloor:
+          type: number
+          description: >-
+            Maximum number of shares within an order to be shown on the exchange
+            floor at any given time.
+          format: double
+          nullable: true
+          example: 100
+        prevClosePrice:
+          type: number
+          description: Previous closing price of security.
+          format: double
+          nullable: true
+          example: 100
+        settlementType:
+          enum:
+            - regular
+            - cash
+            - nextDay
+            - tPlus2
+            - tPlus3
+            - tPlus4
+            - future
+            - whenIssued
+            - sellersOption
+            - tPlus5
+          type: string
+          description: Order settlement period.
+          nullable: true
+          example: regular
+        settlementDate:
+          type: string
+          description: Settlement date of trade settlement in YYYYMMDD format
+          nullable: true
+          example: '20210622'
+        handlingInstructions:
+          enum:
+            - autoOrderPrivate
+            - autoOrderPublic
+            - bestExecution
+          type: string
+          description: Instructions for order handling on Broker trading floor.
+          nullable: true
+          example: autoOrderPublic
+        executionInstructions:
+          enum:
+            - notHeld
+            - work
+            - goAlong
+            - overTheDay
+            - held
+            - participateDoNotInitiate
+            - strictScale
+            - tryToScale
+            - stayOnBidSide
+            - stayOnOfferSide
+            - noCross
+            - okToCross
+            - callFirst
+            - percentOfVolume
+            - doNotIncrease
+            - doNotReduce
+            - allOrNone
+            - reinstateOnSystemFailure
+            - institutionsOnly
+            - reinstateOnTradingHalt
+            - cancelOnTradingHalt
+            - lastPeg
+            - midPricePeg
+            - nonNegotiable
+            - openingPeg
+            - marketPeg
+            - cancelOnSystemFailure
+            - primaryPeg
+            - suspend
+            - fixedPegToLocalBestBid
+            - customerDisplayInstruction
+            - netting
+            - pegToVWAP
+            - tradeAlong
+            - tryToStop
+            - cancelIfNotBest
+            - trailingStopPeg
+            - strictLimit
+            - ignorePriceValidityChecks
+            - pegToLimitPrice
+            - workToTargetStrategy
+            - intermarketSweep
+            - externalRoutingAllowed
+            - externalRoutingNotAllowed
+            - imbalanceOnly
+            - singleExecutionRequestedForBlockTrade
+            - bestExecution
+          type: string
+          description: Instructions for order handling on exchange trading floor.
+          nullable: true
+          example: notHeld
+        locateRequired:
+          type: boolean
+          description: >-
+            Indicates whether the broker is to locate the stock in conjunction
+            with a short sell order.
+          nullable: true
+          example: false
+        effectiveTime:
+          type: string
+          description: Effective time in YYYYMMDD-HH:MM:SS format expressed in UTC
+          nullable: true
+          example: 20210622-12:15:30
+        account:
+          type: string
+          description: Account for the basket, parent basket or position.
+          nullable: true
+          example: Test.ACCT
+        timeInForce:
+          $ref: '#/components/schemas/TimeInForce'
+        inboundDestination:
+          type: string
+          description: >-
+            To facilitate integration with translators that transform orders
+            into a format compatible with the internal order routing and
+            execution infrastructure.
+          nullable: true
+        userDefinedFields:
+          type: object
+          additionalProperties:
+            type: string
+          description: User defined fields
+          nullable: true
+      description: EMS Order
+    EMSOrderMetadata:
+      type: object
+      properties:
+        symbol:
+          type: string
+          description: Ticker symbol
+          nullable: true
+        side:
+          enum:
+            - buy
+            - sell
+            - sellShort
+            - sellShortExempt
+          type: string
+          description: Side of the order
+          nullable: true
+        orderType:
+          enum:
+            - market
+            - limit
+            - stop
+            - stopLimit
+            - marketOnClose
+            - limitOrBetter
+          type: string
+          description: Type of the order
+          nullable: true
+        orderQuantity:
+          type: number
+          description: Number of shares/Quantity.
+          format: double
+          nullable: true
+        error:
+          type: string
+          description: Error message
+          nullable: true
+        info:
+          type: string
+          description: Information
+          nullable: true
+        clientOrderId:
+          type: string
+          description: Client Order Id
+          nullable: true
+        warning:
+          type: string
+          description: Warning
+          nullable: true
+      description: EMS Order Metadata
+    EMSOrders:
+      required:
+        - orders
+      type: object
+      properties:
+        investorId:
+          type: string
+          description: Investor Id
+          nullable: true
+          example: DEMO-12345
+        orders:
+          type: array
+          items:
+            $ref: '#/components/schemas/EMSOrder'
+          description: List of orders
+      description: EMS Orders
+    EMSOrdersResponse:
+      type: object
+      properties:
+        accepted:
+          type: object
+          additionalProperties:
+            $ref: '#/components/schemas/EMSOrderMetadata'
+          description: Accepted Orders
+          nullable: true
+        rejected:
+          type: object
+          additionalProperties:
+            $ref: '#/components/schemas/EMSOrderMetadata'
+          description: Rejected Orders
+          nullable: true
+      description: EMS Orders Response
+    EMSOrdersResponseRoot:
+      required:
+        - data
+      type: object
+      properties:
+        data:
+          $ref: '#/components/schemas/EMSOrdersResponse'
+      description: EMS Response
+    EMSOrdersRoot:
+      type: object
+      properties:
+        data:
+          $ref: '#/components/schemas/EMSOrders'
+    EMSReplaceChildOrders:
+      required:
+        - childOrders
+      type: object
+      properties:
+        childOrders:
+          maxItems: 1
+          minItems: 1
+          type: array
+          items:
+            $ref: '#/components/schemas/ReplaceChildOrder'
+    EMSReplaceChildOrdersRoot:
+      type: object
+      properties:
+        data:
+          $ref: '#/components/schemas/EMSReplaceChildOrders'
+    EMSReplaceOrder:
+      required:
+        - order
+        - originalClientOrderId
+      type: object
+      properties:
+        originalClientOrderId:
+          type: string
+          description: Unique identifier of the original order, generated in Create.
+        order:
+          $ref: '#/components/schemas/EMSOrder'
+      description: EMS Replace Order
+    EMSReplaceOrders:
+      type: object
+      properties:
+        investorId:
+          type: string
+          description: Investor Id
+          nullable: true
+          example: DEMO-12345
+        orders:
+          type: array
+          items:
+            $ref: '#/components/schemas/EMSReplaceOrder'
+          description: List of orders to replace
+          nullable: true
+      description: EMS Replace Orders
+    EMSReplaceOrdersRoot:
+      type: object
+      properties:
+        data:
+          $ref: '#/components/schemas/EMSReplaceOrders'
+    Error:
+      type: object
+      properties:
+        id:
+          type: string
+          description: Identifier for the error
+          nullable: true
+        code:
+          type: string
+          description: Code
+          nullable: true
+        title:
+          type: string
+          description: Title
+          nullable: true
+        detail:
+          type: string
+          description: Explanation specific to the occurrence of the error
+          nullable: true
+        source:
+          $ref: '#/components/schemas/ErrorSource'
+      description: Error
+    ErrorSource:
+      type: object
+      properties:
+        pointer:
+          type: string
+          description: Pointer to the associated entity in the request body
+          nullable: true
+        parameter:
+          type: string
+          description: Indicates which path or URI query parameter caused the error
+          nullable: true
+      description: Error Source
+    Instrument:
+      required:
+        - symbol
+      type: object
+      properties:
+        symbol:
+          maxLength: 250
+          type: string
+          description: Ticker symbol
+          example: TATAMOTORS
+        securityType:
+          type: string
+          description: Indicates type of security.
+          nullable: true
+        cfiCode:
+          type: string
+          description: >-
+            Classification of Financial Instruments. Indicates the type of
+            security using ISO 0962 standard.
+          nullable: true
+        securityExchange:
+          type: string
+          description: Market used to help identify a security.
+          nullable: true
+        issuer:
+          type: string
+          description: Company name of security issuer.
+          nullable: true
+        securityDescription:
+          type: string
+          description: Security Description
+          nullable: true
+        maturityMonthYear:
+          type: string
+          description: Month and Year of the maturity.
+          nullable: true
+        maturityDay:
+          type: string
+          description: >-
+            Day of month used in conjunction with maturityMonthYear to specify
+            the maturity date
+          nullable: true
+        putOrCall:
+          enum:
+            - put
+            - call
+          type: string
+          description: Indicates whether an Option is for a put or call.
+          nullable: true
+        underlyingSecurityType:
+          type: string
+          description: Underlying security’s SecurityType.
+          nullable: true
+      description: Instrument
+    ParentId:
+      required:
+        - basketId
+        - symbol
+      type: object
+      properties:
+        symbol:
+          type: string
+          description: Ticker symbol
+          example: FDS-USA
+        basketId:
+          type: string
+          description: >-
+            Unique identifier assigned to basket order. Can be fetched from the
+            WebSocket Order Update API.
+          example: FACTSET_OMS-100823_12345
+      description: Unique identifier to identify the parent order.
+    ReplaceChildOrder:
+      required:
+        - ticketId
+      type: object
+      properties:
+        ticketId:
+          type: string
+          description: Ticket Id for the child order to be replaced
+          example: RKPW.3280015
+        orderType:
+          enum:
+            - market
+            - limit
+            - stop
+            - stopLimit
+            - marketOnClose
+            - limitOrBetter
+          type: string
+          description: Type of the order
+          nullable: true
+          example: market
+        orderQuantity:
+          minimum: 0
+          type: number
+          description: >-
+            Number of shares/Quantity to be routed. Must be less than or equal
+            to the orderQuantity of the parent order.
+          format: double
+          nullable: true
+          example: 100
+        price:
+          type: number
+          description: Order price per share.
+          format: double
+          nullable: true
+          example: 450
+        timeInForce:
+          $ref: '#/components/schemas/TimeInForce'
+        handlingInstructions:
+          enum:
+            - autoOrderPrivate
+            - autoOrderPublic
+            - bestExecution
+          type: string
+          description: Instructions for order handling on Broker trading floor.
+          nullable: true
+          example: autoOrderPublic
+        stopPrice:
+          type: number
+          description: Stop-loss price to buy/sell stock at market.
+          format: double
+          nullable: true
+          example: 120
+        maxFloor:
+          type: number
+          description: >-
+            Maximum number of shares within an order to be shown on the exchange
+            floor at any given time.
+          format: double
+          nullable: true
+          example: 200
+        minQuantity:
+          type: number
+          description: Minimum quantity of an order to be executed.
+          format: double
+          nullable: true
+          example: 120
+        settlementType:
+          enum:
+            - regular
+            - cash
+            - nextDay
+            - tPlus2
+            - tPlus3
+            - tPlus4
+            - future
+            - whenIssued
+            - sellersOption
+            - tPlus5
+          type: string
+          description: Order settlement period
+          nullable: true
+          example: regular
+        settlementDate:
+          type: string
+          description: Specific date of trade settlement in YYYYMMDD format.
+          nullable: true
+          example: '20230823'
+        executionInstructions:
+          enum:
+            - notHeld
+            - work
+            - goAlong
+            - overTheDay
+            - held
+            - participateDoNotInitiate
+            - strictScale
+            - tryToScale
+            - stayOnBidSide
+            - stayOnOfferSide
+            - noCross
+            - okToCross
+            - callFirst
+            - percentOfVolume
+            - doNotIncrease
+            - doNotReduce
+            - allOrNone
+            - reinstateOnSystemFailure
+            - institutionsOnly
+            - reinstateOnTradingHalt
+            - cancelOnTradingHalt
+            - lastPeg
+            - midPricePeg
+            - nonNegotiable
+            - openingPeg
+            - marketPeg
+            - cancelOnSystemFailure
+            - primaryPeg
+            - suspend
+            - fixedPegToLocalBestBid
+            - customerDisplayInstruction
+            - netting
+            - pegToVWAP
+            - tradeAlong
+            - tryToStop
+            - cancelIfNotBest
+            - trailingStopPeg
+            - strictLimit
+            - ignorePriceValidityChecks
+            - pegToLimitPrice
+            - workToTargetStrategy
+            - intermarketSweep
+            - externalRoutingAllowed
+            - externalRoutingNotAllowed
+            - imbalanceOnly
+            - singleExecutionRequestedForBlockTrade
+            - bestExecution
+          type: string
+          description: Instructions for order handling on exchange trading floor.
+          nullable: true
+          example: notHeld
+        locateRequired:
+          type: boolean
+          description: >-
+            Indicates whether the broker is to locate the stock in conjunction
+            with a short sell order.
+          nullable: true
+          example: false
+        text:
+          maxLength: 250
+          type: string
+          description: Free format text string.
+          nullable: true
+          example: Replacing price to 300 for 50 orders
+        userDefinedFields:
+          type: object
+          additionalProperties:
+            type: string
+          description: User defined fields
+          nullable: true
+      description: EMS Replace Child Orders
+    TimeInForce:
+      type: object
+      properties:
+        tif:
+          enum:
+            - day
+            - goodTillCancel
+            - atTheOpening
+            - immediateOrCancel
+            - fillOrKill
+            - goodTillCrossing
+            - goodTillDate
+            - atc
+          type: string
+          description: >-
+            Time in force: if goodTillDate, then Expire Time or Expire Date is a
+            required field
+        expireDate:
+          type: string
+          description: Expire date in YYYYMMDD format expressed in UTC
+          nullable: true
+          example: '20230823'
+        expireTime:
+          type: string
+          description: Expire time in YYYYMMDD-HH:MM:SS format expressed in UTC
+          nullable: true
+          example: 20230823-12:20:25
+      description: Time in Force
+  securitySchemes:
+    FactSetApiKey:
+      type: http
+      scheme: basic
+    FactSetOAuth2:
+      type: oauth2
+      flows:
+        clientCredentials:
+          tokenUrl: https://auth.factset.com/as/token.oauth2
+          scopes: {}
+security:
+  - FactSetApiKey: []
+  - FactSetOAuth2: []
+tags:
+  - name: Orders
+    description: These endpoints relate to Order Entry.
+  - name: ChildOrders
+    description: These endpoints relate to Order Routing.
+externalDocs:
+  description: API Documentation
+  url: https://developer.factset.com/api-catalog/factset-trading-api

@@ -1,0 +1,68 @@
+openapi: 3.0.0
+info:
+  title: FactSet RIBCS
+  license:
+    name: Apache 2.0
+    url: http://www.apache.org/licenses/LICENSE-2.0.html
+tags:
+  - name: Entity Focus
+    description: >-
+      Fetches the full 6 level classification taxonomy for a list of ids and a
+      date.
+  - name: Structure
+    description: Fetches the full RBICS Taxonomy Structure, ids, and descriptions
+paths:
+  /factset-rbics/v1/entity-focus:
+    get:
+      summary: Get RBICS classification for the Focus industry
+      description: >
+        Gets RBICS classifications for the Focus industry for a short list of
+        companies. Full history is included if _date_ parameter is not
+        specified.
+          
+          RBICS Focus offers a single-sector mapping of about 48,000 of the most liquid and publicly-traded companies based on their primary lines of business; it uses revenues as the key factor in determining a company’s primary line of business, by mapping a company to the lowest-level sector from which it derives 50% or more of its revenues.
+
+          The RBICS Extended Universe – Industry Group is not currently supported through the RBICS API. 
+      tags:
+        - Entity Focus
+    post:
+      summary: Get RBICS classification for the Focus industry
+      description: >
+        Gets RBICS classifications for the Focus industry for a long list of
+        companies. Full history is included if _date_ parameter is not
+        specified.
+                  
+          RBICS Focus offers a single-sector mapping of about 48,000 of the most liquid and publicly-traded companies based on their primary lines of business; it uses revenues as the key factor in determining a company’s primary line of business, by mapping a company to the lowest-level sector from which it derives 50% or more of its revenues.
+
+          The RBICS Extended Universe – Industry Group is not currently supported through the RBICS API. 
+      tags:
+        - Entity Focus
+  /factset-rbics/v1/structure:
+    get:
+      summary: Get the full RBICS Taxonomy Structure Ids, Names, and effective periods.
+      description: >
+        Understand the full RBICS Taxonomy Structure through time to help
+        organize your analysis or facilitate the use of RBICS in application
+        development.
+
+
+        Designed to overcome disparate and non-standardized company disclosures,
+        the RBICS taxonomy is a normalized global industry classification
+        consisting of a fourteen-by-six matrix. There are twelve economies with
+        two specialty sectors, each with six incremental detailed layers,
+        resulting in over 1,600 sector groups.
+
+
+        The top-levels' market-defined approach groups companies based on their
+        behavioral similarities and stock price co-movement, while the patented
+        product-based approach used in the lower levels enables the necessary
+        precision to capture the specialty sectors of global markets.
+      tags:
+        - Structure
+    post:
+      summary: Get the full RBICS Taxonomy Structure Ids, Names, and effective periods.
+      description: >
+        Get the full RBICS Taxonomy Structure Ids, Names, and effective periods.
+        POST method is optimal for requesting large lists of `rbicsIds`.
+      tags:
+        - Structure
