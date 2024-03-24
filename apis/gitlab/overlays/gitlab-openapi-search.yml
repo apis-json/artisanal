@@ -1,0 +1,556 @@
+openapi: 3.0.1
+info:
+  title: GitLab API
+  license:
+    name: CC BY-SA 4.0
+    url: https://gitlab.com/gitlab-org/gitlab/-/blob/master/LICENSE
+tags:
+  - name: badges
+    description: Operations about badges
+  - name: branches
+    description: Operations about branches
+  - name: alert_management
+    description: Operations about alert_managements
+  - name: batched_background_migrations
+    description: Operations about batched_background_migrations
+  - name: admin
+    description: Operations about admins
+  - name: migrations
+    description: Operations about migrations
+  - name: applications
+    description: Operations about applications
+  - name: avatar
+    description: Operations about avatars
+  - name: broadcast_messages
+    description: Operations about broadcast_messages
+  - name: bulk_imports
+    description: Operations about bulk_imports
+  - name: application
+    description: Operations about applications
+  - name: access_requests
+    description: Operations related to access requests
+  - name: ci_lint
+    description: Operations related to linting a CI config file
+  - name: ci_resource_groups
+    description: Operations to manage job concurrency with resource groups
+  - name: ci_variables
+    description: Operations related to CI/CD variables
+  - name: cluster_agents
+    description: Operations related to the GitLab agent for Kubernetes
+  - name: clusters
+    description: Operations related to clusters
+  - name: composer_packages
+    description: Operations related to Composer packages
+  - name: conan_packages
+    description: Operations related to Conan packages
+  - name: container_registry
+    description: Operations related to container registry
+  - name: container_registry_event
+    description: Operations related to container registry events
+  - name: dashboard_annotations
+    description: Operations related to dashboard annotations
+  - name: debian_distribution
+    description: Operations related to Debian Linux distributions
+  - name: debian_packages
+    description: Operations related to Debian Linux packages
+  - name: dependency_proxy
+    description: Operations to manage dependency proxy for a groups
+  - name: deploy_keys
+    description: Operations related to deploy keys
+  - name: deploy_tokens
+    description: Operations related to deploy tokens
+  - name: deployments
+    description: Operations related to deployments
+  - name: dora_metrics
+    description: Operations related to DevOps Research and Assessment (DORA) key metrics
+  - name: environments
+    description: Operations related to environments
+  - name: error_tracking_client_keys
+    description: Operations related to error tracking client keys
+  - name: error_tracking_project_settings
+    description: Operations related to error tracking project settings
+  - name: feature_flags_user_lists
+    description: Operations related to accessing GitLab feature flag user lists
+  - name: feature_flags
+    description: Operations related to feature flags
+  - name: features
+    description: Operations related to managing Flipper-based feature flags
+  - name: freeze_periods
+    description: Operations related to deploy freeze periods
+  - name: generic_packages
+    description: Operations related to Generic packages
+  - name: geo
+    description: Operations related to Geo
+  - name: geo_nodes
+    description: Operations related Geo Nodes
+  - name: go_proxy
+    description: Operations related to Go Proxy
+  - name: group_export
+    description: Operations related to exporting groups
+  - name: group_import
+    description: Operations related to importing groups
+  - name: group_packages
+    description: Operations related to group packages
+  - name: helm_packages
+    description: Operations related to Helm packages
+  - name: integrations
+    description: Operations related to integrations
+  - name: issue_links
+    description: Operations related to issue links
+  - name: jira_connect_subscriptions
+    description: Operations related to JiraConnect subscriptions
+  - name: jobs
+    description: Operations related to CI Jobs
+  - name: maven_packages
+    description: Operations related to Maven packages
+  - name: merge_requests
+    description: Operations related to merge requests
+  - name: metadata
+    description: Operations related to metadata of the GitLab instance
+  - name: metrics_user_starred_dashboards
+    description: Operations related to User-starred metrics dashboards
+  - name: ml_model_registry
+    description: Operations related to Model registry
+  - name: npm_packages
+    description: Operations related to NPM packages
+  - name: nuget_packages
+    description: Operations related to Nuget packages
+  - name: package_files
+    description: Operations about package files
+  - name: plan_limits
+    description: Operations related to plan limits
+  - name: project_export
+    description: Operations related to exporting projects
+  - name: project_hooks
+    description: Operations related to project hooks
+  - name: project_import
+    description: Operations related to importing projects
+  - name: project_import_bitbucket
+    description: Operations related to importing BitBucket projects
+  - name: project_import_github
+    description: Operations related to importing GitHub projects
+  - name: project_packages
+    description: Operations related to project packages
+  - name: projects
+    description: Operations related to projects
+  - name: protected environments
+    description: Operations related to protected environments
+  - name: pypi_packages
+    description: Operations related to PyPI packages
+  - name: release_links
+    description: Operations related to release assets (links)
+  - name: releases
+    description: Operations related to releases
+  - name: resource_milestone_events
+    description: Operations about resource milestone events
+  - name: rpm_packages
+    description: Operations related to RPM packages
+  - name: rubygem_packages
+    description: Operations related to RubyGems
+  - name: suggestions
+    description: Operations related to suggestions
+  - name: system_hooks
+    description: Operations related to system hooks
+  - name: terraform_state
+    description: Operations related to Terraform state files
+  - name: terraform_registry
+    description: Operations related to the Terraform module registry
+  - name: unleash_api
+    description: Operations related to Unleash API
+paths:
+  /api/v4/groups/{id}/badges/{badge_id}:
+    get:
+      tags:
+        - badges
+      summary: Gets a badge of a group.
+      description: This feature was introduced in GitLab 10.6.
+    put:
+      tags:
+        - badges
+      summary: Updates a badge of a group.
+      description: This feature was introduced in GitLab 10.6.
+    delete:
+      tags:
+        - badges
+      summary: Removes a badge from the group.
+      description: This feature was introduced in GitLab 10.6.
+  /api/v4/groups/{id}/badges:
+    get:
+      tags:
+        - badges
+      summary: Gets a list of group badges viewable by the authenticated user.
+      description: This feature was introduced in GitLab 10.6.
+    post:
+      tags:
+        - badges
+      summary: Adds a badge to a group.
+      description: This feature was introduced in GitLab 10.6.
+  /api/v4/groups/{id}/badges/render:
+    get:
+      tags:
+        - badges
+      summary: Preview a badge from a group.
+      description: This feature was introduced in GitLab 10.6.
+  /api/v4/groups/{id}/access_requests/{user_id}:
+    delete:
+      tags:
+        - access_requests
+      summary: Denies an access request for the given user.
+      description: This feature was introduced in GitLab 8.11.
+  /api/v4/groups/{id}/access_requests/{user_id}/approve:
+    put:
+      tags:
+        - access_requests
+      summary: Approves an access request for the given user.
+      description: This feature was introduced in GitLab 8.11.
+  /api/v4/groups/{id}/access_requests:
+    get:
+      tags:
+        - access_requests
+      summary: Gets a list of access requests for a group.
+      description: This feature was introduced in GitLab 8.11.
+    post:
+      tags:
+        - access_requests
+      summary: Requests access for the authenticated user to a group.
+      description: This feature was introduced in GitLab 8.11.
+  /api/v4/projects/{id}/repository/merged_branches:
+    delete:
+      tags:
+        - branches
+      description: Delete all merged branches
+  /api/v4/projects/{id}/repository/branches/{branch}:
+    get:
+      tags:
+        - branches
+      description: Get a single repository branch
+    delete:
+      tags:
+        - branches
+      description: Delete a branch
+    head:
+      tags:
+        - branches
+      description: Check if a branch exists
+  /api/v4/projects/{id}/repository/branches:
+    get:
+      tags:
+        - branches
+      description: Get a project repository branches
+    post:
+      tags:
+        - branches
+      description: Create branch
+  /api/v4/projects/{id}/repository/branches/{branch}/unprotect:
+    put:
+      tags:
+        - branches
+      description: Unprotect a single branch
+  /api/v4/projects/{id}/repository/branches/{branch}/protect:
+    put:
+      tags:
+        - branches
+      description: Protect a single branch
+  /api/v4/projects/{id}/badges/{badge_id}:
+    get:
+      tags:
+        - badges
+      summary: Gets a badge of a project.
+      description: This feature was introduced in GitLab 10.6.
+    put:
+      tags:
+        - badges
+      summary: Updates a badge of a project.
+      description: This feature was introduced in GitLab 10.6.
+    delete:
+      tags:
+        - badges
+      summary: Removes a badge from the project.
+      description: This feature was introduced in GitLab 10.6.
+  /api/v4/projects/{id}/badges:
+    get:
+      tags:
+        - badges
+      summary: Gets a list of project badges viewable by the authenticated user.
+      description: This feature was introduced in GitLab 10.6.
+    post:
+      tags:
+        - badges
+      summary: Adds a badge to a project.
+      description: This feature was introduced in GitLab 10.6.
+  /api/v4/projects/{id}/badges/render:
+    get:
+      tags:
+        - badges
+      summary: Preview a badge from a project.
+      description: This feature was introduced in GitLab 10.6.
+  /api/v4/projects/{id}/access_requests/{user_id}:
+    delete:
+      tags:
+        - access_requests
+      summary: Denies an access request for the given user.
+      description: This feature was introduced in GitLab 8.11.
+  /api/v4/projects/{id}/access_requests/{user_id}/approve:
+    put:
+      tags:
+        - access_requests
+      summary: Approves an access request for the given user.
+      description: This feature was introduced in GitLab 8.11.
+  /api/v4/projects/{id}/access_requests:
+    get:
+      tags:
+        - access_requests
+      summary: Gets a list of access requests for a project.
+      description: This feature was introduced in GitLab 8.11.
+    post:
+      tags:
+        - access_requests
+      summary: Requests access for the authenticated user to a project.
+      description: This feature was introduced in GitLab 8.11.
+  /api/v4/projects/{id}/alert_management_alerts/{alert_iid}/metric_images/{metric_image_id}:
+    put:
+      tags:
+        - alert_management
+      description: Update a metric image for an alert
+    delete:
+      tags:
+        - alert_management
+      description: Remove a metric image for an alert
+  /api/v4/projects/{id}/alert_management_alerts/{alert_iid}/metric_images:
+    get:
+      tags:
+        - alert_management
+      description: Metric Images for alert
+    post:
+      tags:
+        - alert_management
+      description: Upload a metric image for an alert
+  /api/v4/projects/{id}/alert_management_alerts/{alert_iid}/metric_images/authorize:
+    post:
+      tags:
+        - alert_management
+      description: Workhorse authorize metric image file upload
+  /api/v4/admin/batched_background_migrations/{id}:
+    get:
+      tags:
+        - batched_background_migrations
+      description: Retrieve a batched background migration
+  /api/v4/admin/batched_background_migrations:
+    get:
+      tags:
+        - batched_background_migrations
+      description: Get the list of batched background migrations
+  /api/v4/admin/batched_background_migrations/{id}/resume:
+    put:
+      tags:
+        - batched_background_migrations
+      description: Resume a batched background migration
+  /api/v4/admin/batched_background_migrations/{id}/pause:
+    put:
+      tags:
+        - batched_background_migrations
+      description: Pause a batched background migration
+  /api/v4/admin/ci/variables/{key}:
+    get:
+      tags:
+        - ci_variables
+      description: Get the details of a specific instance-level variable
+    put:
+      tags:
+        - ci_variables
+      description: Update an instance-level variable
+    delete:
+      tags:
+        - ci_variables
+      description: Delete an existing instance-level variable
+  /api/v4/admin/ci/variables:
+    get:
+      tags:
+        - ci_variables
+      description: List all instance-level variables
+    post:
+      tags:
+        - ci_variables
+      description: Create a new instance-level variable
+  /api/v4/admin/databases/{database_name}/dictionary/tables/{table_name}:
+    get:
+      tags:
+        - admin
+      description: Retrieve dictionary details
+  /api/v4/admin/clusters/{cluster_id}:
+    get:
+      tags:
+        - clusters
+      summary: Get a single instance cluster
+      description: >-
+        This feature was introduced in GitLab 13.2. Returns a single instance
+        cluster.
+    put:
+      tags:
+        - clusters
+      summary: Edit instance cluster
+      description: >-
+        This feature was introduced in GitLab 13.2. Updates an existing instance
+        cluster.
+    delete:
+      tags:
+        - clusters
+      summary: Delete instance cluster
+      description: >-
+        This feature was introduced in GitLab 13.2. Deletes an existing instance
+        cluster. Does not remove existing resources within the connected
+        Kubernetes cluster.
+  /api/v4/admin/clusters/add:
+    post:
+      tags:
+        - clusters
+      summary: Add existing instance cluster
+      description: >-
+        This feature was introduced in GitLab 13.2. Adds an existing Kubernetes
+        instance cluster.
+  /api/v4/admin/clusters:
+    get:
+      tags:
+        - clusters
+      summary: List instance clusters
+      description: >-
+        This feature was introduced in GitLab 13.2. Returns a list of instance
+        clusters.
+  /api/v4/admin/migrations/{timestamp}/mark:
+    post:
+      tags:
+        - migrations
+      description: Mark the migration as successfully executed
+  /api/v4/applications/{id}:
+    delete:
+      tags:
+        - applications
+      summary: Delete an application
+      description: Delete a specific application
+  /api/v4/applications:
+    get:
+      tags:
+        - applications
+      summary: Get applications
+      description: List all registered applications
+    post:
+      tags:
+        - applications
+      summary: Create a new application
+      description: This feature was introduced in GitLab 10.5
+  /api/v4/avatar:
+    get:
+      tags:
+        - avatar
+      description: Return avatar url for a user
+  /api/v4/broadcast_messages/{id}:
+    get:
+      tags:
+        - broadcast_messages
+      summary: Get a specific broadcast message
+      description: This feature was introduced in GitLab 8.12.
+    put:
+      tags:
+        - broadcast_messages
+      summary: Update a broadcast message
+      description: This feature was introduced in GitLab 8.12.
+    delete:
+      tags:
+        - broadcast_messages
+      summary: Delete a broadcast message
+      description: This feature was introduced in GitLab 8.12.
+  /api/v4/broadcast_messages:
+    get:
+      tags:
+        - broadcast_messages
+      summary: Get all broadcast messages
+      description: This feature was introduced in GitLab 8.12.
+    post:
+      tags:
+        - broadcast_messages
+      summary: Create a broadcast message
+      description: This feature was introduced in GitLab 8.12.
+  /api/v4/bulk_imports/{import_id}/entities/{entity_id}:
+    get:
+      tags:
+        - bulk_imports
+      summary: Get GitLab Migration entity details
+      description: This feature was introduced in GitLab 14.1.
+  /api/v4/bulk_imports/{import_id}/entities:
+    get:
+      tags:
+        - bulk_imports
+      summary: List GitLab Migration entities
+      description: This feature was introduced in GitLab 14.1.
+  /api/v4/bulk_imports/{import_id}:
+    get:
+      tags:
+        - bulk_imports
+      summary: Get GitLab Migration details
+      description: This feature was introduced in GitLab 14.1.
+  /api/v4/bulk_imports/entities:
+    get:
+      tags:
+        - bulk_imports
+      summary: List all GitLab Migrations' entities
+      description: This feature was introduced in GitLab 14.1.
+  /api/v4/bulk_imports:
+    get:
+      tags:
+        - bulk_imports
+      summary: List all GitLab Migrations
+      description: This feature was introduced in GitLab 14.1.
+    post:
+      tags:
+        - bulk_imports
+      summary: Start a new GitLab Migration
+      description: This feature was introduced in GitLab 14.2.
+  /api/v4/application/appearance:
+    get:
+      tags:
+        - application
+      description: Get the current appearance
+    put:
+      tags:
+        - application
+      description: Modify appearance
+  /api/v4/application/plan_limits:
+    get:
+      tags:
+        - plan_limits
+      summary: Get current plan limits
+      description: List the current limits of a plan on the GitLab instance.
+    put:
+      tags:
+        - plan_limits
+      summary: Change plan limits
+      description: Modify the limits of a plan on the GitLab instance.
+  /api/v4/metadata:
+    get:
+      tags:
+        - metadata
+      summary: Retrieve metadata information for this GitLab instance
+      description: This feature was introduced in GitLab 15.2.
+  /api/v4/version:
+    get:
+      tags:
+        - metadata
+      summary: Retrieves version information for the GitLab instance
+      description: >-
+        This feature was introduced in GitLab 8.13 and deprecated in 15.5. We
+        recommend you instead use the Metadata API.
+  /api/v4/projects/{id}/jobs:
+    get:
+      tags:
+        - jobs
+      summary: List jobs for a project
+  /api/v4/projects/{id}/jobs/{job_id}:
+    get:
+      tags:
+        - jobs
+      summary: Get a single job by ID
+  /api/v4/projects/{id}/jobs/{job_id}/play:
+    post:
+      tags:
+        - jobs
+      summary: Run a manual job

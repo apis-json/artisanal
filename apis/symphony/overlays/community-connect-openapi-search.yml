@@ -1,0 +1,39 @@
+openapi: 3.0.1
+info:
+  title: Community Connect API
+tags:
+  - name: channelco
+    description: Public API for channelco
+paths:
+  /v1/onboarding/tenant:
+    get:
+      tags:
+        - channelco
+      summary: Get user's pod and availability for onboarding
+  /v1/channelco/user:
+    get:
+      tags:
+        - channelco
+      summary: Search channelco user
+    post:
+      tags:
+        - channelco
+      summary: Create channelco user
+  /v1/channelco/company/{companyId}/user/{userId}/roles/add:
+    post:
+      tags:
+        - channelco
+      summary: Adds a role to a channelco user's account
+  /v1/channelco/company/{companyId}/user/{userId}:
+    get:
+      tags:
+        - channelco
+      summary: Get channelco user by companyId and userId
+    put:
+      tags:
+        - channelco
+      summary: Update channelco user
+    delete:
+      tags:
+        - channelco
+      summary: Disable channelco user

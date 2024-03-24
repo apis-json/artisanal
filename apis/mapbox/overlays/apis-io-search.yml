@@ -1,148 +1,54 @@
-name: Mapbox
-description: >-
-  Mapbox is a living platform of location services. We equip innovators to keep
-  up with a changing world through using real-time data and map rendering
-  technologies that make it look easy. We are a global team of builders.
-url: https://raw.githubusercontent.com/apis-json/artisanal/main/apis/mapbox.yml
-created: 2024/03/09
-modified: 2024/03/09
-specificationVersion: '0.16'
-tags:
-  - Maps
-  - Locations
-apis:
-  - name: Mapbox Tiling Service
-    description: >-
-      Mapbox Tiling Service (MTS) is a tool for creating vector tilesets. With
-      MTS, you use sets of configuration options (tileset recipes) to transform
-      your geospatial data into vector tiles. The resulting tiles are hosted on
-      Mapbox servers for use in your applications.
-    tags:
-      - Maps
-      - Tiles
-    overlays: []
-    aid: mapbox:mapbox-tiling-service
-  - name: Vector Tiles API
-    description: >-
-      The Mapbox Vector Tiles API serves vector tiles from Mapbox-hosted vector
-      tilesets.
-    tags:
-      - Maps
-      - Tiles
-    overlays: []
-    aid: mapbox:vector-tiles-api
-  - name: Mapbox Raster Tiles API
-    description: >-
-      The Mapbox Raster Tiles API serves raster tiles generated from satellite
-      imagery tilesets and tilesets generated from raster data uploaded to
-      Mapbox.com.
-    tags:
-      - Maps
-      - Tiles
-    overlays: []
-    aid: mapbox:mapbox-raster-tiles-api
-  - name: Mapbox Static Images API
-    description: >-
-      The Mapbox Static Images API serves standalone, static map images
-      generated from Mapbox Studio styles. These images can be displayed on web
-      and mobile devices without the aid of a mapping library or API. They look
-      like an embedded map, but do not have interactivity or controls.
-    tags:
-      - Maps
-      - Images
-    overlays: []
-    aid: mapbox:mapbox-static-images-api
-  - name: Mapbox Static Tiles API
-    description: >-
-      The Mapbox Static Tiles API serves raster tiles generated from Mapbox
-      Studio styles. Raster tiles can be used in traditional web mapping
-      libraries like Mapbox.js, Leaflet, OpenLayers, and others to create
-      interactive slippy maps. The Static Tiles API is well-suited for maps with
-      limited interactivity or use on devices that do not support WebGL.
-    tags:
-      - Maps
-      - Tiles
-    overlays: []
-    aid: mapbox:mapbox-static-tiles-api
-  - name: Mapbox Styles API
-    description: >-
-      The Mapbox Styles API lets you read and change map styles, fonts, and
-      images. This API is the basis for Mapbox Studio. If you use Studio, Mapbox
-      GL JS, or the Mapbox Mobile SDKs, you are already using the Styles API.
-      This documentation is useful for software developers who want to
-      programmatically read and write these resources. It isn't necessary for
-      you to read or understand this reference to design or use Mapbox maps. You
-      will need to be familiar with the Mapbox Style Specification to use the
-      Styles API. The Mapbox Style Specification defines the structure of map
-      styles and is the open standard that helps Studio communicate with APIs
-      and produce maps that are compatible with Mapbox libraries.
-    tags:
-      - Tiles
-      - Styles
-    overlays: []
-    aid: mapbox:mapbox-styles-api
-  - name: Mapbox Tilequery API
-    description: >-
-      The Mapbox Tilequery API allows you to retrieve data about specific
-      features from a vector tileset, based on a given latitude and longitude.
-      The Tilequery API makes it possible to query for features within a radius,
-      do point-in-polygon queries, query for features in multiple composite
-      layers, and augment data from the Mapbox Geocoding API with custom data.
-    tags:
-      - Tiles
-      - Maps
-    overlays: []
-    aid: mapbox:mapbox-tilequery-api
-  - name: Mapbox Uploads API
-    description: >-
-      The Mapbox Uploads API transforms geographic data into tilesets that can
-      be used with maps and geographic applications. Given a wide variety of
-      geospatial formats, it normalizes projections and generates tiles at
-      multiple zoom levels to make data viewable on the web.
-    tags:
-      - Maps
-      - Uploads
-    overlays: []
-    aid: mapbox:mapbox-uploads-api
-  - name: Mapbox Tiling Service (MTS)
-    description: >-
-      Mapbox Tiling Service (MTS) is a tool for creating vector tilesets. With
-      MTS, you use sets of configuration options (tileset recipes) to transform
-      your geospatial data into vector tiles. The resulting tiles are hosted on
-      Mapbox servers for use in your applications.
-    tags:
-      - Maps
-      - Tiles
-    overlays: []
-    aid: mapbox:mapbox-tiling-service-mts
-  - name: Mapbox Datasets API
-    description: >-
-      The Mapbox Datasets API supports reading, creating, updating, and removing
-      features from a dataset. Using the Datasets API involves interacting with
-      two types of objects: datasets and features. Datasets contain one or more
-      collections of GeoJSON features. When you edit a dataset object, you
-      change the name and description properties of the dataset itself. When you
-      edit a feature object, you edit the contents of the dataset, such as the
-      coordinates or properties of a feature.
-    tags:
-      - Maps
-      - Datasets
-    overlays: []
-    aid: mapbox:mapbox-datasets-api
-  - name: Mapbox Fonts API
-    description: >-
-      The Mapbox Fonts API accepts fonts as raw binary data, allows those fonts
-      to be deleted, and generates encoded letters for map renderers. Two types
-      of fonts are supported: TrueType fonts, usually with .ttf file extensions,
-      and OpenType fonts, with .otf extensions. Fonts are managed on a
-      per-account basis. Styles can use any font from the same account.
-    tags:
-      - Maps
-      - Fonts
-    overlays: []
-    aid: mapbox:mapbox-fonts-api
-maintainers:
-  - FN: API Evangelist
-    url: http://apievangelist.com
-    email: info@apievangelist.com
-aid: nu
+weekNumber: 12
+rules:
+  - code: apis-json-v14-name
+    message: >-
+      Providing a name of your index of APIs helps ensure it will be
+      discoverable.
+  - code: apis-json-v14-description
+    message: >-
+      A robust and informative description of your colleciton of APis makes a
+      lot sense.
+  - code: apis-json-v14-image
+    message: It makes your API more presentable to have a logo or image representation.
+  - code: apis-json-v14-url
+    message: >-
+      Providing a reference to where your APIs.json is located is a valuable
+      references.
+  - code: apis-json-v14-tags
+    message: >-
+      Using the tags property for your APIs.json helps add more metadata and
+      make your APIs discoverable.
+  - code: apis-json-v14-apis-name
+    message: >-
+      Providing a name of your index of APIs helps ensure it will be
+      discoverable.
+  - code: apis-json-v14-apis-description
+    message: >-
+      A robust and informative description of your colleciton of APis makes a
+      lot sense.
+  - code: apis-json-v14-apis-image
+    message: It makes your API more presentable to have a logo or image representation.
+  - code: apis-json-v14-apis-humanURL
+    message: >-
+      Your API should have the human URL included to help provide a single link
+      to your API.
+  - code: apis-json-v14-apis-baseURL
+    message: >-
+      Your API should have the base URL included to help provide a unique
+      identifier for your API.
+  - code: apis-json-v14-apis-tags
+    message: >-
+      Using the tags property for your APIs helps add more metadata and make
+      your APIs discoverable.
+  - code: apis-json-v14-maintainers
+    message: >-
+      Using the maintainers property for your APIs.json helps build trust and
+      provenance for your APis.
+  - code: apis-json-v14-maintainers-fn
+    message: >-
+      Providing an FN for maintainers helps build trust and provide a point of
+      contact for your APIs.json.
+  - code: apis-json-v14-maintainers-email
+    message: >-
+      Providing an email address for maintainers helps build trust and provide a
+      point of contact for your APIs.json.

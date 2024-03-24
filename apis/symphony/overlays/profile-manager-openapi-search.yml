@@ -1,0 +1,57 @@
+openapi: 3.0.0
+info:
+  title: Symphony Profile Manager
+paths:
+  /v1/groups/{groupId}/member:
+    post:
+      summary: Add a new user to a an existing group
+      description: Add a new user to a an existing group
+      tags:
+        - group
+  /v1/groups:
+    post:
+      summary: Insert a new group
+      description: Insert a new group into database
+      tags:
+        - group
+  /v1/groups/{groupId}:
+    get:
+      summary: Retrieve a group
+      description: Retrieve a group
+      tags:
+        - group
+    put:
+      summary: Update a group
+      description: Update an existing group
+      tags:
+        - group
+  /v1/groups/type/{typeId}:
+    get:
+      summary: List all groups of specified type
+      tags:
+        - group
+  /v1/groups/{groupId}/avatar:
+    post:
+      summary: Update the group avatar
+      description: Update the group account avatar
+      tags:
+        - group
+  /v1/groups/deleteAll:
+    delete:
+      summary: >-
+        Delete all data related to the current pod (extracted from JWT). This
+        endpoint is for maintenance/test and it is usually disabled or
+        restricted
+      tags:
+        - group
+  /v1/types:
+    get:
+      summary: List all types
+      tags:
+        - type
+  /v1/types/{typeId}:
+    get:
+      summary: Retrieve a type
+      description: Retrieve a type
+      tags:
+        - type
