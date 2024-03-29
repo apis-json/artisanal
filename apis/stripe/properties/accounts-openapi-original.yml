@@ -5,15 +5,15 @@ info:
   contact:
     email: dev-platform@stripe.com
     name: Stripe Dev Platform Team
-    url: 'https://stripe.com'
-  termsOfService: 'https://stripe.com/us/terms/'
+    url: https://stripe.com
+  termsOfService: https://stripe.com/us/terms/
   version: '2023-10-16'
   x-stripeSpecFilename: spec3
 security:
   - basicAuth: []
   - bearerAuth: []
 servers:
-  - url: 'https://api.stripe.com/'
+  - url: https://api.stripe.com/
 paths:
   /v1/account:
     get:
@@ -282,7 +282,7 @@ paths:
               schema:
                 $ref: '#/components/schemas/error'
           description: Error response.
-  '/v1/accounts/{account}':
+  /v1/accounts/{account}:
     delete:
       description: >-
         <p>With <a href="/docs/connect">Connect</a>, you can delete accounts you
@@ -456,7 +456,7 @@ paths:
               schema:
                 $ref: '#/components/schemas/error'
           description: Error response.
-  '/v1/accounts/{account}/bank_accounts':
+  /v1/accounts/{account}/bank_accounts:
     post:
       description: <p>Create an external account for a given account.</p>
       operationId: PostAccountsAccountBankAccounts
@@ -498,7 +498,7 @@ paths:
               schema:
                 $ref: '#/components/schemas/error'
           description: Error response.
-  '/v1/accounts/{account}/bank_accounts/{id}':
+  /v1/accounts/{account}/bank_accounts/{id}:
     delete:
       description: <p>Delete a specified external account for a given account.</p>
       operationId: DeleteAccountsAccountBankAccountsId
@@ -642,7 +642,7 @@ paths:
               schema:
                 $ref: '#/components/schemas/error'
           description: Error response.
-  '/v1/accounts/{account}/capabilities':
+  /v1/accounts/{account}/capabilities:
     get:
       description: >-
         <p>Returns a list of capabilities associated with the account. The
@@ -692,7 +692,7 @@ paths:
               schema:
                 $ref: '#/components/schemas/error'
           description: Error response.
-  '/v1/accounts/{account}/capabilities/{capability}':
+  /v1/accounts/{account}/capabilities/{capability}:
     get:
       description: <p>Retrieves information about the specified Account Capability.</p>
       operationId: GetAccountsAccountCapabilitiesCapability
@@ -787,7 +787,7 @@ paths:
               schema:
                 $ref: '#/components/schemas/error'
           description: Error response.
-  '/v1/accounts/{account}/external_accounts':
+  /v1/accounts/{account}/external_accounts:
     get:
       description: <p>List external accounts for an account.</p>
       operationId: GetAccountsAccountExternalAccounts
@@ -920,7 +920,7 @@ paths:
               schema:
                 $ref: '#/components/schemas/error'
           description: Error response.
-  '/v1/accounts/{account}/external_accounts/{id}':
+  /v1/accounts/{account}/external_accounts/{id}:
     delete:
       description: <p>Delete a specified external account for a given account.</p>
       operationId: DeleteAccountsAccountExternalAccountsId
@@ -1066,7 +1066,7 @@ paths:
               schema:
                 $ref: '#/components/schemas/error'
           description: Error response.
-  '/v1/accounts/{account}/login_links':
+  /v1/accounts/{account}/login_links:
     post:
       description: >-
         <p>Creates a single-use login link for an Express account to access
@@ -1109,7 +1109,7 @@ paths:
               schema:
                 $ref: '#/components/schemas/error'
           description: Error response.
-  '/v1/accounts/{account}/people':
+  /v1/accounts/{account}/people:
     get:
       description: >-
         <p>Returns a list of people associated with the account’s legal entity.
@@ -1284,7 +1284,7 @@ paths:
               schema:
                 $ref: '#/components/schemas/error'
           description: Error response.
-  '/v1/accounts/{account}/people/{person}':
+  /v1/accounts/{account}/people/{person}:
     delete:
       description: >-
         <p>Deletes an existing person’s relationship to the account’s legal
@@ -1455,7 +1455,7 @@ paths:
               schema:
                 $ref: '#/components/schemas/error'
           description: Error response.
-  '/v1/accounts/{account}/persons':
+  /v1/accounts/{account}/persons:
     get:
       description: >-
         <p>Returns a list of people associated with the account’s legal entity.
@@ -1630,7 +1630,7 @@ paths:
               schema:
                 $ref: '#/components/schemas/error'
           description: Error response.
-  '/v1/accounts/{account}/persons/{person}':
+  /v1/accounts/{account}/persons/{person}:
     delete:
       description: >-
         <p>Deletes an existing person’s relationship to the account’s legal
@@ -1801,7 +1801,7 @@ paths:
               schema:
                 $ref: '#/components/schemas/error'
           description: Error response.
-  '/v1/accounts/{account}/reject':
+  /v1/accounts/{account}/reject:
     post:
       description: >-
         <p>With <a href="/docs/connect">Connect</a>, you may flag accounts as
@@ -2001,7 +2001,7 @@ components:
         tos_acceptance:
           $ref: '#/components/schemas/account_tos_acceptance'
         type:
-          description: 'The Stripe account type. Can be `standard`, `express`, or `custom`.'
+          description: The Stripe account type. Can be `standard`, `express`, or `custom`.
           enum:
             - custom
             - express
@@ -4827,7 +4827,7 @@ components:
           maxLength: 5000
           type: string
         address_country:
-          description: 'Billing address country, if provided when creating card.'
+          description: Billing address country, if provided when creating card.
           maxLength: 5000
           type: string
         address_line1:
@@ -5124,7 +5124,7 @@ components:
           maxLength: 5000
           type: string
         address_country:
-          description: 'Billing address country, if provided when creating card.'
+          description: Billing address country, if provided when creating card.
           maxLength: 5000
           type: string
         address_line1:

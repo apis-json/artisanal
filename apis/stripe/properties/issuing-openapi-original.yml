@@ -5,15 +5,15 @@ info:
   contact:
     email: dev-platform@stripe.com
     name: Stripe Dev Platform Team
-    url: 'https://stripe.com'
-  termsOfService: 'https://stripe.com/us/terms/'
+    url: https://stripe.com
+  termsOfService: https://stripe.com/us/terms/
   version: '2023-10-16'
   x-stripeSpecFilename: spec3
 security:
   - basicAuth: []
   - bearerAuth: []
 servers:
-  - url: 'https://api.stripe.com/'
+  - url: https://api.stripe.com/
 paths:
   /v1/issuing/authorizations:
     get:
@@ -144,7 +144,7 @@ paths:
               schema:
                 $ref: '#/components/schemas/error'
           description: Error response.
-  '/v1/issuing/authorizations/{authorization}':
+  /v1/issuing/authorizations/{authorization}:
     get:
       description: <p>Retrieves an Issuing <code>Authorization</code> object.</p>
       operationId: GetIssuingAuthorizationsAuthorization
@@ -231,7 +231,7 @@ paths:
               schema:
                 $ref: '#/components/schemas/error'
           description: Error response.
-  '/v1/issuing/authorizations/{authorization}/approve':
+  /v1/issuing/authorizations/{authorization}/approve:
     post:
       description: >-
         <p>[Deprecated] Approves a pending Issuing <code>Authorization</code>
@@ -279,7 +279,7 @@ paths:
               schema:
                 $ref: '#/components/schemas/error'
           description: Error response.
-  '/v1/issuing/authorizations/{authorization}/decline':
+  /v1/issuing/authorizations/{authorization}/decline:
     post:
       description: >-
         <p>[Deprecated] Declines a pending Issuing <code>Authorization</code>
@@ -514,7 +514,7 @@ paths:
               schema:
                 $ref: '#/components/schemas/error'
           description: Error response.
-  '/v1/issuing/cardholders/{cardholder}':
+  /v1/issuing/cardholders/{cardholder}:
     get:
       description: <p>Retrieves an Issuing <code>Cardholder</code> object.</p>
       operationId: GetIssuingCardholdersCardholder
@@ -804,7 +804,7 @@ paths:
               schema:
                 $ref: '#/components/schemas/error'
           description: Error response.
-  '/v1/issuing/cards/{card}':
+  /v1/issuing/cards/{card}:
     get:
       description: <p>Retrieves an Issuing <code>Card</code> object.</p>
       operationId: GetIssuingCardsCard
@@ -1059,7 +1059,7 @@ paths:
               schema:
                 $ref: '#/components/schemas/error'
           description: Error response.
-  '/v1/issuing/disputes/{dispute}':
+  /v1/issuing/disputes/{dispute}:
     get:
       description: <p>Retrieves an Issuing <code>Dispute</code> object.</p>
       operationId: GetIssuingDisputesDispute
@@ -1148,7 +1148,7 @@ paths:
               schema:
                 $ref: '#/components/schemas/error'
           description: Error response.
-  '/v1/issuing/disputes/{dispute}/submit':
+  /v1/issuing/disputes/{dispute}/submit:
     post:
       description: >-
         <p>Submits an Issuing <code>Dispute</code> to the card network. Stripe
@@ -1292,7 +1292,7 @@ paths:
               schema:
                 $ref: '#/components/schemas/error'
           description: Error response.
-  '/v1/issuing/settlements/{settlement}':
+  /v1/issuing/settlements/{settlement}:
     get:
       description: <p>Retrieves an Issuing <code>Settlement</code> object.</p>
       operationId: GetIssuingSettlementsSettlement
@@ -1494,7 +1494,7 @@ paths:
               schema:
                 $ref: '#/components/schemas/error'
           description: Error response.
-  '/v1/issuing/tokens/{token}':
+  /v1/issuing/tokens/{token}:
     get:
       description: <p>Retrieves an Issuing <code>Token</code> object.</p>
       operationId: GetIssuingTokensToken
@@ -1703,7 +1703,7 @@ paths:
               schema:
                 $ref: '#/components/schemas/error'
           description: Error response.
-  '/v1/issuing/transactions/{transaction}':
+  /v1/issuing/transactions/{transaction}:
     get:
       description: <p>Retrieves an Issuing <code>Transaction</code> object.</p>
       operationId: GetIssuingTransactionsTransaction
@@ -2261,7 +2261,7 @@ components:
             - maxLength: 5000
               type: string
             - $ref: '#/components/schemas/issuing.card'
-          description: 'The latest card that replaces this card, if any.'
+          description: The latest card that replaces this card, if any.
           nullable: true
           x-expansionResources:
             oneOf:
@@ -2271,7 +2271,7 @@ components:
             - maxLength: 5000
               type: string
             - $ref: '#/components/schemas/issuing.card'
-          description: 'The card this card replaces, if any.'
+          description: The card this card replaces, if any.
           nullable: true
           x-expansionResources:
             oneOf:
@@ -2502,7 +2502,7 @@ components:
           description: The total net amount required to settle with the network.
           type: integer
         network:
-          description: 'The card network for this settlement report. One of ["visa"]'
+          description: The card network for this settlement report. One of ["visa"]
           enum:
             - visa
           type: string
@@ -2624,7 +2624,7 @@ components:
             - suspended
           type: string
         wallet_provider:
-          description: 'The digital wallet for this token, if one was used.'
+          description: The digital wallet for this token, if one was used.
           enum:
             - apple_pay
             - google_pay
@@ -2733,7 +2733,7 @@ components:
             - maxLength: 5000
               type: string
             - $ref: '#/components/schemas/issuing.dispute'
-          description: 'If you''ve disputed the transaction, the ID of the dispute.'
+          description: If you've disputed the transaction, the ID of the dispute.
           nullable: true
           x-expansionResources:
             oneOf:

@@ -6,26 +6,85 @@ paths:
     GET:
       summary: ListApplicationInstances
       description: <p>Returns a list of application instances.</p>
+      tags:
+        - List
+        - Application
+        - Instances
+        - Application
+        - Instances
   /jobs:
     GET:
       summary: ListDevicesJobs
       description: <p>Returns a list of jobs.</p>
+      tags:
+        - List
+        - Devices
+        - Jobs
+        - Application
+        - Instances
+        - Jobs
   /packages/template-job:
     GET:
       summary: ListNodeFromTemplateJobs
       description: <p>Returns a list of camera stream node jobs.</p>
+      tags:
+        - List
+        - Node
+        - From
+        - Template
+        - Jobs
+        - Application
+        - Instances
+        - Jobs
+        - Packages
+        - Template
+        - Job
   /packages:
     GET:
       summary: ListPackages
       description: <p>Returns a list of packages.</p>
+      tags:
+        - List
+        - Packages
+        - Application
+        - Instances
+        - Jobs
+        - Packages
+        - Template
+        - Job
   /packages/import-jobs:
     GET:
       summary: ListPackageImportJobs
       description: <p>Returns a list of package import jobs.</p>
+      tags:
+        - List
+        - Package
+        - Import
+        - Jobs
+        - Application
+        - Instances
+        - Jobs
+        - Packages
+        - Template
+        - Job
+        - Import
   /devices/{DeviceId}:
     PUT:
       summary: UpdateDeviceMetadata
       description: <p>Updates a device's metadata.</p>
+      tags:
+        - Update
+        - Device
+        - Metadata
+        - Application
+        - Instances
+        - Jobs
+        - Packages
+        - Template
+        - Job
+        - Import
+        - Device
+        - Id
   /packages/{PackageId}:
     DELETE:
       summary: DeletePackage
@@ -33,52 +92,285 @@ paths:
         <p>Deletes a package.</p> <note> <p>To delete a package, you need
         permission to call <code>s3:DeleteObject</code> in addition to
         permissions for the AWS Panorama API.</p> </note>
+      tags:
+        - Delete
+        - Package
+        - Application
+        - Instances
+        - Jobs
+        - Packages
+        - Template
+        - Job
+        - Import
+        - Device
+        - Id
+        - Package
   /packages/{PackageId}/versions/{PackageVersion}/patch/{PatchVersion}:
     PUT:
       summary: RegisterPackageVersion
       description: <p>Registers a package version.</p>
+      tags:
+        - Register
+        - Package
+        - Version
+        - Application
+        - Instances
+        - Jobs
+        - Packages
+        - Template
+        - Job
+        - Import
+        - Device
+        - Id
+        - Package
+        - Versions
+        - Version
+        - Patch
   /application-instances/{ApplicationInstanceId}:
     DELETE:
       summary: RemoveApplicationInstance
       description: <p>Removes an application instance.</p>
+      tags:
+        - Remove
+        - Application
+        - Instance
+        - Application
+        - Instances
+        - Jobs
+        - Packages
+        - Template
+        - Job
+        - Import
+        - Device
+        - Id
+        - Package
+        - Versions
+        - Version
+        - Patch
+        - Instance
   /application-instances/{ApplicationInstanceId}/details:
     GET:
       summary: DescribeApplicationInstanceDetails
       description: >-
         <p>Returns information about an application instance's configuration
         manifest.</p>
+      tags:
+        - Describe
+        - Application
+        - Instance
+        - Details
+        - Application
+        - Instances
+        - Jobs
+        - Packages
+        - Template
+        - Job
+        - Import
+        - Device
+        - Id
+        - Package
+        - Versions
+        - Version
+        - Patch
+        - Instance
+        - Details
   /jobs/{JobId}:
     GET:
       summary: DescribeDeviceJob
       description: <p>Returns information about a device job.</p>
+      tags:
+        - Describe
+        - Device
+        - Job
+        - Application
+        - Instances
+        - Jobs
+        - Packages
+        - Template
+        - Job
+        - Import
+        - Device
+        - Id
+        - Package
+        - Versions
+        - Version
+        - Patch
+        - Instance
+        - Details
   /nodes/{NodeId}:
     GET:
       summary: DescribeNode
       description: <p>Returns information about a node.</p>
+      tags:
+        - Describe
+        - Node
+        - Application
+        - Instances
+        - Jobs
+        - Packages
+        - Template
+        - Job
+        - Import
+        - Device
+        - Id
+        - Package
+        - Versions
+        - Version
+        - Patch
+        - Instance
+        - Details
+        - Node
   /packages/template-job/{JobId}:
     GET:
       summary: DescribeNodeFromTemplateJob
       description: <p>Returns information about a job to create a camera stream node.</p>
+      tags:
+        - Describe
+        - Node
+        - From
+        - Template
+        - Job
+        - Application
+        - Instances
+        - Jobs
+        - Packages
+        - Template
+        - Job
+        - Import
+        - Device
+        - Id
+        - Package
+        - Versions
+        - Version
+        - Patch
+        - Instance
+        - Details
+        - Node
   /packages/metadata/{PackageId}:
     GET:
       summary: DescribePackage
       description: <p>Returns information about a package.</p>
+      tags:
+        - Describe
+        - Package
+        - Application
+        - Instances
+        - Jobs
+        - Packages
+        - Template
+        - Job
+        - Import
+        - Device
+        - Id
+        - Package
+        - Versions
+        - Version
+        - Patch
+        - Instance
+        - Details
+        - Node
   /packages/import-jobs/{JobId}:
     GET:
       summary: DescribePackageImportJob
       description: <p>Returns information about a package import job.</p>
+      tags:
+        - Describe
+        - Package
+        - Import
+        - Job
+        - Application
+        - Instances
+        - Jobs
+        - Packages
+        - Template
+        - Job
+        - Import
+        - Device
+        - Id
+        - Package
+        - Versions
+        - Version
+        - Patch
+        - Instance
+        - Details
+        - Node
   /packages/metadata/{PackageId}/versions/{PackageVersion}:
     GET:
       summary: DescribePackageVersion
       description: <p>Returns information about a package version.</p>
+      tags:
+        - Describe
+        - Package
+        - Version
+        - Application
+        - Instances
+        - Jobs
+        - Packages
+        - Template
+        - Job
+        - Import
+        - Device
+        - Id
+        - Package
+        - Versions
+        - Version
+        - Patch
+        - Instance
+        - Details
+        - Node
   /application-instances/{ApplicationInstanceId}/package-dependencies:
     GET:
       summary: ListApplicationInstanceDependencies
       description: <p>Returns a list of application instance dependencies.</p>
+      tags:
+        - List
+        - Application
+        - Instance
+        - Dependencies
+        - Application
+        - Instances
+        - Jobs
+        - Packages
+        - Template
+        - Job
+        - Import
+        - Device
+        - Id
+        - Package
+        - Versions
+        - Version
+        - Patch
+        - Instance
+        - Details
+        - Node
+        - Dependencies
   /application-instances/{ApplicationInstanceId}/node-instances:
     GET:
       summary: ListApplicationInstanceNodeInstances
       description: <p>Returns a list of application node instances.</p>
+      tags:
+        - List
+        - Application
+        - Instance
+        - Node
+        - Instances
+        - Application
+        - Instances
+        - Jobs
+        - Packages
+        - Template
+        - Job
+        - Import
+        - Device
+        - Id
+        - Package
+        - Versions
+        - Version
+        - Patch
+        - Instance
+        - Details
+        - Node
+        - Dependencies
   /devices:
     POST:
       summary: ProvisionDevice
@@ -89,15 +381,110 @@ paths:
         <code>certificates-omni_<i>device-name</i>.zip</code> and transfer it to
         the device within 5 minutes. Use the included USB storage device and
         connect it to the USB 3.0 port next to the HDMI output.</p>
+      tags:
+        - Provision
+        - Device
+        - Application
+        - Instances
+        - Jobs
+        - Packages
+        - Template
+        - Job
+        - Import
+        - Device
+        - Id
+        - Package
+        - Versions
+        - Version
+        - Patch
+        - Instance
+        - Details
+        - Node
+        - Dependencies
+        - Devices
   /nodes:
     GET:
       summary: ListNodes
       description: <p>Returns a list of nodes.</p>
+      tags:
+        - List
+        - Nodes
+        - Application
+        - Instances
+        - Jobs
+        - Packages
+        - Template
+        - Job
+        - Import
+        - Device
+        - Id
+        - Package
+        - Versions
+        - Version
+        - Patch
+        - Instance
+        - Details
+        - Node
+        - Dependencies
+        - Devices
+        - Nodes
   /tags/{ResourceArn}:
     DELETE:
       summary: UntagResource
       description: <p>Removes tags from a resource.</p>
+      tags:
+        - Untag
+        - Resource
+        - Application
+        - Instances
+        - Jobs
+        - Packages
+        - Template
+        - Job
+        - Import
+        - Device
+        - Id
+        - Package
+        - Versions
+        - Version
+        - Patch
+        - Instance
+        - Details
+        - Node
+        - Dependencies
+        - Devices
+        - Nodes
+        - Resource
+        - Arn
   /application-instances/{ApplicationInstanceId}/node-signals:
     PUT:
       summary: SignalApplicationInstanceNodeInstances
-      description: <p>Signal camera nodes to stop or res
+      description: <p>Signal camera nodes to stop or r
+      tags:
+        - Signal
+        - Application
+        - Instance
+        - Node
+        - Instances
+        - Application
+        - Instances
+        - Jobs
+        - Packages
+        - Template
+        - Job
+        - Import
+        - Device
+        - Id
+        - Package
+        - Versions
+        - Version
+        - Patch
+        - Instance
+        - Details
+        - Node
+        - Dependencies
+        - Devices
+        - Nodes
+        - Resource
+        - Arn
+        - Signa

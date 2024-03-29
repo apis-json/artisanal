@@ -14,10 +14,27 @@ paths:
         Use the ARN of the <code>AppInstanceUser</code> or
         <code>AppInstanceBot</code> that makes the API call as the value in the
         header.</p> </note>
+      tags:
+        - Associate
+        - Channel
+        - Flow
+        - Arn
+        - Channel
+        - Flow
   /channels/{channelArn}/memberships?operation=batch-create:
     POST:
       summary: BatchCreateChannelMembership
       description: <p>Adds a specified number of users and bots to a channel. </p>
+      tags:
+        - Batch
+        - Create
+        - Channel
+        - Membership
+        - Arn
+        - Channel
+        - Flow
+        - Memberships?operation=batch
+        - Create
   /channels/{channelArn}?operation=channel-flow-callback:
     POST:
       summary: ChannelFlowCallback
@@ -28,6 +45,17 @@ paths:
         responses:</p> <ul> <li> <p>Update message content or metadata</p> </li>
         <li> <p>Deny a message</p> </li> <li> <p>Make no changes to the
         message</p> </li> </ul>
+      tags:
+        - Channel
+        - Flow
+        - Callback
+        - Arn
+        - Channel
+        - Flow
+        - Memberships?operation=batch
+        - Create
+        - '?operation=channel'
+        - Callback
   /channels:
     GET:
       summary: ListChannels
@@ -42,6 +70,17 @@ paths:
         is mandatory. Use the ARN of the <code>AppInstanceUser</code> or
         <code>AppInstanceBot</code> that makes the API call as the value in the
         header.</p> </note>
+      tags:
+        - List
+        - Channels
+        - Arn
+        - Channel
+        - Flow
+        - Memberships?operation=batch
+        - Create
+        - '?operation=channel'
+        - Callback
+        - Channels
   /channels/{channelArn}/bans:
     GET:
       summary: ListChannelBans
@@ -51,12 +90,39 @@ paths:
         mandatory. Use the ARN of the <code>AppInstanceUser</code> or
         <code>AppInstanceBot</code> that makes the API call as the value in the
         header.</p> </note>
+      tags:
+        - List
+        - Channel
+        - Bans
+        - Arn
+        - Channel
+        - Flow
+        - Memberships?operation=batch
+        - Create
+        - '?operation=channel'
+        - Callback
+        - Channels
+        - Bans
   /channel-flows:
     GET:
       summary: ListChannelFlows
       description: >-
         <p>Returns a paginated lists of all the channel flows created under a
         single Chime. This is a developer API.</p>
+      tags:
+        - List
+        - Channel
+        - Flows
+        - Arn
+        - Channel
+        - Flow
+        - Memberships?operation=batch
+        - Create
+        - '?operation=channel'
+        - Callback
+        - Channels
+        - Bans
+        - Flows
   /channels/{channelArn}/memberships:
     GET:
       summary: ListChannelMemberships
@@ -69,6 +135,21 @@ paths:
         see the <a
         href="https://docs.aws.amazon.com/chime/latest/APIReference/API_messaging-chime_ListChannelMembershipsForAppInstanceUser.html">ListChannelMembershipsForAppInstanceUser</a>
         API.</p>
+      tags:
+        - List
+        - Channel
+        - Memberships
+        - Arn
+        - Channel
+        - Flow
+        - Memberships?operation=batch
+        - Create
+        - '?operation=channel'
+        - Callback
+        - Channels
+        - Bans
+        - Flows
+        - Memberships
   /channels/{channelArn}/moderators:
     GET:
       summary: ListChannelModerators
@@ -77,6 +158,22 @@ paths:
         <code>x-amz-chime-bearer</code> request header is mandatory. Use the ARN
         of the <code>AppInstanceUser</code> or <code>AppInstanceBot</code> that
         makes the API call as the value in the header.</p> </note>
+      tags:
+        - List
+        - Channel
+        - Moderators
+        - Arn
+        - Channel
+        - Flow
+        - Memberships?operation=batch
+        - Create
+        - '?operation=channel'
+        - Callback
+        - Channels
+        - Bans
+        - Flows
+        - Memberships
+        - Moderators
   /channels/{channelArn}:
     PUT:
       summary: UpdateChannel
@@ -86,6 +183,21 @@ paths:
         <code>x-amz-chime-bearer</code> request header is mandatory. Use the ARN
         of the <code>AppInstanceUser</code> or <code>AppInstanceBot</code> that
         makes the API call as the value in the header.</p> </note>
+      tags:
+        - Update
+        - Channel
+        - Arn
+        - Channel
+        - Flow
+        - Memberships?operation=batch
+        - Create
+        - '?operation=channel'
+        - Callback
+        - Channels
+        - Bans
+        - Flows
+        - Memberships
+        - Moderators
   /channels/{channelArn}/bans/{memberArn}:
     GET:
       summary: DescribeChannelBan
@@ -94,10 +206,44 @@ paths:
         <code>x-amz-chime-bearer</code> request header is mandatory. Use the ARN
         of the <code>AppInstanceUser</code> or <code>AppInstanceBot</code> that
         makes the API call as the value in the header.</p> </note>
+      tags:
+        - Describe
+        - Channel
+        - Ban
+        - Arn
+        - Channel
+        - Flow
+        - Memberships?operation=batch
+        - Create
+        - '?operation=channel'
+        - Callback
+        - Channels
+        - Bans
+        - Flows
+        - Memberships
+        - Moderators
+        - Member
   /channel-flows/{channelFlowArn}:
     PUT:
       summary: UpdateChannelFlow
       description: <p>Updates channel flow attributes. This is a developer API.</p>
+      tags:
+        - Update
+        - Channel
+        - Flow
+        - Arn
+        - Channel
+        - Flow
+        - Memberships?operation=batch
+        - Create
+        - '?operation=channel'
+        - Callback
+        - Channels
+        - Bans
+        - Flows
+        - Memberships
+        - Moderators
+        - Member
   /channels/{channelArn}/memberships/{memberArn}:
     GET:
       summary: DescribeChannelMembership
@@ -107,6 +253,23 @@ paths:
         the ARN of the <code>AppInstanceUser</code> or
         <code>AppInstanceBot</code> that makes the API call as the value in the
         header.</p> </note>
+      tags:
+        - Describe
+        - Channel
+        - Membership
+        - Arn
+        - Channel
+        - Flow
+        - Memberships?operation=batch
+        - Create
+        - '?operation=channel'
+        - Callback
+        - Channels
+        - Bans
+        - Flows
+        - Memberships
+        - Moderators
+        - Member
   /channels/{channelArn}/messages/{messageId}:
     PUT:
       summary: UpdateChannelMessage
@@ -115,6 +278,26 @@ paths:
         <code>x-amz-chime-bearer</code> request header is mandatory. Use the ARN
         of the <code>AppInstanceUser</code> or <code>AppInstanceBot</code> that
         makes the API call as the value in the header.</p> </note>
+      tags:
+        - Update
+        - Channel
+        - Message
+        - Arn
+        - Channel
+        - Flow
+        - Memberships?operation=batch
+        - Create
+        - '?operation=channel'
+        - Callback
+        - Channels
+        - Bans
+        - Flows
+        - Memberships
+        - Moderators
+        - Member
+        - Messages
+        - Message
+        - Id
   /channels/{channelArn}/moderators/{channelModeratorArn}:
     GET:
       summary: DescribeChannelModerator
@@ -123,6 +306,27 @@ paths:
         <p>The <code>x-amz-chime-bearer</code> request header is mandatory. Use
         the <code>AppInstanceUserArn</code> of the user that makes the API call
         as the value in the header.</p> </note>
+      tags:
+        - Describe
+        - Channel
+        - Moderator
+        - Arn
+        - Channel
+        - Flow
+        - Memberships?operation=batch
+        - Create
+        - '?operation=channel'
+        - Callback
+        - Channels
+        - Bans
+        - Flows
+        - Memberships
+        - Moderators
+        - Member
+        - Messages
+        - Message
+        - Id
+        - Moderator
   /app-instances/{appInstanceArn}/streaming-configurations:
     PUT:
       summary: PutMessagingStreamingConfigurations
@@ -131,6 +335,31 @@ paths:
         <code>AppInstance</code>. For more information, see <a
         href="https://docs.aws.amazon.com/chime-sdk/latest/dg/streaming-export.html">Streaming
         messaging data</a> in the <i>Amazon Chime SDK Developer Guide</i>.</p>
+      tags:
+        - Put
+        - Messaging
+        - Streaming
+        - Configurations
+        - Arn
+        - Channel
+        - Flow
+        - Memberships?operation=batch
+        - Create
+        - '?operation=channel'
+        - Callback
+        - Channels
+        - Bans
+        - Flows
+        - Memberships
+        - Moderators
+        - Member
+        - Messages
+        - Message
+        - Id
+        - Moderator
+        - Instance
+        - Streaming
+        - Configurations
   /channels/{channelArn}?scope=app-instance-user-membership:
     GET:
       summary: DescribeChannelMembershipForAppInstanceUser
@@ -141,6 +370,37 @@ paths:
         <code>x-amz-chime-bearer</code> request header is mandatory. Use the ARN
         of the <code>AppInstanceUser</code> or <code>AppInstanceBot</code> that
         makes the API call as the value in the header.</p> </note>
+      tags:
+        - Describe
+        - Channel
+        - Membership
+        - For
+        - App
+        - Instance
+        - User
+        - Arn
+        - Channel
+        - Flow
+        - Memberships?operation=batch
+        - Create
+        - '?operation=channel'
+        - Callback
+        - Channels
+        - Bans
+        - Flows
+        - Memberships
+        - Moderators
+        - Member
+        - Messages
+        - Message
+        - Id
+        - Moderator
+        - Instance
+        - Streaming
+        - Configurations
+        - '?scope=app'
+        - User
+        - Membership
   /channels/{channelArn}?scope=app-instance-user-moderated-channel:
     GET:
       summary: DescribeChannelModeratedByAppInstanceUser
@@ -151,6 +411,38 @@ paths:
         the ARN of the <code>AppInstanceUser</code> or
         <code>AppInstanceBot</code> that makes the API call as the value in the
         header.</p> </note>
+      tags:
+        - Describe
+        - Channel
+        - Moderated
+        - By
+        - App
+        - Instance
+        - User
+        - Arn
+        - Channel
+        - Flow
+        - Memberships?operation=batch
+        - Create
+        - '?operation=channel'
+        - Callback
+        - Channels
+        - Bans
+        - Flows
+        - Memberships
+        - Moderators
+        - Member
+        - Messages
+        - Message
+        - Id
+        - Moderator
+        - Instance
+        - Streaming
+        - Configurations
+        - '?scope=app'
+        - User
+        - Membership
+        - Moderated
   /channels/{channelArn}/channel-flow/{channelFlowArn}:
     DELETE:
       summary: DisassociateChannelFlow
@@ -162,6 +454,34 @@ paths:
         <code>x-amz-chime-bearer</code> request header is mandatory. Use the ARN
         of the <code>AppInstanceUser</code> or <code>AppInstanceBot</code> that
         makes the API call as the value in the header.</p> </note>
+      tags:
+        - Disassociate
+        - Channel
+        - Flow
+        - Arn
+        - Channel
+        - Flow
+        - Memberships?operation=batch
+        - Create
+        - '?operation=channel'
+        - Callback
+        - Channels
+        - Bans
+        - Flows
+        - Memberships
+        - Moderators
+        - Member
+        - Messages
+        - Message
+        - Id
+        - Moderator
+        - Instance
+        - Streaming
+        - Configurations
+        - '?scope=app'
+        - User
+        - Membership
+        - Moderated
   /channels/{channelArn}/memberships/{memberArn}/preferences:
     PUT:
       summary: PutChannelMembershipPreferences
@@ -176,6 +496,36 @@ paths:
         <p>The x-amz-chime-bearer request header is mandatory. Use the ARN of an
         <code>AppInstanceUser</code> or <code>AppInstanceBot</code> that makes
         the API call as the value in the header.</p> </note>
+      tags:
+        - Put
+        - Channel
+        - Membership
+        - Preferences
+        - Arn
+        - Channel
+        - Flow
+        - Memberships?operation=batch
+        - Create
+        - '?operation=channel'
+        - Callback
+        - Channels
+        - Bans
+        - Flows
+        - Memberships
+        - Moderators
+        - Member
+        - Messages
+        - Message
+        - Id
+        - Moderator
+        - Instance
+        - Streaming
+        - Configurations
+        - '?scope=app'
+        - User
+        - Membership
+        - Moderated
+        - Preferences
   /channels/{channelArn}/messages/{messageId}?scope=message-status:
     GET:
       summary: GetChannelMessageStatus
@@ -196,10 +546,77 @@ paths:
         mandatory. Use the ARN of the <code>AppInstanceUser</code> or
         <code>AppInstanceBot</code> that makes the API call as the value in the
         header.</p> </li> </ul> </note>
+      tags:
+        - Get
+        - Channel
+        - Message
+        - Status
+        - Arn
+        - Channel
+        - Flow
+        - Memberships?operation=batch
+        - Create
+        - '?operation=channel'
+        - Callback
+        - Channels
+        - Bans
+        - Flows
+        - Memberships
+        - Moderators
+        - Member
+        - Messages
+        - Message
+        - Id
+        - Moderator
+        - Instance
+        - Streaming
+        - Configurations
+        - '?scope=app'
+        - User
+        - Membership
+        - Moderated
+        - Preferences
+        - '?scope=message'
+        - Status
   /endpoints/messaging-session:
     GET:
       summary: GetMessagingSessionEndpoint
       description: <p>The details of the endpoint for the messaging session.</p>
+      tags:
+        - Get
+        - Messaging
+        - Session
+        - Endpoint
+        - Arn
+        - Channel
+        - Flow
+        - Memberships?operation=batch
+        - Create
+        - '?operation=channel'
+        - Callback
+        - Channels
+        - Bans
+        - Flows
+        - Memberships
+        - Moderators
+        - Member
+        - Messages
+        - Message
+        - Id
+        - Moderator
+        - Instance
+        - Streaming
+        - Configurations
+        - '?scope=app'
+        - User
+        - Membership
+        - Moderated
+        - Preferences
+        - '?scope=message'
+        - Status
+        - Endpoints
+        - Messaging
+        - Session
   /channels?scope=app-instance-user-memberships:
     GET:
       summary: ListChannelMembershipsForAppInstanceUser
@@ -211,6 +628,45 @@ paths:
         request header is mandatory. Use the ARN of the
         <code>AppInstanceUser</code> or <code>AppInstanceBot</code> that makes
         the API call as the value in the header.</p> </note>
+      tags:
+        - List
+        - Channel
+        - Memberships
+        - For
+        - App
+        - Instance
+        - User
+        - Arn
+        - Channel
+        - Flow
+        - Memberships?operation=batch
+        - Create
+        - '?operation=channel'
+        - Callback
+        - Channels
+        - Bans
+        - Flows
+        - Memberships
+        - Moderators
+        - Member
+        - Messages
+        - Message
+        - Id
+        - Moderator
+        - Instance
+        - Streaming
+        - Configurations
+        - '?scope=app'
+        - User
+        - Membership
+        - Moderated
+        - Preferences
+        - '?scope=message'
+        - Status
+        - Endpoints
+        - Messaging
+        - Session
+        - Channels?scope=app
   /channels/{channelArn}/messages:
     POST:
       summary: SendChannelMessage
@@ -224,6 +680,41 @@ paths:
         a variety of ways, such as containing a link to an attachment.</p> <p>
         <code>CONTROL</code> messages are limited to 30 bytes and do not contain
         metadata.</p> </note>
+      tags:
+        - Send
+        - Channel
+        - Message
+        - Arn
+        - Channel
+        - Flow
+        - Memberships?operation=batch
+        - Create
+        - '?operation=channel'
+        - Callback
+        - Channels
+        - Bans
+        - Flows
+        - Memberships
+        - Moderators
+        - Member
+        - Messages
+        - Message
+        - Id
+        - Moderator
+        - Instance
+        - Streaming
+        - Configurations
+        - '?scope=app'
+        - User
+        - Membership
+        - Moderated
+        - Preferences
+        - '?scope=message'
+        - Status
+        - Endpoints
+        - Messaging
+        - Session
+        - Channels?scope=app
   /channels?scope=channel-flow-associations:
     GET:
       summary: ListChannelsAssociatedWithChannelFlow
@@ -231,6 +722,46 @@ paths:
         <p>Lists all channels associated with a specified channel flow. You can
         associate a channel flow with multiple channels, but you can only
         associate a channel with one channel flow. This is a developer API.</p>
+      tags:
+        - List
+        - Channels
+        - Associated
+        - With
+        - Channel
+        - Flow
+        - Arn
+        - Channel
+        - Flow
+        - Memberships?operation=batch
+        - Create
+        - '?operation=channel'
+        - Callback
+        - Channels
+        - Bans
+        - Flows
+        - Memberships
+        - Moderators
+        - Member
+        - Messages
+        - Message
+        - Id
+        - Moderator
+        - Instance
+        - Streaming
+        - Configurations
+        - '?scope=app'
+        - User
+        - Membership
+        - Moderated
+        - Preferences
+        - '?scope=message'
+        - Status
+        - Endpoints
+        - Messaging
+        - Session
+        - Channels?scope=app
+        - Channels?scope=channel
+        - Associations
   /channels?scope=app-instance-user-moderated-channels:
     GET:
       summary: ListChannelsModeratedByAppInstanceUser
@@ -240,6 +771,47 @@ paths:
         <code>x-amz-chime-bearer</code> request header is mandatory. Use the ARN
         of the <code>AppInstanceUser</code> or <code>AppInstanceBot</code> that
         makes the API call as the value in the header.</p> </note>
+      tags:
+        - List
+        - Channels
+        - Moderated
+        - By
+        - App
+        - Instance
+        - User
+        - Arn
+        - Channel
+        - Flow
+        - Memberships?operation=batch
+        - Create
+        - '?operation=channel'
+        - Callback
+        - Channels
+        - Bans
+        - Flows
+        - Memberships
+        - Moderators
+        - Member
+        - Messages
+        - Message
+        - Id
+        - Moderator
+        - Instance
+        - Streaming
+        - Configurations
+        - '?scope=app'
+        - User
+        - Membership
+        - Moderated
+        - Preferences
+        - '?scope=message'
+        - Status
+        - Endpoints
+        - Messaging
+        - Session
+        - Channels?scope=app
+        - Channels?scope=channel
+        - Associations
   /channels/{channelArn}/subchannels:
     GET:
       summary: ListSubChannels
@@ -247,10 +819,88 @@ paths:
         <p>Lists all the SubChannels in an elastic channel when given a channel
         ID. Available only to the app instance admins and channel moderators of
         elastic channels.</p>
+      tags:
+        - List
+        - Sub
+        - Channels
+        - Arn
+        - Channel
+        - Flow
+        - Memberships?operation=batch
+        - Create
+        - '?operation=channel'
+        - Callback
+        - Channels
+        - Bans
+        - Flows
+        - Memberships
+        - Moderators
+        - Member
+        - Messages
+        - Message
+        - Id
+        - Moderator
+        - Instance
+        - Streaming
+        - Configurations
+        - '?scope=app'
+        - User
+        - Membership
+        - Moderated
+        - Preferences
+        - '?scope=message'
+        - Status
+        - Endpoints
+        - Messaging
+        - Session
+        - Channels?scope=app
+        - Channels?scope=channel
+        - Associations
+        - Subchannels
   /tags:
     GET:
       summary: ListTagsForResource
       description: <p>Lists the tags applied to an Amazon Chime SDK messaging resource.</p>
+      tags:
+        - List
+        - Tags
+        - For
+        - Resource
+        - Arn
+        - Channel
+        - Flow
+        - Memberships?operation=batch
+        - Create
+        - '?operation=channel'
+        - Callback
+        - Channels
+        - Bans
+        - Flows
+        - Memberships
+        - Moderators
+        - Member
+        - Messages
+        - Message
+        - Id
+        - Moderator
+        - Instance
+        - Streaming
+        - Configurations
+        - '?scope=app'
+        - User
+        - Membership
+        - Moderated
+        - Preferences
+        - '?scope=message'
+        - Status
+        - Endpoints
+        - Messaging
+        - Session
+        - Channels?scope=app
+        - Channels?scope=channel
+        - Associations
+        - Subchannels
+        - Tags
   /channels/{channelArn}/expiration-settings:
     PUT:
       summary: PutChannelExpirationSettings
@@ -264,6 +914,48 @@ paths:
         <code>x-amz-chime-bearer</code> request header is mandatory. Use the ARN
         of the <code>AppInstanceUser</code> or <code>AppInstanceBot</code> that
         makes the API call as the value in the header.</p> </li> </ul> </note>
+      tags:
+        - Put
+        - Channel
+        - Expiration
+        - Settings
+        - Arn
+        - Channel
+        - Flow
+        - Memberships?operation=batch
+        - Create
+        - '?operation=channel'
+        - Callback
+        - Channels
+        - Bans
+        - Flows
+        - Memberships
+        - Moderators
+        - Member
+        - Messages
+        - Message
+        - Id
+        - Moderator
+        - Instance
+        - Streaming
+        - Configurations
+        - '?scope=app'
+        - User
+        - Membership
+        - Moderated
+        - Preferences
+        - '?scope=message'
+        - Status
+        - Endpoints
+        - Messaging
+        - Session
+        - Channels?scope=app
+        - Channels?scope=channel
+        - Associations
+        - Subchannels
+        - Tags
+        - Expiration
+        - Settings
   /channels/{channelArn}/messages/{messageId}?operation=redact:
     POST:
       summary: RedactChannelMessage
@@ -274,6 +966,48 @@ paths:
         header is mandatory. Use the ARN of the <code>AppInstanceUser</code> or
         <code>AppInstanceBot</code> that makes the API call as the value in the
         header.</p> </note>
+      tags:
+        - Redact
+        - Channel
+        - Message
+        - Arn
+        - Channel
+        - Flow
+        - Memberships?operation=batch
+        - Create
+        - '?operation=channel'
+        - Callback
+        - Channels
+        - Bans
+        - Flows
+        - Memberships
+        - Moderators
+        - Member
+        - Messages
+        - Message
+        - Id
+        - Moderator
+        - Instance
+        - Streaming
+        - Configurations
+        - '?scope=app'
+        - User
+        - Membership
+        - Moderated
+        - Preferences
+        - '?scope=message'
+        - Status
+        - Endpoints
+        - Messaging
+        - Session
+        - Channels?scope=app
+        - Channels?scope=channel
+        - Associations
+        - Subchannels
+        - Tags
+        - Expiration
+        - Settings
+        - '?operation=redact'
   /channels?operation=search:
     POST:
       summary: SearchChannels
@@ -285,18 +1019,149 @@ paths:
         is mandatory. Use the ARN of the <code>AppInstanceUser</code> or
         <code>AppInstanceBot</code> that makes the API call as the value in the
         header.</p>
+      tags:
+        - Search
+        - Channels
+        - Arn
+        - Channel
+        - Flow
+        - Memberships?operation=batch
+        - Create
+        - '?operation=channel'
+        - Callback
+        - Channels
+        - Bans
+        - Flows
+        - Memberships
+        - Moderators
+        - Member
+        - Messages
+        - Message
+        - Id
+        - Moderator
+        - Instance
+        - Streaming
+        - Configurations
+        - '?scope=app'
+        - User
+        - Membership
+        - Moderated
+        - Preferences
+        - '?scope=message'
+        - Status
+        - Endpoints
+        - Messaging
+        - Session
+        - Channels?scope=app
+        - Channels?scope=channel
+        - Associations
+        - Subchannels
+        - Tags
+        - Expiration
+        - Settings
+        - '?operation=redact'
+        - Channels?operation=search
   /tags?operation=tag-resource:
     POST:
       summary: TagResource
       description: >-
         <p>Applies the specified tags to the specified Amazon Chime SDK
         messaging resource.</p>
+      tags:
+        - Tag
+        - Resource
+        - Arn
+        - Channel
+        - Flow
+        - Memberships?operation=batch
+        - Create
+        - '?operation=channel'
+        - Callback
+        - Channels
+        - Bans
+        - Flows
+        - Memberships
+        - Moderators
+        - Member
+        - Messages
+        - Message
+        - Id
+        - Moderator
+        - Instance
+        - Streaming
+        - Configurations
+        - '?scope=app'
+        - User
+        - Membership
+        - Moderated
+        - Preferences
+        - '?scope=message'
+        - Status
+        - Endpoints
+        - Messaging
+        - Session
+        - Channels?scope=app
+        - Channels?scope=channel
+        - Associations
+        - Subchannels
+        - Tags
+        - Expiration
+        - Settings
+        - '?operation=redact'
+        - Channels?operation=search
+        - Tags?operation=tag
+        - Resource
   /tags?operation=untag-resource:
     POST:
       summary: UntagResource
       description: >-
         <p>Removes the specified tags from the specified Amazon Chime SDK
         messaging resource.</p>
+      tags:
+        - Untag
+        - Resource
+        - Arn
+        - Channel
+        - Flow
+        - Memberships?operation=batch
+        - Create
+        - '?operation=channel'
+        - Callback
+        - Channels
+        - Bans
+        - Flows
+        - Memberships
+        - Moderators
+        - Member
+        - Messages
+        - Message
+        - Id
+        - Moderator
+        - Instance
+        - Streaming
+        - Configurations
+        - '?scope=app'
+        - User
+        - Membership
+        - Moderated
+        - Preferences
+        - '?scope=message'
+        - Status
+        - Endpoints
+        - Messaging
+        - Session
+        - Channels?scope=app
+        - Channels?scope=channel
+        - Associations
+        - Subchannels
+        - Tags
+        - Expiration
+        - Settings
+        - '?operation=redact'
+        - Channels?operation=search
+        - Tags?operation=tag
+        - Resource
+        - Tags?operation=untag
   /channels/{channelArn}/readMarker:
     PUT:
       summary: UpdateChannelReadMarker
@@ -305,4 +1170,53 @@ paths:
         channel.</p> <note> <p>The <code>x-amz-chime-bearer</code> request
         header is mandatory. Use the ARN of the <code>AppInstanceUser</code> or
         <code>AppInstanceBot</code> that makes the API call as the value in the
-        header.</p>
+        header.</
+      tags:
+        - Update
+        - Channel
+        - Read
+        - Marker
+        - Arn
+        - Channel
+        - Flow
+        - Memberships?operation=batch
+        - Create
+        - '?operation=channel'
+        - Callback
+        - Channels
+        - Bans
+        - Flows
+        - Memberships
+        - Moderators
+        - Member
+        - Messages
+        - Message
+        - Id
+        - Moderator
+        - Instance
+        - Streaming
+        - Configurations
+        - '?scope=app'
+        - User
+        - Membership
+        - Moderated
+        - Preferences
+        - '?scope=message'
+        - Status
+        - Endpoints
+        - Messaging
+        - Session
+        - Channels?scope=app
+        - Channels?scope=channel
+        - Associations
+        - Subchannels
+        - Tags
+        - Expiration
+        - Settings
+        - '?operation=redact'
+        - Channels?operation=search
+        - Tags?operation=tag
+        - Resource
+        - Tags?operation=untag
+        - Read
+        - Mark

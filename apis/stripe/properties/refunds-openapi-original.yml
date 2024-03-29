@@ -5,15 +5,15 @@ info:
   contact:
     email: dev-platform@stripe.com
     name: Stripe Dev Platform Team
-    url: 'https://stripe.com'
-  termsOfService: 'https://stripe.com/us/terms/'
+    url: https://stripe.com
+  termsOfService: https://stripe.com/us/terms/
   version: '2023-10-16'
   x-stripeSpecFilename: spec3
 security:
   - basicAuth: []
   - bearerAuth: []
 servers:
-  - url: 'https://api.stripe.com/'
+  - url: https://api.stripe.com/
 paths:
   /v1/refunds:
     get:
@@ -178,7 +178,7 @@ paths:
               schema:
                 $ref: '#/components/schemas/error'
           description: Error response.
-  '/v1/refunds/{refund}':
+  /v1/refunds/{refund}:
     get:
       description: <p>Retrieves the details of an existing refund.</p>
       operationId: GetRefundsRefund
@@ -264,7 +264,7 @@ paths:
               schema:
                 $ref: '#/components/schemas/error'
           description: Error response.
-  '/v1/refunds/{refund}/cancel':
+  /v1/refunds/{refund}/cancel:
     post:
       description: >-
         <p>Cancels a refund with a status of <code>requires_action</code>.</p>
@@ -328,7 +328,7 @@ components:
         Related guide: [Refunds](https://stripe.com/docs/refunds)
       properties:
         amount:
-          description: 'Amount, in cents (or local equivalent).'
+          description: Amount, in cents (or local equivalent).
           type: integer
         balance_transaction:
           anyOf:

@@ -12,12 +12,19 @@ paths:
       - null
     get:
       tags:
-        - Price Lists
+        - Get
+        - All
+        - Price
+        - Lists
+        - Pricelists
       summary: Get All Price Lists
       description: Returns a list of *Price Lists*. Optional parameters can be passed in.
     post:
       tags:
-        - Price Lists
+        - Create
+        - Price
+        - List
+        - Pricelists
       summary: Create a Price List
       description: |-
         Creates a *Price List*.
@@ -26,7 +33,11 @@ paths:
         * name
     delete:
       tags:
-        - Price Lists
+        - Delete
+        - All
+        - Price
+        - Lists
+        - Pricelists
       summary: Delete All Price Lists
       description: >-
         Deletes a *Price List*. All associated price records are also removed.
@@ -36,17 +47,29 @@ paths:
       - null
     get:
       tags:
-        - Price Lists
+        - Get
+        - Price
+        - List
+        - Pricelists
+        - Price_list_id
       summary: Get a Price List
       description: ' Returns a single *Price List*.'
     put:
       tags:
-        - Price Lists
+        - Update
+        - Price
+        - List
+        - Pricelists
+        - Price_list_id
       summary: Update a Price List
       description: Updates a *Price List*.
     delete:
       tags:
-        - Price Lists
+        - Delete
+        - Price
+        - List
+        - Pricelists
+        - Price_list_id
       summary: Delete a Price List
       description: |-
         Deletes a *Price List*. All associated price records are also removed.
@@ -57,7 +80,15 @@ paths:
       - null
     put:
       tags:
-        - Price Lists Records
+        - Create
+        - Batch
+        - Of
+        - Price
+        - Lists
+        - Records
+        - Pricelists
+        - Price_list_id
+        - Records
       summary: Create Batch of Price Lists Records
       description: >-
         Creates a batch of `Price Lists Records`; may include price list records
@@ -67,7 +98,14 @@ paths:
       - null
     get:
       tags:
-        - Price Lists Records
+        - Get
+        - All
+        - Price
+        - List
+        - Records
+        - Pricelists
+        - Price_list_id
+        - Records
       summary: Get All Price List Records
       description: >-
         Returns a list of *Price List Records* associated with a *Price List*.
@@ -83,7 +121,13 @@ paths:
         maximize performance.
     put:
       tags:
-        - Price Lists Records
+        - Upsert
+        - Price
+        - List
+        - Records
+        - Pricelists
+        - Price_list_id
+        - Records
       summary: Upsert Price List Records
       description: >-
         Creates or updates *Price List Records*. 
@@ -108,7 +152,13 @@ paths:
         records for the parent product SKU.
     delete:
       tags:
-        - Price Lists Records
+        - Delete
+        - Price
+        - List
+        - Record
+        - Pricelists
+        - Price_list_id
+        - Records
       summary: Delete a Price List Record
       description: >-
         Deletes a *Price List Record*. Deleting the records does not delete the
@@ -118,7 +168,15 @@ paths:
       - null
     get:
       tags:
-        - Price Lists Records
+        - Get
+        - Price
+        - Records
+        - By
+        - Variant
+        - Pricelists
+        - Price_list_id
+        - Records
+        - Variant_id
       summary: Get Price Records by Variant
       description: >
         Returns *Price List Records* using the variant ID. Will also contain
@@ -138,7 +196,17 @@ paths:
       - null
     get:
       tags:
-        - Price Lists Records
+        - Get
+        - Price
+        - Record
+        - By
+        - Currency
+        - Code
+        - Pricelists
+        - Price_list_id
+        - Records
+        - Variant_id
+        - Currency_code
       summary: Get a Price Record by Currency Code
       description: >-
         Returns a *Price List Record* using the currency code. You can use
@@ -151,7 +219,18 @@ paths:
         a `429` status error, and your additional requests will fail.
     put:
       tags:
-        - Price Lists Records
+        - Set
+        - Price
+        - List
+        - Record
+        - By
+        - Currency
+        - Code
+        - Pricelists
+        - Price_list_id
+        - Records
+        - Variant_id
+        - Currency_code
       summary: Set Price List Record by Currency Code
       description: >-
         Creates or updates a *Price List Record* using the currency code.
@@ -163,7 +242,17 @@ paths:
         a `429` status error, and your additional requests will fail.
     delete:
       tags:
-        - Price Lists Records
+        - Delete
+        - Price
+        - Record
+        - By
+        - Currency
+        - Code
+        - Pricelists
+        - Price_list_id
+        - Records
+        - Variant_id
+        - Currency_code
       summary: Delete a Price Record by Currency Code
       description: >-
         Deletes a *Price List Record* using the currency code.
@@ -178,21 +267,48 @@ paths:
       - null
     get:
       tags:
-        - Price Lists Assignments
+        - Get
+        - Price
+        - List
+        - Assignments
+        - Pricelists
+        - Price_list_id
+        - Records
+        - Variant_id
+        - Currency_code
+        - Assignments
       summary: Get Price List Assignments
       description: >-
         Fetches an array of `Price List Assignments` matching a particular
         Customer Group and Price List and Channel.
     post:
       tags:
-        - Price Lists Assignments
+        - Create
+        - Price
+        - List
+        - Assignments
+        - Pricelists
+        - Price_list_id
+        - Records
+        - Variant_id
+        - Currency_code
+        - Assignments
       description: |-
         Creates a batch of `Price List Assignments`. 
         **Note:** The batch limit for `Price List Assignments` is 25.
       summary: Create Price List Assignments
     delete:
       tags:
-        - Price Lists Assignments
+        - Delete
+        - Price
+        - List
+        - Assignments
+        - Pricelists
+        - Price_list_id
+        - Records
+        - Variant_id
+        - Currency_code
+        - Assignments
       summary: Delete Price List Assignments
       description: >-
         Deletes one or more `Price List Assignments` objects from BigCommerce
@@ -202,7 +318,15 @@ paths:
       - null
     put:
       tags:
-        - Price Lists Assignments
+        - Upsert
+        - Price
+        - List
+        - Pricelists
+        - Price_list_id
+        - Records
+        - Variant_id
+        - Currency_code
+        - Assignments
       description: >-
         Upsert a single `Price List Assignment` for a `Price List`.
 
@@ -211,4 +335,4 @@ paths:
         * Supports up to 25 simultaneous PUT requests. Running more than the
         allowed number of requests concurrently on the same store will result in
         a `429` status error and your additional requests will fail.        
-      summary: Upsert Price List Assignme
+      summary: Upsert Price Li

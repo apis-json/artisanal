@@ -6,6 +6,13 @@ paths:
     DELETE:
       summary: DisassociateLicense
       description: <p>Removes the Grafana Enterprise license from a workspace.</p>
+      tags:
+        - Disassociate
+        - License
+        - Id
+        - Licenses
+        - License
+        - Type
   /workspaces:
     GET:
       summary: ListWorkspaces
@@ -14,6 +21,14 @@ paths:
         with some information about each workspace. For more complete
         information about one workspace, use <a
         href="https://docs.aws.amazon.com/AAMG/latest/APIReference/API_DescribeWorkspace.html">DescribeWorkspace</a>.</p>
+      tags:
+        - List
+        - Workspaces
+        - Id
+        - Licenses
+        - License
+        - Type
+        - Workspaces
   /workspaces/{workspaceId}/apikeys:
     POST:
       summary: CreateWorkspaceApiKey
@@ -22,6 +37,17 @@ paths:
         authenticate requests sent to the workspace's HTTP API. See <a
         href="https://docs.aws.amazon.com/grafana/latest/userguide/Using-Grafana-APIs.html">https://docs.aws.amazon.com/grafana/latest/userguide/Using-Grafana-APIs.html</a>
         for available APIs and example requests.</p>
+      tags:
+        - Create
+        - Workspace
+        - Api
+        - Key
+        - Id
+        - Licenses
+        - License
+        - Type
+        - Workspaces
+        - Apikeys
   /workspaces/{workspaceId}:
     PUT:
       summary: UpdateWorkspace
@@ -35,10 +61,32 @@ paths:
         <p>To modify which users in the workspace have the <code>Admin</code>
         and <code>Editor</code> Grafana roles, use <a
         href="https://docs.aws.amazon.com/grafana/latest/APIReference/API_UpdatePermissions.html">UpdatePermissions</a>.</p>
+      tags:
+        - Update
+        - Workspace
+        - Id
+        - Licenses
+        - License
+        - Type
+        - Workspaces
+        - Apikeys
   /workspaces/{workspaceId}/apikeys/{keyName}:
     DELETE:
       summary: DeleteWorkspaceApiKey
       description: <p>Deletes a Grafana API key for the workspace.</p>
+      tags:
+        - Delete
+        - Workspace
+        - Api
+        - Key
+        - Id
+        - Licenses
+        - License
+        - Type
+        - Workspaces
+        - Apikeys
+        - Key
+        - Name
   /workspaces/{workspaceId}/authentication:
     POST:
       summary: UpdateWorkspaceAuthentication
@@ -50,26 +98,98 @@ paths:
         <code>Editor</code> roles in the workspace.</p> <note> <p>Changes to the
         authentication method for a workspace may take a few minutes to take
         effect.</p> </note>
+      tags:
+        - Update
+        - Workspace
+        - Authentication
+        - Id
+        - Licenses
+        - License
+        - Type
+        - Workspaces
+        - Apikeys
+        - Key
+        - Name
+        - Authentication
   /workspaces/{workspaceId}/configuration:
     PUT:
       summary: UpdateWorkspaceConfiguration
       description: <p>Updates the configuration string for the given workspace</p>
+      tags:
+        - Update
+        - Workspace
+        - Configuration
+        - Id
+        - Licenses
+        - License
+        - Type
+        - Workspaces
+        - Apikeys
+        - Key
+        - Name
+        - Authentication
+        - Configuration
   /workspaces/{workspaceId}/permissions:
     PATCH:
       summary: UpdatePermissions
       description: >-
         <p>Updates which users in a workspace have the Grafana
         <code>Admin</code> or <code>Editor</code> roles.</p>
+      tags:
+        - Update
+        - Permissions
+        - Id
+        - Licenses
+        - License
+        - Type
+        - Workspaces
+        - Apikeys
+        - Key
+        - Name
+        - Authentication
+        - Configuration
+        - Permissions
   /tags/{resourceArn}:
     DELETE:
       summary: UntagResource
       description: >-
         <p>The <code>UntagResource</code> operation removes the association of
         the tag with the Amazon Managed Grafana resource. </p>
+      tags:
+        - Untag
+        - Resource
+        - Id
+        - Licenses
+        - License
+        - Type
+        - Workspaces
+        - Apikeys
+        - Key
+        - Name
+        - Authentication
+        - Configuration
+        - Permissions
+        - Arn
   /versions:
     GET:
       summary: ListVersions
       description: >-
         <p>Lists available versions of Grafana. These are available when calling
         <code>CreateWorkspace</code>. Optionally, include a workspace to list
-        the versions to which it can be upgra
+        the versions to which it can be upg
+      tags:
+        - List
+        - Versions
+        - Id
+        - Licenses
+        - License
+        - Type
+        - Workspaces
+        - Apikeys
+        - Key
+        - Name
+        - Authentication
+        - Configuration
+        - Permissions
+        - Arn
+        - Versio

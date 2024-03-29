@@ -6,12 +6,24 @@ paths:
     GET:
       summary: GetEarthObservationJob
       description: <p>Get the details for a previously initiated Earth Observation job.</p>
+      tags:
+        - Get
+        - Earth
+        - Observation
+        - Job
+        - Arn
   /vector-enrichment-jobs/{Arn}:
     GET:
       summary: GetVectorEnrichmentJob
       description: >-
         <p>Retrieves details of a Vector Enrichment Job for a given job Amazon
         Resource Name (ARN).</p>
+      tags:
+        - Get
+        - Vector
+        - Enrichment
+        - Job
+        - Arn
   /export-earth-observation-job:
     POST:
       summary: ExportEarthObservationJob
@@ -19,50 +31,209 @@ paths:
         <p>Use this operation to export results of an Earth Observation job and
         optionally source images used as input to the EOJ to an Amazon S3
         location.</p>
+      tags:
+        - Export
+        - Earth
+        - Observation
+        - Job
+        - Arn
+        - Export
+        - Earth
+        - Observation
+        - Job
   /export-vector-enrichment-jobs:
     POST:
       summary: ExportVectorEnrichmentJob
       description: >-
         <p>Use this operation to copy results of a Vector Enrichment job to an
         Amazon S3 location.</p>
+      tags:
+        - Export
+        - Vector
+        - Enrichment
+        - Job
+        - Arn
+        - Export
+        - Earth
+        - Observation
+        - Job
+        - Vector
+        - Enrichment
+        - Jobs
   /raster-data-collection/{Arn}:
     GET:
       summary: GetRasterDataCollection
       description: >-
         <p>Use this operation to get details of a specific raster data
         collection.</p>
+      tags:
+        - Get
+        - Raster
+        - Data
+        - Collection
+        - Arn
+        - Export
+        - Earth
+        - Observation
+        - Job
+        - Vector
+        - Enrichment
+        - Jobs
   /tile/{z}/{x}/{y}:
     GET:
       summary: GetTile
       description: <p>Gets a web mercator tile for the given Earth Observation job.</p>
+      tags:
+        - Get
+        - Tile
+        - Arn
+        - Export
+        - Earth
+        - Observation
+        - Job
+        - Vector
+        - Enrichment
+        - Jobs
+        - Tile
   /list-earth-observation-jobs:
     POST:
       summary: ListEarthObservationJobs
       description: >-
         <p>Use this operation to get a list of the Earth Observation jobs
         associated with the calling Amazon Web Services account.</p>
+      tags:
+        - List
+        - Earth
+        - Observation
+        - Jobs
+        - Arn
+        - Export
+        - Earth
+        - Observation
+        - Job
+        - Vector
+        - Enrichment
+        - Jobs
+        - Tile
+        - List
   /raster-data-collections:
     GET:
       summary: ListRasterDataCollections
       description: <p>Use this operation to get raster data collections.</p>
+      tags:
+        - List
+        - Raster
+        - Data
+        - Collections
+        - Arn
+        - Export
+        - Earth
+        - Observation
+        - Job
+        - Vector
+        - Enrichment
+        - Jobs
+        - Tile
+        - List
+        - Raster
+        - Data
+        - Collections
   /tags/{ResourceArn}:
     DELETE:
       summary: UntagResource
       description: <p>The resource you want to untag.</p>
+      tags:
+        - Untag
+        - Resource
+        - Arn
+        - Export
+        - Earth
+        - Observation
+        - Job
+        - Vector
+        - Enrichment
+        - Jobs
+        - Tile
+        - List
+        - Raster
+        - Data
+        - Collections
+        - Resource
   /list-vector-enrichment-jobs:
     POST:
       summary: ListVectorEnrichmentJobs
       description: <p>Retrieves a list of vector enrichment jobs.</p>
+      tags:
+        - List
+        - Vector
+        - Enrichment
+        - Jobs
+        - Arn
+        - Export
+        - Earth
+        - Observation
+        - Job
+        - Vector
+        - Enrichment
+        - Jobs
+        - Tile
+        - List
+        - Raster
+        - Data
+        - Collections
+        - Resource
   /search-raster-data-collection:
     POST:
       summary: SearchRasterDataCollection
       description: >-
         <p>Allows you run image query on a specific raster data collection to
         get a list of the satellite imagery matching the selected filters.</p>
+      tags:
+        - Search
+        - Raster
+        - Data
+        - Collection
+        - Arn
+        - Export
+        - Earth
+        - Observation
+        - Job
+        - Vector
+        - Enrichment
+        - Jobs
+        - Tile
+        - List
+        - Raster
+        - Data
+        - Collections
+        - Resource
+        - Search
+        - Collection
   /earth-observation-jobs:
     POST:
       summary: StartEarthObservationJob
       description: <p>Use this operation to create an Earth observation job.</p>
+      tags:
+        - Start
+        - Earth
+        - Observation
+        - Job
+        - Arn
+        - Export
+        - Earth
+        - Observation
+        - Job
+        - Vector
+        - Enrichment
+        - Jobs
+        - Tile
+        - List
+        - Raster
+        - Data
+        - Collections
+        - Resource
+        - Search
+        - Collection
   /vector-enrichment-jobs:
     POST:
       summary: StartVectorEnrichmentJob
@@ -70,11 +241,76 @@ paths:
         <p>Creates a Vector Enrichment job for the supplied job type. Currently,
         there are two supported job types: reverse geocoding and map
         matching.</p>
+      tags:
+        - Start
+        - Vector
+        - Enrichment
+        - Job
+        - Arn
+        - Export
+        - Earth
+        - Observation
+        - Job
+        - Vector
+        - Enrichment
+        - Jobs
+        - Tile
+        - List
+        - Raster
+        - Data
+        - Collections
+        - Resource
+        - Search
+        - Collection
   /earth-observation-jobs/stop:
     POST:
       summary: StopEarthObservationJob
       description: <p>Use this operation to stop an existing earth observation job.</p>
+      tags:
+        - Stop
+        - Earth
+        - Observation
+        - Job
+        - Arn
+        - Export
+        - Earth
+        - Observation
+        - Job
+        - Vector
+        - Enrichment
+        - Jobs
+        - Tile
+        - List
+        - Raster
+        - Data
+        - Collections
+        - Resource
+        - Search
+        - Collection
+        - Stop
   /vector-enrichment-jobs/stop:
     POST:
       summary: StopVectorEnrichmentJob
-      description: <p>Stops the Vector Enrichment job for a given job
+      description: <p>Stops the Vector Enrichment job for a given j
+      tags:
+        - Stop
+        - Vector
+        - Enrichment
+        - Job
+        - Arn
+        - Export
+        - Earth
+        - Observation
+        - Job
+        - Vector
+        - Enrichment
+        - Jobs
+        - Tile
+        - List
+        - Raster
+        - Data
+        - Collections
+        - Resource
+        - Search
+        - Collection
+        - St

@@ -3,24 +3,25 @@ info:
   version: '4'
   x-publicVersion: true
   title: Transaction webhooks
-  description: 'Adyen sends webhooks to inform your system about incoming and outgoing
-    transfers in your platform. You can use these webhooks to build your implementation. For example, you can
-    use this information to update balances in your own dashboards or to keep track
-    of incoming funds.'
+  description: >-
+    Adyen sends webhooks to inform your system about incoming and outgoing
+    transfers in your platform. You can use these webhooks to build your
+    implementation. For example, you can use this information to update balances
+    in your own dashboards or to keep track of incoming funds.
   termsOfService: https://www.adyen.com/legal/terms-and-conditions
   contact:
     name: Adyen Developer Experience team
     url: https://github.com/Adyen/adyen-openapi
 x-groups:
-- General
+  - General
 tags:
-- name: General
+  - name: General
 x-staticResponse: response.json
 webhooks:
   balancePlatform.transaction.created:
     post:
       tags:
-      - General
+        - General
       summary: Transaction created
       description: Adyen sends this webhook when there are new fund transfers.
       x-addedInVersion: '1'
@@ -29,7 +30,7 @@ webhooks:
       x-sortIndex: 0
       x-methodName: transactionCreated
       security:
-      - BasicAuth: []
+        - BasicAuth: []
       requestBody:
         content:
           application/json:
@@ -47,23 +48,29 @@ components:
     Amount:
       properties:
         currency:
-          description: The three-character [ISO currency code](https://docs.adyen.com/development-resources/currency-codes).
+          description: >-
+            The three-character [ISO currency
+            code](https://docs.adyen.com/development-resources/currency-codes).
           maxLength: 3
           minLength: 3
           type: string
         value:
-          description: The amount of the transaction, in [minor units](https://docs.adyen.com/development-resources/currency-codes).
+          description: >-
+            The amount of the transaction, in [minor
+            units](https://docs.adyen.com/development-resources/currency-codes).
           format: int64
           type: integer
       required:
-      - value
-      - currency
+        - value
+        - currency
       type: object
     BalancePlatformNotificationResponse:
       properties:
         notificationResponse:
-          description: Respond with **HTTP 200 OK** and `[accepted]` in the response
-            body to [accept the webhook](https://docs.adyen.com/development-resources/webhooks#accept-notifications).
+          description: >-
+            Respond with **HTTP 200 OK** and `[accepted]` in the response body
+            to [accept the
+            webhook](https://docs.adyen.com/development-resources/webhooks#accept-notifications).
           type: string
       type: object
     Resource:
@@ -72,8 +79,9 @@ components:
           description: The unique identifier of the balance platform.
           type: string
         creationDate:
-          description: The date and time when the event was triggered, in ISO 8601
-            extended format. For example, **2020-12-18T10:15:30+01:00**.
+          description: >-
+            The date and time when the event was triggered, in ISO 8601 extended
+            format. For example, **2020-12-18T10:15:30+01:00**.
           format: date-time
           type: string
         id:
@@ -96,8 +104,9 @@ components:
       properties:
         accountHolder:
           x-addedInVersion: '4'
-          description: Contains information about the account holder associated with
-            the `balanceAccount`.
+          description: >-
+            Contains information about the account holder associated with the
+            `balanceAccount`.
           $ref: '#/components/schemas/ResourceReference'
         amount:
           x-addedInVersion: '1'
@@ -105,8 +114,9 @@ components:
           $ref: '#/components/schemas/Amount'
         balanceAccount:
           x-addedInVersion: '4'
-          description: Contains information about the balance account involved in
-            the transaction.
+          description: >-
+            Contains information about the balance account involved in the
+            transaction.
           $ref: '#/components/schemas/ResourceReference'
         balancePlatform:
           x-addedInVersion: '1'
@@ -118,8 +128,9 @@ components:
           format: date-time
           type: string
         creationDate:
-          description: The date and time when the event was triggered, in ISO 8601
-            extended format. For example, **2020-12-18T10:15:30+01:00**.
+          description: >-
+            The date and time when the event was triggered, in ISO 8601 extended
+            format. For example, **2020-12-18T10:15:30+01:00**.
           format: date-time
           type: string
         id:
@@ -128,12 +139,20 @@ components:
           type: string
         status:
           x-addedInVersion: '1'
-          description: "The status of the transaction.\n\n Possible values:\n\n* **pending**:\
-            \ The transaction is still pending.\n\n* **booked**: The transaction has\
-            \ been booked to the balance account.\n\n"
+          description: >+
+            The status of the transaction.
+
+             Possible values:
+
+            * **pending**: The transaction is still pending.
+
+
+            * **booked**: The transaction has been booked to the balance
+            account.
+
           enum:
-          - booked
-          - pending
+            - booked
+            - pending
           type: string
         transfer:
           x-addedInVersion: '4'
@@ -141,19 +160,20 @@ components:
           $ref: '#/components/schemas/TransferData'
         valueDate:
           x-addedInVersion: '1'
-          description: The date the transfer amount becomes available in the balance
+          description: >-
+            The date the transfer amount becomes available in the balance
             account.
           format: date-time
           type: string
       required:
-      - id
-      - accountHolder
-      - balanceAccount
-      - amount
-      - status
-      - bookingDate
-      - valueDate
-      - balancePlatform
+        - id
+        - accountHolder
+        - balanceAccount
+        - amount
+        - status
+        - bookingDate
+        - valueDate
+        - balancePlatform
       type: object
     TransactionNotificationRequestV4:
       properties:
@@ -161,19 +181,19 @@ components:
           description: Contains details about the event.
           $ref: '#/components/schemas/Transaction'
         environment:
-          description: 'The environment from which the webhook originated.
+          description: |-
+            The environment from which the webhook originated.
 
-
-            Possible values: **test**, **live**.'
+            Possible values: **test**, **live**.
           type: string
         type:
           description: Type of the webhook.
           enum:
-          - balancePlatform.transaction.created
+            - balancePlatform.transaction.created
           type: string
       required:
-      - environment
-      - data
+        - environment
+        - data
       type: object
     TransferData:
       properties:
@@ -182,12 +202,14 @@ components:
           type: string
         reference:
           x-addedInVersion: '4'
-          description: The [`reference`](https://docs.adyen.com/api-explorer/#/transfers/latest/post/transfers__reqParam_reference)
-            from the `/transfers` request. If you haven't provided any, Adyen generates
-            a unique reference.
+          description: >-
+            The
+            [`reference`](https://docs.adyen.com/api-explorer/#/transfers/latest/post/transfers__reqParam_reference)
+            from the `/transfers` request. If you haven't provided any, Adyen
+            generates a unique reference.
           type: string
       required:
-      - reference
+        - reference
       type: object
   securitySchemes:
     BasicAuth:

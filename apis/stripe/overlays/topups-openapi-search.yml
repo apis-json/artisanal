@@ -5,8 +5,14 @@ paths:
   /v1/topups:
     get:
       description: <p>Returns a list of top-ups.</p>
+      tags:
+        - V1
+        - Topups
     post:
       description: <p>Top up the balance of an account</p>
+      tags:
+        - V1
+        - Topups
   /v1/topups/{topup}:
     get:
       description: >-
@@ -14,10 +20,23 @@ paths:
         Supply the unique top-up ID that was returned from your previous
         request, and Stripe will return the corresponding top-up
         information.</p>
+      tags:
+        - V1
+        - Topups
+        - Topup
     post:
       description: >-
         <p>Updates the metadata of a top-up. Other top-up details are not
         editable by design.</p>
+      tags:
+        - V1
+        - Topups
+        - Topup
   /v1/topups/{topup}/cancel:
     post:
-      description: <p>Cancels a top-up. Only pending top-ups can be cance
+      description: <p>Cancels a top-up. Only pending top-ups can be can
+      tags:
+        - V1
+        - Topups
+        - Topup
+        - Canc

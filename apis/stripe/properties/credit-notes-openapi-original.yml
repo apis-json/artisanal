@@ -5,15 +5,15 @@ info:
   contact:
     email: dev-platform@stripe.com
     name: Stripe Dev Platform Team
-    url: 'https://stripe.com'
-  termsOfService: 'https://stripe.com/us/terms/'
+    url: https://stripe.com
+  termsOfService: https://stripe.com/us/terms/
   version: '2023-10-16'
   x-stripeSpecFilename: spec3
 security:
   - basicAuth: []
   - bearerAuth: []
 servers:
-  - url: 'https://api.stripe.com/'
+  - url: https://api.stripe.com/
 paths:
   /v1/credit_notes:
     get:
@@ -657,7 +657,7 @@ paths:
               schema:
                 $ref: '#/components/schemas/error'
           description: Error response.
-  '/v1/credit_notes/{credit_note}/lines':
+  /v1/credit_notes/{credit_note}/lines:
     get:
       description: >-
         <p>When retrieving a credit note, you’ll get a <strong>lines</strong>
@@ -743,7 +743,7 @@ paths:
               schema:
                 $ref: '#/components/schemas/error'
           description: Error response.
-  '/v1/credit_notes/{id}':
+  /v1/credit_notes/{id}:
     get:
       description: <p>Retrieves the credit note object with the given identifier.</p>
       operationId: GetCreditNotesId
@@ -825,7 +825,7 @@ paths:
               schema:
                 $ref: '#/components/schemas/error'
           description: Error response.
-  '/v1/credit_notes/{id}/void':
+  /v1/credit_notes/{id}/void:
     post:
       description: >-
         <p>Marks a credit note as void. Learn more about <a

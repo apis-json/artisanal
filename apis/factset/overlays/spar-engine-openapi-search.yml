@@ -8,12 +8,31 @@ paths:
   /analytics/engines/spar/v3/accounts/{accountPath}/returns-type:
     get:
       tags:
-        - Accounts
+        - Get
+        - Account
+        - Returns
+        - Type
+        - Details
+        - Path
+        - Returns
+        - Type
       summary: Get SPAR account returns type details
       description: This endpoint returns the returns type of account associated with SPAR
   /analytics/lookups/v3/accounts/{path}:
     get:
       tags:
+        - Get
+        - Accounts
+        - And
+        - Sub-directories
+        - In
+        - Directory
+        - Path
+        - Returns
+        - Type
+        - Analytics
+        - Lookups
+        - V3
         - Accounts
       summary: Get accounts and sub-directories in a directory
       description: >-
@@ -22,12 +41,36 @@ paths:
   /analytics/engines/spar/v3/benchmarks:
     get:
       tags:
+        - Get
+        - Benchmark
+        - Details
+        - Path
+        - Returns
+        - Type
+        - Analytics
+        - Lookups
+        - V3
+        - Accounts
+        - Engines
+        - Spar
         - Benchmarks
       summary: Get SPAR benchmark details
       description: This endpoint returns the details of a given SPAR benchmark identifier.
   /analytics/engines/spar/v3/components:
     get:
       tags:
+        - Get
+        - Components
+        - Path
+        - Returns
+        - Type
+        - Analytics
+        - Lookups
+        - V3
+        - Accounts
+        - Engines
+        - Spar
+        - Benchmarks
         - Components
       summary: Get SPAR components
       description: >-
@@ -36,12 +79,41 @@ paths:
   /analytics/engines/spar/v3/components/{id}:
     get:
       tags:
+        - Get
+        - Component
+        - By
+        - Id
+        - Path
+        - Returns
+        - Type
+        - Analytics
+        - Lookups
+        - V3
+        - Accounts
+        - Engines
+        - Spar
+        - Benchmarks
         - Components
+        - Id
       summary: Get SPAR component by id
       description: This endpoint returns the default settings of a SPAR component.
   /analytics/lookups/v3/currencies:
     get:
       tags:
+        - Get
+        - Currencies
+        - Path
+        - Returns
+        - Type
+        - Analytics
+        - Lookups
+        - V3
+        - Accounts
+        - Engines
+        - Spar
+        - Benchmarks
+        - Components
+        - Id
         - Currencies
       summary: Get currencies
       description: >-
@@ -50,6 +122,26 @@ paths:
   /analytics/engines/spar/v3/documents/{path}:
     get:
       tags:
+        - Gets
+        - R3
+        - Documents
+        - And
+        - Sub-directories
+        - In
+        - Directory
+        - Path
+        - Returns
+        - Type
+        - Analytics
+        - Lookups
+        - V3
+        - Accounts
+        - Engines
+        - Spar
+        - Benchmarks
+        - Components
+        - Id
+        - Currencies
         - Documents
       summary: Gets SPAR3 documents and sub-directories in a directory
       description: >-
@@ -58,6 +150,22 @@ paths:
   /analytics/engines/spar/v3/frequencies:
     get:
       tags:
+        - Get
+        - Frequencies
+        - Path
+        - Returns
+        - Type
+        - Analytics
+        - Lookups
+        - V3
+        - Accounts
+        - Engines
+        - Spar
+        - Benchmarks
+        - Components
+        - Id
+        - Currencies
+        - Documents
         - Frequencies
       summary: Get SPAR frequencies
       description: >-
@@ -66,44 +174,183 @@ paths:
   /analytics/engines/spar/v3/calculations:
     post:
       tags:
-        - SPARCalculations
+        - Create
+        - And
+        - Run
+        - Calculation
+        - Path
+        - Returns
+        - Type
+        - Analytics
+        - Lookups
+        - V3
+        - Accounts
+        - Engines
+        - Spar
+        - Benchmarks
+        - Components
+        - Id
+        - Currencies
+        - Documents
+        - Frequencies
+        - Calculations
       summary: Create and Run SPAR calculation
       description: "This endpoint runs the SPAR calculation specified in the POST body parameters.\r\nIt can take one or more units as input.\r\n\r\nRemarks:\r\n\r\n*\tAny settings in POST body will act as a one-time override over the settings saved in the SPAR template."
     get:
       tags:
-        - SPARCalculations
+        - Get
+        - All
+        - Calculations
+        - Path
+        - Returns
+        - Type
+        - Analytics
+        - Lookups
+        - V3
+        - Accounts
+        - Engines
+        - Spar
+        - Benchmarks
+        - Components
+        - Id
+        - Currencies
+        - Documents
+        - Frequencies
+        - Calculations
       summary: Get all calculations
       description: This endpoints returns all calculation requests.
   /analytics/engines/spar/v3/calculations/{id}:
     put:
       tags:
-        - SPARCalculations
+        - Create
+        - Or
+        - Update
+        - Calculation
+        - And
+        - Run
+        - It.
+        - Path
+        - Returns
+        - Type
+        - Analytics
+        - Lookups
+        - V3
+        - Accounts
+        - Engines
+        - Spar
+        - Benchmarks
+        - Components
+        - Id
+        - Currencies
+        - Documents
+        - Frequencies
+        - Calculations
       summary: Create or Update SPAR calculation and run it.
       description: "This endpoint updates and run the SPAR calculation specified in the PUT body parameters. This also allows creating new SPAR calculations with custom ids.\r\nIt can take one or more units as input.\r\n\r\nRemarks:\r\n\r\n*\tAny settings in PUT body will act as a one-time override over the settings saved in the SPAR template."
     get:
       tags:
-        - SPARCalculations
+        - Get
+        - Calculation
+        - Parameters
+        - By
+        - Id
+        - Path
+        - Returns
+        - Type
+        - Analytics
+        - Lookups
+        - V3
+        - Accounts
+        - Engines
+        - Spar
+        - Benchmarks
+        - Components
+        - Id
+        - Currencies
+        - Documents
+        - Frequencies
+        - Calculations
       summary: Get SPAR calculation parameters by id
       description: >-
         This is the endpoint that returns the calculation parameters passed for
         a calculation.
     delete:
       tags:
-        - SPARCalculations
+        - Cancel
+        - Calculation
+        - Path
+        - Returns
+        - Type
+        - Analytics
+        - Lookups
+        - V3
+        - Accounts
+        - Engines
+        - Spar
+        - Benchmarks
+        - Components
+        - Id
+        - Currencies
+        - Documents
+        - Frequencies
+        - Calculations
       summary: Cancel SPAR calculation
       description: This is the endpoint to cancel a previously submitted calculation.
   /analytics/engines/spar/v3/calculations/{id}/status:
     get:
       tags:
-        - SPARCalculations
+        - Get
+        - Calculation
+        - Status
+        - By
+        - Id
+        - Path
+        - Returns
+        - Type
+        - Analytics
+        - Lookups
+        - V3
+        - Accounts
+        - Engines
+        - Spar
+        - Benchmarks
+        - Components
+        - Id
+        - Currencies
+        - Documents
+        - Frequencies
+        - Calculations
+        - Status
       summary: Get SPAR calculation status by id
       description: "This is the endpoint to check on the progress of a previously requested calculation.\r\nIf the calculation has finished computing, the location header will point to the result url."
   /analytics/engines/spar/v3/calculations/{id}/units/{unitId}/result:
     get:
       tags:
-        - SPARCalculations
+        - Get
+        - Calculation
+        - Result
+        - By
+        - Id
+        - Path
+        - Returns
+        - Type
+        - Analytics
+        - Lookups
+        - V3
+        - Accounts
+        - Engines
+        - Spar
+        - Benchmarks
+        - Components
+        - Id
+        - Currencies
+        - Documents
+        - Frequencies
+        - Calculations
+        - Status
+        - Result
       summary: Get SPAR calculation result by id
       description: "This is the endpoint to get the result of a previously requested calculation.\r\nIf the calculation has finished computing, the body of the response will contain the requested document in JSON."
 externalDocs:
   description: API Documentation
-  url: https://developer.factset.com/api-catalog/spar-en
+  url: https://developer.factset.com/api-catal

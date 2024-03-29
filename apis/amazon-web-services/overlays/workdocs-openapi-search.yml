@@ -10,36 +10,149 @@ paths:
         WorkDocs also sets its document container to ACTIVE. This is the last
         step in a document upload, after the client uploads the document to an
         S3-presigned URL returned by <a>InitiateDocumentVersionUpload</a>. </p>
+      tags:
+        - Update
+        - Document
+        - Version
+        - Document
+        - Id
+        - Versions
+        - Version
   /api/v1/users/{UserId}/activation:
     DELETE:
       summary: DeactivateUser
       description: >-
         <p>Deactivates the specified user, which revokes the user's access to
         Amazon WorkDocs.</p>
+      tags:
+        - Deactivate
+        - User
+        - Document
+        - Id
+        - Versions
+        - Version
+        - User
+        - Activation
   /api/v1/resources/{ResourceId}/permissions:
     DELETE:
       summary: RemoveAllResourcePermissions
       description: <p>Removes all the permissions from the specified resource.</p>
+      tags:
+        - Remove
+        - All
+        - Resource
+        - Permissions
+        - Document
+        - Id
+        - Versions
+        - Version
+        - User
+        - Activation
+        - Resource
+        - Permissions
   /api/v1/documents/{DocumentId}/versions/{VersionId}/comment:
     POST:
       summary: CreateComment
       description: <p>Adds a new comment to the specified document version.</p>
+      tags:
+        - Create
+        - Comment
+        - Document
+        - Id
+        - Versions
+        - Version
+        - User
+        - Activation
+        - Resource
+        - Permissions
+        - Comment
   /api/v1/resources/{ResourceId}/customMetadata:
     DELETE:
       summary: DeleteCustomMetadata
       description: <p>Deletes custom metadata from the specified resource.</p>
+      tags:
+        - Delete
+        - Custom
+        - Metadata
+        - Document
+        - Id
+        - Versions
+        - Version
+        - User
+        - Activation
+        - Resource
+        - Permissions
+        - Comment
+        - Custom
+        - Metadata
   /api/v1/folders:
     POST:
       summary: CreateFolder
       description: <p>Creates a folder with the specified name and parent folder.</p>
+      tags:
+        - Create
+        - Folder
+        - Document
+        - Id
+        - Versions
+        - Version
+        - User
+        - Activation
+        - Resource
+        - Permissions
+        - Comment
+        - Custom
+        - Metadata
+        - Api
+        - V1
+        - Folders
   /api/v1/resources/{ResourceId}/labels:
     DELETE:
       summary: DeleteLabels
       description: <p>Deletes the specified list of labels from a resource.</p>
+      tags:
+        - Delete
+        - Labels
+        - Document
+        - Id
+        - Versions
+        - Version
+        - User
+        - Activation
+        - Resource
+        - Permissions
+        - Comment
+        - Custom
+        - Metadata
+        - Api
+        - V1
+        - Folders
+        - Labels
   /api/v1/organizations/{OrganizationId}/subscriptions:
     GET:
       summary: DescribeNotificationSubscriptions
       description: <p>Lists the specified notification subscriptions.</p>
+      tags:
+        - Describe
+        - Notification
+        - Subscriptions
+        - Document
+        - Id
+        - Versions
+        - Version
+        - User
+        - Activation
+        - Resource
+        - Permissions
+        - Comment
+        - Custom
+        - Metadata
+        - Api
+        - V1
+        - Folders
+        - Labels
+        - Organization
+        - Subscriptions
   /api/v1/users:
     GET:
       summary: DescribeUsers
@@ -49,20 +162,105 @@ paths:
         Amazon WorkDocs returns the first 24 active or pending users. If there
         are more results, the response includes a marker that you can use to
         request the next set of results.</p>
+      tags:
+        - Describe
+        - Users
+        - Document
+        - Id
+        - Versions
+        - Version
+        - User
+        - Activation
+        - Resource
+        - Permissions
+        - Comment
+        - Custom
+        - Metadata
+        - Api
+        - V1
+        - Folders
+        - Labels
+        - Organization
+        - Subscriptions
+        - Users
   /api/v1/documents/{DocumentId}/versions/{VersionId}/comment/{CommentId}:
     DELETE:
       summary: DeleteComment
       description: <p>Deletes the specified comment from the document version.</p>
+      tags:
+        - Delete
+        - Comment
+        - Document
+        - Id
+        - Versions
+        - Version
+        - User
+        - Activation
+        - Resource
+        - Permissions
+        - Comment
+        - Custom
+        - Metadata
+        - Api
+        - V1
+        - Folders
+        - Labels
+        - Organization
+        - Subscriptions
+        - Users
   /api/v1/documents/{DocumentId}:
     PATCH:
       summary: UpdateDocument
       description: >-
         <p>Updates the specified attributes of a document. The user must have
         access to both the document and its parent folder, if applicable.</p>
+      tags:
+        - Update
+        - Document
+        - Document
+        - Id
+        - Versions
+        - Version
+        - User
+        - Activation
+        - Resource
+        - Permissions
+        - Comment
+        - Custom
+        - Metadata
+        - Api
+        - V1
+        - Folders
+        - Labels
+        - Organization
+        - Subscriptions
+        - Users
   /api/v1/documentVersions/{DocumentId}/versions/{VersionId}:
     DELETE:
       summary: DeleteDocumentVersion
       description: <p>Deletes a specific version of a document.</p>
+      tags:
+        - Delete
+        - Document
+        - Version
+        - Document
+        - Id
+        - Versions
+        - Version
+        - User
+        - Activation
+        - Resource
+        - Permissions
+        - Comment
+        - Custom
+        - Metadata
+        - Api
+        - V1
+        - Folders
+        - Labels
+        - Organization
+        - Subscriptions
+        - Users
   /api/v1/folders/{FolderId}:
     PATCH:
       summary: UpdateFolder
@@ -70,6 +268,28 @@ paths:
         <p>Updates the specified attributes of the specified folder. The user
         must have access to both the folder and its parent folder, if
         applicable.</p>
+      tags:
+        - Update
+        - Folder
+        - Document
+        - Id
+        - Versions
+        - Version
+        - User
+        - Activation
+        - Resource
+        - Permissions
+        - Comment
+        - Custom
+        - Metadata
+        - Api
+        - V1
+        - Folders
+        - Labels
+        - Organization
+        - Subscriptions
+        - Users
+        - Folder
   /api/v1/folders/{FolderId}/contents:
     GET:
       summary: DescribeFolderContents
@@ -79,38 +299,216 @@ paths:
         first 100 active document and folder metadata items. If there are more
         results, the response includes a marker that you can use to request the
         next set of results. You can also request initialized documents.</p>
+      tags:
+        - Describe
+        - Folder
+        - Contents
+        - Document
+        - Id
+        - Versions
+        - Version
+        - User
+        - Activation
+        - Resource
+        - Permissions
+        - Comment
+        - Custom
+        - Metadata
+        - Api
+        - V1
+        - Folders
+        - Labels
+        - Organization
+        - Subscriptions
+        - Users
+        - Folder
+        - Contents
   /api/v1/organizations/{OrganizationId}/subscriptions/{SubscriptionId}:
     DELETE:
       summary: DeleteNotificationSubscription
       description: >-
         <p>Deletes the specified subscription from the specified
         organization.</p>
+      tags:
+        - Delete
+        - Notification
+        - Subscription
+        - Document
+        - Id
+        - Versions
+        - Version
+        - User
+        - Activation
+        - Resource
+        - Permissions
+        - Comment
+        - Custom
+        - Metadata
+        - Api
+        - V1
+        - Folders
+        - Labels
+        - Organization
+        - Subscriptions
+        - Users
+        - Folder
+        - Contents
+        - Subscription
   /api/v1/users/{UserId}:
     PATCH:
       summary: UpdateUser
       description: >-
         <p>Updates the specified attributes of the specified user, and grants or
         revokes administrative privileges to the Amazon WorkDocs site.</p>
+      tags:
+        - Update
+        - User
+        - Document
+        - Id
+        - Versions
+        - Version
+        - User
+        - Activation
+        - Resource
+        - Permissions
+        - Comment
+        - Custom
+        - Metadata
+        - Api
+        - V1
+        - Folders
+        - Labels
+        - Organization
+        - Subscriptions
+        - Users
+        - Folder
+        - Contents
+        - Subscription
   /api/v1/activities:
     GET:
       summary: DescribeActivities
       description: <p>Describes the user activities in a specified time period.</p>
+      tags:
+        - Describe
+        - Activities
+        - Document
+        - Id
+        - Versions
+        - Version
+        - User
+        - Activation
+        - Resource
+        - Permissions
+        - Comment
+        - Custom
+        - Metadata
+        - Api
+        - V1
+        - Folders
+        - Labels
+        - Organization
+        - Subscriptions
+        - Users
+        - Folder
+        - Contents
+        - Subscription
+        - Activities
   /api/v1/documents/{DocumentId}/versions/{VersionId}/comments:
     GET:
       summary: DescribeComments
       description: <p>List all the comments for the specified document version.</p>
+      tags:
+        - Describe
+        - Comments
+        - Document
+        - Id
+        - Versions
+        - Version
+        - User
+        - Activation
+        - Resource
+        - Permissions
+        - Comment
+        - Custom
+        - Metadata
+        - Api
+        - V1
+        - Folders
+        - Labels
+        - Organization
+        - Subscriptions
+        - Users
+        - Folder
+        - Contents
+        - Subscription
+        - Activities
+        - Comments
   /api/v1/documents/{DocumentId}/versions:
     GET:
       summary: DescribeDocumentVersions
       description: >-
         <p>Retrieves the document versions for the specified document.</p> <p>By
         default, only active versions are returned.</p>
+      tags:
+        - Describe
+        - Document
+        - Versions
+        - Document
+        - Id
+        - Versions
+        - Version
+        - User
+        - Activation
+        - Resource
+        - Permissions
+        - Comment
+        - Custom
+        - Metadata
+        - Api
+        - V1
+        - Folders
+        - Labels
+        - Organization
+        - Subscriptions
+        - Users
+        - Folder
+        - Contents
+        - Subscription
+        - Activities
+        - Comments
   /api/v1/groups:
     GET:
       summary: DescribeGroups
       description: >-
         <p>Describes the groups specified by the query. Groups are defined by
         the underlying Active Directory.</p>
+      tags:
+        - Describe
+        - Groups
+        - Document
+        - Id
+        - Versions
+        - Version
+        - User
+        - Activation
+        - Resource
+        - Permissions
+        - Comment
+        - Custom
+        - Metadata
+        - Api
+        - V1
+        - Folders
+        - Labels
+        - Organization
+        - Subscriptions
+        - Users
+        - Folder
+        - Contents
+        - Subscription
+        - Activities
+        - Comments
+        - Groups
   /api/v1/me/root:
     GET:
       summary: DescribeRootFolders
@@ -126,6 +524,36 @@ paths:
         href="https://docs.aws.amazon.com/workdocs/latest/developerguide/wd-auth-user.html">Authentication
         and Access Control for User Applications</a> in the <i>Amazon WorkDocs
         Developer Guide</i>.</p>
+      tags:
+        - Describe
+        - Root
+        - Folders
+        - Document
+        - Id
+        - Versions
+        - Version
+        - User
+        - Activation
+        - Resource
+        - Permissions
+        - Comment
+        - Custom
+        - Metadata
+        - Api
+        - V1
+        - Folders
+        - Labels
+        - Organization
+        - Subscriptions
+        - Users
+        - Folder
+        - Contents
+        - Subscription
+        - Activities
+        - Comments
+        - Groups
+        - Me
+        - Root
   /api/v1/me:
     GET:
       summary: GetCurrentUser
@@ -138,6 +566,36 @@ paths:
         href="https://docs.aws.amazon.com/workdocs/latest/developerguide/wd-auth-user.html">Authentication
         and Access Control for User Applications</a> in the <i>Amazon WorkDocs
         Developer Guide</i>.</p>
+      tags:
+        - Get
+        - Current
+        - User
+        - Document
+        - Id
+        - Versions
+        - Version
+        - User
+        - Activation
+        - Resource
+        - Permissions
+        - Comment
+        - Custom
+        - Metadata
+        - Api
+        - V1
+        - Folders
+        - Labels
+        - Organization
+        - Subscriptions
+        - Users
+        - Folder
+        - Contents
+        - Subscription
+        - Activities
+        - Comments
+        - Groups
+        - Me
+        - Root
   /api/v1/documents/{DocumentId}/path:
     GET:
       summary: GetDocumentPath
@@ -148,6 +606,37 @@ paths:
         includes the IDs of the parent folders in the path. You can limit the
         maximum number of levels. You can also request the names of the parent
         folders.</p>
+      tags:
+        - Get
+        - Document
+        - Path
+        - Document
+        - Id
+        - Versions
+        - Version
+        - User
+        - Activation
+        - Resource
+        - Permissions
+        - Comment
+        - Custom
+        - Metadata
+        - Api
+        - V1
+        - Folders
+        - Labels
+        - Organization
+        - Subscriptions
+        - Users
+        - Folder
+        - Contents
+        - Subscription
+        - Activities
+        - Comments
+        - Groups
+        - Me
+        - Root
+        - Path
   /api/v1/folders/{FolderId}/path:
     GET:
       summary: GetFolderPath
@@ -158,6 +647,37 @@ paths:
         includes the IDs of the parent folders in the path. You can limit the
         maximum number of levels. You can also request the parent folder
         names.</p>
+      tags:
+        - Get
+        - Folder
+        - Path
+        - Document
+        - Id
+        - Versions
+        - Version
+        - User
+        - Activation
+        - Resource
+        - Permissions
+        - Comment
+        - Custom
+        - Metadata
+        - Api
+        - V1
+        - Folders
+        - Labels
+        - Organization
+        - Subscriptions
+        - Users
+        - Folder
+        - Contents
+        - Subscription
+        - Activities
+        - Comments
+        - Groups
+        - Me
+        - Root
+        - Path
   /api/v1/resources:
     GET:
       summary: GetResources
@@ -165,6 +685,37 @@ paths:
         <p>Retrieves a collection of resources, including folders and documents.
         The only <code>CollectionType</code> supported is
         <code>SHARED_WITH_ME</code>.</p>
+      tags:
+        - Get
+        - Resources
+        - Document
+        - Id
+        - Versions
+        - Version
+        - User
+        - Activation
+        - Resource
+        - Permissions
+        - Comment
+        - Custom
+        - Metadata
+        - Api
+        - V1
+        - Folders
+        - Labels
+        - Organization
+        - Subscriptions
+        - Users
+        - Folder
+        - Contents
+        - Subscription
+        - Activities
+        - Comments
+        - Groups
+        - Me
+        - Root
+        - Path
+        - Resources
   /api/v1/documents:
     POST:
       summary: InitiateDocumentVersionUpload
@@ -176,19 +727,157 @@ paths:
         document to the URL returned from the call, and then call
         <a>UpdateDocumentVersion</a>.</p> <p>To cancel the document upload, call
         <a>AbortDocumentVersionUpload</a>.</p>
+      tags:
+        - Initiate
+        - Document
+        - Version
+        - Upload
+        - Document
+        - Id
+        - Versions
+        - Version
+        - User
+        - Activation
+        - Resource
+        - Permissions
+        - Comment
+        - Custom
+        - Metadata
+        - Api
+        - V1
+        - Folders
+        - Labels
+        - Organization
+        - Subscriptions
+        - Users
+        - Folder
+        - Contents
+        - Subscription
+        - Activities
+        - Comments
+        - Groups
+        - Me
+        - Root
+        - Path
+        - Resources
+        - Documents
   /api/v1/resources/{ResourceId}/permissions/{PrincipalId}:
     DELETE:
       summary: RemoveResourcePermission
       description: >-
         <p>Removes the permission for the specified principal from the specified
         resource.</p>
+      tags:
+        - Remove
+        - Resource
+        - Permission
+        - Document
+        - Id
+        - Versions
+        - Version
+        - User
+        - Activation
+        - Resource
+        - Permissions
+        - Comment
+        - Custom
+        - Metadata
+        - Api
+        - V1
+        - Folders
+        - Labels
+        - Organization
+        - Subscriptions
+        - Users
+        - Folder
+        - Contents
+        - Subscription
+        - Activities
+        - Comments
+        - Groups
+        - Me
+        - Root
+        - Path
+        - Resources
+        - Documents
+        - Principal
   /api/v1/documentVersions/restore/{DocumentId}:
     POST:
       summary: RestoreDocumentVersions
       description: <p>Recovers a deleted version of an Amazon WorkDocs document.</p>
+      tags:
+        - Restore
+        - Document
+        - Versions
+        - Document
+        - Id
+        - Versions
+        - Version
+        - User
+        - Activation
+        - Resource
+        - Permissions
+        - Comment
+        - Custom
+        - Metadata
+        - Api
+        - V1
+        - Folders
+        - Labels
+        - Organization
+        - Subscriptions
+        - Users
+        - Folder
+        - Contents
+        - Subscription
+        - Activities
+        - Comments
+        - Groups
+        - Me
+        - Root
+        - Path
+        - Resources
+        - Documents
+        - Principal
+        - Restore
   /api/v1/search:
     POST:
       summary: SearchResources
       description: >-
         <p>Searches metadata and the content of folders, documents, document
-        versions, and comme
+        versions, and com
+      tags:
+        - Search
+        - Resources
+        - Document
+        - Id
+        - Versions
+        - Version
+        - User
+        - Activation
+        - Resource
+        - Permissions
+        - Comment
+        - Custom
+        - Metadata
+        - Api
+        - V1
+        - Folders
+        - Labels
+        - Organization
+        - Subscriptions
+        - Users
+        - Folder
+        - Contents
+        - Subscription
+        - Activities
+        - Comments
+        - Groups
+        - Me
+        - Root
+        - Path
+        - Resources
+        - Documents
+        - Principal
+        - Restore
+        - Sear

@@ -13,6 +13,12 @@ paths:
         streams. For more information, see <a
         href="https://docs.aws.amazon.com/qldb/latest/developerguide/streams.create.html#streams.create.states.expiration">Expiration
         for terminal streams</a> in the <i>Amazon QLDB Developer Guide</i>.</p>
+      tags:
+        - Describe
+        - Journal
+        - Kinesis
+        - Stream
+        - Id
   /ledgers:
     GET:
       summary: ListLedgers
@@ -21,10 +27,21 @@ paths:
         Services account and Region.</p> <p>This action returns a maximum of
         <code>MaxResults</code> items and is paginated so that you can retrieve
         all the items by calling <code>ListLedgers</code> multiple times.</p>
+      tags:
+        - List
+        - Ledgers
+        - Id
+        - Ledgers
   /ledgers/{name}:
     PATCH:
       summary: UpdateLedger
       description: <p>Updates properties on a ledger.</p>
+      tags:
+        - Update
+        - Ledger
+        - Id
+        - Ledgers
+        - Name
   /ledgers/{name}/journal-s3-exports/{exportId}:
     GET:
       summary: DescribeJournalS3Export
@@ -39,6 +56,14 @@ paths:
         throws <code>ResourceNotFoundException</code>.</p> <p>If the ledger with
         the given <code>Name</code> doesn't exist, then throws
         <code>ResourceNotFoundException</code>.</p>
+      tags:
+        - Describe
+        - Journal
+        - S3
+        - Export
+        - Id
+        - Ledgers
+        - Name
   /ledgers/{name}/journal-s3-exports:
     GET:
       summary: ListJournalS3ExportsForLedger
@@ -51,6 +76,19 @@ paths:
         see <a
         href="https://docs.aws.amazon.com/qldb/latest/developerguide/export-journal.request.html#export-journal.request.expiration">Export
         job expiration</a> in the <i>Amazon QLDB Developer Guide</i>.</p>
+      tags:
+        - List
+        - Journal
+        - S3
+        - Exports
+        - For
+        - Ledger
+        - Id
+        - Ledgers
+        - Name
+        - Journal
+        - S3
+        - Exports
   /ledgers/{name}/block:
     POST:
       summary: GetBlock
@@ -67,6 +105,16 @@ paths:
         <code>ResourcePreconditionNotMetException</code>.</p> <p>If no block
         exists with the specified address, then throws
         <code>InvalidParameterException</code>.</p>
+      tags:
+        - Get
+        - Block
+        - Id
+        - Ledgers
+        - Name
+        - Journal
+        - S3
+        - Exports
+        - Block
   /ledgers/{name}/digest:
     POST:
       summary: GetDigest
@@ -74,6 +122,17 @@ paths:
         <p>Returns the digest of a ledger at the latest committed block in the
         journal. The response includes a 256-bit hash value and a block
         address.</p>
+      tags:
+        - Get
+        - Digest
+        - Id
+        - Ledgers
+        - Name
+        - Journal
+        - S3
+        - Exports
+        - Block
+        - Digest
   /ledgers/{name}/revision:
     POST:
       summary: GetRevision
@@ -81,6 +140,18 @@ paths:
         <p>Returns a revision data object for a specified document ID and block
         address. Also returns a proof of the specified revision for verification
         if <code>DigestTipAddress</code> is provided.</p>
+      tags:
+        - Get
+        - Revision
+        - Id
+        - Ledgers
+        - Name
+        - Journal
+        - S3
+        - Exports
+        - Block
+        - Digest
+        - Revision
   /ledgers/{name}/journal-kinesis-streams:
     POST:
       summary: StreamJournalToKinesis
@@ -89,6 +160,22 @@ paths:
         captures every document revision that is committed to the ledger's
         journal and delivers the data to a specified Amazon Kinesis Data Streams
         resource.</p>
+      tags:
+        - Stream
+        - Journal
+        - To
+        - Kinesis
+        - Id
+        - Ledgers
+        - Name
+        - Journal
+        - S3
+        - Exports
+        - Block
+        - Digest
+        - Revision
+        - Kinesis
+        - Streams
   /journal-s3-exports:
     GET:
       summary: ListJournalS3Exports
@@ -101,12 +188,43 @@ paths:
         does not return any expired export jobs. For more information, see <a
         href="https://docs.aws.amazon.com/qldb/latest/developerguide/export-journal.request.html#export-journal.request.expiration">Export
         job expiration</a> in the <i>Amazon QLDB Developer Guide</i>.</p>
+      tags:
+        - List
+        - Journal
+        - S3
+        - Exports
+        - Id
+        - Ledgers
+        - Name
+        - Journal
+        - S3
+        - Exports
+        - Block
+        - Digest
+        - Revision
+        - Kinesis
+        - Streams
   /tags/{resourceArn}:
     DELETE:
       summary: UntagResource
       description: >-
         <p>Removes one or more tags from a specified Amazon QLDB resource. You
         can specify up to 50 tag keys to remove.</p>
+      tags:
+        - Untag
+        - Resource
+        - Id
+        - Ledgers
+        - Name
+        - Journal
+        - S3
+        - Exports
+        - Block
+        - Digest
+        - Revision
+        - Kinesis
+        - Streams
+        - Arn
   /ledgers/{name}/permissions-mode:
     PATCH:
       summary: UpdateLedgerPermissionsMode
@@ -117,4 +235,23 @@ paths:
         your users. To learn more, see <a
         href="https://docs.aws.amazon.com/qldb/latest/developerguide/ledger-management.basics.html#ledger-mgmt.basics.update-permissions.migrating">Migrating
         to the standard permissions mode</a> in the <i>Amazon QLDB Developer
-        Guide</i>.</p> </im
+        Guide</i>.</p> </
+      tags:
+        - Update
+        - Ledger
+        - Permissions
+        - Mode
+        - Id
+        - Ledgers
+        - Name
+        - Journal
+        - S3
+        - Exports
+        - Block
+        - Digest
+        - Revision
+        - Kinesis
+        - Streams
+        - Arn
+        - Permissions
+        - Mo

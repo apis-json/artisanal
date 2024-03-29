@@ -5,15 +5,15 @@ info:
   contact:
     email: dev-platform@stripe.com
     name: Stripe Dev Platform Team
-    url: 'https://stripe.com'
-  termsOfService: 'https://stripe.com/us/terms/'
+    url: https://stripe.com
+  termsOfService: https://stripe.com/us/terms/
   version: '2023-10-16'
   x-stripeSpecFilename: spec3
 security:
   - basicAuth: []
   - bearerAuth: []
 servers:
-  - url: 'https://api.stripe.com/'
+  - url: https://api.stripe.com/
 paths:
   /v1/plans:
     get:
@@ -172,7 +172,7 @@ paths:
               schema:
                 $ref: '#/components/schemas/error'
           description: Error response.
-  '/v1/plans/{plan}':
+  /v1/plans/{plan}:
     delete:
       description: >-
         <p>Deleting plans means new subscribers can’t be added. Existing
@@ -423,7 +423,7 @@ components:
           nullable: true
           type: object
         nickname:
-          description: 'A brief description of the plan, hidden from customers.'
+          description: A brief description of the plan, hidden from customers.
           maxLength: 5000
           nullable: true
           type: string
@@ -673,7 +673,7 @@ components:
             Individual keys can be unset by posting an empty value to them. All
             keys can be unset by posting an empty value to `metadata`.
         nickname:
-          description: 'A brief description of the plan, hidden from customers.'
+          description: A brief description of the plan, hidden from customers.
           maxLength: 5000
           type: string
         product:
@@ -820,7 +820,7 @@ components:
             Individual keys can be unset by posting an empty value to them. All
             keys can be unset by posting an empty value to `metadata`.
         nickname:
-          description: 'A brief description of the plan, hidden from customers.'
+          description: A brief description of the plan, hidden from customers.
           maxLength: 5000
           type: string
         product:

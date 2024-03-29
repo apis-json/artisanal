@@ -29,6 +29,12 @@ paths:
       summary: Get All Web Analytics Providers
       description: Returns a list of web analytics providers.
       tags:
+        - Get
+        - All
+        - Web
+        - Analytics
+        - Providers
+        - Settings
         - Analytics
   /settings/analytics/{id}:
     parameters:
@@ -38,12 +44,24 @@ paths:
       summary: Get a Web Analytics Provider
       description: Returns a single web analytics provider data for a default channel.
       tags:
+        - Get
+        - Web
         - Analytics
+        - Provider
+        - Settings
+        - Analytics
+        - Id
     put:
       summary: Update a Web Analytics Provider
       description: Updates a single web analytics provider data for a default channel.
       tags:
+        - Update
+        - Web
         - Analytics
+        - Provider
+        - Settings
+        - Analytics
+        - Id
   /settings/catalog:
     parameters:
       - null
@@ -56,6 +74,12 @@ paths:
 
          - `null` indicates that a particular field has not been overridden on a channel level when channel level settings are requested and values are inherited from global level.
       tags:
+        - Get
+        - Catalog
+        - Settings
+        - Settings
+        - Analytics
+        - Id
         - Catalog
     put:
       summary: Update Catalog Settings
@@ -66,6 +90,12 @@ paths:
 
          - `null` should be supplied to delete overrides per given channel and to inherit values from global level. Partial updates are not supported and all settings should be supplied with `null` value in order to delete overrides per channel.
       tags:
+        - Update
+        - Catalog
+        - Settings
+        - Settings
+        - Analytics
+        - Id
         - Catalog
   /settings/email-statuses:
     parameters:
@@ -76,14 +106,32 @@ paths:
         Get global transactional email settings or channel specific overrides by
         `channel_id`.
       tags:
-        - Email Statuses
+        - Get
+        - Transactional
+        - Email
+        - Settings
+        - Settings
+        - Analytics
+        - Id
+        - Catalog
+        - Email
+        - Statuses
     put:
       summary: Update Transactional Email Settings
       description: >-
         Update global transactional email settings or create channel specific
         overrides by `channel_id`.
       tags:
-        - Email Statuses
+        - Update
+        - Transactional
+        - Email
+        - Settings
+        - Settings
+        - Analytics
+        - Id
+        - Catalog
+        - Email
+        - Statuses
   /settings/favicon/image:
     parameters:
       - null
@@ -95,7 +143,17 @@ paths:
 
           - Channel ID can be used as a query parameter for updating channel-specific setting. If omitted, you will interact with the global setting only.
       tags:
-        - Favicon Image
+        - Create
+        - Favicon
+        - Image
+        - Settings
+        - Analytics
+        - Id
+        - Catalog
+        - Email
+        - Statuses
+        - Favicon
+        - Image
   /settings/inventory/notifications:
     parameters:
       - null
@@ -108,7 +166,20 @@ paths:
         notification settings per channel. If omitted, you will interact with
         the global setting only.
       tags:
-        - Inventory Notifications
+        - Get
+        - Inventory
+        - Notifications
+        - Settings
+        - Settings
+        - Analytics
+        - Id
+        - Catalog
+        - Email
+        - Statuses
+        - Favicon
+        - Image
+        - Inventory
+        - Notifications
     put:
       summary: Update Inventory Notifications Settings
       description: >-
@@ -125,7 +196,20 @@ paths:
         to delete overrides per channel, `null` should be supplied for all the
         settings within the given endpoint.
       tags:
-        - Inventory Notifications
+        - Update
+        - Inventory
+        - Notifications
+        - Settings
+        - Settings
+        - Analytics
+        - Id
+        - Catalog
+        - Email
+        - Statuses
+        - Favicon
+        - Image
+        - Inventory
+        - Notifications
   /settings/logo:
     parameters:
       - null
@@ -138,6 +222,20 @@ paths:
 
          - `null` indicates that a particular field has not been overridden on a channel level when channel level settings are requested and values are inherited from global level.
       tags:
+        - Get
+        - Store
+        - Logo
+        - Settings
+        - Settings
+        - Analytics
+        - Id
+        - Catalog
+        - Email
+        - Statuses
+        - Favicon
+        - Image
+        - Inventory
+        - Notifications
         - Logo
     put:
       summary: Update Store Logo Settings
@@ -149,6 +247,20 @@ paths:
 
          - `null` should be supplied to delete overrides per given channel and to inherit values from global level. Partial updates are not supported and all settings should be supplied with `null` value in order to delete overrides per channel.
       tags:
+        - Update
+        - Store
+        - Logo
+        - Settings
+        - Settings
+        - Analytics
+        - Id
+        - Catalog
+        - Email
+        - Statuses
+        - Favicon
+        - Image
+        - Inventory
+        - Notifications
         - Logo
   /settings/logo/image:
     parameters:
@@ -161,7 +273,20 @@ paths:
 
          - Channel ID can be used as a query parameter for updating channel-specific setting. If omitted, you will interact with the global setting only.
       tags:
-        - Logo Image
+        - Create
+        - Logo
+        - Image
+        - Settings
+        - Analytics
+        - Id
+        - Catalog
+        - Email
+        - Statuses
+        - Favicon
+        - Image
+        - Inventory
+        - Notifications
+        - Logo
   /settings/search/filters:
     get:
       summary: Get Enabled Filters
@@ -171,7 +296,22 @@ paths:
         filters. These filters will be used if a store does not have contextual
         overrides.
       tags:
-        - Search Filters
+        - Get
+        - Enabled
+        - Filters
+        - Settings
+        - Analytics
+        - Id
+        - Catalog
+        - Email
+        - Statuses
+        - Favicon
+        - Image
+        - Inventory
+        - Notifications
+        - Logo
+        - Search
+        - Filters
     put:
       summary: Update Enabled Filters
       description: >-
@@ -179,7 +319,22 @@ paths:
         Filtering](https://support.bigcommerce.com/s/article/Product-Filtering-Settings)
         filters.
       tags:
-        - Search Filters
+        - Update
+        - Enabled
+        - Filters
+        - Settings
+        - Analytics
+        - Id
+        - Catalog
+        - Email
+        - Statuses
+        - Favicon
+        - Image
+        - Inventory
+        - Notifications
+        - Logo
+        - Search
+        - Filters
   /settings/search/filters/available:
     parameters:
       - null
@@ -189,7 +344,23 @@ paths:
         Returns a list of filters available to power [Product
         Filtering](https://support.bigcommerce.com/s/article/Product-Filtering-Settings).
       tags:
-        - Search Filters
+        - Get
+        - Available
+        - Filters
+        - Settings
+        - Analytics
+        - Id
+        - Catalog
+        - Email
+        - Statuses
+        - Favicon
+        - Image
+        - Inventory
+        - Notifications
+        - Logo
+        - Search
+        - Filters
+        - Available
   /settings/search/filters/contexts:
     parameters:
       - null
@@ -211,7 +382,24 @@ paths:
         The order of the returned filters will match the sort order of the
         filters on the storefront.
       tags:
-        - Search Filters
+        - Get
+        - Contextual
+        - Filters
+        - Settings
+        - Analytics
+        - Id
+        - Catalog
+        - Email
+        - Statuses
+        - Favicon
+        - Image
+        - Inventory
+        - Notifications
+        - Logo
+        - Search
+        - Filters
+        - Available
+        - Contexts
     put:
       summary: Upsert Contextual Filters
       description: >-
@@ -229,18 +417,73 @@ paths:
         You can change the order of the filters on the live site by changing the
         order of the filters you send.
       tags:
-        - Search Filters
+        - Upsert
+        - Contextual
+        - Filters
+        - Settings
+        - Analytics
+        - Id
+        - Catalog
+        - Email
+        - Statuses
+        - Favicon
+        - Image
+        - Inventory
+        - Notifications
+        - Logo
+        - Search
+        - Filters
+        - Available
+        - Contexts
   /settings/store/locale:
     get:
       summary: Get Locale Settings
       description: Returns global locale settings.
       tags:
-        - Store Locale
+        - Get
+        - Locale
+        - Settings
+        - Settings
+        - Analytics
+        - Id
+        - Catalog
+        - Email
+        - Statuses
+        - Favicon
+        - Image
+        - Inventory
+        - Notifications
+        - Logo
+        - Search
+        - Filters
+        - Available
+        - Contexts
+        - Store
+        - Locale
     put:
       summary: Update Locale Settings
       description: Updates global locale settings.
       tags:
-        - Store Locale
+        - Update
+        - Locale
+        - Settings
+        - Settings
+        - Analytics
+        - Id
+        - Catalog
+        - Email
+        - Statuses
+        - Favicon
+        - Image
+        - Inventory
+        - Notifications
+        - Logo
+        - Search
+        - Filters
+        - Available
+        - Contexts
+        - Store
+        - Locale
   /settings/store/profile:
     parameters:
       - null
@@ -253,7 +496,28 @@ paths:
 
          - `null` indicates that a particular field has not been overridden on a channel level when channel level settings are requested and values are inherited from global level.
       tags:
-        - Store Profile
+        - Get
+        - Store
+        - Profile
+        - Settings
+        - Settings
+        - Analytics
+        - Id
+        - Catalog
+        - Email
+        - Statuses
+        - Favicon
+        - Image
+        - Inventory
+        - Notifications
+        - Logo
+        - Search
+        - Filters
+        - Available
+        - Contexts
+        - Store
+        - Locale
+        - Profile
     put:
       summary: Update Store Profile Settings
       description: |-
@@ -263,7 +527,28 @@ paths:
 
          - `null` should be supplied to delete overrides per given channel and to inherit values from global level. Partial updates are not supported and all settings should be supplied with `null` value in order to delete overrides per channel.
       tags:
-        - Store Profile
+        - Update
+        - Store
+        - Profile
+        - Settings
+        - Settings
+        - Analytics
+        - Id
+        - Catalog
+        - Email
+        - Statuses
+        - Favicon
+        - Image
+        - Inventory
+        - Notifications
+        - Logo
+        - Search
+        - Filters
+        - Available
+        - Contexts
+        - Store
+        - Locale
+        - Profile
   /settings/storefront/category:
     parameters:
       - null
@@ -276,7 +561,30 @@ paths:
 
          - `null` indicates that a particular field has not been overridden on a channel level when channel level settings are requested and values are inherited from global level.
       tags:
-        - Storefront Category
+        - Get
+        - Storefront
+        - Category
+        - Settings
+        - Settings
+        - Analytics
+        - Id
+        - Catalog
+        - Email
+        - Statuses
+        - Favicon
+        - Image
+        - Inventory
+        - Notifications
+        - Logo
+        - Search
+        - Filters
+        - Available
+        - Contexts
+        - Store
+        - Locale
+        - Profile
+        - Storefront
+        - Category
     put:
       summary: Update Storefront Category Settings
       description: |-
@@ -286,7 +594,30 @@ paths:
 
          - `null` should be supplied to delete overrides per given channel and to inherit values from global level. Partial updates are not supported and all settings should be supplied with `null` value in order to delete overrides per channel.
       tags:
-        - Storefront Category
+        - Update
+        - Storefront
+        - Category
+        - Settings
+        - Settings
+        - Analytics
+        - Id
+        - Catalog
+        - Email
+        - Statuses
+        - Favicon
+        - Image
+        - Inventory
+        - Notifications
+        - Logo
+        - Search
+        - Filters
+        - Available
+        - Contexts
+        - Store
+        - Locale
+        - Profile
+        - Storefront
+        - Category
   /settings/storefront/product:
     parameters:
       - null
@@ -299,7 +630,31 @@ paths:
 
          - `null` indicates that a particular field has not been overridden on a channel level when channel level settings are requested and values are inherited from global level.
       tags:
-        - Storefront Product
+        - Get
+        - Storefront
+        - Product
+        - Settings
+        - Settings
+        - Analytics
+        - Id
+        - Catalog
+        - Email
+        - Statuses
+        - Favicon
+        - Image
+        - Inventory
+        - Notifications
+        - Logo
+        - Search
+        - Filters
+        - Available
+        - Contexts
+        - Store
+        - Locale
+        - Profile
+        - Storefront
+        - Category
+        - Product
     put:
       summary: Update Storefront Product Settings
       description: |-
@@ -309,7 +664,31 @@ paths:
 
          - `null` should be supplied to delete overrides per given channel and to inherit values from global level. Partial updates are not supported and all settings should be supplied with `null` value in order to delete overrides per channel.
       tags:
-        - Storefront Product
+        - Update
+        - Storefront
+        - Product
+        - Settings
+        - Settings
+        - Analytics
+        - Id
+        - Catalog
+        - Email
+        - Statuses
+        - Favicon
+        - Image
+        - Inventory
+        - Notifications
+        - Logo
+        - Search
+        - Filters
+        - Available
+        - Contexts
+        - Store
+        - Locale
+        - Profile
+        - Storefront
+        - Category
+        - Product
   /settings/storefront/robotstxt:
     parameters:
       - null
@@ -322,7 +701,31 @@ paths:
 
          - `null` indicates that a particular field has not been overridden on a channel level when channel level settings are requested and values are inherited from global level.
       tags:
-        - Storefront Robotstxt
+        - Get
+        - Robots.txt
+        - Settings
+        - Settings
+        - Analytics
+        - Id
+        - Catalog
+        - Email
+        - Statuses
+        - Favicon
+        - Image
+        - Inventory
+        - Notifications
+        - Logo
+        - Search
+        - Filters
+        - Available
+        - Contexts
+        - Store
+        - Locale
+        - Profile
+        - Storefront
+        - Category
+        - Product
+        - Robotstxt
     put:
       summary: Update Robots.txt Settings
       description: |-
@@ -332,7 +735,31 @@ paths:
 
          - `null` should be supplied to delete overrides per given channel and to inherit values from global level. Partial updates are not supported and all settings should be supplied with `null` value in order to delete overrides per channel.
       tags:
-        - Storefront Robotstxt
+        - Update
+        - Robots.txt
+        - Settings
+        - Settings
+        - Analytics
+        - Id
+        - Catalog
+        - Email
+        - Statuses
+        - Favicon
+        - Image
+        - Inventory
+        - Notifications
+        - Logo
+        - Search
+        - Filters
+        - Available
+        - Contexts
+        - Store
+        - Locale
+        - Profile
+        - Storefront
+        - Category
+        - Product
+        - Robotstxt
   /settings/storefront/search:
     parameters:
       - null
@@ -345,7 +772,32 @@ paths:
 
          - `null` indicates that a particular field has not been overridden on a channel level when channel level settings are requested and values are inherited from global level.
       tags:
-        - Storefront Search
+        - Get
+        - Storefront
+        - Search
+        - Settings
+        - Settings
+        - Analytics
+        - Id
+        - Catalog
+        - Email
+        - Statuses
+        - Favicon
+        - Image
+        - Inventory
+        - Notifications
+        - Logo
+        - Search
+        - Filters
+        - Available
+        - Contexts
+        - Store
+        - Locale
+        - Profile
+        - Storefront
+        - Category
+        - Product
+        - Robotstxt
     put:
       summary: Update Storefront Search Settings
       description: |-
@@ -355,7 +807,32 @@ paths:
 
          - `null` should be supplied to delete overrides per given channel and to inherit values from global level. Partial updates are not supported and all settings should be supplied with `null` value in order to delete overrides per channel.
       tags:
-        - Storefront Search
+        - Update
+        - Storefront
+        - Search
+        - Settings
+        - Settings
+        - Analytics
+        - Id
+        - Catalog
+        - Email
+        - Statuses
+        - Favicon
+        - Image
+        - Inventory
+        - Notifications
+        - Logo
+        - Search
+        - Filters
+        - Available
+        - Contexts
+        - Store
+        - Locale
+        - Profile
+        - Storefront
+        - Category
+        - Product
+        - Robotstxt
   /settings/storefront/security:
     parameters:
       - null
@@ -368,7 +845,33 @@ paths:
 
          - `null` indicates that a particular field has not been overridden on a channel level when channel level settings are requested and values are inherited from global level.
       tags:
-        - Storefront Security
+        - Get
+        - Storefront
+        - Security
+        - Settings
+        - Settings
+        - Analytics
+        - Id
+        - Catalog
+        - Email
+        - Statuses
+        - Favicon
+        - Image
+        - Inventory
+        - Notifications
+        - Logo
+        - Search
+        - Filters
+        - Available
+        - Contexts
+        - Store
+        - Locale
+        - Profile
+        - Storefront
+        - Category
+        - Product
+        - Robotstxt
+        - Security
     put:
       summary: Update Storefront Security Settings
       description: |-
@@ -378,7 +881,33 @@ paths:
 
          - `null` should be supplied to delete overrides per given channel and to inherit values from global level. Partial updates are not supported and all settings should be supplied with `null` value in order to delete overrides per channel.
       tags:
-        - Storefront Security
+        - Update
+        - Storefront
+        - Security
+        - Settings
+        - Settings
+        - Analytics
+        - Id
+        - Catalog
+        - Email
+        - Statuses
+        - Favicon
+        - Image
+        - Inventory
+        - Notifications
+        - Logo
+        - Search
+        - Filters
+        - Available
+        - Contexts
+        - Store
+        - Locale
+        - Profile
+        - Storefront
+        - Category
+        - Product
+        - Robotstxt
+        - Security
   /settings/storefront/seo:
     parameters:
       - null
@@ -391,7 +920,33 @@ paths:
 
          - `null` indicates that a particular field has not been overridden on a channel level when channel level settings are requested and values are inherited from global level.
       tags:
-        - Storefront SEO
+        - Get
+        - Storefront
+        - Settings
+        - Settings
+        - Analytics
+        - Id
+        - Catalog
+        - Email
+        - Statuses
+        - Favicon
+        - Image
+        - Inventory
+        - Notifications
+        - Logo
+        - Search
+        - Filters
+        - Available
+        - Contexts
+        - Store
+        - Locale
+        - Profile
+        - Storefront
+        - Category
+        - Product
+        - Robotstxt
+        - Security
+        - Seo
     put:
       summary: Update Storefront SEO Settings
       description: |-
@@ -401,7 +956,33 @@ paths:
 
          - `null` should be supplied to delete overrides per given channel and to inherit values from global level. Partial updates are not supported and all settings should be supplied with `null` value in order to delete overrides per channel.
       tags:
-        - Storefront SEO
+        - Update
+        - Storefront
+        - Settings
+        - Settings
+        - Analytics
+        - Id
+        - Catalog
+        - Email
+        - Statuses
+        - Favicon
+        - Image
+        - Inventory
+        - Notifications
+        - Logo
+        - Search
+        - Filters
+        - Available
+        - Contexts
+        - Store
+        - Locale
+        - Profile
+        - Storefront
+        - Category
+        - Product
+        - Robotstxt
+        - Security
+        - Seo
   /settings/storefront/status:
     parameters:
       - null
@@ -414,7 +995,34 @@ paths:
 
          - `null` indicates that a particular field has not been overridden on a channel level when channel level settings are requested and values are inherited from global level.
       tags:
-        - Storefront Status
+        - Get
+        - Storefront
+        - Status
+        - Settings
+        - Analytics
+        - Id
+        - Catalog
+        - Email
+        - Statuses
+        - Favicon
+        - Image
+        - Inventory
+        - Notifications
+        - Logo
+        - Search
+        - Filters
+        - Available
+        - Contexts
+        - Store
+        - Locale
+        - Profile
+        - Storefront
+        - Category
+        - Product
+        - Robotstxt
+        - Security
+        - Seo
+        - Status
     put:
       summary: Update Storefront Status
       description: |-
@@ -424,19 +1032,100 @@ paths:
 
          - `null` should be supplied to delete overrides per given channel and to inherit values from global level. Partial updates are not supported and all settings should be supplied with `null` value in order to delete overrides per channel.
       tags:
-        - Storefront Status
+        - Update
+        - Storefront
+        - Status
+        - Settings
+        - Analytics
+        - Id
+        - Catalog
+        - Email
+        - Statuses
+        - Favicon
+        - Image
+        - Inventory
+        - Notifications
+        - Logo
+        - Search
+        - Filters
+        - Available
+        - Contexts
+        - Store
+        - Locale
+        - Profile
+        - Storefront
+        - Category
+        - Product
+        - Robotstxt
+        - Security
+        - Seo
+        - Status
   /settings/inventory:
     parameters:
       - null
     get:
       summary: Get Inventory Settings
       tags:
+        - Get
         - Inventory
+        - Settings
+        - Settings
+        - Analytics
+        - Id
+        - Catalog
+        - Email
+        - Statuses
+        - Favicon
+        - Image
+        - Inventory
+        - Notifications
+        - Logo
+        - Search
+        - Filters
+        - Available
+        - Contexts
+        - Store
+        - Locale
+        - Profile
+        - Storefront
+        - Category
+        - Product
+        - Robotstxt
+        - Security
+        - Seo
+        - Status
       description: Get Inventory Settings
     put:
       summary: Update Inventory Settings
       tags:
+        - Update
         - Inventory
+        - Settings
+        - Settings
+        - Analytics
+        - Id
+        - Catalog
+        - Email
+        - Statuses
+        - Favicon
+        - Image
+        - Inventory
+        - Notifications
+        - Logo
+        - Search
+        - Filters
+        - Available
+        - Contexts
+        - Store
+        - Locale
+        - Profile
+        - Storefront
+        - Category
+        - Product
+        - Robotstxt
+        - Security
+        - Seo
+        - Status
       description: Update inventory settings
   /settings/store/units-of-measurement:
     get:
@@ -445,7 +1134,39 @@ paths:
         Get settings for [units of
         measurements](https://support.bigcommerce.com/s/article/Store-Settings?language=en_US#physical).
       tags:
-        - Units of Measurement
+        - Get
+        - Units
+        - Of
+        - Measurement
+        - Settings
+        - Settings
+        - Analytics
+        - Id
+        - Catalog
+        - Email
+        - Statuses
+        - Favicon
+        - Image
+        - Inventory
+        - Notifications
+        - Logo
+        - Search
+        - Filters
+        - Available
+        - Contexts
+        - Store
+        - Locale
+        - Profile
+        - Storefront
+        - Category
+        - Product
+        - Robotstxt
+        - Security
+        - Seo
+        - Status
+        - Units
+        - Of
+        - Measurement
     put:
       summary: Update Units of Measurement Settings
       description: >-
@@ -468,4 +1189,36 @@ paths:
         The endpoint does not support 'null' as a value for global-level
         settings.
       tags:
-        - Units of Measureme
+        - Update
+        - Units
+        - Of
+        - Measurement
+        - Settings
+        - Settings
+        - Analytics
+        - Id
+        - Catalog
+        - Email
+        - Statuses
+        - Favicon
+        - Image
+        - Inventory
+        - Notifications
+        - Logo
+        - Search
+        - Filters
+        - Available
+        - Contexts
+        - Store
+        - Locale
+        - Profile
+        - Storefront
+        - Category
+        - Product
+        - Robotstxt
+        - Security
+        - Seo
+        - Status
+        - Units
+        - Of
+        - Measureme

@@ -1,18 +1,23 @@
----
 openapi: 3.0.0
 info:
-  title: 'OpenAI Assistants'
-  description: The Assistants API allows you to build AI assistants within your own applications. An Assistant has instructions and can leverage models, tools, and knowledge to respond to user queries. The Assistants API currently supports three types of tools - Code Interpreter, Retrieval, and Function calling. In the future, we plan to release more OpenAI-built tools, and allow you to provide your own tools on our platform.
+  title: OpenAI Assistants
+  description: >-
+    The Assistants API allows you to build AI assistants within your own
+    applications. An Assistant has instructions and can leverage models, tools,
+    and knowledge to respond to user queries. The Assistants API currently
+    supports three types of tools - Code Interpreter, Retrieval, and Function
+    calling. In the future, we plan to release more OpenAI-built tools, and
+    allow you to provide your own tools on our platform.
   version: 2.0.0
-  termsOfService: 'https://openai.com/policies/terms-of-use'
+  termsOfService: https://openai.com/policies/terms-of-use
   contact:
     name: OpenAI Support
-    url: 'https://help.openai.com/'
+    url: https://help.openai.com/
   license:
     name: MIT
-    url: 'https://github.com/openai/openai-openapi/blob/master/LICENSE'
+    url: https://github.com/openai/openai-openapi/blob/master/LICENSE
 servers:
-  - url: 'https://api.openai.com/v1'
+  - url: https://api.openai.com/v1
 tags:
   - name: Assistants
     description: Build Assistants that can call models and use tools.
@@ -74,7 +79,7 @@ paths:
         name: List assistants
         group: assistants
         beta: true
-        returns: 'A list of [assistant](/docs/api-reference/assistants/object) objects.'
+        returns: A list of [assistant](/docs/api-reference/assistants/object) objects.
         examples:
           request:
             curl: |
@@ -173,7 +178,7 @@ paths:
         name: Create assistant
         group: assistants
         beta: true
-        returns: 'An [assistant](/docs/api-reference/assistants/object) object.'
+        returns: An [assistant](/docs/api-reference/assistants/object) object.
         examples:
           - title: Code Interpreter
             request:
@@ -297,7 +302,7 @@ paths:
                 ],
                 "metadata": {}
               }
-  '/assistants/{assistant_id}':
+  /assistants/{assistant_id}:
     get:
       operationId: getAssistant
       tags:
@@ -529,7 +534,7 @@ paths:
               "object": "assistant.deleted",
               "deleted": true
             }
-  '/assistants/{assistant_id}/files':
+  /assistants/{assistant_id}/files:
     get:
       operationId: listAssistantFiles
       tags:
@@ -721,7 +726,7 @@ paths:
               "created_at": 1699055364,
               "assistant_id": "asst_abc123"
             }
-  '/assistants/{assistant_id}/files/{file_id}':
+  /assistants/{assistant_id}/files/{file_id}:
     get:
       operationId: getAssistantFile
       tags:
@@ -871,26 +876,39 @@ components:
       properties:
         description:
           type: string
-          description: A description of what the function does, used by the model to choose when and how to call the function.
+          description: >-
+            A description of what the function does, used by the model to choose
+            when and how to call the function.
         name:
           type: string
-          description: The name of the function to be called. Must be a-z, A-Z, 0-9, or contain underscores and dashes, with a maximum length of 64.
+          description: >-
+            The name of the function to be called. Must be a-z, A-Z, 0-9, or
+            contain underscores and dashes, with a maximum length of 64.
         parameters:
-          $ref: "#/components/schemas/FunctionParameters"
+          $ref: '#/components/schemas/FunctionParameters'
       required:
-        - name  
+        - name
     FunctionParameters:
       type: object
-      description: "The parameters the functions accepts, described as a JSON Schema object. See the [guide](/docs/guides/text-generation/function-calling) for examples, and the [JSON Schema reference](https://json-schema.org/understanding-json-schema/) for documentation about the format. \n\nOmitting `parameters` defines a function with an empty parameter list."
-      additionalProperties: true        
+      description: >-
+        The parameters the functions accepts, described as a JSON Schema object.
+        See the [guide](/docs/guides/text-generation/function-calling) for
+        examples, and the [JSON Schema
+        reference](https://json-schema.org/understanding-json-schema/) for
+        documentation about the format. 
+
+
+        Omitting `parameters` defines a function with an empty parameter list.
+      additionalProperties: true
     AssistantToolsCode:
       type: object
       title: Code interpreter tool
       properties:
         type:
           type: string
-          description: "The type of tool being defined: `code_interpreter`"
-          enum: ["code_interpreter"]
+          description: 'The type of tool being defined: `code_interpreter`'
+          enum:
+            - code_interpreter
       required:
         - type
     AssistantToolsRetrieval:
@@ -899,33 +917,37 @@ components:
       properties:
         type:
           type: string
-          description: "The type of tool being defined: `retrieval`"
-          enum: ["retrieval"]
+          description: 'The type of tool being defined: `retrieval`'
+          enum:
+            - retrieval
       required:
         - type
-
     AssistantToolsFunction:
       type: object
       title: Function tool
       properties:
         type:
           type: string
-          description: "The type of tool being defined: `function`"
-          enum: ["function"]
+          description: 'The type of tool being defined: `function`'
+          enum:
+            - function
         function:
-          $ref: "#/components/schemas/FunctionObject"
+          $ref: '#/components/schemas/FunctionObject'
       required:
         - type
-        - function  
+        - function
     CreateAssistantFileRequest:
       type: object
       additionalProperties: false
       properties:
         file_id:
-          description: A [File](/docs/api-reference/files) ID (with `purpose="assistants"`) that the assistant should use. Useful for tools like `retrieval` and `code_interpreter` that can access files.
+          description: >-
+            A [File](/docs/api-reference/files) ID (with `purpose="assistants"`)
+            that the assistant should use. Useful for tools like `retrieval` and
+            `code_interpreter` that can access files.
           type: string
       required:
-        - file_id  
+        - file_id
     ModifyAssistantRequest:
       type: object
       additionalProperties: false
@@ -956,13 +978,17 @@ components:
           maxItems: 128
           items:
             oneOf:
-              - $ref: "#/components/schemas/AssistantToolsCode"
-              - $ref: "#/components/schemas/AssistantToolsRetrieval"
-              - $ref: "#/components/schemas/AssistantToolsFunction"
+              - $ref: '#/components/schemas/AssistantToolsCode'
+              - $ref: '#/components/schemas/AssistantToolsRetrieval'
+              - $ref: '#/components/schemas/AssistantToolsFunction'
             x-oaiExpandable: true
         file_ids:
-          description: |
-            A list of [File](/docs/api-reference/files) IDs attached to this assistant. There can be a maximum of 20 files attached to the assistant. Files are ordered by their creation date in ascending order. If a file was previously attached to the list but does not show up in the list, it will be deleted from the assistant.
+          description: >
+            A list of [File](/docs/api-reference/files) IDs attached to this
+            assistant. There can be a maximum of 20 files attached to the
+            assistant. Files are ordered by their creation date in ascending
+            order. If a file was previously attached to the list but does not
+            show up in the list, it will be deleted from the assistant.
           default: []
           type: array
           maxItems: 20
@@ -972,7 +998,7 @@ components:
           description: metadata_description
           type: object
           x-oaiTypeLabel: map
-          nullable: true  
+          nullable: true
     CreateAssistantRequest:
       type: object
       additionalProperties: false
@@ -1003,9 +1029,9 @@ components:
           maxItems: 128
           items:
             oneOf:
-              - $ref: "#/components/schemas/AssistantToolsCode"
-              - $ref: "#/components/schemas/AssistantToolsRetrieval"
-              - $ref: "#/components/schemas/AssistantToolsFunction"
+              - $ref: '#/components/schemas/AssistantToolsCode'
+              - $ref: '#/components/schemas/AssistantToolsRetrieval'
+              - $ref: '#/components/schemas/AssistantToolsFunction'
             x-oaiExpandable: true
         file_ids:
           description: assistant_file_param_description
@@ -1020,7 +1046,7 @@ components:
           x-oaiTypeLabel: map
           nullable: true
       required:
-        - model  
+        - model
     ListAssistantsResponse:
       type: object
       properties:
@@ -1100,10 +1126,10 @@ components:
       description: Represents an `assistant` that can call the model and use tools.
       properties:
         id:
-          description: 'The identifier, which can be referenced in API endpoints.'
+          description: The identifier, which can be referenced in API endpoints.
           type: string
         object:
-          description: 'The object type, which is always `assistant`.'
+          description: The object type, which is always `assistant`.
           type: string
           enum:
             - assistant
@@ -1245,13 +1271,13 @@ components:
     AssistantFileObject:
       type: object
       title: Assistant files
-      description: 'A list of [Files](/docs/api-reference/files) attached to an `assistant`.'
+      description: A list of [Files](/docs/api-reference/files) attached to an `assistant`.
       properties:
         id:
-          description: 'The identifier, which can be referenced in API endpoints.'
+          description: The identifier, which can be referenced in API endpoints.
           type: string
         object:
-          description: 'The object type, which is always `assistant.file`.'
+          description: The object type, which is always `assistant.file`.
           type: string
           enum:
             - assistant.file
@@ -1614,4 +1640,3 @@ x-oaiMeta:
         - type: object
           key: CreateCompletionResponse
           path: object
----

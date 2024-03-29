@@ -7,7 +7,7 @@ components:
           type: string
           minLength: 34
           maxLength: 34
-          pattern: '^AC[0-9a-fA-F]{32}$'
+          pattern: ^AC[0-9a-fA-F]{32}$
           nullable: true
           description: >-
             The SID of the
@@ -93,7 +93,7 @@ components:
           type: string
           minLength: 34
           maxLength: 34
-          pattern: '^[a-zA-Z]{2}[0-9a-fA-F]{32}$'
+          pattern: ^[a-zA-Z]{2}[0-9a-fA-F]{32}$
           nullable: true
           description: >-
             The SID of the resource for which the alert was generated.  For
@@ -105,7 +105,7 @@ components:
           type: string
           minLength: 34
           maxLength: 34
-          pattern: '^NO[0-9a-fA-F]{32}$'
+          pattern: ^NO[0-9a-fA-F]{32}$
           nullable: true
           description: The unique string that we created to identify the Alert resource.
         url:
@@ -117,7 +117,7 @@ components:
           type: string
           minLength: 34
           maxLength: 34
-          pattern: '^[a-zA-Z]{2}[0-9a-fA-F]{32}$'
+          pattern: ^[a-zA-Z]{2}[0-9a-fA-F]{32}$
           nullable: true
           description: >-
             The SID of the service or resource that generated the alert. Can be
@@ -129,7 +129,7 @@ components:
           type: string
           minLength: 34
           maxLength: 34
-          pattern: '^AC[0-9a-fA-F]{32}$'
+          pattern: ^AC[0-9a-fA-F]{32}$
           nullable: true
           description: >-
             The SID of the
@@ -221,7 +221,7 @@ components:
           type: string
           minLength: 34
           maxLength: 34
-          pattern: '^[a-zA-Z]{2}[0-9a-fA-F]{32}$'
+          pattern: ^[a-zA-Z]{2}[0-9a-fA-F]{32}$
           nullable: true
           description: >-
             The SID of the resource for which the alert was generated.  For
@@ -245,7 +245,7 @@ components:
           type: string
           minLength: 34
           maxLength: 34
-          pattern: '^NO[0-9a-fA-F]{32}$'
+          pattern: ^NO[0-9a-fA-F]{32}$
           nullable: true
           description: The unique string that we created to identify the Alert resource.
         url:
@@ -263,7 +263,7 @@ components:
           type: string
           minLength: 34
           maxLength: 34
-          pattern: '^[a-zA-Z]{2}[0-9a-fA-F]{32}$'
+          pattern: ^[a-zA-Z]{2}[0-9a-fA-F]{32}$
           nullable: true
           description: >-
             The SID of the service or resource that generated the alert. Can be
@@ -275,7 +275,7 @@ components:
           type: string
           minLength: 34
           maxLength: 34
-          pattern: '^AC[0-9a-fA-F]{32}$'
+          pattern: ^AC[0-9a-fA-F]{32}$
           nullable: true
           description: >-
             The SID of the
@@ -285,7 +285,7 @@ components:
           type: string
           minLength: 34
           maxLength: 34
-          pattern: '^US[0-9a-fA-F]{32}$'
+          pattern: ^US[0-9a-fA-F]{32}$
           nullable: true
           description: >-
             The SID of the actor that caused the event, if available. Can be
@@ -331,7 +331,7 @@ components:
           type: string
           minLength: 34
           maxLength: 34
-          pattern: '^[a-zA-Z]{2}[0-9a-fA-F]{32}$'
+          pattern: ^[a-zA-Z]{2}[0-9a-fA-F]{32}$
           nullable: true
           description: The SID of the resource that was affected.
         resource_type:
@@ -345,7 +345,7 @@ components:
           type: string
           minLength: 34
           maxLength: 34
-          pattern: '^AE[0-9a-fA-F]{32}$'
+          pattern: ^AE[0-9a-fA-F]{32}$
           nullable: true
           description: The unique string that we created to identify the Event resource.
         source:
@@ -439,20 +439,20 @@ components:
 info:
   title: Twilio - Monitor
   description: This is the public Twilio REST API.
-  termsOfService: 'https://www.twilio.com/legal/tos'
+  termsOfService: https://www.twilio.com/legal/tos
   contact:
     name: Twilio Support
-    url: 'https://support.twilio.com'
+    url: https://support.twilio.com
     email: support@twilio.com
   license:
     name: Apache 2.0
-    url: 'https://www.apache.org/licenses/LICENSE-2.0.html'
+    url: https://www.apache.org/licenses/LICENSE-2.0.html
   version: 1.52.0
 openapi: 3.0.1
 paths:
-  '/v1/Alerts/{Sid}':
+  /v1/Alerts/{Sid}:
     servers:
-      - url: 'https://monitor.twilio.com'
+      - url: https://monitor.twilio.com
     description: Debugger alerts
     x-twilio:
       defaultOutputProperties:
@@ -473,7 +473,7 @@ paths:
             type: string
             minLength: 34
             maxLength: 34
-            pattern: '^NO[0-9a-fA-F]{32}$'
+            pattern: ^NO[0-9a-fA-F]{32}$
           required: true
       responses:
         '200':
@@ -489,7 +489,7 @@ paths:
         - GA
   /v1/Alerts:
     servers:
-      - url: 'https://monitor.twilio.com'
+      - url: https://monitor.twilio.com
     description: Debugger alerts
     x-twilio:
       defaultOutputProperties:
@@ -562,9 +562,9 @@ paths:
       operationId: ListAlert
       x-maturity:
         - GA
-  '/v1/Events/{Sid}':
+  /v1/Events/{Sid}:
     servers:
-      - url: 'https://monitor.twilio.com'
+      - url: https://monitor.twilio.com
     description: Debugger events
     x-twilio:
       defaultOutputProperties:
@@ -585,7 +585,7 @@ paths:
             type: string
             minLength: 34
             maxLength: 34
-            pattern: '^AE[0-9a-fA-F]{32}$'
+            pattern: ^AE[0-9a-fA-F]{32}$
           required: true
       responses:
         '200':
@@ -601,7 +601,7 @@ paths:
         - GA
   /v1/Events:
     servers:
-      - url: 'https://monitor.twilio.com'
+      - url: https://monitor.twilio.com
     description: Debugger events
     x-twilio:
       defaultOutputProperties:
@@ -611,7 +611,7 @@ paths:
         - description
       pathType: list
     get:
-      description: 'Returns a list of events in the account, sorted by event-date.'
+      description: Returns a list of events in the account, sorted by event-date.
       tags:
         - MonitorV1Event
       parameters:
@@ -624,7 +624,7 @@ paths:
             type: string
             minLength: 34
             maxLength: 34
-            pattern: '^US[0-9a-fA-F]{32}$'
+            pattern: ^US[0-9a-fA-F]{32}$
         - name: EventType
           in: query
           description: >-
@@ -641,7 +641,7 @@ paths:
             type: string
             minLength: 34
             maxLength: 34
-            pattern: '^[a-zA-Z]{2}[0-9a-fA-F]{32}$'
+            pattern: ^[a-zA-Z]{2}[0-9a-fA-F]{32}$
         - name: SourceIpAddress
           in: query
           description: >-
@@ -701,7 +701,7 @@ paths:
       x-maturity:
         - GA
 servers:
-  - url: 'https://monitor.twilio.com'
+  - url: https://monitor.twilio.com
 tags:
   - name: MonitorV1Alert
   - name: MonitorV1Event

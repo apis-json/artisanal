@@ -10,7 +10,12 @@ paths:
         file. This returns all the users that have access to the file
         or have been invited to the file.
       tags:
-        - Collaborations (List)
+        - List
+        - File
+        - Collaborations
+        - Files
+        - File_id
+        - Collaborations
   /folders/{folder_id}/collaborations:
     get:
       summary: List folder collaborations
@@ -19,16 +24,37 @@ paths:
         folder. This returns all the users that have access to the folder
         or have been invited to the folder.
       tags:
-        - Collaborations (List)
+        - List
+        - Folder
+        - Collaborations
+        - Files
+        - File_id
+        - Collaborations
+        - Folders
+        - Folder_id
   /collaborations/{collaboration_id}:
     get:
       summary: Get collaboration
       tags:
+        - Get
+        - Collaboration
+        - Files
+        - File_id
         - Collaborations
+        - Folders
+        - Folder_id
+        - Collaboration_id
       description: Retrieves a single collaboration.
     put:
       tags:
+        - Update
+        - Collaboration
+        - Files
+        - File_id
         - Collaborations
+        - Folders
+        - Folder_id
+        - Collaboration_id
       summary: Update collaboration
       description: |-
         Updates a collaboration.
@@ -37,17 +63,39 @@ paths:
     delete:
       summary: Remove collaboration
       tags:
+        - Remove
+        - Collaboration
+        - Files
+        - File_id
         - Collaborations
+        - Folders
+        - Folder_id
+        - Collaboration_id
       description: Deletes a single collaboration.
   /collaborations:
     get:
       summary: List pending collaborations
       tags:
-        - Collaborations (List)
+        - List
+        - Pending
+        - Collaborations
+        - Files
+        - File_id
+        - Collaborations
+        - Folders
+        - Folder_id
+        - Collaboration_id
       description: Retrieves all pending collaboration invites for this user.
     post:
       tags:
+        - Create
+        - Collaboration
+        - Files
+        - File_id
         - Collaborations
+        - Folders
+        - Folder_id
+        - Collaboration_id
       summary: Create collaboration
       description: |-
         Adds a collaboration for a single user or a single group to a file
@@ -68,10 +116,20 @@ paths:
     get:
       summary: List group collaborations
       tags:
-        - Collaborations (List)
+        - List
+        - Group
+        - Collaborations
+        - Files
+        - File_id
+        - Collaborations
+        - Folders
+        - Folder_id
+        - Collaboration_id
+        - Groups
+        - Group_id
       description: |-
         Retrieves all the collaborations for a group. The user
         must have admin permissions to inspect enterprise's groups.
 
         Each collaboration object has details on which files or
-        folders the group has access to and with what rol
+        folders the group has access to and wit

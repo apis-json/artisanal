@@ -13,6 +13,14 @@ paths:
         href="https://docs.aws.amazon.com/greengrass/v2/developerguide/greengrass-service-role.html">Greengrass
         service role</a> in the <i>IoT Greengrass Version 2 Developer
         Guide</i>.</p>
+      tags:
+        - Get
+        - Service
+        - Role
+        - For
+        - Account
+        - Greengrass
+        - Servicerole
   /greengrass/v2/coreDevices/{coreDeviceThingName}/associateClientDevices:
     POST:
       summary: BatchAssociateClientDeviceWithCoreDevice
@@ -32,6 +40,22 @@ paths:
         href="https://docs.aws.amazon.com/greengrass/v2/developerguide/interact-with-local-iot-devices.html">Interact
         with local IoT devices</a> in the <i>IoT Greengrass V2 Developer
         Guide</i>.</p> </note>
+      tags:
+        - Batch
+        - Associate
+        - Client
+        - Device
+        - With
+        - Core
+        - Greengrass
+        - Servicerole
+        - Devices
+        - Core
+        - Device
+        - Thing
+        - Name
+        - Associate
+        - Client
   /greengrass/v2/coreDevices/{coreDeviceThingName}/disassociateClientDevices:
     POST:
       summary: BatchDisassociateClientDeviceFromCoreDevice
@@ -40,6 +64,23 @@ paths:
         disassociate a client device from a core device, the client device won't
         be able to use cloud discovery to retrieve the core device's
         connectivity information and certificates.</p>
+      tags:
+        - Batch
+        - Disassociate
+        - Client
+        - Device
+        - From
+        - Core
+        - Greengrass
+        - Servicerole
+        - Devices
+        - Core
+        - Device
+        - Thing
+        - Name
+        - Associate
+        - Client
+        - Disassociate
   /greengrass/v2/deployments/{deploymentId}/cancel:
     POST:
       summary: CancelDeployment
@@ -47,6 +88,21 @@ paths:
         <p>Cancels a deployment. This operation cancels the deployment for
         devices that haven't yet received it. If a device already received the
         deployment, this operation doesn't change anything for that device.</p>
+      tags:
+        - Cancel
+        - Deployment
+        - Greengrass
+        - Servicerole
+        - Devices
+        - Core
+        - Device
+        - Thing
+        - Name
+        - Associate
+        - Client
+        - Disassociate
+        - Id
+        - Cancel
   /greengrass/v2/createComponentVersion:
     POST:
       summary: CreateComponentVersion
@@ -81,14 +137,72 @@ paths:
         Lambda function, specify <code>lambdaFunction</code> when you call this
         operation.</p> <note> <p>IoT Greengrass currently supports Lambda
         functions on only Linux core devices.</p> </note> </li> </ul>
+      tags:
+        - Create
+        - Component
+        - Version
+        - Greengrass
+        - Servicerole
+        - Devices
+        - Core
+        - Device
+        - Thing
+        - Name
+        - Associate
+        - Client
+        - Disassociate
+        - Id
+        - Cancel
+        - Component
+        - Version
   /greengrass/v2/deployments:
     GET:
       summary: ListDeployments
       description: <p>Retrieves a paginated list of deployments.</p>
+      tags:
+        - List
+        - Deployments
+        - Greengrass
+        - Servicerole
+        - Devices
+        - Core
+        - Device
+        - Thing
+        - Name
+        - Associate
+        - Client
+        - Disassociate
+        - Id
+        - Cancel
+        - Component
+        - Version
+        - V2
+        - Deployments
   /greengrass/v2/components/{arn}:
     GET:
       summary: GetComponent
       description: <p>Gets the recipe for a version of a component.</p>
+      tags:
+        - Get
+        - Component
+        - Greengrass
+        - Servicerole
+        - Devices
+        - Core
+        - Device
+        - Thing
+        - Name
+        - Associate
+        - Client
+        - Disassociate
+        - Id
+        - Cancel
+        - Component
+        - Version
+        - V2
+        - Deployments
+        - Components
+        - Arn
   /greengrass/v2/coreDevices/{coreDeviceThingName}:
     GET:
       summary: GetCoreDevice
@@ -110,16 +224,81 @@ paths:
         </li> <li> <p>For IoT Greengrass Core v2.7.0, the core device sends
         status updates upon local deployment and cloud deployment</p> </li>
         </ul> </note>
+      tags:
+        - Get
+        - Core
+        - Device
+        - Greengrass
+        - Servicerole
+        - Devices
+        - Core
+        - Device
+        - Thing
+        - Name
+        - Associate
+        - Client
+        - Disassociate
+        - Id
+        - Cancel
+        - Component
+        - Version
+        - V2
+        - Deployments
+        - Components
+        - Arn
   /greengrass/v2/deployments/{deploymentId}:
     GET:
       summary: GetDeployment
       description: >-
         <p>Gets a deployment. Deployments define the components that run on
         Greengrass core devices.</p>
+      tags:
+        - Get
+        - Deployment
+        - Greengrass
+        - Servicerole
+        - Devices
+        - Core
+        - Device
+        - Thing
+        - Name
+        - Associate
+        - Client
+        - Disassociate
+        - Id
+        - Cancel
+        - Component
+        - Version
+        - V2
+        - Deployments
+        - Components
+        - Arn
   /greengrass/v2/components/{arn}/metadata:
     GET:
       summary: DescribeComponent
       description: <p>Retrieves metadata for a version of a component.</p>
+      tags:
+        - Describe
+        - Component
+        - Greengrass
+        - Servicerole
+        - Devices
+        - Core
+        - Device
+        - Thing
+        - Name
+        - Associate
+        - Client
+        - Disassociate
+        - Id
+        - Cancel
+        - Component
+        - Version
+        - V2
+        - Deployments
+        - Components
+        - Arn
+        - Metadata
   /greengrass/v2/components/{arn}/artifacts/{artifactName+}:
     GET:
       summary: GetComponentVersionArtifact
@@ -127,6 +306,31 @@ paths:
         <p>Gets the pre-signed URL to download a public or a Lambda component
         artifact. Core devices call this operation to identify the URL that they
         can use to download an artifact to install.</p>
+      tags:
+        - Get
+        - Component
+        - Version
+        - Artifact
+        - Greengrass
+        - Servicerole
+        - Devices
+        - Core
+        - Device
+        - Thing
+        - Name
+        - Associate
+        - Client
+        - Disassociate
+        - Id
+        - Cancel
+        - Component
+        - Version
+        - V2
+        - Deployments
+        - Components
+        - Arn
+        - Metadata
+        - Name+
   /greengrass/things/{thingName}/connectivityInfo:
     PUT:
       summary: UpdateConnectivityInfo
@@ -142,24 +346,136 @@ paths:
         href="https://docs.aws.amazon.com/greengrass/v2/developerguide/connect-client-devices.html">Connect
         client devices to core devices</a> in the <i>IoT Greengrass Version 2
         Developer Guide</i>.</p>
+      tags:
+        - Update
+        - Connectivity
+        - Info
+        - Greengrass
+        - Servicerole
+        - Devices
+        - Core
+        - Device
+        - Thing
+        - Name
+        - Associate
+        - Client
+        - Disassociate
+        - Id
+        - Cancel
+        - Component
+        - Version
+        - V2
+        - Deployments
+        - Components
+        - Arn
+        - Metadata
+        - Name+
+        - Connectivity
+        - Info
   /greengrass/v2/coreDevices/{coreDeviceThingName}/associatedClientDevices:
     GET:
       summary: ListClientDevicesAssociatedWithCoreDevice
       description: >-
         <p>Retrieves a paginated list of client devices that are associated with
         a core device.</p>
+      tags:
+        - List
+        - Client
+        - Devices
+        - Associated
+        - With
+        - Core
+        - Device
+        - Greengrass
+        - Servicerole
+        - Devices
+        - Core
+        - Device
+        - Thing
+        - Name
+        - Associate
+        - Client
+        - Disassociate
+        - Id
+        - Cancel
+        - Component
+        - Version
+        - V2
+        - Deployments
+        - Components
+        - Arn
+        - Metadata
+        - Name+
+        - Connectivity
+        - Info
+        - Associated
   /greengrass/v2/components/{arn}/versions:
     GET:
       summary: ListComponentVersions
       description: >-
         <p>Retrieves a paginated list of all versions for a component. Greater
         versions are listed first.</p>
+      tags:
+        - List
+        - Component
+        - Versions
+        - Greengrass
+        - Servicerole
+        - Devices
+        - Core
+        - Device
+        - Thing
+        - Name
+        - Associate
+        - Client
+        - Disassociate
+        - Id
+        - Cancel
+        - Component
+        - Version
+        - V2
+        - Deployments
+        - Components
+        - Arn
+        - Metadata
+        - Name+
+        - Connectivity
+        - Info
+        - Associated
+        - Versions
   /greengrass/v2/components:
     GET:
       summary: ListComponents
       description: >-
         <p>Retrieves a paginated list of component summaries. This list includes
         components that you have permission to view.</p>
+      tags:
+        - List
+        - Components
+        - Greengrass
+        - Servicerole
+        - Devices
+        - Core
+        - Device
+        - Thing
+        - Name
+        - Associate
+        - Client
+        - Disassociate
+        - Id
+        - Cancel
+        - Component
+        - Version
+        - V2
+        - Deployments
+        - Components
+        - Arn
+        - Metadata
+        - Name+
+        - Connectivity
+        - Info
+        - Associated
+        - Versions
   /greengrass/v2/coreDevices:
     GET:
       summary: ListCoreDevices
@@ -181,12 +497,69 @@ paths:
         </li> <li> <p>For IoT Greengrass Core v2.7.0, the core device sends
         status updates upon local deployment and cloud deployment</p> </li>
         </ul> </note>
+      tags:
+        - List
+        - Core
+        - Devices
+        - Greengrass
+        - Servicerole
+        - Devices
+        - Core
+        - Device
+        - Thing
+        - Name
+        - Associate
+        - Client
+        - Disassociate
+        - Id
+        - Cancel
+        - Component
+        - Version
+        - V2
+        - Deployments
+        - Components
+        - Arn
+        - Metadata
+        - Name+
+        - Connectivity
+        - Info
+        - Associated
+        - Versions
   /greengrass/v2/coreDevices/{coreDeviceThingName}/effectiveDeployments:
     GET:
       summary: ListEffectiveDeployments
       description: >-
         <p>Retrieves a paginated list of deployment jobs that IoT Greengrass
         sends to Greengrass core devices.</p>
+      tags:
+        - List
+        - Effective
+        - Deployments
+        - Greengrass
+        - Servicerole
+        - Devices
+        - Core
+        - Device
+        - Thing
+        - Name
+        - Associate
+        - Client
+        - Disassociate
+        - Id
+        - Cancel
+        - Component
+        - Version
+        - V2
+        - Deployments
+        - Components
+        - Arn
+        - Metadata
+        - Name+
+        - Connectivity
+        - Info
+        - Associated
+        - Versions
+        - Effective
   /greengrass/v2/coreDevices/{coreDeviceThingName}/installedComponents:
     GET:
       summary: ListInstalledComponents
@@ -211,10 +584,69 @@ paths:
         </li> <li> <p>For IoT Greengrass Core v2.7.0, the core device sends
         status updates upon local deployment and cloud deployment</p> </li>
         </ul> </note>
+      tags:
+        - List
+        - Installed
+        - Components
+        - Greengrass
+        - Servicerole
+        - Devices
+        - Core
+        - Device
+        - Thing
+        - Name
+        - Associate
+        - Client
+        - Disassociate
+        - Id
+        - Cancel
+        - Component
+        - Version
+        - V2
+        - Deployments
+        - Components
+        - Arn
+        - Metadata
+        - Name+
+        - Connectivity
+        - Info
+        - Associated
+        - Versions
+        - Effective
+        - Installed
   /tags/{resourceArn}:
     DELETE:
       summary: UntagResource
       description: <p>Removes a tag from an IoT Greengrass resource.</p>
+      tags:
+        - Untag
+        - Resource
+        - Greengrass
+        - Servicerole
+        - Devices
+        - Core
+        - Device
+        - Thing
+        - Name
+        - Associate
+        - Client
+        - Disassociate
+        - Id
+        - Cancel
+        - Component
+        - Version
+        - V2
+        - Deployments
+        - Components
+        - Arn
+        - Metadata
+        - Name+
+        - Connectivity
+        - Info
+        - Associated
+        - Versions
+        - Effective
+        - Installed
   /greengrass/v2/resolveComponentCandidates:
     POST:
       summary: ResolveComponentCandidates
@@ -236,4 +668,35 @@ paths:
         plane API endpoint and authenticate with an IoT device certificate. For
         more information, see <a
         href="https://docs.aws.amazon.com/general/latest/gr/greengrass.html">IoT
-        Greengrass endpoints and quotas</a>.</p> </im
+        Greengrass endpoints and quotas</a>.</p> </
+      tags:
+        - Resolve
+        - Component
+        - Candidates
+        - Greengrass
+        - Servicerole
+        - Devices
+        - Core
+        - Device
+        - Thing
+        - Name
+        - Associate
+        - Client
+        - Disassociate
+        - Id
+        - Cancel
+        - Component
+        - Version
+        - V2
+        - Deployments
+        - Components
+        - Arn
+        - Metadata
+        - Name+
+        - Connectivity
+        - Info
+        - Associated
+        - Versions
+        - Effective
+        - Installed
+        - Candidat

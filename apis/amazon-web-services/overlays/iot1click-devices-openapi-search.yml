@@ -9,6 +9,12 @@ paths:
         <p>Adds device(s) to your account (i.e., claim one or more devices) if
         and only if you
          received a claim code with the device(s).</p>
+      tags:
+        - Claim
+        - Devices
+        - By
+        - Code
+        - Code
   /devices/{deviceId}:
     GET:
       summary: DescribeDevice
@@ -16,6 +22,11 @@ paths:
         <p>Given a device ID, returns a DescribeDeviceResponse object describing
         the
          details of the device.</p>
+      tags:
+        - Describe
+        - Device
+        - Code
+        - Id
   /devices/{deviceId}/finalize-claim:
     PUT:
       summary: FinalizeDeviceClaim
@@ -26,6 +37,14 @@ paths:
          and finalizing the claim. For a device of type button, a device event can
          be published by simply clicking the device.</p>
          </note>
+      tags:
+        - Finalize
+        - Device
+        - Claim
+        - Code
+        - Id
+        - Finalize
+        - Claim
   /devices/{deviceId}/methods:
     POST:
       summary: InvokeDeviceMethod
@@ -33,6 +52,15 @@ paths:
         <p>Given a device ID, issues a request to invoke a named device method
         (with possible
          parameters). See the "Example POST" code snippet below.</p>
+      tags:
+        - Invoke
+        - Device
+        - Method
+        - Code
+        - Id
+        - Finalize
+        - Claim
+        - Methods
   /devices/{deviceId}/initiate-claim:
     PUT:
       summary: InitiateDeviceClaim
@@ -43,6 +71,16 @@ paths:
          and finalizing the claim. For a device of type button, a device event can
          be published by simply clicking the device.</p>
          </note>
+      tags:
+        - Initiate
+        - Device
+        - Claim
+        - Code
+        - Id
+        - Finalize
+        - Claim
+        - Methods
+        - Initiate
   /devices/{deviceId}/events:
     GET:
       summary: ListDeviceEvents
@@ -50,12 +88,34 @@ paths:
         <p>Using a device ID, returns a DeviceEventsResponse object containing
         an
          array of events for the device.</p>
+      tags:
+        - List
+        - Device
+        - Events
+        - Code
+        - Id
+        - Finalize
+        - Claim
+        - Methods
+        - Initiate
+        - Events
   /devices:
     GET:
       summary: ListDevices
       description: >-
         <p>Lists the 1-Click compatible devices associated with your AWS
         account.</p>
+      tags:
+        - List
+        - Devices
+        - Code
+        - Id
+        - Finalize
+        - Claim
+        - Methods
+        - Initiate
+        - Events
+        - Devices
   /tags/{resource-arn}:
     DELETE:
       summary: UntagResource
@@ -63,13 +123,59 @@ paths:
         <p>Using tag keys, deletes the tags (key/value pairs) associated with
         the specified
          resource ARN.</p>
+      tags:
+        - Untag
+        - Resource
+        - Code
+        - Id
+        - Finalize
+        - Claim
+        - Methods
+        - Initiate
+        - Events
+        - Devices
+        - Tags
+        - Resource
+        - Arn
   /devices/{deviceId}/unclaim:
     PUT:
       summary: UnclaimDevice
       description: <p>Disassociates a device from your AWS account using its device ID.</p>
+      tags:
+        - Unclaim
+        - Device
+        - Code
+        - Id
+        - Finalize
+        - Claim
+        - Methods
+        - Initiate
+        - Events
+        - Devices
+        - Tags
+        - Resource
+        - Arn
+        - Unclaim
   /devices/{deviceId}/state:
     PUT:
       summary: UpdateDeviceState
       description: |-
         <p>Using a Boolean value (true or false), this operation
-         enables or disables the device given a device
+         enables or disables the device given a devi
+      tags:
+        - Update
+        - Device
+        - State
+        - Code
+        - Id
+        - Finalize
+        - Claim
+        - Methods
+        - Initiate
+        - Events
+        - Devices
+        - Tags
+        - Resource
+        - Arn
+        - Unclaim
+        - Sta

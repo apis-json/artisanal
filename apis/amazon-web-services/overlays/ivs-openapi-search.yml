@@ -6,28 +6,91 @@ paths:
     POST:
       summary: BatchGetChannel
       description: <p>Performs <a>GetChannel</a> on multiple ARNs simultaneously.</p>
+      tags:
+        - Batch
+        - Get
+        - Channel
+        - Batch
+        - Get
+        - Channel
   /BatchGetStreamKey:
     POST:
       summary: BatchGetStreamKey
       description: <p>Performs <a>GetStreamKey</a> on multiple ARNs simultaneously.</p>
+      tags:
+        - Batch
+        - Get
+        - Stream
+        - Key
+        - Batch
+        - Get
+        - Channel
+        - Stream
+        - Key
   /BatchStartViewerSessionRevocation:
     POST:
       summary: BatchStartViewerSessionRevocation
       description: >-
         <p>Performs <a>StartViewerSessionRevocation</a> on multiple channel ARN
         and viewer ID pairs simultaneously.</p>
+      tags:
+        - Batch
+        - Start
+        - Viewer
+        - Session
+        - Revocation
+        - Batch
+        - Get
+        - Channel
+        - Stream
+        - Key
+        - Start
+        - Viewer
+        - Session
+        - Revocation
   /CreateChannel:
     POST:
       summary: CreateChannel
       description: >-
         <p>Creates a new channel and an associated stream key to start
         streaming.</p>
+      tags:
+        - Create
+        - Channel
+        - Batch
+        - Get
+        - Channel
+        - Stream
+        - Key
+        - Start
+        - Viewer
+        - Session
+        - Revocation
+        - Create
   /CreatePlaybackRestrictionPolicy:
     POST:
       summary: CreatePlaybackRestrictionPolicy
       description: >-
         <p>Creates a new playback restriction policy, for constraining playback
         by countries and/or origins.</p>
+      tags:
+        - Create
+        - Playback
+        - Restriction
+        - Policy
+        - Batch
+        - Get
+        - Channel
+        - Stream
+        - Key
+        - Start
+        - Viewer
+        - Session
+        - Revocation
+        - Create
+        - Playback
+        - Restriction
+        - Policy
   /CreateRecordingConfiguration:
     POST:
       summary: CreateRecordingConfiguration
@@ -44,6 +107,25 @@ paths:
         recording configuration in a different region as your S3 bucket, delete
         that recording configuration and create a new one with an S3 bucket from
         the correct region.</p>
+      tags:
+        - Create
+        - Recording
+        - Configuration
+        - Batch
+        - Get
+        - Channel
+        - Stream
+        - Key
+        - Start
+        - Viewer
+        - Session
+        - Revocation
+        - Create
+        - Playback
+        - Restriction
+        - Policy
+        - Recording
+        - Configuration
   /CreateStreamKey:
     POST:
       summary: CreateStreamKey
@@ -54,6 +136,25 @@ paths:
         fail because a stream key already exists and there is a limit of 1
         stream key per channel. To reset the stream key on a channel, use
         <a>DeleteStreamKey</a> and then CreateStreamKey.</p>
+      tags:
+        - Create
+        - Stream
+        - Key
+        - Batch
+        - Get
+        - Channel
+        - Stream
+        - Key
+        - Start
+        - Viewer
+        - Session
+        - Revocation
+        - Create
+        - Playback
+        - Restriction
+        - Policy
+        - Recording
+        - Configuration
   /DeleteChannel:
     POST:
       summary: DeleteChannel
@@ -66,6 +167,25 @@ paths:
         DeleteChannel. (See <a
         href="https://docs.aws.amazon.com/ivs/latest/userguide/eventbridge.html">
         Using EventBridge with Amazon IVS</a>.) </p>
+      tags:
+        - Delete
+        - Channel
+        - Batch
+        - Get
+        - Channel
+        - Stream
+        - Key
+        - Start
+        - Viewer
+        - Session
+        - Revocation
+        - Create
+        - Playback
+        - Restriction
+        - Policy
+        - Recording
+        - Configuration
+        - Delete
   /DeletePlaybackKeyPair:
     POST:
       summary: DeletePlaybackKeyPair
@@ -75,10 +195,54 @@ paths:
         For more information, see <a
         href="https://docs.aws.amazon.com/ivs/latest/userguide/private-channels.html">Setting
         Up Private Channels</a> in the <i>Amazon IVS User Guide</i>.</p>
+      tags:
+        - Delete
+        - Playback
+        - Key
+        - Pair
+        - Batch
+        - Get
+        - Channel
+        - Stream
+        - Key
+        - Start
+        - Viewer
+        - Session
+        - Revocation
+        - Create
+        - Playback
+        - Restriction
+        - Policy
+        - Recording
+        - Configuration
+        - Delete
+        - Pair
   /DeletePlaybackRestrictionPolicy:
     POST:
       summary: DeletePlaybackRestrictionPolicy
       description: <p>Deletes the specified playback restriction policy.</p>
+      tags:
+        - Delete
+        - Playback
+        - Restriction
+        - Policy
+        - Batch
+        - Get
+        - Channel
+        - Stream
+        - Key
+        - Start
+        - Viewer
+        - Session
+        - Revocation
+        - Create
+        - Playback
+        - Restriction
+        - Policy
+        - Recording
+        - Configuration
+        - Delete
+        - Pair
   /DeleteRecordingConfiguration:
     POST:
       summary: DeleteRecordingConfiguration
@@ -89,18 +253,80 @@ paths:
         for all channels that reference the recording configuration, first use
         <a>UpdateChannel</a> to set the <code>recordingConfigurationArn</code>
         field to an empty string, then use DeleteRecordingConfiguration.</p>
+      tags:
+        - Delete
+        - Recording
+        - Configuration
+        - Batch
+        - Get
+        - Channel
+        - Stream
+        - Key
+        - Start
+        - Viewer
+        - Session
+        - Revocation
+        - Create
+        - Playback
+        - Restriction
+        - Policy
+        - Recording
+        - Configuration
+        - Delete
+        - Pair
   /DeleteStreamKey:
     POST:
       summary: DeleteStreamKey
       description: >-
         <p>Deletes the stream key for the specified ARN, so it can no longer be
         used to stream.</p>
+      tags:
+        - Delete
+        - Stream
+        - Key
+        - Batch
+        - Get
+        - Channel
+        - Stream
+        - Key
+        - Start
+        - Viewer
+        - Session
+        - Revocation
+        - Create
+        - Playback
+        - Restriction
+        - Policy
+        - Recording
+        - Configuration
+        - Delete
+        - Pair
   /GetChannel:
     POST:
       summary: GetChannel
       description: >-
         <p>Gets the channel configuration for the specified channel ARN. See
         also <a>BatchGetChannel</a>.</p>
+      tags:
+        - Get
+        - Channel
+        - Batch
+        - Get
+        - Channel
+        - Stream
+        - Key
+        - Start
+        - Viewer
+        - Session
+        - Revocation
+        - Create
+        - Playback
+        - Restriction
+        - Policy
+        - Recording
+        - Configuration
+        - Delete
+        - Pair
   /GetPlaybackKeyPair:
     POST:
       summary: GetPlaybackKeyPair
@@ -112,28 +338,155 @@ paths:
         channels. For more information, see <a
         href="https://docs.aws.amazon.com/ivs/latest/userguide/private-channels.html">Setting
         Up Private Channels</a> in the <i>Amazon IVS User Guide</i>.</p>
+      tags:
+        - Get
+        - Playback
+        - Key
+        - Pair
+        - Batch
+        - Get
+        - Channel
+        - Stream
+        - Key
+        - Start
+        - Viewer
+        - Session
+        - Revocation
+        - Create
+        - Playback
+        - Restriction
+        - Policy
+        - Recording
+        - Configuration
+        - Delete
+        - Pair
   /GetPlaybackRestrictionPolicy:
     POST:
       summary: GetPlaybackRestrictionPolicy
       description: <p>Gets the specified playback restriction policy.</p>
+      tags:
+        - Get
+        - Playback
+        - Restriction
+        - Policy
+        - Batch
+        - Get
+        - Channel
+        - Stream
+        - Key
+        - Start
+        - Viewer
+        - Session
+        - Revocation
+        - Create
+        - Playback
+        - Restriction
+        - Policy
+        - Recording
+        - Configuration
+        - Delete
+        - Pair
   /GetRecordingConfiguration:
     POST:
       summary: GetRecordingConfiguration
       description: <p>Gets the recording configuration for the specified ARN.</p>
+      tags:
+        - Get
+        - Recording
+        - Configuration
+        - Batch
+        - Get
+        - Channel
+        - Stream
+        - Key
+        - Start
+        - Viewer
+        - Session
+        - Revocation
+        - Create
+        - Playback
+        - Restriction
+        - Policy
+        - Recording
+        - Configuration
+        - Delete
+        - Pair
   /GetStream:
     POST:
       summary: GetStream
       description: >-
         <p>Gets information about the active (live) stream on a specified
         channel.</p>
+      tags:
+        - Get
+        - Stream
+        - Batch
+        - Get
+        - Channel
+        - Stream
+        - Key
+        - Start
+        - Viewer
+        - Session
+        - Revocation
+        - Create
+        - Playback
+        - Restriction
+        - Policy
+        - Recording
+        - Configuration
+        - Delete
+        - Pair
   /GetStreamKey:
     POST:
       summary: GetStreamKey
       description: <p>Gets stream-key information for a specified ARN.</p>
+      tags:
+        - Get
+        - Stream
+        - Key
+        - Batch
+        - Get
+        - Channel
+        - Stream
+        - Key
+        - Start
+        - Viewer
+        - Session
+        - Revocation
+        - Create
+        - Playback
+        - Restriction
+        - Policy
+        - Recording
+        - Configuration
+        - Delete
+        - Pair
   /GetStreamSession:
     POST:
       summary: GetStreamSession
       description: <p>Gets metadata on a specified stream.</p>
+      tags:
+        - Get
+        - Stream
+        - Session
+        - Batch
+        - Get
+        - Channel
+        - Stream
+        - Key
+        - Start
+        - Viewer
+        - Session
+        - Revocation
+        - Create
+        - Playback
+        - Restriction
+        - Policy
+        - Recording
+        - Configuration
+        - Delete
+        - Pair
   /ImportPlaybackKeyPair:
     POST:
       summary: ImportPlaybackKeyPair
@@ -145,6 +498,29 @@ paths:
         more information, see <a
         href="https://docs.aws.amazon.com/ivs/latest/userguide/private-channels.html">Setting
         Up Private Channels</a> in the <i>Amazon IVS User Guide</i>.</p>
+      tags:
+        - Import
+        - Playback
+        - Key
+        - Pair
+        - Batch
+        - Get
+        - Channel
+        - Stream
+        - Key
+        - Start
+        - Viewer
+        - Session
+        - Revocation
+        - Create
+        - Playback
+        - Restriction
+        - Policy
+        - Recording
+        - Configuration
+        - Delete
+        - Pair
+        - Import
   /ListChannels:
     POST:
       summary: ListChannels
@@ -155,6 +531,29 @@ paths:
         ARN. Filters are mutually exclusive and cannot be used together. If you
         try to use both filters, you will get an error (409
         ConflictException).</p>
+      tags:
+        - List
+        - Channels
+        - Batch
+        - Get
+        - Channel
+        - Stream
+        - Key
+        - Start
+        - Viewer
+        - Session
+        - Revocation
+        - Create
+        - Playback
+        - Restriction
+        - Policy
+        - Recording
+        - Configuration
+        - Delete
+        - Pair
+        - Import
+        - List
+        - Channels
   /ListPlaybackKeyPairs:
     POST:
       summary: ListPlaybackKeyPairs
@@ -163,10 +562,63 @@ paths:
         information, see <a
         href="https://docs.aws.amazon.com/ivs/latest/userguide/private-channels.html">Setting
         Up Private Channels</a> in the <i>Amazon IVS User Guide</i>.</p>
+      tags:
+        - List
+        - Playback
+        - Key
+        - Pairs
+        - Batch
+        - Get
+        - Channel
+        - Stream
+        - Key
+        - Start
+        - Viewer
+        - Session
+        - Revocation
+        - Create
+        - Playback
+        - Restriction
+        - Policy
+        - Recording
+        - Configuration
+        - Delete
+        - Pair
+        - Import
+        - List
+        - Channels
+        - Pairs
   /ListPlaybackRestrictionPolicies:
     POST:
       summary: ListPlaybackRestrictionPolicies
       description: <p>Gets summary information about playback restriction policies.</p>
+      tags:
+        - List
+        - Playback
+        - Restriction
+        - Policies
+        - Batch
+        - Get
+        - Channel
+        - Stream
+        - Key
+        - Start
+        - Viewer
+        - Session
+        - Revocation
+        - Create
+        - Playback
+        - Restriction
+        - Policy
+        - Recording
+        - Configuration
+        - Delete
+        - Pair
+        - Import
+        - List
+        - Channels
+        - Pairs
+        - Policies
   /ListRecordingConfigurations:
     POST:
       summary: ListRecordingConfigurations
@@ -174,12 +626,67 @@ paths:
         <p>Gets summary information about all recording configurations in your
         account, in the Amazon Web Services region where the API request is
         processed.</p>
+      tags:
+        - List
+        - Recording
+        - Configurations
+        - Batch
+        - Get
+        - Channel
+        - Stream
+        - Key
+        - Start
+        - Viewer
+        - Session
+        - Revocation
+        - Create
+        - Playback
+        - Restriction
+        - Policy
+        - Recording
+        - Configuration
+        - Delete
+        - Pair
+        - Import
+        - List
+        - Channels
+        - Pairs
+        - Policies
+        - Configurations
   /ListStreamKeys:
     POST:
       summary: ListStreamKeys
       description: >-
         <p>Gets summary information about stream keys for the specified
         channel.</p>
+      tags:
+        - List
+        - Stream
+        - Keys
+        - Batch
+        - Get
+        - Channel
+        - Stream
+        - Key
+        - Start
+        - Viewer
+        - Session
+        - Revocation
+        - Create
+        - Playback
+        - Restriction
+        - Policy
+        - Recording
+        - Configuration
+        - Delete
+        - Pair
+        - Import
+        - List
+        - Channels
+        - Pairs
+        - Policies
+        - Configurations
+        - Keys
   /ListStreamSessions:
     POST:
       summary: ListStreamSessions
@@ -187,16 +694,104 @@ paths:
         <p>Gets a summary of current and previous streams for a specified
         channel in your account, in the AWS region where the API request is
         processed.</p>
+      tags:
+        - List
+        - Stream
+        - Sessions
+        - Batch
+        - Get
+        - Channel
+        - Stream
+        - Key
+        - Start
+        - Viewer
+        - Session
+        - Revocation
+        - Create
+        - Playback
+        - Restriction
+        - Policy
+        - Recording
+        - Configuration
+        - Delete
+        - Pair
+        - Import
+        - List
+        - Channels
+        - Pairs
+        - Policies
+        - Configurations
+        - Keys
+        - Sessions
   /ListStreams:
     POST:
       summary: ListStreams
       description: >-
         <p>Gets summary information about live streams in your account, in the
         Amazon Web Services region where the API request is processed.</p>
+      tags:
+        - List
+        - Streams
+        - Batch
+        - Get
+        - Channel
+        - Stream
+        - Key
+        - Start
+        - Viewer
+        - Session
+        - Revocation
+        - Create
+        - Playback
+        - Restriction
+        - Policy
+        - Recording
+        - Configuration
+        - Delete
+        - Pair
+        - Import
+        - List
+        - Channels
+        - Pairs
+        - Policies
+        - Configurations
+        - Keys
+        - Sessions
+        - Streams
   /tags/{resourceArn}:
     DELETE:
       summary: UntagResource
       description: <p>Removes tags from the resource with the specified ARN.</p>
+      tags:
+        - Untag
+        - Resource
+        - Batch
+        - Get
+        - Channel
+        - Stream
+        - Key
+        - Start
+        - Viewer
+        - Session
+        - Revocation
+        - Create
+        - Playback
+        - Restriction
+        - Policy
+        - Recording
+        - Configuration
+        - Delete
+        - Pair
+        - Import
+        - List
+        - Channels
+        - Pairs
+        - Policies
+        - Configurations
+        - Keys
+        - Sessions
+        - Streams
+        - Arn
   /PutMetadata:
     POST:
       summary: PutMetadata
@@ -209,6 +804,38 @@ paths:
         href="https://docs.aws.amazon.com/ivs/latest/userguide/metadata.html">Embedding
         Metadata within a Video Stream</a> in the <i>Amazon IVS User
         Guide</i>.</p>
+      tags:
+        - Put
+        - Metadata
+        - Batch
+        - Get
+        - Channel
+        - Stream
+        - Key
+        - Start
+        - Viewer
+        - Session
+        - Revocation
+        - Create
+        - Playback
+        - Restriction
+        - Policy
+        - Recording
+        - Configuration
+        - Delete
+        - Pair
+        - Import
+        - List
+        - Channels
+        - Pairs
+        - Policies
+        - Configurations
+        - Keys
+        - Sessions
+        - Streams
+        - Arn
+        - Put
+        - Metadata
   /StartViewerSessionRevocation:
     POST:
       summary: StartViewerSessionRevocation
@@ -220,6 +847,40 @@ paths:
         <a
         href="https://docs.aws.amazon.com/ivs/latest/userguide/private-channels.html">Setting
         Up Private Channels</a>.</p>
+      tags:
+        - Start
+        - Viewer
+        - Session
+        - Revocation
+        - Batch
+        - Get
+        - Channel
+        - Stream
+        - Key
+        - Start
+        - Viewer
+        - Session
+        - Revocation
+        - Create
+        - Playback
+        - Restriction
+        - Policy
+        - Recording
+        - Configuration
+        - Delete
+        - Pair
+        - Import
+        - List
+        - Channels
+        - Pairs
+        - Policies
+        - Configurations
+        - Keys
+        - Sessions
+        - Streams
+        - Arn
+        - Put
+        - Metadata
   /StopStream:
     POST:
       summary: StopStream
@@ -230,6 +891,39 @@ paths:
         libraries automatically reconnect a dropped RTMPS session, so to stop
         the stream permanently, you may want to first revoke the
         <code>streamKey</code> attached to the channel.</p> </note>
+      tags:
+        - Stop
+        - Stream
+        - Batch
+        - Get
+        - Channel
+        - Stream
+        - Key
+        - Start
+        - Viewer
+        - Session
+        - Revocation
+        - Create
+        - Playback
+        - Restriction
+        - Policy
+        - Recording
+        - Configuration
+        - Delete
+        - Pair
+        - Import
+        - List
+        - Channels
+        - Pairs
+        - Policies
+        - Configurations
+        - Keys
+        - Sessions
+        - Streams
+        - Arn
+        - Put
+        - Metadata
+        - Stop
   /UpdateChannel:
     POST:
       summary: UpdateChannel
@@ -237,7 +931,77 @@ paths:
         <p>Updates a channel's configuration. Live channels cannot be updated.
         You must stop the ongoing stream, update the channel, and restart the
         stream for the changes to take effect.</p>
+      tags:
+        - Update
+        - Channel
+        - Batch
+        - Get
+        - Channel
+        - Stream
+        - Key
+        - Start
+        - Viewer
+        - Session
+        - Revocation
+        - Create
+        - Playback
+        - Restriction
+        - Policy
+        - Recording
+        - Configuration
+        - Delete
+        - Pair
+        - Import
+        - List
+        - Channels
+        - Pairs
+        - Policies
+        - Configurations
+        - Keys
+        - Sessions
+        - Streams
+        - Arn
+        - Put
+        - Metadata
+        - Stop
+        - Update
   /UpdatePlaybackRestrictionPolicy:
     POST:
       summary: UpdatePlaybackRestrictionPolicy
-      description: <p>Updates a specified playback restriction pol
+      description: <p>Updates a specified playback restriction p
+      tags:
+        - Update
+        - Playback
+        - Restriction
+        - Policy
+        - Batch
+        - Get
+        - Channel
+        - Stream
+        - Key
+        - Start
+        - Viewer
+        - Session
+        - Revocation
+        - Create
+        - Playback
+        - Restriction
+        - Policy
+        - Recording
+        - Configuration
+        - Delete
+        - Pair
+        - Import
+        - List
+        - Channels
+        - Pairs
+        - Policies
+        - Configurations
+        - Keys
+        - Sessions
+        - Streams
+        - Arn
+        - Put
+        - Metadata
+        - Stop
+        - Upda

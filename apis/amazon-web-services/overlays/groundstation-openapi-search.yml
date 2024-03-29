@@ -6,24 +6,60 @@ paths:
     GET:
       summary: DescribeContact
       description: <p>Describes an existing contact.</p>
+      tags:
+        - Describe
+        - Contact
+        - Id
   /config:
     GET:
       summary: ListConfigs
       description: <p>Returns a list of <code>Config</code> objects.</p>
+      tags:
+        - List
+        - Configs
+        - Id
+        - Config
   /dataflowEndpointGroup:
     GET:
       summary: ListDataflowEndpointGroups
       description: <p>Returns a list of <code>DataflowEndpoint</code> groups.</p>
+      tags:
+        - List
+        - Dataflow
+        - Endpoint
+        - Groups
+        - Id
+        - Config
+        - Endpoint
+        - Group
   /ephemeris:
     POST:
       summary: CreateEphemeris
       description: >-
         <p>Creates an Ephemeris with the specified
         <code>EphemerisData</code>.</p>
+      tags:
+        - Create
+        - Ephemeris
+        - Id
+        - Config
+        - Endpoint
+        - Group
+        - Ephemeris
   /missionprofile:
     GET:
       summary: ListMissionProfiles
       description: <p>Returns a list of mission profiles.</p>
+      tags:
+        - List
+        - Mission
+        - Profiles
+        - Id
+        - Config
+        - Endpoint
+        - Group
+        - Ephemeris
+        - Missionprofile
   /config/{configType}/{configId}:
     PUT:
       summary: UpdateConfig
@@ -32,20 +68,67 @@ paths:
         <p>Updating a <code>Config</code> will not update the execution
         parameters for existing future contacts scheduled with this
         <code>Config</code>.</p>
+      tags:
+        - Update
+        - Config
+        - Id
+        - Config
+        - Endpoint
+        - Group
+        - Ephemeris
+        - Missionprofile
+        - Type
   /dataflowEndpointGroup/{dataflowEndpointGroupId}:
     GET:
       summary: GetDataflowEndpointGroup
       description: <p>Returns the dataflow endpoint group.</p>
+      tags:
+        - Get
+        - Dataflow
+        - Endpoint
+        - Group
+        - Id
+        - Config
+        - Endpoint
+        - Group
+        - Ephemeris
+        - Missionprofile
+        - Type
+        - Dataflow
   /ephemeris/{ephemerisId}:
     PUT:
       summary: UpdateEphemeris
       description: <p>Updates an existing ephemeris</p>
+      tags:
+        - Update
+        - Ephemeris
+        - Id
+        - Config
+        - Endpoint
+        - Group
+        - Ephemeris
+        - Missionprofile
+        - Type
+        - Dataflow
   /missionprofile/{missionProfileId}:
     PUT:
       summary: UpdateMissionProfile
       description: >-
         <p>Updates a mission profile.</p> <p>Updating a mission profile will not
         update the execution parameters for existing future contacts.</p>
+      tags:
+        - Update
+        - Mission
+        - Profile
+        - Id
+        - Config
+        - Endpoint
+        - Group
+        - Ephemeris
+        - Missionprofile
+        - Type
+        - Dataflow
+        - Profile
   /agent/{agentId}/configuration:
     GET:
       summary: GetAgentConfiguration
@@ -53,14 +136,59 @@ paths:
         <note> <p> For use by AWS Ground Station Agent and shouldn't be called
         directly.</p> </note> <p>Gets the latest configuration information for a
         registered agent.</p>
+      tags:
+        - Get
+        - Agent
+        - Configuration
+        - Id
+        - Config
+        - Endpoint
+        - Group
+        - Ephemeris
+        - Missionprofile
+        - Type
+        - Dataflow
+        - Profile
+        - Configuration
   /minute-usage:
     POST:
       summary: GetMinuteUsage
       description: <p>Returns the number of reserved minutes used by account.</p>
+      tags:
+        - Get
+        - Minute
+        - Usage
+        - Id
+        - Config
+        - Endpoint
+        - Group
+        - Ephemeris
+        - Missionprofile
+        - Type
+        - Dataflow
+        - Profile
+        - Configuration
+        - Minute
+        - Usage
   /satellite/{satelliteId}:
     GET:
       summary: GetSatellite
       description: <p>Returns a satellite.</p>
+      tags:
+        - Get
+        - Satellite
+        - Id
+        - Config
+        - Endpoint
+        - Group
+        - Ephemeris
+        - Missionprofile
+        - Type
+        - Dataflow
+        - Profile
+        - Configuration
+        - Minute
+        - Usage
   /contacts:
     POST:
       summary: ListContacts
@@ -68,22 +196,113 @@ paths:
         <p>Returns a list of contacts.</p> <p>If <code>statusList</code>
         contains AVAILABLE, the request must include <code>groundStation</code>,
         <code>missionprofileArn</code>, and <code>satelliteArn</code>. </p>
+      tags:
+        - List
+        - Contacts
+        - Id
+        - Config
+        - Endpoint
+        - Group
+        - Ephemeris
+        - Missionprofile
+        - Type
+        - Dataflow
+        - Profile
+        - Configuration
+        - Minute
+        - Usage
+        - Contacts
   /ephemerides:
     POST:
       summary: ListEphemerides
       description: <p>List existing ephemerides.</p>
+      tags:
+        - List
+        - Ephemerides
+        - Id
+        - Config
+        - Endpoint
+        - Group
+        - Ephemeris
+        - Missionprofile
+        - Type
+        - Dataflow
+        - Profile
+        - Configuration
+        - Minute
+        - Usage
+        - Contacts
+        - Ephemerides
   /groundstation:
     GET:
       summary: ListGroundStations
       description: <p>Returns a list of ground stations. </p>
+      tags:
+        - List
+        - Ground
+        - Stations
+        - Id
+        - Config
+        - Endpoint
+        - Group
+        - Ephemeris
+        - Missionprofile
+        - Type
+        - Dataflow
+        - Profile
+        - Configuration
+        - Minute
+        - Usage
+        - Contacts
+        - Ephemerides
+        - Groundstation
   /satellite:
     GET:
       summary: ListSatellites
       description: <p>Returns a list of satellites.</p>
+      tags:
+        - List
+        - Satellites
+        - Id
+        - Config
+        - Endpoint
+        - Group
+        - Ephemeris
+        - Missionprofile
+        - Type
+        - Dataflow
+        - Profile
+        - Configuration
+        - Minute
+        - Usage
+        - Contacts
+        - Ephemerides
+        - Groundstation
+        - Satellite
   /tags/{resourceArn}:
     DELETE:
       summary: UntagResource
       description: <p>Deassigns a resource tag.</p>
+      tags:
+        - Untag
+        - Resource
+        - Id
+        - Config
+        - Endpoint
+        - Group
+        - Ephemeris
+        - Missionprofile
+        - Type
+        - Dataflow
+        - Profile
+        - Configuration
+        - Minute
+        - Usage
+        - Contacts
+        - Ephemerides
+        - Groundstation
+        - Satellite
+        - Arn
   /agent:
     POST:
       summary: RegisterAgent
@@ -91,13 +310,79 @@ paths:
         <note> <p> For use by AWS Ground Station Agent and shouldn't be called
         directly.</p> </note> <p> Registers a new agent with AWS Ground Station.
         </p>
+      tags:
+        - Register
+        - Agent
+        - Id
+        - Config
+        - Endpoint
+        - Group
+        - Ephemeris
+        - Missionprofile
+        - Type
+        - Dataflow
+        - Profile
+        - Configuration
+        - Minute
+        - Usage
+        - Contacts
+        - Ephemerides
+        - Groundstation
+        - Satellite
+        - Arn
+        - Agent
   /contact:
     POST:
       summary: ReserveContact
       description: <p>Reserves a contact using specified parameters.</p>
+      tags:
+        - Reserve
+        - Contact
+        - Id
+        - Config
+        - Endpoint
+        - Group
+        - Ephemeris
+        - Missionprofile
+        - Type
+        - Dataflow
+        - Profile
+        - Configuration
+        - Minute
+        - Usage
+        - Contacts
+        - Ephemerides
+        - Groundstation
+        - Satellite
+        - Arn
+        - Agent
+        - Contact
   /agent/{agentId}:
     PUT:
       summary: UpdateAgentStatus
       description: >-
         <note> <p> For use by AWS Ground Station Agent and shouldn't be called
-        directly.</p> </note> <p>Update the status of the ag
+        directly.</p> </note> <p>Update the status of the 
+      tags:
+        - Update
+        - Agent
+        - Status
+        - Id
+        - Config
+        - Endpoint
+        - Group
+        - Ephemeris
+        - Missionprofile
+        - Type
+        - Dataflow
+        - Profile
+        - Configuration
+        - Minute
+        - Usage
+        - Contacts
+        - Ephemerides
+        - Groundstation
+        - Satellite
+        - Arn
+        - Agent
+        - Conta

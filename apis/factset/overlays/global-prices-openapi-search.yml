@@ -12,7 +12,20 @@ paths:
   /factset-global-prices/v1/prices:
     get:
       tags:
+        - Gets
+        - End-of-day
+        - Open,
+        - High,
+        - Low,
+        - Close
+        - For
+        - List
+        - Of
+        - Securities.
+        - Factset
+        - Global
         - Prices
+        - V1
       summary: Gets end-of-day Open, High, Low, Close for a list of securities.
       description: >
         Gets security prices', Open, High, Low, Close, Volume, VWAP, Trade
@@ -20,7 +33,21 @@ paths:
         currency, and adjustment factors.
     post:
       tags:
+        - Requests
+        - End-of-day
+        - Open,
+        - High,
+        - Low,
+        - Close
+        - For
+        - Large
+        - List
+        - Of
+        - Securities.
+        - Factset
+        - Global
         - Prices
+        - V1
       summary: >-
         Requests end-of-day Open, High, Low, Close for a large list of
         securities.
@@ -31,7 +58,16 @@ paths:
   /factset-global-prices/v1/corporate-actions:
     get:
       tags:
-        - Corporate Actions
+        - Gets
+        - Corporate
+        - Actions
+        - Information.
+        - Factset
+        - Global
+        - Prices
+        - V1
+        - Corporate
+        - Actions
       summary: Gets Corporate Actions information.
       description: >
         Gets the Corporate Actions amounts, dates, types, and flags over a
@@ -62,7 +98,16 @@ paths:
           * **EXOS** - Exchange of Securities
     post:
       tags:
-        - Corporate Actions
+        - Requests
+        - Corporate
+        - Actions
+        - Information.
+        - Factset
+        - Global
+        - Prices
+        - V1
+        - Corporate
+        - Actions
       summary: Requests Corporate Actions information.
       description: >-
         Gets the Corporate Actions amounts, dates, types, and flags over a
@@ -73,7 +118,19 @@ paths:
   /factset-global-prices/v1/annualized-dividends:
     get:
       tags:
-        - Corporate Actions
+        - Gets
+        - Indicated
+        - Annualized
+        - Dividend
+        - Information.
+        - Factset
+        - Global
+        - Prices
+        - V1
+        - Corporate
+        - Actions
+        - Annualized
+        - Dividends
       summary: Gets Indicated Annualized Dividend information.
       description: >
         Gets the Annualized dividend of the latest reported dividend.
@@ -82,7 +139,19 @@ paths:
         dividends.
     post:
       tags:
-        - Corporate Actions
+        - Gets
+        - Indicated
+        - Annualized
+        - Dividend
+        - Information.
+        - Factset
+        - Global
+        - Prices
+        - V1
+        - Corporate
+        - Actions
+        - Annualized
+        - Dividends
       summary: Gets Indicated Annualized Dividend information.
       description: >-
         Gets the Annualized dividend of the latest reported dividend. The
@@ -90,6 +159,24 @@ paths:
   /factset-global-prices/v1/returns:
     get:
       tags:
+        - Gets
+        - Returns
+        - For
+        - List
+        - Of
+        - '`ids`'
+        - As
+        - Given
+        - Date
+        - Range.
+        - Factset
+        - Global
+        - Prices
+        - V1
+        - Corporate
+        - Actions
+        - Annualized
+        - Dividends
         - Returns
       summary: Gets Returns for a list of `ids` as of given date range.
       description: >
@@ -97,6 +184,24 @@ paths:
         Depending on the input parameters the return data is provided. 
     post:
       tags:
+        - Gets
+        - Returns
+        - For
+        - List
+        - Of
+        - '`ids`'
+        - As
+        - Given
+        - Date
+        - Range.
+        - Factset
+        - Global
+        - Prices
+        - V1
+        - Corporate
+        - Actions
+        - Annualized
+        - Dividends
         - Returns
       summary: Gets Returns for a list of `ids` as of given date range.
       description: >-
@@ -105,14 +210,46 @@ paths:
   /factset-global-prices/v1/security-shares:
     get:
       tags:
-        - Shares Outstanding
+        - Gets
+        - Shares
+        - Outstanding
+        - Information
+        - For
+        - Securities.
+        - Factset
+        - Global
+        - Prices
+        - V1
+        - Corporate
+        - Actions
+        - Annualized
+        - Dividends
+        - Returns
+        - Security
+        - Shares
       summary: Gets Shares Outstanding information for securities.
       description: >-
         Returns security level shares outstanding data for the given ids and
         dates. At this time, all values returned are split adjusted.
     post:
       tags:
-        - Shares Outstanding
+        - Gets
+        - Shares
+        - Outstanding
+        - Information
+        - For
+        - Securities.
+        - Factset
+        - Global
+        - Prices
+        - V1
+        - Corporate
+        - Actions
+        - Annualized
+        - Dividends
+        - Returns
+        - Security
+        - Shares
       summary: Gets Shares Outstanding information for securities.
       description: >-
         Returns security level shares outstanding data for the given ids and
@@ -120,7 +257,26 @@ paths:
   /factset-global-prices/v1/batch-status:
     get:
       tags:
-        - Batch Processing
+        - Returns
+        - The
+        - Status
+        - For
+        - Batch
+        - |
+          Request
+        - Factset
+        - Global
+        - Prices
+        - V1
+        - Corporate
+        - Actions
+        - Annualized
+        - Dividends
+        - Returns
+        - Security
+        - Shares
+        - Batch
+        - Status
       summary: |
         Returns the status for a Batch Request
       description: >-
@@ -129,7 +285,27 @@ paths:
   /factset-global-prices/v1/batch-result:
     get:
       tags:
-        - Batch Processing
+        - Returns
+        - The
+        - Response
+        - For
+        - Batch
+        - |
+          Request
+        - Factset
+        - Global
+        - Prices
+        - V1
+        - Corporate
+        - Actions
+        - Annualized
+        - Dividends
+        - Returns
+        - Security
+        - Shares
+        - Batch
+        - Status
+        - Result
       summary: |
         Returns the response for a Batch Request
       description: >
@@ -139,4 +315,4 @@ paths:
 
         By default, this endpoint will return data as JSON. If you wish to
         receive your data in CSV format, you can edit the header to have the
-        "accept" parameter as "text/csv" instead of "applicat
+        "accept" parameter as "text/csv" instead of

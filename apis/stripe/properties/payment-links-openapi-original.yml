@@ -5,15 +5,15 @@ info:
   contact:
     email: dev-platform@stripe.com
     name: Stripe Dev Platform Team
-    url: 'https://stripe.com'
-  termsOfService: 'https://stripe.com/us/terms/'
+    url: https://stripe.com
+  termsOfService: https://stripe.com/us/terms/
   version: '2023-10-16'
   x-stripeSpecFilename: spec3
 security:
   - basicAuth: []
   - bearerAuth: []
 servers:
-  - url: 'https://api.stripe.com/'
+  - url: https://api.stripe.com/
 paths:
   /v1/payment_links:
     get:
@@ -177,7 +177,7 @@ paths:
               schema:
                 $ref: '#/components/schemas/error'
           description: Error response.
-  '/v1/payment_links/{payment_link}':
+  /v1/payment_links/{payment_link}:
     get:
       description: <p>Retrieve a payment link.</p>
       operationId: GetPaymentLinksPaymentLink
@@ -295,7 +295,7 @@ paths:
               schema:
                 $ref: '#/components/schemas/error'
           description: Error response.
-  '/v1/payment_links/{payment_link}/line_items':
+  /v1/payment_links/{payment_link}/line_items:
     get:
       description: >-
         <p>When retrieving a payment link, there is an includable

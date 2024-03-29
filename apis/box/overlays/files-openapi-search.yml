@@ -6,12 +6,19 @@ paths:
     get:
       summary: Get file information
       tags:
+        - Get
+        - File
+        - Information
         - Files
+        - File_id
       description: Retrieves the details about a file.
     post:
       summary: Restore file
       tags:
-        - Trashed files
+        - Restore
+        - File
+        - Files
+        - File_id
       description: >-
         Restores a file that has been moved to the trash.
 
@@ -23,14 +30,20 @@ paths:
     put:
       summary: Update file
       tags:
+        - Update
+        - File
         - Files
+        - File_id
       description: |-
         Updates a file. This can be used to rename or move a file,
         create a shared link, or lock a file.
     delete:
       summary: Delete file
       tags:
+        - Delete
+        - File
         - Files
+        - File_id
       description: |-
         Deletes a file, either permanently or by moving it to
         the trash.
@@ -41,11 +54,20 @@ paths:
     get:
       summary: Download file
       tags:
-        - Downloads
+        - Download
+        - File
+        - Files
+        - File_id
+        - Content
       description: Returns the contents of a file in binary format.
     post:
       tags:
-        - Uploads
+        - Upload
+        - File
+        - Version
+        - Files
+        - File_id
+        - Content
       summary: Upload file version
       description: |-
         Update a file's content. For file sizes over 50MB we recommend
@@ -61,13 +83,23 @@ paths:
     options:
       summary: Preflight check before upload
       tags:
+        - Preflight
+        - Check
+        - Before
+        - Upload
         - Files
+        - File_id
+        - Content
       description: |-
         Performs a check to verify that a file will be accepted by Box
         before you upload the entire file.
     post:
       tags:
-        - Uploads
+        - Upload
+        - File
+        - Files
+        - File_id
+        - Content
       summary: Upload file
       description: |-
         Uploads a small file to Box. For file sizes over 50MB we recommend
@@ -83,29 +115,66 @@ paths:
     post:
       summary: Create upload session
       tags:
-        - Uploads (Chunked)
+        - Create
+        - Upload
+        - Session
+        - Files
+        - File_id
+        - Content
+        - Upload_sessions
       description: Creates an upload session for a new file.
   /files/{file_id}/upload_sessions:
     post:
       summary: Create upload session for existing file
       tags:
-        - Uploads (Chunked)
+        - Create
+        - Upload
+        - Session
+        - For
+        - Existing
+        - File
+        - Files
+        - File_id
+        - Content
+        - Upload_sessions
       description: Creates an upload session for an existing file.
   /files/upload_sessions/{upload_session_id}:
     get:
       summary: Get upload session
       tags:
-        - Uploads (Chunked)
+        - Get
+        - Upload
+        - Session
+        - Files
+        - File_id
+        - Content
+        - Upload_sessions
+        - Upload_session_id
       description: Return information about an upload session.
     put:
       summary: Upload part of file
       tags:
-        - Uploads (Chunked)
+        - Upload
+        - Part
+        - Of
+        - File
+        - Files
+        - File_id
+        - Content
+        - Upload_sessions
+        - Upload_session_id
       description: Updates a chunk of an upload session for a file.
     delete:
       summary: Remove upload session
       tags:
-        - Uploads (Chunked)
+        - Remove
+        - Upload
+        - Session
+        - Files
+        - File_id
+        - Content
+        - Upload_sessions
+        - Upload_session_id
       description: |-
         Abort an upload session and discard all data uploaded.
 
@@ -114,7 +183,14 @@ paths:
     get:
       summary: List parts
       tags:
-        - Uploads (Chunked)
+        - List
+        - Parts
+        - Files
+        - File_id
+        - Content
+        - Upload_sessions
+        - Upload_session_id
+        - Parts
       description: |-
         Return a list of the chunks uploaded to the upload
         session so far.
@@ -122,7 +198,16 @@ paths:
     post:
       summary: Commit upload session
       tags:
-        - Uploads (Chunked)
+        - Commit
+        - Upload
+        - Session
+        - Files
+        - File_id
+        - Content
+        - Upload_sessions
+        - Upload_session_id
+        - Parts
+        - Commit
       description: |-
         Close an upload session and create a file from the
         uploaded chunks.
@@ -131,7 +216,16 @@ paths:
       summary: Copy file
       description: Creates a copy of a file.
       tags:
+        - Copy
+        - File
         - Files
+        - File_id
+        - Content
+        - Upload_sessions
+        - Upload_session_id
+        - Parts
+        - Commit
+        - Copy
   /files/{file_id}/thumbnail.{extension}:
     get:
       summary: Get file thumbnail
@@ -154,7 +248,19 @@ paths:
         [1]:
         https://community.box.com/t5/Migrating-and-Previewing-Content/File-Types-and-Fonts-Supported-in-Box-Content-Preview/ta-p/327
       tags:
+        - Get
+        - File
+        - Thumbnail
         - Files
+        - File_id
+        - Content
+        - Upload_sessions
+        - Upload_session_id
+        - Parts
+        - Commit
+        - Copy
+        - Thumbnail.
+        - Extension
   /files/{file_id}/collaborations:
     get:
       summary: List file collaborations
@@ -163,12 +269,39 @@ paths:
         file. This returns all the users that have access to the file
         or have been invited to the file.
       tags:
-        - Collaborations (List)
+        - List
+        - File
+        - Collaborations
+        - Files
+        - File_id
+        - Content
+        - Upload_sessions
+        - Upload_session_id
+        - Parts
+        - Commit
+        - Copy
+        - Thumbnail.
+        - Extension
+        - Collaborations
   /files/{file_id}/comments:
     get:
       summary: List file comments
       description: Retrieves a list of comments for a file.
       tags:
+        - List
+        - File
+        - Comments
+        - Files
+        - File_id
+        - Content
+        - Upload_sessions
+        - Upload_session_id
+        - Parts
+        - Commit
+        - Copy
+        - Thumbnail.
+        - Extension
+        - Collaborations
         - Comments
   /files/{file_id}/tasks:
     get:
@@ -177,12 +310,44 @@ paths:
         Retrieves a list of all the tasks for a file. This
         endpoint does not support pagination.
       tags:
+        - List
+        - Tasks
+        - 'On'
+        - File
+        - Files
+        - File_id
+        - Content
+        - Upload_sessions
+        - Upload_session_id
+        - Parts
+        - Commit
+        - Copy
+        - Thumbnail.
+        - Extension
+        - Collaborations
+        - Comments
         - Tasks
   /files/{file_id}/trash:
     get:
       summary: Get trashed file
       tags:
-        - Trashed files
+        - Get
+        - Trashed
+        - File
+        - Files
+        - File_id
+        - Content
+        - Upload_sessions
+        - Upload_session_id
+        - Parts
+        - Commit
+        - Copy
+        - Thumbnail.
+        - Extension
+        - Collaborations
+        - Comments
+        - Tasks
+        - Trash
       description: |-
         Retrieves a file that has been moved to the trash.
 
@@ -198,7 +363,23 @@ paths:
     delete:
       summary: Permanently remove file
       tags:
-        - Trashed files
+        - Permanently
+        - Remove
+        - File
+        - Files
+        - File_id
+        - Content
+        - Upload_sessions
+        - Upload_session_id
+        - Parts
+        - Commit
+        - Copy
+        - Thumbnail.
+        - Extension
+        - Collaborations
+        - Comments
+        - Tasks
+        - Trash
       description: |-
         Permanently deletes a file that is in the trash.
         This action cannot be undone.
@@ -206,7 +387,25 @@ paths:
     get:
       summary: List all file versions
       tags:
-        - File versions
+        - List
+        - All
+        - File
+        - Versions
+        - Files
+        - File_id
+        - Content
+        - Upload_sessions
+        - Upload_session_id
+        - Parts
+        - Commit
+        - Copy
+        - Thumbnail.
+        - Extension
+        - Collaborations
+        - Comments
+        - Tasks
+        - Trash
+        - Versions
       description: >-
         Retrieve a list of the past versions for a file.
 
@@ -219,7 +418,25 @@ paths:
     get:
       summary: Get file version
       tags:
-        - File versions
+        - Get
+        - File
+        - Version
+        - Files
+        - File_id
+        - Content
+        - Upload_sessions
+        - Upload_session_id
+        - Parts
+        - Commit
+        - Copy
+        - Thumbnail.
+        - Extension
+        - Collaborations
+        - Comments
+        - Tasks
+        - Trash
+        - Versions
+        - File_version_id
       description: |-
         Retrieve a specific version of a file.
 
@@ -227,7 +444,25 @@ paths:
     delete:
       summary: Remove file version
       tags:
-        - File versions
+        - Remove
+        - File
+        - Version
+        - Files
+        - File_id
+        - Content
+        - Upload_sessions
+        - Upload_session_id
+        - Parts
+        - Commit
+        - Copy
+        - Thumbnail.
+        - Extension
+        - Collaborations
+        - Comments
+        - Tasks
+        - Trash
+        - Versions
+        - File_version_id
       description: |-
         Move a file version to the trash.
 
@@ -235,7 +470,25 @@ paths:
     put:
       summary: Restore file version
       tags:
-        - File versions
+        - Restore
+        - File
+        - Version
+        - Files
+        - File_id
+        - Content
+        - Upload_sessions
+        - Upload_session_id
+        - Parts
+        - Commit
+        - Copy
+        - Thumbnail.
+        - Extension
+        - Collaborations
+        - Comments
+        - Tasks
+        - Trash
+        - Versions
+        - File_version_id
       description: |-
         Restores a specific version of a file after it was deleted.
         Don't use this endpoint to restore Box Notes,
@@ -245,7 +498,26 @@ paths:
     post:
       summary: Promote file version
       tags:
-        - File versions
+        - Promote
+        - File
+        - Version
+        - Files
+        - File_id
+        - Content
+        - Upload_sessions
+        - Upload_session_id
+        - Parts
+        - Commit
+        - Copy
+        - Thumbnail.
+        - Extension
+        - Collaborations
+        - Comments
+        - Tasks
+        - Trash
+        - Versions
+        - File_version_id
+        - Current
       description: |-
         Promote a specific version of a file.
 
@@ -267,13 +539,59 @@ paths:
     get:
       summary: List metadata instances on file
       tags:
-        - Metadata instances (Files)
+        - List
+        - Metadata
+        - Instances
+        - 'On'
+        - File
+        - Files
+        - File_id
+        - Content
+        - Upload_sessions
+        - Upload_session_id
+        - Parts
+        - Commit
+        - Copy
+        - Thumbnail.
+        - Extension
+        - Collaborations
+        - Comments
+        - Tasks
+        - Trash
+        - Versions
+        - File_version_id
+        - Current
+        - Metadata
       description: Retrieves all metadata for a given file.
   /files/{file_id}/metadata/enterprise/securityClassification-6VMVochwUWo:
     get:
       summary: Get classification on file
       tags:
-        - Classifications on files
+        - Get
+        - Classification
+        - 'On'
+        - File
+        - Files
+        - File_id
+        - Content
+        - Upload_sessions
+        - Upload_session_id
+        - Parts
+        - Commit
+        - Copy
+        - Thumbnail.
+        - Extension
+        - Collaborations
+        - Comments
+        - Tasks
+        - Trash
+        - Versions
+        - File_version_id
+        - Current
+        - Metadata
+        - Classification
+        - Vochw
+        - Wo
       description: |-
         Retrieves the classification metadata instance that
         has been applied to a file.
@@ -284,7 +602,31 @@ paths:
     post:
       summary: Add classification to file
       tags:
-        - Classifications on files
+        - Add
+        - Classification
+        - To
+        - File
+        - Files
+        - File_id
+        - Content
+        - Upload_sessions
+        - Upload_session_id
+        - Parts
+        - Commit
+        - Copy
+        - Thumbnail.
+        - Extension
+        - Collaborations
+        - Comments
+        - Tasks
+        - Trash
+        - Versions
+        - File_version_id
+        - Current
+        - Metadata
+        - Classification
+        - Vochw
+        - Wo
       description: |-
         Adds a classification to a file by specifying the label of the
         classification to add.
@@ -295,7 +637,31 @@ paths:
     put:
       summary: Update classification on file
       tags:
-        - Classifications on files
+        - Update
+        - Classification
+        - 'On'
+        - File
+        - Files
+        - File_id
+        - Content
+        - Upload_sessions
+        - Upload_session_id
+        - Parts
+        - Commit
+        - Copy
+        - Thumbnail.
+        - Extension
+        - Collaborations
+        - Comments
+        - Tasks
+        - Trash
+        - Versions
+        - File_version_id
+        - Current
+        - Metadata
+        - Classification
+        - Vochw
+        - Wo
       description: >-
         Updates a classification on a file.
 
@@ -310,7 +676,31 @@ paths:
     delete:
       summary: Remove classification from file
       tags:
-        - Classifications on files
+        - Remove
+        - Classification
+        - From
+        - File
+        - Files
+        - File_id
+        - Content
+        - Upload_sessions
+        - Upload_session_id
+        - Parts
+        - Commit
+        - Copy
+        - Thumbnail.
+        - Extension
+        - Collaborations
+        - Comments
+        - Tasks
+        - Trash
+        - Versions
+        - File_version_id
+        - Current
+        - Metadata
+        - Classification
+        - Vochw
+        - Wo
       description: |-
         Removes any classifications from a file.
 
@@ -321,14 +711,68 @@ paths:
     get:
       summary: Get metadata instance on file
       tags:
-        - Metadata instances (Files)
+        - Get
+        - Metadata
+        - Instance
+        - 'On'
+        - File
+        - Files
+        - File_id
+        - Content
+        - Upload_sessions
+        - Upload_session_id
+        - Parts
+        - Commit
+        - Copy
+        - Thumbnail.
+        - Extension
+        - Collaborations
+        - Comments
+        - Tasks
+        - Trash
+        - Versions
+        - File_version_id
+        - Current
+        - Metadata
+        - Classification
+        - Vochw
+        - Wo
+        - Scope
+        - Template_key
       description: |-
         Retrieves the instance of a metadata template that has been applied to a
         file.
     post:
       summary: Create metadata instance on file
       tags:
-        - Metadata instances (Files)
+        - Create
+        - Metadata
+        - Instance
+        - 'On'
+        - File
+        - Files
+        - File_id
+        - Content
+        - Upload_sessions
+        - Upload_session_id
+        - Parts
+        - Commit
+        - Copy
+        - Thumbnail.
+        - Extension
+        - Collaborations
+        - Comments
+        - Tasks
+        - Trash
+        - Versions
+        - File_version_id
+        - Current
+        - Metadata
+        - Classification
+        - Vochw
+        - Wo
+        - Scope
+        - Template_key
       description: >-
         Applies an instance of a metadata template to a file.
 
@@ -342,7 +786,34 @@ paths:
     put:
       summary: Update metadata instance on file
       tags:
-        - Metadata instances (Files)
+        - Update
+        - Metadata
+        - Instance
+        - 'On'
+        - File
+        - Files
+        - File_id
+        - Content
+        - Upload_sessions
+        - Upload_session_id
+        - Parts
+        - Commit
+        - Copy
+        - Thumbnail.
+        - Extension
+        - Collaborations
+        - Comments
+        - Tasks
+        - Trash
+        - Versions
+        - File_version_id
+        - Current
+        - Metadata
+        - Classification
+        - Vochw
+        - Wo
+        - Scope
+        - Template_key
       description: >-
         Updates a piece of metadata on a file.
 
@@ -363,74 +834,474 @@ paths:
     delete:
       summary: Remove metadata instance from file
       tags:
-        - Metadata instances (Files)
+        - Remove
+        - Metadata
+        - Instance
+        - From
+        - File
+        - Files
+        - File_id
+        - Content
+        - Upload_sessions
+        - Upload_session_id
+        - Parts
+        - Commit
+        - Copy
+        - Thumbnail.
+        - Extension
+        - Collaborations
+        - Comments
+        - Tasks
+        - Trash
+        - Versions
+        - File_version_id
+        - Current
+        - Metadata
+        - Classification
+        - Vochw
+        - Wo
+        - Scope
+        - Template_key
       description: Deletes a piece of file metadata.
   /files/{file_id}/metadata/global/boxSkillsCards:
     get:
       summary: List Box Skill cards on file
       tags:
+        - List
+        - Box
+        - Skill
+        - Cards
+        - 'On'
+        - File
+        - Files
+        - File_id
+        - Content
+        - Upload_sessions
+        - Upload_session_id
+        - Parts
+        - Commit
+        - Copy
+        - Thumbnail.
+        - Extension
+        - Collaborations
+        - Comments
+        - Tasks
+        - Trash
+        - Versions
+        - File_version_id
+        - Current
+        - Metadata
+        - Classification
+        - Vochw
+        - Wo
+        - Scope
+        - Template_key
         - Skills
+        - Cards
       description: List the Box Skills metadata cards that are attached to a file.
     post:
       summary: Create Box Skill cards on file
       tags:
+        - Create
+        - Box
+        - Skill
+        - Cards
+        - 'On'
+        - File
+        - Files
+        - File_id
+        - Content
+        - Upload_sessions
+        - Upload_session_id
+        - Parts
+        - Commit
+        - Copy
+        - Thumbnail.
+        - Extension
+        - Collaborations
+        - Comments
+        - Tasks
+        - Trash
+        - Versions
+        - File_version_id
+        - Current
+        - Metadata
+        - Classification
+        - Vochw
+        - Wo
+        - Scope
+        - Template_key
         - Skills
+        - Cards
       description: Applies one or more Box Skills metadata cards to a file.
     put:
       summary: Update Box Skill cards on file
       tags:
+        - Update
+        - Box
+        - Skill
+        - Cards
+        - 'On'
+        - File
+        - Files
+        - File_id
+        - Content
+        - Upload_sessions
+        - Upload_session_id
+        - Parts
+        - Commit
+        - Copy
+        - Thumbnail.
+        - Extension
+        - Collaborations
+        - Comments
+        - Tasks
+        - Trash
+        - Versions
+        - File_version_id
+        - Current
+        - Metadata
+        - Classification
+        - Vochw
+        - Wo
+        - Scope
+        - Template_key
         - Skills
+        - Cards
       description: Updates one or more Box Skills metadata cards to a file.
     delete:
       summary: Remove Box Skill cards from file
       tags:
+        - Remove
+        - Box
+        - Skill
+        - Cards
+        - From
+        - File
+        - Files
+        - File_id
+        - Content
+        - Upload_sessions
+        - Upload_session_id
+        - Parts
+        - Commit
+        - Copy
+        - Thumbnail.
+        - Extension
+        - Collaborations
+        - Comments
+        - Tasks
+        - Trash
+        - Versions
+        - File_version_id
+        - Current
+        - Metadata
+        - Classification
+        - Vochw
+        - Wo
+        - Scope
+        - Template_key
         - Skills
+        - Cards
       description: Removes any Box Skills cards metadata from a file.
   /files/{file_id}/watermark:
     get:
       summary: Get watermark on file
       tags:
-        - Watermarks (Files)
+        - Get
+        - Watermark
+        - 'On'
+        - File
+        - Files
+        - File_id
+        - Content
+        - Upload_sessions
+        - Upload_session_id
+        - Parts
+        - Commit
+        - Copy
+        - Thumbnail.
+        - Extension
+        - Collaborations
+        - Comments
+        - Tasks
+        - Trash
+        - Versions
+        - File_version_id
+        - Current
+        - Metadata
+        - Classification
+        - Vochw
+        - Wo
+        - Scope
+        - Template_key
+        - Skills
+        - Cards
+        - Watermark
       description: Retrieve the watermark for a file.
     put:
       summary: Apply watermark to file
       tags:
-        - Watermarks (Files)
+        - Apply
+        - Watermark
+        - To
+        - File
+        - Files
+        - File_id
+        - Content
+        - Upload_sessions
+        - Upload_session_id
+        - Parts
+        - Commit
+        - Copy
+        - Thumbnail.
+        - Extension
+        - Collaborations
+        - Comments
+        - Tasks
+        - Trash
+        - Versions
+        - File_version_id
+        - Current
+        - Metadata
+        - Classification
+        - Vochw
+        - Wo
+        - Scope
+        - Template_key
+        - Skills
+        - Cards
+        - Watermark
       description: Applies or update a watermark on a file.
     delete:
       summary: Remove watermark from file
       tags:
-        - Watermarks (Files)
+        - Remove
+        - Watermark
+        - From
+        - File
+        - Files
+        - File_id
+        - Content
+        - Upload_sessions
+        - Upload_session_id
+        - Parts
+        - Commit
+        - Copy
+        - Thumbnail.
+        - Extension
+        - Collaborations
+        - Comments
+        - Tasks
+        - Trash
+        - Versions
+        - File_version_id
+        - Current
+        - Metadata
+        - Classification
+        - Vochw
+        - Wo
+        - Scope
+        - Template_key
+        - Skills
+        - Cards
+        - Watermark
       description: Removes the watermark from a file.
   /files/{file_id}#get_shared_link:
     get:
       summary: Get shared link for file
       tags:
-        - Shared links (Files)
+        - Get
+        - Shared
+        - Link
+        - For
+        - File
+        - Files
+        - File_id
+        - Content
+        - Upload_sessions
+        - Upload_session_id
+        - Parts
+        - Commit
+        - Copy
+        - Thumbnail.
+        - Extension
+        - Collaborations
+        - Comments
+        - Tasks
+        - Trash
+        - Versions
+        - File_version_id
+        - Current
+        - Metadata
+        - Classification
+        - Vochw
+        - Wo
+        - Scope
+        - Template_key
+        - Skills
+        - Cards
+        - Watermark
+        - '#get_shared_link'
       description: Gets the information for a shared link on a file.
   /files/{file_id}#add_shared_link:
     put:
       summary: Add shared link to file
       tags:
-        - Shared links (Files)
+        - Add
+        - Shared
+        - Link
+        - To
+        - File
+        - Files
+        - File_id
+        - Content
+        - Upload_sessions
+        - Upload_session_id
+        - Parts
+        - Commit
+        - Copy
+        - Thumbnail.
+        - Extension
+        - Collaborations
+        - Comments
+        - Tasks
+        - Trash
+        - Versions
+        - File_version_id
+        - Current
+        - Metadata
+        - Classification
+        - Vochw
+        - Wo
+        - Scope
+        - Template_key
+        - Skills
+        - Cards
+        - Watermark
+        - '#get_shared_link'
+        - '#add_shared_link'
       description: Adds a shared link to a file.
   /files/{file_id}#update_shared_link:
     put:
       summary: Update shared link on file
       tags:
-        - Shared links (Files)
+        - Update
+        - Shared
+        - Link
+        - 'On'
+        - File
+        - Files
+        - File_id
+        - Content
+        - Upload_sessions
+        - Upload_session_id
+        - Parts
+        - Commit
+        - Copy
+        - Thumbnail.
+        - Extension
+        - Collaborations
+        - Comments
+        - Tasks
+        - Trash
+        - Versions
+        - File_version_id
+        - Current
+        - Metadata
+        - Classification
+        - Vochw
+        - Wo
+        - Scope
+        - Template_key
+        - Skills
+        - Cards
+        - Watermark
+        - '#get_shared_link'
+        - '#add_shared_link'
+        - '#update_shared_link'
       description: Updates a shared link on a file.
   /files/{file_id}#remove_shared_link:
     put:
       summary: Remove shared link from file
       tags:
-        - Shared links (Files)
+        - Remove
+        - Shared
+        - Link
+        - From
+        - File
+        - Files
+        - File_id
+        - Content
+        - Upload_sessions
+        - Upload_session_id
+        - Parts
+        - Commit
+        - Copy
+        - Thumbnail.
+        - Extension
+        - Collaborations
+        - Comments
+        - Tasks
+        - Trash
+        - Versions
+        - File_version_id
+        - Current
+        - Metadata
+        - Classification
+        - Vochw
+        - Wo
+        - Scope
+        - Template_key
+        - Skills
+        - Cards
+        - Watermark
+        - '#get_shared_link'
+        - '#add_shared_link'
+        - '#update_shared_link'
+        - '#remove_shared_link'
       description: Removes a shared link from a file.
   /retention_policy_assignments/{retention_policy_assignment_id}/files_under_retention:
     get:
       summary: Get files under retention
       tags:
-        - Retention policy assignments
+        - Get
+        - Files
+        - Under
+        - Retention
+        - Files
+        - File_id
+        - Content
+        - Upload_sessions
+        - Upload_session_id
+        - Parts
+        - Commit
+        - Copy
+        - Thumbnail.
+        - Extension
+        - Collaborations
+        - Comments
+        - Tasks
+        - Trash
+        - Versions
+        - File_version_id
+        - Current
+        - Metadata
+        - Classification
+        - Vochw
+        - Wo
+        - Scope
+        - Template_key
+        - Skills
+        - Cards
+        - Watermark
+        - '#get_shared_link'
+        - '#add_shared_link'
+        - '#update_shared_link'
+        - '#remove_shared_link'
+        - Retention_policy_assignments
+        - Retention_policy_assignment_id
+        - Files_under_retention
       description: >-
         Returns a list of files under retention for a retention policy
         assignment.
@@ -438,7 +1309,51 @@ paths:
     get:
       summary: List current file versions for legal hold policy assignment
       tags:
-        - Legal hold policy assignments
+        - List
+        - Current
+        - File
+        - Versions
+        - For
+        - Legal
+        - Hold
+        - Policy
+        - Assignment
+        - Files
+        - File_id
+        - Content
+        - Upload_sessions
+        - Upload_session_id
+        - Parts
+        - Commit
+        - Copy
+        - Thumbnail.
+        - Extension
+        - Collaborations
+        - Comments
+        - Tasks
+        - Trash
+        - Versions
+        - File_version_id
+        - Current
+        - Metadata
+        - Classification
+        - Vochw
+        - Wo
+        - Scope
+        - Template_key
+        - Skills
+        - Cards
+        - Watermark
+        - '#get_shared_link'
+        - '#add_shared_link'
+        - '#update_shared_link'
+        - '#remove_shared_link'
+        - Retention_policy_assignments
+        - Retention_policy_assignment_id
+        - Files_under_retention
+        - Legal_hold_policy_assignments
+        - Legal_hold_policy_assignment_id
+        - Files_on_hold
       description: >-
         Get a list of current file versions for a legal hold
 
@@ -473,4 +1388,4 @@ paths:
         The `GET /legal_hold_policy_assignments?policy_id={id}` API can be used
         to
 
-        find a list of policy assignments for a given policy I
+        find a list of policy assignments for a give

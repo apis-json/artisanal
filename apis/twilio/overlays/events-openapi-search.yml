@@ -10,19 +10,23 @@ paths:
     get:
       description: Retrieve a paginated list of all the available Event Types.
       tags:
-        - EventsV1EventType
+        - Types
   /v1/Types/{Type}:
     description: Event Types available
     get:
       description: Fetch a specific Event Type.
       tags:
-        - EventsV1EventType
+        - Types
+        - Type
   /v1/Schemas/{Id}:
     description: Versioned Schema definitions for Event Types
     get:
       description: Fetch a specific schema with its nested versions.
       tags:
-        - EventsV1Schema
+        - Types
+        - Type
+        - Schemas
+        - Id
   /v1/Schemas:
     description: Versioned Schema definitions for Event Types
   /v1/Schemas/{Id}/Versions:
@@ -30,75 +34,214 @@ paths:
     get:
       description: Retrieve a paginated list of versions of the schema.
       tags:
-        - EventsV1SchemaVersion
+        - Types
+        - Type
+        - Schemas
+        - Id
+        - Versions
   /v1/Schemas/{Id}/Versions/{SchemaVersion}:
     description: Version of the Schema
     get:
       description: Fetch a specific schema and version.
       tags:
-        - EventsV1SchemaVersion
+        - Types
+        - Type
+        - Schemas
+        - Id
+        - Versions
+        - Schema
+        - Version
   /v1/Sinks/{Sid}:
     description: Sink destination to send events to
     get:
       description: Fetch a specific Sink.
       tags:
-        - EventsV1Sink
+        - Types
+        - Type
+        - Schemas
+        - Id
+        - Versions
+        - Schema
+        - Version
+        - Sinks
+        - Sid
     delete:
       description: Delete a specific Sink.
       tags:
-        - EventsV1Sink
+        - Types
+        - Type
+        - Schemas
+        - Id
+        - Versions
+        - Schema
+        - Version
+        - Sinks
+        - Sid
     post:
       description: Update a specific Sink
       tags:
-        - EventsV1Sink
+        - Types
+        - Type
+        - Schemas
+        - Id
+        - Versions
+        - Schema
+        - Version
+        - Sinks
+        - Sid
   /v1/Sinks:
     description: Sink destination to send events to
     post:
       description: Create a new Sink
       tags:
-        - EventsV1Sink
+        - Types
+        - Type
+        - Schemas
+        - Id
+        - Versions
+        - Schema
+        - Version
+        - Sinks
+        - Sid
     get:
       description: >-
         Retrieve a paginated list of Sinks belonging to the account used to make
         the request.
       tags:
-        - EventsV1Sink
+        - Types
+        - Type
+        - Schemas
+        - Id
+        - Versions
+        - Schema
+        - Version
+        - Sinks
+        - Sid
   /v1/Sinks/{Sid}/Test:
     description: Test sink
     post:
       description: Create a new Sink Test Event for the given Sink.
       tags:
-        - EventsV1SinkTest
+        - Types
+        - Type
+        - Schemas
+        - Id
+        - Versions
+        - Schema
+        - Version
+        - Sinks
+        - Sid
+        - Test
   /v1/Sinks/{Sid}/Validate:
     description: Validate sink
     post:
       description: Validate that a test event for a Sink was received.
       tags:
-        - EventsV1SinkValidate
+        - Types
+        - Type
+        - Schemas
+        - Id
+        - Versions
+        - Schema
+        - Version
+        - Sinks
+        - Sid
+        - Test
+        - Validate
   /v1/Subscriptions/{SubscriptionSid}/SubscribedEvents:
     description: Event subscribed to in the parent Subscription
     get:
       description: Retrieve a list of all Subscribed Event types for a Subscription.
       tags:
-        - EventsV1SubscribedEvent
+        - Types
+        - Type
+        - Schemas
+        - Id
+        - Versions
+        - Schema
+        - Version
+        - Sinks
+        - Sid
+        - Test
+        - Validate
+        - Subscriptions
+        - Subscription
+        - Subscribed
+        - Events
     post:
       description: Add an event type to a Subscription.
       tags:
-        - EventsV1SubscribedEvent
+        - Types
+        - Type
+        - Schemas
+        - Id
+        - Versions
+        - Schema
+        - Version
+        - Sinks
+        - Sid
+        - Test
+        - Validate
+        - Subscriptions
+        - Subscription
+        - Subscribed
+        - Events
   /v1/Subscriptions/{SubscriptionSid}/SubscribedEvents/{Type}:
     description: Event subscribed to in the parent Subscription
     get:
       description: Read an Event for a Subscription.
       tags:
-        - EventsV1SubscribedEvent
+        - Types
+        - Type
+        - Schemas
+        - Id
+        - Versions
+        - Schema
+        - Version
+        - Sinks
+        - Sid
+        - Test
+        - Validate
+        - Subscriptions
+        - Subscription
+        - Subscribed
+        - Events
     post:
       description: Update an Event for a Subscription.
       tags:
-        - EventsV1SubscribedEvent
+        - Types
+        - Type
+        - Schemas
+        - Id
+        - Versions
+        - Schema
+        - Version
+        - Sinks
+        - Sid
+        - Test
+        - Validate
+        - Subscriptions
+        - Subscription
+        - Subscribed
+        - Events
     delete:
       description: Remove an event type from a Subscription.
       tags:
-        - EventsV1SubscribedEvent
+        - Types
+        - Type
+        - Schemas
+        - Id
+        - Versions
+        - Schema
+        - Version
+        - Sinks
+        - Sid
+        - Test
+        - Validate
+        - Subscriptions
+        - Subscription
+        - Subscribed
+        - Events
   /v1/Subscriptions:
     description: Subscription to send Event Types to a Sink
     get:
@@ -106,25 +249,95 @@ paths:
         Retrieve a paginated list of Subscriptions belonging to the account used
         to make the request.
       tags:
-        - EventsV1Subscription
+        - Types
+        - Type
+        - Schemas
+        - Id
+        - Versions
+        - Schema
+        - Version
+        - Sinks
+        - Sid
+        - Test
+        - Validate
+        - Subscriptions
+        - Subscription
+        - Subscribed
+        - Events
     post:
       description: Create a new Subscription.
       tags:
-        - EventsV1Subscription
+        - Types
+        - Type
+        - Schemas
+        - Id
+        - Versions
+        - Schema
+        - Version
+        - Sinks
+        - Sid
+        - Test
+        - Validate
+        - Subscriptions
+        - Subscription
+        - Subscribed
+        - Events
   /v1/Subscriptions/{Sid}:
     description: Subscription to send Event Types to a Sink
     get:
       description: Fetch a specific Subscription.
       tags:
-        - EventsV1Subscription
+        - Types
+        - Type
+        - Schemas
+        - Id
+        - Versions
+        - Schema
+        - Version
+        - Sinks
+        - Sid
+        - Test
+        - Validate
+        - Subscriptions
+        - Subscription
+        - Subscribed
+        - Events
     post:
       description: Update a Subscription.
       tags:
-        - EventsV1Subscription
+        - Types
+        - Type
+        - Schemas
+        - Id
+        - Versions
+        - Schema
+        - Version
+        - Sinks
+        - Sid
+        - Test
+        - Validate
+        - Subscriptions
+        - Subscription
+        - Subscribed
+        - Events
     delete:
       description: Delete a specific Subscription.
       tags:
-        - EventsV1Subscription
+        - Types
+        - Type
+        - Schemas
+        - Id
+        - Versions
+        - Schema
+        - Version
+        - Sinks
+        - Sid
+        - Test
+        - Validate
+        - Subscriptions
+        - Subscription
+        - Subscribed
+        - Events
 tags:
   - name: EventsV1EventType
   - name: EventsV1Schema
@@ -136,4 +349,4 @@ tags:
   - name: EventsV1Subscription
 x-maturity:
   - name: GA
-    description: This product is Generally Av
+    description: This product is G

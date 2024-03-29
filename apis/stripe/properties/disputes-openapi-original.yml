@@ -5,15 +5,15 @@ info:
   contact:
     email: dev-platform@stripe.com
     name: Stripe Dev Platform Team
-    url: 'https://stripe.com'
-  termsOfService: 'https://stripe.com/us/terms/'
+    url: https://stripe.com
+  termsOfService: https://stripe.com/us/terms/
   version: '2023-10-16'
   x-stripeSpecFilename: spec3
 security:
   - basicAuth: []
   - bearerAuth: []
 servers:
-  - url: 'https://api.stripe.com/'
+  - url: https://api.stripe.com/
 paths:
   /v1/disputes:
     get:
@@ -129,7 +129,7 @@ paths:
               schema:
                 $ref: '#/components/schemas/error'
           description: Error response.
-  '/v1/disputes/{dispute}':
+  /v1/disputes/{dispute}:
     get:
       description: <p>Retrieves the dispute with the given ID.</p>
       operationId: GetDisputesDispute
@@ -225,7 +225,7 @@ paths:
               schema:
                 $ref: '#/components/schemas/error'
           description: Error response.
-  '/v1/disputes/{dispute}/close':
+  /v1/disputes/{dispute}/close:
     post:
       description: >-
         <p>Closing the dispute for a charge indicates that you do not have any

@@ -8,6 +8,12 @@ paths:
       description: >-
         <p>Acknowledges one or more alarms. The alarms change to the
         <code>ACKNOWLEDGED</code> state after you acknowledge them.</p>
+      tags:
+        - Batch
+        - Acknowledge
+        - Alarm
+        - Alarms
+        - Acknowledge
   /detectors/delete:
     POST:
       summary: BatchDeleteDetector
@@ -18,18 +24,45 @@ paths:
         referenced in the <a
         href="https://docs.aws.amazon.com/iotevents/latest/apireference/API_iotevents-data_ListDetectors.html">ListDetectors</a>
         API call.</p>
+      tags:
+        - Batch
+        - Delete
+        - Detector
+        - Alarms
+        - Acknowledge
+        - Detectors
+        - Delete
   /alarms/disable:
     POST:
       summary: BatchDisableAlarm
       description: >-
         <p>Disables one or more alarms. The alarms change to the
         <code>DISABLED</code> state after you disable them.</p>
+      tags:
+        - Batch
+        - Disable
+        - Alarm
+        - Alarms
+        - Acknowledge
+        - Detectors
+        - Delete
+        - Disable
   /alarms/enable:
     POST:
       summary: BatchEnableAlarm
       description: >-
         <p>Enables one or more alarms. The alarms change to the
         <code>NORMAL</code> state after you enable them.</p>
+      tags:
+        - Batch
+        - Enable
+        - Alarm
+        - Alarms
+        - Acknowledge
+        - Detectors
+        - Delete
+        - Disable
+        - Enable
   /inputs/messages:
     POST:
       summary: BatchPutMessage
@@ -40,12 +73,37 @@ paths:
         that input. If multiple messages are sent, the order in which the
         messages are processed isn't guaranteed. To guarantee ordering, you must
         send messages one at a time and wait for a successful response.</p>
+      tags:
+        - Batch
+        - Put
+        - Message
+        - Alarms
+        - Acknowledge
+        - Detectors
+        - Delete
+        - Disable
+        - Enable
+        - Inputs
+        - Messages
   /alarms/reset:
     POST:
       summary: BatchResetAlarm
       description: >-
         <p>Resets one or more alarms. The alarms return to the
         <code>NORMAL</code> state after you reset them.</p>
+      tags:
+        - Batch
+        - Reset
+        - Alarm
+        - Alarms
+        - Acknowledge
+        - Detectors
+        - Delete
+        - Disable
+        - Enable
+        - Inputs
+        - Messages
+        - Reset
   /alarms/snooze:
     POST:
       summary: BatchSnoozeAlarm
@@ -53,27 +111,123 @@ paths:
         <p>Changes one or more alarms to the snooze mode. The alarms change to
         the <code>SNOOZE_DISABLED</code> state after you set them to the snooze
         mode.</p>
+      tags:
+        - Batch
+        - Snooze
+        - Alarm
+        - Alarms
+        - Acknowledge
+        - Detectors
+        - Delete
+        - Disable
+        - Enable
+        - Inputs
+        - Messages
+        - Reset
+        - Snooze
   /detectors:
     POST:
       summary: BatchUpdateDetector
       description: >-
         <p>Updates the state, variable values, and timer settings of one or more
         detectors (instances) of a specified detector model.</p>
+      tags:
+        - Batch
+        - Update
+        - Detector
+        - Alarms
+        - Acknowledge
+        - Detectors
+        - Delete
+        - Disable
+        - Enable
+        - Inputs
+        - Messages
+        - Reset
+        - Snooze
   /alarms/{alarmModelName}/keyValues/:
     GET:
       summary: DescribeAlarm
       description: <p>Retrieves information about an alarm.</p>
+      tags:
+        - Describe
+        - Alarm
+        - Alarms
+        - Acknowledge
+        - Detectors
+        - Delete
+        - Disable
+        - Enable
+        - Inputs
+        - Messages
+        - Reset
+        - Snooze
+        - Model
+        - Name
+        - Key
+        - Values
   /detectors/{detectorModelName}/keyValues/:
     GET:
       summary: DescribeDetector
       description: <p>Returns information about the specified detector (instance).</p>
+      tags:
+        - Describe
+        - Detector
+        - Alarms
+        - Acknowledge
+        - Detectors
+        - Delete
+        - Disable
+        - Enable
+        - Inputs
+        - Messages
+        - Reset
+        - Snooze
+        - Model
+        - Name
+        - Key
+        - Values
   /alarms/{alarmModelName}:
     GET:
       summary: ListAlarms
       description: >-
         <p>Lists one or more alarms. The operation returns only the metadata
         associated with each alarm.</p>
+      tags:
+        - List
+        - Alarms
+        - Alarms
+        - Acknowledge
+        - Detectors
+        - Delete
+        - Disable
+        - Enable
+        - Inputs
+        - Messages
+        - Reset
+        - Snooze
+        - Model
+        - Name
+        - Key
+        - Values
   /detectors/{detectorModelName}:
     GET:
       summary: ListDetectors
-      description: <p>Lists detectors (the instances of a detector mod
+      description: <p>Lists detectors (the instances of a detector m
+      tags:
+        - List
+        - Detectors
+        - Alarms
+        - Acknowledge
+        - Detectors
+        - Delete
+        - Disable
+        - Enable
+        - Inputs
+        - Messages
+        - Reset
+        - Snooze
+        - Model
+        - Name
+        - Key
+        - Valu

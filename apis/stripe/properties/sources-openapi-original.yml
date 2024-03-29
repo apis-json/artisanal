@@ -5,15 +5,15 @@ info:
   contact:
     email: dev-platform@stripe.com
     name: Stripe Dev Platform Team
-    url: 'https://stripe.com'
-  termsOfService: 'https://stripe.com/us/terms/'
+    url: https://stripe.com
+  termsOfService: https://stripe.com/us/terms/
   version: '2023-10-16'
   x-stripeSpecFilename: spec3
 security:
   - basicAuth: []
   - bearerAuth: []
 servers:
-  - url: 'https://api.stripe.com/'
+  - url: https://api.stripe.com/
 paths:
   /v1/sources:
     post:
@@ -61,7 +61,7 @@ paths:
               schema:
                 $ref: '#/components/schemas/error'
           description: Error response.
-  '/v1/sources/{source}':
+  /v1/sources/{source}:
     get:
       description: >-
         <p>Retrieves an existing source object. Supply the unique source ID from
@@ -173,7 +173,7 @@ paths:
               schema:
                 $ref: '#/components/schemas/error'
           description: Error response.
-  '/v1/sources/{source}/mandate_notifications/{mandate_notification}':
+  /v1/sources/{source}/mandate_notifications/{mandate_notification}:
     get:
       description: <p>Retrieves a new Source MandateNotification.</p>
       operationId: GetSourcesSourceMandateNotificationsMandateNotification
@@ -225,7 +225,7 @@ paths:
               schema:
                 $ref: '#/components/schemas/error'
           description: Error response.
-  '/v1/sources/{source}/source_transactions':
+  /v1/sources/{source}/source_transactions:
     get:
       description: <p>List source transactions for a given source.</p>
       operationId: GetSourcesSourceSourceTransactions
@@ -307,7 +307,7 @@ paths:
               schema:
                 $ref: '#/components/schemas/error'
           description: Error response.
-  '/v1/sources/{source}/source_transactions/{source_transaction}':
+  /v1/sources/{source}/source_transactions/{source_transaction}:
     get:
       description: >-
         <p>Retrieve an existing source transaction object. Supply the unique
@@ -363,7 +363,7 @@ paths:
               schema:
                 $ref: '#/components/schemas/error'
           description: Error response.
-  '/v1/sources/{source}/verify':
+  /v1/sources/{source}/verify:
     post:
       description: <p>Verify a given source.</p>
       operationId: PostSourcesSourceVerify

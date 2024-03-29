@@ -18,6 +18,8 @@ paths:
     post:
       summary: Create a Site
       tags:
+        - Create
+        - Site
         - Sites
       description: >-
         Create a site that links a [headless
@@ -29,22 +31,33 @@ paths:
         Get sites linked to a [headless storefront](/docs/storefront/headless)
         sales channels.
       tags:
+        - Get
+        - Sites
         - Sites
   /sites/{site_id}:
     get:
       summary: Get a Site
       tags:
+        - Get
+        - Site
         - Sites
+        - Site_id
       description: Get a site with site ID `{site_id}`.
     put:
       summary: Update a Site
       tags:
+        - Update
+        - Site
         - Sites
+        - Site_id
       description: Update a site with site ID `{site_id}`.
     delete:
       summary: Delete a Site
       tags:
+        - Delete
+        - Site
         - Sites
+        - Site_id
       description: Delete a site with site ID `{site_id}`.
     parameters:
       - null
@@ -56,12 +69,22 @@ paths:
     get:
       summary: Get a Site’s Routes
       tags:
-        - Site Routes
+        - Get
+        - Site’s
+        - Routes
+        - Sites
+        - Site_id
+        - Routes
       description: Get a site’s routes.
     post:
       summary: Create a Site Route
       tags:
-        - Site Routes
+        - Create
+        - Site
+        - Route
+        - Sites
+        - Site_id
+        - Routes
       description: >-
         Create routes that tell BigCommerce how to link to pages on a [headless
         storefront](/docs/storefront/headless).
@@ -79,23 +102,46 @@ paths:
         * `id` is required when updating an existing route.
       summary: Update a Site’s Routes
       tags:
-        - Site Routes
+        - Update
+        - Site’s
+        - Routes
+        - Sites
+        - Site_id
+        - Routes
   /sites/{site_id}/routes/{route_id}:
     get:
       summary: Get a Site Route
       tags:
-        - Site Routes
+        - Get
+        - Site
+        - Route
+        - Sites
+        - Site_id
+        - Routes
+        - Route_id
       description: Get a site’s route.
     put:
       summary: Update a Site Route
       tags:
-        - Site Routes
+        - Update
+        - Site
+        - Route
+        - Sites
+        - Site_id
+        - Routes
+        - Route_id
       description: |
         Update a site’s route.
     delete:
       summary: Delete a Site Route
       tags:
-        - Site Routes
+        - Delete
+        - Site
+        - Route
+        - Sites
+        - Site_id
+        - Routes
+        - Route_id
       description: Delete a site’s route.
     parameters:
       - null
@@ -109,11 +155,29 @@ paths:
       summary: Get a Site’s SSL/TLS Certificate Information
       description: Obtain information about a site’s SSL/TLS certificate.
       tags:
-        - Site Certificate
+        - Get
+        - Site’s
+        - L/
+        - Certificate
+        - Information
+        - Sites
+        - Site_id
+        - Routes
+        - Route_id
+        - Certificate
     put:
       summary: Upsert a Site’s SSL/TLS Certificate Information
       tags:
-        - Site Certificate
+        - Upsert
+        - Site’s
+        - L/
+        - Certificate
+        - Information
+        - Sites
+        - Site_id
+        - Routes
+        - Route_id
+        - Certificate
       description: >-
         - If a value for `url` is not supplied, the saved certificate is
         associated with the specified site’s `primary` URL.
@@ -127,5 +191,13 @@ paths:
     get:
       summary: Get Site Certificates
       tags:
-        - Site Certificate
-      description: Return all SSL certificates connected to domains within a stor
+        - Get
+        - Site
+        - Certificates
+        - Sites
+        - Site_id
+        - Routes
+        - Route_id
+        - Certificate
+        - Certificates
+      description: Return all SSL certificates connected to domains wi

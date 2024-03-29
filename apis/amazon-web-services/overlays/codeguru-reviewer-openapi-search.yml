@@ -17,30 +17,68 @@ paths:
         href="https://docs.aws.amazon.com/codeguru/latest/reviewer-api/API_RepositoryAssociationSummary.html#reviewer-Type-RepositoryAssociationSummary-State">State</a>,
         and <a
         href="https://docs.aws.amazon.com/codeguru/latest/reviewer-api/API_RepositoryAssociationSummary.html#reviewer-Type-RepositoryAssociationSummary-Owner">Owner</a>.</p>
+      tags:
+        - List
+        - Repository
+        - Associations
+        - Associations
   /codereviews:
     GET:
       summary: ListCodeReviews
       description: >-
         <p>Lists all the code reviews that the customer has created in the past
         90 days.</p>
+      tags:
+        - List
+        - Code
+        - Reviews
+        - Associations
+        - Codereviews
   /codereviews/{CodeReviewArn}:
     GET:
       summary: DescribeCodeReview
       description: >-
         <p>Returns the metadata associated with the code review along with its
         status.</p>
+      tags:
+        - Describe
+        - Code
+        - Review
+        - Associations
+        - Codereviews
+        - Code
+        - Review
+        - Arn
   /feedback/{CodeReviewArn}:
     GET:
       summary: DescribeRecommendationFeedback
       description: >-
         <p>Describes the customer feedback for a CodeGuru Reviewer
         recommendation.</p>
+      tags:
+        - Describe
+        - Recommendation
+        - Feedback
+        - Associations
+        - Codereviews
+        - Code
+        - Review
+        - Arn
   /associations/{AssociationArn}:
     DELETE:
       summary: DisassociateRepository
       description: >-
         <p>Removes the association between Amazon CodeGuru Reviewer and a
         repository.</p>
+      tags:
+        - Disassociate
+        - Repository
+        - Associations
+        - Codereviews
+        - Code
+        - Review
+        - Arn
+        - Association
   /feedback/{CodeReviewArn}/RecommendationFeedback:
     GET:
       summary: ListRecommendationFeedback
@@ -49,20 +87,69 @@ paths:
         href="https://docs.aws.amazon.com/codeguru/latest/reviewer-api/API_RecommendationFeedbackSummary.html">RecommendationFeedbackSummary</a>
         objects that contain customer recommendation feedback for all CodeGuru
         Reviewer users.</p>
+      tags:
+        - List
+        - Recommendation
+        - Feedback
+        - Associations
+        - Codereviews
+        - Code
+        - Review
+        - Arn
+        - Association
+        - Recommendation
+        - Feedback
   /codereviews/{CodeReviewArn}/Recommendations:
     GET:
       summary: ListRecommendations
       description: >-
         <p>Returns the list of all recommendations for a completed code
         review.</p>
+      tags:
+        - List
+        - Recommendations
+        - Associations
+        - Codereviews
+        - Code
+        - Review
+        - Arn
+        - Association
+        - Recommendation
+        - Feedback
+        - Recommendations
   /tags/{resourceArn}:
     DELETE:
       summary: UntagResource
       description: <p>Removes a tag from an associated repository.</p>
+      tags:
+        - Untag
+        - Resource
+        - Associations
+        - Codereviews
+        - Code
+        - Review
+        - Arn
+        - Association
+        - Recommendation
+        - Feedback
+        - Recommendations
   /feedback:
     PUT:
       summary: PutRecommendationFeedback
       description: >-
         <p>Stores customer feedback for a CodeGuru Reviewer recommendation. When
         this API is called again with different reactions the previous feedback
-        is overwrit
+        is overwr
+      tags:
+        - Put
+        - Recommendation
+        - Feedback
+        - Associations
+        - Codereviews
+        - Code
+        - Review
+        - Arn
+        - Association
+        - Recommendation
+        - Feedback
+        - Recommendatio

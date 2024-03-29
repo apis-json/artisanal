@@ -15,7 +15,9 @@ paths:
   /checkouts/{checkoutId}:
     get:
       tags:
+        - Get
         - Checkout
+        - Id
       summary: Get a Checkout
       description: >-
         Returns a *Checkout*.
@@ -32,7 +34,10 @@ paths:
         endpoint.  
     put:
       tags:
-        - Checkout
+        - Update
+        - Customer
+        - Messages
+        - Id
       summary: Update Customer Messages
       description: >-
         Updates *Checkout* customer messages.
@@ -53,7 +58,14 @@ paths:
   /checkouts/{checkoutId}/carts/{cartId}/items/{itemId}:
     put:
       tags:
-        - Checkout Cart Items
+        - Update
+        - Line
+        - Item
+        - Id
+        - Carts
+        - Cart
+        - Items
+        - Item
       summary: Update a Line Item
       description: >-
         Updates a *Checkout Line Item*. Updates an existing, single line item in
@@ -80,7 +92,14 @@ paths:
         inconsistent results.
     delete:
       tags:
-        - Checkout Cart Items
+        - Delete
+        - Line
+        - Item
+        - Id
+        - Carts
+        - Cart
+        - Items
+        - Item
       summary: Delete a Line Item
       description: >-
         Deletes a *Line Item* from the *Cart*.
@@ -95,7 +114,17 @@ paths:
   /checkouts/{checkoutId}/billing-address:
     post:
       tags:
-        - Checkout Billing Address
+        - Add
+        - Checkout
+        - Billing
+        - Address
+        - Id
+        - Carts
+        - Cart
+        - Items
+        - Item
+        - Billing
+        - Address
       summary: Add Checkout Billing Address
       description: >-
         Adds a billing address to an existing *Checkout*.
@@ -122,7 +151,17 @@ paths:
   /checkouts/{checkoutId}/billing-address/{addressId}:
     put:
       tags:
-        - Checkout Billing Address
+        - Update
+        - Checkout
+        - Billing
+        - Address
+        - Id
+        - Carts
+        - Cart
+        - Items
+        - Item
+        - Billing
+        - Address
       summary: Update Checkout Billing Address
       description: >-
         Updates an existing billing address on *Checkout*.
@@ -137,7 +176,16 @@ paths:
   /checkouts/{checkoutId}/consignments:
     post:
       tags:
-        - Checkout Consignments
+        - Create
+        - Consignment
+        - Id
+        - Carts
+        - Cart
+        - Items
+        - Item
+        - Billing
+        - Address
+        - Consignments
       summary: Create a Consignment
       description: >
         Adds a new *Consignment* to *Checkout*.
@@ -182,7 +230,17 @@ paths:
   /checkouts/{checkoutId}/consignments/{consignmentId}:
     put:
       tags:
-        - Checkout Consignments
+        - Update
+        - Consignment
+        - Id
+        - Carts
+        - Cart
+        - Items
+        - Item
+        - Billing
+        - Address
+        - Consignments
+        - Consignment
       summary: Update a Consignment
       description: >-
         Updates an existing consignment. An update is either one of the
@@ -247,7 +305,17 @@ paths:
         inconsistent results.
     delete:
       tags:
-        - Checkout Consignments
+        - Delete
+        - Consignment
+        - Id
+        - Carts
+        - Cart
+        - Items
+        - Item
+        - Billing
+        - Address
+        - Consignments
+        - Consignment
       summary: Delete a Consignment
       description: >-
         Removes an existing *Consignment* from *Checkout*.
@@ -262,7 +330,22 @@ paths:
   /checkouts/{checkoutId}/gift-certificates:
     post:
       tags:
-        - Checkout Gift Certificates
+        - Add
+        - Gift
+        - Certificate
+        - To
+        - Checkout
+        - Id
+        - Carts
+        - Cart
+        - Items
+        - Item
+        - Billing
+        - Address
+        - Consignments
+        - Consignment
+        - Gift
+        - Certificates
       summary: Add Gift Certificate to Checkout
       description: >-
         Adds a *Gift Certificate Code* to *Checkout*.
@@ -284,7 +367,22 @@ paths:
   /checkouts/{checkoutId}/gift-certificates/{giftCertificateCode}:
     delete:
       tags:
-        - Checkout Gift Certificates
+        - Delete
+        - Gift
+        - Certificate
+        - Id
+        - Carts
+        - Cart
+        - Items
+        - Item
+        - Billing
+        - Address
+        - Consignments
+        - Consignment
+        - Gift
+        - Certificates
+        - Certificate
+        - Code
       summary: Delete Gift Certificate
       description: >-
         Deletes an existing *Gift Certificate*.
@@ -302,7 +400,24 @@ paths:
   /checkouts/{checkoutId}/coupons:
     post:
       tags:
-        - Checkout Coupons
+        - Add
+        - Coupon
+        - To
+        - Checkout
+        - Id
+        - Carts
+        - Cart
+        - Items
+        - Item
+        - Billing
+        - Address
+        - Consignments
+        - Consignment
+        - Gift
+        - Certificates
+        - Certificate
+        - Code
+        - Coupons
       summary: Add Coupon to Checkout
       description: >-
         Adds a *Coupon Code* to *Checkout*.
@@ -322,7 +437,24 @@ paths:
   /checkouts/{checkoutId}/coupons/{couponCode}:
     delete:
       tags:
-        - Checkout Coupons
+        - Delete
+        - Checkout
+        - Coupon
+        - Id
+        - Carts
+        - Cart
+        - Items
+        - Item
+        - Billing
+        - Address
+        - Consignments
+        - Consignment
+        - Gift
+        - Certificates
+        - Certificate
+        - Code
+        - Coupons
+        - Coupon
       summary: Delete Checkout Coupon
       description: >
         Deletes a *Coupon Code* from *Checkout*.
@@ -337,7 +469,26 @@ paths:
   /checkouts/{checkoutId}/store-credit:
     post:
       tags:
-        - Checkout Store Credit
+        - Add
+        - Store
+        - Credit
+        - Id
+        - Carts
+        - Cart
+        - Items
+        - Item
+        - Billing
+        - Address
+        - Consignments
+        - Consignment
+        - Gift
+        - Certificates
+        - Certificate
+        - Code
+        - Coupons
+        - Coupon
+        - Store
+        - Credit
       summary: Add Store Credit
       description: >-
         Applies any available store credit to a checkout. As on the storefront,
@@ -353,7 +504,26 @@ paths:
         endpoint.
     delete:
       tags:
-        - Checkout Store Credit
+        - Remove
+        - Store
+        - Credit
+        - Id
+        - Carts
+        - Cart
+        - Items
+        - Item
+        - Billing
+        - Address
+        - Consignments
+        - Consignment
+        - Gift
+        - Certificates
+        - Certificate
+        - Code
+        - Coupons
+        - Coupon
+        - Store
+        - Credit
       summary: Remove Store Credit
       description: >-
         Removes store credit from a checkout.
@@ -368,15 +538,32 @@ paths:
   /checkouts/{checkoutId}/spam-protection:
     post:
       tags:
-        - Checkout Spam Protection
+        - Checkout
+        - Spam
+        - Protection
+        - Id
+        - Carts
+        - Cart
+        - Items
+        - Item
+        - Billing
+        - Address
+        - Consignments
+        - Consignment
+        - Gift
+        - Certificates
+        - Certificate
+        - Code
+        - Coupons
+        - Coupon
+        - Store
+        - Credit
+        - Spam
+        - Protection
       summary: Checkout Spam Protection
-      description: >-
+      description: |-
         Verifies if checkout is created by human.
 
-
         > #### Note
-
         > * Substitute your storefront domain for `yourstore.example.com`. 
-
         > * The Send a Test Request feature is not currently supported for this
-        endpoint.

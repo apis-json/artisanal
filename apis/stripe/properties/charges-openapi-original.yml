@@ -5,15 +5,15 @@ info:
   contact:
     email: dev-platform@stripe.com
     name: Stripe Dev Platform Team
-    url: 'https://stripe.com'
-  termsOfService: 'https://stripe.com/us/terms/'
+    url: https://stripe.com
+  termsOfService: https://stripe.com/us/terms/
   version: '2023-10-16'
   x-stripeSpecFilename: spec3
 security:
   - basicAuth: []
   - bearerAuth: []
 servers:
-  - url: 'https://api.stripe.com/'
+  - url: https://api.stripe.com/
 paths:
   /v1/charges:
     get:
@@ -272,7 +272,7 @@ paths:
               schema:
                 $ref: '#/components/schemas/error'
           description: Error response.
-  '/v1/charges/{charge}':
+  /v1/charges/{charge}:
     get:
       description: >-
         <p>Retrieves the details of a charge that has previously been created.
@@ -367,7 +367,7 @@ paths:
               schema:
                 $ref: '#/components/schemas/error'
           description: Error response.
-  '/v1/charges/{charge}/capture':
+  /v1/charges/{charge}/capture:
     post:
       description: >-
         <p>Capture the payment of an existing, uncaptured charge that was
@@ -418,7 +418,7 @@ paths:
               schema:
                 $ref: '#/components/schemas/error'
           description: Error response.
-  '/v1/charges/{charge}/dispute':
+  /v1/charges/{charge}/dispute:
     get:
       description: <p>Retrieve a dispute for a specified charge.</p>
       operationId: GetChargesChargeDispute
@@ -503,7 +503,7 @@ paths:
               schema:
                 $ref: '#/components/schemas/error'
           description: Error response.
-  '/v1/charges/{charge}/dispute/close':
+  /v1/charges/{charge}/dispute/close:
     post:
       description: ''
       operationId: PostChargesChargeDisputeClose
@@ -539,7 +539,7 @@ paths:
               schema:
                 $ref: '#/components/schemas/error'
           description: Error response.
-  '/v1/charges/{charge}/refund':
+  /v1/charges/{charge}/refund:
     post:
       description: >-
         <p>When you create a new refund, you must specify either a Charge or a
@@ -601,7 +601,7 @@ paths:
               schema:
                 $ref: '#/components/schemas/error'
           description: Error response.
-  '/v1/charges/{charge}/refunds':
+  /v1/charges/{charge}/refunds:
     get:
       description: >-
         <p>You can see a list of the refunds belonging to a specific charge.
@@ -747,7 +747,7 @@ paths:
               schema:
                 $ref: '#/components/schemas/error'
           description: Error response.
-  '/v1/charges/{charge}/refunds/{refund}':
+  /v1/charges/{charge}/refunds/{refund}:
     get:
       description: <p>Retrieves the details of an existing refund.</p>
       operationId: GetChargesChargeRefundsRefund
@@ -1077,7 +1077,7 @@ components:
             - maxLength: 5000
               type: string
             - $ref: '#/components/schemas/payment_intent'
-          description: 'ID of the PaymentIntent associated with this charge, if one exists.'
+          description: ID of the PaymentIntent associated with this charge, if one exists.
           nullable: true
           x-expansionResources:
             oneOf:
@@ -1442,7 +1442,7 @@ components:
         Related guide: [Refunds](https://stripe.com/docs/refunds)
       properties:
         amount:
-          description: 'Amount, in cents (or local equivalent).'
+          description: Amount, in cents (or local equivalent).
           type: integer
         balance_transaction:
           anyOf:
@@ -1880,8 +1880,8 @@ components:
             For certain sourcesnamely,
             [cards](https://stripe.com/docs/api#cards), [bank
             accounts](https://stripe.com/docs/api#bank_accounts), and attached
-            [sources](https://stripe.com/docs/api#sources)you must also pass
-            the ID of the associated customer.
+            [sources](https://stripe.com/docs/api#sources)you must also pass the
+            ID of the associated customer.
           maxLength: 5000
           type: string
           x-stripeBypassValidation: true

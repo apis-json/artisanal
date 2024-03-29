@@ -5,15 +5,15 @@ info:
   contact:
     email: dev-platform@stripe.com
     name: Stripe Dev Platform Team
-    url: 'https://stripe.com'
-  termsOfService: 'https://stripe.com/us/terms/'
+    url: https://stripe.com
+  termsOfService: https://stripe.com/us/terms/
   version: '2023-10-16'
   x-stripeSpecFilename: spec3
 security:
   - basicAuth: []
   - bearerAuth: []
 servers:
-  - url: 'https://api.stripe.com/'
+  - url: https://api.stripe.com/
 paths:
   /v1/tax/calculations:
     post:
@@ -54,7 +54,7 @@ paths:
               schema:
                 $ref: '#/components/schemas/error'
           description: Error response.
-  '/v1/tax/calculations/{calculation}/line_items':
+  /v1/tax/calculations/{calculation}/line_items:
     get:
       description: >-
         <p>Retrieves the line items of a persisted tax calculation as a
@@ -261,7 +261,7 @@ paths:
               schema:
                 $ref: '#/components/schemas/error'
           description: Error response.
-  '/v1/tax/registrations/{id}':
+  /v1/tax/registrations/{id}:
     post:
       description: >-
         <p>Updates an existing Tax <code>Registration</code> object.</p>
@@ -453,7 +453,7 @@ paths:
               schema:
                 $ref: '#/components/schemas/error'
           description: Error response.
-  '/v1/tax/transactions/{transaction}':
+  /v1/tax/transactions/{transaction}:
     get:
       description: <p>Retrieves a Tax <code>Transaction</code> object.</p>
       operationId: GetTaxTransactionsTransaction
@@ -497,7 +497,7 @@ paths:
               schema:
                 $ref: '#/components/schemas/error'
           description: Error response.
-  '/v1/tax/transactions/{transaction}/line_items':
+  /v1/tax/transactions/{transaction}/line_items:
     get:
       description: >-
         <p>Retrieves the line items of a committed standalone transaction as a
@@ -659,7 +659,7 @@ paths:
               schema:
                 $ref: '#/components/schemas/error'
           description: Error response.
-  '/v1/tax_codes/{id}':
+  /v1/tax_codes/{id}:
     get:
       description: >-
         <p>Retrieves the details of an existing tax code. Supply the unique tax
@@ -852,7 +852,7 @@ paths:
               schema:
                 $ref: '#/components/schemas/error'
           description: Error response.
-  '/v1/tax_rates/{tax_rate}':
+  /v1/tax_rates/{tax_rate}:
     get:
       description: <p>Retrieves a tax rate with the given ID</p>
       operationId: GetTaxRatesTaxRate
@@ -1000,7 +1000,7 @@ components:
             url:
               description: The URL where this list can be accessed.
               maxLength: 5000
-              pattern: '^/v1/tax/calculations/[^/]+/line_items'
+              pattern: ^/v1/tax/calculations/[^/]+/line_items
               type: string
           required:
             - data
@@ -1248,7 +1248,7 @@ components:
           maxLength: 5000
           type: string
         line_items:
-          description: 'The tax collected or refunded, by line item.'
+          description: The tax collected or refunded, by line item.
           nullable: true
           properties:
             data:
@@ -1271,7 +1271,7 @@ components:
             url:
               description: The URL where this list can be accessed.
               maxLength: 5000
-              pattern: '^/v1/tax/transactions/[^/]+/line_items'
+              pattern: ^/v1/tax/transactions/[^/]+/line_items
               type: string
           required:
             - data
@@ -1305,14 +1305,14 @@ components:
             - tax.transaction
           type: string
         reference:
-          description: 'A custom unique identifier, such as ''myOrder_123''.'
+          description: A custom unique identifier, such as 'myOrder_123'.
           maxLength: 5000
           type: string
         reversal:
           anyOf:
             - $ref: >-
                 #/components/schemas/tax_product_resource_tax_transaction_resource_reversal
-          description: 'If `type=reversal`, contains information about what was reversed.'
+          description: If `type=reversal`, contains information about what was reversed.
           nullable: true
         shipping_cost:
           anyOf:
@@ -1327,7 +1327,7 @@ components:
           format: unix-time
           type: integer
         type:
-          description: 'If `reversal`, this transaction reverses an earlier transaction.'
+          description: If `reversal`, this transaction reverses an earlier transaction.
           enum:
             - reversal
             - transaction
@@ -1493,7 +1493,7 @@ components:
           nullable: true
           type: string
         tax_type:
-          description: 'The high-level tax type, such as `vat` or `sales_tax`.'
+          description: The high-level tax type, such as `vat` or `sales_tax`.
           enum:
             - amusement_tax
             - communications_tax
@@ -1544,7 +1544,7 @@ components:
           maxLength: 5000
           type: string
         customer_details:
-          description: 'Details about the customer, including address and tax IDs.'
+          description: Details about the customer, including address and tax IDs.
           properties:
             address:
               properties:
@@ -1773,7 +1773,7 @@ components:
         url:
           description: The URL where this list can be accessed.
           maxLength: 5000
-          pattern: '^/v1/tax/calculations/[^/]+/line_items'
+          pattern: ^/v1/tax/calculations/[^/]+/line_items
           type: string
     GetTaxRegistrationsRequest:
       type: object
@@ -3002,7 +3002,7 @@ components:
         url:
           description: The URL where this list can be accessed.
           maxLength: 5000
-          pattern: '^/v1/tax/transactions/[^/]+/line_items'
+          pattern: ^/v1/tax/transactions/[^/]+/line_items
           type: string
     GetTaxCodesRequest:
       type: object
@@ -3097,7 +3097,7 @@ components:
           maxLength: 5000
           type: string
         display_name:
-          description: 'The display name of the tax rate, which will be shown to users.'
+          description: The display name of the tax rate, which will be shown to users.
           maxLength: 50
           type: string
         expand:
@@ -3136,7 +3136,7 @@ components:
           maxLength: 2
           type: string
         tax_type:
-          description: 'The high-level tax type, such as `vat` or `sales_tax`.'
+          description: The high-level tax type, such as `vat` or `sales_tax`.
           enum:
             - amusement_tax
             - communications_tax
@@ -3178,7 +3178,7 @@ components:
           maxLength: 5000
           type: string
         display_name:
-          description: 'The display name of the tax rate, which will be shown to users.'
+          description: The display name of the tax rate, which will be shown to users.
           maxLength: 50
           type: string
         expand:
@@ -3215,7 +3215,7 @@ components:
           maxLength: 2
           type: string
         tax_type:
-          description: 'The high-level tax type, such as `vat` or `sales_tax`.'
+          description: The high-level tax type, such as `vat` or `sales_tax`.
           enum:
             - amusement_tax
             - communications_tax

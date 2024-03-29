@@ -5,17 +5,17 @@ info:
   contact:
     email: dev-platform@stripe.com
     name: Stripe Dev Platform Team
-    url: 'https://stripe.com'
-  termsOfService: 'https://stripe.com/us/terms/'
+    url: https://stripe.com
+  termsOfService: https://stripe.com/us/terms/
   version: '2023-10-16'
   x-stripeSpecFilename: spec3
 security:
   - basicAuth: []
   - bearerAuth: []
 servers:
-  - url: 'https://api.stripe.com/'
+  - url: https://api.stripe.com/
 paths:
-  '/v1/test_helpers/customers/{customer}/fund_cash_balance':
+  /v1/test_helpers/customers/{customer}/fund_cash_balance:
     post:
       description: <p>Create an incoming testmode bank transfer</p>
       operationId: PostTestHelpersCustomersCustomerFundCashBalance
@@ -92,7 +92,7 @@ paths:
               schema:
                 $ref: '#/components/schemas/error'
           description: Error response.
-  '/v1/test_helpers/issuing/authorizations/{authorization}/capture':
+  /v1/test_helpers/issuing/authorizations/{authorization}/capture:
     post:
       description: <p>Capture a test-mode authorization.</p>
       operationId: PostTestHelpersIssuingAuthorizationsAuthorizationCapture
@@ -132,7 +132,7 @@ paths:
               schema:
                 $ref: '#/components/schemas/error'
           description: Error response.
-  '/v1/test_helpers/issuing/authorizations/{authorization}/expire':
+  /v1/test_helpers/issuing/authorizations/{authorization}/expire:
     post:
       description: <p>Expire a test-mode Authorization.</p>
       operationId: PostTestHelpersIssuingAuthorizationsAuthorizationExpire
@@ -169,7 +169,7 @@ paths:
               schema:
                 $ref: '#/components/schemas/error'
           description: Error response.
-  '/v1/test_helpers/issuing/authorizations/{authorization}/increment':
+  /v1/test_helpers/issuing/authorizations/{authorization}/increment:
     post:
       description: <p>Increment a test-mode Authorization.</p>
       operationId: PostTestHelpersIssuingAuthorizationsAuthorizationIncrement
@@ -206,7 +206,7 @@ paths:
               schema:
                 $ref: '#/components/schemas/error'
           description: Error response.
-  '/v1/test_helpers/issuing/authorizations/{authorization}/reverse':
+  /v1/test_helpers/issuing/authorizations/{authorization}/reverse:
     post:
       description: <p>Reverse a test-mode Authorization.</p>
       operationId: PostTestHelpersIssuingAuthorizationsAuthorizationReverse
@@ -243,7 +243,7 @@ paths:
               schema:
                 $ref: '#/components/schemas/error'
           description: Error response.
-  '/v1/test_helpers/issuing/cards/{card}/shipping/deliver':
+  /v1/test_helpers/issuing/cards/{card}/shipping/deliver:
     post:
       description: >-
         <p>Updates the shipping status of the specified Issuing
@@ -282,7 +282,7 @@ paths:
               schema:
                 $ref: '#/components/schemas/error'
           description: Error response.
-  '/v1/test_helpers/issuing/cards/{card}/shipping/fail':
+  /v1/test_helpers/issuing/cards/{card}/shipping/fail:
     post:
       description: >-
         <p>Updates the shipping status of the specified Issuing
@@ -321,7 +321,7 @@ paths:
               schema:
                 $ref: '#/components/schemas/error'
           description: Error response.
-  '/v1/test_helpers/issuing/cards/{card}/shipping/return':
+  /v1/test_helpers/issuing/cards/{card}/shipping/return:
     post:
       description: >-
         <p>Updates the shipping status of the specified Issuing
@@ -360,7 +360,7 @@ paths:
               schema:
                 $ref: '#/components/schemas/error'
           description: Error response.
-  '/v1/test_helpers/issuing/cards/{card}/shipping/ship':
+  /v1/test_helpers/issuing/cards/{card}/shipping/ship:
     post:
       description: >-
         <p>Updates the shipping status of the specified Issuing
@@ -473,7 +473,7 @@ paths:
               schema:
                 $ref: '#/components/schemas/error'
           description: Error response.
-  '/v1/test_helpers/issuing/transactions/{transaction}/refund':
+  /v1/test_helpers/issuing/transactions/{transaction}/refund:
     post:
       description: <p>Refund a test-mode Transaction.</p>
       operationId: PostTestHelpersIssuingTransactionsTransactionRefund
@@ -510,7 +510,7 @@ paths:
               schema:
                 $ref: '#/components/schemas/error'
           description: Error response.
-  '/v1/test_helpers/refunds/{refund}/expire':
+  /v1/test_helpers/refunds/{refund}/expire:
     post:
       description: <p>Expire a refund with a status of <code>requires_action</code>.</p>
       operationId: PostTestHelpersRefundsRefundExpire
@@ -545,7 +545,7 @@ paths:
               schema:
                 $ref: '#/components/schemas/error'
           description: Error response.
-  '/v1/test_helpers/terminal/readers/{reader}/present_payment_method':
+  /v1/test_helpers/terminal/readers/{reader}/present_payment_method:
     post:
       description: >-
         <p>Presents a payment method on a simulated reader. Can be used to
@@ -695,7 +695,7 @@ paths:
               schema:
                 $ref: '#/components/schemas/error'
           description: Error response.
-  '/v1/test_helpers/test_clocks/{test_clock}':
+  /v1/test_helpers/test_clocks/{test_clock}:
     delete:
       description: <p>Deletes a test clock.</p>
       operationId: DeleteTestHelpersTestClocksTestClock
@@ -771,7 +771,7 @@ paths:
               schema:
                 $ref: '#/components/schemas/error'
           description: Error response.
-  '/v1/test_helpers/test_clocks/{test_clock}/advance':
+  /v1/test_helpers/test_clocks/{test_clock}/advance:
     post:
       description: >-
         <p>Starts advancing a test clock to a specified time in the future.
@@ -810,7 +810,7 @@ paths:
               schema:
                 $ref: '#/components/schemas/error'
           description: Error response.
-  '/v1/test_helpers/treasury/inbound_transfers/{id}/fail':
+  /v1/test_helpers/treasury/inbound_transfers/{id}/fail:
     post:
       description: >-
         <p>Transitions a test mode created InboundTransfer to the
@@ -853,7 +853,7 @@ paths:
               schema:
                 $ref: '#/components/schemas/error'
           description: Error response.
-  '/v1/test_helpers/treasury/inbound_transfers/{id}/return':
+  /v1/test_helpers/treasury/inbound_transfers/{id}/return:
     post:
       description: >-
         <p>Marks the test mode InboundTransfer object as returned and links the
@@ -893,7 +893,7 @@ paths:
               schema:
                 $ref: '#/components/schemas/error'
           description: Error response.
-  '/v1/test_helpers/treasury/inbound_transfers/{id}/succeed':
+  /v1/test_helpers/treasury/inbound_transfers/{id}/succeed:
     post:
       description: >-
         <p>Transitions a test mode created InboundTransfer to the
@@ -933,7 +933,7 @@ paths:
               schema:
                 $ref: '#/components/schemas/error'
           description: Error response.
-  '/v1/test_helpers/treasury/outbound_payments/{id}/fail':
+  /v1/test_helpers/treasury/outbound_payments/{id}/fail:
     post:
       description: >-
         <p>Transitions a test mode created OutboundPayment to the
@@ -973,7 +973,7 @@ paths:
               schema:
                 $ref: '#/components/schemas/error'
           description: Error response.
-  '/v1/test_helpers/treasury/outbound_payments/{id}/post':
+  /v1/test_helpers/treasury/outbound_payments/{id}/post:
     post:
       description: >-
         <p>Transitions a test mode created OutboundPayment to the
@@ -1013,7 +1013,7 @@ paths:
               schema:
                 $ref: '#/components/schemas/error'
           description: Error response.
-  '/v1/test_helpers/treasury/outbound_payments/{id}/return':
+  /v1/test_helpers/treasury/outbound_payments/{id}/return:
     post:
       description: >-
         <p>Transitions a test mode created OutboundPayment to the
@@ -1056,7 +1056,7 @@ paths:
               schema:
                 $ref: '#/components/schemas/error'
           description: Error response.
-  '/v1/test_helpers/treasury/outbound_transfers/{outbound_transfer}/fail':
+  /v1/test_helpers/treasury/outbound_transfers/{outbound_transfer}/fail:
     post:
       description: >-
         <p>Transitions a test mode created OutboundTransfer to the
@@ -1096,7 +1096,7 @@ paths:
               schema:
                 $ref: '#/components/schemas/error'
           description: Error response.
-  '/v1/test_helpers/treasury/outbound_transfers/{outbound_transfer}/post':
+  /v1/test_helpers/treasury/outbound_transfers/{outbound_transfer}/post:
     post:
       description: >-
         <p>Transitions a test mode created OutboundTransfer to the
@@ -1136,7 +1136,7 @@ paths:
               schema:
                 $ref: '#/components/schemas/error'
           description: Error response.
-  '/v1/test_helpers/treasury/outbound_transfers/{outbound_transfer}/return':
+  /v1/test_helpers/treasury/outbound_transfers/{outbound_transfer}/return:
     post:
       description: >-
         <p>Transitions a test mode created OutboundTransfer to the
@@ -1711,7 +1711,7 @@ components:
             - maxLength: 5000
               type: string
             - $ref: '#/components/schemas/issuing.card'
-          description: 'The latest card that replaces this card, if any.'
+          description: The latest card that replaces this card, if any.
           nullable: true
           x-expansionResources:
             oneOf:
@@ -1721,7 +1721,7 @@ components:
             - maxLength: 5000
               type: string
             - $ref: '#/components/schemas/issuing.card'
-          description: 'The card this card replaces, if any.'
+          description: The card this card replaces, if any.
           nullable: true
           x-expansionResources:
             oneOf:
@@ -1880,7 +1880,7 @@ components:
             - maxLength: 5000
               type: string
             - $ref: '#/components/schemas/issuing.dispute'
-          description: 'If you''ve disputed the transaction, the ID of the dispute.'
+          description: If you've disputed the transaction, the ID of the dispute.
           nullable: true
           x-expansionResources:
             oneOf:
@@ -2016,7 +2016,7 @@ components:
         Related guide: [Refunds](https://stripe.com/docs/refunds)
       properties:
         amount:
-          description: 'Amount, in cents (or local equivalent).'
+          description: Amount, in cents (or local equivalent).
           type: integer
         balance_transaction:
           anyOf:
@@ -2557,7 +2557,7 @@ components:
           description: Amount (in cents) transferred.
           type: integer
         cancelable:
-          description: 'Returns `true` if the object can be canceled, and `false` otherwise.'
+          description: Returns `true` if the object can be canceled, and `false` otherwise.
           type: boolean
         created:
           description: >-
@@ -2735,7 +2735,7 @@ components:
           description: Amount (in cents) transferred.
           type: integer
         cancelable:
-          description: 'Returns `true` if the object can be canceled, and `false` otherwise.'
+          description: Returns `true` if the object can be canceled, and `false` otherwise.
           type: boolean
         created:
           description: >-

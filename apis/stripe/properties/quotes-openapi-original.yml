@@ -5,15 +5,15 @@ info:
   contact:
     email: dev-platform@stripe.com
     name: Stripe Dev Platform Team
-    url: 'https://stripe.com'
-  termsOfService: 'https://stripe.com/us/terms/'
+    url: https://stripe.com
+  termsOfService: https://stripe.com/us/terms/
   version: '2023-10-16'
   x-stripeSpecFilename: spec3
 security:
   - basicAuth: []
   - bearerAuth: []
 servers:
-  - url: 'https://api.stripe.com/'
+  - url: https://api.stripe.com/
 paths:
   /v1/quotes:
     get:
@@ -199,7 +199,7 @@ paths:
               schema:
                 $ref: '#/components/schemas/error'
           description: Error response.
-  '/v1/quotes/{quote}':
+  /v1/quotes/{quote}:
     get:
       description: <p>Retrieves the quote with the given ID.</p>
       operationId: GetQuotesQuote
@@ -320,7 +320,7 @@ paths:
               schema:
                 $ref: '#/components/schemas/error'
           description: Error response.
-  '/v1/quotes/{quote}/accept':
+  /v1/quotes/{quote}/accept:
     post:
       description: <p>Accepts the specified quote.</p>
       operationId: PostQuotesQuoteAccept
@@ -356,7 +356,7 @@ paths:
               schema:
                 $ref: '#/components/schemas/error'
           description: Error response.
-  '/v1/quotes/{quote}/cancel':
+  /v1/quotes/{quote}/cancel:
     post:
       description: <p>Cancels the quote.</p>
       operationId: PostQuotesQuoteCancel
@@ -392,7 +392,7 @@ paths:
               schema:
                 $ref: '#/components/schemas/error'
           description: Error response.
-  '/v1/quotes/{quote}/computed_upfront_line_items':
+  /v1/quotes/{quote}/computed_upfront_line_items:
     get:
       description: >-
         <p>When retrieving a quote, there is an includable <a
@@ -480,7 +480,7 @@ paths:
               schema:
                 $ref: '#/components/schemas/error'
           description: Error response.
-  '/v1/quotes/{quote}/finalize':
+  /v1/quotes/{quote}/finalize:
     post:
       description: <p>Finalizes the quote.</p>
       operationId: PostQuotesQuoteFinalize
@@ -516,7 +516,7 @@ paths:
               schema:
                 $ref: '#/components/schemas/error'
           description: Error response.
-  '/v1/quotes/{quote}/line_items':
+  /v1/quotes/{quote}/line_items:
     get:
       description: >-
         <p>When retrieving a quote, there is an includable
@@ -602,7 +602,7 @@ paths:
               schema:
                 $ref: '#/components/schemas/error'
           description: Error response.
-  '/v1/quotes/{quote}/pdf':
+  /v1/quotes/{quote}/pdf:
     get:
       description: <p>Download the PDF for a finalized quote</p>
       operationId: GetQuotesQuotePdf

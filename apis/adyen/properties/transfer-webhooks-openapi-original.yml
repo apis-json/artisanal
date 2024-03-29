@@ -3,31 +3,31 @@ info:
   version: '4'
   x-publicVersion: true
   title: Transfer webhooks
-  description: 'Adyen sends webhooks to inform your system about incoming and outgoing
-    transfers in your platform. You can use these webhooks to build your implementation. For example, you can
-    use this information to update balances in your own dashboards or to keep track
-    of incoming funds.'
+  description: >-
+    Adyen sends webhooks to inform your system about incoming and outgoing
+    transfers in your platform. You can use these webhooks to build your
+    implementation. For example, you can use this information to update balances
+    in your own dashboards or to keep track of incoming funds.
   termsOfService: https://www.adyen.com/legal/terms-and-conditions
   contact:
     name: Adyen Developer Experience team
     url: https://github.com/Adyen/adyen-openapi
 tags:
-- name: General
+  - name: General
 x-staticResponse: response.json
 webhooks:
   balancePlatform.transfer.created:
     post:
       tags:
-      - General
+        - General
       summary: Transfer created
-      description: Adyen sends this webhook when there are fund movements on your
-        platform.
+      description: Adyen sends this webhook when there are fund movements on your platform.
       x-addedInVersion: '1'
       operationId: post-balancePlatform.transfer.created
       x-sortIndex: 0
       x-methodName: transferCreated
       security:
-      - BasicAuth: []
+        - BasicAuth: []
       requestBody:
         content:
           application/json:
@@ -43,18 +43,23 @@ webhooks:
   balancePlatform.transfer.updated:
     post:
       tags:
-      - General
+        - General
       summary: Transfer updated
-      description: "Adyen sends this webhook when the status of a transfer changes.\
-        \ Use the `data.id` to track the original transfer resource in the [balancePlatform.transfer.created](https://docs.adyen.com/api-explorer/transfer-webhooks/1/post/balancePlatform.transfer.created)\
-        \ webhook.\n\nThe `status` field indicates the event that triggered the webhook.\
-        \ \n\n"
+      description: >+
+        Adyen sends this webhook when the status of a transfer changes. Use the
+        `data.id` to track the original transfer resource in the
+        [balancePlatform.transfer.created](https://docs.adyen.com/api-explorer/transfer-webhooks/1/post/balancePlatform.transfer.created)
+        webhook.
+
+
+        The `status` field indicates the event that triggered the webhook. 
+
       x-addedInVersion: '1'
       operationId: post-balancePlatform.transfer.updated
       x-sortIndex: 0
       x-methodName: transferUpdated
       security:
-      - BasicAuth: []
+        - BasicAuth: []
       requestBody:
         content:
           application/json:
@@ -78,8 +83,10 @@ components:
           minLength: 5
           type: string
         bsbCode:
-          description: The 6-digit [Bank State Branch (BSB) code](https://en.wikipedia.org/wiki/Bank_state_branch),
-            without separators or whitespace.
+          description: >-
+            The 6-digit [Bank State Branch (BSB)
+            code](https://en.wikipedia.org/wiki/Bank_state_branch), without
+            separators or whitespace.
           maxLength: 6
           minLength: 6
           type: string
@@ -87,12 +94,12 @@ components:
           default: auLocal
           description: '**auLocal**'
           enum:
-          - auLocal
+            - auLocal
           type: string
       required:
-      - type
-      - accountNumber
-      - bsbCode
+        - type
+        - accountNumber
+        - bsbCode
       type: object
     AdditionalBankIdentification:
       properties:
@@ -100,14 +107,18 @@ components:
           description: The value of the additional bank identification.
           type: string
         type:
-          description: "The type of additional bank identification, depending on the\
-            \ country.\n\nPossible values:\n\n * **gbSortCode**: The 6-digit [UK sort\
-            \ code](https://en.wikipedia.org/wiki/Sort_code), without separators or\
-            \ spaces\n * **usRoutingNumber**: The 9-digit [routing number](https://en.wikipedia.org/wiki/ABA_routing_transit_number),\
-            \ without separators or spaces."
+          description: >-
+            The type of additional bank identification, depending on the
+            country.
+
+
+            Possible values:
+
+             * **gbSortCode**: The 6-digit [UK sort code](https://en.wikipedia.org/wiki/Sort_code), without separators or spaces
+             * **usRoutingNumber**: The 9-digit [routing number](https://en.wikipedia.org/wiki/ABA_routing_transit_number), without separators or spaces.
           enum:
-          - gbSortCode
-          - usRoutingNumber
+            - gbSortCode
+            - usRoutingNumber
           type: string
       type: object
     Address:
@@ -116,7 +127,8 @@ components:
           description: The name of the city.
           type: string
         country:
-          description: The two-character ISO 3166-1 alpha-2 country code. For example,
+          description: >-
+            The two-character ISO 3166-1 alpha-2 country code. For example,
             **US**, **NL**, or **GB**.
           type: string
         line1:
@@ -126,37 +138,40 @@ components:
           description: Second line of the street address.
           type: string
         postalCode:
-          description: 'The postal code.
-
+          description: |-
+            The postal code.
             Maximum length:
-
             * 5 digits for an address in the US.
-
-            * 10 characters for an address in all other countries.'
+            * 10 characters for an address in all other countries.
           type: string
         stateOrProvince:
-          description: 'The two-letter ISO 3166-2 state or province code. For example,
+          description: >-
+            The two-letter ISO 3166-2 state or province code. For example,
             **CA** in the US or **ON** in Canada.
 
-            > Required for the US and Canada.'
+            > Required for the US and Canada.
           type: string
       required:
-      - country
+        - country
       type: object
     Amount:
       properties:
         currency:
-          description: The three-character [ISO currency code](https://docs.adyen.com/development-resources/currency-codes).
+          description: >-
+            The three-character [ISO currency
+            code](https://docs.adyen.com/development-resources/currency-codes).
           maxLength: 3
           minLength: 3
           type: string
         value:
-          description: The amount of the transaction, in [minor units](https://docs.adyen.com/development-resources/currency-codes).
+          description: >-
+            The amount of the transaction, in [minor
+            units](https://docs.adyen.com/development-resources/currency-codes).
           format: int64
           type: integer
       required:
-      - value
-      - currency
+        - value
+        - currency
       type: object
     AmountAdjustment:
       properties:
@@ -166,15 +181,17 @@ components:
           $ref: '#/components/schemas/Amount'
         amountAdjustmentType:
           x-addedInVersion: '3'
-          description: 'The type of markup that is applied to an authorised payment.
+          description: >-
+            The type of markup that is applied to an authorised payment.
 
 
-            Possible values: **exchange**, **forexMarkup**, **authHoldReserve**, **atmMarkup**.'
+            Possible values: **exchange**, **forexMarkup**, **authHoldReserve**,
+            **atmMarkup**.
           enum:
-          - atmMarkup
-          - authHoldReserve
-          - exchange
-          - forexMarkup
+            - atmMarkup
+            - authHoldReserve
+            - exchange
+            - forexMarkup
           type: string
         basepoints:
           x-addedInVersion: '3'
@@ -204,44 +221,51 @@ components:
           default: brLocal
           description: '**brLocal**'
           enum:
-          - brLocal
+            - brLocal
           type: string
       required:
-      - type
-      - branchNumber
-      - accountNumber
-      - bankCode
+        - type
+        - branchNumber
+        - accountNumber
+        - bankCode
       type: object
     BalanceMutation:
       properties:
         balance:
           x-addedInVersion: '3'
-          description: The amount in the payment's currency that is debited or credited
-            on the balance accounting register.
+          description: >-
+            The amount in the payment's currency that is debited or credited on
+            the balance accounting register.
           format: int64
           type: integer
         currency:
           x-addedInVersion: '3'
-          description: The three-character [ISO currency code](https://docs.adyen.com/development-resources/currency-codes).
+          description: >-
+            The three-character [ISO currency
+            code](https://docs.adyen.com/development-resources/currency-codes).
           type: string
         received:
           x-addedInVersion: '3'
-          description: The amount in the payment's currency that is debited or credited
-            on the received accounting register.
+          description: >-
+            The amount in the payment's currency that is debited or credited on
+            the received accounting register.
           format: int64
           type: integer
         reserved:
           x-addedInVersion: '3'
-          description: The amount in the payment's currency that is debited or credited
-            on the reserved accounting register.
+          description: >-
+            The amount in the payment's currency that is debited or credited on
+            the reserved accounting register.
           format: int64
           type: integer
       type: object
     BalancePlatformNotificationResponse:
       properties:
         notificationResponse:
-          description: Respond with **HTTP 200 OK** and `[accepted]` in the response
-            body to [accept the webhook](https://docs.adyen.com/development-resources/webhooks#accept-notifications).
+          description: >-
+            Respond with **HTTP 200 OK** and `[accepted]` in the response body
+            to [accept the
+            webhook](https://docs.adyen.com/development-resources/webhooks#accept-notifications).
           type: string
       type: object
     BankAccountV3:
@@ -250,38 +274,40 @@ components:
           description: Information about the owner of the bank account.
           $ref: '#/components/schemas/PartyIdentification'
         accountIdentification:
-          description: Contains the bank account details. The fields required in this
-            object depend on the country of the bank account and the currency of the
-            transfer.
+          description: >-
+            Contains the bank account details. The fields required in this
+            object depend on the country of the bank account and the currency of
+            the transfer.
           oneOf:
-          - $ref: '#/components/schemas/AULocalAccountIdentification'
-          - $ref: '#/components/schemas/BRLocalAccountIdentification'
-          - $ref: '#/components/schemas/CALocalAccountIdentification'
-          - $ref: '#/components/schemas/CZLocalAccountIdentification'
-          - $ref: '#/components/schemas/DKLocalAccountIdentification'
-          - $ref: '#/components/schemas/HKLocalAccountIdentification'
-          - $ref: '#/components/schemas/HULocalAccountIdentification'
-          - $ref: '#/components/schemas/IbanAccountIdentification'
-          - $ref: '#/components/schemas/NOLocalAccountIdentification'
-          - $ref: '#/components/schemas/NZLocalAccountIdentification'
-          - $ref: '#/components/schemas/NumberAndBicAccountIdentification'
-          - $ref: '#/components/schemas/PLLocalAccountIdentification'
-          - $ref: '#/components/schemas/SELocalAccountIdentification'
-          - $ref: '#/components/schemas/SGLocalAccountIdentification'
-          - $ref: '#/components/schemas/UKLocalAccountIdentification'
-          - $ref: '#/components/schemas/USLocalAccountIdentification'
+            - $ref: '#/components/schemas/AULocalAccountIdentification'
+            - $ref: '#/components/schemas/BRLocalAccountIdentification'
+            - $ref: '#/components/schemas/CALocalAccountIdentification'
+            - $ref: '#/components/schemas/CZLocalAccountIdentification'
+            - $ref: '#/components/schemas/DKLocalAccountIdentification'
+            - $ref: '#/components/schemas/HKLocalAccountIdentification'
+            - $ref: '#/components/schemas/HULocalAccountIdentification'
+            - $ref: '#/components/schemas/IbanAccountIdentification'
+            - $ref: '#/components/schemas/NOLocalAccountIdentification'
+            - $ref: '#/components/schemas/NZLocalAccountIdentification'
+            - $ref: '#/components/schemas/NumberAndBicAccountIdentification'
+            - $ref: '#/components/schemas/PLLocalAccountIdentification'
+            - $ref: '#/components/schemas/SELocalAccountIdentification'
+            - $ref: '#/components/schemas/SGLocalAccountIdentification'
+            - $ref: '#/components/schemas/UKLocalAccountIdentification'
+            - $ref: '#/components/schemas/USLocalAccountIdentification'
       required:
-      - accountIdentification
-      - accountHolder
+        - accountIdentification
+        - accountHolder
       type: object
     BankCategoryData:
       additionalProperties: false
       properties:
         priority:
           x-addedInVersion: '4'
-          description: 'The priority for the bank transfer. This sets the speed at
-            which the transfer is sent and the fees that you have to pay. Required
-            for transfers with `category` **bank**.
+          description: >-
+            The priority for the bank transfer. This sets the speed at which the
+            transfer is sent and the fees that you have to pay. Required for
+            transfers with `category` **bank**.
 
 
             Possible values:
@@ -290,55 +316,60 @@ components:
             * **regular**: For normal, low-value transactions.
 
 
-            * **fast**: Faster way to transfer funds but has higher fees. Recommended
-            for high-priority, low-value transactions.
+            * **fast**: Faster way to transfer funds but has higher fees.
+            Recommended for high-priority, low-value transactions.
 
 
-            * **wire**: Fastest way to transfer funds but has the highest fees. Recommended
-            for high-priority, high-value transactions.
+            * **wire**: Fastest way to transfer funds but has the highest fees.
+            Recommended for high-priority, high-value transactions.
 
 
-            * **instant**: Instant way to transfer funds in [SEPA countries](https://www.ecb.europa.eu/paym/integration/retail/sepa/html/index.en.html).
+            * **instant**: Instant way to transfer funds in [SEPA
+            countries](https://www.ecb.europa.eu/paym/integration/retail/sepa/html/index.en.html).
 
 
-            * **crossBorder**: High-value transfer to a recipient in a different country.
+            * **crossBorder**: High-value transfer to a recipient in a different
+            country.
 
 
-            * **internal**: Transfer to an Adyen-issued business bank account (by
-            bank account number/IBAN).'
+            * **internal**: Transfer to an Adyen-issued business bank account
+            (by bank account number/IBAN).
           enum:
-          - crossBorder
-          - fast
-          - instant
-          - internal
-          - regular
-          - wire
+            - crossBorder
+            - fast
+            - instant
+            - internal
+            - regular
+            - wire
           type: string
         type:
           default: bank
           description: '**bank**'
           enum:
-          - bank
+            - bank
           type: string
       type: object
     CALocalAccountIdentification:
       additionalProperties: false
       properties:
         accountNumber:
-          description: The 5- to 12-digit bank account number, without separators
-            or whitespace.
+          description: >-
+            The 5- to 12-digit bank account number, without separators or
+            whitespace.
           maxLength: 12
           minLength: 5
           type: string
         accountType:
           default: checking
-          description: 'The bank account type.
+          description: >-
+            The bank account type.
 
 
-            Possible values: **checking** or **savings**. Defaults to **checking**.'
+            Possible values: **checking** or **savings**. Defaults to
+            **checking**.
           enum:
-          - checking
-          - savings
+            - checking
+            - savings
           type: string
         institutionNumber:
           description: The 3-digit institution number, without separators or whitespace.
@@ -354,31 +385,48 @@ components:
           default: caLocal
           description: '**caLocal**'
           enum:
-          - caLocal
+            - caLocal
           type: string
       required:
-      - type
-      - accountNumber
-      - institutionNumber
-      - transitNumber
+        - type
+        - accountNumber
+        - institutionNumber
+        - transitNumber
       type: object
     CZLocalAccountIdentification:
       additionalProperties: false
       properties:
         accountNumber:
-          description: "The 2- to 16-digit bank account number (\u010C\xEDslo \xFA\
-            \u010Dtu) in the following format:\n\n- The optional prefix (p\u0159ed\u010D\
-            \xEDsl\xED).\n\n- The required second part (z\xE1kladn\xED \u010D\xE1\
-            st) which must be at least two non-zero digits.\n\nExamples:\n\n- **19-123457**\
-            \ (with prefix)\n\n- **123457** (without prefix)\n\n- **000019-0000123457**\
-            \ (with prefix, normalized)\n\n- **000000-0000123457** (without prefix,\
-            \ normalized)"
+          description: >-
+            The 2- to 16-digit bank account number (Číslo účtu) in the following
+            format:
+
+
+            - The optional prefix (předčíslí).
+
+
+            - The required second part (základní část) which must be at least
+            two non-zero digits.
+
+
+            Examples:
+
+
+            - **19-123457** (with prefix)
+
+
+            - **123457** (without prefix)
+
+
+            - **000019-0000123457** (with prefix, normalized)
+
+
+            - **000000-0000123457** (without prefix, normalized)
           maxLength: 17
           minLength: 2
           type: string
         bankCode:
-          description: "The 4-digit bank code (K\xF3d banky), without separators or\
-            \ whitespace."
+          description: The 4-digit bank code (Kód banky), without separators or whitespace.
           maxLength: 4
           minLength: 4
           type: string
@@ -386,17 +434,19 @@ components:
           default: czLocal
           description: '**czLocal**'
           enum:
-          - czLocal
+            - czLocal
           type: string
       required:
-      - type
-      - accountNumber
-      - bankCode
+        - type
+        - accountNumber
+        - bankCode
       type: object
     CounterpartyV3:
       properties:
         balanceAccountId:
-          description: Unique identifier of the [balance account](https://docs.adyen.com/api-explorer/#/balanceplatform/latest/post/balanceAccounts__resParam_id).
+          description: >-
+            Unique identifier of the [balance
+            account](https://docs.adyen.com/api-explorer/#/balanceplatform/latest/post/balanceAccounts__resParam_id).
           type: string
         bankAccount:
           description: Contains information about the bank account.
@@ -405,21 +455,25 @@ components:
           description: Contains information about the merchant.
           $ref: '#/components/schemas/MerchantData'
         transferInstrumentId:
-          description: Unique identifier of the [transfer instrument](https://docs.adyen.com/api-explorer/#/legalentity/latest/post/transferInstruments__resParam_id).
+          description: >-
+            Unique identifier of the [transfer
+            instrument](https://docs.adyen.com/api-explorer/#/legalentity/latest/post/transferInstruments__resParam_id).
           type: string
       type: object
     DKLocalAccountIdentification:
       additionalProperties: false
       properties:
         accountNumber:
-          description: The 4-10 digits bank account number (Kontonummer) (without
+          description: >-
+            The 4-10 digits bank account number (Kontonummer) (without
             separators or whitespace).
           maxLength: 10
           minLength: 4
           type: string
         bankCode:
-          description: The 4-digit bank code (Registreringsnummer) (without separators
-            or whitespace).
+          description: >-
+            The 4-digit bank code (Registreringsnummer) (without separators or
+            whitespace).
           maxLength: 4
           minLength: 4
           type: string
@@ -427,19 +481,20 @@ components:
           default: dkLocal
           description: '**dkLocal**'
           enum:
-          - dkLocal
+            - dkLocal
           type: string
       required:
-      - type
-      - accountNumber
-      - bankCode
+        - type
+        - accountNumber
+        - bankCode
       type: object
     HKLocalAccountIdentification:
       additionalProperties: false
       properties:
         accountNumber:
-          description: The 9- to 15-character bank account number (alphanumeric),
-            without separators or whitespace. Starts with the 3-digit branch code.
+          description: >-
+            The 9- to 15-character bank account number (alphanumeric), without
+            separators or whitespace. Starts with the 3-digit branch code.
           maxLength: 15
           minLength: 9
           type: string
@@ -452,12 +507,12 @@ components:
           default: hkLocal
           description: '**hkLocal**'
           enum:
-          - hkLocal
+            - hkLocal
           type: string
       required:
-      - type
-      - accountNumber
-      - clearingCode
+        - type
+        - accountNumber
+        - clearingCode
       type: object
     HULocalAccountIdentification:
       additionalProperties: false
@@ -471,28 +526,29 @@ components:
           default: huLocal
           description: '**huLocal**'
           enum:
-          - huLocal
+            - huLocal
           type: string
       required:
-      - type
-      - accountNumber
+        - type
+        - accountNumber
       type: object
     IbanAccountIdentification:
       additionalProperties: false
       properties:
         iban:
-          description: The international bank account number as defined in the [ISO-13616](https://www.iso.org/standard/81090.html)
-            standard.
+          description: >-
+            The international bank account number as defined in the
+            [ISO-13616](https://www.iso.org/standard/81090.html) standard.
           type: string
         type:
           default: iban
           description: '**iban**'
           enum:
-          - iban
+            - iban
           type: string
       required:
-      - type
-      - iban
+        - type
+        - iban
       type: object
     InternalCategoryData:
       additionalProperties: false
@@ -509,7 +565,7 @@ components:
           default: internal
           description: '**internal**'
           enum:
-          - internal
+            - internal
           type: string
       type: object
     IssuedCard:
@@ -517,68 +573,78 @@ components:
       properties:
         authorisationType:
           x-addedInVersion: '4'
-          description: The authorisation type. For example, **defaultAuthorisation**,
+          description: >-
+            The authorisation type. For example, **defaultAuthorisation**,
             **preAuthorisation**, **finalAuthorisation**
           type: string
         panEntryMode:
           x-addedInVersion: '4'
-          description: 'Indicates the method used for entering the PAN to initiate
-            a transaction.
+          description: >-
+            Indicates the method used for entering the PAN to initiate a
+            transaction.
 
 
-            Possible values: **manual**, **chip**, **magstripe**, **contactless**,
-            **cof**, **ecommerce**, **token**.'
+            Possible values: **manual**, **chip**, **magstripe**,
+            **contactless**, **cof**, **ecommerce**, **token**.
           enum:
-          - chip
-          - cof
-          - contactless
-          - ecommerce
-          - magstripe
-          - manual
-          - token
+            - chip
+            - cof
+            - contactless
+            - ecommerce
+            - magstripe
+            - manual
+            - token
           type: string
         processingType:
           x-addedInVersion: '4'
-          description: Contains information about how the payment was processed. For
+          description: >-
+            Contains information about how the payment was processed. For
             example, **ecommerce** for online or **pos** for in-person payments.
           enum:
-          - atmWithdraw
-          - balanceInquiry
-          - ecommerce
-          - moto
-          - pos
-          - purchaseWithCashback
-          - recurring
-          - token
+            - atmWithdraw
+            - balanceInquiry
+            - ecommerce
+            - moto
+            - pos
+            - purchaseWithCashback
+            - recurring
+            - token
           type: string
         relayedAuthorisationData:
           x-addedInVersion: '4'
-          description: If you are using relayed authorisation, this object contains
-            information from the relayed authorisation response from your server.
+          description: >-
+            If you are using relayed authorisation, this object contains
+            information from the relayed authorisation response from your
+            server.
           $ref: '#/components/schemas/RelayedAuthorisationData'
         schemeTraceId:
           x-addedInVersion: '4'
-          description: The identifier of the original payment provided by the scheme.
-            The Id could be alphanumeric or numeric depending on the scheme. The schemeTraceID
-            should be referring to an original schemeUniqueTransactionID provided
-            in an earlier payment (not necessarily processed by Adyen). Instances
-            of available schemeTraceId is authAdjustment or recurring payments.
+          description: >-
+            The identifier of the original payment provided by the scheme. The
+            Id could be alphanumeric or numeric depending on the scheme. The
+            schemeTraceID should be referring to an original
+            schemeUniqueTransactionID provided in an earlier payment (not
+            necessarily processed by Adyen). Instances of available
+            schemeTraceId is authAdjustment or recurring payments.
           type: string
         schemeUniqueTransactionId:
           x-addedInVersion: '4'
-          description: The unique identifier created by the scheme. The ID could be
+          description: >-
+            The unique identifier created by the scheme. The ID could be
             alphanumeric or numeric depending on the scheme.
           type: string
         type:
           default: issuedCard
           description: '**issuedCard**'
           enum:
-          - issuedCard
+            - issuedCard
           type: string
         validationFacts:
           x-addedInVersion: '4'
-          description: The evaluation of the validation facts. See [validation checks](https://docs.adyen.com/issuing/validation-checks)
-            for more information.
+          description: >-
+            The evaluation of the validation facts. See [validation
+            checks](https://docs.adyen.com/issuing/validation-checks) for more
+            information.
           items:
             $ref: '#/components/schemas/TransferNotificationValidationFact'
           type: array
@@ -613,77 +679,78 @@ components:
           type: string
         reference:
           x-addedInVersion: '3'
-          description: Your reference for the modification, used internally within
-            your platform.
+          description: >-
+            Your reference for the modification, used internally within your
+            platform.
           type: string
         status:
           x-addedInVersion: '3'
           description: The status of the transfer event.
           enum:
-          - approvalPending
-          - atmWithdrawal
-          - atmWithdrawalReversalPending
-          - atmWithdrawalReversed
-          - authAdjustmentAuthorised
-          - authAdjustmentError
-          - authAdjustmentRefused
-          - authorised
-          - bankTransfer
-          - bankTransferPending
-          - booked
-          - bookingPending
-          - cancelled
-          - capturePending
-          - captureReversalPending
-          - captureReversed
-          - captured
-          - capturedExternally
-          - chargeback
-          - chargebackExternally
-          - chargebackPending
-          - chargebackReversalPending
-          - chargebackReversed
-          - credited
-          - depositCorrection
-          - depositCorrectionPending
-          - dispute
-          - disputeClosed
-          - disputeExpired
-          - disputeNeedsReview
-          - error
-          - expired
-          - failed
-          - fee
-          - feePending
-          - internalTransfer
-          - internalTransferPending
-          - invoiceDeduction
-          - invoiceDeductionPending
-          - manualCorrectionPending
-          - manuallyCorrected
-          - matchedStatement
-          - matchedStatementPending
-          - merchantPayin
-          - merchantPayinPending
-          - merchantPayinReversed
-          - merchantPayinReversedPending
-          - miscCost
-          - miscCostPending
-          - paymentCost
-          - paymentCostPending
-          - received
-          - refundPending
-          - refundReversalPending
-          - refundReversed
-          - refunded
-          - refundedExternally
-          - refused
-          - reserveAdjustment
-          - reserveAdjustmentPending
-          - returned
-          - secondChargeback
-          - secondChargebackPending
-          - undefined
+            - approvalPending
+            - atmWithdrawal
+            - atmWithdrawalReversalPending
+            - atmWithdrawalReversed
+            - authAdjustmentAuthorised
+            - authAdjustmentError
+            - authAdjustmentRefused
+            - authorised
+            - bankTransfer
+            - bankTransferPending
+            - booked
+            - bookingPending
+            - cancelled
+            - capturePending
+            - captureReversalPending
+            - captureReversed
+            - captured
+            - capturedExternally
+            - chargeback
+            - chargebackExternally
+            - chargebackPending
+            - chargebackReversalPending
+            - chargebackReversed
+            - credited
+            - depositCorrection
+            - depositCorrectionPending
+            - dispute
+            - disputeClosed
+            - disputeExpired
+            - disputeNeedsReview
+            - error
+            - expired
+            - failed
+            - fee
+            - feePending
+            - internalTransfer
+            - internalTransferPending
+            - invoiceDeduction
+            - invoiceDeductionPending
+            - manualCorrectionPending
+            - manuallyCorrected
+            - matchedStatement
+            - matchedStatementPending
+            - merchantPayin
+            - merchantPayinPending
+            - merchantPayinReversed
+            - merchantPayinReversedPending
+            - miscCost
+            - miscCostPending
+            - paymentCost
+            - paymentCostPending
+            - received
+            - refundPending
+            - refundReversalPending
+            - refundReversed
+            - refunded
+            - refundedExternally
+            - refused
+            - reserveAdjustment
+            - reserveAdjustmentPending
+            - returned
+            - secondChargeback
+            - secondChargebackPending
+            - undefined
           type: string
         type:
           x-addedInVersion: '3'
@@ -702,18 +769,19 @@ components:
           default: noLocal
           description: '**noLocal**'
           enum:
-          - noLocal
+            - noLocal
           type: string
       required:
-      - type
-      - accountNumber
+        - type
+        - accountNumber
       type: object
     NZLocalAccountIdentification:
       additionalProperties: false
       properties:
         accountNumber:
-          description: The 15-16 digit bank account number. The first 2 digits are
-            the bank number, the next 4 digits are the branch number, the next 7 digits
+          description: >-
+            The 15-16 digit bank account number. The first 2 digits are the bank
+            number, the next 4 digits are the branch number, the next 7 digits
             are the account number, and the final 2-3 digits are the suffix.
           maxLength: 16
           minLength: 15
@@ -722,11 +790,11 @@ components:
           default: nzLocal
           description: '**nzLocal**'
           enum:
-          - nzLocal
+            - nzLocal
           type: string
       required:
-      - type
-      - accountNumber
+        - type
+        - accountNumber
       type: object
     NameLocation:
       properties:
@@ -734,12 +802,15 @@ components:
           description: The city where the merchant is located.
           type: string
         country:
-          description: The country where the merchant is located in [three-letter
-            country code](https://en.wikipedia.org/wiki/ISO_3166-1_alpha-3) format.
+          description: >-
+            The country where the merchant is located in [three-letter country
+            code](https://en.wikipedia.org/wiki/ISO_3166-1_alpha-3) format.
           type: string
         countryOfOrigin:
-          description: The home country in [three-digit country code](https://en.wikipedia.org/wiki/ISO_3166-1_numeric)
-            format, used for government-controlled merchants such as embassies.
+          description: >-
+            The home country in [three-digit country
+            code](https://en.wikipedia.org/wiki/ISO_3166-1_numeric) format, used
+            for government-controlled merchants such as embassies.
           type: string
         name:
           description: The name of the merchant's shop or service.
@@ -755,13 +826,15 @@ components:
       additionalProperties: false
       properties:
         accountNumber:
-          description: The bank account number, without separators or whitespace.
-            The length and format depends on the bank or country.
+          description: >-
+            The bank account number, without separators or whitespace. The
+            length and format depends on the bank or country.
           maxLength: 34
           type: string
         additionalBankIdentification:
-          description: Additional identification codes of the bank. Some banks may
-            require these identifiers for cross-border transfers.
+          description: >-
+            Additional identification codes of the bank. Some banks may require
+            these identifiers for cross-border transfers.
           $ref: '#/components/schemas/AdditionalBankIdentification'
         bic:
           description: The bank's 8- or 11-character BIC or SWIFT code.
@@ -772,18 +845,20 @@ components:
           default: numberAndBic
           description: '**numberAndBic**'
           enum:
-          - numberAndBic
+            - numberAndBic
           type: string
       required:
-      - type
-      - accountNumber
-      - bic
+        - type
+        - accountNumber
+        - bic
       type: object
     PLLocalAccountIdentification:
       additionalProperties: false
       properties:
         accountNumber:
-          description: The 26-digit bank account number ([Numer rachunku](https://pl.wikipedia.org/wiki/Numer_Rachunku_Bankowego)),
+          description: >-
+            The 26-digit bank account number ([Numer
+            rachunku](https://pl.wikipedia.org/wiki/Numer_Rachunku_Bankowego)),
             without separators or whitespace.
           maxLength: 26
           minLength: 26
@@ -792,11 +867,11 @@ components:
           default: plLocal
           description: '**plLocal**'
           enum:
-          - plLocal
+            - plLocal
           type: string
       required:
-      - type
-      - accountNumber
+        - type
+        - accountNumber
       type: object
     PartyIdentification:
       properties:
@@ -804,46 +879,51 @@ components:
           description: Address of the bank account owner.
           $ref: '#/components/schemas/Address'
         dateOfBirth:
-          description: 'The date of birth of the individual in [ISO-8601](https://www.w3.org/TR/NOTE-datetime)
-            format. For example, **YYYY-MM-DD**. Should not be before January 1, 1900.
+          description: >-
+            The date of birth of the individual in
+            [ISO-8601](https://www.w3.org/TR/NOTE-datetime) format. For example,
+            **YYYY-MM-DD**. Should not be before January 1, 1900.
 
 
-            Allowed only when `type` is **individual**.'
+            Allowed only when `type` is **individual**.
           format: date
           type: string
         firstName:
-          description: 'First name of the individual.
+          description: |-
+            First name of the individual.
 
-
-            Allowed only when `type` is **individual**.'
+            Allowed only when `type` is **individual**.
           type: string
         fullName:
           description: The name of the entity.
           type: string
         lastName:
-          description: 'Last name of the individual.
+          description: |-
+            Last name of the individual.
 
-
-            Allowed only when `type` is **individual**.'
+            Allowed only when `type` is **individual**.
           type: string
         reference:
-          description: A unique reference to identify the party or counterparty involved
-            in transfers. This identifier ensures consistency and uniqueness throughout
-            all transactions initiated to and from the same party. For example, your
-            client's unique wallet or payee ID.
+          description: >-
+            A unique reference to identify the party or counterparty involved in
+            transfers. This identifier ensures consistency and uniqueness
+            throughout all transactions initiated to and from the same party.
+            For example, your client's unique wallet or payee ID.
           maxLength: 150
           type: string
         type:
           default: unknown
-          description: "The type of entity that owns the bank account.\n\n Possible\
-            \ values: **individual**, **organization**, or **unknown**."
+          description: |-
+            The type of entity that owns the bank account.
+
+             Possible values: **individual**, **organization**, or **unknown**.
           enum:
-          - individual
-          - organization
-          - unknown
+            - individual
+            - organization
+            - unknown
           type: string
       required:
-      - fullName
+        - fullName
       type: object
     PaymentInstrument:
       properties:
@@ -880,19 +960,19 @@ components:
           x-addedInVersion: '4'
           description: The type of the related split.
           enum:
-          - AcquiringFees
-          - AdyenCommission
-          - AdyenFees
-          - AdyenMarkup
-          - BalanceAccount
-          - Commission
-          - Default
-          - Interchange
-          - PaymentFee
-          - Remainder
-          - SchemeFee
-          - TopUp
-          - VAT
+            - AcquiringFees
+            - AdyenCommission
+            - AdyenFees
+            - AdyenMarkup
+            - BalanceAccount
+            - Commission
+            - Default
+            - Interchange
+            - PaymentFee
+            - Remainder
+            - SchemeFee
+            - TopUp
+            - VAT
           type: string
         pspPaymentReference:
           x-addedInVersion: '4'
@@ -902,7 +982,7 @@ components:
           default: platformPayment
           description: '**platformPayment**'
           enum:
-          - platformPayment
+            - platformPayment
           type: string
       type: object
     RelayedAuthorisationData:
@@ -911,8 +991,9 @@ components:
           x-addedInVersion: '3'
           additionalProperties:
             type: string
-          description: Contains key-value pairs of your references and descriptions,
-            for example, `customId`:`your-own-custom-field-12345`.
+          description: >-
+            Contains key-value pairs of your references and descriptions, for
+            example, `customId`:`your-own-custom-field-12345`.
           type: object
         reference:
           x-addedInVersion: '3'
@@ -925,8 +1006,9 @@ components:
           description: The unique identifier of the balance platform.
           type: string
         creationDate:
-          description: The date and time when the event was triggered, in ISO 8601
-            extended format. For example, **2020-12-18T10:15:30+01:00**.
+          description: >-
+            The date and time when the event was triggered, in ISO 8601 extended
+            format. For example, **2020-12-18T10:15:30+01:00**.
           format: date-time
           type: string
         id:
@@ -949,13 +1031,17 @@ components:
       additionalProperties: false
       properties:
         accountNumber:
-          description: The 7- to 10-digit bank account number ([Bankkontonummer](https://sv.wikipedia.org/wiki/Bankkonto)),
+          description: >-
+            The 7- to 10-digit bank account number
+            ([Bankkontonummer](https://sv.wikipedia.org/wiki/Bankkonto)),
             without the clearing number, separators, or whitespace.
           maxLength: 10
           minLength: 7
           type: string
         clearingNumber:
-          description: The 4- to 5-digit clearing number ([Clearingnummer](https://sv.wikipedia.org/wiki/Clearingnummer)),
+          description: >-
+            The 4- to 5-digit clearing number
+            ([Clearingnummer](https://sv.wikipedia.org/wiki/Clearingnummer)),
             without separators or whitespace.
           maxLength: 5
           minLength: 4
@@ -964,19 +1050,20 @@ components:
           default: seLocal
           description: '**seLocal**'
           enum:
-          - seLocal
+            - seLocal
           type: string
       required:
-      - type
-      - accountNumber
-      - clearingNumber
+        - type
+        - accountNumber
+        - clearingNumber
       type: object
     SGLocalAccountIdentification:
       additionalProperties: false
       properties:
         accountNumber:
-          description: The 4- to 19-digit bank account number, without separators
-            or whitespace.
+          description: >-
+            The 4- to 19-digit bank account number, without separators or
+            whitespace.
           maxLength: 19
           minLength: 4
           type: string
@@ -989,11 +1076,11 @@ components:
           default: sgLocal
           description: '**sgLocal**'
           enum:
-          - sgLocal
+            - sgLocal
           type: string
       required:
-      - accountNumber
-      - bic
+        - accountNumber
+        - bic
       type: object
     TransactionEventViolation:
       properties:
@@ -1004,7 +1091,8 @@ components:
           description: Contains information about the transaction rule.
           $ref: '#/components/schemas/TransactionRuleReference'
         transactionRuleSource:
-          description: Contains the type and ID of the resource to which the transaction
+          description: >-
+            Contains the type and ID of the resource to which the transaction
             rule is linked.
           $ref: '#/components/schemas/TransactionRuleSource'
       type: object
@@ -1035,11 +1123,26 @@ components:
           description: ID of the resource, when applicable.
           type: string
         type:
-          description: "Indicates the type of resource for which the transaction rule\
-            \ is defined.\n\nPossible values:\n\n * **PaymentInstrumentGroup**\n\n\
-            * **PaymentInstrument**\n\n* **BalancePlatform**\n\n* **EntityUsageConfiguration**\n\
-            \n* **PlatformRule**: The transaction rule is a platform-wide rule imposed\
-            \ by Adyen."
+          description: >-
+            Indicates the type of resource for which the transaction rule is
+            defined.
+
+
+            Possible values:
+
+             * **PaymentInstrumentGroup**
+
+            * **PaymentInstrument**
+
+
+            * **BalancePlatform**
+
+
+            * **EntityUsageConfiguration**
+
+
+            * **PlatformRule**: The transaction rule is a platform-wide rule
+            imposed by Adyen.
           type: string
       type: object
     TransactionRulesResult:
@@ -1049,8 +1152,9 @@ components:
           type: string
         allHardBlockRulesPassed:
           x-addedInVersion: '4'
-          description: Indicates whether the transaction passed the evaluation for
-            all hardblock rules
+          description: >-
+            Indicates whether the transaction passed the evaluation for all
+            hardblock rules
           type: boolean
         score:
           description: The score of the Risk analysis.
@@ -1058,7 +1162,8 @@ components:
           type: integer
         triggeredTransactionRules:
           x-addedInVersion: '4'
-          description: Array containing all the transaction rules that the transaction
+          description: >-
+            Array containing all the transaction rules that the transaction
             triggered.
           items:
             $ref: '#/components/schemas/TransactionEventViolation'
@@ -1068,8 +1173,9 @@ components:
       properties:
         accountHolder:
           x-addedInVersion: '3'
-          description: The account holder associated with the balance account used
-            in the transfer.
+          description: >-
+            The account holder associated with the balance account used in the
+            transfer.
           $ref: '#/components/schemas/ResourceReference'
         amount:
           x-addedInVersion: '1'
@@ -1077,8 +1183,9 @@ components:
           $ref: '#/components/schemas/Amount'
         balanceAccount:
           x-addedInVersion: '3'
-          description: Contains information about the balance account involved in
-            the transfer.
+          description: >-
+            Contains information about the balance account involved in the
+            transfer.
           $ref: '#/components/schemas/ResourceReference'
         balancePlatform:
           description: The unique identifier of the balance platform.
@@ -1091,63 +1198,77 @@ components:
           type: array
         category:
           x-addedInVersion: '3'
-          description: "The category of transfer.\n\nPossible values:\n\n - **bank**:\
-            \ Transfer to a [transfer instrument](https://docs.adyen.com/api-explorer/#/legalentity/latest/post/transferInstruments__resParam_id)\
-            \ or a bank account.\n\n- **internal**: Transfer to another [balance account](https://docs.adyen.com/api-explorer/#/balanceplatform/latest/post/balanceAccounts__resParam_id)\
-            \ within your platform.\n\n- **issuedCard**: Transfer initiated by a Adyen-issued\
-            \ card.\n\n- **platformPayment**: Fund movements related to payments that\
-            \ are acquired for your users."
+          description: >-
+            The category of transfer.
+
+
+            Possible values:
+
+             - **bank**: Transfer to a [transfer instrument](https://docs.adyen.com/api-explorer/#/legalentity/latest/post/transferInstruments__resParam_id) or a bank account.
+
+            - **internal**: Transfer to another [balance
+            account](https://docs.adyen.com/api-explorer/#/balanceplatform/latest/post/balanceAccounts__resParam_id)
+            within your platform.
+
+
+            - **issuedCard**: Transfer initiated by a Adyen-issued card.
+
+
+            - **platformPayment**: Fund movements related to payments that are
+            acquired for your users.
           enum:
-          - bank
-          - internal
-          - issuedCard
-          - platformPayment
+            - bank
+            - internal
+            - issuedCard
+            - platformPayment
           type: string
         categoryData:
           x-addedInVersion: '4'
           description: The relevant data according to the transfer category.
           oneOf:
-          - $ref: '#/components/schemas/BankCategoryData'
-          - $ref: '#/components/schemas/InternalCategoryData'
-          - $ref: '#/components/schemas/IssuedCard'
-          - $ref: '#/components/schemas/PlatformPayment'
+            - $ref: '#/components/schemas/BankCategoryData'
+            - $ref: '#/components/schemas/InternalCategoryData'
+            - $ref: '#/components/schemas/IssuedCard'
+            - $ref: '#/components/schemas/PlatformPayment'
         counterparty:
           x-addedInVersion: '3'
           description: The other party in the transfer.
           $ref: '#/components/schemas/TransferNotificationCounterParty'
         creationDate:
           x-addedInVersion: '3'
-          description: The date and time when the event was triggered, in ISO 8601
-            extended format. For example, **2020-12-18T10:15:30+01:00**.
+          description: >-
+            The date and time when the event was triggered, in ISO 8601 extended
+            format. For example, **2020-12-18T10:15:30+01:00**.
           format: date-time
           type: string
         description:
           x-addedInVersion: '1'
-          description: 'Your description for the transfer. It is used by most banks
-            as the transfer description. We recommend sending a maximum of 140 characters,
-            otherwise the description may be truncated.
+          description: >-
+            Your description for the transfer. It is used by most banks as the
+            transfer description. We recommend sending a maximum of 140
+            characters, otherwise the description may be truncated.
 
 
-            Supported characters: **[a-z] [A-Z] [0-9] / - ?** **: ( ) . , '' + Space**
+            Supported characters: **[a-z] [A-Z] [0-9] / - ?** **: ( ) . , ' +
+            Space**
 
 
-            Supported characters for **regular** and **fast** transfers to a US counterparty:
-            **[a-z] [A-Z] [0-9] & $ % # @** **~ = + - _ '' " ! ?**'
+            Supported characters for **regular** and **fast** transfers to a US
+            counterparty: **[a-z] [A-Z] [0-9] & $ % # @** **~ = + - _ ' " ! ?**
           type: string
         direction:
           x-addedInVersion: '2'
-          description: 'The direction of the transfer.
+          description: |-
+            The direction of the transfer.
 
-
-            Possible values: **incoming**, **outgoing**.'
+            Possible values: **incoming**, **outgoing**.
           enum:
-          - incoming
-          - outgoing
+            - incoming
+            - outgoing
           type: string
         events:
           x-addedInVersion: '3'
-          description: The list of events leading up to the current status of the
-            transfer.
+          description: The list of events leading up to the current status of the transfer.
           items:
             $ref: '#/components/schemas/TransferEvent'
           type: array
@@ -1156,126 +1277,136 @@ components:
           type: string
         paymentInstrument:
           x-addedInVersion: '3'
-          description: Contains information about the payment instrument used in the
+          description: >-
+            Contains information about the payment instrument used in the
             transfer.
           $ref: '#/components/schemas/PaymentInstrument'
         reason:
           x-addedInVersion: '2'
           description: Additional information about the status of the transfer.
           enum:
-          - amountLimitExceeded
-          - approved
-          - balanceAccountTemporarilyBlockedByTransactionRule
-          - counterpartyAccountBlocked
-          - counterpartyAccountClosed
-          - counterpartyAccountNotFound
-          - counterpartyAddressRequired
-          - counterpartyBankTimedOut
-          - counterpartyBankUnavailable
-          - declinedByTransactionRule
-          - error
-          - notEnoughBalance
-          - refusedByCounterpartyBank
-          - routeNotFound
-          - scaFailed
-          - unknown
+            - amountLimitExceeded
+            - approved
+            - balanceAccountTemporarilyBlockedByTransactionRule
+            - counterpartyAccountBlocked
+            - counterpartyAccountClosed
+            - counterpartyAccountNotFound
+            - counterpartyAddressRequired
+            - counterpartyBankTimedOut
+            - counterpartyBankUnavailable
+            - declinedByTransactionRule
+            - error
+            - notEnoughBalance
+            - refusedByCounterpartyBank
+            - routeNotFound
+            - scaFailed
+            - unknown
           type: string
         reference:
           x-addedInVersion: '2'
-          description: Your reference for the transfer, used internally within your
-            platform. If you don't provide this in the request, Adyen generates a
-            unique reference.
+          description: >-
+            Your reference for the transfer, used internally within your
+            platform. If you don't provide this in the request, Adyen generates
+            a unique reference.
           maxLength: 80
           type: string
         referenceForBeneficiary:
           x-addedInVersion: '2'
-          description: " A reference that is sent to the recipient. This reference\
-            \ is also sent in all webhooks related to the transfer, so you can use\
-            \ it to track statuses for both the source and recipient of funds.\n\n\
-            \ Supported characters: **a-z**, **A-Z**, **0-9**. The maximum length\
-            \ depends on the `category`.\n\n- **internal**: 80 characters\n\n- **bank**:\
-            \ 35 characters when transferring to an IBAN, 15 characters for others."
+          description: >2-
+             A reference that is sent to the recipient. This reference is also sent in all webhooks related to the transfer, so you can use it to track statuses for both the source and recipient of funds.
+
+             Supported characters: **a-z**, **A-Z**, **0-9**. The maximum length depends on the `category`.
+
+            - **internal**: 80 characters
+
+
+            - **bank**: 35 characters when transferring to an IBAN, 15
+            characters for others.
           maxLength: 80
           type: string
         sequenceNumber:
           x-addedInVersion: '3'
-          description: 'The sequence number of the transfer notification. The numbers
-            start from 1 and increase with each new notification for a specific transfer.
+          description: >-
+            The sequence number of the transfer notification. The numbers start
+            from 1 and increase with each new notification for a specific
+            transfer.
 
 
-            It can help you restore the correct sequence of events even if they arrive
-            out of order.'
+            It can help you restore the correct sequence of events even if they
+            arrive out of order.
           format: int32
           type: integer
         status:
           x-addedInVersion: '2'
-          description: "The result of the transfer.\n\n For example, **authorised**,\
-            \ **refused**, or **error**."
+          description: |-
+            The result of the transfer.
+
+             For example, **authorised**, **refused**, or **error**.
           enum:
-          - approvalPending
-          - atmWithdrawal
-          - atmWithdrawalReversalPending
-          - atmWithdrawalReversed
-          - authAdjustmentAuthorised
-          - authAdjustmentError
-          - authAdjustmentRefused
-          - authorised
-          - bankTransfer
-          - bankTransferPending
-          - booked
-          - bookingPending
-          - cancelled
-          - capturePending
-          - captureReversalPending
-          - captureReversed
-          - captured
-          - capturedExternally
-          - chargeback
-          - chargebackExternally
-          - chargebackPending
-          - chargebackReversalPending
-          - chargebackReversed
-          - credited
-          - depositCorrection
-          - depositCorrectionPending
-          - dispute
-          - disputeClosed
-          - disputeExpired
-          - disputeNeedsReview
-          - error
-          - expired
-          - failed
-          - fee
-          - feePending
-          - internalTransfer
-          - internalTransferPending
-          - invoiceDeduction
-          - invoiceDeductionPending
-          - manualCorrectionPending
-          - manuallyCorrected
-          - matchedStatement
-          - matchedStatementPending
-          - merchantPayin
-          - merchantPayinPending
-          - merchantPayinReversed
-          - merchantPayinReversedPending
-          - miscCost
-          - miscCostPending
-          - paymentCost
-          - paymentCostPending
-          - received
-          - refundPending
-          - refundReversalPending
-          - refundReversed
-          - refunded
-          - refundedExternally
-          - refused
-          - reserveAdjustment
-          - reserveAdjustmentPending
-          - returned
-          - secondChargeback
-          - secondChargebackPending
-          - undefined
+            - approvalPending
+            - atmWithdrawal
+            - atmWithdrawalReversalPending
+            - atmWithdrawalReversed
+            - authAdjustmentAuthorised
+            - authAdjustmentError
+            - authAdjustmentRefused
+            - authorised
+            - bankTransfer
+            - bankTransferPending
+            - booked
+            - bookingPending
+            - cancelled
+            - capturePending
+            - captureReversalPending
+            - captureReversed
+            - captured
+            - capturedExternally
+            - chargeback
+            - chargebackExternally
+            - chargebackPending
+            - chargebackReversalPending
+            - chargebackReversed
+            - credited
+            - depositCorrection
+            - depositCorrectionPending
+            - dispute
+            - disputeClosed
+            - disputeExpired
+            - disputeNeedsReview
+            - error
+            - expired
+            - failed
+            - fee
+            - feePending
+            - internalTransfer
+            - internalTransferPending
+            - invoiceDeduction
+            - invoiceDeductionPending
+            - manualCorrectionPending
+            - manuallyCorrected
+            - matchedStatement
+            - matchedStatementPending
+            - merchantPayin
+            - merchantPayinPending
+            - merchantPayinReversed
+            - merchantPayinReversedPending
+            - miscCost
+            - miscCostPending
+            - paymentCost
+            - paymentCostPending
+            - received
+            - refundPending
+            - refundReversalPending
+            - refundReversed
+            - refunded
+            - refundedExternally
+            - refused
+            - reserveAdjustment
+            - reserveAdjustmentPending
+            - returned
+            - secondChargeback
+            - secondChargebackPending
+            - undefined
           type: string
         tracking:
           x-addedInVersion: '3'
@@ -1287,48 +1418,49 @@ components:
           $ref: '#/components/schemas/TransactionRulesResult'
         type:
           x-addedInVersion: '3'
-          description: The type of transfer or transaction. For example, **refund**,
+          description: >-
+            The type of transfer or transaction. For example, **refund**,
             **payment**, **internalTransfer**, **bankTransfer**.
           enum:
-          - atmWithdrawal
-          - atmWithdrawalReversal
-          - balanceAdjustment
-          - balanceMigration
-          - balanceRollover
-          - bankTransfer
-          - capture
-          - captureReversal
-          - cardTransfer
-          - cashOutFee
-          - cashOutFunding
-          - cashOutInstruction
-          - chargeback
-          - chargebackCorrection
-          - chargebackReversal
-          - chargebackReversalCorrection
-          - depositCorrection
-          - fee
-          - grant
-          - installment
-          - installmentReversal
-          - internalTransfer
-          - invoiceDeduction
-          - leftover
-          - manualCorrection
-          - miscCost
-          - payment
-          - paymentCost
-          - refund
-          - refundReversal
-          - repayment
-          - reserveAdjustment
-          - secondChargeback
-          - secondChargebackCorrection
+            - atmWithdrawal
+            - atmWithdrawalReversal
+            - balanceAdjustment
+            - balanceMigration
+            - balanceRollover
+            - bankTransfer
+            - capture
+            - captureReversal
+            - cardTransfer
+            - cashOutFee
+            - cashOutFunding
+            - cashOutInstruction
+            - chargeback
+            - chargebackCorrection
+            - chargebackReversal
+            - chargebackReversalCorrection
+            - depositCorrection
+            - fee
+            - grant
+            - installment
+            - installmentReversal
+            - internalTransfer
+            - invoiceDeduction
+            - leftover
+            - manualCorrection
+            - miscCost
+            - payment
+            - paymentCost
+            - refund
+            - refundReversal
+            - repayment
+            - reserveAdjustment
+            - secondChargeback
+            - secondChargebackCorrection
           type: string
       required:
-      - status
-      - category
-      - amount
+        - status
+        - category
+        - amount
       type: object
     TransferEvent:
       properties:
@@ -1349,8 +1481,7 @@ components:
           type: string
         estimatedArrivalTime:
           x-addedInVersion: '3'
-          description: The estimated time the beneficiary should have access to the
-            funds.
+          description: The estimated time the beneficiary should have access to the funds.
           format: date-time
           type: string
         id:
@@ -1375,104 +1506,107 @@ components:
           x-addedInVersion: '3'
           description: The reason for the transfer status.
           enum:
-          - amountLimitExceeded
-          - approved
-          - balanceAccountTemporarilyBlockedByTransactionRule
-          - counterpartyAccountBlocked
-          - counterpartyAccountClosed
-          - counterpartyAccountNotFound
-          - counterpartyAddressRequired
-          - counterpartyBankTimedOut
-          - counterpartyBankUnavailable
-          - declinedByTransactionRule
-          - error
-          - notEnoughBalance
-          - refusedByCounterpartyBank
-          - routeNotFound
-          - scaFailed
-          - unknown
+            - amountLimitExceeded
+            - approved
+            - balanceAccountTemporarilyBlockedByTransactionRule
+            - counterpartyAccountBlocked
+            - counterpartyAccountClosed
+            - counterpartyAccountNotFound
+            - counterpartyAddressRequired
+            - counterpartyBankTimedOut
+            - counterpartyBankUnavailable
+            - declinedByTransactionRule
+            - error
+            - notEnoughBalance
+            - refusedByCounterpartyBank
+            - routeNotFound
+            - scaFailed
+            - unknown
           type: string
         status:
           x-addedInVersion: '3'
           description: The status of the transfer event.
           enum:
-          - approvalPending
-          - atmWithdrawal
-          - atmWithdrawalReversalPending
-          - atmWithdrawalReversed
-          - authAdjustmentAuthorised
-          - authAdjustmentError
-          - authAdjustmentRefused
-          - authorised
-          - bankTransfer
-          - bankTransferPending
-          - booked
-          - bookingPending
-          - cancelled
-          - capturePending
-          - captureReversalPending
-          - captureReversed
-          - captured
-          - capturedExternally
-          - chargeback
-          - chargebackExternally
-          - chargebackPending
-          - chargebackReversalPending
-          - chargebackReversed
-          - credited
-          - depositCorrection
-          - depositCorrectionPending
-          - dispute
-          - disputeClosed
-          - disputeExpired
-          - disputeNeedsReview
-          - error
-          - expired
-          - failed
-          - fee
-          - feePending
-          - internalTransfer
-          - internalTransferPending
-          - invoiceDeduction
-          - invoiceDeductionPending
-          - manualCorrectionPending
-          - manuallyCorrected
-          - matchedStatement
-          - matchedStatementPending
-          - merchantPayin
-          - merchantPayinPending
-          - merchantPayinReversed
-          - merchantPayinReversedPending
-          - miscCost
-          - miscCostPending
-          - paymentCost
-          - paymentCostPending
-          - received
-          - refundPending
-          - refundReversalPending
-          - refundReversed
-          - refunded
-          - refundedExternally
-          - refused
-          - reserveAdjustment
-          - reserveAdjustmentPending
-          - returned
-          - secondChargeback
-          - secondChargebackPending
-          - undefined
+            - approvalPending
+            - atmWithdrawal
+            - atmWithdrawalReversalPending
+            - atmWithdrawalReversed
+            - authAdjustmentAuthorised
+            - authAdjustmentError
+            - authAdjustmentRefused
+            - authorised
+            - bankTransfer
+            - bankTransferPending
+            - booked
+            - bookingPending
+            - cancelled
+            - capturePending
+            - captureReversalPending
+            - captureReversed
+            - captured
+            - capturedExternally
+            - chargeback
+            - chargebackExternally
+            - chargebackPending
+            - chargebackReversalPending
+            - chargebackReversed
+            - credited
+            - depositCorrection
+            - depositCorrectionPending
+            - dispute
+            - disputeClosed
+            - disputeExpired
+            - disputeNeedsReview
+            - error
+            - expired
+            - failed
+            - fee
+            - feePending
+            - internalTransfer
+            - internalTransferPending
+            - invoiceDeduction
+            - invoiceDeductionPending
+            - manualCorrectionPending
+            - manuallyCorrected
+            - matchedStatement
+            - matchedStatementPending
+            - merchantPayin
+            - merchantPayinPending
+            - merchantPayinReversed
+            - merchantPayinReversedPending
+            - miscCost
+            - miscCostPending
+            - paymentCost
+            - paymentCostPending
+            - received
+            - refundPending
+            - refundReversalPending
+            - refundReversed
+            - refunded
+            - refundedExternally
+            - refused
+            - reserveAdjustment
+            - reserveAdjustmentPending
+            - returned
+            - secondChargeback
+            - secondChargebackPending
+            - undefined
           type: string
         transactionId:
           x-addedInVersion: '3'
-          description: The id of the transaction that is related to this accounting
-            event. Only sent for events of type **accounting** where the balance changes.
+          description: >-
+            The id of the transaction that is related to this accounting event.
+            Only sent for events of type **accounting** where the balance
+            changes.
           type: string
         type:
           x-addedInVersion: '3'
-          description: 'The type of the transfer event. Possible values: **accounting**,
-            **tracking**.'
+          description: >-
+            The type of the transfer event. Possible values: **accounting**,
+            **tracking**.
           enum:
-          - accounting
-          - tracking
+            - accounting
+            - tracking
           type: string
         updateDate:
           x-addedInVersion: '3'
@@ -1481,15 +1615,18 @@ components:
           type: string
         valueDate:
           x-addedInVersion: '3'
-          description: A future date, when the funds are expected to be deducted from
-            or credited to the balance account.
+          description: >-
+            A future date, when the funds are expected to be deducted from or
+            credited to the balance account.
           format: date-time
           type: string
       type: object
     TransferNotificationCounterParty:
       properties:
         balanceAccountId:
-          description: Unique identifier of the [balance account](https://docs.adyen.com/api-explorer/#/balanceplatform/latest/post/balanceAccounts__resParam_id).
+          description: >-
+            Unique identifier of the [balance
+            account](https://docs.adyen.com/api-explorer/#/balanceplatform/latest/post/balanceAccounts__resParam_id).
           type: string
         bankAccount:
           description: Contains information about the bank account.
@@ -1498,7 +1635,9 @@ components:
           description: Contains information about the merchant.
           $ref: '#/components/schemas/TransferNotificationMerchantData'
         transferInstrumentId:
-          description: Unique identifier of the [transfer instrument](https://docs.adyen.com/api-explorer/#/legalentity/latest/post/transferInstruments__resParam_id).
+          description: >-
+            Unique identifier of the [transfer
+            instrument](https://docs.adyen.com/api-explorer/#/legalentity/latest/post/transferInstruments__resParam_id).
           type: string
       type: object
     TransferNotificationMerchantData:
@@ -1531,34 +1670,33 @@ components:
           description: Contains details about the event.
           $ref: '#/components/schemas/TransferData'
         environment:
-          description: 'The environment from which the webhook originated.
+          description: |-
+            The environment from which the webhook originated.
 
-
-            Possible values: **test**, **live**.'
+            Possible values: **test**, **live**.
           type: string
         type:
           description: The type of webhook.
           enum:
-          - balancePlatform.transfer.created
-          - balancePlatform.transfer.updated
+            - balancePlatform.transfer.created
+            - balancePlatform.transfer.updated
           type: string
       required:
-      - environment
-      - data
+        - environment
+        - data
       type: object
     TransferNotificationTransferTracking:
       properties:
         estimatedArrivalTime:
           x-addedInVersion: '3'
-          description: The estimated time the beneficiary should have access to the
-            funds.
+          description: The estimated time the beneficiary should have access to the funds.
           format: date-time
           type: string
         status:
           x-addedInVersion: '3'
           description: The tracking status of the transfer.
           enum:
-          - credited
+            - credited
           type: string
       type: object
     TransferNotificationValidationFact:
@@ -1579,7 +1717,8 @@ components:
           minLength: 8
           type: string
         sortCode:
-          description: The 6-digit [sort code](https://en.wikipedia.org/wiki/Sort_code),
+          description: >-
+            The 6-digit [sort code](https://en.wikipedia.org/wiki/Sort_code),
             without separators or whitespace.
           maxLength: 6
           minLength: 6
@@ -1588,12 +1727,12 @@ components:
           default: ukLocal
           description: '**ukLocal**'
           enum:
-          - ukLocal
+            - ukLocal
           type: string
       required:
-      - type
-      - accountNumber
-      - sortCode
+        - type
+        - accountNumber
+        - sortCode
       type: object
     USLocalAccountIdentification:
       additionalProperties: false
@@ -1605,16 +1744,20 @@ components:
           type: string
         accountType:
           default: checking
-          description: 'The bank account type.
+          description: >-
+            The bank account type.
 
 
-            Possible values: **checking** or **savings**. Defaults to **checking**.'
+            Possible values: **checking** or **savings**. Defaults to
+            **checking**.
           enum:
-          - checking
-          - savings
+            - checking
+            - savings
           type: string
         routingNumber:
-          description: The 9-digit [routing number](https://en.wikipedia.org/wiki/ABA_routing_transit_number),
+          description: >-
+            The 9-digit [routing
+            number](https://en.wikipedia.org/wiki/ABA_routing_transit_number),
             without separators or whitespace.
           maxLength: 9
           minLength: 9
@@ -1623,12 +1766,12 @@ components:
           default: usLocal
           description: '**usLocal**'
           enum:
-          - usLocal
+            - usLocal
           type: string
       required:
-      - type
-      - accountNumber
-      - routingNumber
+        - type
+        - accountNumber
+        - routingNumber
       type: object
   securitySchemes:
     BasicAuth:

@@ -1,221 +1,217 @@
----
 openapi: 3.0.0
 info:
   title: FactSet People API
   version: 1.2.0
-  description: 'The FactSet People API exposes FactSet data for individuals and their
-    jobs.
-
-    '
+  description: |
+    The FactSet People API exposes FactSet data for individuals and their jobs.
   contact:
     name: FactSet Research Systems
     email: api@factset.com
 servers:
-- url: https://api.factset.com/content
-  description: Production Server
+  - url: https://api.factset.com/content
+    description: Production Server
 security:
-- BasicAuth: []
+  - BasicAuth: []
 tags:
-- name: Profiles
-  description: Return information about the person with the specified entity ID.
-- name: Job History
-  description: Returns the job history of the person
-- name: Company
-  description: Returns a list of associated people for a requested company
+  - name: Profiles
+    description: Return information about the person with the specified entity ID.
+  - name: Job History
+    description: Returns the job history of the person
+  - name: Companies
+    description: Returns a list of associated people for a requested company
 paths:
-  "/factset-people/v1/profiles":
+  /factset-people/v1/profiles:
     get:
       summary: Return information about the person with the specified entity ID.
-      description: 'Returns a summary of basic information about the person referenced
-        by the entityId specified in the URI.
-
-        '
+      description: >
+        Returns a summary of basic information about the person referenced by
+        the entityId specified in the URI.
       tags:
-      - Profiles
+        - Profiles
       operationId: getPeopleProfiles
       parameters:
-      - "$ref": "#/components/parameters/profileEntityId"
+        - $ref: '#/components/parameters/profileEntityId'
       responses:
         '200':
           description: Array of Profile Ojects
           content:
             application/json:
               schema:
-                "$ref": "#/components/schemas/peopleProfilesResponse"
+                $ref: '#/components/schemas/peopleProfilesResponse'
         '400':
-          "$ref": "#/components/responses/400"
+          $ref: '#/components/responses/400'
         '401':
-          "$ref": "#/components/responses/401"
+          $ref: '#/components/responses/401'
         '403':
-          "$ref": "#/components/responses/403"
+          $ref: '#/components/responses/403'
         '415':
-          "$ref": "#/components/responses/415"
+          $ref: '#/components/responses/415'
         '500':
-          "$ref": "#/components/responses/500"
+          $ref: '#/components/responses/500'
     post:
       summary: Returns profile information for a large list of people.
       tags:
-      - Profiles
+        - Profiles
       operationId: getPeopleProfilesForList
       requestBody:
         required: true
         content:
           application/json:
             schema:
-              "$ref": "#/components/schemas/peopleProfilesRequest"
+              $ref: '#/components/schemas/peopleProfilesRequest'
       responses:
         '200':
           description: Array of People Profile Objects
           content:
             application/json:
               schema:
-                "$ref": "#/components/schemas/peopleProfilesResponse"
+                $ref: '#/components/schemas/peopleProfilesResponse'
         '400':
-          "$ref": "#/components/responses/400"
+          $ref: '#/components/responses/400'
         '401':
-          "$ref": "#/components/responses/401"
+          $ref: '#/components/responses/401'
         '403':
-          "$ref": "#/components/responses/403"
+          $ref: '#/components/responses/403'
         '415':
-          "$ref": "#/components/responses/415"
+          $ref: '#/components/responses/415'
         '500':
-          "$ref": "#/components/responses/500"
-  "/factset-people/v1/jobs":
+          $ref: '#/components/responses/500'
+  /factset-people/v1/jobs:
     get:
       summary: Returns the Job history of the person.
-      description: 'Returns the `Job` history of the person referenced by the entityId
+      description: >
+        Returns the `Job` history of the person referenced by the entityId
         specified in the request.
-
-        '
       tags:
-      - Job History
+        - Job History
       operationId: getPeopleJobs
       parameters:
-      - "$ref": "#/components/parameters/entityId"
-      - "$ref": "#/components/parameters/status"
-      - "$ref": "#/components/parameters/level"
-      - "$ref": "#/components/parameters/type"
+        - $ref: '#/components/parameters/entityId'
+        - $ref: '#/components/parameters/status'
+        - $ref: '#/components/parameters/level'
+        - $ref: '#/components/parameters/type'
       responses:
         '200':
           description: Array of Job objects.
           content:
             application/json:
               schema:
-                "$ref": "#/components/schemas/peopleJobsResponse"
+                $ref: '#/components/schemas/peopleJobsResponse'
         '400':
-          "$ref": "#/components/responses/400"
+          $ref: '#/components/responses/400'
         '401':
-          "$ref": "#/components/responses/401"
+          $ref: '#/components/responses/401'
         '403':
-          "$ref": "#/components/responses/403"
+          $ref: '#/components/responses/403'
         '415':
-          "$ref": "#/components/responses/415"
+          $ref: '#/components/responses/415'
         '500':
-          "$ref": "#/components/responses/500"
+          $ref: '#/components/responses/500'
     post:
       summary: Returns the Job history for the large list of people.
-      description: 'Returns the `Job` history of the person referenced by the entityId
+      description: >
+        Returns the `Job` history of the person referenced by the entityId
         specified in the request.
-
-        '
       tags:
-      - Job History
+        - Job History
       operationId: getPeopleJobsForList
       requestBody:
         required: true
         content:
           application/json:
             schema:
-              "$ref": "#/components/schemas/peopleJobsRequest"
+              $ref: '#/components/schemas/peopleJobsRequest'
       responses:
         '200':
           description: Array of Job objects.
           content:
             application/json:
               schema:
-                "$ref": "#/components/schemas/peopleJobsResponse"
+                $ref: '#/components/schemas/peopleJobsResponse'
         '400':
-          "$ref": "#/components/responses/400"
+          $ref: '#/components/responses/400'
         '401':
-          "$ref": "#/components/responses/401"
+          $ref: '#/components/responses/401'
         '403':
-          "$ref": "#/components/responses/403"
+          $ref: '#/components/responses/403'
         '415':
-          "$ref": "#/components/responses/415"
+          $ref: '#/components/responses/415'
         '500':
-          "$ref": "#/components/responses/500"
-  "/factset-people/v1/company-people":
+          $ref: '#/components/responses/500'
+  /factset-people/v1/company-people:
     get:
       summary: Returns the list of people for the specified company identifiers
-      description: 'Returns the list of executives associated the company identifier
-        requested. Information includes the job functions, email, phone, title, name,
-        and FactSet Entity Identifier. The personId returned can then be used in the
-        `/profiles` endpoint to learn more about the given person.
-
-        '
+      description: >
+        Returns the list of executives associated the company identifier
+        requested. Information includes the job functions, email, phone, title,
+        name, and FactSet Entity Identifier. The personId returned can then be
+        used in the `/profiles` endpoint to learn more about the given person.
       tags:
-      - Company
+        - Company
       operationId: getCompanyPeople
       parameters:
-      - "$ref": "#/components/parameters/companyId"
-      - "$ref": "#/components/parameters/jobFunction"
+        - $ref: '#/components/parameters/companyId'
+        - $ref: '#/components/parameters/jobFunction'
       responses:
         '200':
           description: Array of Company People objects.
           content:
             application/json:
               schema:
-                "$ref": "#/components/schemas/companyPeopleResponse"
+                $ref: '#/components/schemas/companyPeopleResponse'
         '400':
-          "$ref": "#/components/responses/400"
+          $ref: '#/components/responses/400'
         '401':
-          "$ref": "#/components/responses/401"
+          $ref: '#/components/responses/401'
         '403':
-          "$ref": "#/components/responses/403"
+          $ref: '#/components/responses/403'
         '415':
-          "$ref": "#/components/responses/415"
+          $ref: '#/components/responses/415'
         '500':
-          "$ref": "#/components/responses/500"
+          $ref: '#/components/responses/500'
     post:
-      summary: Returns the list of people associated for a large list of company identitifers
-      description: 'Returns the list of executives associated the company identifier
-        requested. Information includes the job functions, email, phone, title, name,
-        and FactSet Entity Identifier. The personId returned can then be used in the
-        /profiles endpoint to learn more about the given person.
-
-        '
+      summary: >-
+        Returns the list of people associated for a large list of company
+        identitifers
+      description: >
+        Returns the list of executives associated the company identifier
+        requested. Information includes the job functions, email, phone, title,
+        name, and FactSet Entity Identifier. The personId returned can then be
+        used in the /profiles endpoint to learn more about the given person.
       tags:
-      - Company
+        - Company
       operationId: getCompanyPeopleForList
       requestBody:
         required: true
         content:
           application/json:
             schema:
-              "$ref": "#/components/schemas/companyPeopleRequest"
+              $ref: '#/components/schemas/companyPeopleRequest'
       responses:
         '200':
           description: Array of Company People objects.
           content:
             application/json:
               schema:
-                "$ref": "#/components/schemas/companyPeopleResponse"
+                $ref: '#/components/schemas/companyPeopleResponse'
         '400':
-          "$ref": "#/components/responses/400"
+          $ref: '#/components/responses/400'
         '401':
-          "$ref": "#/components/responses/401"
+          $ref: '#/components/responses/401'
         '403':
-          "$ref": "#/components/responses/403"
+          $ref: '#/components/responses/403'
         '415':
-          "$ref": "#/components/responses/415"
+          $ref: '#/components/responses/415'
         '500':
-          "$ref": "#/components/responses/500"
-  "/factset-people/v1/company-positions":
+          $ref: '#/components/responses/500'
+  /factset-people/v1/company-positions:
     get:
-      summary: Returns the list of people for the specified company identifiers and
+      summary: >-
+        Returns the list of people for the specified company identifiers and
         position
-      description: |
-        Returns the list of people, name, and title for a list of company ids and requested position. Positions include-
+      description: >
+        Returns the list of people, name, and title for a list of company ids
+        and requested position. Positions include-
           * Chairman
           * Chief Executive Officer
           * President
@@ -234,33 +230,35 @@ paths:
           * Sales and Marketing Managers
           * Human Resources
       tags:
-      - Company
+        - Company
       operationId: getCompanyPositions
       parameters:
-      - "$ref": "#/components/parameters/companyId"
-      - "$ref": "#/components/parameters/position"
+        - $ref: '#/components/parameters/companyId'
+        - $ref: '#/components/parameters/position'
       responses:
         '200':
           description: Array of Company Positions objects.
           content:
             application/json:
               schema:
-                "$ref": "#/components/schemas/companyPositionsResponse"
+                $ref: '#/components/schemas/companyPositionsResponse'
         '400':
-          "$ref": "#/components/responses/400"
+          $ref: '#/components/responses/400'
         '401':
-          "$ref": "#/components/responses/401"
+          $ref: '#/components/responses/401'
         '403':
-          "$ref": "#/components/responses/403"
+          $ref: '#/components/responses/403'
         '415':
-          "$ref": "#/components/responses/415"
+          $ref: '#/components/responses/415'
         '500':
-          "$ref": "#/components/responses/500"
+          $ref: '#/components/responses/500'
     post:
-      summary: Returns the list of people associated for a large list of company identitifers
-        and position
-      description: |
-        Returns the list of people, name, and title for a list of company ids and requested position. Positions include-
+      summary: >-
+        Returns the list of people associated for a large list of company
+        identitifers and position
+      description: >
+        Returns the list of people, name, and title for a list of company ids
+        and requested position. Positions include-
           * Chairman
           * Chief Executive Officer
           * President
@@ -279,157 +277,163 @@ paths:
           * Sales and Marketing Managers
           * Human Resources
       tags:
-      - Company
+        - Company
       operationId: getCompanyPositionsForList
       requestBody:
         required: true
         content:
           application/json:
             schema:
-              "$ref": "#/components/schemas/companyPositionsRequest"
+              $ref: '#/components/schemas/companyPositionsRequest'
       responses:
         '200':
           description: Array of Company Positions objects.
           content:
             application/json:
               schema:
-                "$ref": "#/components/schemas/companyPositionsResponse"
+                $ref: '#/components/schemas/companyPositionsResponse'
         '400':
-          "$ref": "#/components/responses/400"
+          $ref: '#/components/responses/400'
         '401':
-          "$ref": "#/components/responses/401"
+          $ref: '#/components/responses/401'
         '403':
-          "$ref": "#/components/responses/403"
+          $ref: '#/components/responses/403'
         '415':
-          "$ref": "#/components/responses/415"
+          $ref: '#/components/responses/415'
         '500':
-          "$ref": "#/components/responses/500"
-  "/factset-people/v1/company-compensation":
+          $ref: '#/components/responses/500'
+  /factset-people/v1/company-compensation:
     get:
-      summary: Returns the compensation details of the people for the specified company
+      summary: >-
+        Returns the compensation details of the people for the specified company
         identifier
-      description: "Returns the list of company-level executive compensation data
-        items for the top executives listed in annual filings.The coverage of the
-        compensation details for the executives are limited to US region. All the
-        compensation figures are expressed in raw units. "
+      description: >-
+        Returns the list of company-level executive compensation data items for
+        the top executives listed in annual filings.The coverage of the
+        compensation details for the executives are limited to US region. All
+        the compensation figures are expressed in raw units. 
       tags:
-      - Company
+        - Company
       operationId: getCompanyCompensation
       parameters:
-      - "$ref": "#/components/parameters/companyId"
+        - $ref: '#/components/parameters/companyId'
       responses:
         '200':
           description: Array of Company Compensation objects.
           content:
             application/json:
               schema:
-                "$ref": "#/components/schemas/companyCompensationResponse"
+                $ref: '#/components/schemas/companyCompensationResponse'
         '400':
-          "$ref": "#/components/responses/400"
+          $ref: '#/components/responses/400'
         '401':
-          "$ref": "#/components/responses/401"
+          $ref: '#/components/responses/401'
         '403':
-          "$ref": "#/components/responses/403"
+          $ref: '#/components/responses/403'
         '415':
-          "$ref": "#/components/responses/415"
+          $ref: '#/components/responses/415'
         '500':
-          "$ref": "#/components/responses/500"
+          $ref: '#/components/responses/500'
     post:
-      summary: Returns the compensation details for the people for the specified company
-        identifier
-      description: "Returns the list of company-level executive compensation data
-        items for the top executives listed in annual filings for the most recent
-        fiscal year. The coverage of the compensation details for the executives are
-        limited to US region. All the compensation figures are expressed in raw units.
-        "
+      summary: >-
+        Returns the compensation details for the people for the specified
+        company identifier
+      description: >-
+        Returns the list of company-level executive compensation data items for
+        the top executives listed in annual filings for the most recent fiscal
+        year. The coverage of the compensation details for the executives are
+        limited to US region. All the compensation figures are expressed in raw
+        units. 
       tags:
-      - Company
+        - Company
       operationId: getCompanyCompensationForList
       requestBody:
         required: true
         content:
           application/json:
             schema:
-              "$ref": "#/components/schemas/companyCompensationRequest"
+              $ref: '#/components/schemas/companyCompensationRequest'
       responses:
         '200':
           description: Array of Company Positions objects.
           content:
             application/json:
               schema:
-                "$ref": "#/components/schemas/companyCompensationResponse"
+                $ref: '#/components/schemas/companyCompensationResponse'
         '400':
-          "$ref": "#/components/responses/400"
+          $ref: '#/components/responses/400'
         '401':
-          "$ref": "#/components/responses/401"
+          $ref: '#/components/responses/401'
         '403':
-          "$ref": "#/components/responses/403"
+          $ref: '#/components/responses/403'
         '415':
-          "$ref": "#/components/responses/415"
+          $ref: '#/components/responses/415'
         '500':
-          "$ref": "#/components/responses/500"
-  "/factset-people/v1/company-stats":
+          $ref: '#/components/responses/500'
+  /factset-people/v1/company-stats:
     get:
       summary: Returns statistics about top leadership of a company.
-      description: 'Returns the statistics such as the average age, tenure, compensation
-        of leadership, number of executives, and the gender diversity of leadership.
-        We can utilize the data for analyzing a company''s board and management.
-
-        '
+      description: >
+        Returns the statistics such as the average age, tenure, compensation of
+        leadership, number of executives, and the gender diversity of
+        leadership. We can utilize the data for analyzing a company's board and
+        management.
       tags:
-      - Company
+        - Company
       operationId: getCompanyStats
       parameters:
-      - "$ref": "#/components/parameters/companyId"
-      - "$ref": "#/components/parameters/mbType"
+        - $ref: '#/components/parameters/companyId'
+        - $ref: '#/components/parameters/mbType'
       responses:
         '200':
           description: Array of Company Stats objects.
           content:
             application/json:
               schema:
-                "$ref": "#/components/schemas/companyStatsResponse"
+                $ref: '#/components/schemas/companyStatsResponse'
         '400':
-          "$ref": "#/components/responses/400"
+          $ref: '#/components/responses/400'
         '401':
-          "$ref": "#/components/responses/401"
+          $ref: '#/components/responses/401'
         '403':
-          "$ref": "#/components/responses/403"
+          $ref: '#/components/responses/403'
         '415':
-          "$ref": "#/components/responses/415"
+          $ref: '#/components/responses/415'
         '500':
-          "$ref": "#/components/responses/500"
+          $ref: '#/components/responses/500'
     post:
       summary: Returns statistics about top leadership of a company.
-      description: "Returns the statistics such as the average age, tenure, compensation
-        of leadership, number of executives, and the gender diversity of leadership.
-        We can utilize the data for analyzing a company's board and management. "
+      description: >-
+        Returns the statistics such as the average age, tenure, compensation of
+        leadership, number of executives, and the gender diversity of
+        leadership. We can utilize the data for analyzing a company's board and
+        management. 
       tags:
-      - Company
+        - Company
       operationId: getCompanyStatsForList
       requestBody:
         required: true
         content:
           application/json:
             schema:
-              "$ref": "#/components/schemas/companyStatsRequest"
+              $ref: '#/components/schemas/companyStatsRequest'
       responses:
         '200':
           description: Array of Company Positions objects.
           content:
             application/json:
               schema:
-                "$ref": "#/components/schemas/companyStatsResponse"
+                $ref: '#/components/schemas/companyStatsResponse'
         '400':
-          "$ref": "#/components/responses/400"
+          $ref: '#/components/responses/400'
         '401':
-          "$ref": "#/components/responses/401"
+          $ref: '#/components/responses/401'
         '403':
-          "$ref": "#/components/responses/403"
+          $ref: '#/components/responses/403'
         '415':
-          "$ref": "#/components/responses/415"
+          $ref: '#/components/responses/415'
         '500':
-          "$ref": "#/components/responses/500"
+          $ref: '#/components/responses/500'
 components:
   securitySchemes:
     BasicAuth:
@@ -449,8 +453,8 @@ components:
       required: true
       explode: false
       example:
-      - 0DPHLH-E
-      - 07MZV9-E
+        - 0DPHLH-E
+        - 07MZV9-E
     profileEntityId:
       name: ids
       description: List of FactSet Person Entity identifier.
@@ -464,8 +468,8 @@ components:
       required: true
       explode: false
       example:
-      - 0DPHLH-E
-      - 07MZV9-E
+        - 0DPHLH-E
+        - 07MZV9-E
     status:
       name: status
       description: Select only Jobs with a certain status primary, active, or inactive.
@@ -473,21 +477,22 @@ components:
       schema:
         type: string
         enum:
-        - ALL
-        - PRIMARY
-        - ACTIVE
-        - INACTIVE
+          - ALL
+          - PRIMARY
+          - ACTIVE
+          - INACTIVE
         default: ALL
     level:
       name: level
-      description: Select the level of detail only main Jobs or include other Jobs
-        at a company.
+      description: >-
+        Select the level of detail only main Jobs or include other Jobs at a
+        company.
       in: query
       schema:
         type: string
         enum:
-        - SUMMARY
-        - DETAIL
+          - SUMMARY
+          - DETAIL
         default: DETAIL
     type:
       name: type
@@ -496,18 +501,27 @@ components:
       schema:
         type: string
         enum:
-        - ALL
-        - BRD
-        - EMP
+          - ALL
+          - BRD
+          - EMP
         default: ALL
     companyId:
       name: ids
-      description: |
-        The requested company identifier. FactSet Identifiers, tickers, CUSIP, SEDOL, and ISIN are accepted inputs. <p>***ids limit** =  1000 per request*</p>
+      description: >
+        The requested company identifier. FactSet Identifiers, tickers, CUSIP,
+        SEDOL, and ISIN are accepted inputs. <p>***ids limit** =  1000 per
+        request*</p>
+
         *<p>Make note, GET Method URL request lines are also limited to a total
-        length of 8192 bytes (8KB). In cases where the service allows for thousands
+
+        length of 8192 bytes (8KB). In cases where the service allows for
+        thousands
+
         of ids, which may lead to exceeding this request line limit of 8KB, its
-        advised for any requests with large request lines to be requested through
+
+        advised for any requests with large request lines to be requested
+        through
+
         the respective "POST" method.</p>*
       in: query
       schema:
@@ -519,29 +533,32 @@ components:
       required: true
       explode: false
       example:
-      - AAPL-US
-      - IBM-US
+        - AAPL-US
+        - IBM-US
     jobFunction:
       name: function
-      description: "Controls the types of people returned based on high-level job
-        functions. Filter by -   |function|description|  |---|---|  |PEOPLE|Retrieve
-        **ALL** Executives of a requested company|  |OFFICER|Retrieve only the Officers
-        of a requested company|  |DIRECTOR|Retrieve only the Directors of a requested
-        company|"
+      description: >-
+        Controls the types of people returned based on high-level job functions.
+        Filter by -   |function|description|  ||---|  |PEOPLE|Retrieve **ALL**
+        Executives of a requested company|  |OFFICER|Retrieve only the Officers
+        of a requested company|  |DIRECTOR|Retrieve only the Directors of a
+        requested company|
       in: query
       schema:
         type: string
         enum:
-        - PEOPLE
-        - OFFICER
-        - DIRECTOR
+          - PEOPLE
+          - OFFICER
+          - DIRECTOR
         example: PEOPLE
         default: PEOPLE
       required: false
     position:
       name: position
-      description: |
-        Controls the position details returned for the requested company. By default, the service returns the CEO name, title, and ID for the requested company ids.
+      description: >
+        Controls the position details returned for the requested company. By
+        default, the service returns the CEO name, title, and ID for the
+        requested company ids.
           |position|description|
           |---|---|
           |CHAIR|Chairman|
@@ -565,37 +582,39 @@ components:
       schema:
         type: string
         enum:
-        - CHAIR
-        - CEO
-        - PRES
-        - COO
-        - CFO
-        - CTO
-        - CIO
-        - FOU
-        - CMP
-        - ADM
-        - IND
-        - BRD
-        - IR
-        - LEG
-        - TREAS
-        - MKT
-        - HR
+          - CHAIR
+          - CEO
+          - PRES
+          - COO
+          - CFO
+          - CTO
+          - CIO
+          - FOU
+          - CMP
+          - ADM
+          - IND
+          - BRD
+          - IR
+          - LEG
+          - TREAS
+          - MKT
+          - HR
         example: FOU
         default: CEO
       required: false
     mbType:
       name: mbType
-      description: "Search based on the management and board types. The types include
-        - |type|description||---|---||MB|Management & Board||MGMT|Management||BRD|Board|"
+      description: >-
+        Search based on the management and board types. The types include -
+        |type|description||---|---||MB|Management &
+        Board||MGMT|Management||BRD|Board|
       in: query
       schema:
         type: string
         enum:
-        - MB
-        - MGMT
-        - BRD
+          - MB
+          - MGMT
+          - BRD
         default: MB
   schemas:
     peopleProfilesRequest:
@@ -603,9 +622,9 @@ components:
       type: object
       properties:
         ids:
-          "$ref": "#/components/schemas/ids"
+          $ref: '#/components/schemas/ids'
       required:
-      - ids
+        - ids
     peopleProfilesResponse:
       title: Profiles Response
       type: object
@@ -613,7 +632,7 @@ components:
         data:
           type: array
           items:
-            "$ref": "#/components/schemas/profile"
+            $ref: '#/components/schemas/profile'
     profile:
       title: Profile
       type: object
@@ -735,12 +754,13 @@ components:
         biography:
           description: Brief biography of the person requested.
           type: string
-          example: Frederick Philip Snow is Chief Executive Officer & Director at
-            FactSet Research Systems, Inc. He is also on the board of FactSet Systems
-            India Pvt Ltd., Quantopian, Inc. and Vermilion Holdings Ltd. and Member
-            of CFA Institute. Mr. Snow received an undergraduate degree from the University
-            of California, Berkeley and a graduate degree from Thunderbird School
-            of Global Management.
+          example: >-
+            Frederick Philip Snow is Chief Executive Officer & Director at
+            FactSet Research Systems, Inc. He is also on the board of FactSet
+            Systems India Pvt Ltd., Quantopian, Inc. and Vermilion Holdings Ltd.
+            and Member of CFA Institute. Mr. Snow received an undergraduate
+            degree from the University of California, Berkeley and a graduate
+            degree from Thunderbird School of Global Management.
           x-fds-fql-formula: FPD_PERSON('BIO')
           nullable: true
     peopleJobsRequest:
@@ -748,15 +768,15 @@ components:
       type: object
       properties:
         ids:
-          "$ref": "#/components/schemas/ids"
+          $ref: '#/components/schemas/ids'
         status:
-          "$ref": "#/components/schemas/status"
+          $ref: '#/components/schemas/status'
         level:
-          "$ref": "#/components/schemas/level"
+          $ref: '#/components/schemas/level'
         type:
-          "$ref": "#/components/schemas/type"
+          $ref: '#/components/schemas/type'
       required:
-      - ids
+        - ids
     peopleJobsResponse:
       title: Jobs Response
       type: object
@@ -764,7 +784,7 @@ components:
         data:
           type: array
           items:
-            "$ref": "#/components/schemas/job"
+            $ref: '#/components/schemas/job'
     job:
       title: Job
       type: object
@@ -833,11 +853,11 @@ components:
       type: object
       properties:
         ids:
-          "$ref": "#/components/schemas/companyIds"
+          $ref: '#/components/schemas/companyIds'
         function:
-          "$ref": "#/components/schemas/function"
+          $ref: '#/components/schemas/function'
       required:
-      - ids
+        - ids
     companyPeopleResponse:
       title: Company People Response
       type: object
@@ -845,7 +865,7 @@ components:
         data:
           type: array
           items:
-            "$ref": "#/components/schemas/companyPeople"
+            $ref: '#/components/schemas/companyPeople'
     companyPeople:
       title: Company People
       type: object
@@ -859,7 +879,7 @@ components:
         email:
           description: Email of the person
           type: string
-          example: 
+          example: null
           nullable: true
         name:
           description: FactSet Name of the person
@@ -881,12 +901,12 @@ components:
         jobFunction3:
           description: Job Function3
           type: string
-          example: 
+          example: null
           nullable: true
         jobFunction4:
           description: Job Function4
           type: string
-          example: 
+          example: null
           x-fds-fql-formula: FPD_CO_PEOPLE_JOBFUNC
           nullable: true
         mainPhone:
@@ -903,7 +923,7 @@ components:
         phone:
           description: Phone number of the executives.
           type: string
-          example: 
+          example: null
           x-fds-fql-formula: FPD_CO_PEOPLE_PHONE
           nullable: true
         requestId:
@@ -921,11 +941,11 @@ components:
       type: object
       properties:
         ids:
-          "$ref": "#/components/schemas/companyIds"
+          $ref: '#/components/schemas/companyIds'
         position:
-          "$ref": "#/components/schemas/position"
+          $ref: '#/components/schemas/position'
       required:
-      - ids
+        - ids
     companyPositionsResponse:
       title: Company Positions Response
       type: object
@@ -933,7 +953,7 @@ components:
         data:
           type: array
           items:
-            "$ref": "#/components/schemas/companyPositions"
+            $ref: '#/components/schemas/companyPositions'
     companyPositions:
       title: Company Positions
       type: object
@@ -961,8 +981,9 @@ components:
           x-fds-fql-formula: FPD_CO_PEOPLE_BY_POSITION(TITLE)
           nullable: true
         yearsAtFirm:
-          description: The number of years individual is at firm. For founders, this
-            is since inception.
+          description: >-
+            The number of years individual is at firm. For founders, this is
+            since inception.
           type: number
           format: double
           example: 17.78
@@ -995,9 +1016,9 @@ components:
       type: object
       properties:
         ids:
-          "$ref": "#/components/schemas/companyIds"
+          $ref: '#/components/schemas/companyIds'
       required:
-      - ids
+        - ids
     companyCompensationResponse:
       title: Company Compensation Response
       type: object
@@ -1005,11 +1026,12 @@ components:
         data:
           type: array
           items:
-            "$ref": "#/components/schemas/companyCompensation"
+            $ref: '#/components/schemas/companyCompensation'
     companyCompensation:
       title: Company Compensation
       type: object
-      description: List of executives and their compensation details for the specified
+      description: >-
+        List of executives and their compensation details for the specified
         company identifier.
       properties:
         name:
@@ -1036,8 +1058,9 @@ components:
           x-fds-fql-formula: FPD_CO_COMPENSATION(SALARY)
           nullable: true
         bonus:
-          description: Bonus of the executive during the fiscal year. Expressed in
-            USD and raw units.
+          description: >-
+            Bonus of the executive during the fiscal year. Expressed in USD and
+            raw units.
           type: number
           format: integer
           example: 48
@@ -1047,19 +1070,20 @@ components:
           description: Stock awards for the person. Expressed in USD and raw units.
           type: number
           format: integer
-          example: 
+          example: null
           x-fds-fql-formula: FPD_CO_COMPENSATION(STOCK_AWARDS)
           nullable: true
         optionsAwards:
           description: Option Awards for the person. Expressed in USD and raw units.
           type: number
           format: integer
-          example: 
+          example: null
           x-fds-fql-formula: FPD_CO_COMPENSATION(OPTION_AWARDS)
           nullable: true
         otherCompensation:
-          description: All the other compensations which are not explicitly defined
-            as salary, bonus, stock awards, or options awards. Expressed in USD and
+          description: >-
+            All the other compensations which are not explicitly defined as
+            salary, bonus, stock awards, or options awards. Expressed in USD and
             raw units.
           type: number
           format: integer
@@ -1067,15 +1091,17 @@ components:
           x-fds-fql-formula: FPD_CO_COMPENSATION(ALL_OTHER_COMP)
           nullable: true
         totalCompensation:
-          description: The sum of all compensation for the requested person as reported
-            by the company. Expressed in USD and raw units.
+          description: >-
+            The sum of all compensation for the requested person as reported by
+            the company. Expressed in USD and raw units.
           type: number
           format: integer
           example: 4719062
           x-fds-fql-formula: FPD_CO_COMPENSATION(TOTAL_COMP)
           nullable: true
         nonEquityIncentivePlanComp:
-          description: All the earnings pursuant to awards under non-equity incentive
+          description: >-
+            All the earnings pursuant to awards under non-equity incentive
             plans. Expressed in USD and raw units.
           type: number
           format: integer
@@ -1083,15 +1109,17 @@ components:
           x-fds-fql-formula: FPD_CO_COMPENSATION(NON_EQ_INCENTIVE_PLAN_COMP)
           nullable: true
         nonQualifiedCompEarnings:
-          description: All the other nonqualified defined contribution which are not
-            tax qualified and other contributions. Expressed in USD and raw units.
+          description: >-
+            All the other nonqualified defined contribution which are not tax
+            qualified and other contributions. Expressed in USD and raw units.
           type: number
           format: integer
-          example: 
+          example: null
           nullable: true
         compensationYear:
-          description: The most recent year of compensation is expressed as 'YYYY'
-            as opposed to 'YYYY-MM-DD' format.
+          description: >-
+            The most recent year of compensation is expressed as 'YYYY' as
+            opposed to 'YYYY-MM-DD' format.
           type: string
           example: '2020'
           x-fds-fql-formula: FPD_CO_COMPENSATION(COMP_YEAR)
@@ -1105,11 +1133,11 @@ components:
       type: object
       properties:
         ids:
-          "$ref": "#/components/schemas/companyIds"
+          $ref: '#/components/schemas/companyIds'
         mbType:
-          "$ref": "#/components/schemas/mbType"
+          $ref: '#/components/schemas/mbType'
       required:
-      - ids
+        - ids
     companyStatsResponse:
       title: Company Stats Response
       type: object
@@ -1117,13 +1145,14 @@ components:
         data:
           type: array
           items:
-            "$ref": "#/components/schemas/companyStats"
+            $ref: '#/components/schemas/companyStats'
     companyStats:
       title: Company Statistics
       type: object
-      description: List of the statistics such as the average age, tenure, compensation
-        of leadership, the number of executives, and the gender diversity of leadership
-        for the requested identifier.
+      description: >-
+        List of the statistics such as the average age, tenure, compensation of
+        leadership, the number of executives, and the gender diversity of
+        leadership for the requested identifier.
       properties:
         averageMgmtCompensation:
           description: Average compensation for the executives
@@ -1216,9 +1245,10 @@ components:
           x-fds-fql-formula: FPD_CO_MB_STATS(BRD,OTH_CORP_BRD,NUM)
           nullable: true
         mbType:
-          description: Management and Board type, where MB = Management & Board, MGMT
-            = Management, and BRD = Board. This is a pass-through value from the input
-            used in the `mbType` query parameter.
+          description: >-
+            Management and Board type, where MB = Management & Board, MGMT =
+            Management, and BRD = Board. This is a pass-through value from the
+            input used in the `mbType` query parameter.
           type: string
           example: MB
           nullable: true
@@ -1242,7 +1272,7 @@ components:
         path:
           description: The Endpoint path {package}/version/{endpoint}
           type: string
-          example: "/factset-people/v1/superRegion"
+          example: /factset-people/v1/superRegion
         message:
           description: The plain text error message
           type: string
@@ -1271,68 +1301,70 @@ components:
         type: string
       minItems: 1
       maxItems: 1000
-      description: 'FactSet People Entity Ids.
-
-        '
+      description: |
+        FactSet People Entity Ids.
       example:
-      - 0DPHLH-E
+        - 0DPHLH-E
     companyIds:
       type: array
       items:
         type: string
       minItems: 1
       maxItems: 1000
-      description: 'The requested company identifier. FactSet Identifiers, tickers,
-        CUSIP, SEDOL, and ISIN are accepted inputs. <p>***ids limit** =  1000 per
-        request*</p> *<p>Make note, GET Method URL request lines are also limited
-        to a total length of 8192 bytes (8KB). In cases where the service allows for
-        thousands of ids, which may lead to exceeding this request line limit of 8KB,
-        its advised for any requests with large request lines to be requested through
-        the respective "POST" method.</p>*
-
-        '
+      description: >
+        The requested company identifier. FactSet Identifiers, tickers, CUSIP,
+        SEDOL, and ISIN are accepted inputs. <p>***ids limit** =  1000 per
+        request*</p> *<p>Make note, GET Method URL request lines are also
+        limited to a total length of 8192 bytes (8KB). In cases where the
+        service allows for thousands of ids, which may lead to exceeding this
+        request line limit of 8KB, its advised for any requests with large
+        request lines to be requested through the respective "POST" method.</p>*
       example:
-      - AAPL-US
+        - AAPL-US
     function:
       type: string
       enum:
-      - PEOPLE
-      - OFFICER
-      - DIRECTOR
+        - PEOPLE
+        - OFFICER
+        - DIRECTOR
       default: PEOPLE
-      description: "Controls the types of people returned based on high-level job
-        functions. Filter by -   |function|description|  |---|---|  |PEOPLE|Retrieve
-        **ALL** Executives of a requested company|  |OFFICER|Retrieve only the Officers
-        of a requested company|  |DIRECTOR|Retrieve only the Directors of a requested
-        company|"
+      description: >-
+        Controls the types of people returned based on high-level job functions.
+        Filter by -   |function|description|  |---|---|  |PEOPLE|Retrieve
+        **ALL** Executives of a requested company|  |OFFICER|Retrieve only the
+        Officers of a requested company|  |DIRECTOR|Retrieve only the Directors
+        of a requested company|
       example: DIRECTOR
     status:
       type: string
       description: Select only Jobs with a certain status primary, active, or inactive.
       enum:
-      - ALL
-      - PRIMARY
-      - ACTIVE
-      - INACTIVE
+        - ALL
+        - PRIMARY
+        - ACTIVE
+        - INACTIVE
       default: ALL
     level:
-      description: Select the level of detail only main Jobs or include other Jobs
-        at a company.
+      description: >-
+        Select the level of detail only main Jobs or include other Jobs at a
+        company.
       type: string
       enum:
-      - SUMMARY
-      - DETAIL
+        - SUMMARY
+        - DETAIL
       default: DETAIL
     type:
       description: Select only Jobs of a certain type board member or employee.
       enum:
-      - ALL
-      - BRD
-      - EMP
+        - ALL
+        - BRD
+        - EMP
       default: ALL
     position:
-      description: |
-        Controls the position details returned for the requested company. By default, the service returns the CEO name, title, and ID for the requested company ids.
+      description: >
+        Controls the position details returned for the requested company. By
+        default, the service returns the CEO name, title, and ID for the
+        requested company ids.
           |position|description|
           |---|---|
           |CHAIR|Chairman|
@@ -1353,31 +1385,33 @@ components:
           |MKT|Sales and Marketing Managers|
           |HR|Human Resources|
       enum:
-      - CHAIR
-      - CEO
-      - PRES
-      - COO
-      - CFO
-      - CTO
-      - CIO
-      - FOU
-      - CMP
-      - ADM
-      - IND
-      - BRD
-      - IR
-      - LEG
-      - TREAS
-      - MKT
-      - HR
+        - CHAIR
+        - CEO
+        - PRES
+        - COO
+        - CFO
+        - CTO
+        - CIO
+        - FOU
+        - CMP
+        - ADM
+        - IND
+        - BRD
+        - IR
+        - LEG
+        - TREAS
+        - MKT
+        - HR
       default: CEO
       example: FOU
     mbType:
-      description: "Search based on the management and board types. The types include
-        - |type|description||---|---||MB|Management & Board||MGMT|Management||BRD|Board|"
+      description: >-
+        Search based on the management and board types. The types include -
+        |type|description||---|---||MB|Management &
+        Board||MGMT|Management||BRD|Board|
       type: string
       enum:
-      - MB
-      - MGMT
-      - BRD
+        - MB
+        - MGMT
+        - BRD
       default: MB

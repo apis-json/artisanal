@@ -1,6 +1,6 @@
 openapi: 3.1.0
 servers:
-- url: https://pal-test.adyen.com/pal/servlet/StoredValue/v46
+  - url: https://pal-test.adyen.com/pal/servlet/StoredValue/v46
 info:
   version: '46'
   x-publicVersion: true
@@ -11,24 +11,25 @@ info:
     name: Adyen Developer Experience team
     url: https://github.com/Adyen/adyen-openapi
 x-groups:
-- General
+  - General
 tags:
-- name: General
+  - name: General
 paths:
   /changeStatus:
     post:
       tags:
-      - General
+        - General
       summary: Changes the status of the payment method.
-      description: Changes the status of the provided payment method to the specified
+      description: >-
+        Changes the status of the provided payment method to the specified
         status.
       operationId: post-changeStatus
       x-groupName: General
       x-sortIndex: 0
       x-methodName: changeStatus
       security:
-      - BasicAuth: []
-      - ApiKeyAuth: []
+        - BasicAuth: []
+        - ApiKeyAuth: []
       requestBody:
         content:
           application/json:
@@ -68,7 +69,7 @@ paths:
   /checkBalance:
     post:
       tags:
-      - General
+        - General
       summary: Checks the balance.
       description: Checks the balance of the provided payment method.
       operationId: post-checkBalance
@@ -76,8 +77,8 @@ paths:
       x-sortIndex: 0
       x-methodName: checkBalance
       security:
-      - BasicAuth: []
-      - ApiKeyAuth: []
+        - BasicAuth: []
+        - ApiKeyAuth: []
       requestBody:
         content:
           application/json:
@@ -117,7 +118,7 @@ paths:
   /issue:
     post:
       tags:
-      - General
+        - General
       summary: Issues a new card.
       description: Issues a new card of the given payment method.
       operationId: post-issue
@@ -125,8 +126,8 @@ paths:
       x-sortIndex: 0
       x-methodName: issue
       security:
-      - BasicAuth: []
-      - ApiKeyAuth: []
+        - BasicAuth: []
+        - ApiKeyAuth: []
       requestBody:
         content:
           application/json:
@@ -166,7 +167,7 @@ paths:
   /load:
     post:
       tags:
-      - General
+        - General
       summary: Loads the payment method.
       description: Loads the payment method with the specified funds.
       operationId: post-load
@@ -174,8 +175,8 @@ paths:
       x-sortIndex: 0
       x-methodName: load
       security:
-      - BasicAuth: []
-      - ApiKeyAuth: []
+        - BasicAuth: []
+        - ApiKeyAuth: []
       requestBody:
         content:
           application/json:
@@ -215,17 +216,18 @@ paths:
   /mergeBalance:
     post:
       tags:
-      - General
+        - General
       summary: Merge the balance of two cards.
-      description: Increases the balance of the paymentmethod by the full amount left
-        on the source paymentmethod
+      description: >-
+        Increases the balance of the paymentmethod by the full amount left on
+        the source paymentmethod
       operationId: post-mergeBalance
       x-groupName: General
       x-sortIndex: 0
       x-methodName: mergeBalance
       security:
-      - BasicAuth: []
-      - ApiKeyAuth: []
+        - BasicAuth: []
+        - ApiKeyAuth: []
       requestBody:
         content:
           application/json:
@@ -265,7 +267,7 @@ paths:
   /voidTransaction:
     post:
       tags:
-      - General
+        - General
       summary: Voids a transaction.
       description: Voids the referenced stored value transaction.
       operationId: post-voidTransaction
@@ -273,8 +275,8 @@ paths:
       x-sortIndex: 0
       x-methodName: voidTransaction
       security:
-      - BasicAuth: []
-      - ApiKeyAuth: []
+        - BasicAuth: []
+        - ApiKeyAuth: []
       requestBody:
         content:
           application/json:
@@ -316,17 +318,21 @@ components:
     Amount:
       properties:
         currency:
-          description: The three-character [ISO currency code](https://docs.adyen.com/development-resources/currency-codes).
+          description: >-
+            The three-character [ISO currency
+            code](https://docs.adyen.com/development-resources/currency-codes).
           maxLength: 3
           minLength: 3
           type: string
         value:
-          description: The amount of the transaction, in [minor units](https://docs.adyen.com/development-resources/currency-codes).
+          description: >-
+            The amount of the transaction, in [minor
+            units](https://docs.adyen.com/development-resources/currency-codes).
           format: int64
           type: integer
       required:
-      - value
-      - currency
+        - value
+        - currency
       type: object
     ServiceError:
       properties:
@@ -334,8 +340,9 @@ components:
           x-addedInVersion: '46'
           additionalProperties:
             type: string
-          description: Contains additional information about the payment. Some data
-            fields are included only if you select them first. Go to **Customer Area**
+          description: >-
+            Contains additional information about the payment. Some data fields
+            are included only if you select them first. Go to **Customer Area**
             > **Developers** > **Additional data**.
           type: object
         errorCode:
@@ -361,56 +368,60 @@ components:
           description: The amount information for the transaction.
           $ref: '#/components/schemas/Amount'
         merchantAccount:
-          description: The merchant account identifier, with which you want to process
-            the transaction.
+          description: >-
+            The merchant account identifier, with which you want to process the
+            transaction.
           type: string
         paymentMethod:
           additionalProperties:
             type: string
-          description: The collection that contains the type of the payment method
-            and its specific information if available
+          description: >-
+            The collection that contains the type of the payment method and its
+            specific information if available
           type: object
         recurringDetailReference:
           type: string
         reference:
-          description: 'The reference to uniquely identify a payment. This reference
-            is used in all communication with you about the payment status. We recommend
+          description: >-
+            The reference to uniquely identify a payment. This reference is used
+            in all communication with you about the payment status. We recommend
             using a unique value per payment; however, it is not a requirement.
 
-            If you need to provide multiple references for a transaction, separate
-            them with hyphens ("-").
+            If you need to provide multiple references for a transaction,
+            separate them with hyphens ("-").
 
-            Maximum length: 80 characters.'
+            Maximum length: 80 characters.
           type: string
         shopperInteraction:
-          description: 'Specifies the sales channel, through which the shopper gives
-            their card details, and whether the shopper is a returning customer.
+          description: >-
+            Specifies the sales channel, through which the shopper gives their
+            card details, and whether the shopper is a returning customer.
 
-            For the web service API, Adyen assumes Ecommerce shopper interaction by
-            default.
+            For the web service API, Adyen assumes Ecommerce shopper interaction
+            by default.
 
 
             This field has the following possible values:
 
-            * `Ecommerce` - Online transactions where the cardholder is present (online).
-            For better authorisation rates, we recommend sending the card security
-            code (CSC) along with the request.
+            * `Ecommerce` - Online transactions where the cardholder is present
+            (online). For better authorisation rates, we recommend sending the
+            card security code (CSC) along with the request.
 
-            * `ContAuth` - Card on file and/or subscription transactions, where the
-            cardholder is known to the merchant (returning customer). If the shopper
-            is present (online), you can supply also the CSC to improve authorisation
-            (one-click payment).
+            * `ContAuth` - Card on file and/or subscription transactions, where
+            the cardholder is known to the merchant (returning customer). If the
+            shopper is present (online), you can supply also the CSC to improve
+            authorisation (one-click payment).
 
-            * `Moto` - Mail-order and telephone-order transactions where the shopper
-            is in contact with the merchant via email or telephone.
+            * `Moto` - Mail-order and telephone-order transactions where the
+            shopper is in contact with the merchant via email or telephone.
 
-            * `POS` - Point-of-sale transactions where the shopper is physically present
-            to make a payment using a secure payment terminal.'
+            * `POS` - Point-of-sale transactions where the shopper is physically
+            present to make a payment using a secure payment terminal.
           enum:
-          - Ecommerce
-          - ContAuth
-          - Moto
-          - POS
+            - Ecommerce
+            - ContAuth
+            - Moto
+            - POS
           type: string
         shopperReference:
           type: string
@@ -420,9 +431,9 @@ components:
           minLength: 1
           type: string
       required:
-      - merchantAccount
-      - reference
-      - paymentMethod
+        - merchantAccount
+        - reference
+        - paymentMethod
       type: object
     StoredValueBalanceCheckResponse:
       properties:
@@ -430,31 +441,41 @@ components:
           description: The balance currently on the payment method.
           $ref: '#/components/schemas/Amount'
         pspReference:
-          description: Adyen's 16-character string reference associated with the transaction/request.
-            This value is globally unique; quote it when communicating with us about
-            this request.
+          description: >-
+            Adyen's 16-character string reference associated with the
+            transaction/request. This value is globally unique; quote it when
+            communicating with us about this request.
           type: string
         refusalReason:
-          description: 'If the transaction is refused or an error occurs, this field
-            holds Adyen''s mapped reason for the refusal or a description of the error.
+          description: >-
+            If the transaction is refused or an error occurs, this field holds
+            Adyen's mapped reason for the refusal or a description of the error.
 
 
-            When a transaction fails, the authorisation response includes `resultCode`
-            and `refusalReason` values.'
+            When a transaction fails, the authorisation response includes
+            `resultCode` and `refusalReason` values.
           type: string
         resultCode:
-          description: "The result of the payment. Possible values:\n\n* **Success**\
-            \ \u2013 The operation has been completed successfully. \n* **Refused**\
-            \ \u2013 The operation was refused. The reason is given in the `refusalReason`\
-            \ field. \n* **Error** \u2013 There was an error when the operation was\
-            \ processed. The reason is given in the `refusalReason` field. \n* **NotEnoughBalance**\
-            \ \u2013 The amount on the payment method is lower than the amount given\
-            \ in the request. Only applicable to balance checks. \n"
+          description: >
+            The result of the payment. Possible values:
+
+
+            * **Success** – The operation has been completed successfully. 
+
+            * **Refused** – The operation was refused. The reason is given in
+            the `refusalReason` field. 
+
+            * **Error** – There was an error when the operation was processed.
+            The reason is given in the `refusalReason` field. 
+
+            * **NotEnoughBalance** – The amount on the payment method is lower
+            than the amount given in the request. Only applicable to balance
+            checks. 
           enum:
-          - Success
-          - Refused
-          - Error
-          - NotEnoughBalance
+            - Success
+            - Refused
+            - Error
+            - NotEnoughBalance
           type: string
         thirdPartyRefusalReason:
           description: Raw refusal reason received from the third party, where available
@@ -466,65 +487,70 @@ components:
           description: The amount information for the transaction.
           $ref: '#/components/schemas/Amount'
         merchantAccount:
-          description: The merchant account identifier, with which you want to process
-            the transaction.
+          description: >-
+            The merchant account identifier, with which you want to process the
+            transaction.
           type: string
         paymentMethod:
           additionalProperties:
             type: string
-          description: The collection that contains the type of the payment method
-            and its specific information if available
+          description: >-
+            The collection that contains the type of the payment method and its
+            specific information if available
           type: object
         recurringDetailReference:
           type: string
         reference:
-          description: 'The reference to uniquely identify a payment. This reference
-            is used in all communication with you about the payment status. We recommend
+          description: >-
+            The reference to uniquely identify a payment. This reference is used
+            in all communication with you about the payment status. We recommend
             using a unique value per payment; however, it is not a requirement.
 
-            If you need to provide multiple references for a transaction, separate
-            them with hyphens ("-").
+            If you need to provide multiple references for a transaction,
+            separate them with hyphens ("-").
 
-            Maximum length: 80 characters.'
+            Maximum length: 80 characters.
           type: string
         shopperInteraction:
-          description: 'Specifies the sales channel, through which the shopper gives
-            their card details, and whether the shopper is a returning customer.
+          description: >-
+            Specifies the sales channel, through which the shopper gives their
+            card details, and whether the shopper is a returning customer.
 
-            For the web service API, Adyen assumes Ecommerce shopper interaction by
-            default.
+            For the web service API, Adyen assumes Ecommerce shopper interaction
+            by default.
 
 
             This field has the following possible values:
 
-            * `Ecommerce` - Online transactions where the cardholder is present (online).
-            For better authorisation rates, we recommend sending the card security
-            code (CSC) along with the request.
+            * `Ecommerce` - Online transactions where the cardholder is present
+            (online). For better authorisation rates, we recommend sending the
+            card security code (CSC) along with the request.
 
-            * `ContAuth` - Card on file and/or subscription transactions, where the
-            cardholder is known to the merchant (returning customer). If the shopper
-            is present (online), you can supply also the CSC to improve authorisation
-            (one-click payment).
+            * `ContAuth` - Card on file and/or subscription transactions, where
+            the cardholder is known to the merchant (returning customer). If the
+            shopper is present (online), you can supply also the CSC to improve
+            authorisation (one-click payment).
 
-            * `Moto` - Mail-order and telephone-order transactions where the shopper
-            is in contact with the merchant via email or telephone.
+            * `Moto` - Mail-order and telephone-order transactions where the
+            shopper is in contact with the merchant via email or telephone.
 
-            * `POS` - Point-of-sale transactions where the shopper is physically present
-            to make a payment using a secure payment terminal.'
+            * `POS` - Point-of-sale transactions where the shopper is physically
+            present to make a payment using a secure payment terminal.
           enum:
-          - Ecommerce
-          - ContAuth
-          - Moto
-          - POS
+            - Ecommerce
+            - ContAuth
+            - Moto
+            - POS
           type: string
         shopperReference:
           type: string
         sourcePaymentMethod:
           additionalProperties:
             type: string
-          description: The collection that contains the source payment method and
-            its specific information if available. Note that type should not be included
-            since it is inferred from the (target) payment method
+          description: >-
+            The collection that contains the source payment method and its
+            specific information if available. Note that type should not be
+            included since it is inferred from the (target) payment method
           type: object
         store:
           description: The physical store, for which this payment is processed.
@@ -532,50 +558,61 @@ components:
           minLength: 1
           type: string
       required:
-      - merchantAccount
-      - reference
-      - paymentMethod
-      - sourcePaymentMethod
+        - merchantAccount
+        - reference
+        - paymentMethod
+        - sourcePaymentMethod
       type: object
     StoredValueBalanceMergeResponse:
       properties:
         authCode:
-          description: 'Authorisation code:
+          description: >-
+            Authorisation code:
 
-            * When the payment is authorised, this field holds the authorisation code
-            for the payment.
+            * When the payment is authorised, this field holds the authorisation
+            code for the payment.
 
-            * When the payment is not authorised, this field is empty.'
+            * When the payment is not authorised, this field is empty.
           type: string
         currentBalance:
           description: The balance currently on the payment method.
           $ref: '#/components/schemas/Amount'
         pspReference:
-          description: Adyen's 16-character string reference associated with the transaction/request.
-            This value is globally unique; quote it when communicating with us about
-            this request.
+          description: >-
+            Adyen's 16-character string reference associated with the
+            transaction/request. This value is globally unique; quote it when
+            communicating with us about this request.
           type: string
         refusalReason:
-          description: 'If the transaction is refused or an error occurs, this field
-            holds Adyen''s mapped reason for the refusal or a description of the error.
+          description: >-
+            If the transaction is refused or an error occurs, this field holds
+            Adyen's mapped reason for the refusal or a description of the error.
 
 
-            When a transaction fails, the authorisation response includes `resultCode`
-            and `refusalReason` values.'
+            When a transaction fails, the authorisation response includes
+            `resultCode` and `refusalReason` values.
           type: string
         resultCode:
-          description: "The result of the payment. Possible values:\n\n* **Success**\
-            \ \u2013 The operation has been completed successfully. \n* **Refused**\
-            \ \u2013 The operation was refused. The reason is given in the `refusalReason`\
-            \ field. \n* **Error** \u2013 There was an error when the operation was\
-            \ processed. The reason is given in the `refusalReason` field. \n* **NotEnoughBalance**\
-            \ \u2013 The amount on the payment method is lower than the amount given\
-            \ in the request. Only applicable to balance checks. \n"
+          description: >
+            The result of the payment. Possible values:
+
+
+            * **Success** – The operation has been completed successfully. 
+
+            * **Refused** – The operation was refused. The reason is given in
+            the `refusalReason` field. 
+
+            * **Error** – There was an error when the operation was processed.
+            The reason is given in the `refusalReason` field. 
+
+            * **NotEnoughBalance** – The amount on the payment method is lower
+            than the amount given in the request. Only applicable to balance
+            checks. 
           enum:
-          - Success
-          - Refused
-          - Error
-          - NotEnoughBalance
+            - Success
+            - Refused
+            - Error
+            - NotEnoughBalance
           type: string
         thirdPartyRefusalReason:
           description: Raw refusal reason received from the third party, where available
@@ -587,56 +624,60 @@ components:
           description: The amount information for the transaction.
           $ref: '#/components/schemas/Amount'
         merchantAccount:
-          description: The merchant account identifier, with which you want to process
-            the transaction.
+          description: >-
+            The merchant account identifier, with which you want to process the
+            transaction.
           type: string
         paymentMethod:
           additionalProperties:
             type: string
-          description: The collection that contains the type of the payment method
-            and its specific information if available
+          description: >-
+            The collection that contains the type of the payment method and its
+            specific information if available
           type: object
         recurringDetailReference:
           type: string
         reference:
-          description: 'The reference to uniquely identify a payment. This reference
-            is used in all communication with you about the payment status. We recommend
+          description: >-
+            The reference to uniquely identify a payment. This reference is used
+            in all communication with you about the payment status. We recommend
             using a unique value per payment; however, it is not a requirement.
 
-            If you need to provide multiple references for a transaction, separate
-            them with hyphens ("-").
+            If you need to provide multiple references for a transaction,
+            separate them with hyphens ("-").
 
-            Maximum length: 80 characters.'
+            Maximum length: 80 characters.
           type: string
         shopperInteraction:
-          description: 'Specifies the sales channel, through which the shopper gives
-            their card details, and whether the shopper is a returning customer.
+          description: >-
+            Specifies the sales channel, through which the shopper gives their
+            card details, and whether the shopper is a returning customer.
 
-            For the web service API, Adyen assumes Ecommerce shopper interaction by
-            default.
+            For the web service API, Adyen assumes Ecommerce shopper interaction
+            by default.
 
 
             This field has the following possible values:
 
-            * `Ecommerce` - Online transactions where the cardholder is present (online).
-            For better authorisation rates, we recommend sending the card security
-            code (CSC) along with the request.
+            * `Ecommerce` - Online transactions where the cardholder is present
+            (online). For better authorisation rates, we recommend sending the
+            card security code (CSC) along with the request.
 
-            * `ContAuth` - Card on file and/or subscription transactions, where the
-            cardholder is known to the merchant (returning customer). If the shopper
-            is present (online), you can supply also the CSC to improve authorisation
-            (one-click payment).
+            * `ContAuth` - Card on file and/or subscription transactions, where
+            the cardholder is known to the merchant (returning customer). If the
+            shopper is present (online), you can supply also the CSC to improve
+            authorisation (one-click payment).
 
-            * `Moto` - Mail-order and telephone-order transactions where the shopper
-            is in contact with the merchant via email or telephone.
+            * `Moto` - Mail-order and telephone-order transactions where the
+            shopper is in contact with the merchant via email or telephone.
 
-            * `POS` - Point-of-sale transactions where the shopper is physically present
-            to make a payment using a secure payment terminal.'
+            * `POS` - Point-of-sale transactions where the shopper is physically
+            present to make a payment using a secure payment terminal.
           enum:
-          - Ecommerce
-          - ContAuth
-          - Moto
-          - POS
+            - Ecommerce
+            - ContAuth
+            - Moto
+            - POS
           type: string
         shopperReference:
           type: string
@@ -646,19 +687,20 @@ components:
           minLength: 1
           type: string
       required:
-      - merchantAccount
-      - reference
-      - paymentMethod
+        - merchantAccount
+        - reference
+        - paymentMethod
       type: object
     StoredValueIssueResponse:
       properties:
         authCode:
-          description: 'Authorisation code:
+          description: >-
+            Authorisation code:
 
-            * When the payment is authorised, this field holds the authorisation code
-            for the payment.
+            * When the payment is authorised, this field holds the authorisation
+            code for the payment.
 
-            * When the payment is not authorised, this field is empty.'
+            * When the payment is not authorised, this field is empty.
           type: string
         currentBalance:
           description: The balance currently on the payment method.
@@ -666,35 +708,46 @@ components:
         paymentMethod:
           additionalProperties:
             type: string
-          description: The collection that contains the type of the payment method
-            and its specific information if available
+          description: >-
+            The collection that contains the type of the payment method and its
+            specific information if available
           type: object
         pspReference:
-          description: Adyen's 16-character string reference associated with the transaction/request.
-            This value is globally unique; quote it when communicating with us about
-            this request.
+          description: >-
+            Adyen's 16-character string reference associated with the
+            transaction/request. This value is globally unique; quote it when
+            communicating with us about this request.
           type: string
         refusalReason:
-          description: 'If the transaction is refused or an error occurs, this field
-            holds Adyen''s mapped reason for the refusal or a description of the error.
+          description: >-
+            If the transaction is refused or an error occurs, this field holds
+            Adyen's mapped reason for the refusal or a description of the error.
 
 
-            When a transaction fails, the authorisation response includes `resultCode`
-            and `refusalReason` values.'
+            When a transaction fails, the authorisation response includes
+            `resultCode` and `refusalReason` values.
           type: string
         resultCode:
-          description: "The result of the payment. Possible values:\n\n* **Success**\
-            \ \u2013 The operation has been completed successfully. \n* **Refused**\
-            \ \u2013 The operation was refused. The reason is given in the `refusalReason`\
-            \ field. \n* **Error** \u2013 There was an error when the operation was\
-            \ processed. The reason is given in the `refusalReason` field. \n* **NotEnoughBalance**\
-            \ \u2013 The amount on the payment method is lower than the amount given\
-            \ in the request. Only applicable to balance checks. \n"
+          description: >
+            The result of the payment. Possible values:
+
+
+            * **Success** – The operation has been completed successfully. 
+
+            * **Refused** – The operation was refused. The reason is given in
+            the `refusalReason` field. 
+
+            * **Error** – There was an error when the operation was processed.
+            The reason is given in the `refusalReason` field. 
+
+            * **NotEnoughBalance** – The amount on the payment method is lower
+            than the amount given in the request. Only applicable to balance
+            checks. 
           enum:
-          - Success
-          - Refused
-          - Error
-          - NotEnoughBalance
+            - Success
+            - Refused
+            - Error
+            - NotEnoughBalance
           type: string
         thirdPartyRefusalReason:
           description: Raw refusal reason received from the third party, where available
@@ -706,63 +759,68 @@ components:
           description: The amount information for the transaction.
           $ref: '#/components/schemas/Amount'
         loadType:
-          description: The type of load you are trying to do, when absent we default
-            to 'Load'
+          description: >-
+            The type of load you are trying to do, when absent we default to
+            'Load'
           enum:
-          - merchandiseReturn
-          - load
+            - merchandiseReturn
+            - load
           type: string
         merchantAccount:
-          description: The merchant account identifier, with which you want to process
-            the transaction.
+          description: >-
+            The merchant account identifier, with which you want to process the
+            transaction.
           type: string
         paymentMethod:
           additionalProperties:
             type: string
-          description: The collection that contains the type of the payment method
-            and its specific information if available
+          description: >-
+            The collection that contains the type of the payment method and its
+            specific information if available
           type: object
         recurringDetailReference:
           type: string
         reference:
-          description: 'The reference to uniquely identify a payment. This reference
-            is used in all communication with you about the payment status. We recommend
+          description: >-
+            The reference to uniquely identify a payment. This reference is used
+            in all communication with you about the payment status. We recommend
             using a unique value per payment; however, it is not a requirement.
 
-            If you need to provide multiple references for a transaction, separate
-            them with hyphens ("-").
+            If you need to provide multiple references for a transaction,
+            separate them with hyphens ("-").
 
-            Maximum length: 80 characters.'
+            Maximum length: 80 characters.
           type: string
         shopperInteraction:
-          description: 'Specifies the sales channel, through which the shopper gives
-            their card details, and whether the shopper is a returning customer.
+          description: >-
+            Specifies the sales channel, through which the shopper gives their
+            card details, and whether the shopper is a returning customer.
 
-            For the web service API, Adyen assumes Ecommerce shopper interaction by
-            default.
+            For the web service API, Adyen assumes Ecommerce shopper interaction
+            by default.
 
 
             This field has the following possible values:
 
-            * `Ecommerce` - Online transactions where the cardholder is present (online).
-            For better authorisation rates, we recommend sending the card security
-            code (CSC) along with the request.
+            * `Ecommerce` - Online transactions where the cardholder is present
+            (online). For better authorisation rates, we recommend sending the
+            card security code (CSC) along with the request.
 
-            * `ContAuth` - Card on file and/or subscription transactions, where the
-            cardholder is known to the merchant (returning customer). If the shopper
-            is present (online), you can supply also the CSC to improve authorisation
-            (one-click payment).
+            * `ContAuth` - Card on file and/or subscription transactions, where
+            the cardholder is known to the merchant (returning customer). If the
+            shopper is present (online), you can supply also the CSC to improve
+            authorisation (one-click payment).
 
-            * `Moto` - Mail-order and telephone-order transactions where the shopper
-            is in contact with the merchant via email or telephone.
+            * `Moto` - Mail-order and telephone-order transactions where the
+            shopper is in contact with the merchant via email or telephone.
 
-            * `POS` - Point-of-sale transactions where the shopper is physically present
-            to make a payment using a secure payment terminal.'
+            * `POS` - Point-of-sale transactions where the shopper is physically
+            present to make a payment using a secure payment terminal.
           enum:
-          - Ecommerce
-          - ContAuth
-          - Moto
-          - POS
+            - Ecommerce
+            - ContAuth
+            - Moto
+            - POS
           type: string
         shopperReference:
           type: string
@@ -772,50 +830,61 @@ components:
           minLength: 1
           type: string
       required:
-      - merchantAccount
-      - reference
-      - paymentMethod
-      - amount
+        - merchantAccount
+        - reference
+        - paymentMethod
+        - amount
       type: object
     StoredValueLoadResponse:
       properties:
         authCode:
-          description: 'Authorisation code:
+          description: >-
+            Authorisation code:
 
-            * When the payment is authorised, this field holds the authorisation code
-            for the payment.
+            * When the payment is authorised, this field holds the authorisation
+            code for the payment.
 
-            * When the payment is not authorised, this field is empty.'
+            * When the payment is not authorised, this field is empty.
           type: string
         currentBalance:
           description: The balance currently on the payment method.
           $ref: '#/components/schemas/Amount'
         pspReference:
-          description: Adyen's 16-character string reference associated with the transaction/request.
-            This value is globally unique; quote it when communicating with us about
-            this request.
+          description: >-
+            Adyen's 16-character string reference associated with the
+            transaction/request. This value is globally unique; quote it when
+            communicating with us about this request.
           type: string
         refusalReason:
-          description: 'If the transaction is refused or an error occurs, this field
-            holds Adyen''s mapped reason for the refusal or a description of the error.
+          description: >-
+            If the transaction is refused or an error occurs, this field holds
+            Adyen's mapped reason for the refusal or a description of the error.
 
 
-            When a transaction fails, the authorisation response includes `resultCode`
-            and `refusalReason` values.'
+            When a transaction fails, the authorisation response includes
+            `resultCode` and `refusalReason` values.
           type: string
         resultCode:
-          description: "The result of the payment. Possible values:\n\n* **Success**\
-            \ \u2013 The operation has been completed successfully. \n* **Refused**\
-            \ \u2013 The operation was refused. The reason is given in the `refusalReason`\
-            \ field. \n* **Error** \u2013 There was an error when the operation was\
-            \ processed. The reason is given in the `refusalReason` field. \n* **NotEnoughBalance**\
-            \ \u2013 The amount on the payment method is lower than the amount given\
-            \ in the request. Only applicable to balance checks. \n"
+          description: >
+            The result of the payment. Possible values:
+
+
+            * **Success** – The operation has been completed successfully. 
+
+            * **Refused** – The operation was refused. The reason is given in
+            the `refusalReason` field. 
+
+            * **Error** – There was an error when the operation was processed.
+            The reason is given in the `refusalReason` field. 
+
+            * **NotEnoughBalance** – The amount on the payment method is lower
+            than the amount given in the request. Only applicable to balance
+            checks. 
           enum:
-          - Success
-          - Refused
-          - Error
-          - NotEnoughBalance
+            - Success
+            - Refused
+            - Error
+            - NotEnoughBalance
           type: string
         thirdPartyRefusalReason:
           description: Raw refusal reason received from the third party, where available
@@ -827,64 +896,68 @@ components:
           description: The amount information for the transaction.
           $ref: '#/components/schemas/Amount'
         merchantAccount:
-          description: The merchant account identifier, with which you want to process
-            the transaction.
+          description: >-
+            The merchant account identifier, with which you want to process the
+            transaction.
           type: string
         paymentMethod:
           additionalProperties:
             type: string
-          description: The collection that contains the type of the payment method
-            and its specific information if available
+          description: >-
+            The collection that contains the type of the payment method and its
+            specific information if available
           type: object
         recurringDetailReference:
           type: string
         reference:
-          description: 'The reference to uniquely identify a payment. This reference
-            is used in all communication with you about the payment status. We recommend
+          description: >-
+            The reference to uniquely identify a payment. This reference is used
+            in all communication with you about the payment status. We recommend
             using a unique value per payment; however, it is not a requirement.
 
-            If you need to provide multiple references for a transaction, separate
-            them with hyphens ("-").
+            If you need to provide multiple references for a transaction,
+            separate them with hyphens ("-").
 
-            Maximum length: 80 characters.'
+            Maximum length: 80 characters.
           type: string
         shopperInteraction:
-          description: 'Specifies the sales channel, through which the shopper gives
-            their card details, and whether the shopper is a returning customer.
+          description: >-
+            Specifies the sales channel, through which the shopper gives their
+            card details, and whether the shopper is a returning customer.
 
-            For the web service API, Adyen assumes Ecommerce shopper interaction by
-            default.
+            For the web service API, Adyen assumes Ecommerce shopper interaction
+            by default.
 
 
             This field has the following possible values:
 
-            * `Ecommerce` - Online transactions where the cardholder is present (online).
-            For better authorisation rates, we recommend sending the card security
-            code (CSC) along with the request.
+            * `Ecommerce` - Online transactions where the cardholder is present
+            (online). For better authorisation rates, we recommend sending the
+            card security code (CSC) along with the request.
 
-            * `ContAuth` - Card on file and/or subscription transactions, where the
-            cardholder is known to the merchant (returning customer). If the shopper
-            is present (online), you can supply also the CSC to improve authorisation
-            (one-click payment).
+            * `ContAuth` - Card on file and/or subscription transactions, where
+            the cardholder is known to the merchant (returning customer). If the
+            shopper is present (online), you can supply also the CSC to improve
+            authorisation (one-click payment).
 
-            * `Moto` - Mail-order and telephone-order transactions where the shopper
-            is in contact with the merchant via email or telephone.
+            * `Moto` - Mail-order and telephone-order transactions where the
+            shopper is in contact with the merchant via email or telephone.
 
-            * `POS` - Point-of-sale transactions where the shopper is physically present
-            to make a payment using a secure payment terminal.'
+            * `POS` - Point-of-sale transactions where the shopper is physically
+            present to make a payment using a secure payment terminal.
           enum:
-          - Ecommerce
-          - ContAuth
-          - Moto
-          - POS
+            - Ecommerce
+            - ContAuth
+            - Moto
+            - POS
           type: string
         shopperReference:
           type: string
         status:
           description: The status you want to change to
           enum:
-          - active
-          - inactive
+            - active
+            - inactive
           type: string
         store:
           description: The physical store, for which this payment is processed.
@@ -892,50 +965,61 @@ components:
           minLength: 1
           type: string
       required:
-      - merchantAccount
-      - reference
-      - paymentMethod
-      - status
+        - merchantAccount
+        - reference
+        - paymentMethod
+        - status
       type: object
     StoredValueStatusChangeResponse:
       properties:
         authCode:
-          description: 'Authorisation code:
+          description: >-
+            Authorisation code:
 
-            * When the payment is authorised, this field holds the authorisation code
-            for the payment.
+            * When the payment is authorised, this field holds the authorisation
+            code for the payment.
 
-            * When the payment is not authorised, this field is empty.'
+            * When the payment is not authorised, this field is empty.
           type: string
         currentBalance:
           description: The balance currently on the payment method.
           $ref: '#/components/schemas/Amount'
         pspReference:
-          description: Adyen's 16-character string reference associated with the transaction/request.
-            This value is globally unique; quote it when communicating with us about
-            this request.
+          description: >-
+            Adyen's 16-character string reference associated with the
+            transaction/request. This value is globally unique; quote it when
+            communicating with us about this request.
           type: string
         refusalReason:
-          description: 'If the transaction is refused or an error occurs, this field
-            holds Adyen''s mapped reason for the refusal or a description of the error.
+          description: >-
+            If the transaction is refused or an error occurs, this field holds
+            Adyen's mapped reason for the refusal or a description of the error.
 
 
-            When a transaction fails, the authorisation response includes `resultCode`
-            and `refusalReason` values.'
+            When a transaction fails, the authorisation response includes
+            `resultCode` and `refusalReason` values.
           type: string
         resultCode:
-          description: "The result of the payment. Possible values:\n\n* **Success**\
-            \ \u2013 The operation has been completed successfully. \n* **Refused**\
-            \ \u2013 The operation was refused. The reason is given in the `refusalReason`\
-            \ field. \n* **Error** \u2013 There was an error when the operation was\
-            \ processed. The reason is given in the `refusalReason` field. \n* **NotEnoughBalance**\
-            \ \u2013 The amount on the payment method is lower than the amount given\
-            \ in the request. Only applicable to balance checks. \n"
+          description: >
+            The result of the payment. Possible values:
+
+
+            * **Success** – The operation has been completed successfully. 
+
+            * **Refused** – The operation was refused. The reason is given in
+            the `refusalReason` field. 
+
+            * **Error** – There was an error when the operation was processed.
+            The reason is given in the `refusalReason` field. 
+
+            * **NotEnoughBalance** – The amount on the payment method is lower
+            than the amount given in the request. Only applicable to balance
+            checks. 
           enum:
-          - Success
-          - Refused
-          - Error
-          - NotEnoughBalance
+            - Success
+            - Refused
+            - Error
+            - NotEnoughBalance
           type: string
         thirdPartyRefusalReason:
           description: Raw refusal reason received from the third party, where available
@@ -944,17 +1028,19 @@ components:
     StoredValueVoidRequest:
       properties:
         merchantAccount:
-          description: The merchant account identifier, with which you want to process
-            the transaction.
+          description: >-
+            The merchant account identifier, with which you want to process the
+            transaction.
           type: string
         originalReference:
           description: The original pspReference of the payment to modify.
           type: string
         reference:
-          description: 'Your reference for the payment modification. This reference
-            is visible in Customer Area and in reports.
+          description: >-
+            Your reference for the payment modification. This reference is
+            visible in Customer Area and in reports.
 
-            Maximum length: 80 characters.'
+            Maximum length: 80 characters.
           type: string
         store:
           description: The physical store, for which this payment is processed.
@@ -968,8 +1054,8 @@ components:
           description: The unique ID of a POS terminal.
           type: string
       required:
-      - merchantAccount
-      - originalReference
+        - merchantAccount
+        - originalReference
       type: object
     StoredValueVoidResponse:
       properties:
@@ -977,31 +1063,41 @@ components:
           description: The balance currently on the payment method.
           $ref: '#/components/schemas/Amount'
         pspReference:
-          description: Adyen's 16-character string reference associated with the transaction/request.
-            This value is globally unique; quote it when communicating with us about
-            this request.
+          description: >-
+            Adyen's 16-character string reference associated with the
+            transaction/request. This value is globally unique; quote it when
+            communicating with us about this request.
           type: string
         refusalReason:
-          description: 'If the transaction is refused or an error occurs, this field
-            holds Adyen''s mapped reason for the refusal or a description of the error.
+          description: >-
+            If the transaction is refused or an error occurs, this field holds
+            Adyen's mapped reason for the refusal or a description of the error.
 
 
-            When a transaction fails, the authorisation response includes `resultCode`
-            and `refusalReason` values.'
+            When a transaction fails, the authorisation response includes
+            `resultCode` and `refusalReason` values.
           type: string
         resultCode:
-          description: "The result of the payment. Possible values:\n\n* **Success**\
-            \ \u2013 The operation has been completed successfully. \n* **Refused**\
-            \ \u2013 The operation was refused. The reason is given in the `refusalReason`\
-            \ field. \n* **Error** \u2013 There was an error when the operation was\
-            \ processed. The reason is given in the `refusalReason` field. \n* **NotEnoughBalance**\
-            \ \u2013 The amount on the payment method is lower than the amount given\
-            \ in the request. Only applicable to balance checks. \n"
+          description: >
+            The result of the payment. Possible values:
+
+
+            * **Success** – The operation has been completed successfully. 
+
+            * **Refused** – The operation was refused. The reason is given in
+            the `refusalReason` field. 
+
+            * **Error** – There was an error when the operation was processed.
+            The reason is given in the `refusalReason` field. 
+
+            * **NotEnoughBalance** – The amount on the payment method is lower
+            than the amount given in the request. Only applicable to balance
+            checks. 
           enum:
-          - Success
-          - Refused
-          - Error
-          - NotEnoughBalance
+            - Success
+            - Refused
+            - Error
+            - NotEnoughBalance
           type: string
         thirdPartyRefusalReason:
           description: Raw refusal reason received from the third party, where available

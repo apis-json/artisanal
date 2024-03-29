@@ -5,6 +5,9 @@ paths:
   /v1/credit_notes:
     get:
       description: <p>Returns a list of credit notes.</p>
+      tags:
+        - V1
+        - Credit_notes
     post:
       description: >-
         <p>Issue a credit note to adjust the amount of a finalized invoice. For
@@ -42,9 +45,16 @@ paths:
 
         or <code>post_payment_credit_notes_amount</code> depending on its
         <code>status</code> at the time of credit note creation.</p>
+      tags:
+        - V1
+        - Credit_notes
   /v1/credit_notes/preview:
     get:
       description: <p>Get a preview of a credit note without creating it.</p>
+      tags:
+        - V1
+        - Credit_notes
+        - Preview
   /v1/credit_notes/preview/lines:
     get:
       description: >-
@@ -52,6 +62,11 @@ paths:
         <strong>lines</strong> property containing the first handful of those
         items. This URL you can retrieve the full (paginated) list of line
         items.</p>
+      tags:
+        - V1
+        - Credit_notes
+        - Preview
+        - Lines
   /v1/credit_notes/{credit_note}/lines:
     get:
       description: >-
@@ -59,13 +74,41 @@ paths:
         property containing the the first handful of those items. There is also
         a URL where you can retrieve the full (paginated) list of line
         items.</p>
+      tags:
+        - V1
+        - Credit_notes
+        - Preview
+        - Lines
+        - Credit_note
   /v1/credit_notes/{id}:
     get:
       description: <p>Retrieves the credit note object with the given identifier.</p>
+      tags:
+        - V1
+        - Credit_notes
+        - Preview
+        - Lines
+        - Credit_note
+        - Id
     post:
       description: <p>Updates an existing credit note.</p>
+      tags:
+        - V1
+        - Credit_notes
+        - Preview
+        - Lines
+        - Credit_note
+        - Id
   /v1/credit_notes/{id}/void:
     post:
       description: >-
         <p>Marks a credit note as void. Learn more about <a
-        href="/docs/billing/invoices/credit-notes#voiding">voiding credit notes<
+        href="/docs/billing/invoices/credit-notes#voiding">voiding credit note
+      tags:
+        - V1
+        - Credit_notes
+        - Preview
+        - Lines
+        - Credit_note
+        - Id
+        - Vo

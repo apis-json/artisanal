@@ -5,23 +5,59 @@ paths:
   /v1/payment_method_configurations:
     get:
       description: <p>List payment method configurations</p>
+      tags:
+        - V1
+        - Payment_method_configurations
     post:
       description: <p>Creates a payment method configuration</p>
+      tags:
+        - V1
+        - Payment_method_configurations
   /v1/payment_method_configurations/{configuration}:
     get:
       description: <p>Retrieve payment method configuration</p>
+      tags:
+        - V1
+        - Payment_method_configurations
+        - Configuration
     post:
       description: <p>Update payment method configuration</p>
+      tags:
+        - V1
+        - Payment_method_configurations
+        - Configuration
   /v1/payment_method_domains:
     get:
       description: <p>Lists the details of existing payment method domains.</p>
+      tags:
+        - V1
+        - Payment_method_configurations
+        - Configuration
+        - Payment_method_domains
     post:
       description: <p>Creates a payment method domain.</p>
+      tags:
+        - V1
+        - Payment_method_configurations
+        - Configuration
+        - Payment_method_domains
   /v1/payment_method_domains/{payment_method_domain}:
     get:
       description: <p>Retrieves the details of an existing payment method domain.</p>
+      tags:
+        - V1
+        - Payment_method_configurations
+        - Configuration
+        - Payment_method_domains
+        - Payment_method_domain
     post:
       description: <p>Updates an existing payment method domain.</p>
+      tags:
+        - V1
+        - Payment_method_configurations
+        - Configuration
+        - Payment_method_domains
+        - Payment_method_domain
   /v1/payment_method_domains/{payment_method_domain}/validate:
     post:
       description: >-
@@ -41,6 +77,13 @@ paths:
         <p>Related guides: <a
         href="/docs/payments/payment-methods/pmd-registration">Payment method
         domains</a>.</p>
+      tags:
+        - V1
+        - Payment_method_configurations
+        - Configuration
+        - Payment_method_domains
+        - Payment_method_domain
+        - Validate
   /v1/payment_methods:
     get:
       description: >-
@@ -48,6 +91,14 @@ paths:
         list the PaymentMethods attached to a Customer for payments, you should
         use the <a href="/docs/api/payment_methods/customer_list">List a
         Customer’s PaymentMethods</a> API instead.</p>
+      tags:
+        - V1
+        - Payment_method_configurations
+        - Configuration
+        - Payment_method_domains
+        - Payment_method_domain
+        - Validate
+        - Payment_methods
     post:
       description: >-
         <p>Creates a PaymentMethod object. Read the <a
@@ -60,6 +111,14 @@ paths:
         accept a payment immediately or the <a
         href="/docs/payments/save-and-reuse">SetupIntent</a> API to collect
         payment method details ahead of a future payment.</p>
+      tags:
+        - V1
+        - Payment_method_configurations
+        - Configuration
+        - Payment_method_domains
+        - Payment_method_domain
+        - Validate
+        - Payment_methods
   /v1/payment_methods/{payment_method}:
     get:
       description: >-
@@ -67,10 +126,28 @@ paths:
         retrieve a payment method attached to a Customer, you should use <a
         href="/docs/api/payment_methods/customer">Retrieve a Customer’s
         PaymentMethods</a></p>
+      tags:
+        - V1
+        - Payment_method_configurations
+        - Configuration
+        - Payment_method_domains
+        - Payment_method_domain
+        - Validate
+        - Payment_methods
+        - Payment_method
     post:
       description: >-
         <p>Updates a PaymentMethod object. A PaymentMethod must be attached a
         customer to be updated.</p>
+      tags:
+        - V1
+        - Payment_method_configurations
+        - Configuration
+        - Payment_method_domains
+        - Payment_method_domain
+        - Validate
+        - Payment_methods
+        - Payment_method
   /v1/payment_methods/{payment_method}/attach:
     post:
       description: >-
@@ -105,9 +182,30 @@ paths:
         href="/docs/api/customers/update#update_customer-invoice_settings-default_payment_method"><code>invoice_settings.default_payment_method</code></a>,
 
         on the Customer to the PaymentMethod’s ID.</p>
+      tags:
+        - V1
+        - Payment_method_configurations
+        - Configuration
+        - Payment_method_domains
+        - Payment_method_domain
+        - Validate
+        - Payment_methods
+        - Payment_method
+        - Attach
   /v1/payment_methods/{payment_method}/detach:
     post:
       description: >-
         <p>Detaches a PaymentMethod object from a Customer. After a
         PaymentMethod is detached, it can no longer be used for a payment or
-        re-attached to a Custo
+        re-attached to a Cus
+      tags:
+        - V1
+        - Payment_method_configurations
+        - Configuration
+        - Payment_method_domains
+        - Payment_method_domain
+        - Validate
+        - Payment_methods
+        - Payment_method
+        - Attach
+        - Deta

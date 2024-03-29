@@ -2,17 +2,17 @@ openapi: 3.0.1
 info:
   title: Twilio - Accounts
   description: This is the public Twilio REST API.
-  termsOfService: 'https://www.twilio.com/legal/tos'
+  termsOfService: https://www.twilio.com/legal/tos
   contact:
     name: Twilio Support
-    url: 'https://support.twilio.com'
+    url: https://support.twilio.com
     email: support@twilio.com
   license:
     name: Apache 2.0
-    url: 'https://www.apache.org/licenses/LICENSE-2.0.html'
+    url: https://www.apache.org/licenses/LICENSE-2.0.html
   version: 1.52.0
 servers:
-  - url: 'https://accounts.twilio.com'
+  - url: https://accounts.twilio.com
 tags:
   - name: AccountsV1AuthTokenPromotion
   - name: AccountsV1Aws
@@ -29,7 +29,7 @@ x-maturity:
 paths:
   /v1/AuthTokens/Promote:
     servers:
-      - url: 'https://accounts.twilio.com'
+      - url: https://accounts.twilio.com
     description: Auth Token promotion
     x-twilio:
       defaultOutputProperties:
@@ -59,14 +59,14 @@ paths:
         - GA
   /v1/Credentials:
     servers:
-      - url: 'https://accounts.twilio.com'
+      - url: https://accounts.twilio.com
     description: 'TODO: Resource-level docs'
     x-twilio:
       defaultOutputProperties: []
       pathType: list
   /v1/Credentials/AWS:
     servers:
-      - url: 'https://accounts.twilio.com'
+      - url: https://accounts.twilio.com
     description: User provided AWS keys
     x-twilio:
       defaultOutputProperties:
@@ -135,9 +135,9 @@ paths:
           application/x-www-form-urlencoded:
             schema:
               $ref: '#/components/schemas/CreateCredentialAwsRequest'
-  '/v1/Credentials/AWS/{Sid}':
+  /v1/Credentials/AWS/{Sid}:
     servers:
-      - url: 'https://accounts.twilio.com'
+      - url: https://accounts.twilio.com
     description: User provided AWS keys
     x-twilio:
       defaultOutputProperties:
@@ -160,7 +160,7 @@ paths:
             type: string
             minLength: 34
             maxLength: 34
-            pattern: '^CR[0-9a-fA-F]{32}$'
+            pattern: ^CR[0-9a-fA-F]{32}$
           required: true
       responses:
         '200':
@@ -188,7 +188,7 @@ paths:
             type: string
             minLength: 34
             maxLength: 34
-            pattern: '^CR[0-9a-fA-F]{32}$'
+            pattern: ^CR[0-9a-fA-F]{32}$
           required: true
       responses:
         '200':
@@ -221,7 +221,7 @@ paths:
             type: string
             minLength: 34
             maxLength: 34
-            pattern: '^CR[0-9a-fA-F]{32}$'
+            pattern: ^CR[0-9a-fA-F]{32}$
           required: true
       responses:
         '204':
@@ -233,7 +233,7 @@ paths:
         - GA
   /v1/Credentials/PublicKeys:
     servers:
-      - url: 'https://accounts.twilio.com'
+      - url: https://accounts.twilio.com
     description: User provided public keys
     x-twilio:
       defaultOutputProperties:
@@ -304,9 +304,9 @@ paths:
           application/x-www-form-urlencoded:
             schema:
               $ref: '#/components/schemas/CreateCredentialPublicKeyRequest'
-  '/v1/Credentials/PublicKeys/{Sid}':
+  /v1/Credentials/PublicKeys/{Sid}:
     servers:
-      - url: 'https://accounts.twilio.com'
+      - url: https://accounts.twilio.com
     description: User provided public keys
     x-twilio:
       defaultOutputProperties:
@@ -330,7 +330,7 @@ paths:
             type: string
             minLength: 34
             maxLength: 34
-            pattern: '^CR[0-9a-fA-F]{32}$'
+            pattern: ^CR[0-9a-fA-F]{32}$
           required: true
       responses:
         '200':
@@ -359,7 +359,7 @@ paths:
             type: string
             minLength: 34
             maxLength: 34
-            pattern: '^CR[0-9a-fA-F]{32}$'
+            pattern: ^CR[0-9a-fA-F]{32}$
           required: true
       responses:
         '200':
@@ -393,7 +393,7 @@ paths:
             type: string
             minLength: 34
             maxLength: 34
-            pattern: '^CR[0-9a-fA-F]{32}$'
+            pattern: ^CR[0-9a-fA-F]{32}$
           required: true
       responses:
         '204':
@@ -405,7 +405,7 @@ paths:
         - GA
   /v1/SafeList/Numbers:
     servers:
-      - url: 'https://accounts.twilio.com'
+      - url: https://accounts.twilio.com
     description: 'TODO: Resource-level docs'
     x-twilio:
       defaultOutputProperties:
@@ -488,7 +488,7 @@ paths:
         - Beta
   /v1/AuthTokens/Secondary:
     servers:
-      - url: 'https://accounts.twilio.com'
+      - url: https://accounts.twilio.com
     description: Secondary Auth Token
     x-twilio:
       defaultOutputProperties:
@@ -534,7 +534,7 @@ components:
           type: string
           minLength: 34
           maxLength: 34
-          pattern: '^AC[0-9a-fA-F]{32}$'
+          pattern: ^AC[0-9a-fA-F]{32}$
           nullable: true
           description: >-
             The SID of the
@@ -569,7 +569,7 @@ components:
           type: string
           format: uri
           nullable: true
-          description: 'The URI for this resource, relative to `https://accounts.twilio.com`'
+          description: The URI for this resource, relative to `https://accounts.twilio.com`
     accounts.v1.credential:
       type: object
       properties: {}
@@ -580,14 +580,14 @@ components:
           type: string
           minLength: 34
           maxLength: 34
-          pattern: '^CR[0-9a-fA-F]{32}$'
+          pattern: ^CR[0-9a-fA-F]{32}$
           nullable: true
           description: The unique string that we created to identify the AWS resource.
         account_sid:
           type: string
           minLength: 34
           maxLength: 34
-          pattern: '^AC[0-9a-fA-F]{32}$'
+          pattern: ^AC[0-9a-fA-F]{32}$
           nullable: true
           description: >-
             The SID of the
@@ -620,7 +620,7 @@ components:
           type: string
           format: uri
           nullable: true
-          description: 'The URI for this resource, relative to `https://accounts.twilio.com`'
+          description: The URI for this resource, relative to `https://accounts.twilio.com`
     accounts.v1.credential.credential_public_key:
       type: object
       properties:
@@ -628,7 +628,7 @@ components:
           type: string
           minLength: 34
           maxLength: 34
-          pattern: '^CR[0-9a-fA-F]{32}$'
+          pattern: ^CR[0-9a-fA-F]{32}$
           nullable: true
           description: >-
             The unique string that that we created to identify the PublicKey
@@ -637,7 +637,7 @@ components:
           type: string
           minLength: 34
           maxLength: 34
-          pattern: '^AC[0-9a-fA-F]{32}$'
+          pattern: ^AC[0-9a-fA-F]{32}$
           nullable: true
           description: >-
             The SID of the
@@ -670,7 +670,7 @@ components:
           type: string
           format: uri
           nullable: true
-          description: 'The URI for this resource, relative to `https://accounts.twilio.com`'
+          description: The URI for this resource, relative to `https://accounts.twilio.com`
     accounts.v1.safelist:
       type: object
       properties:
@@ -678,7 +678,7 @@ components:
           type: string
           minLength: 34
           maxLength: 34
-          pattern: '^GN[0-9a-fA-F]{32}$'
+          pattern: ^GN[0-9a-fA-F]{32}$
           nullable: true
           description: The unique string that we created to identify the SafeList resource.
         phone_number:
@@ -696,7 +696,7 @@ components:
           type: string
           minLength: 34
           maxLength: 34
-          pattern: '^AC[0-9a-fA-F]{32}$'
+          pattern: ^AC[0-9a-fA-F]{32}$
           nullable: true
           description: >-
             The SID of the
@@ -731,7 +731,7 @@ components:
           type: string
           format: uri
           nullable: true
-          description: 'The URI for this resource, relative to `https://accounts.twilio.com`'
+          description: The URI for this resource, relative to `https://accounts.twilio.com`
     ListCredentialAwsResponse:
       type: object
       properties:
@@ -812,7 +812,7 @@ components:
           type: string
           minLength: 34
           maxLength: 34
-          pattern: '^AC[0-9a-fA-F]{32}$'
+          pattern: ^AC[0-9a-fA-F]{32}$
           description: >-
             The SID of the Subaccount that this Credential should be associated
             with. Must be a valid Subaccount of the account issuing the request.
@@ -833,8 +833,7 @@ components:
           type: string
           description: >-
             A URL encoded representation of the public key. For example,
-            `--BEGIN PUBLIC KEY--MIIBIjANB.pa9xQIDAQAB--END PUBLIC
-            KEY--`
+            `--BEGIN PUBLIC KEY--MIIBIjANB.pa9xQIDAQAB--END PUBLIC KEY--`
         FriendlyName:
           type: string
           description: >-
@@ -844,7 +843,7 @@ components:
           type: string
           minLength: 34
           maxLength: 34
-          pattern: '^AC[0-9a-fA-F]{32}$'
+          pattern: ^AC[0-9a-fA-F]{32}$
           description: >-
             The SID of the Subaccount that this Credential should be associated
             with. Must be a valid Subaccount of the account issuing the request

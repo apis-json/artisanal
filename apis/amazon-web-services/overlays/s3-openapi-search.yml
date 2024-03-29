@@ -122,6 +122,12 @@ paths:
         </p> </li> <li> <p> <a
         href="https://docs.aws.amazon.com/AmazonS3/latest/API/API_ListMultipartUploads.html">ListMultipartUploads</a>
         </p> </li> </ul>
+      tags:
+        - Upload
+        - Part
+        - Copy
+        - Bucket
+        - Key+
   /{Bucket}:
     GET:
       summary: ListObjects
@@ -148,6 +154,11 @@ paths:
         </p> </li> <li> <p> <a
         href="https://docs.aws.amazon.com/AmazonS3/latest/API/API_ListBuckets.html">ListBuckets</a>
         </p> </li> </ul>
+      tags:
+        - List
+        - Objects
+        - Bucket
+        - Key+
   /{Bucket}/{Key+}?uploads:
     POST:
       summary: CreateMultipartUpload
@@ -323,6 +334,13 @@ paths:
         </p> </li> <li> <p> <a
         href="https://docs.aws.amazon.com/AmazonS3/latest/API/API_ListMultipartUploads.html">ListMultipartUploads</a>
         </p> </li> </ul>
+      tags:
+        - Create
+        - Multipart
+        - Upload
+        - Bucket
+        - Key+
+        - '?uploads'
   /{Bucket}?session:
     GET:
       summary: CreateSession
@@ -404,6 +422,13 @@ paths:
         header syntax is <code>
         <i>Bucket_name</i>.s3express-<i>az_id</i>.<i>region</i>.amazonaws.com</code>.</p>
         </dd> </dl>
+      tags:
+        - Create
+        - Session
+        - Bucket
+        - Key+
+        - '?uploads'
+        - '?session'
   /{Bucket}?analytics:
     PUT:
       summary: PutBucketAnalyticsConfiguration
@@ -456,6 +481,16 @@ paths:
         </p> </li> <li> <p> <a
         href="https://docs.aws.amazon.com/AmazonS3/latest/API/API_ListBucketAnalyticsConfigurations.html">ListBucketAnalyticsConfigurations</a>
         </p> </li> </ul>
+      tags:
+        - Put
+        - Bucket
+        - Analytics
+        - Configuration
+        - Bucket
+        - Key+
+        - '?uploads'
+        - '?session'
+        - '?analytics'
   /{Bucket}?cors:
     PUT:
       summary: PutBucketCors
@@ -500,6 +535,16 @@ paths:
         </p> </li> <li> <p> <a
         href="https://docs.aws.amazon.com/AmazonS3/latest/API/RESTOPTIONSobject.html">RESTOPTIONSobject</a>
         </p> </li> </ul>
+      tags:
+        - Put
+        - Bucket
+        - Cors
+        - Bucket
+        - Key+
+        - '?uploads'
+        - '?session'
+        - '?analytics'
+        - '?cors'
   /{Bucket}?encryption:
     PUT:
       summary: PutBucketEncryption
@@ -538,6 +583,17 @@ paths:
         </p> </li> <li> <p> <a
         href="https://docs.aws.amazon.com/AmazonS3/latest/API/API_DeleteBucketEncryption.html">DeleteBucketEncryption</a>
         </p> </li> </ul>
+      tags:
+        - Put
+        - Bucket
+        - Encryption
+        - Bucket
+        - Key+
+        - '?uploads'
+        - '?session'
+        - '?analytics'
+        - '?cors'
+        - '?encryption'
   /{Bucket}?intelligent-tiering:
     PUT:
       summary: PutBucketIntelligentTieringConfiguration
@@ -583,6 +639,21 @@ paths:
         <i>Cause:</i> You are not the owner of the specified bucket, or you do
         not have the <code>s3:PutIntelligentTieringConfiguration</code> bucket
         permission to set the configuration on the bucket. </p> </dd> </dl>
+      tags:
+        - Put
+        - Bucket
+        - Intelligent
+        - Tiering
+        - Configuration
+        - Bucket
+        - Key+
+        - '?uploads'
+        - '?session'
+        - '?analytics'
+        - '?cors'
+        - '?encryption'
+        - '?intelligent'
+        - Tiering
   /{Bucket}?inventory:
     PUT:
       summary: PutBucketInventoryConfiguration
@@ -652,6 +723,21 @@ paths:
         </p> </li> <li> <p> <a
         href="https://docs.aws.amazon.com/AmazonS3/latest/API/API_ListBucketInventoryConfigurations.html">ListBucketInventoryConfigurations</a>
         </p> </li> </ul>
+      tags:
+        - Put
+        - Bucket
+        - Inventory
+        - Configuration
+        - Bucket
+        - Key+
+        - '?uploads'
+        - '?session'
+        - '?analytics'
+        - '?cors'
+        - '?encryption'
+        - '?intelligent'
+        - Tiering
+        - '?inventory'
   /{Bucket}?lifecycle:
     PUT:
       summary: PutBucketLifecycleConfiguration
@@ -716,6 +802,22 @@ paths:
         </p> </li> <li> <p> <a
         href="https://docs.aws.amazon.com/AmazonS3/latest/API/API_DeleteBucketLifecycle.html">DeleteBucketLifecycle</a>
         </p> </li> </ul>
+      tags:
+        - Put
+        - Bucket
+        - Lifecycle
+        - Configuration
+        - Bucket
+        - Key+
+        - '?uploads'
+        - '?session'
+        - '?analytics'
+        - '?cors'
+        - '?encryption'
+        - '?intelligent'
+        - Tiering
+        - '?inventory'
+        - '?lifecycle'
   /{Bucket}?metrics:
     PUT:
       summary: PutBucketMetricsConfiguration
@@ -751,6 +853,23 @@ paths:
         are attempting to create a new configuration but have already reached
         the 1,000-configuration limit.</p> </li> <li> <p>HTTP Status Code: HTTP
         400 Bad Request</p> </li> </ul> </li> </ul>
+      tags:
+        - Put
+        - Bucket
+        - Metrics
+        - Configuration
+        - Bucket
+        - Key+
+        - '?uploads'
+        - '?session'
+        - '?analytics'
+        - '?cors'
+        - '?encryption'
+        - '?intelligent'
+        - Tiering
+        - '?inventory'
+        - '?lifecycle'
+        - '?metrics'
   /{Bucket}?ownershipControls:
     PUT:
       summary: PutBucketOwnershipControls
@@ -768,6 +887,25 @@ paths:
         <code>PutBucketOwnershipControls</code>:</p> <ul> <li> <p>
         <a>GetBucketOwnershipControls</a> </p> </li> <li> <p>
         <a>DeleteBucketOwnershipControls</a> </p> </li> </ul>
+      tags:
+        - Put
+        - Bucket
+        - Ownership
+        - Controls
+        - Bucket
+        - Key+
+        - '?uploads'
+        - '?session'
+        - '?analytics'
+        - '?cors'
+        - '?encryption'
+        - '?intelligent'
+        - Tiering
+        - '?inventory'
+        - '?lifecycle'
+        - '?metrics'
+        - '?ownership'
+        - Controls
   /{Bucket}?policy:
     PUT:
       summary: PutBucketPolicy
@@ -830,6 +968,25 @@ paths:
         </p> </li> <li> <p> <a
         href="https://docs.aws.amazon.com/AmazonS3/latest/API/API_DeleteBucket.html">DeleteBucket</a>
         </p> </li> </ul>
+      tags:
+        - Put
+        - Bucket
+        - Policy
+        - Bucket
+        - Key+
+        - '?uploads'
+        - '?session'
+        - '?analytics'
+        - '?cors'
+        - '?encryption'
+        - '?intelligent'
+        - Tiering
+        - '?inventory'
+        - '?lifecycle'
+        - '?metrics'
+        - '?ownership'
+        - Controls
+        - '?policy'
   /{Bucket}?replication:
     PUT:
       summary: PutBucketReplication
@@ -896,6 +1053,26 @@ paths:
         </p> </li> <li> <p> <a
         href="https://docs.aws.amazon.com/AmazonS3/latest/API/API_DeleteBucketReplication.html">DeleteBucketReplication</a>
         </p> </li> </ul>
+      tags:
+        - Put
+        - Bucket
+        - Replication
+        - Bucket
+        - Key+
+        - '?uploads'
+        - '?session'
+        - '?analytics'
+        - '?cors'
+        - '?encryption'
+        - '?intelligent'
+        - Tiering
+        - '?inventory'
+        - '?lifecycle'
+        - '?metrics'
+        - '?ownership'
+        - Controls
+        - '?policy'
+        - '?replication'
   /{Bucket}?tagging:
     PUT:
       summary: PutBucketTagging
@@ -943,6 +1120,27 @@ paths:
         </p> </li> <li> <p> <a
         href="https://docs.aws.amazon.com/AmazonS3/latest/API/API_DeleteBucketTagging.html">DeleteBucketTagging</a>
         </p> </li> </ul>
+      tags:
+        - Put
+        - Bucket
+        - Tagging
+        - Bucket
+        - Key+
+        - '?uploads'
+        - '?session'
+        - '?analytics'
+        - '?cors'
+        - '?encryption'
+        - '?intelligent'
+        - Tiering
+        - '?inventory'
+        - '?lifecycle'
+        - '?metrics'
+        - '?ownership'
+        - Controls
+        - '?policy'
+        - '?replication'
+        - '?tagging'
   /{Bucket}?website:
     PUT:
       summary: PutBucketWebsite
@@ -990,6 +1188,28 @@ paths:
         href="https://docs.aws.amazon.com/AmazonS3/latest/dev/how-to-page-redirect.html">Configuring
         an Object Redirect</a> in the <i>Amazon S3 User Guide</i>.</p> <p>The
         maximum request length is limited to 128 KB.</p>
+      tags:
+        - Put
+        - Bucket
+        - Website
+        - Bucket
+        - Key+
+        - '?uploads'
+        - '?session'
+        - '?analytics'
+        - '?cors'
+        - '?encryption'
+        - '?intelligent'
+        - Tiering
+        - '?inventory'
+        - '?lifecycle'
+        - '?metrics'
+        - '?ownership'
+        - Controls
+        - '?policy'
+        - '?replication'
+        - '?tagging'
+        - '?website'
   /{Bucket}/{Key+}?tagging:
     PUT:
       summary: PutObjectTagging
@@ -1032,6 +1252,28 @@ paths:
         </p> </li> <li> <p> <a
         href="https://docs.aws.amazon.com/AmazonS3/latest/API/API_DeleteObjectTagging.html">DeleteObjectTagging</a>
         </p> </li> </ul>
+      tags:
+        - Put
+        - Object
+        - Tagging
+        - Bucket
+        - Key+
+        - '?uploads'
+        - '?session'
+        - '?analytics'
+        - '?cors'
+        - '?encryption'
+        - '?intelligent'
+        - Tiering
+        - '?inventory'
+        - '?lifecycle'
+        - '?metrics'
+        - '?ownership'
+        - Controls
+        - '?policy'
+        - '?replication'
+        - '?tagging'
+        - '?website'
   /{Bucket}?delete:
     POST:
       summary: DeleteObjects
@@ -1123,6 +1365,28 @@ paths:
         </p> </li> <li> <p> <a
         href="https://docs.aws.amazon.com/AmazonS3/latest/API/API_AbortMultipartUpload.html">AbortMultipartUpload</a>
         </p> </li> </ul>
+      tags:
+        - Delete
+        - Objects
+        - Bucket
+        - Key+
+        - '?uploads'
+        - '?session'
+        - '?analytics'
+        - '?cors'
+        - '?encryption'
+        - '?intelligent'
+        - Tiering
+        - '?inventory'
+        - '?lifecycle'
+        - '?metrics'
+        - '?ownership'
+        - Controls
+        - '?policy'
+        - '?replication'
+        - '?tagging'
+        - '?website'
+        - '?delete'
   /{Bucket}?publicAccessBlock:
     PUT:
       summary: PutPublicAccessBlock
@@ -1153,6 +1417,33 @@ paths:
         </p> </li> <li> <p> <a
         href="https://docs.aws.amazon.com/AmazonS3/latest/dev/access-control-block-public-access.html">Using
         Amazon S3 Block Public Access</a> </p> </li> </ul>
+      tags:
+        - Put
+        - Public
+        - Access
+        - Block
+        - Bucket
+        - Key+
+        - '?uploads'
+        - '?session'
+        - '?analytics'
+        - '?cors'
+        - '?encryption'
+        - '?intelligent'
+        - Tiering
+        - '?inventory'
+        - '?lifecycle'
+        - '?metrics'
+        - '?ownership'
+        - Controls
+        - '?policy'
+        - '?replication'
+        - '?tagging'
+        - '?website'
+        - '?delete'
+        - '?public'
+        - Access
+        - Block
   /{Bucket}?accelerate:
     PUT:
       summary: PutBucketAccelerateConfiguration
@@ -1187,6 +1478,34 @@ paths:
         </p> </li> <li> <p> <a
         href="https://docs.aws.amazon.com/AmazonS3/latest/API/API_CreateBucket.html">CreateBucket</a>
         </p> </li> </ul>
+      tags:
+        - Put
+        - Bucket
+        - Accelerate
+        - Configuration
+        - Bucket
+        - Key+
+        - '?uploads'
+        - '?session'
+        - '?analytics'
+        - '?cors'
+        - '?encryption'
+        - '?intelligent'
+        - Tiering
+        - '?inventory'
+        - '?lifecycle'
+        - '?metrics'
+        - '?ownership'
+        - Controls
+        - '?policy'
+        - '?replication'
+        - '?tagging'
+        - '?website'
+        - '?delete'
+        - '?public'
+        - Access
+        - Block
+        - '?accelerate'
   /{Bucket}?acl:
     PUT:
       summary: PutBucketAcl
@@ -1292,6 +1611,34 @@ paths:
         </p> </li> <li> <p> <a
         href="https://docs.aws.amazon.com/AmazonS3/latest/API/API_GetObjectAcl.html">GetObjectAcl</a>
         </p> </li> </ul>
+      tags:
+        - Put
+        - Bucket
+        - Acl
+        - Bucket
+        - Key+
+        - '?uploads'
+        - '?session'
+        - '?analytics'
+        - '?cors'
+        - '?encryption'
+        - '?intelligent'
+        - Tiering
+        - '?inventory'
+        - '?lifecycle'
+        - '?metrics'
+        - '?ownership'
+        - Controls
+        - '?policy'
+        - '?replication'
+        - '?tagging'
+        - '?website'
+        - '?delete'
+        - '?public'
+        - Access
+        - Block
+        - '?accelerate'
+        - '?acl'
   /{Bucket}?location:
     GET:
       summary: GetBucketLocation
@@ -1320,6 +1667,35 @@ paths:
         </p> </li> <li> <p> <a
         href="https://docs.aws.amazon.com/AmazonS3/latest/API/API_CreateBucket.html">CreateBucket</a>
         </p> </li> </ul>
+      tags:
+        - Get
+        - Bucket
+        - Location
+        - Bucket
+        - Key+
+        - '?uploads'
+        - '?session'
+        - '?analytics'
+        - '?cors'
+        - '?encryption'
+        - '?intelligent'
+        - Tiering
+        - '?inventory'
+        - '?lifecycle'
+        - '?metrics'
+        - '?ownership'
+        - Controls
+        - '?policy'
+        - '?replication'
+        - '?tagging'
+        - '?website'
+        - '?delete'
+        - '?public'
+        - Access
+        - Block
+        - '?accelerate'
+        - '?acl'
+        - '?location'
   /{Bucket}?logging:
     PUT:
       summary: PutBucketLogging
@@ -1378,6 +1754,36 @@ paths:
         </p> </li> <li> <p> <a
         href="https://docs.aws.amazon.com/AmazonS3/latest/API/API_GetBucketLogging.html">GetBucketLogging</a>
         </p> </li> </ul>
+      tags:
+        - Put
+        - Bucket
+        - Logging
+        - Bucket
+        - Key+
+        - '?uploads'
+        - '?session'
+        - '?analytics'
+        - '?cors'
+        - '?encryption'
+        - '?intelligent'
+        - Tiering
+        - '?inventory'
+        - '?lifecycle'
+        - '?metrics'
+        - '?ownership'
+        - Controls
+        - '?policy'
+        - '?replication'
+        - '?tagging'
+        - '?website'
+        - '?delete'
+        - '?public'
+        - Access
+        - Block
+        - '?accelerate'
+        - '?acl'
+        - '?location'
+        - '?logging'
   /{Bucket}?notification:
     PUT:
       summary: PutBucketNotificationConfiguration
@@ -1431,6 +1837,38 @@ paths:
         <code>PutBucketNotificationConfiguration</code>:</p> <ul> <li> <p> <a
         href="https://docs.aws.amazon.com/AmazonS3/latest/API/API_GetBucketNotificationConfiguration.html">GetBucketNotificationConfiguration</a>
         </p> </li> </ul>
+      tags:
+        - Put
+        - Bucket
+        - Notification
+        - Configuration
+        - Bucket
+        - Key+
+        - '?uploads'
+        - '?session'
+        - '?analytics'
+        - '?cors'
+        - '?encryption'
+        - '?intelligent'
+        - Tiering
+        - '?inventory'
+        - '?lifecycle'
+        - '?metrics'
+        - '?ownership'
+        - Controls
+        - '?policy'
+        - '?replication'
+        - '?tagging'
+        - '?website'
+        - '?delete'
+        - '?public'
+        - Access
+        - Block
+        - '?accelerate'
+        - '?acl'
+        - '?location'
+        - '?logging'
+        - '?notification'
   /{Bucket}?policyStatus:
     GET:
       summary: GetBucketPolicyStatus
@@ -1454,6 +1892,39 @@ paths:
         </p> </li> <li> <p> <a
         href="https://docs.aws.amazon.com/AmazonS3/latest/API/API_DeletePublicAccessBlock.html">DeletePublicAccessBlock</a>
         </p> </li> </ul>
+      tags:
+        - Get
+        - Bucket
+        - Policy
+        - Status
+        - Bucket
+        - Key+
+        - '?uploads'
+        - '?session'
+        - '?analytics'
+        - '?cors'
+        - '?encryption'
+        - '?intelligent'
+        - Tiering
+        - '?inventory'
+        - '?lifecycle'
+        - '?metrics'
+        - '?ownership'
+        - Controls
+        - '?policy'
+        - '?replication'
+        - '?tagging'
+        - '?website'
+        - '?delete'
+        - '?public'
+        - Access
+        - Block
+        - '?accelerate'
+        - '?acl'
+        - '?location'
+        - '?logging'
+        - '?notification'
+        - Status
   /{Bucket}?requestPayment:
     PUT:
       summary: PutBucketRequestPayment
@@ -1471,6 +1942,41 @@ paths:
         </p> </li> <li> <p> <a
         href="https://docs.aws.amazon.com/AmazonS3/latest/API/API_GetBucketRequestPayment.html">GetBucketRequestPayment</a>
         </p> </li> </ul>
+      tags:
+        - Put
+        - Bucket
+        - Request
+        - Payment
+        - Bucket
+        - Key+
+        - '?uploads'
+        - '?session'
+        - '?analytics'
+        - '?cors'
+        - '?encryption'
+        - '?intelligent'
+        - Tiering
+        - '?inventory'
+        - '?lifecycle'
+        - '?metrics'
+        - '?ownership'
+        - Controls
+        - '?policy'
+        - '?replication'
+        - '?tagging'
+        - '?website'
+        - '?delete'
+        - '?public'
+        - Access
+        - Block
+        - '?accelerate'
+        - '?acl'
+        - '?location'
+        - '?logging'
+        - '?notification'
+        - Status
+        - '?request'
+        - Payment
   /{Bucket}?versioning:
     PUT:
       summary: PutBucketVersioning
@@ -1508,6 +2014,41 @@ paths:
         </p> </li> <li> <p> <a
         href="https://docs.aws.amazon.com/AmazonS3/latest/API/API_GetBucketVersioning.html">GetBucketVersioning</a>
         </p> </li> </ul>
+      tags:
+        - Put
+        - Bucket
+        - Versioning
+        - Bucket
+        - Key+
+        - '?uploads'
+        - '?session'
+        - '?analytics'
+        - '?cors'
+        - '?encryption'
+        - '?intelligent'
+        - Tiering
+        - '?inventory'
+        - '?lifecycle'
+        - '?metrics'
+        - '?ownership'
+        - Controls
+        - '?policy'
+        - '?replication'
+        - '?tagging'
+        - '?website'
+        - '?delete'
+        - '?public'
+        - Access
+        - Block
+        - '?accelerate'
+        - '?acl'
+        - '?location'
+        - '?logging'
+        - '?notification'
+        - Status
+        - '?request'
+        - Payment
+        - '?versioning'
   /{Bucket}/{Key+}?acl:
     PUT:
       summary: PutObjectAcl
@@ -1613,6 +2154,41 @@ paths:
         </p> </li> <li> <p> <a
         href="https://docs.aws.amazon.com/AmazonS3/latest/API/API_GetObject.html">GetObject</a>
         </p> </li> </ul>
+      tags:
+        - Put
+        - Object
+        - Acl
+        - Bucket
+        - Key+
+        - '?uploads'
+        - '?session'
+        - '?analytics'
+        - '?cors'
+        - '?encryption'
+        - '?intelligent'
+        - Tiering
+        - '?inventory'
+        - '?lifecycle'
+        - '?metrics'
+        - '?ownership'
+        - Controls
+        - '?policy'
+        - '?replication'
+        - '?tagging'
+        - '?website'
+        - '?delete'
+        - '?public'
+        - Access
+        - Block
+        - '?accelerate'
+        - '?acl'
+        - '?location'
+        - '?logging'
+        - '?notification'
+        - Status
+        - '?request'
+        - Payment
+        - '?versioning'
   /{Bucket}/{Key+}?attributes:
     GET:
       summary: GetObjectAttributes
@@ -1738,6 +2314,42 @@ paths:
         </p> </li> <li> <p> <a
         href="https://docs.aws.amazon.com/AmazonS3/latest/API/API_ListParts.html">ListParts</a>
         </p> </li> </ul>
+      tags:
+        - Get
+        - Object
+        - Attributes
+        - Bucket
+        - Key+
+        - '?uploads'
+        - '?session'
+        - '?analytics'
+        - '?cors'
+        - '?encryption'
+        - '?intelligent'
+        - Tiering
+        - '?inventory'
+        - '?lifecycle'
+        - '?metrics'
+        - '?ownership'
+        - Controls
+        - '?policy'
+        - '?replication'
+        - '?tagging'
+        - '?website'
+        - '?delete'
+        - '?public'
+        - Access
+        - Block
+        - '?accelerate'
+        - '?acl'
+        - '?location'
+        - '?logging'
+        - '?notification'
+        - Status
+        - '?request'
+        - Payment
+        - '?versioning'
+        - '?attributes'
   /{Bucket}/{Key+}?legal-hold:
     PUT:
       summary: PutObjectLegalHold
@@ -1748,6 +2360,45 @@ paths:
         href="https://docs.aws.amazon.com/AmazonS3/latest/dev/object-lock.html">Locking
         Objects</a>.</p> <p>This functionality is not supported for Amazon S3 on
         Outposts.</p>
+      tags:
+        - Put
+        - Object
+        - Legal
+        - Hold
+        - Bucket
+        - Key+
+        - '?uploads'
+        - '?session'
+        - '?analytics'
+        - '?cors'
+        - '?encryption'
+        - '?intelligent'
+        - Tiering
+        - '?inventory'
+        - '?lifecycle'
+        - '?metrics'
+        - '?ownership'
+        - Controls
+        - '?policy'
+        - '?replication'
+        - '?tagging'
+        - '?website'
+        - '?delete'
+        - '?public'
+        - Access
+        - Block
+        - '?accelerate'
+        - '?acl'
+        - '?location'
+        - '?logging'
+        - '?notification'
+        - Status
+        - '?request'
+        - Payment
+        - '?versioning'
+        - '?attributes'
+        - '?legal'
+        - Hold
   /{Bucket}?object-lock:
     PUT:
       summary: PutObjectLockConfiguration
@@ -1767,6 +2418,47 @@ paths:
         information, see <a
         href="https://docs.aws.amazon.com/AmazonS3/latest/userguide/object-lock-configure.html">Configuring
         Object Lock</a>.</p> </li> </ul> </note>
+      tags:
+        - Put
+        - Object
+        - Lock
+        - Configuration
+        - Bucket
+        - Key+
+        - '?uploads'
+        - '?session'
+        - '?analytics'
+        - '?cors'
+        - '?encryption'
+        - '?intelligent'
+        - Tiering
+        - '?inventory'
+        - '?lifecycle'
+        - '?metrics'
+        - '?ownership'
+        - Controls
+        - '?policy'
+        - '?replication'
+        - '?tagging'
+        - '?website'
+        - '?delete'
+        - '?public'
+        - Access
+        - Block
+        - '?accelerate'
+        - '?acl'
+        - '?location'
+        - '?logging'
+        - '?notification'
+        - Status
+        - '?request'
+        - Payment
+        - '?versioning'
+        - '?attributes'
+        - '?legal'
+        - Hold
+        - '?object'
+        - Lock
   /{Bucket}/{Key+}?retention:
     PUT:
       summary: PutObjectRetention
@@ -1781,6 +2473,47 @@ paths:
         Retention configuration requires the
         <code>s3:BypassGovernanceRetention</code> permission. </p> <p>This
         functionality is not supported for Amazon S3 on Outposts.</p>
+      tags:
+        - Put
+        - Object
+        - Retention
+        - Bucket
+        - Key+
+        - '?uploads'
+        - '?session'
+        - '?analytics'
+        - '?cors'
+        - '?encryption'
+        - '?intelligent'
+        - Tiering
+        - '?inventory'
+        - '?lifecycle'
+        - '?metrics'
+        - '?ownership'
+        - Controls
+        - '?policy'
+        - '?replication'
+        - '?tagging'
+        - '?website'
+        - '?delete'
+        - '?public'
+        - Access
+        - Block
+        - '?accelerate'
+        - '?acl'
+        - '?location'
+        - '?logging'
+        - '?notification'
+        - Status
+        - '?request'
+        - Payment
+        - '?versioning'
+        - '?attributes'
+        - '?legal'
+        - Hold
+        - '?object'
+        - Lock
+        - '?retention'
   /{Bucket}/{Key+}?torrent:
     GET:
       summary: GetObjectTorrent
@@ -1796,6 +2529,48 @@ paths:
         <code>GetObjectTorrent</code>:</p> <ul> <li> <p> <a
         href="https://docs.aws.amazon.com/AmazonS3/latest/API/API_GetObject.html">GetObject</a>
         </p> </li> </ul>
+      tags:
+        - Get
+        - Object
+        - Torrent
+        - Bucket
+        - Key+
+        - '?uploads'
+        - '?session'
+        - '?analytics'
+        - '?cors'
+        - '?encryption'
+        - '?intelligent'
+        - Tiering
+        - '?inventory'
+        - '?lifecycle'
+        - '?metrics'
+        - '?ownership'
+        - Controls
+        - '?policy'
+        - '?replication'
+        - '?tagging'
+        - '?website'
+        - '?delete'
+        - '?public'
+        - Access
+        - Block
+        - '?accelerate'
+        - '?acl'
+        - '?location'
+        - '?logging'
+        - '?notification'
+        - Status
+        - '?request'
+        - Payment
+        - '?versioning'
+        - '?attributes'
+        - '?legal'
+        - Hold
+        - '?object'
+        - Lock
+        - '?retention'
+        - '?torrent'
   /:
     GET:
       summary: ListDirectoryBuckets
@@ -1826,6 +2601,48 @@ paths:
         header syntax is
         <code>s3express-control.<i>region</i>.amazonaws.com</code>.</p> </dd>
         </dl>
+      tags:
+        - List
+        - Directory
+        - Buckets
+        - Bucket
+        - Key+
+        - '?uploads'
+        - '?session'
+        - '?analytics'
+        - '?cors'
+        - '?encryption'
+        - '?intelligent'
+        - Tiering
+        - '?inventory'
+        - '?lifecycle'
+        - '?metrics'
+        - '?ownership'
+        - Controls
+        - '?policy'
+        - '?replication'
+        - '?tagging'
+        - '?website'
+        - '?delete'
+        - '?public'
+        - Access
+        - Block
+        - '?accelerate'
+        - '?acl'
+        - '?location'
+        - '?logging'
+        - '?notification'
+        - Status
+        - '?request'
+        - Payment
+        - '?versioning'
+        - '?attributes'
+        - '?legal'
+        - Hold
+        - '?object'
+        - Lock
+        - '?retention'
+        - '?torrent'
   /{Bucket}?uploads:
     GET:
       summary: ListMultipartUploads
@@ -1918,6 +2735,48 @@ paths:
         </p> </li> <li> <p> <a
         href="https://docs.aws.amazon.com/AmazonS3/latest/API/API_AbortMultipartUpload.html">AbortMultipartUpload</a>
         </p> </li> </ul>
+      tags:
+        - List
+        - Multipart
+        - Uploads
+        - Bucket
+        - Key+
+        - '?uploads'
+        - '?session'
+        - '?analytics'
+        - '?cors'
+        - '?encryption'
+        - '?intelligent'
+        - Tiering
+        - '?inventory'
+        - '?lifecycle'
+        - '?metrics'
+        - '?ownership'
+        - Controls
+        - '?policy'
+        - '?replication'
+        - '?tagging'
+        - '?website'
+        - '?delete'
+        - '?public'
+        - Access
+        - Block
+        - '?accelerate'
+        - '?acl'
+        - '?location'
+        - '?logging'
+        - '?notification'
+        - Status
+        - '?request'
+        - Payment
+        - '?versioning'
+        - '?attributes'
+        - '?legal'
+        - Hold
+        - '?object'
+        - Lock
+        - '?retention'
+        - '?torrent'
   /{Bucket}?versions:
     GET:
       summary: ListObjectVersions
@@ -1942,6 +2801,49 @@ paths:
         </p> </li> <li> <p> <a
         href="https://docs.aws.amazon.com/AmazonS3/latest/API/API_DeleteObject.html">DeleteObject</a>
         </p> </li> </ul>
+      tags:
+        - List
+        - Object
+        - Versions
+        - Bucket
+        - Key+
+        - '?uploads'
+        - '?session'
+        - '?analytics'
+        - '?cors'
+        - '?encryption'
+        - '?intelligent'
+        - Tiering
+        - '?inventory'
+        - '?lifecycle'
+        - '?metrics'
+        - '?ownership'
+        - Controls
+        - '?policy'
+        - '?replication'
+        - '?tagging'
+        - '?website'
+        - '?delete'
+        - '?public'
+        - Access
+        - Block
+        - '?accelerate'
+        - '?acl'
+        - '?location'
+        - '?logging'
+        - '?notification'
+        - Status
+        - '?request'
+        - Payment
+        - '?versioning'
+        - '?attributes'
+        - '?legal'
+        - Hold
+        - '?object'
+        - Lock
+        - '?retention'
+        - '?torrent'
+        - '?versions'
   /{Bucket}?list-type=2:
     GET:
       summary: ListObjectsV2
@@ -2012,6 +2914,51 @@ paths:
         </p> </li> <li> <p> <a
         href="https://docs.aws.amazon.com/AmazonS3/latest/API/API_CreateBucket.html">CreateBucket</a>
         </p> </li> </ul>
+      tags:
+        - List
+        - Objects
+        - V2
+        - Bucket
+        - Key+
+        - '?uploads'
+        - '?session'
+        - '?analytics'
+        - '?cors'
+        - '?encryption'
+        - '?intelligent'
+        - Tiering
+        - '?inventory'
+        - '?lifecycle'
+        - '?metrics'
+        - '?ownership'
+        - Controls
+        - '?policy'
+        - '?replication'
+        - '?tagging'
+        - '?website'
+        - '?delete'
+        - '?public'
+        - Access
+        - Block
+        - '?accelerate'
+        - '?acl'
+        - '?location'
+        - '?logging'
+        - '?notification'
+        - Status
+        - '?request'
+        - Payment
+        - '?versioning'
+        - '?attributes'
+        - '?legal'
+        - Hold
+        - '?object'
+        - Lock
+        - '?retention'
+        - '?torrent'
+        - '?versions'
+        - '?list'
+        - Type=2
   /{Bucket}/{Key+}?restore:
     POST:
       summary: RestoreObject
@@ -2173,10 +3120,102 @@ paths:
         </p> </li> <li> <p> <a
         href="https://docs.aws.amazon.com/AmazonS3/latest/API/API_GetBucketNotificationConfiguration.html">GetBucketNotificationConfiguration</a>
         </p> </li> </ul>
+      tags:
+        - Restore
+        - Object
+        - Bucket
+        - Key+
+        - '?uploads'
+        - '?session'
+        - '?analytics'
+        - '?cors'
+        - '?encryption'
+        - '?intelligent'
+        - Tiering
+        - '?inventory'
+        - '?lifecycle'
+        - '?metrics'
+        - '?ownership'
+        - Controls
+        - '?policy'
+        - '?replication'
+        - '?tagging'
+        - '?website'
+        - '?delete'
+        - '?public'
+        - Access
+        - Block
+        - '?accelerate'
+        - '?acl'
+        - '?location'
+        - '?logging'
+        - '?notification'
+        - Status
+        - '?request'
+        - Payment
+        - '?versioning'
+        - '?attributes'
+        - '?legal'
+        - Hold
+        - '?object'
+        - Lock
+        - '?retention'
+        - '?torrent'
+        - '?versions'
+        - '?list'
+        - Type=2
+        - '?restore'
   /{Bucket}/{Key+}?select&select-type=2:
     POST:
       summary: SelectObjectContent
       description: "<note> <p>This operation is not supported by directory buckets.</p> </note> <p>This action filters the contents of an Amazon S3 object based on a simple structured query language (SQL) statement. In the request, along with the SQL expression, you must also specify a data serialization format (JSON, CSV, or Apache Parquet) of the object. Amazon S3 uses this format to parse object data into records, and returns only records that match the specified SQL expression. You must also specify the data serialization format for the response.</p> <p>This functionality is not supported for Amazon S3 on Outposts.</p> <p>For more information about Amazon S3 Select, see <a href=\"https://docs.aws.amazon.com/AmazonS3/latest/dev/selecting-content-from-objects.html\">Selecting Content from Objects</a> and <a href=\"https://docs.aws.amazon.com/AmazonS3/latest/userguide/s3-glacier-select-sql-reference-select.html\">SELECT Command</a> in the <i>Amazon S3 User Guide</i>.</p> <p/> <dl> <dt>Permissions</dt> <dd> <p>You must have the <code>s3:GetObject</code> permission for this operation.\_Amazon S3 Select does not support anonymous access. For more information about permissions, see <a href=\"https://docs.aws.amazon.com/AmazonS3/latest/dev/using-with-s3-actions.html\">Specifying Permissions in a Policy</a> in the <i>Amazon S3 User Guide</i>.</p> </dd> <dt>Object Data Formats</dt> <dd> <p>You can use Amazon S3 Select to query objects that have the following format properties:</p> <ul> <li> <p> <i>CSV, JSON, and Parquet</i> - Objects must be in CSV, JSON, or Parquet format.</p> </li> <li> <p> <i>UTF-8</i> - UTF-8 is the only encoding type Amazon S3 Select supports.</p> </li> <li> <p> <i>GZIP or BZIP2</i> - CSV and JSON files can be compressed using GZIP or BZIP2. GZIP and BZIP2 are the only compression formats that Amazon S3 Select supports for CSV and JSON files. Amazon S3 Select supports columnar compression for Parquet using GZIP or Snappy. Amazon S3 Select does not support whole-object compression for Parquet objects.</p> </li> <li> <p> <i>Server-side encryption</i> - Amazon S3 Select supports querying objects that are protected with server-side encryption.</p> <p>For objects that are encrypted with customer-provided encryption keys (SSE-C), you must use HTTPS, and you must use the headers that are documented in the <a href=\"https://docs.aws.amazon.com/AmazonS3/latest/API/API_GetObject.html\">GetObject</a>. For more information about SSE-C, see <a href=\"https://docs.aws.amazon.com/AmazonS3/latest/dev/ServerSideEncryptionCustomerKeys.html\">Server-Side Encryption (Using Customer-Provided Encryption Keys)</a> in the <i>Amazon S3 User Guide</i>.</p> <p>For objects that are encrypted with Amazon S3 managed keys (SSE-S3) and Amazon Web Services KMS keys (SSE-KMS), server-side encryption is handled transparently, so you don't need to specify anything. For more information about server-side encryption, including SSE-S3 and SSE-KMS, see <a href=\"https://docs.aws.amazon.com/AmazonS3/latest/dev/serv-side-encryption.html\">Protecting Data Using Server-Side Encryption</a> in the <i>Amazon S3 User Guide</i>.</p> </li> </ul> </dd> <dt>Working with the Response Body</dt> <dd> <p>Given the response size is unknown, Amazon S3 Select streams the response as a series of messages and includes a <code>Transfer-Encoding</code> header with <code>chunked</code> as its value in the response. For more information, see <a href=\"https://docs.aws.amazon.com/AmazonS3/latest/API/RESTSelectObjectAppendix.html\">Appendix: SelectObjectContent Response</a>.</p> </dd> <dt>GetObject Support</dt> <dd> <p>The <code>SelectObjectContent</code> action does not support the following <code>GetObject</code> functionality. For more information, see <a href=\"https://docs.aws.amazon.com/AmazonS3/latest/API/API_GetObject.html\">GetObject</a>.</p> <ul> <li> <p> <code>Range</code>: Although you can specify a scan range for an Amazon S3 Select request (see <a href=\"https://docs.aws.amazon.com/AmazonS3/latest/API/API_SelectObjectContent.html#AmazonS3-SelectObjectContent-request-ScanRange\">SelectObjectContentRequest - ScanRange</a> in the request parameters), you cannot specify the range of bytes of an object to return. </p> </li> <li> <p>The <code>GLACIER</code>, <code>DEEP_ARCHIVE</code>, and <code>REDUCED_REDUNDANCY</code> storage classes, or the <code>ARCHIVE_ACCESS</code> and <code>DEEP_ARCHIVE_ACCESS</code> access tiers of the <code>INTELLIGENT_TIERING</code> storage class: You cannot query objects in the <code>GLACIER</code>, <code>DEEP_ARCHIVE</code>, or <code>REDUCED_REDUNDANCY</code> storage classes, nor objects in the <code>ARCHIVE_ACCESS</code> or <code>DEEP_ARCHIVE_ACCESS</code> access tiers of the <code>INTELLIGENT_TIERING</code> storage class. For more information about storage classes, see <a href=\"https://docs.aws.amazon.com/AmazonS3/latest/userguide/storage-class-intro.html\">Using Amazon S3 storage classes</a> in the <i>Amazon S3 User Guide</i>.</p> </li> </ul> </dd> <dt>Special Errors</dt> <dd> <p>For a list of special errors for this operation, see <a href=\"https://docs.aws.amazon.com/AmazonS3/latest/API/ErrorResponses.html#SelectObjectContentErrorCodeList\">List of SELECT Object Content Error Codes</a> </p> </dd> </dl> <p>The following operations are related to <code>SelectObjectContent</code>:</p> <ul> <li> <p> <a href=\"https://docs.aws.amazon.com/AmazonS3/latest/API/API_GetObject.html\">GetObject</a> </p> </li> <li> <p> <a href=\"https://docs.aws.amazon.com/AmazonS3/latest/API/API_GetBucketLifecycleConfiguration.html\">GetBucketLifecycleConfiguration</a> </p> </li> <li> <p> <a href=\"https://docs.aws.amazon.com/AmazonS3/latest/API/API_PutBucketLifecycleConfiguration.html\">PutBucketLifecycleConfiguration</a> </p> </li> </ul>"
+      tags:
+        - Select
+        - Object
+        - Content
+        - Bucket
+        - Key+
+        - '?uploads'
+        - '?session'
+        - '?analytics'
+        - '?cors'
+        - '?encryption'
+        - '?intelligent'
+        - Tiering
+        - '?inventory'
+        - '?lifecycle'
+        - '?metrics'
+        - '?ownership'
+        - Controls
+        - '?policy'
+        - '?replication'
+        - '?tagging'
+        - '?website'
+        - '?delete'
+        - '?public'
+        - Access
+        - Block
+        - '?accelerate'
+        - '?acl'
+        - '?location'
+        - '?logging'
+        - '?notification'
+        - Status
+        - '?request'
+        - Payment
+        - '?versioning'
+        - '?attributes'
+        - '?legal'
+        - Hold
+        - '?object'
+        - Lock
+        - '?retention'
+        - '?torrent'
+        - '?versions'
+        - '?list'
+        - Type=2
+        - '?restore'
+        - '?select&select'
   /WriteGetObjectResponse:
     POST:
       summary: WriteGetObjectResponse
@@ -2227,4 +3266,56 @@ paths:
         these functions, see <a
         href="https://docs.aws.amazon.com/AmazonS3/latest/userguide/olap-examples.html">Using
         Amazon Web Services built Lambda functions</a> in the <i>Amazon S3 User
-        Guide<
+        Guid
+      tags:
+        - Write
+        - Get
+        - Object
+        - Response
+        - Bucket
+        - Key+
+        - '?uploads'
+        - '?session'
+        - '?analytics'
+        - '?cors'
+        - '?encryption'
+        - '?intelligent'
+        - Tiering
+        - '?inventory'
+        - '?lifecycle'
+        - '?metrics'
+        - '?ownership'
+        - Controls
+        - '?policy'
+        - '?replication'
+        - '?tagging'
+        - '?website'
+        - '?delete'
+        - '?public'
+        - Access
+        - Block
+        - '?accelerate'
+        - '?acl'
+        - '?location'
+        - '?logging'
+        - '?notification'
+        - Status
+        - '?request'
+        - Payment
+        - '?versioning'
+        - '?attributes'
+        - '?legal'
+        - Hold
+        - '?object'
+        - Lock
+        - '?retention'
+        - '?torrent'
+        - '?versions'
+        - '?list'
+        - Type=2
+        - '?restore'
+        - '?select&select'
+        - Write
+        - Get
+        - Object
+        - Respon

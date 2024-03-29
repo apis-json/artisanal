@@ -6,7 +6,7 @@ components:
         day:
           type: string
           nullable: true
-          description: 'The ISO 8601 format date of the resources in the file, for a UTC day'
+          description: The ISO 8601 format date of the resources in the file, for a UTC day
         size:
           type: integer
           nullable: true
@@ -128,7 +128,7 @@ components:
           type: string
           minLength: 34
           maxLength: 34
-          pattern: '^JS[0-9a-fA-F]{32}$'
+          pattern: ^JS[0-9a-fA-F]{32}$
           nullable: true
           description: The unique job_sid returned when the custom export was created
         details:
@@ -202,7 +202,7 @@ components:
           type: string
           minLength: 34
           maxLength: 34
-          pattern: '^JS[0-9a-fA-F]{32}$'
+          pattern: ^JS[0-9a-fA-F]{32}$
           nullable: true
           description: The job_sid returned when the export was created
         webhook_url:
@@ -374,20 +374,20 @@ components:
 info:
   title: Twilio - Bulkexports
   description: This is the public Twilio REST API.
-  termsOfService: 'https://www.twilio.com/legal/tos'
+  termsOfService: https://www.twilio.com/legal/tos
   contact:
     name: Twilio Support
-    url: 'https://support.twilio.com'
+    url: https://support.twilio.com
     email: support@twilio.com
   license:
     name: Apache 2.0
-    url: 'https://www.apache.org/licenses/LICENSE-2.0.html'
+    url: https://www.apache.org/licenses/LICENSE-2.0.html
   version: 1.52.0
 openapi: 3.0.1
 paths:
-  '/v1/Exports/{ResourceType}/Days/{Day}':
+  /v1/Exports/{ResourceType}/Days/{Day}:
     servers:
-      - url: 'https://bulkexports.twilio.com'
+      - url: https://bulkexports.twilio.com
     description: 'TODO: Resource-level docs'
     x-twilio:
       defaultOutputProperties:
@@ -398,7 +398,7 @@ paths:
         - size
         - redirectTo
       pathType: instance
-      parent: '/Exports/{ResourceType}'
+      parent: /Exports/{ResourceType}
     get:
       description: Fetch a specific Day.
       tags:
@@ -414,7 +414,7 @@ paths:
           required: true
         - name: Day
           in: path
-          description: 'The ISO 8601 format date of the resources in the file, for a UTC day'
+          description: The ISO 8601 format date of the resources in the file, for a UTC day
           schema:
             type: string
           required: true
@@ -430,9 +430,9 @@ paths:
       operationId: FetchDay
       x-maturity:
         - GA
-  '/v1/Exports/{ResourceType}/Days':
+  /v1/Exports/{ResourceType}/Days:
     servers:
-      - url: 'https://bulkexports.twilio.com'
+      - url: https://bulkexports.twilio.com
     description: 'TODO: Resource-level docs'
     x-twilio:
       defaultOutputProperties:
@@ -443,7 +443,7 @@ paths:
         - size
         - redirectTo
       pathType: list
-      parent: '/Exports/{ResourceType}'
+      parent: /Exports/{ResourceType}
     get:
       description: Retrieve a list of all Days for a resource.
       tags:
@@ -489,9 +489,9 @@ paths:
       operationId: ListDay
       x-maturity:
         - GA
-  '/v1/Exports/{ResourceType}':
+  /v1/Exports/{ResourceType}:
     servers:
-      - url: 'https://bulkexports.twilio.com'
+      - url: https://bulkexports.twilio.com
     description: 'TODO: Resource-level docs'
     x-twilio:
       defaultOutputProperties: []
@@ -500,11 +500,11 @@ paths:
         days:
           mapping:
             resource_type: resource_type
-          resource_url: '/v1/Exports/{resource_type}/Days'
+          resource_url: /v1/Exports/{resource_type}/Days
         export_custom_jobs:
           mapping:
             resource_type: resource_type
-          resource_url: '/v1/Exports/{resource_type}/Jobs'
+          resource_url: /v1/Exports/{resource_type}/Jobs
     get:
       description: Fetch a specific Export.
       tags:
@@ -532,7 +532,7 @@ paths:
         - GA
   /v1/Exports:
     servers:
-      - url: 'https://bulkexports.twilio.com'
+      - url: https://bulkexports.twilio.com
     description: 'TODO: Resource-level docs'
     x-twilio:
       defaultOutputProperties: []
@@ -541,14 +541,14 @@ paths:
         days:
           mapping:
             resource_type: resource_type
-          resource_url: '/v1/Exports/{resource_type}/Days'
+          resource_url: /v1/Exports/{resource_type}/Days
         export_custom_jobs:
           mapping:
             resource_type: resource_type
-          resource_url: '/v1/Exports/{resource_type}/Jobs'
-  '/v1/Exports/{ResourceType}/Configuration':
+          resource_url: /v1/Exports/{resource_type}/Jobs
+  /v1/Exports/{ResourceType}/Configuration:
     servers:
-      - url: 'https://bulkexports.twilio.com'
+      - url: https://bulkexports.twilio.com
     description: 'TODO: Resource-level docs'
     x-twilio:
       defaultOutputProperties:
@@ -614,9 +614,9 @@ paths:
           application/x-www-form-urlencoded:
             schema:
               $ref: '#/components/schemas/UpdateExportConfigurationRequest'
-  '/v1/Exports/{ResourceType}/Jobs':
+  /v1/Exports/{ResourceType}/Jobs:
     servers:
-      - url: 'https://bulkexports.twilio.com'
+      - url: https://bulkexports.twilio.com
     description: 'TODO: Resource-level docs'
     x-twilio:
       defaultOutputProperties:
@@ -632,7 +632,7 @@ paths:
         - webhook_method
         - webhook_url
       pathType: list
-      parent: '/Exports/{ResourceType}'
+      parent: /Exports/{ResourceType}
       mountName: export_custom_jobs
     get:
       description: ''
@@ -709,9 +709,9 @@ paths:
           application/x-www-form-urlencoded:
             schema:
               $ref: '#/components/schemas/CreateExportCustomJobRequest'
-  '/v1/Exports/Jobs/{JobSid}':
+  /v1/Exports/Jobs/{JobSid}:
     servers:
-      - url: 'https://bulkexports.twilio.com'
+      - url: https://bulkexports.twilio.com
     description: 'TODO: Resource-level docs'
     x-twilio:
       defaultOutputProperties:
@@ -742,7 +742,7 @@ paths:
             type: string
             minLength: 34
             maxLength: 34
-            pattern: '^JS[0-9a-fA-F]{32}$'
+            pattern: ^JS[0-9a-fA-F]{32}$
           required: true
       responses:
         '200':
@@ -770,7 +770,7 @@ paths:
             type: string
             minLength: 34
             maxLength: 34
-            pattern: '^JS[0-9a-fA-F]{32}$'
+            pattern: ^JS[0-9a-fA-F]{32}$
           required: true
       responses:
         '204':
@@ -782,7 +782,7 @@ paths:
         - GA
   /v1/Exports/Jobs:
     servers:
-      - url: 'https://bulkexports.twilio.com'
+      - url: https://bulkexports.twilio.com
     description: 'TODO: Resource-level docs'
     x-twilio:
       defaultOutputProperties:
@@ -800,7 +800,7 @@ paths:
       pathType: list
       parent: /Exports
 servers:
-  - url: 'https://bulkexports.twilio.com'
+  - url: https://bulkexports.twilio.com
 tags:
   - name: BulkexportsV1Day
   - name: BulkexportsV1Export

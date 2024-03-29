@@ -5,15 +5,15 @@ info:
   contact:
     email: dev-platform@stripe.com
     name: Stripe Dev Platform Team
-    url: 'https://stripe.com'
-  termsOfService: 'https://stripe.com/us/terms/'
+    url: https://stripe.com
+  termsOfService: https://stripe.com/us/terms/
   version: '2023-10-16'
   x-stripeSpecFilename: spec3
 security:
   - basicAuth: []
   - bearerAuth: []
 servers:
-  - url: 'https://api.stripe.com/'
+  - url: https://api.stripe.com/
 paths:
   /v1/products:
     get:
@@ -281,7 +281,7 @@ paths:
               schema:
                 $ref: '#/components/schemas/error'
           description: Error response.
-  '/v1/products/{id}':
+  /v1/products/{id}:
     delete:
       description: >-
         <p>Delete a product. Deleting a product is only possible if it has no
@@ -523,7 +523,7 @@ components:
             additional information about the object in a structured format.
           type: object
         name:
-          description: 'The product''s name, meant to be displayable to the customer.'
+          description: The product's name, meant to be displayable to the customer.
           maxLength: 5000
           type: string
         object:
@@ -539,7 +539,7 @@ components:
           description: The dimensions of this product for shipping purposes.
           nullable: true
         shippable:
-          description: 'Whether this product is shipped (i.e., physical goods).'
+          description: Whether this product is shipped (i.e., physical goods).
           nullable: true
           type: boolean
         statement_descriptor:
@@ -555,7 +555,7 @@ components:
             - maxLength: 5000
               type: string
             - $ref: '#/components/schemas/tax_code'
-          description: 'A [tax code](https://stripe.com/docs/tax/tax-categories) ID.'
+          description: A [tax code](https://stripe.com/docs/tax/tax-categories) ID.
           nullable: true
           x-expansionResources:
             oneOf:
@@ -815,7 +815,7 @@ components:
             keys can be unset by posting an empty value to `metadata`.
           type: object
         name:
-          description: 'The product''s name, meant to be displayable to the customer.'
+          description: The product's name, meant to be displayable to the customer.
           maxLength: 5000
           type: string
         package_dimensions:
@@ -837,7 +837,7 @@ components:
           title: package_dimensions_specs
           type: object
         shippable:
-          description: 'Whether this product is shipped (i.e., physical goods).'
+          description: Whether this product is shipped (i.e., physical goods).
           type: boolean
         statement_descriptor:
           description: >-
@@ -854,7 +854,7 @@ components:
           maxLength: 22
           type: string
         tax_code:
-          description: 'A [tax code](https://stripe.com/docs/tax/tax-categories) ID.'
+          description: A [tax code](https://stripe.com/docs/tax/tax-categories) ID.
           type: string
         unit_label:
           description: >-
@@ -983,7 +983,7 @@ components:
             Individual keys can be unset by posting an empty value to them. All
             keys can be unset by posting an empty value to `metadata`.
         name:
-          description: 'The product''s name, meant to be displayable to the customer.'
+          description: The product's name, meant to be displayable to the customer.
           maxLength: 5000
           type: string
         package_dimensions:
@@ -1009,7 +1009,7 @@ components:
               type: string
           description: The dimensions of this product for shipping purposes.
         shippable:
-          description: 'Whether this product is shipped (i.e., physical goods).'
+          description: Whether this product is shipped (i.e., physical goods).
           type: boolean
         statement_descriptor:
           description: >-
@@ -1031,7 +1031,7 @@ components:
             - enum:
                 - ''
               type: string
-          description: 'A [tax code](https://stripe.com/docs/tax/tax-categories) ID.'
+          description: A [tax code](https://stripe.com/docs/tax/tax-categories) ID.
         unit_label:
           anyOf:
             - maxLength: 12

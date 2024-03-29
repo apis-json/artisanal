@@ -6,18 +6,29 @@ paths:
     post:
       summary: Create web link
       tags:
-        - Web links
+        - Create
+        - Web
+        - Link
+        - Web_links
       description: Creates a web link object within a folder.
   /web_links/{web_link_id}:
     get:
       summary: Get web link
       tags:
-        - Web links
+        - Get
+        - Web
+        - Link
+        - Web_links
+        - Web_link_id
       description: Retrieve information about a web link.
     post:
       summary: Restore web link
       tags:
-        - Trashed web links
+        - Restore
+        - Web
+        - Link
+        - Web_links
+        - Web_link_id
       description: >-
         Restores a web link that has been moved to the trash.
 
@@ -29,23 +40,43 @@ paths:
     put:
       summary: Update web link
       tags:
-        - Web links
+        - Update
+        - Web
+        - Link
+        - Web_links
+        - Web_link_id
       description: Updates a web link object.
     delete:
       summary: Remove web link
       tags:
-        - Web links
+        - Remove
+        - Web
+        - Link
+        - Web_links
+        - Web_link_id
       description: Deletes a web link.
   /web_links/{web_link_id}/trash:
     get:
       summary: Get trashed web link
       tags:
-        - Trashed web links
+        - Get
+        - Trashed
+        - Web
+        - Link
+        - Web_links
+        - Web_link_id
+        - Trash
       description: Retrieves a web link that has been moved to the trash.
     delete:
       summary: Permanently remove web link
       tags:
-        - Trashed web links
+        - Permanently
+        - Remove
+        - Web
+        - Link
+        - Web_links
+        - Web_link_id
+        - Trash
       description: |-
         Permanently deletes a web link that is in the trash.
         This action cannot be undone.
@@ -53,23 +84,61 @@ paths:
     get:
       summary: Get shared link for web link
       tags:
-        - Shared links (Web Links)
+        - Get
+        - Shared
+        - Link
+        - For
+        - Web
+        - Web_links
+        - Web_link_id
+        - Trash
+        - '#get_shared_link'
       description: Gets the information for a shared link on a web link.
   /web_links/{web_link_id}#add_shared_link:
     put:
       summary: Add shared link to web link
       tags:
-        - Shared links (Web Links)
+        - Add
+        - Shared
+        - Link
+        - To
+        - Web
+        - Web_links
+        - Web_link_id
+        - Trash
+        - '#get_shared_link'
+        - '#add_shared_link'
       description: Adds a shared link to a web link.
   /web_links/{web_link_id}#update_shared_link:
     put:
       summary: Update shared link on web link
       tags:
-        - Shared links (Web Links)
+        - Update
+        - Shared
+        - Link
+        - 'On'
+        - Web
+        - Web_links
+        - Web_link_id
+        - Trash
+        - '#get_shared_link'
+        - '#add_shared_link'
+        - '#update_shared_link'
       description: Updates a shared link on a web link.
   /web_links/{web_link_id}#remove_shared_link:
     put:
       summary: Remove shared link from web link
       tags:
-        - Shared links (Web Links)
-      description: Removes a shared link from a web lin
+        - Remove
+        - Shared
+        - Link
+        - From
+        - Web
+        - Web_links
+        - Web_link_id
+        - Trash
+        - '#get_shared_link'
+        - '#add_shared_link'
+        - '#update_shared_link'
+        - '#remove_shared_link'
+      description: Removes a shared link from

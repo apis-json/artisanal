@@ -8,6 +8,12 @@ paths:
       description: >-
         <p>Creates a signaling channel. </p> <p>
         <code>CreateSignalingChannel</code> is an asynchronous operation.</p>
+      tags:
+        - Create
+        - Signaling
+        - Channel
+        - Signaling
+        - Channel
   /createStream:
     POST:
       summary: CreateStream
@@ -20,6 +26,12 @@ paths:
         href="https://docs.aws.amazon.com/kinesisvideostreams/latest/dg/how-it-works.html">How
         it Works</a>. </p> <p>You must have permissions for the
         <code>KinesisVideo:CreateStream</code> action.</p>
+      tags:
+        - Create
+        - Stream
+        - Signaling
+        - Channel
+        - Stream
   /deleteEdgeConfiguration:
     POST:
       summary: DeleteEdgeConfiguration
@@ -34,6 +46,15 @@ paths:
         <code>DELETE_FAILED</code>. You will need to re-try the deletion.</p>
         <p>When the deletion process has completed successfully, the edge
         configuration is no longer accessible.</p>
+      tags:
+        - Delete
+        - Edge
+        - Configuration
+        - Signaling
+        - Channel
+        - Stream
+        - Edge
+        - Configuration
   /deleteSignalingChannel:
     POST:
       summary: DeleteSignalingChannel
@@ -42,6 +63,15 @@ paths:
         <code>DeleteSignalingChannel</code> is an asynchronous operation. If you
         don't specify the channel's current version, the most recent version is
         deleted.</p>
+      tags:
+        - Delete
+        - Signaling
+        - Channel
+        - Signaling
+        - Channel
+        - Stream
+        - Edge
+        - Configuration
   /deleteStream:
     POST:
       summary: DeleteStream
@@ -55,6 +85,14 @@ paths:
         new version number. To get the latest stream version, use the
         <code>DescribeStream</code> API. </p> <p>This operation requires
         permission for the <code>KinesisVideo:DeleteStream</code> action.</p>
+      tags:
+        - Delete
+        - Stream
+        - Signaling
+        - Channel
+        - Stream
+        - Edge
+        - Configuration
   /describeEdgeConfiguration:
     POST:
       summary: DescribeEdgeConfiguration
@@ -65,12 +103,33 @@ paths:
         status of the configuration to determine if the configuration is in sync
         with the Edge Agent. Use this API to evaluate the health of the Edge
         Agent.</p>
+      tags:
+        - Describe
+        - Edge
+        - Configuration
+        - Signaling
+        - Channel
+        - Stream
+        - Edge
+        - Configuration
   /describeImageGenerationConfiguration:
     POST:
       summary: DescribeImageGenerationConfiguration
       description: >-
         <p>Gets the <code>ImageGenerationConfiguration</code> for a given
         Kinesis video stream.</p>
+      tags:
+        - Describe
+        - Image
+        - Generation
+        - Configuration
+        - Signaling
+        - Channel
+        - Stream
+        - Edge
+        - Configuration
+        - Image
+        - Generation
   /describeMappedResourceConfiguration:
     POST:
       summary: DescribeMappedResourceConfiguration
@@ -78,18 +137,64 @@ paths:
         <p>Returns the most current information about the stream. The
         <code>streamName</code> or <code>streamARN</code> should be provided in
         the input.</p>
+      tags:
+        - Describe
+        - Mapped
+        - Resource
+        - Configuration
+        - Signaling
+        - Channel
+        - Stream
+        - Edge
+        - Configuration
+        - Image
+        - Generation
+        - Mapped
+        - Resource
   /describeMediaStorageConfiguration:
     POST:
       summary: DescribeMediaStorageConfiguration
       description: >-
         <p>Returns the most current information about the channel. Specify the
         <code>ChannelName</code> or <code>ChannelARN</code> in the input.</p>
+      tags:
+        - Describe
+        - Media
+        - Storage
+        - Configuration
+        - Signaling
+        - Channel
+        - Stream
+        - Edge
+        - Configuration
+        - Image
+        - Generation
+        - Mapped
+        - Resource
+        - Media
+        - Storage
   /describeNotificationConfiguration:
     POST:
       summary: DescribeNotificationConfiguration
       description: >-
         <p>Gets the <code>NotificationConfiguration</code> for a given Kinesis
         video stream.</p>
+      tags:
+        - Describe
+        - Notification
+        - Configuration
+        - Signaling
+        - Channel
+        - Stream
+        - Edge
+        - Configuration
+        - Image
+        - Generation
+        - Mapped
+        - Resource
+        - Media
+        - Storage
+        - Notification
   /describeSignalingChannel:
     POST:
       summary: DescribeSignalingChannel
@@ -97,6 +202,22 @@ paths:
         <p>Returns the most current information about the signaling channel. You
         must specify either the name or the Amazon Resource Name (ARN) of the
         channel that you want to describe.</p>
+      tags:
+        - Describe
+        - Signaling
+        - Channel
+        - Signaling
+        - Channel
+        - Stream
+        - Edge
+        - Configuration
+        - Image
+        - Generation
+        - Mapped
+        - Resource
+        - Media
+        - Storage
+        - Notification
   /describeStream:
     POST:
       summary: DescribeStream
@@ -104,6 +225,21 @@ paths:
         <p>Returns the most current information about the specified stream. You
         must specify either the <code>StreamName</code> or the
         <code>StreamARN</code>. </p>
+      tags:
+        - Describe
+        - Stream
+        - Signaling
+        - Channel
+        - Stream
+        - Edge
+        - Configuration
+        - Image
+        - Generation
+        - Mapped
+        - Resource
+        - Media
+        - Storage
+        - Notification
   /getDataEndpoint:
     POST:
       summary: GetDataEndpoint
@@ -117,6 +253,24 @@ paths:
         the API name to the returned endpoint.</p> </note> <p>In the request,
         specify the stream either by <code>StreamName</code> or
         <code>StreamARN</code>.</p>
+      tags:
+        - Get
+        - Data
+        - Endpoint
+        - Signaling
+        - Channel
+        - Stream
+        - Edge
+        - Configuration
+        - Image
+        - Generation
+        - Mapped
+        - Resource
+        - Media
+        - Storage
+        - Notification
+        - Data
+        - Endpoint
   /getSignalingChannelEndpoint:
     POST:
       summary: GetSignalingChannelEndpoint
@@ -135,6 +289,25 @@ paths:
         on the channel. A <code>VIEWER</code> role results in this API
         generating an endpoint that a client can use to communicate only with a
         <code>MASTER</code>. </p>
+      tags:
+        - Get
+        - Signaling
+        - Channel
+        - Endpoint
+        - Signaling
+        - Channel
+        - Stream
+        - Edge
+        - Configuration
+        - Image
+        - Generation
+        - Mapped
+        - Resource
+        - Media
+        - Storage
+        - Notification
+        - Data
+        - Endpoint
   /listEdgeAgentConfigurations:
     POST:
       summary: ListEdgeAgentConfigurations
@@ -142,6 +315,27 @@ paths:
         <p>Returns an array of edge configurations associated with the specified
         Edge Agent.</p> <p>In the request, you must specify the Edge Agent
         <code>HubDeviceArn</code>.</p>
+      tags:
+        - List
+        - Edge
+        - Agent
+        - Configurations
+        - Signaling
+        - Channel
+        - Stream
+        - Edge
+        - Configuration
+        - Image
+        - Generation
+        - Mapped
+        - Resource
+        - Media
+        - Storage
+        - Notification
+        - Data
+        - Endpoint
+        - Agent
+        - Configurations
   /listSignalingChannels:
     POST:
       summary: ListSignalingChannels
@@ -150,6 +344,27 @@ paths:
         describes a signaling channel. To retrieve only those channels that
         satisfy a specific condition, you can specify a
         <code>ChannelNameCondition</code>.</p>
+      tags:
+        - List
+        - Signaling
+        - Channels
+        - Signaling
+        - Channel
+        - Stream
+        - Edge
+        - Configuration
+        - Image
+        - Generation
+        - Mapped
+        - Resource
+        - Media
+        - Storage
+        - Notification
+        - Data
+        - Endpoint
+        - Agent
+        - Configurations
+        - Channels
   /listStreams:
     POST:
       summary: ListStreams
@@ -157,12 +372,59 @@ paths:
         <p>Returns an array of <code>StreamInfo</code> objects. Each object
         describes a stream. To retrieve only streams that satisfy a specific
         condition, you can specify a <code>StreamNameCondition</code>. </p>
+      tags:
+        - List
+        - Streams
+        - Signaling
+        - Channel
+        - Stream
+        - Edge
+        - Configuration
+        - Image
+        - Generation
+        - Mapped
+        - Resource
+        - Media
+        - Storage
+        - Notification
+        - Data
+        - Endpoint
+        - Agent
+        - Configurations
+        - Channels
+        - Streams
   /ListTagsForResource:
     POST:
       summary: ListTagsForResource
       description: >-
         <p>Returns a list of tags associated with the specified signaling
         channel.</p>
+      tags:
+        - List
+        - Tags
+        - For
+        - Resource
+        - Signaling
+        - Channel
+        - Stream
+        - Edge
+        - Configuration
+        - Image
+        - Generation
+        - Mapped
+        - Resource
+        - Media
+        - Storage
+        - Notification
+        - Data
+        - Endpoint
+        - Agent
+        - Configurations
+        - Channels
+        - Streams
+        - List
+        - Tags
+        - For
   /listTagsForStream:
     POST:
       summary: ListTagsForStream
@@ -170,6 +432,32 @@ paths:
         <p>Returns a list of tags associated with the specified stream.</p>
         <p>In the request, you must specify either the <code>StreamName</code>
         or the <code>StreamARN</code>. </p>
+      tags:
+        - List
+        - Tags
+        - For
+        - Stream
+        - Signaling
+        - Channel
+        - Stream
+        - Edge
+        - Configuration
+        - Image
+        - Generation
+        - Mapped
+        - Resource
+        - Media
+        - Storage
+        - Notification
+        - Data
+        - Endpoint
+        - Agent
+        - Configurations
+        - Channels
+        - Streams
+        - List
+        - Tags
+        - For
   /startEdgeConfigurationUpdate:
     POST:
       summary: StartEdgeConfigurationUpdate
@@ -193,6 +481,33 @@ paths:
         from one device to another, use <a>DeleteEdgeConfiguration</a> to delete
         the current edge configuration. You can then invoke
         StartEdgeConfigurationUpdate with an updated Hub Device ARN.</p>
+      tags:
+        - Start
+        - Edge
+        - Configuration
+        - Update
+        - Signaling
+        - Channel
+        - Stream
+        - Edge
+        - Configuration
+        - Image
+        - Generation
+        - Mapped
+        - Resource
+        - Media
+        - Storage
+        - Notification
+        - Data
+        - Endpoint
+        - Agent
+        - Configurations
+        - Channels
+        - Streams
+        - List
+        - Tags
+        - For
+        - Update
   /TagResource:
     POST:
       summary: TagResource
@@ -205,6 +520,32 @@ paths:
         href="https://docs.aws.amazon.com/awsaccountbilling/latest/aboutv2/cost-alloc-tags.html">Using
         Cost Allocation Tags</a> in the <i>Billing and Cost Management and Cost
         Management User Guide</i>.</p>
+      tags:
+        - Tag
+        - Resource
+        - Signaling
+        - Channel
+        - Stream
+        - Edge
+        - Configuration
+        - Image
+        - Generation
+        - Mapped
+        - Resource
+        - Media
+        - Storage
+        - Notification
+        - Data
+        - Endpoint
+        - Agent
+        - Configurations
+        - Channels
+        - Streams
+        - List
+        - Tags
+        - For
+        - Update
+        - Tag
   /tagStream:
     POST:
       summary: TagStream
@@ -221,6 +562,32 @@ paths:
         operation requires permission for the
         <code>KinesisVideo:TagStream</code> action.</p> <p>A Kinesis video
         stream can support up to 50 tags.</p>
+      tags:
+        - Tag
+        - Stream
+        - Signaling
+        - Channel
+        - Stream
+        - Edge
+        - Configuration
+        - Image
+        - Generation
+        - Mapped
+        - Resource
+        - Media
+        - Storage
+        - Notification
+        - Data
+        - Endpoint
+        - Agent
+        - Configurations
+        - Channels
+        - Streams
+        - List
+        - Tags
+        - For
+        - Update
+        - Tag
   /UntagResource:
     POST:
       summary: UntagResource
@@ -228,6 +595,33 @@ paths:
         <p>Removes one or more tags from a signaling channel. In the request,
         specify only a tag key or keys; don't specify the value. If you specify
         a tag key that does not exist, it's ignored.</p>
+      tags:
+        - Untag
+        - Resource
+        - Signaling
+        - Channel
+        - Stream
+        - Edge
+        - Configuration
+        - Image
+        - Generation
+        - Mapped
+        - Resource
+        - Media
+        - Storage
+        - Notification
+        - Data
+        - Endpoint
+        - Agent
+        - Configurations
+        - Channels
+        - Streams
+        - List
+        - Tags
+        - For
+        - Update
+        - Tag
+        - Untag
   /untagStream:
     POST:
       summary: UntagStream
@@ -236,6 +630,33 @@ paths:
         a tag key or keys; don't specify the value. If you specify a tag key
         that does not exist, it's ignored.</p> <p>In the request, you must
         provide the <code>StreamName</code> or <code>StreamARN</code>.</p>
+      tags:
+        - Untag
+        - Stream
+        - Signaling
+        - Channel
+        - Stream
+        - Edge
+        - Configuration
+        - Image
+        - Generation
+        - Mapped
+        - Resource
+        - Media
+        - Storage
+        - Notification
+        - Data
+        - Endpoint
+        - Agent
+        - Configurations
+        - Channels
+        - Streams
+        - List
+        - Tags
+        - For
+        - Update
+        - Tag
+        - Untag
   /updateDataRetention:
     POST:
       summary: UpdateDataRetention
@@ -257,12 +678,71 @@ paths:
         from seven hours to one hour, all existing data is retained for one
         hour, and any data older than one hour is deleted immediately.</p> </li>
         </ul>
+      tags:
+        - Update
+        - Data
+        - Retention
+        - Signaling
+        - Channel
+        - Stream
+        - Edge
+        - Configuration
+        - Image
+        - Generation
+        - Mapped
+        - Resource
+        - Media
+        - Storage
+        - Notification
+        - Data
+        - Endpoint
+        - Agent
+        - Configurations
+        - Channels
+        - Streams
+        - List
+        - Tags
+        - For
+        - Update
+        - Tag
+        - Untag
+        - Retention
   /updateImageGenerationConfiguration:
     POST:
       summary: UpdateImageGenerationConfiguration
       description: >-
         <p>Updates the <code>StreamInfo</code> and
         <code>ImageProcessingConfiguration</code> fields.</p>
+      tags:
+        - Update
+        - Image
+        - Generation
+        - Configuration
+        - Signaling
+        - Channel
+        - Stream
+        - Edge
+        - Configuration
+        - Image
+        - Generation
+        - Mapped
+        - Resource
+        - Media
+        - Storage
+        - Notification
+        - Data
+        - Endpoint
+        - Agent
+        - Configurations
+        - Channels
+        - Streams
+        - List
+        - Tags
+        - For
+        - Update
+        - Tag
+        - Untag
+        - Retention
   /updateMediaStorageConfiguration:
     POST:
       summary: UpdateMediaStorageConfiguration
@@ -280,10 +760,69 @@ paths:
         <code>JoinStorageSession</code> API to trigger an SDP offer send and
         establish a connection between a peer and the storage session. </p>
         </important>
+      tags:
+        - Update
+        - Media
+        - Storage
+        - Configuration
+        - Signaling
+        - Channel
+        - Stream
+        - Edge
+        - Configuration
+        - Image
+        - Generation
+        - Mapped
+        - Resource
+        - Media
+        - Storage
+        - Notification
+        - Data
+        - Endpoint
+        - Agent
+        - Configurations
+        - Channels
+        - Streams
+        - List
+        - Tags
+        - For
+        - Update
+        - Tag
+        - Untag
+        - Retention
   /updateNotificationConfiguration:
     POST:
       summary: UpdateNotificationConfiguration
       description: <p>Updates the notification information for a stream.</p>
+      tags:
+        - Update
+        - Notification
+        - Configuration
+        - Signaling
+        - Channel
+        - Stream
+        - Edge
+        - Configuration
+        - Image
+        - Generation
+        - Mapped
+        - Resource
+        - Media
+        - Storage
+        - Notification
+        - Data
+        - Endpoint
+        - Agent
+        - Configurations
+        - Channels
+        - Streams
+        - List
+        - Tags
+        - For
+        - Update
+        - Tag
+        - Untag
+        - Retention
   /updateSignalingChannel:
     POST:
       summary: UpdateSignalingChannel
@@ -294,6 +833,35 @@ paths:
         reduced), it only applies to new messages sent via this channel after
         it's been updated. Existing messages are still expired as per the
         previous <code>MessageTtlSeconds</code> value.</p>
+      tags:
+        - Update
+        - Signaling
+        - Channel
+        - Signaling
+        - Channel
+        - Stream
+        - Edge
+        - Configuration
+        - Image
+        - Generation
+        - Mapped
+        - Resource
+        - Media
+        - Storage
+        - Notification
+        - Data
+        - Endpoint
+        - Agent
+        - Configurations
+        - Channels
+        - Streams
+        - List
+        - Tags
+        - For
+        - Update
+        - Tag
+        - Untag
+        - Retention
   /updateStream:
     POST:
       summary: UpdateStream
@@ -306,4 +874,32 @@ paths:
         stream, Kinesis Video Streams assigns a new version number. To get the
         latest stream version, use the <code>DescribeStream</code> API. </p> <p>
         <code>UpdateStream</code> is an asynchronous operation, and takes time
-        to compl
+        to com
+      tags:
+        - Update
+        - Stream
+        - Signaling
+        - Channel
+        - Stream
+        - Edge
+        - Configuration
+        - Image
+        - Generation
+        - Mapped
+        - Resource
+        - Media
+        - Storage
+        - Notification
+        - Data
+        - Endpoint
+        - Agent
+        - Configurations
+        - Channels
+        - Streams
+        - List
+        - Tags
+        - For
+        - Update
+        - Tag
+        - Untag
+        - Retenti

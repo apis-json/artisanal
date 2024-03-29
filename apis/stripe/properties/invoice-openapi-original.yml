@@ -5,15 +5,15 @@ info:
   contact:
     email: dev-platform@stripe.com
     name: Stripe Dev Platform Team
-    url: 'https://stripe.com'
-  termsOfService: 'https://stripe.com/us/terms/'
+    url: https://stripe.com
+  termsOfService: https://stripe.com/us/terms/
   version: '2023-10-16'
   x-stripeSpecFilename: spec3
 security:
   - basicAuth: []
   - bearerAuth: []
 servers:
-  - url: 'https://api.stripe.com/'
+  - url: https://api.stripe.com/
 paths:
   /v1/invoiceitems:
     get:
@@ -191,7 +191,7 @@ paths:
               schema:
                 $ref: '#/components/schemas/error'
           description: Error response.
-  '/v1/invoiceitems/{invoiceitem}':
+  /v1/invoiceitems/{invoiceitem}:
     delete:
       description: >-
         <p>Deletes an invoice item, removing it from an invoice. Deleting
@@ -1154,7 +1154,7 @@ paths:
                   - ''
                 type: string
           style: deepObject
-        - description: 'A list of up to 20 subscription items, each with an attached price.'
+        - description: A list of up to 20 subscription items, each with an attached price.
           explode: true
           in: query
           name: subscription_items
@@ -1879,7 +1879,7 @@ paths:
                   - ''
                 type: string
           style: deepObject
-        - description: 'A list of up to 20 subscription items, each with an attached price.'
+        - description: A list of up to 20 subscription items, each with an attached price.
           explode: true
           in: query
           name: subscription_items
@@ -2079,7 +2079,7 @@ paths:
               schema:
                 $ref: '#/components/schemas/error'
           description: Error response.
-  '/v1/invoices/{invoice}':
+  /v1/invoices/{invoice}:
     delete:
       description: >-
         <p>Permanently deletes a one-off invoice draft. This cannot be undone.
@@ -2251,7 +2251,7 @@ paths:
               schema:
                 $ref: '#/components/schemas/error'
           description: Error response.
-  '/v1/invoices/{invoice}/finalize':
+  /v1/invoices/{invoice}/finalize:
     post:
       description: >-
         <p>Stripe automatically finalizes drafts before sending and attempting
@@ -2290,7 +2290,7 @@ paths:
               schema:
                 $ref: '#/components/schemas/error'
           description: Error response.
-  '/v1/invoices/{invoice}/lines':
+  /v1/invoices/{invoice}/lines:
     get:
       description: >-
         <p>When retrieving an invoice, you’ll get a <strong>lines</strong>
@@ -2376,7 +2376,7 @@ paths:
               schema:
                 $ref: '#/components/schemas/error'
           description: Error response.
-  '/v1/invoices/{invoice}/lines/{line_item_id}':
+  /v1/invoices/{invoice}/lines/{line_item_id}:
     post:
       description: >-
         <p>Updates an invoice’s line item. Some fields, such as
@@ -2450,7 +2450,7 @@ paths:
               schema:
                 $ref: '#/components/schemas/error'
           description: Error response.
-  '/v1/invoices/{invoice}/mark_uncollectible':
+  /v1/invoices/{invoice}/mark_uncollectible:
     post:
       description: >-
         <p>Marking an invoice as uncollectible is useful for keeping track of
@@ -2488,7 +2488,7 @@ paths:
               schema:
                 $ref: '#/components/schemas/error'
           description: Error response.
-  '/v1/invoices/{invoice}/pay':
+  /v1/invoices/{invoice}/pay:
     post:
       description: >-
         <p>Stripe automatically creates and then attempts to collect payment on
@@ -2533,7 +2533,7 @@ paths:
               schema:
                 $ref: '#/components/schemas/error'
           description: Error response.
-  '/v1/invoices/{invoice}/send':
+  /v1/invoices/{invoice}/send:
     post:
       description: >-
         <p>Stripe will automatically send invoices to customers according to
@@ -2580,7 +2580,7 @@ paths:
               schema:
                 $ref: '#/components/schemas/error'
           description: Error response.
-  '/v1/invoices/{invoice}/void':
+  /v1/invoices/{invoice}/void:
     post:
       description: >-
         <p>Mark a finalized invoice as void. This cannot be undone. Voiding an
@@ -2982,7 +2982,7 @@ components:
             invoice will be for the amount specified in `amount_due`.
           type: integer
         amount_paid:
-          description: 'The amount, in cents (or local equivalent), that was paid.'
+          description: The amount, in cents (or local equivalent), that was paid.
           type: integer
         amount_remaining:
           description: >-
@@ -3075,7 +3075,7 @@ components:
             - maxLength: 5000
               type: string
             - $ref: '#/components/schemas/charge'
-          description: 'ID of the latest charge generated for this invoice, if any.'
+          description: ID of the latest charge generated for this invoice, if any.
           nullable: true
           x-expansionResources:
             oneOf:
@@ -3216,7 +3216,7 @@ components:
               - $ref: '#/components/schemas/source'
           x-stripeBypassValidation: true
         default_tax_rates:
-          description: 'The tax rates applied to this invoice, if any.'
+          description: The tax rates applied to this invoice, if any.
           items:
             $ref: '#/components/schemas/tax_rate'
           type: array
@@ -3544,7 +3544,7 @@ components:
             - maxLength: 5000
               type: string
             - $ref: '#/components/schemas/subscription'
-          description: 'The subscription that this invoice was prepared for, if any.'
+          description: The subscription that this invoice was prepared for, if any.
           nullable: true
           x-expansionResources:
             oneOf:
@@ -3725,7 +3725,7 @@ components:
       description: ''
       properties:
         amount:
-          description: 'The amount, in cents (or local equivalent).'
+          description: The amount, in cents (or local equivalent).
           type: integer
         amount_excluding_tax:
           description: >-
@@ -3840,7 +3840,7 @@ components:
             - maxLength: 5000
               type: string
             - $ref: '#/components/schemas/subscription'
-          description: 'The subscription that the invoice item pertains to, if any.'
+          description: The subscription that the invoice item pertains to, if any.
           nullable: true
           x-expansionResources:
             oneOf:
@@ -4106,7 +4106,7 @@ components:
             - enum:
                 - ''
               type: string
-          description: 'A [tax code](https://stripe.com/docs/tax/tax-categories) ID.'
+          description: A [tax code](https://stripe.com/docs/tax/tax-categories) ID.
         tax_rates:
           description: >-
             The tax rates which apply to the invoice item. When set, the
@@ -4272,7 +4272,7 @@ components:
             - enum:
                 - ''
               type: string
-          description: 'A [tax code](https://stripe.com/docs/tax/tax-categories) ID.'
+          description: A [tax code](https://stripe.com/docs/tax/tax-categories) ID.
         tax_rates:
           anyOf:
             - items:

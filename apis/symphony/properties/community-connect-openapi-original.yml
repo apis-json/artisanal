@@ -1,19 +1,17 @@
 openapi: 3.0.1
 info:
   title: Community Connect API
-  description: 'Community Connect public API'
+  description: Community Connect public API
   version: 1.3.0
 tags:
-  - name: channelco
-    description: Public API for channelco
-
+  - null
 paths:
   /v1/onboarding/tenant:
     get:
       tags:
         - channelco
       security:
-        - ApiKeyAuth: [ ]
+        - ApiKeyAuth: []
       summary: Get user's pod and availability for onboarding
       operationId: getUserOnboardingAvailability
       parameters:
@@ -25,31 +23,31 @@ paths:
           description: The user email
           example: user@companyDomain.com
       responses:
-        400:
-          description: Something was wrong about the request
-          content:
-            application/json:
-              schema:
-                $ref: '#/components/schemas/ApiError'
-        401:
-          description: Unauthorized request
-          content:
-            application/json:
-              schema:
-                $ref: '#/components/schemas/ApiError'
-        200:
+        '200':
           description: Success
           content:
             application/json:
               schema:
                 $ref: '#/components/schemas/UserOnboardingAvaibilityResponse'
-              example: "Company is already on Symphony but user needs access"
+              example: Company is already on Symphony but user needs access
+        '400':
+          description: Something was wrong about the request
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ApiError'
+        '401':
+          description: Unauthorized request
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ApiError'
   /v1/channelco/user:
     get:
       tags:
         - channelco
       security:
-        - JwtAuth: [ ]
+        - JwtAuth: []
       summary: Search channelco user
       operationId: searchUser
       parameters:
@@ -61,26 +59,26 @@ paths:
           description: user's email
           example: user@comcocompany.com
       responses:
-        200:
+        '200':
           description: body
           content:
             application/json:
               schema:
                 $ref: '#/components/schemas/ChannelCoUserAndCompany'
-        404:
-          description: The user do not exist
-          content:
-            application/json:
-              schema:
-                $ref: '#/components/schemas/ApiError'
-        400:
+        '400':
           description: Something was wrong about the request
           content:
             application/json:
               schema:
                 $ref: '#/components/schemas/ApiError'
-        401:
+        '401':
           description: Unauthorized request
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ApiError'
+        '404':
+          description: The user do not exist
           content:
             application/json:
               schema:
@@ -99,19 +97,19 @@ paths:
             schema:
               $ref: '#/components/schemas/ChannelCoUsersListRequest'
       responses:
-        201:
+        '201':
           description: body
           content:
             application/json:
               schema:
                 $ref: '#/components/schemas/ChannelCoUsersListResponse'
-        400:
+        '400':
           description: Something was wrong about the request
           content:
             application/json:
               schema:
                 $ref: '#/components/schemas/ApiError'
-        401:
+        '401':
           description: Unauthorized request
           content:
             application/json:
@@ -122,7 +120,7 @@ paths:
       tags:
         - channelco
       security:
-        - JwtAuth: [ ]
+        - JwtAuth: []
       summary: Adds a role to a channelco user's account
       operationId: addRole
       parameters:
@@ -140,7 +138,7 @@ paths:
             type: string
           required: true
           description: company Id of the user
-          example: "10"
+          example: '10'
       requestBody:
         required: true
         content:
@@ -148,25 +146,25 @@ paths:
             schema:
               $ref: '#/components/schemas/Role'
       responses:
-        200:
+        '200':
           description: body
           content:
             application/json:
               schema:
                 $ref: '#/components/schemas/ApiInfo'
-        400:
+        '400':
           description: Something was wrong about the request
           content:
             application/json:
               schema:
                 $ref: '#/components/schemas/ApiError'
-        401:
+        '401':
           description: Unauthorized request
           content:
             application/json:
               schema:
                 $ref: '#/components/schemas/ApiError'
-        404:
+        '404':
           description: The user do not exist
           content:
             application/json:
@@ -177,7 +175,7 @@ paths:
       tags:
         - channelco
       security:
-        - JwtAuth: [ ]
+        - JwtAuth: []
       summary: Get channelco user by companyId and userId
       operationId: getUser
       parameters:
@@ -195,28 +193,28 @@ paths:
             type: string
           required: true
           description: company Id of the user
-          example: "10"
+          example: '10'
       responses:
-        200:
+        '200':
           description: body
           content:
             application/json:
               schema:
                 $ref: '#/components/schemas/ChannelCoUserAndCompany'
-        404:
-          description: The user do not exist
-          content:
-            application/json:
-              schema:
-                $ref: '#/components/schemas/ApiError'
-        400:
+        '400':
           description: Something was wrong about the request
           content:
             application/json:
               schema:
                 $ref: '#/components/schemas/ApiError'
-        401:
+        '401':
           description: Unauthorized request
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ApiError'
+        '404':
+          description: The user do not exist
           content:
             application/json:
               schema:
@@ -225,7 +223,7 @@ paths:
       tags:
         - channelco
       security:
-        - JwtAuth: [ ]
+        - JwtAuth: []
       summary: Update channelco user
       operationId: updateUser
       parameters:
@@ -243,7 +241,7 @@ paths:
             type: string
           required: true
           description: company Id of the user
-          example: "10"
+          example: '10'
       requestBody:
         required: true
         content:
@@ -251,26 +249,26 @@ paths:
             schema:
               $ref: '#/components/schemas/UpdateChannelCoUserRequest'
       responses:
-        200:
+        '200':
           description: body
           content:
             application/json:
               schema:
                 $ref: '#/components/schemas/ChannelCoUser'
-        404:
-          description: The user do not exist
-          content:
-            application/json:
-              schema:
-                $ref: '#/components/schemas/ApiError'
-        400:
+        '400':
           description: Something was wrong about the request
           content:
             application/json:
               schema:
                 $ref: '#/components/schemas/ApiError'
-        401:
+        '401':
           description: Unauthorized request
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ApiError'
+        '404':
+          description: The user do not exist
           content:
             application/json:
               schema:
@@ -279,7 +277,7 @@ paths:
       tags:
         - channelco
       security:
-        - JwtAuth: [ ]
+        - JwtAuth: []
       summary: Disable channelco user
       operationId: disableUser
       parameters:
@@ -297,29 +295,28 @@ paths:
             type: string
           required: true
           description: company Id of the user
-          example: "10"
+          example: '10'
       responses:
-        204:
+        '204':
           description: The user was disabled successfully.
-        404:
-          description: The user do not exist
-          content:
-            application/json:
-              schema:
-                $ref: '#/components/schemas/ApiError'
-        400:
+        '400':
           description: Something was wrong about the request
           content:
             application/json:
               schema:
                 $ref: '#/components/schemas/ApiError'
-        401:
+        '401':
           description: Unauthorized request
           content:
             application/json:
               schema:
                 $ref: '#/components/schemas/ApiError'
-
+        '404':
+          description: The user do not exist
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ApiError'
 components:
   schemas:
     ApiError:
@@ -377,10 +374,15 @@ components:
           description: if support sso enabled, the sso url
         ssoType:
           type: string
-          enum: [SAML, OAUTH]
+          enum:
+            - SAML
+            - OAUTH
         defaultEmailLanguage:
           type: string
-          description: Invitation email language used. It will work only if the template for the specified language is configured, if no custom language are configured, leave it empty
+          description: >-
+            Invitation email language used. It will work only if the template
+            for the specified language is configured, if no custom language are
+            configured, leave it empty
         idp:
           type: string
           description: identity provider for partner
@@ -396,7 +398,6 @@ components:
             podUrl:
               type: string
               example: ces4-dev.symphony.com
-
     ChannelCoUserRequest:
       type: object
       description: payload to onboard a channelco user account
@@ -417,10 +418,12 @@ components:
           type: string
           example: Paul Smith
           maxLength: 128
-          description: if omitted, it will be generated with the pattern <firstName lastName>
+          description: >-
+            if omitted, it will be generated with the pattern <firstName
+            lastName>
         phoneNumber:
           type: string
-          example: +33612345678
+          example: 33612345678
         department:
           type: string
           example: Product Engineering
@@ -442,7 +445,9 @@ components:
       properties:
         companyName:
           type: string
-          description: This field is mandatory only if a company with same domain (taken from email) does not exist yet
+          description: >-
+            This field is mandatory only if a company with same domain (taken
+            from email) does not exist yet
           example: Symphony
           maxLength: 64
         users:
@@ -473,7 +478,7 @@ components:
           example: Paul Smith
         phoneNumber:
           type: string
-          example: +33612345678
+          example: 33612345678
         department:
           type: string
           example: Product Engineering
@@ -496,7 +501,9 @@ components:
               description: Member's user id
             username:
               type: string
-              description: Member's username generated by API. If there is no naming conflict it is <firstName.lastName> (in lower case)
+              description: >-
+                Member's username generated by API. If there is no naming
+                conflict it is <firstName.lastName> (in lower case)
     ChannelCoUserAndCompany:
       allOf:
         - $ref: '#/components/schemas/ChannelCoUser'
@@ -505,7 +512,7 @@ components:
             companyId:
               type: string
               description: company Id of the user
-              example: "10"
+              example: '10'
             companyName:
               type: string
               description: company name of the user
@@ -522,7 +529,9 @@ components:
               description: Member's user id
             username:
               type: string
-              description: Member's username generated by API. It is expected to be the same as email
+              description: >-
+                Member's username generated by API. It is expected to be the
+                same as email
             code:
               type: string
               description: info code
@@ -535,10 +544,14 @@ components:
                   description: company already exists, user added into it
                 mismatchCompany:
                   value: USER_ADDED_TO_DIFFERENT_COMPANY_NAME
-                  description: company already exists (lookup by domain name), but the name is different. User is added in the existing one
+                  description: >-
+                    company already exists (lookup by domain name), but the name
+                    is different. User is added in the existing one
             message:
               type: string
-              description: Human readable details about the information the api is returning
+              description: >-
+                Human readable details about the information the api is
+                returning
     ChannelCoUserErrorResponse:
       allOf:
         - $ref: '#/components/schemas/ChannelCoUserRequest'
@@ -550,10 +563,14 @@ components:
               example:
                 alreadyExisting:
                   value: USER_ALREADY_EXISTS
-                  description: user already existing belong a pod (error message will provide detail about pod url)
+                  description: >-
+                    user already existing belong a pod (error message will
+                    provide detail about pod url)
                 existingCompany:
                   value: COMPANY_ALREADY_EXISTS_USER_NEEDS_ACCESS
-                  description: company already exists and the user need access (error message will provide detail about pod url)
+                  description: >-
+                    company already exists and the user need access (error
+                    message will provide detail about pod url)
                 existingComCoCompany:
                   value: COMCO_COMPANY_ALREADY_EXISTS_USER_NEED_ACCESS
                   description: comco company already exists and the user need access
@@ -561,14 +578,16 @@ components:
                   value: UNEXPECTED_ERROR
             message:
               type: string
-              description: Human readable details about the information the api is returning
+              description: >-
+                Human readable details about the information the api is
+                returning
     ChannelCoUsersListResponse:
       type: object
       properties:
         companyId:
           type: string
           description: company Id of the users
-          example: "10"
+          example: '10'
         companyName:
           type: string
           description: company name of the users

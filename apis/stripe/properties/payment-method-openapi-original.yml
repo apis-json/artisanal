@@ -5,15 +5,15 @@ info:
   contact:
     email: dev-platform@stripe.com
     name: Stripe Dev Platform Team
-    url: 'https://stripe.com'
-  termsOfService: 'https://stripe.com/us/terms/'
+    url: https://stripe.com
+  termsOfService: https://stripe.com/us/terms/
   version: '2023-10-16'
   x-stripeSpecFilename: spec3
 security:
   - basicAuth: []
   - bearerAuth: []
 servers:
-  - url: 'https://api.stripe.com/'
+  - url: https://api.stripe.com/
 paths:
   /v1/payment_method_configurations:
     get:
@@ -198,7 +198,7 @@ paths:
               schema:
                 $ref: '#/components/schemas/error'
           description: Error response.
-  '/v1/payment_method_configurations/{configuration}':
+  /v1/payment_method_configurations/{configuration}:
     get:
       description: <p>Retrieve payment method configuration</p>
       operationId: GetPaymentMethodConfigurationsConfiguration
@@ -501,7 +501,7 @@ paths:
               schema:
                 $ref: '#/components/schemas/error'
           description: Error response.
-  '/v1/payment_method_domains/{payment_method_domain}':
+  /v1/payment_method_domains/{payment_method_domain}:
     get:
       description: <p>Retrieves the details of an existing payment method domain.</p>
       operationId: GetPaymentMethodDomainsPaymentMethodDomain
@@ -582,7 +582,7 @@ paths:
               schema:
                 $ref: '#/components/schemas/error'
           description: Error response.
-  '/v1/payment_method_domains/{payment_method_domain}/validate':
+  /v1/payment_method_domains/{payment_method_domain}/validate:
     post:
       description: >-
         <p>Some payment methods such as Apple Pay require additional steps to
@@ -911,7 +911,7 @@ paths:
               schema:
                 $ref: '#/components/schemas/error'
           description: Error response.
-  '/v1/payment_methods/{payment_method}':
+  /v1/payment_methods/{payment_method}:
     get:
       description: >-
         <p>Retrieves a PaymentMethod object attached to the StripeAccount. To
@@ -1011,7 +1011,7 @@ paths:
               schema:
                 $ref: '#/components/schemas/error'
           description: Error response.
-  '/v1/payment_methods/{payment_method}/attach':
+  /v1/payment_methods/{payment_method}/attach:
     post:
       description: >-
         <p>Attaches a PaymentMethod object to a Customer.</p>
@@ -1079,7 +1079,7 @@ paths:
               schema:
                 $ref: '#/components/schemas/error'
           description: Error response.
-  '/v1/payment_methods/{payment_method}/detach':
+  /v1/payment_methods/{payment_method}/detach:
     post:
       description: >-
         <p>Detaches a PaymentMethod object from a Customer. After a
@@ -1282,7 +1282,7 @@ components:
           $ref: >-
             #/components/schemas/payment_method_config_resource_payment_method_properties
         parent:
-          description: 'For child configs, the configuration''s parent configuration.'
+          description: For child configs, the configuration's parent configuration.
           maxLength: 5000
           nullable: true
           type: string

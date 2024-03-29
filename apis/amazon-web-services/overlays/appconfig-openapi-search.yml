@@ -6,18 +6,48 @@ paths:
     GET:
       summary: ListApplications
       description: <p>Lists all applications in your Amazon Web Services account.</p>
+      tags:
+        - List
+        - Applications
+        - Applications
   /applications/{ApplicationId}/configurationprofiles:
     GET:
       summary: ListConfigurationProfiles
       description: <p>Lists the configuration profiles for an application.</p>
+      tags:
+        - List
+        - Configuration
+        - Profiles
+        - Applications
+        - Application
+        - Id
+        - Configurationprofiles
   /deploymentstrategies:
     GET:
       summary: ListDeploymentStrategies
       description: <p>Lists deployment strategies.</p>
+      tags:
+        - List
+        - Deployment
+        - Strategies
+        - Applications
+        - Application
+        - Id
+        - Configurationprofiles
+        - Deploymentstrategies
   /applications/{ApplicationId}/environments:
     GET:
       summary: ListEnvironments
       description: <p>Lists the environments for an application.</p>
+      tags:
+        - List
+        - Environments
+        - Applications
+        - Application
+        - Id
+        - Configurationprofiles
+        - Deploymentstrategies
+        - Environments
   /extensions:
     GET:
       summary: ListExtensions
@@ -26,6 +56,16 @@ paths:
         extensions in the account. For more information about extensions, see <a
         href="https://docs.aws.amazon.com/appconfig/latest/userguide/working-with-appconfig-extensions.html">Working
         with AppConfig extensions</a> in the <i>AppConfig User Guide</i>.</p>
+      tags:
+        - List
+        - Extensions
+        - Applications
+        - Application
+        - Id
+        - Configurationprofiles
+        - Deploymentstrategies
+        - Environments
+        - Extensions
   /extensionassociations:
     GET:
       summary: ListExtensionAssociations
@@ -34,30 +74,121 @@ paths:
         information about extensions and associations, see <a
         href="https://docs.aws.amazon.com/appconfig/latest/userguide/working-with-appconfig-extensions.html">Working
         with AppConfig extensions</a> in the <i>AppConfig User Guide</i>.</p>
+      tags:
+        - List
+        - Extension
+        - Associations
+        - Applications
+        - Application
+        - Id
+        - Configurationprofiles
+        - Deploymentstrategies
+        - Environments
+        - Extensions
+        - Extensionassociations
   /applications/{ApplicationId}/configurationprofiles/{ConfigurationProfileId}/hostedconfigurationversions:
     GET:
       summary: ListHostedConfigurationVersions
       description: >-
         <p>Lists configurations stored in the AppConfig hosted configuration
         store by version.</p>
+      tags:
+        - List
+        - Hosted
+        - Configuration
+        - Versions
+        - Applications
+        - Application
+        - Id
+        - Configurationprofiles
+        - Deploymentstrategies
+        - Environments
+        - Extensions
+        - Extensionassociations
+        - Configuration
+        - Profile
+        - Hostedconfigurationversions
   /applications/{ApplicationId}:
     PATCH:
       summary: UpdateApplication
       description: <p>Updates an application.</p>
+      tags:
+        - Update
+        - Application
+        - Applications
+        - Application
+        - Id
+        - Configurationprofiles
+        - Deploymentstrategies
+        - Environments
+        - Extensions
+        - Extensionassociations
+        - Configuration
+        - Profile
+        - Hostedconfigurationversions
   /applications/{ApplicationId}/configurationprofiles/{ConfigurationProfileId}:
     PATCH:
       summary: UpdateConfigurationProfile
       description: <p>Updates a configuration profile.</p>
+      tags:
+        - Update
+        - Configuration
+        - Profile
+        - Applications
+        - Application
+        - Id
+        - Configurationprofiles
+        - Deploymentstrategies
+        - Environments
+        - Extensions
+        - Extensionassociations
+        - Configuration
+        - Profile
+        - Hostedconfigurationversions
   /deployementstrategies/{DeploymentStrategyId}:
     DELETE:
       summary: DeleteDeploymentStrategy
       description: >-
         <p>Deletes a deployment strategy. Deleting a deployment strategy does
         not delete a configuration from a host.</p>
+      tags:
+        - Delete
+        - Deployment
+        - Strategy
+        - Applications
+        - Application
+        - Id
+        - Configurationprofiles
+        - Deploymentstrategies
+        - Environments
+        - Extensions
+        - Extensionassociations
+        - Configuration
+        - Profile
+        - Hostedconfigurationversions
+        - Deployment
+        - Strategy
   /applications/{ApplicationId}/environments/{EnvironmentId}:
     PATCH:
       summary: UpdateEnvironment
       description: <p>Updates an environment.</p>
+      tags:
+        - Update
+        - Environment
+        - Applications
+        - Application
+        - Id
+        - Configurationprofiles
+        - Deploymentstrategies
+        - Environments
+        - Extensions
+        - Extensionassociations
+        - Configuration
+        - Profile
+        - Hostedconfigurationversions
+        - Deployment
+        - Strategy
+        - Environment
   /extensions/{ExtensionIdentifier}:
     PATCH:
       summary: UpdateExtension
@@ -66,6 +197,25 @@ paths:
         extensions, see <a
         href="https://docs.aws.amazon.com/appconfig/latest/userguide/working-with-appconfig-extensions.html">Working
         with AppConfig extensions</a> in the <i>AppConfig User Guide</i>.</p>
+      tags:
+        - Update
+        - Extension
+        - Applications
+        - Application
+        - Id
+        - Configurationprofiles
+        - Deploymentstrategies
+        - Environments
+        - Extensions
+        - Extensionassociations
+        - Configuration
+        - Profile
+        - Hostedconfigurationversions
+        - Deployment
+        - Strategy
+        - Environment
+        - Extension
+        - Identifier
   /extensionassociations/{ExtensionAssociationId}:
     PATCH:
       summary: UpdateExtensionAssociation
@@ -74,10 +224,55 @@ paths:
         associations, see <a
         href="https://docs.aws.amazon.com/appconfig/latest/userguide/working-with-appconfig-extensions.html">Working
         with AppConfig extensions</a> in the <i>AppConfig User Guide</i>.</p>
+      tags:
+        - Update
+        - Extension
+        - Association
+        - Applications
+        - Application
+        - Id
+        - Configurationprofiles
+        - Deploymentstrategies
+        - Environments
+        - Extensions
+        - Extensionassociations
+        - Configuration
+        - Profile
+        - Hostedconfigurationversions
+        - Deployment
+        - Strategy
+        - Environment
+        - Extension
+        - Identifier
+        - Association
   /applications/{ApplicationId}/configurationprofiles/{ConfigurationProfileId}/hostedconfigurationversions/{VersionNumber}:
     GET:
       summary: GetHostedConfigurationVersion
       description: <p>Retrieves information about a specific configuration version.</p>
+      tags:
+        - Get
+        - Hosted
+        - Configuration
+        - Version
+        - Applications
+        - Application
+        - Id
+        - Configurationprofiles
+        - Deploymentstrategies
+        - Environments
+        - Extensions
+        - Extensionassociations
+        - Configuration
+        - Profile
+        - Hostedconfigurationversions
+        - Deployment
+        - Strategy
+        - Environment
+        - Extension
+        - Identifier
+        - Association
+        - Version
+        - Number
   /applications/{Application}/environments/{Environment}/configurations/{Configuration}:
     GET:
       summary: GetConfiguration
@@ -93,6 +288,29 @@ paths:
         priced call. For more information, see <a
         href="https://aws.amazon.com/systems-manager/pricing/">Pricing</a>.</p>
         </li> </ul> </important>
+      tags:
+        - Get
+        - Configuration
+        - Applications
+        - Application
+        - Id
+        - Configurationprofiles
+        - Deploymentstrategies
+        - Environments
+        - Extensions
+        - Extensionassociations
+        - Configuration
+        - Profile
+        - Hostedconfigurationversions
+        - Deployment
+        - Strategy
+        - Environment
+        - Extension
+        - Identifier
+        - Association
+        - Version
+        - Number
+        - Configurations
   /applications/{ApplicationId}/environments/{EnvironmentId}/deployments/{DeploymentNumber}:
     DELETE:
       summary: StopDeployment
@@ -100,21 +318,145 @@ paths:
         <p>Stops a deployment. This API action works only on deployments that
         have a status of <code>DEPLOYING</code>. This action moves the
         deployment to a status of <code>ROLLED_BACK</code>.</p>
+      tags:
+        - Stop
+        - Deployment
+        - Applications
+        - Application
+        - Id
+        - Configurationprofiles
+        - Deploymentstrategies
+        - Environments
+        - Extensions
+        - Extensionassociations
+        - Configuration
+        - Profile
+        - Hostedconfigurationversions
+        - Deployment
+        - Strategy
+        - Environment
+        - Extension
+        - Identifier
+        - Association
+        - Version
+        - Number
+        - Configurations
+        - Deployments
   /deploymentstrategies/{DeploymentStrategyId}:
     PATCH:
       summary: UpdateDeploymentStrategy
       description: <p>Updates a deployment strategy.</p>
+      tags:
+        - Update
+        - Deployment
+        - Strategy
+        - Applications
+        - Application
+        - Id
+        - Configurationprofiles
+        - Deploymentstrategies
+        - Environments
+        - Extensions
+        - Extensionassociations
+        - Configuration
+        - Profile
+        - Hostedconfigurationversions
+        - Deployment
+        - Strategy
+        - Environment
+        - Extension
+        - Identifier
+        - Association
+        - Version
+        - Number
+        - Configurations
+        - Deployments
   /applications/{ApplicationId}/environments/{EnvironmentId}/deployments:
     POST:
       summary: StartDeployment
       description: <p>Starts a deployment.</p>
+      tags:
+        - Start
+        - Deployment
+        - Applications
+        - Application
+        - Id
+        - Configurationprofiles
+        - Deploymentstrategies
+        - Environments
+        - Extensions
+        - Extensionassociations
+        - Configuration
+        - Profile
+        - Hostedconfigurationversions
+        - Deployment
+        - Strategy
+        - Environment
+        - Extension
+        - Identifier
+        - Association
+        - Version
+        - Number
+        - Configurations
+        - Deployments
   /tags/{ResourceArn}:
     DELETE:
       summary: UntagResource
       description: <p>Deletes a tag key and value from an AppConfig resource.</p>
+      tags:
+        - Untag
+        - Resource
+        - Applications
+        - Application
+        - Id
+        - Configurationprofiles
+        - Deploymentstrategies
+        - Environments
+        - Extensions
+        - Extensionassociations
+        - Configuration
+        - Profile
+        - Hostedconfigurationversions
+        - Deployment
+        - Strategy
+        - Environment
+        - Extension
+        - Identifier
+        - Association
+        - Version
+        - Number
+        - Configurations
+        - Deployments
+        - Resource
+        - Arn
   /applications/{ApplicationId}/configurationprofiles/{ConfigurationProfileId}/validators:
     POST:
       summary: ValidateConfiguration
-      description: >-
-        <p>Uses the validators in a configuration profile to validate a
-        configurat
+      description: <p>Uses the validators in a configuration profile to validate a configur
+      tags:
+        - Validate
+        - Configuration
+        - Applications
+        - Application
+        - Id
+        - Configurationprofiles
+        - Deploymentstrategies
+        - Environments
+        - Extensions
+        - Extensionassociations
+        - Configuration
+        - Profile
+        - Hostedconfigurationversions
+        - Deployment
+        - Strategy
+        - Environment
+        - Extension
+        - Identifier
+        - Association
+        - Version
+        - Number
+        - Configurations
+        - Deployments
+        - Resource
+        - Arn
+        - Validato

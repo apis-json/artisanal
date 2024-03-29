@@ -3,39 +3,43 @@ info:
   version: '1'
   x-publicVersion: true
   title: Webhooks
-  description: We use webhooks to send you updates about payment status updates, newly
-    available reports, and other events that you can subscribe to. For more information,
-    refer to our [documentation](https://docs.adyen.com/development-resources/webhooks).
+  description: >-
+    We use webhooks to send you updates about payment status updates, newly
+    available reports, and other events that you can subscribe to. For more
+    information, refer to our
+    [documentation](https://docs.adyen.com/development-resources/webhooks).
   termsOfService: https://www.adyen.com/legal/terms-and-conditions
   contact:
     name: Adyen Developer Experience team
     url: https://github.com/Adyen/adyen-openapi
 tags:
-- name: Standard
-- name: Dispute
-- name: Payout
-- name: Additional configuration
-- name: Other webhooks
+  - name: Standard
+  - name: Disputes
+  - name: Payouts
+  - name: Additional configuration
+  - name: Other webhooks
 x-staticResponse: response.json
 webhooks:
   /ACH_NOTIFICATION_OF_CHANGE:
     post:
       tags:
-      - Other webhooks
+        - Other webhooks
       summary: ACH Notification of Change
-      description: An ACH Notification of Change was processed regarding changed bank
+      description: >-
+        An ACH Notification of Change was processed regarding changed bank
         account details.
       operationId: post-ACH_NOTIFICATION_OF_CHANGE
       x-sortIndex: 0
       x-methodName: achNotificationOfChange
       security:
-      - BasicAuth: []
+        - BasicAuth: []
       requestBody:
         content:
           application/json:
             examples:
               ach_notification_of_change:
-                $ref: '#/components/examples/post-ACH_NOTIFICATION_OF_CHANGE-ach_notification_of_change'
+                $ref: >-
+                  #/components/examples/post-ACH_NOTIFICATION_OF_CHANGE-ach_notification_of_change
             schema:
               $ref: '#/components/schemas/AchNotificationOfChangeNotificationRequest'
       responses:
@@ -51,14 +55,16 @@ webhooks:
   /AUTHORISATION:
     post:
       tags:
-      - Standard
+        - Standard
       summary: Result of authorisation request
-      description: The result of the [authorisation request](https://docs.adyen.com/api-explorer/#/Payment/latest/post/authorise).
+      description: >-
+        The result of the [authorisation
+        request](https://docs.adyen.com/api-explorer/#/Payment/latest/post/authorise).
       operationId: post-AUTHORISATION
       x-sortIndex: 0
       x-methodName: resultOfAuthorisationRequest
       security:
-      - BasicAuth: []
+        - BasicAuth: []
       requestBody:
         content:
           application/json:
@@ -80,22 +86,26 @@ webhooks:
   /AUTHORISATION_ADJUSTMENT:
     post:
       tags:
-      - Standard
+        - Standard
       summary: Result of payment authorisation adjustment request
-      description: The result of the request to [adjust the authorised amount](https://docs.adyen.com/online-payments/adjust-authorisation)
-        sent through the [/adjustAuthorisation](https://docs.adyen.com/api-explorer/#/Payment/latest/post/adjustAuthorisation)
+      description: >-
+        The result of the request to [adjust the authorised
+        amount](https://docs.adyen.com/online-payments/adjust-authorisation)
+        sent through the
+        [/adjustAuthorisation](https://docs.adyen.com/api-explorer/#/Payment/latest/post/adjustAuthorisation)
         endpoint.
       operationId: post-AUTHORISATION_ADJUSTMENT
       x-sortIndex: 0
       x-methodName: resultOfPaymentAuthorisationAdjustmentRequest
       security:
-      - BasicAuth: []
+        - BasicAuth: []
       requestBody:
         content:
           application/json:
             examples:
               authorisation_adjustment:
-                $ref: '#/components/examples/post-AUTHORISATION_ADJUSTMENT-authorisation_adjustment'
+                $ref: >-
+                  #/components/examples/post-AUTHORISATION_ADJUSTMENT-authorisation_adjustment
             schema:
               $ref: '#/components/schemas/NotificationRequest'
       responses:
@@ -111,15 +121,17 @@ webhooks:
   /AUTORESCUE:
     post:
       tags:
-      - Additional configuration
+        - Additional configuration
       summary: Auto Rescue process ended
-      description: The [Auto Rescue process](https://docs.adyen.com/online-payments/auto-rescue#rescue-process-ended)
+      description: >-
+        The [Auto Rescue
+        process](https://docs.adyen.com/online-payments/auto-rescue#rescue-process-ended)
         ended.
       operationId: post-AUTORESCUE
       x-sortIndex: 0
       x-methodName: autoRescueProcessEnded
       security:
-      - BasicAuth: []
+        - BasicAuth: []
       requestBody:
         content:
           application/json:
@@ -141,14 +153,16 @@ webhooks:
   /CANCELLATION:
     post:
       tags:
-      - Standard
+        - Standard
       summary: Result of cancel request
-      description: The result of the request to [cancel a payment](https://docs.adyen.com/online-payments/cancel).
+      description: >-
+        The result of the request to [cancel a
+        payment](https://docs.adyen.com/online-payments/cancel).
       operationId: post-CANCELLATION
       x-sortIndex: 0
       x-methodName: resultOfCancelRequest
       security:
-      - BasicAuth: []
+        - BasicAuth: []
       requestBody:
         content:
           application/json:
@@ -170,15 +184,17 @@ webhooks:
   /CANCEL_AUTORESCUE:
     post:
       tags:
-      - Additional configuration
+        - Additional configuration
       summary: Auto Rescue process canceled
-      description: The [Auto Rescue process](https://docs.adyen.com/online-payments/auto-rescue)
-        was canceled.
+      description: >-
+        The [Auto Rescue
+        process](https://docs.adyen.com/online-payments/auto-rescue) was
+        canceled.
       operationId: post-CANCEL_AUTORESCUE
       x-sortIndex: 0
       x-methodName: autoRescueProcessCanceled
       security:
-      - BasicAuth: []
+        - BasicAuth: []
       requestBody:
         content:
           application/json:
@@ -200,14 +216,16 @@ webhooks:
   /CANCEL_OR_REFUND:
     post:
       tags:
-      - Standard
+        - Standard
       summary: Result of cancel or refund request
-      description: The result of the request to [cancel or refund a payment](https://docs.adyen.com/online-payments/classic-integrations/modify-payments/cancel-or-refund).
+      description: >-
+        The result of the request to [cancel or refund a
+        payment](https://docs.adyen.com/online-payments/classic-integrations/modify-payments/cancel-or-refund).
       operationId: post-CANCEL_OR_REFUND
       x-sortIndex: 0
       x-methodName: resultOfCancelOrRefundRequest
       security:
-      - BasicAuth: []
+        - BasicAuth: []
       requestBody:
         content:
           application/json:
@@ -229,14 +247,16 @@ webhooks:
   /CAPTURE:
     post:
       tags:
-      - Standard
+        - Standard
       summary: Result of capture request
-      description: The result of the request to [capture a payment](https://docs.adyen.com/online-payments/capture).
+      description: >-
+        The result of the request to [capture a
+        payment](https://docs.adyen.com/online-payments/capture).
       operationId: post-CAPTURE
       x-sortIndex: 0
       x-methodName: resultOfCaptureRequest
       security:
-      - BasicAuth: []
+        - BasicAuth: []
       requestBody:
         content:
           application/json:
@@ -258,14 +278,16 @@ webhooks:
   /CAPTURE_FAILED:
     post:
       tags:
-      - Standard
+        - Standard
       summary: Capture request failed due to scheme rejection
-      description: The capture request [failed due to rejection by the card scheme](https://docs.adyen.com/online-payments/capture#failed-capture).
+      description: >-
+        The capture request [failed due to rejection by the card
+        scheme](https://docs.adyen.com/online-payments/capture#failed-capture).
       operationId: post-CAPTURE_FAILED
       x-sortIndex: 0
       x-methodName: captureRequestFailedDueToSchemeRejection
       security:
-      - BasicAuth: []
+        - BasicAuth: []
       requestBody:
         content:
           application/json:
@@ -287,15 +309,17 @@ webhooks:
   /CHARGEBACK:
     post:
       tags:
-      - Dispute
+        - Dispute
       summary: Payment charged back
-      description: The payment was [charged back](https://docs.adyen.com/risk-management/disputes-api/dispute-notifications#chargeback),
+      description: >-
+        The payment was [charged
+        back](https://docs.adyen.com/risk-management/disputes-api/dispute-notifications#chargeback),
         and the funds were deducted from your account.
       operationId: post-CHARGEBACK
       x-sortIndex: 0
       x-methodName: paymentChargedBack
       security:
-      - BasicAuth: []
+        - BasicAuth: []
       requestBody:
         content:
           application/json:
@@ -317,22 +341,25 @@ webhooks:
   /CHARGEBACK_REVERSED:
     post:
       tags:
-      - Dispute
+        - Dispute
       summary: Chargeback successfully defended
-      description: The chargeback was successfully [defended](https://docs.adyen.com/risk-management/understanding-disputes/defense-requirements)
-        towards the issuing bank. This stage is not final. If the issuing bank presents
-        a second chargeback, you can still lose the chargeback case.
+      description: >-
+        The chargeback was successfully
+        [defended](https://docs.adyen.com/risk-management/understanding-disputes/defense-requirements)
+        towards the issuing bank. This stage is not final. If the issuing bank
+        presents a second chargeback, you can still lose the chargeback case.
       operationId: post-CHARGEBACK_REVERSED
       x-sortIndex: 0
       x-methodName: chargebackSuccessfullyDefended
       security:
-      - BasicAuth: []
+        - BasicAuth: []
       requestBody:
         content:
           application/json:
             examples:
               chargeback_reversed:
-                $ref: '#/components/examples/post-CHARGEBACK_REVERSED-chargeback_reversed'
+                $ref: >-
+                  #/components/examples/post-CHARGEBACK_REVERSED-chargeback_reversed
             schema:
               $ref: '#/components/schemas/NotificationRequest'
       responses:
@@ -348,14 +375,14 @@ webhooks:
   /EXPIRE:
     post:
       tags:
-      - Standard
+        - Standard
       summary: Authorisation expired
       description: The remaining uncaptured amount expired
       operationId: post-EXPIRE
       x-sortIndex: 0
       x-methodName: authorisationExpired
       security:
-      - BasicAuth: []
+        - BasicAuth: []
       requestBody:
         content:
           application/json:
@@ -377,21 +404,24 @@ webhooks:
   /MANUAL_REVIEW_ACCEPT:
     post:
       tags:
-      - Additional configuration
+        - Additional configuration
       summary: Manual review accepted
-      description: The [manual review](https://docs.adyen.com/risk-management/case-management)
-        was accepted.
+      description: >-
+        The [manual
+        review](https://docs.adyen.com/risk-management/case-management) was
+        accepted.
       operationId: post-MANUAL_REVIEW_ACCEPT
       x-sortIndex: 0
       x-methodName: manualReviewAccepted
       security:
-      - BasicAuth: []
+        - BasicAuth: []
       requestBody:
         content:
           application/json:
             examples:
               manual_review_accept:
-                $ref: '#/components/examples/post-MANUAL_REVIEW_ACCEPT-manual_review_accept'
+                $ref: >-
+                  #/components/examples/post-MANUAL_REVIEW_ACCEPT-manual_review_accept
             schema:
               $ref: '#/components/schemas/NotificationRequest'
       responses:
@@ -407,21 +437,24 @@ webhooks:
   /MANUAL_REVIEW_REJECT:
     post:
       tags:
-      - Additional configuration
+        - Additional configuration
       summary: Manual review rejected
-      description: The [manual review](https://docs.adyen.com/risk-management/case-management)
-        was rejected.
+      description: >-
+        The [manual
+        review](https://docs.adyen.com/risk-management/case-management) was
+        rejected.
       operationId: post-MANUAL_REVIEW_REJECT
       x-sortIndex: 0
       x-methodName: manualReviewRejected
       security:
-      - BasicAuth: []
+        - BasicAuth: []
       requestBody:
         content:
           application/json:
             examples:
               manual_review_reject:
-                $ref: '#/components/examples/post-MANUAL_REVIEW_REJECT-manual_review_reject'
+                $ref: >-
+                  #/components/examples/post-MANUAL_REVIEW_REJECT-manual_review_reject
             schema:
               $ref: '#/components/schemas/NotificationRequest'
       responses:
@@ -437,21 +470,25 @@ webhooks:
   /NOTIFICATION_OF_CHARGEBACK:
     post:
       tags:
-      - Dispute
+        - Dispute
       summary: Dispute process opened
-      description: The [dispute process](https://docs.adyen.com/risk-management/understanding-disputes/dispute-process-and-flow#dispute-process)
-        was opened. You should investigate the dispute and [supply the defense documents](https://docs.adyen.com/risk-management/disputes-api#supply-dispute-defense-documents).
+      description: >-
+        The [dispute
+        process](https://docs.adyen.com/risk-management/understanding-disputes/dispute-process-and-flow#dispute-process)
+        was opened. You should investigate the dispute and [supply the defense
+        documents](https://docs.adyen.com/risk-management/disputes-api#supply-dispute-defense-documents).
       operationId: post-NOTIFICATION_OF_CHARGEBACK
       x-sortIndex: 0
       x-methodName: disputeProcessOpened
       security:
-      - BasicAuth: []
+        - BasicAuth: []
       requestBody:
         content:
           application/json:
             examples:
               notification_of_chargeback:
-                $ref: '#/components/examples/post-NOTIFICATION_OF_CHARGEBACK-notification_of_chargeback'
+                $ref: >-
+                  #/components/examples/post-NOTIFICATION_OF_CHARGEBACK-notification_of_chargeback
             schema:
               $ref: '#/components/schemas/NotificationRequest'
       responses:
@@ -467,24 +504,28 @@ webhooks:
   /NOTIFICATION_OF_FRAUD:
     post:
       tags:
-      - Dispute
+        - Dispute
       summary: Issuer sent fraud alert notification
-      description: The issuer sent a [fraud alert notification](https://docs.adyen.com/risk-management/understanding-disputes/dispute-process-and-flow#dispute-process)
-        to schemes and to processors. Visa calls them TC40 and Mastercard calls them
-        System to Avoid Fraud Effectively (SAFE). These are informational notifications
-        from Adyen, providing you the opportunity to take action, such as blocking
-        a shopper or issuing a refund before a chargeback happens.
+      description: >-
+        The issuer sent a [fraud alert
+        notification](https://docs.adyen.com/risk-management/understanding-disputes/dispute-process-and-flow#dispute-process)
+        to schemes and to processors. Visa calls them TC40 and Mastercard calls
+        them System to Avoid Fraud Effectively (SAFE). These are informational
+        notifications from Adyen, providing you the opportunity to take action,
+        such as blocking a shopper or issuing a refund before a chargeback
+        happens.
       operationId: post-NOTIFICATION_OF_FRAUD
       x-sortIndex: 0
       x-methodName: issuerSentFraudAlertNotification
       security:
-      - BasicAuth: []
+        - BasicAuth: []
       requestBody:
         content:
           application/json:
             examples:
               notification_of_fraud:
-                $ref: '#/components/examples/post-NOTIFICATION_OF_FRAUD-notification_of_fraud'
+                $ref: >-
+                  #/components/examples/post-NOTIFICATION_OF_FRAUD-notification_of_fraud
             schema:
               $ref: '#/components/schemas/NotificationRequest'
       responses:
@@ -500,15 +541,16 @@ webhooks:
   /OFFER_CLOSED:
     post:
       tags:
-      - Additional configuration
+        - Additional configuration
       summary: Offer expired
-      description: The offer expired, for example, because the shopper abandoned the
+      description: >-
+        The offer expired, for example, because the shopper abandoned the
         session. For cards, offers expire after 12 hours by default.
       operationId: post-OFFER_CLOSED
       x-sortIndex: 0
       x-methodName: offerExpired
       security:
-      - BasicAuth: []
+        - BasicAuth: []
       requestBody:
         content:
           application/json:
@@ -530,15 +572,17 @@ webhooks:
   /ORDER_CLOSED:
     post:
       tags:
-      - Standard
+        - Standard
       summary: Result of last partial payment for order
-      description: The result of the last [partial payment](https://docs.adyen.com/online-payments/partial-payments)
-        for the order.
+      description: >-
+        The result of the last [partial
+        payment](https://docs.adyen.com/online-payments/partial-payments) for
+        the order.
       operationId: post-ORDER_CLOSED
       x-sortIndex: 0
       x-methodName: resultOfLastPartialPaymentForOrder
       security:
-      - BasicAuth: []
+        - BasicAuth: []
       requestBody:
         content:
           application/json:
@@ -560,15 +604,17 @@ webhooks:
   /ORDER_OPENED:
     post:
       tags:
-      - Standard
+        - Standard
       summary: First partial payment request for order
-      description: The first [partial payment](https://docs.adyen.com/online-payments/partial-payments)
-        was made, and the order was created.
+      description: >-
+        The first [partial
+        payment](https://docs.adyen.com/online-payments/partial-payments) was
+        made, and the order was created.
       operationId: post-ORDER_OPENED
       x-sortIndex: 0
       x-methodName: firstPartialPaymentRequestForOrder
       security:
-      - BasicAuth: []
+        - BasicAuth: []
       requestBody:
         content:
           application/json:
@@ -590,16 +636,19 @@ webhooks:
   /PAIDOUT_REVERSED:
     post:
       tags:
-      - Payout
+        - Payout
       summary: Financial institution rejected payout
-      description: "The financial institution [rejected the payout](https://docs.adyen.com/online-payments/online-payouts/payout-notifications).\
-        \ We will return the funds back to your account. \nThe reason field contains\
-        \ the bank statement description if present."
+      description: >-
+        The financial institution [rejected the
+        payout](https://docs.adyen.com/online-payments/online-payouts/payout-notifications).
+        We will return the funds back to your account. 
+
+        The reason field contains the bank statement description if present.
       operationId: post-PAIDOUT_REVERSED
       x-sortIndex: 0
       x-methodName: financialInstitutionRejectedPayout
       security:
-      - BasicAuth: []
+        - BasicAuth: []
       requestBody:
         content:
           application/json:
@@ -621,14 +670,16 @@ webhooks:
   /PAYOUT_DECLINE:
     post:
       tags:
-      - Payout
+        - Payout
       summary: Payout declined
-      description: The [payout was declined](https://docs.adyen.com/online-payments/online-payouts/confirm-or-decline-payout).
+      description: >-
+        The [payout was
+        declined](https://docs.adyen.com/online-payments/online-payouts/confirm-or-decline-payout).
       operationId: post-PAYOUT_DECLINE
       x-sortIndex: 0
       x-methodName: payoutDeclined
       security:
-      - BasicAuth: []
+        - BasicAuth: []
       requestBody:
         content:
           application/json:
@@ -650,14 +701,16 @@ webhooks:
   /PAYOUT_EXPIRE:
     post:
       tags:
-      - Payout
+        - Payout
       summary: Payout expired
-      description: The [payout expired](https://docs.adyen.com/online-payments/online-payouts/payout-notifications).
+      description: >-
+        The [payout
+        expired](https://docs.adyen.com/online-payments/online-payouts/payout-notifications).
       operationId: post-PAYOUT_EXPIRE
       x-sortIndex: 0
       x-methodName: payoutExpired
       security:
-      - BasicAuth: []
+        - BasicAuth: []
       requestBody:
         content:
           application/json:
@@ -679,14 +732,16 @@ webhooks:
   /PAYOUT_THIRDPARTY:
     post:
       tags:
-      - Payout
+        - Payout
       summary: Result of payout request
-      description: The result of the [payout request](https://docs.adyen.com/online-payments/online-payouts).
+      description: >-
+        The result of the [payout
+        request](https://docs.adyen.com/online-payments/online-payouts).
       operationId: post-PAYOUT_THIRDPARTY
       x-sortIndex: 0
       x-methodName: resultOfPayoutRequest
       security:
-      - BasicAuth: []
+        - BasicAuth: []
       requestBody:
         content:
           application/json:
@@ -708,15 +763,18 @@ webhooks:
   /POSTPONED_REFUND:
     post:
       tags:
-      - Additional configuration
+        - Additional configuration
       summary: Refund postponed until after payment capture
-      description: The refund was postponed until after [payment capture](https://docs.adyen.com/online-payments/capture).
-        To enable this notification, contact our [Support Team](https://www.adyen.help/hc/en-us/requests/new).
+      description: >-
+        The refund was postponed until after [payment
+        capture](https://docs.adyen.com/online-payments/capture). To enable this
+        notification, contact our [Support
+        Team](https://www.adyen.help/hc/en-us/requests/new).
       operationId: post-POSTPONED_REFUND
       x-sortIndex: 0
       x-methodName: refundPostponedUntilAfterPaymentCapture
       security:
-      - BasicAuth: []
+        - BasicAuth: []
       requestBody:
         content:
           application/json:
@@ -738,21 +796,24 @@ webhooks:
   /PREARBITRATION_LOST:
     post:
       tags:
-      - Dispute
+        - Dispute
       summary: Cardholder's bank declined pre-arbitration case
-      description: The cardholder's bank declined the [pre-arbitration](https://docs.adyen.com/risk-management/understanding-disputes/dispute-process-and-flow#dispute-process)
+      description: >-
+        The cardholder's bank declined the
+        [pre-arbitration](https://docs.adyen.com/risk-management/understanding-disputes/dispute-process-and-flow#dispute-process)
         case.
       operationId: post-PREARBITRATION_LOST
       x-sortIndex: 0
       x-methodName: cardholdersBankDeclinedPrearbitrationCase
       security:
-      - BasicAuth: []
+        - BasicAuth: []
       requestBody:
         content:
           application/json:
             examples:
               prearbitration_lost:
-                $ref: '#/components/examples/post-PREARBITRATION_LOST-prearbitration_lost'
+                $ref: >-
+                  #/components/examples/post-PREARBITRATION_LOST-prearbitration_lost
             schema:
               $ref: '#/components/schemas/NotificationRequest'
       responses:
@@ -768,21 +829,24 @@ webhooks:
   /PREARBITRATION_WON:
     post:
       tags:
-      - Dispute
+        - Dispute
       summary: Cardholder's bank accepted pre-arbitration case
-      description: The cardholder's bank accepted the [pre-arbitration](https://docs.adyen.com/risk-management/understanding-disputes/dispute-process-and-flow#dispute-process)
+      description: >-
+        The cardholder's bank accepted the
+        [pre-arbitration](https://docs.adyen.com/risk-management/understanding-disputes/dispute-process-and-flow#dispute-process)
         case.
       operationId: post-PREARBITRATION_WON
       x-sortIndex: 0
       x-methodName: cardholdersBankAcceptedPrearbitrationCase
       security:
-      - BasicAuth: []
+        - BasicAuth: []
       requestBody:
         content:
           application/json:
             examples:
               prearbitration_won:
-                $ref: '#/components/examples/post-PREARBITRATION_WON-prearbitration_won'
+                $ref: >-
+                  #/components/examples/post-PREARBITRATION_WON-prearbitration_won
             schema:
               $ref: '#/components/schemas/NotificationRequest'
       responses:
@@ -798,21 +862,24 @@ webhooks:
   /RECURRING_CONTRACT:
     post:
       tags:
-      - Additional configuration
+        - Additional configuration
       summary: Recurring contract created
-      description: A recurring contract has been created. [Enable this webhook](https://docs.adyen.com/development-resources/webhooks/webhook-types#non-default-event-codes)
+      description: >-
+        A recurring contract has been created. [Enable this
+        webhook](https://docs.adyen.com/development-resources/webhooks/webhook-types#non-default-event-codes)
         in your Customer Area.
       operationId: post-RECURRING_CONTRACT
       x-sortIndex: 0
       x-methodName: recurringContractCreated
       security:
-      - BasicAuth: []
+        - BasicAuth: []
       requestBody:
         content:
           application/json:
             examples:
               recurring_contract:
-                $ref: '#/components/examples/post-RECURRING_CONTRACT-recurring_contract'
+                $ref: >-
+                  #/components/examples/post-RECURRING_CONTRACT-recurring_contract
             schema:
               $ref: '#/components/schemas/RecurringContractNotificationRequest'
       responses:
@@ -828,14 +895,16 @@ webhooks:
   /REFUND:
     post:
       tags:
-      - Standard
+        - Standard
       summary: Result of refund request
-      description: The result of the request to [refund a payment](https://docs.adyen.com/online-payments/refund).
+      description: >-
+        The result of the request to [refund a
+        payment](https://docs.adyen.com/online-payments/refund).
       operationId: post-REFUND
       x-sortIndex: 0
       x-methodName: resultOfRefundRequest
       security:
-      - BasicAuth: []
+        - BasicAuth: []
       requestBody:
         content:
           application/json:
@@ -857,15 +926,17 @@ webhooks:
   /REFUNDED_REVERSED:
     post:
       tags:
-      - Standard
+        - Standard
       summary: Refunded amount reversed
-      description: The refunded amount was [reversed](https://docs.adyen.com/online-payments/refund#refunded-reversed)
+      description: >-
+        The refunded amount was
+        [reversed](https://docs.adyen.com/online-payments/refund#refunded-reversed)
         and returned to your bank account.
       operationId: post-REFUNDED_REVERSED
       x-sortIndex: 0
       x-methodName: refundedAmountReversed
       security:
-      - BasicAuth: []
+        - BasicAuth: []
       requestBody:
         content:
           application/json:
@@ -887,14 +958,16 @@ webhooks:
   /REFUND_FAILED:
     post:
       tags:
-      - Standard
+        - Standard
       summary: Refund failed due to scheme rejection
-      description: The refund [failed due to rejection by the card scheme](https://docs.adyen.com/online-payments/refund#refund-failed).
+      description: >-
+        The refund [failed due to rejection by the card
+        scheme](https://docs.adyen.com/online-payments/refund#refund-failed).
       operationId: post-REFUND_FAILED
       x-sortIndex: 0
       x-methodName: refundFailedDueToSchemeRejection
       security:
-      - BasicAuth: []
+        - BasicAuth: []
       requestBody:
         content:
           application/json:
@@ -916,14 +989,16 @@ webhooks:
   /REFUND_WITH_DATA:
     post:
       tags:
-      - Standard
+        - Standard
       summary: Result of refund request with data
-      description: The result of the request to [refund with data](https://docs.adyen.com/online-payments/classic-integrations/modify-payments/refund#unreferenced-refund).
+      description: >-
+        The result of the request to [refund with
+        data](https://docs.adyen.com/online-payments/classic-integrations/modify-payments/refund#unreferenced-refund).
       operationId: post-REFUND_WITH_DATA
       x-sortIndex: 0
       x-methodName: resultOfRefundRequestWithData
       security:
-      - BasicAuth: []
+        - BasicAuth: []
       requestBody:
         content:
           application/json:
@@ -945,14 +1020,14 @@ webhooks:
   /REPORT_AVAILABLE:
     post:
       tags:
-      - Standard
+        - Standard
       summary: Report available
       description: The report is generated and ready to be downloaded.
       operationId: post-REPORT_AVAILABLE
       x-sortIndex: 0
       x-methodName: reportAvailable
       security:
-      - BasicAuth: []
+        - BasicAuth: []
       requestBody:
         content:
           application/json:
@@ -974,22 +1049,26 @@ webhooks:
   /REQUEST_FOR_INFORMATION:
     post:
       tags:
-      - Dispute
+        - Dispute
       summary: Issuer opened Request for Information (RFI)
-      description: The issuer opened a [Request for Information (RFI)](https://docs.adyen.com/risk-management/understanding-disputes/dispute-process-and-flow#dispute-process).
-        You should [supply defense documents](https://docs.adyen.com/risk-management/disputes-api#supply-dispute-defense-documents)
+      description: >-
+        The issuer opened a [Request for Information
+        (RFI)](https://docs.adyen.com/risk-management/understanding-disputes/dispute-process-and-flow#dispute-process).
+        You should [supply defense
+        documents](https://docs.adyen.com/risk-management/disputes-api#supply-dispute-defense-documents)
         to help shopper understand the charge.
       operationId: post-REQUEST_FOR_INFORMATION
       x-sortIndex: 0
       x-methodName: issuerOpenedRequestForInformationrfi
       security:
-      - BasicAuth: []
+        - BasicAuth: []
       requestBody:
         content:
           application/json:
             examples:
               request_for_information:
-                $ref: '#/components/examples/post-REQUEST_FOR_INFORMATION-request_for_information'
+                $ref: >-
+                  #/components/examples/post-REQUEST_FOR_INFORMATION-request_for_information
             schema:
               $ref: '#/components/schemas/NotificationRequest'
       responses:
@@ -1005,16 +1084,18 @@ webhooks:
   /SECOND_CHARGEBACK:
     post:
       tags:
-      - Dispute
+        - Dispute
       summary: Issuing bank declined chargeback defense
-      description: The issuing bank declined the material submitted during [defense
-        of the original chargeback](https://docs.adyen.com/risk-management/understanding-disputes/defense-requirements).
+      description: >-
+        The issuing bank declined the material submitted during [defense of the
+        original
+        chargeback](https://docs.adyen.com/risk-management/understanding-disputes/defense-requirements).
         The disputed amount is deducted from your account.
       operationId: post-SECOND_CHARGEBACK
       x-sortIndex: 0
       x-methodName: issuingBankDeclinedChargebackDefense
       security:
-      - BasicAuth: []
+        - BasicAuth: []
       requestBody:
         content:
           application/json:
@@ -1036,15 +1117,17 @@ webhooks:
   /TECHNICAL_CANCEL:
     post:
       tags:
-      - Standard
+        - Standard
       summary: Result of technical cancel request
-      description: The result of the [technical cancel](https://docs.adyen.com/online-payments/cancel#technical-cancel-webhook)
+      description: >-
+        The result of the [technical
+        cancel](https://docs.adyen.com/online-payments/cancel#technical-cancel-webhook)
         request.
       operationId: post-TECHNICAL_CANCEL
       x-sortIndex: 0
       x-methodName: resultOfTechnicalCancelRequest
       security:
-      - BasicAuth: []
+        - BasicAuth: []
       requestBody:
         content:
           application/json:
@@ -1066,20 +1149,23 @@ webhooks:
   /VOID_PENDING_REFUND:
     post:
       tags:
-      - Standard
+        - Standard
       summary: Result of request to cancel POS refund
-      description: The result of the request to [cancel a POS refund](https://docs.adyen.com/point-of-sale/refund-payment/cancel-a-pos-refund-request).
+      description: >-
+        The result of the request to [cancel a POS
+        refund](https://docs.adyen.com/point-of-sale/refund-payment/cancel-a-pos-refund-request).
       operationId: post-VOID_PENDING_REFUND
       x-sortIndex: 0
       x-methodName: resultOfRequestToCancelPosRefund
       security:
-      - BasicAuth: []
+        - BasicAuth: []
       requestBody:
         content:
           application/json:
             examples:
               void_pending_refund:
-                $ref: '#/components/examples/post-VOID_PENDING_REFUND-void_pending_refund'
+                $ref: >-
+                  #/components/examples/post-VOID_PENDING_REFUND-void_pending_refund
             schema:
               $ref: '#/components/schemas/NotificationRequest'
       responses:
@@ -1104,10 +1190,10 @@ components:
           description: Contains details of the update.
           $ref: '#/components/schemas/AchNotificationOfChangeNotificationRequestData'
         environment:
-          description: 'The environment from which the webhook originated.
+          description: |-
+            The environment from which the webhook originated.
 
-
-            Possible values: **test**, **live**.'
+            Possible values: **test**, **live**.
           type: string
         type:
           description: Type of notification.
@@ -1116,14 +1202,15 @@ components:
           description: The version of this webhook type.
           type: string
       required:
-      - type
-      - createdAt
+        - type
+        - createdAt
       type: object
     AchNotificationOfChangeNotificationRequestData:
       properties:
         notificationOfChange:
           description: The Notification of Change information.
-          $ref: '#/components/schemas/AchNotificationOfChangeNotificationRequestDataNoc'
+          $ref: >-
+            #/components/schemas/AchNotificationOfChangeNotificationRequestDataNoc
         pspReference:
           description: PSP Reference.
           type: string
@@ -1131,9 +1218,9 @@ components:
           description: Shopper reference.
           type: string
       required:
-      - pspReference
-      - shopperReference
-      - notificationOfChange
+        - pspReference
+        - shopperReference
+        - notificationOfChange
       type: object
     AchNotificationOfChangeNotificationRequestDataNoc:
       properties:
@@ -1141,26 +1228,23 @@ components:
           description: New bank account number.
           type: string
         newBankAccountType:
-          description: 'New bank account type.
-
+          description: |+
+            New bank account type.
 
             Possible values:
-
             *  **Savings**
-
             *  **Checking**
 
-
-            '
           enum:
-          - Checking
-          - Savings
+            - Checking
+            - Savings
           type: string
         newBranchCode:
           description: New branch code.
           type: string
         reasonCode:
-          description: 'Notification of Change reason code.
+          description: >+
+            Notification of Change reason code.
 
 
             Possible values:
@@ -1169,7 +1253,8 @@ components:
 
             *  **C02** : Incorrect transit/routing number.
 
-            *  **C03** : Incorrect transit/routing number and bank account number.
+            *  **C03** : Incorrect transit/routing number and bank account
+            number.
 
             *  **C04** : Bank account name change.
 
@@ -1177,8 +1262,8 @@ components:
 
             *  **C06** : Incorrect bank account number and transit code.
 
-            *  **C07** : Incorrect transit/routing number, bank account number and
-            payment code.
+            *  **C07** : Incorrect transit/routing number, bank account number
+            and payment code.
 
             *  **C09** : Incorrect individual ID number.
 
@@ -1188,38 +1273,40 @@ components:
 
             *  **C12** : Incorrect company name and company ID.
 
-
-            '
           enum:
-          - C01
-          - C02
-          - C03
-          - C04
-          - C05
-          - C06
-          - C07
-          - C09
-          - C10
-          - C11
-          - C12
+            - C01
+            - C02
+            - C03
+            - C04
+            - C05
+            - C06
+            - C07
+            - C09
+            - C10
+            - C11
+            - C12
           type: string
       required:
-      - reasonCode
+        - reasonCode
       type: object
     Amount:
       properties:
         currency:
-          description: The three-character [ISO currency code](https://docs.adyen.com/development-resources/currency-codes).
+          description: >-
+            The three-character [ISO currency
+            code](https://docs.adyen.com/development-resources/currency-codes).
           maxLength: 3
           minLength: 3
           type: string
         value:
-          description: The amount of the transaction, in [minor units](https://docs.adyen.com/development-resources/currency-codes).
+          description: >-
+            The amount of the transaction, in [minor
+            units](https://docs.adyen.com/development-resources/currency-codes).
           format: int64
           type: integer
       required:
-      - value
-      - currency
+        - value
+        - currency
       type: object
     AuthorisationNotificationAdditionalData:
       properties:
@@ -1401,7 +1488,9 @@ components:
           description: Expiry date of the card.
           type: string
         extraCostsCurrency:
-          description: Additional cost used in [BIN or card verification](https://docs.adyen.com/payment-methods/cards/bin-data-and-card-verification).
+          description: >-
+            Additional cost used in [BIN or card
+            verification](https://docs.adyen.com/payment-methods/cards/bin-data-and-card-verification).
           type: string
         extraCostsValue:
           description: Related additional cost value.
@@ -1458,13 +1547,15 @@ components:
           description: International Bank Account Number.
           type: string
         installments.value:
-          description: 'The number of installments that the payment amount should
-            be charged with.
+          description: >-
+            The number of installments that the payment amount should be charged
+            with.
 
 
             Example: 5
 
-            > Only relevant for card payments in countries that support installments.'
+            > Only relevant for card payments in countries that support
+            installments.
           type: string
         interactionCounter:
           description: 3DS interaction counter.
@@ -1490,8 +1581,9 @@ components:
         metadata:
           additionalProperties:
             type: string
-          description: 'A set of key-value pairs provided in the request, prefixed
-            with ''metadata.''. For example, ''metadata.myField: myValue'''
+          description: >-
+            A set of key-value pairs provided in the request, prefixed with
+            'metadata.'. For example, 'metadata.myField: myValue'
           type: object
         networkToken.available:
           description: Recurring related.
@@ -1536,10 +1628,10 @@ components:
           description: Related to PayPal.
           type: string
         paypalEmail:
-          description: 'The buyer''s PayPal account email address.
+          description: |-
+            The buyer's PayPal account email address.
 
-
-            Example: paypaltest@adyen.com'
+            Example: paypaltest@adyen.com
           type: string
         paypalErrorCode:
           description: Related to PayPal.
@@ -1551,31 +1643,31 @@ components:
           description: Related to PayPal.
           type: string
         paypalPayerId:
-          description: 'The buyer''s PayPal ID.
+          description: |-
+            The buyer's PayPal ID.
 
-
-            Example: LF5HCWWBRV2KL'
+            Example: LF5HCWWBRV2KL
           type: string
         paypalPayerResidenceCountry:
-          description: 'The buyer''s country of residence.
+          description: |-
+            The buyer's country of residence.
 
-
-            Example: NL'
+            Example: NL
           type: string
         paypalPayerStatus:
-          description: 'The status of the buyer''s PayPal account.
+          description: |-
+            The status of the buyer's PayPal account.
 
-
-            Example: unverified'
+            Example: unverified
           type: string
         paypalPhone:
           description: Related to PayPal.
           type: string
         paypalProtectionEligibility:
-          description: 'The eligibility for PayPal Seller Protection for this payment.
+          description: |-
+            The eligibility for PayPal Seller Protection for this payment.
 
-
-            Example: Ineligible'
+            Example: Ineligible
           type: string
         paypalRisk:
           description: Related to PayPal.
@@ -1590,24 +1682,27 @@ components:
           description: Recurring first PSP reference.
           type: string
         recurring.recurringDetailReference:
-          description: The [token for stored payment details](https://docs.adyen.com/online-payments/tokenization/create-and-use-tokens/)
+          description: >-
+            The [token for stored payment
+            details](https://docs.adyen.com/online-payments/tokenization/create-and-use-tokens/)
             to make recurring payments.
           type: string
         referred:
-          description: 'If the payment is referred, this field is set to true.
+          description: >-
+            If the payment is referred, this field is set to true.
 
 
-            This field is unavailable if the payment is referred and is usually not
-            returned with ecommerce transactions.
+            This field is unavailable if the payment is referred and is usually
+            not returned with ecommerce transactions.
 
 
-            Example: true'
+            Example: true
           type: string
         refusalReasonRaw:
-          description: 'Raw refusal reason received from the acquirer, where available.
+          description: |-
+            Raw refusal reason received from the acquirer, where available.
 
-
-            Example: AUTHORISED'
+            Example: AUTHORISED
           type: string
         retry.rescueScheduled:
           description: Indicates if an auto rescue for a pyment is scheduled.
@@ -1619,30 +1714,33 @@ components:
           description: Related to Risk.
           type: string
         sepadirectdebit.dateOfSignature:
-          description: 'The transaction signature date.
+          description: |-
+            The transaction signature date.
 
-
-            Format: yyyy-MM-dd'
+            Format: yyyy-MM-dd
           type: string
         sepadirectdebit.mandateId:
           description: Its value corresponds to the pspReference value of the transaction.
           type: string
         sepadirectdebit.sequenceType:
-          description: 'This field can take one of the following values:
+          description: >-
+            This field can take one of the following values:
 
-            * OneOff: (OOFF) Direct debit instruction to initiate exactly one direct
-            debit transaction.
-
-
-            * First: (FRST) Initial/first collection in a series of direct debit instructions.
-
-            * Recurring: (RCUR) Direct debit instruction to carry out regular direct
-            debit transactions initiated by the creditor.
-
-            * Final: (FNAL) Last/final collection in a series of direct debit instructions.
+            * OneOff: (OOFF) Direct debit instruction to initiate exactly one
+            direct debit transaction.
 
 
-            Example: OOFF'
+            * First: (FRST) Initial/first collection in a series of direct debit
+            instructions.
+
+            * Recurring: (RCUR) Direct debit instruction to carry out regular
+            direct debit transactions initiated by the creditor.
+
+            * Final: (FNAL) Last/final collection in a series of direct debit
+            instructions.
+
+
+            Example: OOFF
           type: string
         shopperCountry:
           description: Country of the shopper.
@@ -1654,10 +1752,10 @@ components:
           description: IP of the shopper.
           type: string
         shopperInteraction:
-          description: 'The shopper interaction type of the payment request.
+          description: |-
+            The shopper interaction type of the payment request.
 
-
-            Example: Ecommerce'
+            Example: Ecommerce
           type: string
         shopperLocale:
           description: The locale of the shopper.
@@ -1681,31 +1779,32 @@ components:
           description: Terminal ID. For point-of-sale integrations only.
           type: string
         threeDAuthenticated:
-          description: 'A Boolean value indicating whether 3DS authentication was
-            completed on this payment.
+          description: >-
+            A Boolean value indicating whether 3DS authentication was completed
+            on this payment.
 
 
-            Example: true'
+            Example: true
           type: string
         threeDAuthenticatedResponse:
-          description: 'The raw 3DS authentication result from the card issuer.
+          description: |-
+            The raw 3DS authentication result from the card issuer.
 
-
-            Example: N'
+            Example: N
           type: string
         threeDOffered:
-          description: 'A Boolean value indicating whether 3DS was offered for this
-            payment.
+          description: |-
+            A Boolean value indicating whether 3DS was offered for this payment.
 
-
-            Example: true'
+            Example: true
           type: string
         threeDOfferedResponse:
-          description: 'The raw enrollment result from the 3DS directory services
-            of the card schemes.
+          description: >-
+            The raw enrollment result from the 3DS directory services of the
+            card schemes.
 
 
-            Example: Y'
+            Example: Y
           type: string
         threeDSVersion:
           description: The 3D Secure 2 version.
@@ -1720,21 +1819,23 @@ components:
           description: Card summary without tokenization.
           type: string
         xid:
-          description: 'The 3DS transaction ID of the 3DS session sent in notifications.
-            The value is Base64-encoded and is returned for transactions with directoryResponse
-            ''N'' or ''Y''. If you want to submit the xid in your 3D Secure 1 request,
-            use the `mpiData.xid`, field.
+          description: >-
+            The 3DS transaction ID of the 3DS session sent in notifications. The
+            value is Base64-encoded and is returned for transactions with
+            directoryResponse 'N' or 'Y'. If you want to submit the xid in your
+            3D Secure 1 request, use the `mpiData.xid`, field.
 
 
-            Example: ODgxNDc2MDg2MDExODk5MAAAAAA='
+            Example: ODgxNDc2MDg2MDExODk5MAAAAAA=
           type: string
       type: object
     AuthorisationNotificationRequest:
       properties:
         live:
-          description: Informs about the origin of the notification. The value is
-            **true** when originating from the live environment, **false** for the
-            test environment.
+          description: >-
+            Informs about the origin of the notification. The value is **true**
+            when originating from the live environment, **false** for the test
+            environment.
           type: string
         notificationItems:
           description: A container object for the details included in the notification.
@@ -1748,38 +1849,43 @@ components:
           description: This object is a generic container that can hold extra fields.
           $ref: '#/components/schemas/AuthorisationNotificationAdditionalData'
         amount:
-          description: The payment amount. For HTTP POST notifications, currency and
-            value are returned as URL parameters.
+          description: >-
+            The payment amount. For HTTP POST notifications, currency and value
+            are returned as URL parameters.
           $ref: '#/components/schemas/Amount'
         eventCode:
           description: The type of event the notification item is for.
           enum:
-          - AUTHORISATION
+            - AUTHORISATION
           type: string
         eventDate:
-          description: 'The time when the event was generated. Format: ISO 8601; yyyy-MM-DDThh:mm:ssTZD'
+          description: >-
+            The time when the event was generated. Format: ISO 8601;
+            yyyy-MM-DDThh:mm:ssTZD
           example: '2021-07-17T13:42:40+01:00'
           format: date-time
           type: string
         merchantAccountCode:
-          description: The merchant account identifier used in the transaction the
+          description: >-
+            The merchant account identifier used in the transaction the
             notification item is for.
           type: string
         merchantReference:
           description: Your reference to uniquely identify the payment.
           type: string
         operations:
-          description: 'The operations indicate the supported follow-up actions concerning
+          description: >-
+            The operations indicate the supported follow-up actions concerning
             the payment.
 
-            > This is an **experimental field**. Do not base your code on this field.
-            Not all specific cases are covered yet. It''s possible that the field
-            is empty or contains generic information.'
+            > This is an **experimental field**. Do not base your code on this
+            field. Not all specific cases are covered yet. It's possible that
+            the field is empty or contains generic information.
           items:
             enum:
-            - CAPTURE
-            - CANCEL
-            - REFUND
+              - CAPTURE
+              - CANCEL
+              - REFUND
             type: string
           type: array
         paymentMethod:
@@ -1787,30 +1893,34 @@ components:
           example: visa, mc, iDeal
           type: string
         pspReference:
-          description: Adyen's 16-character unique reference associated with the transaction
-            or request. This value is globally unique. Use it when communicating with
-            us about this request.
+          description: >-
+            Adyen's 16-character unique reference associated with the
+            transaction or request. This value is globally unique. Use it when
+            communicating with us about this request.
           type: string
         reason:
-          description: "If `success` = `true` and `paymentMethod` = `visa`, `mc`,\
-            \ or `amex` then this field contains the following details: \nAuthorisation\
-            \ code, last 4 digits of the card, card expiry date. \n In case of failure,\
-            \ this contains information about the authorisation failure"
+          description: >-
+            If `success` = `true` and `paymentMethod` = `visa`, `mc`, or `amex`
+            then this field contains the following details: 
+
+            Authorisation code, last 4 digits of the card, card expiry date. 
+             In case of failure, this contains information about the authorisation failure
           example: 874574:1935:11/2012
           type: string
         success:
-          description: "If `true`: The payment request was successful. \n If `false`:\
-            \ The payment request failed. \n Check the `reason` field for failure\
-            \ information."
+          description: |-
+            If `true`: The payment request was successful. 
+             If `false`: The payment request failed. 
+             Check the `reason` field for failure information.
           type: string
       required:
-      - pspReference
-      - merchantReference
-      - merchantAccountCode
-      - eventDate
-      - amount
-      - eventCode
-      - success
+        - pspReference
+        - merchantReference
+        - merchantAccountCode
+        - eventDate
+        - amount
+        - eventCode
+        - success
       type: object
     AuthorisationNotificationRequestItemWrapper:
       properties:
@@ -1819,9 +1929,10 @@ components:
     ExpireNotificationRequest:
       properties:
         live:
-          description: Informs about the origin of the notification. The value is
-            **true** when originating from the live environment, **false** for the
-            test environment.
+          description: >-
+            Informs about the origin of the notification. The value is **true**
+            when originating from the live environment, **false** for the test
+            environment.
           type: string
         notificationItems:
           description: A container object for the details included in the notification.
@@ -1840,22 +1951,26 @@ components:
         eventCode:
           description: The type of event the notification item is for.
           enum:
-          - EXPIRE
+            - EXPIRE
           type: string
         eventDate:
-          description: 'The time when the event was generated. Format: ISO 8601; yyyy-MM-DDThh:mm:ssTZD'
+          description: >-
+            The time when the event was generated. Format: ISO 8601;
+            yyyy-MM-DDThh:mm:ssTZD
           example: '2021-07-17T13:42:40+01:00'
           format: date-time
           type: string
         merchantAccountCode:
-          description: The merchant account identifier used in the transaction the
+          description: >-
+            The merchant account identifier used in the transaction the
             notification item is for.
           type: string
         merchantReference:
           description: Your reference to uniquely identify the payment.
           type: string
         originalReference:
-          description: For modifications, this field corresponds to the payment request
+          description: >-
+            For modifications, this field corresponds to the payment request
             assigned to the original payment.
           type: string
         paymentMethod:
@@ -1863,25 +1978,27 @@ components:
           example: visa, mc, iDeal
           type: string
         pspReference:
-          description: Adyen's 16-character unique reference associated with the transaction
-            or request. This value is globally unique. Use it when communicating with
-            us about this request.
+          description: >-
+            Adyen's 16-character unique reference associated with the
+            transaction or request. This value is globally unique. Use it when
+            communicating with us about this request.
           type: string
         reason:
-          description: If `success` = `false`, then this includes a short message
-            with an explanation for the refusal.
+          description: >-
+            If `success` = `false`, then this includes a short message with an
+            explanation for the refusal.
           type: string
         success:
           description: Always `true`.
           type: string
       required:
-      - pspReference
-      - merchantReference
-      - merchantAccountCode
-      - eventDate
-      - eventCode
-      - amount
-      - success
+        - pspReference
+        - merchantReference
+        - merchantAccountCode
+        - eventDate
+        - eventCode
+        - amount
+        - success
       type: object
     ExpireNotificationRequestItemWrapper:
       properties:
@@ -2067,7 +2184,9 @@ components:
           description: Expiry date of the card.
           type: string
         extraCostsCurrency:
-          description: Additional cost used in [BIN or card verification](https://docs.adyen.com/payment-methods/cards/bin-data-and-card-verification).
+          description: >-
+            Additional cost used in [BIN or card
+            verification](https://docs.adyen.com/payment-methods/cards/bin-data-and-card-verification).
           type: string
         extraCostsValue:
           description: Related additional cost value.
@@ -2103,13 +2222,15 @@ components:
           description: International Bank Account Number.
           type: string
         installments.value:
-          description: 'The number of installments that the payment amount should
-            be charged with.
+          description: >-
+            The number of installments that the payment amount should be charged
+            with.
 
 
             Example: 5
 
-            > Only relevant for card payments in countries that support installments.'
+            > Only relevant for card payments in countries that support
+            installments.
           type: string
         interactionCounter:
           description: 3DS interaction counter.
@@ -2135,8 +2256,9 @@ components:
         metadata:
           additionalProperties:
             type: string
-          description: 'A set of key-value pairs provided in the request, prefixed
-            with ''metadata.''. For example, ''metadata.myField: myValue'''
+          description: >-
+            A set of key-value pairs provided in the request, prefixed with
+            'metadata.'. For example, 'metadata.myField: myValue'
           type: object
         networkToken.available:
           description: Recurring related.
@@ -2184,24 +2306,27 @@ components:
           description: Recurring first PSP reference.
           type: string
         recurring.recurringDetailReference:
-          description: The [token for stored payment details](https://docs.adyen.com/online-payments/tokenization/create-and-use-tokens/)
+          description: >-
+            The [token for stored payment
+            details](https://docs.adyen.com/online-payments/tokenization/create-and-use-tokens/)
             to make recurring payments.
           type: string
         referred:
-          description: 'If the payment is referred, this field is set to true.
+          description: >-
+            If the payment is referred, this field is set to true.
 
 
-            This field is unavailable if the payment is referred and is usually not
-            returned with ecommerce transactions.
+            This field is unavailable if the payment is referred and is usually
+            not returned with ecommerce transactions.
 
 
-            Example: true'
+            Example: true
           type: string
         refusalReasonRaw:
-          description: 'Raw refusal reason received from the acquirer, where available.
+          description: |-
+            Raw refusal reason received from the acquirer, where available.
 
-
-            Example: AUTHORISED'
+            Example: AUTHORISED
           type: string
         retry.rescueScheduled:
           description: Indicates if an auto rescue for a pyment is scheduled.
@@ -2222,10 +2347,10 @@ components:
           description: IP of the shopper.
           type: string
         shopperInteraction:
-          description: 'The shopper interaction type of the payment request.
+          description: |-
+            The shopper interaction type of the payment request.
 
-
-            Example: Ecommerce'
+            Example: Ecommerce
           type: string
         shopperLocale:
           description: The locale of the shopper.
@@ -2249,31 +2374,32 @@ components:
           description: Terminal ID. For point-of-sale integrations only.
           type: string
         threeDAuthenticated:
-          description: 'A Boolean value indicating whether 3DS authentication was
-            completed on this payment.
+          description: >-
+            A Boolean value indicating whether 3DS authentication was completed
+            on this payment.
 
 
-            Example: true'
+            Example: true
           type: string
         threeDAuthenticatedResponse:
-          description: 'The raw 3DS authentication result from the card issuer.
+          description: |-
+            The raw 3DS authentication result from the card issuer.
 
-
-            Example: N'
+            Example: N
           type: string
         threeDOffered:
-          description: 'A Boolean value indicating whether 3DS was offered for this
-            payment.
+          description: |-
+            A Boolean value indicating whether 3DS was offered for this payment.
 
-
-            Example: true'
+            Example: true
           type: string
         threeDOfferedResponse:
-          description: 'The raw enrollment result from the 3DS directory services
-            of the card schemes.
+          description: >-
+            The raw enrollment result from the 3DS directory services of the
+            card schemes.
 
 
-            Example: Y'
+            Example: Y
           type: string
         threeDSVersion:
           description: The 3D Secure 2 version.
@@ -2288,21 +2414,23 @@ components:
           description: Card summary without tokenization.
           type: string
         xid:
-          description: 'The 3DS transaction ID of the 3DS session sent in notifications.
-            The value is Base64-encoded and is returned for transactions with directoryResponse
-            ''N'' or ''Y''. If you want to submit the xid in your 3D Secure 1 request,
-            use the `mpiData.xid`, field.
+          description: >-
+            The 3DS transaction ID of the 3DS session sent in notifications. The
+            value is Base64-encoded and is returned for transactions with
+            directoryResponse 'N' or 'Y'. If you want to submit the xid in your
+            3D Secure 1 request, use the `mpiData.xid`, field.
 
 
-            Example: ODgxNDc2MDg2MDExODk5MAAAAAA='
+            Example: ODgxNDc2MDg2MDExODk5MAAAAAA=
           type: string
       type: object
     NotificationRequest:
       properties:
         live:
-          description: Informs about the origin of the notification. The value is
-            **true** when originating from the live environment, **false** for the
-            test environment.
+          description: >-
+            Informs about the origin of the notification. The value is **true**
+            when originating from the live environment, **false** for the test
+            environment.
           type: string
         notificationItems:
           description: A container object for the details included in the notification.
@@ -2316,57 +2444,62 @@ components:
           description: A generic container for extra fields.
           $ref: '#/components/schemas/NotificationAdditionalData'
         amount:
-          description: The payment amount. For HTTP POST notifications, currency and
-            value are returned as URL parameters.
+          description: >-
+            The payment amount. For HTTP POST notifications, currency and value
+            are returned as URL parameters.
           $ref: '#/components/schemas/Amount'
         eventCode:
           description: The type of event the notification item is for.
           enum:
-          - AUTHORISATION_ADJUSTMENT
-          - AUTORESCUE
-          - CANCELLATION
-          - CANCEL_AUTORESCUE
-          - CANCEL_OR_REFUND
-          - CAPTURE
-          - CAPTURE_FAILED
-          - CHARGEBACK
-          - CHARGEBACK_REVERSED
-          - MANUAL_REVIEW_ACCEPT
-          - MANUAL_REVIEW_REJECT
-          - NOTIFICATION_OF_CHARGEBACK
-          - NOTIFICATION_OF_FRAUD
-          - OFFER_CLOSED
-          - ORDER_CLOSED
-          - ORDER_OPENED
-          - PAYOUT_DECLINE
-          - PAYOUT_EXPIRE
-          - PAYOUT_THIRDPARTY
-          - POSTPONED_REFUND
-          - PREARBITRATION_LOST
-          - PREARBITRATION_WON
-          - REFUND
-          - REFUNDED_REVERSED
-          - REFUND_FAILED
-          - REFUND_WITH_DATA
-          - REQUEST_FOR_INFORMATION
-          - SECOND_CHARGEBACK
-          - TECHNICAL_CANCEL
-          - VOID_PENDING_REFUND
+            - AUTHORISATION_ADJUSTMENT
+            - AUTORESCUE
+            - CANCELLATION
+            - CANCEL_AUTORESCUE
+            - CANCEL_OR_REFUND
+            - CAPTURE
+            - CAPTURE_FAILED
+            - CHARGEBACK
+            - CHARGEBACK_REVERSED
+            - MANUAL_REVIEW_ACCEPT
+            - MANUAL_REVIEW_REJECT
+            - NOTIFICATION_OF_CHARGEBACK
+            - NOTIFICATION_OF_FRAUD
+            - OFFER_CLOSED
+            - ORDER_CLOSED
+            - ORDER_OPENED
+            - PAYOUT_DECLINE
+            - PAYOUT_EXPIRE
+            - PAYOUT_THIRDPARTY
+            - POSTPONED_REFUND
+            - PREARBITRATION_LOST
+            - PREARBITRATION_WON
+            - REFUND
+            - REFUNDED_REVERSED
+            - REFUND_FAILED
+            - REFUND_WITH_DATA
+            - REQUEST_FOR_INFORMATION
+            - SECOND_CHARGEBACK
+            - TECHNICAL_CANCEL
+            - VOID_PENDING_REFUND
           type: string
         eventDate:
-          description: 'The time when the event was generated. Format: ISO 8601; yyyy-MM-DDThh:mm:ssTZD'
+          description: >-
+            The time when the event was generated. Format: ISO 8601;
+            yyyy-MM-DDThh:mm:ssTZD
           example: '2021-07-17T13:42:40+01:00'
           format: date-time
           type: string
         merchantAccountCode:
-          description: The merchant account identifier used in the transaction the
+          description: >-
+            The merchant account identifier used in the transaction the
             notification item is for.
           type: string
         merchantReference:
           description: Your reference to uniquely identify the payment.
           type: string
         originalReference:
-          description: For modifications, this field corresponds to the payment request
+          description: >-
+            For modifications, this field corresponds to the payment request
             assigned to the original payment.
           type: string
         paymentMethod:
@@ -2374,27 +2507,33 @@ components:
           example: visa, mc, iDeal
           type: string
         pspReference:
-          description: Adyen's 16-character unique reference associated with the transaction
-            or request. This value is globally unique. Use it when communicating with
-            us about this request.
+          description: >-
+            Adyen's 16-character unique reference associated with the
+            transaction or request. This value is globally unique. Use it when
+            communicating with us about this request.
           type: string
         reason:
-          description: If `success` = `false`, then this includes a short message
-            with an explanation for the refusal.
+          description: >-
+            If `success` = `false`, then this includes a short message with an
+            explanation for the refusal.
           type: string
         success:
-          description: "Informs about the outcome of the event (`eventCode`) the notification\
-            \ is for. \nIf `true`: the event was executed successfully. \nIf `false`:\
-            \ the event was not executed successfully."
+          description: >-
+            Informs about the outcome of the event (`eventCode`) the
+            notification is for. 
+
+            If `true`: the event was executed successfully. 
+
+            If `false`: the event was not executed successfully.
           type: string
       required:
-      - pspReference
-      - merchantReference
-      - merchantAccountCode
-      - eventDate
-      - eventCode
-      - amount
-      - success
+        - pspReference
+        - merchantReference
+        - merchantAccountCode
+        - eventDate
+        - eventCode
+        - amount
+        - success
       type: object
     NotificationRequestItemWrapper:
       properties:
@@ -2403,16 +2542,18 @@ components:
     NotificationResponse:
       properties:
         notificationResponse:
-          description: Set this parameter to **[accepted]** to acknowledge that you
+          description: >-
+            Set this parameter to **[accepted]** to acknowledge that you
             received a notification from Adyen.
           type: string
       type: object
     PaidoutReversedNotificationRequest:
       properties:
         live:
-          description: Informs about the origin of the notification. The value is
-            **true** when originating from the live environment, **false** for the
-            test environment.
+          description: >-
+            Informs about the origin of the notification. The value is **true**
+            when originating from the live environment, **false** for the test
+            environment.
           type: string
         notificationItems:
           description: A container object for the details included in the notification.
@@ -2426,28 +2567,33 @@ components:
           description: A generic container for extra fields.
           $ref: '#/components/schemas/NotificationAdditionalData'
         amount:
-          description: The payment amount. For HTTP POST notifications, currency and
-            value are returned as URL parameters.
+          description: >-
+            The payment amount. For HTTP POST notifications, currency and value
+            are returned as URL parameters.
           $ref: '#/components/schemas/Amount'
         eventCode:
           description: The type of event the notification item is for.
           enum:
-          - PAIDOUT_REVERSED
+            - PAIDOUT_REVERSED
           type: string
         eventDate:
-          description: 'The time when the event was generated. Format: ISO 8601; yyyy-MM-DDThh:mm:ssTZD'
+          description: >-
+            The time when the event was generated. Format: ISO 8601;
+            yyyy-MM-DDThh:mm:ssTZD
           example: '2021-07-17T13:42:40+01:00'
           format: date-time
           type: string
         merchantAccountCode:
-          description: The merchant account identifier used in the transaction the
+          description: >-
+            The merchant account identifier used in the transaction the
             notification item is for.
           type: string
         merchantReference:
           description: Your reference to uniquely identify the payment.
           type: string
         originalReference:
-          description: For modifications, this field corresponds to the payment request
+          description: >-
+            For modifications, this field corresponds to the payment request
             assigned to the original payment.
           type: string
         paymentMethod:
@@ -2458,22 +2604,27 @@ components:
           description: The PSP reference for the Capture's PSP reference.
           type: string
         reason:
-          description: Contains the bank statement description if present, else it
-            contains `PaidOutReversed`.
+          description: >-
+            Contains the bank statement description if present, else it contains
+            `PaidOutReversed`.
           type: string
         success:
-          description: "Informs about the outcome of the event (`eventCode`) the notification\
-            \ is for. \nIf `true`: the event was executed successfully. \nIf `false`:\
-            \ the event was not executed successfully."
+          description: >-
+            Informs about the outcome of the event (`eventCode`) the
+            notification is for. 
+
+            If `true`: the event was executed successfully. 
+
+            If `false`: the event was not executed successfully.
           type: string
       required:
-      - merchantReference
-      - merchantAccountCode
-      - eventDate
-      - amount
-      - success
-      - eventCode
-      - pspReference
+        - merchantReference
+        - merchantAccountCode
+        - eventDate
+        - amount
+        - success
+        - eventCode
+        - pspReference
       type: object
     PaidoutReversedNotificationRequestItemWrapper:
       properties:
@@ -2659,7 +2810,9 @@ components:
           description: Expiry date of the card.
           type: string
         extraCostsCurrency:
-          description: Additional cost used in [BIN or card verification](https://docs.adyen.com/payment-methods/cards/bin-data-and-card-verification).
+          description: >-
+            Additional cost used in [BIN or card
+            verification](https://docs.adyen.com/payment-methods/cards/bin-data-and-card-verification).
           type: string
         extraCostsValue:
           description: Related additional cost value.
@@ -2695,13 +2848,15 @@ components:
           description: International Bank Account Number.
           type: string
         installments.value:
-          description: 'The number of installments that the payment amount should
-            be charged with.
+          description: >-
+            The number of installments that the payment amount should be charged
+            with.
 
 
             Example: 5
 
-            > Only relevant for card payments in countries that support installments.'
+            > Only relevant for card payments in countries that support
+            installments.
           type: string
         interactionCounter:
           description: 3DS interaction counter.
@@ -2727,8 +2882,9 @@ components:
         metadata:
           additionalProperties:
             type: string
-          description: 'A set of key-value pairs provided in the request, prefixed
-            with ''metadata.''. For example, ''metadata.myField: myValue'''
+          description: >-
+            A set of key-value pairs provided in the request, prefixed with
+            'metadata.'. For example, 'metadata.myField: myValue'
           type: object
         networkToken.available:
           description: Recurring related.
@@ -2776,24 +2932,27 @@ components:
           description: Recurring first PSP reference.
           type: string
         recurring.recurringDetailReference:
-          description: The [token for stored payment details](https://docs.adyen.com/online-payments/tokenization/create-and-use-tokens/)
+          description: >-
+            The [token for stored payment
+            details](https://docs.adyen.com/online-payments/tokenization/create-and-use-tokens/)
             to make recurring payments.
           type: string
         referred:
-          description: 'If the payment is referred, this field is set to true.
+          description: >-
+            If the payment is referred, this field is set to true.
 
 
-            This field is unavailable if the payment is referred and is usually not
-            returned with ecommerce transactions.
+            This field is unavailable if the payment is referred and is usually
+            not returned with ecommerce transactions.
 
 
-            Example: true'
+            Example: true
           type: string
         refusalReasonRaw:
-          description: 'Raw refusal reason received from the acquirer, where available.
+          description: |-
+            Raw refusal reason received from the acquirer, where available.
 
-
-            Example: AUTHORISED'
+            Example: AUTHORISED
           type: string
         retry.rescueScheduled:
           description: Indicates if an auto rescue for a pyment is scheduled.
@@ -2814,16 +2973,17 @@ components:
           description: IP of the shopper.
           type: string
         shopperInteraction:
-          description: 'The shopper interaction type of the payment request.
+          description: |-
+            The shopper interaction type of the payment request.
 
-
-            Example: Ecommerce'
+            Example: Ecommerce
           type: string
         shopperLocale:
           description: The locale of the shopper.
           type: string
         shopperReference:
-          description: The ID that uniquely identifies the shopper. The `shopperReference`
+          description: >-
+            The ID that uniquely identifies the shopper. The `shopperReference`
             is the same as the `shopperReference` used in the initial payment.
           type: string
         shopperSocialSecurityNumber:
@@ -2845,31 +3005,32 @@ components:
           description: Terminal ID. For point-of-sale integrations only.
           type: string
         threeDAuthenticated:
-          description: 'A Boolean value indicating whether 3DS authentication was
-            completed on this payment.
+          description: >-
+            A Boolean value indicating whether 3DS authentication was completed
+            on this payment.
 
 
-            Example: true'
+            Example: true
           type: string
         threeDAuthenticatedResponse:
-          description: 'The raw 3DS authentication result from the card issuer.
+          description: |-
+            The raw 3DS authentication result from the card issuer.
 
-
-            Example: N'
+            Example: N
           type: string
         threeDOffered:
-          description: 'A Boolean value indicating whether 3DS was offered for this
-            payment.
+          description: |-
+            A Boolean value indicating whether 3DS was offered for this payment.
 
-
-            Example: true'
+            Example: true
           type: string
         threeDOfferedResponse:
-          description: 'The raw enrollment result from the 3DS directory services
-            of the card schemes.
+          description: >-
+            The raw enrollment result from the 3DS directory services of the
+            card schemes.
 
 
-            Example: Y'
+            Example: Y
           type: string
         threeDSVersion:
           description: The 3D Secure 2 version.
@@ -2884,26 +3045,29 @@ components:
           description: Card summary without tokenization.
           type: string
         xid:
-          description: 'The 3DS transaction ID of the 3DS session sent in notifications.
-            The value is Base64-encoded and is returned for transactions with directoryResponse
-            ''N'' or ''Y''. If you want to submit the xid in your 3D Secure 1 request,
-            use the `mpiData.xid`, field.
+          description: >-
+            The 3DS transaction ID of the 3DS session sent in notifications. The
+            value is Base64-encoded and is returned for transactions with
+            directoryResponse 'N' or 'Y'. If you want to submit the xid in your
+            3D Secure 1 request, use the `mpiData.xid`, field.
 
 
-            Example: ODgxNDc2MDg2MDExODk5MAAAAAA='
+            Example: ODgxNDc2MDg2MDExODk5MAAAAAA=
           type: string
       type: object
     RecurringContractNotificationRequest:
       properties:
         live:
-          description: Informs about the origin of the notification. The value is
-            **true** when originating from the live environment, **false** for the
-            test environment.
+          description: >-
+            Informs about the origin of the notification. The value is **true**
+            when originating from the live environment, **false** for the test
+            environment.
           type: string
         notificationItems:
           description: A container object for the details included in the notification.
           items:
-            $ref: '#/components/schemas/RecurringContractNotificationRequestItemWrapper'
+            $ref: >-
+              #/components/schemas/RecurringContractNotificationRequestItemWrapper
           type: array
       type: object
     RecurringContractNotificationRequestItem:
@@ -2912,21 +3076,25 @@ components:
           description: This object is a generic container that can hold extra fields.
           $ref: '#/components/schemas/RecurringContractNotificationAdditionalData'
         amount:
-          description: The payment amount. For HTTP POST notifications, currency and
-            value are returned as URL parameters.
+          description: >-
+            The payment amount. For HTTP POST notifications, currency and value
+            are returned as URL parameters.
           $ref: '#/components/schemas/Amount'
         eventCode:
           description: The type of event the notification item is for.
           enum:
-          - RECURRING_CONTRACT
+            - RECURRING_CONTRACT
           type: string
         eventDate:
-          description: 'The time when the event was generated. Format: ISO 8601; yyyy-MM-DDThh:mm:ssTZD'
+          description: >-
+            The time when the event was generated. Format: ISO 8601;
+            yyyy-MM-DDThh:mm:ssTZD
           example: '2021-07-17T13:42:40+01:00'
           format: date-time
           type: string
         merchantAccountCode:
-          description: The merchant account identifier used in the transaction the
+          description: >-
+            The merchant account identifier used in the transaction the
             notification item is for.
           type: string
         merchantReference:
@@ -2936,7 +3104,8 @@ components:
           description: The `pspReference` of the initial payment.
           type: string
         originalReference:
-          description: For modifications, this field corresponds to the payment request
+          description: >-
+            For modifications, this field corresponds to the payment request
             assigned to the original payment.
           type: string
         paymentMethod:
@@ -2944,27 +3113,35 @@ components:
           example: visa, mc, iDeal
           type: string
         pspReference:
-          description: The [token for stored payment details](https://docs.adyen.com/online-payments/tokenization/create-and-use-tokens/)
-            to make recurring payments. This is the same as the `recurringDetailReference`.
+          description: >-
+            The [token for stored payment
+            details](https://docs.adyen.com/online-payments/tokenization/create-and-use-tokens/)
+            to make recurring payments. This is the same as the
+            `recurringDetailReference`.
           type: string
         reason:
-          description: If `success` = `false`, then this includes a short message
-            with an explanation for the refusal.
+          description: >-
+            If `success` = `false`, then this includes a short message with an
+            explanation for the refusal.
           type: string
         success:
-          description: "Informs about the outcome of the event (`eventCode`) the notification\
-            \ is for. \nIf `true`: the event was executed successfully. \nIf `false`:\
-            \ the event was not executed successfully."
+          description: >-
+            Informs about the outcome of the event (`eventCode`) the
+            notification is for. 
+
+            If `true`: the event was executed successfully. 
+
+            If `false`: the event was not executed successfully.
           type: string
       required:
-      - merchantReference
-      - merchantAccountCode
-      - eventDate
-      - amount
-      - success
-      - eventCode
-      - originalPsp
-      - pspReference
+        - merchantReference
+        - merchantAccountCode
+        - eventDate
+        - amount
+        - success
+        - eventCode
+        - originalPsp
+        - pspReference
       type: object
     RecurringContractNotificationRequestItemWrapper:
       properties:
@@ -2973,9 +3150,10 @@ components:
     ReportAvailableNotificationRequest:
       properties:
         live:
-          description: Informs about the origin of the notification. The value is
-            **true** when originating from the live environment, **false** for the
-            test environment.
+          description: >-
+            Informs about the origin of the notification. The value is **true**
+            when originating from the live environment, **false** for the test
+            environment.
           type: string
         notificationItems:
           description: A container object for the details included in the notification.
@@ -2989,28 +3167,33 @@ components:
           description: A generic container for extra fields.
           $ref: '#/components/schemas/NotificationAdditionalData'
         amount:
-          description: The payment amount. For HTTP POST notifications, currency and
-            value are returned as URL parameters.
+          description: >-
+            The payment amount. For HTTP POST notifications, currency and value
+            are returned as URL parameters.
           $ref: '#/components/schemas/Amount'
         eventCode:
           description: The type of event the notification item is for.
           enum:
-          - REPORT_AVAILABLE
+            - REPORT_AVAILABLE
           type: string
         eventDate:
-          description: 'The time when the event was generated. Format: ISO 8601; yyyy-MM-DDThh:mm:ssTZD'
+          description: >-
+            The time when the event was generated. Format: ISO 8601;
+            yyyy-MM-DDThh:mm:ssTZD
           example: '2021-07-17T13:42:40+01:00'
           format: date-time
           type: string
         merchantAccountCode:
-          description: The merchant account identifier used in the transaction the
+          description: >-
+            The merchant account identifier used in the transaction the
             notification item is for.
           type: string
         merchantReference:
           description: Your reference to uniquely identify the payment.
           type: string
         originalReference:
-          description: For modifications, this field corresponds to the payment request
+          description: >-
+            For modifications, this field corresponds to the payment request
             assigned to the original payment.
           type: string
         paymentMethod:
@@ -3021,21 +3204,20 @@ components:
           description: Contains the file name of the report.
           type: string
         reason:
-          description: Contains the download URL where you can obtain a copy of the
-            report.
+          description: Contains the download URL where you can obtain a copy of the report.
           type: string
         success:
           description: Always `true`.
           type: string
       required:
-      - merchantReference
-      - merchantAccountCode
-      - eventDate
-      - amount
-      - eventCode
-      - reason
-      - success
-      - pspReference
+        - merchantReference
+        - merchantAccountCode
+        - eventDate
+        - amount
+        - eventCode
+        - reason
+        - success
+        - pspReference
       type: object
     ReportAvailableNotificationRequestItemWrapper:
       properties:
@@ -3070,712 +3252,712 @@ components:
       value:
         live: 'false'
         notificationItems:
-        - NotificationRequestItem:
-            additionalData:
-              recurring.recurringDetailReference: '9915692881181044'
-              recurring.shopperReference: YOUR_SHOPPER_REFERENCE
-            amount:
-              currency: EUR
-              value: 1000
-            eventCode: AUTHORISATION
-            eventDate: '2021-01-01T01:00:00+01:00'
-            merchantAccountCode: YOUR_MERCHANT_ACCOUNT
-            merchantReference: YOUR_MERCHANT_REFERENCE
-            paymentMethod: ach
-            operations:
-            - CANCEL
-            - CAPTURE
-            - REFUND
-            pspReference: QFQTPCQ8HXSKGK82
-            reason: 'null'
-            success: 'true'
+          - NotificationRequestItem:
+              additionalData:
+                recurring.recurringDetailReference: '9915692881181044'
+                recurring.shopperReference: YOUR_SHOPPER_REFERENCE
+              amount:
+                currency: EUR
+                value: 1000
+              eventCode: AUTHORISATION
+              eventDate: '2021-01-01T01:00:00+01:00'
+              merchantAccountCode: YOUR_MERCHANT_ACCOUNT
+              merchantReference: YOUR_MERCHANT_REFERENCE
+              paymentMethod: ach
+              operations:
+                - CANCEL
+                - CAPTURE
+                - REFUND
+              pspReference: QFQTPCQ8HXSKGK82
+              reason: 'null'
+              success: 'true'
     post-AUTHORISATION_ADJUSTMENT-authorisation_adjustment:
       summary: AUTHORISATION_ADJUSTMENT example
       value:
         live: 'false'
         notificationItems:
-        - NotificationRequestItem:
-            amount:
-              currency: EUR
-              value: 1000
-            eventCode: AUTHORISATION_ADJUSTMENT
-            eventDate: '2021-01-01T01:00:00+01:00'
-            merchantAccountCode: YOUR_MERCHANT_ACCOUNT
-            merchantReference: YOUR_MERCHANT_REFERENCE
-            originalReference: '9913140798220028'
-            paymentMethod: visa
-            pspReference: QFQTPCQ8HXSKGK82
-            reason: ''
-            success: 'true'
+          - NotificationRequestItem:
+              amount:
+                currency: EUR
+                value: 1000
+              eventCode: AUTHORISATION_ADJUSTMENT
+              eventDate: '2021-01-01T01:00:00+01:00'
+              merchantAccountCode: YOUR_MERCHANT_ACCOUNT
+              merchantReference: YOUR_MERCHANT_REFERENCE
+              originalReference: '9913140798220028'
+              paymentMethod: visa
+              pspReference: QFQTPCQ8HXSKGK82
+              reason: ''
+              success: 'true'
     post-AUTORESCUE-autorescue:
       summary: AUTORESCUE example
       value:
         live: 'false'
         notificationItems:
-        - NotificationRequestItem:
-            additionalData:
-              retry.rescueReference: '8826173525728789'
-              merchantOrderReference: '8826173525728789'
-              hmacSignature: b0ea55c2fe60d4d1d605e9c385e0e7...
-            amount:
-              currency: EUR
-              value: 1000
-            eventCode: AUTORESCUE
-            eventDate: '2021-01-01T01:00:00+01:00'
-            merchantAccountCode: YOUR_MERCHANT_ACCOUNT
-            merchantReference: YOUR_MERCHANT_REFERENCE
-            originalReference: '9913140798220028'
-            pspReference: QFQTPCQ8HXSKGK82
-            reason: ''
-            success: 'true'
+          - NotificationRequestItem:
+              additionalData:
+                retry.rescueReference: '8826173525728789'
+                merchantOrderReference: '8826173525728789'
+                hmacSignature: b0ea55c2fe60d4d1d605e9c385e0e7...
+              amount:
+                currency: EUR
+                value: 1000
+              eventCode: AUTORESCUE
+              eventDate: '2021-01-01T01:00:00+01:00'
+              merchantAccountCode: YOUR_MERCHANT_ACCOUNT
+              merchantReference: YOUR_MERCHANT_REFERENCE
+              originalReference: '9913140798220028'
+              pspReference: QFQTPCQ8HXSKGK82
+              reason: ''
+              success: 'true'
     post-CANCELLATION-cancellation:
       summary: CANCELLATION example
       value:
         live: 'false'
         notificationItems:
-        - NotificationRequestItem:
-            amount:
-              currency: EUR
-              value: 1000
-            eventCode: CANCELLATION
-            eventDate: '2021-01-01T01:00:00+01:00'
-            merchantAccountCode: YOUR_MERCHANT_ACCOUNT
-            merchantReference: YOUR_MERCHANT_REFERENCE
-            originalReference: '9913140798220028'
-            paymentMethod: visa
-            pspReference: QFQTPCQ8HXSKGK82
-            reason: ''
-            success: 'true'
+          - NotificationRequestItem:
+              amount:
+                currency: EUR
+                value: 1000
+              eventCode: CANCELLATION
+              eventDate: '2021-01-01T01:00:00+01:00'
+              merchantAccountCode: YOUR_MERCHANT_ACCOUNT
+              merchantReference: YOUR_MERCHANT_REFERENCE
+              originalReference: '9913140798220028'
+              paymentMethod: visa
+              pspReference: QFQTPCQ8HXSKGK82
+              reason: ''
+              success: 'true'
     post-CANCEL_AUTORESCUE-cancel_autorescue:
       summary: CANCEL_AUTORESCUE example
       value:
         live: 'false'
         notificationItems:
-        - NotificationRequestItem:
-            additionalData:
-              hmacSignature: b0ea55c2fe60d4d1d605e9c385e0e7...
-            amount:
-              currency: EUR
-              value: 1000
-            eventCode: CANCEL_AUTORESCUE
-            eventDate: '2021-01-01T01:00:00+01:00'
-            merchantAccountCode: YOUR_MERCHANT_ACCOUNT
-            merchantReference: YOUR_MERCHANT_REFERENCE
-            originalReference: '9913140798220028'
-            pspReference: QFQTPCQ8HXSKGK82
-            reason: No AutoRescue process for retry.rescueReference 8826173525728789
-            success: 'false'
+          - NotificationRequestItem:
+              additionalData:
+                hmacSignature: b0ea55c2fe60d4d1d605e9c385e0e7...
+              amount:
+                currency: EUR
+                value: 1000
+              eventCode: CANCEL_AUTORESCUE
+              eventDate: '2021-01-01T01:00:00+01:00'
+              merchantAccountCode: YOUR_MERCHANT_ACCOUNT
+              merchantReference: YOUR_MERCHANT_REFERENCE
+              originalReference: '9913140798220028'
+              pspReference: QFQTPCQ8HXSKGK82
+              reason: No AutoRescue process for retry.rescueReference 8826173525728789
+              success: 'false'
     post-CANCEL_OR_REFUND-cancel_or_refund:
       summary: CANCEL_OR_REFUND example
       value:
         live: 'false'
         notificationItems:
-        - NotificationRequestItem:
-            additionalData:
-              modification.action: cancel
-            amount:
-              currency: EUR
-              value: 1000
-            eventCode: CANCEL_OR_REFUND
-            eventDate: '2021-01-01T01:00:00+01:00'
-            merchantAccountCode: YOUR_MERCHANT_ACCOUNT
-            merchantReference: YOUR_MERCHANT_REFERENCE
-            originalReference: '9913140798220028'
-            paymentMethod: visa
-            pspReference: QFQTPCQ8HXSKGK82
-            reason: ''
-            success: 'true'
+          - NotificationRequestItem:
+              additionalData:
+                modification.action: cancel
+              amount:
+                currency: EUR
+                value: 1000
+              eventCode: CANCEL_OR_REFUND
+              eventDate: '2021-01-01T01:00:00+01:00'
+              merchantAccountCode: YOUR_MERCHANT_ACCOUNT
+              merchantReference: YOUR_MERCHANT_REFERENCE
+              originalReference: '9913140798220028'
+              paymentMethod: visa
+              pspReference: QFQTPCQ8HXSKGK82
+              reason: ''
+              success: 'true'
     post-CAPTURE-capture:
       summary: CAPTURE example
       value:
         live: 'false'
         notificationItems:
-        - NotificationRequestItem:
-            amount:
-              currency: EUR
-              value: 1000
-            eventCode: CAPTURE
-            eventDate: '2021-01-01T01:00:00+01:00'
-            merchantAccountCode: YOUR_MERCHANT_ACCOUNT
-            merchantReference: YOUR_MERCHANT_REFERENCE
-            originalReference: '9913140798220028'
-            paymentMethod: visa
-            pspReference: QFQTPCQ8HXSKGK82
-            reason: ''
-            success: 'true'
+          - NotificationRequestItem:
+              amount:
+                currency: EUR
+                value: 1000
+              eventCode: CAPTURE
+              eventDate: '2021-01-01T01:00:00+01:00'
+              merchantAccountCode: YOUR_MERCHANT_ACCOUNT
+              merchantReference: YOUR_MERCHANT_REFERENCE
+              originalReference: '9913140798220028'
+              paymentMethod: visa
+              pspReference: QFQTPCQ8HXSKGK82
+              reason: ''
+              success: 'true'
     post-CAPTURE_FAILED-capture_failed:
       summary: CAPTURE_FAILED example
       value:
         live: 'false'
         notificationItems:
-        - NotificationRequestItem:
-            additionalData:
-              paymentMethodVariant: facilypay_3x
-              hmacSignature: b0ea55c2fe60d4d1d605e9c385e0e7...
-              shopperCountry: NL
-            amount:
-              currency: EUR
-              value: 1000
-            eventCode: CAPTURE_FAILED
-            eventDate: '2021-01-01T01:00:00+01:00'
-            merchantAccountCode: YOUR_MERCHANT_ACCOUNT
-            merchantReference: YOUR_MERCHANT_REFERENCE
-            originalReference: '9913140798220028'
-            paymentMethod: facilypay_3x
-            pspReference: QFQTPCQ8HXSKGK82
-            reason: Capture Failed
-            success: 'true'
+          - NotificationRequestItem:
+              additionalData:
+                paymentMethodVariant: facilypay_3x
+                hmacSignature: b0ea55c2fe60d4d1d605e9c385e0e7...
+                shopperCountry: NL
+              amount:
+                currency: EUR
+                value: 1000
+              eventCode: CAPTURE_FAILED
+              eventDate: '2021-01-01T01:00:00+01:00'
+              merchantAccountCode: YOUR_MERCHANT_ACCOUNT
+              merchantReference: YOUR_MERCHANT_REFERENCE
+              originalReference: '9913140798220028'
+              paymentMethod: facilypay_3x
+              pspReference: QFQTPCQ8HXSKGK82
+              reason: Capture Failed
+              success: 'true'
     post-CHARGEBACK-chargeback:
       summary: CHARGEBACK example
       value:
         live: 'false'
         notificationItems:
-        - NotificationRequestItem:
-            additionalData:
-              captureMerchantReference: shopperReferenceTest
-              chargebackReasonCode: ' 4853'
-              InvoiceCreditorAccount: Creditor.AdyenInvoiceService
-              grossCurrency: EUR
-              hmacSignature: b0ea55c2fe60d4d1d605e9c385e0e7...
-              defensePeriodEndsAt: '2021-07-31T03:03:07+02:00'
-              defendable: 'true'
-              grossValue: '2000'
-              modificationMerchantReferences: shopperReferenceTest
-              chargebackSchemeCode: mc
-              capturePspReference: '8636172945333378'
-              paymentMethodVariant: mc
-              shopperReference: YOUR_SHOPPER_REFERENCE
-            amount:
-              currency: EUR
-              value: 1000
-            eventCode: CHARGEBACK
-            eventDate: '2021-01-01T01:00:00+01:00'
-            merchantAccountCode: YOUR_MERCHANT_ACCOUNT
-            merchantReference: YOUR_MERCHANT_REFERENCE
-            originalReference: '9913140798220028'
-            paymentMethod: mc
-            pspReference: QFQTPCQ8HXSKGK82
-            reason: Payment.TxId=300000000524534724 dispute
-            success: 'true'
+          - NotificationRequestItem:
+              additionalData:
+                captureMerchantReference: shopperReferenceTest
+                chargebackReasonCode: ' 4853'
+                InvoiceCreditorAccount: Creditor.AdyenInvoiceService
+                grossCurrency: EUR
+                hmacSignature: b0ea55c2fe60d4d1d605e9c385e0e7...
+                defensePeriodEndsAt: '2021-07-31T03:03:07+02:00'
+                defendable: 'true'
+                grossValue: '2000'
+                modificationMerchantReferences: shopperReferenceTest
+                chargebackSchemeCode: mc
+                capturePspReference: '8636172945333378'
+                paymentMethodVariant: mc
+                shopperReference: YOUR_SHOPPER_REFERENCE
+              amount:
+                currency: EUR
+                value: 1000
+              eventCode: CHARGEBACK
+              eventDate: '2021-01-01T01:00:00+01:00'
+              merchantAccountCode: YOUR_MERCHANT_ACCOUNT
+              merchantReference: YOUR_MERCHANT_REFERENCE
+              originalReference: '9913140798220028'
+              paymentMethod: mc
+              pspReference: QFQTPCQ8HXSKGK82
+              reason: Payment.TxId=300000000524534724 dispute
+              success: 'true'
     post-CHARGEBACK_REVERSED-chargeback_reversed:
       summary: CHARGEBACK_REVERSED example
       value:
         live: 'false'
         notificationItems:
-        - NotificationRequestItem:
-            additionalData:
-              hmacSignature: b0ea55c2fe60d4d1d605e9c385e0e7...
-            amount:
-              currency: EUR
-              value: 1000
-            eventCode: CHARGEBACK_REVERSED
-            eventDate: '2021-01-01T01:00:00+01:00'
-            merchantAccountCode: YOUR_MERCHANT_ACCOUNT
-            merchantReference: YOUR_MERCHANT_REFERENCE
-            paymentMethod: mc
-            pspReference: QFQTPCQ8HXSKGK82
-            reason: Fraudulent Processing of Transactions
-            success: 'true'
+          - NotificationRequestItem:
+              additionalData:
+                hmacSignature: b0ea55c2fe60d4d1d605e9c385e0e7...
+              amount:
+                currency: EUR
+                value: 1000
+              eventCode: CHARGEBACK_REVERSED
+              eventDate: '2021-01-01T01:00:00+01:00'
+              merchantAccountCode: YOUR_MERCHANT_ACCOUNT
+              merchantReference: YOUR_MERCHANT_REFERENCE
+              paymentMethod: mc
+              pspReference: QFQTPCQ8HXSKGK82
+              reason: Fraudulent Processing of Transactions
+              success: 'true'
     post-EXPIRE-expire:
       summary: EXPIRE example
       value:
         live: 'false'
         notificationItems:
-        - NotificationRequestItem:
-            amount:
-              currency: EUR
-              value: 1000
-            eventCode: EXPIRE
-            eventDate: '2024-02-09T11:19:48+01:00'
-            merchantAccountCode: YOUR_MERCHANT_ACCOUNT
-            merchantReference: YOUR_MERCHANT_REFERENCE
-            pspReference: QFQTPCQ8HXSKGK82
-            reason: ''
-            success: 'true'
+          - NotificationRequestItem:
+              amount:
+                currency: EUR
+                value: 1000
+              eventCode: EXPIRE
+              eventDate: '2024-02-09T11:19:48+01:00'
+              merchantAccountCode: YOUR_MERCHANT_ACCOUNT
+              merchantReference: YOUR_MERCHANT_REFERENCE
+              pspReference: QFQTPCQ8HXSKGK82
+              reason: ''
+              success: 'true'
     post-MANUAL_REVIEW_ACCEPT-manual_review_accept:
       summary: MANUAL_REVIEW_ACCEPT example
       value:
         live: 'false'
         notificationItems:
-        - NotificationRequestItem:
-            additionalData:
-              hmacSignature: b0ea55c2fe60d4d1d605e9c385e0e7...
-              paymentMethodVariant: scheme
-            amount:
-              currency: EUR
-              value: 1000
-            eventCode: MANUAL_REVIEW_ACCEPT
-            eventDate: '2021-01-01T01:00:00+01:00'
-            merchantAccountCode: YOUR_MERCHANT_ACCOUNT
-            merchantReference: YOUR_MERCHANT_REFERENCE
-            originalReference: '9913140798220028'
-            pspReference: QFQTPCQ8HXSKGK82
-            reason: expire
-            success: 'true'
+          - NotificationRequestItem:
+              additionalData:
+                hmacSignature: b0ea55c2fe60d4d1d605e9c385e0e7...
+                paymentMethodVariant: scheme
+              amount:
+                currency: EUR
+                value: 1000
+              eventCode: MANUAL_REVIEW_ACCEPT
+              eventDate: '2021-01-01T01:00:00+01:00'
+              merchantAccountCode: YOUR_MERCHANT_ACCOUNT
+              merchantReference: YOUR_MERCHANT_REFERENCE
+              originalReference: '9913140798220028'
+              pspReference: QFQTPCQ8HXSKGK82
+              reason: expire
+              success: 'true'
     post-MANUAL_REVIEW_REJECT-manual_review_reject:
       summary: MANUAL_REVIEW_REJECT example
       value:
         live: 'false'
         notificationItems:
-        - NotificationRequestItem:
-            additionalData:
-              hmacSignature: b0ea55c2fe60d4d1d605e9c385e0e7...
-              paymentMethodVariant: visa
-            amount:
-              currency: EUR
-              value: 1000
-            eventCode: MANUAL_REVIEW_REJECT
-            eventDate: '2021-01-01T01:00:00+01:00'
-            merchantAccountCode: YOUR_MERCHANT_ACCOUNT
-            merchantReference: YOUR_MERCHANT_REFERENCE
-            originalReference: '9913140798220028'
-            paymentMethod: visa
-            pspReference: QFQTPCQ8HXSKGK82
-            reason: expire
-            success: 'true'
+          - NotificationRequestItem:
+              additionalData:
+                hmacSignature: b0ea55c2fe60d4d1d605e9c385e0e7...
+                paymentMethodVariant: visa
+              amount:
+                currency: EUR
+                value: 1000
+              eventCode: MANUAL_REVIEW_REJECT
+              eventDate: '2021-01-01T01:00:00+01:00'
+              merchantAccountCode: YOUR_MERCHANT_ACCOUNT
+              merchantReference: YOUR_MERCHANT_REFERENCE
+              originalReference: '9913140798220028'
+              paymentMethod: visa
+              pspReference: QFQTPCQ8HXSKGK82
+              reason: expire
+              success: 'true'
     post-NOTIFICATION_OF_CHARGEBACK-notification_of_chargeback:
       summary: NOTIFICATION_OF_CHARGEBACK example
       value:
         live: 'false'
         notificationItems:
-        - NotificationRequestItem:
-            additionalData:
-              captureMerchantReference: shopperReferenceTest
-              chargebackReasonCode: ' 4853'
-              grossCurrency: EUR
-              hmacSignature: b0ea55c2fe60d4d1d605e9c385e0e7...
-              defensePeriodEndsAt: '2021-07-31T03:03:08+02:00'
-              defendable: 'false'
-              grossValue: '2000'
-              modificationMerchantReferences: YourModificationReference,shopperReferenceTest
-              chargebackSchemeCode: mc
-              capturePspReference: '8536173024791891'
-              autoDefended: 'true'
-              paymentMethodVariant: mc
-            amount:
-              currency: EUR
-              value: 1000
-            eventCode: NOTIFICATION_OF_CHARGEBACK
-            eventDate: '2021-01-01T01:00:00+01:00'
-            merchantAccountCode: YOUR_MERCHANT_ACCOUNT
-            merchantReference: YOUR_MERCHANT_REFERENCE
-            originalReference: '9913140798220028'
-            paymentMethod: mc
-            pspReference: QFQTPCQ8HXSKGK82
-            reason: Payment.TxId=300000000524659113 dispute (automatically defended)
-            success: 'true'
+          - NotificationRequestItem:
+              additionalData:
+                captureMerchantReference: shopperReferenceTest
+                chargebackReasonCode: ' 4853'
+                grossCurrency: EUR
+                hmacSignature: b0ea55c2fe60d4d1d605e9c385e0e7...
+                defensePeriodEndsAt: '2021-07-31T03:03:08+02:00'
+                defendable: 'false'
+                grossValue: '2000'
+                modificationMerchantReferences: YourModificationReference,shopperReferenceTest
+                chargebackSchemeCode: mc
+                capturePspReference: '8536173024791891'
+                autoDefended: 'true'
+                paymentMethodVariant: mc
+              amount:
+                currency: EUR
+                value: 1000
+              eventCode: NOTIFICATION_OF_CHARGEBACK
+              eventDate: '2021-01-01T01:00:00+01:00'
+              merchantAccountCode: YOUR_MERCHANT_ACCOUNT
+              merchantReference: YOUR_MERCHANT_REFERENCE
+              originalReference: '9913140798220028'
+              paymentMethod: mc
+              pspReference: QFQTPCQ8HXSKGK82
+              reason: Payment.TxId=300000000524659113 dispute (automatically defended)
+              success: 'true'
     post-NOTIFICATION_OF_FRAUD-notification_of_fraud:
       summary: NOTIFICATION_OF_FRAUD example
       value:
         live: 'false'
         notificationItems:
-        - NotificationRequestItem:
-            additionalData:
-              nofReasonCode: '6'
-              hmacSignature: b0ea55c2fe60d4d1d605e9c385e0e7...
-              modificationMerchantReferences: shopperReferenceTest
-              nofSchemeCode: visa
-            amount:
-              currency: EUR
-              value: 1000
-            eventCode: NOTIFICATION_OF_FRAUD
-            eventDate: '2021-01-01T01:00:00+01:00'
-            merchantAccountCode: YOUR_MERCHANT_ACCOUNT
-            merchantReference: YOUR_MERCHANT_REFERENCE
-            originalReference: '9913140798220028'
-            paymentMethod: visa
-            pspReference: QFQTPCQ8HXSKGK82
-            reason: Fraudulent Use of Account Number
-            success: 'true'
+          - NotificationRequestItem:
+              additionalData:
+                nofReasonCode: '6'
+                hmacSignature: b0ea55c2fe60d4d1d605e9c385e0e7...
+                modificationMerchantReferences: shopperReferenceTest
+                nofSchemeCode: visa
+              amount:
+                currency: EUR
+                value: 1000
+              eventCode: NOTIFICATION_OF_FRAUD
+              eventDate: '2021-01-01T01:00:00+01:00'
+              merchantAccountCode: YOUR_MERCHANT_ACCOUNT
+              merchantReference: YOUR_MERCHANT_REFERENCE
+              originalReference: '9913140798220028'
+              paymentMethod: visa
+              pspReference: QFQTPCQ8HXSKGK82
+              reason: Fraudulent Use of Account Number
+              success: 'true'
     post-OFFER_CLOSED-offer_closed:
       summary: OFFER_CLOSED example
       value:
         live: 'false'
         notificationItems:
-        - NotificationRequestItem:
-            additionalData:
-              hmacSignature: b0ea55c2fe60d4d1d605e9c385e0e7...
-              paymentMethodVariant: ideal
-            amount:
-              currency: EUR
-              value: 1000
-            eventCode: OFFER_CLOSED
-            eventDate: '2021-01-01T01:00:00+01:00'
-            merchantAccountCode: YOUR_MERCHANT_ACCOUNT
-            merchantReference: YOUR_MERCHANT_REFERENCE
-            paymentMethod: ideal
-            pspReference: QFQTPCQ8HXSKGK82
-            reason: ''
-            success: 'true'
+          - NotificationRequestItem:
+              additionalData:
+                hmacSignature: b0ea55c2fe60d4d1d605e9c385e0e7...
+                paymentMethodVariant: ideal
+              amount:
+                currency: EUR
+                value: 1000
+              eventCode: OFFER_CLOSED
+              eventDate: '2021-01-01T01:00:00+01:00'
+              merchantAccountCode: YOUR_MERCHANT_ACCOUNT
+              merchantReference: YOUR_MERCHANT_REFERENCE
+              paymentMethod: ideal
+              pspReference: QFQTPCQ8HXSKGK82
+              reason: ''
+              success: 'true'
     post-ORDER_CLOSED-order_closed:
       summary: ORDER_CLOSED example
       value:
         live: 'false'
         notificationItems:
-        - NotificationRequestItem:
-            additionalData:
-              order-1-pspReference: 861617275047284E
-              order-1-paymentAmount: EUR 10.00
-              order-1-success: 'true'
-              order-1-paymentMethod: ideal
-            amount:
-              currency: EUR
-              value: 1000
-            eventCode: ORDER_CLOSED
-            eventDate: '2021-01-01T01:00:00+01:00'
-            merchantAccountCode: YOUR_MERCHANT_ACCOUNT
-            merchantReference: YOUR_MERCHANT_REFERENCE
-            pspReference: QFQTPCQ8HXSKGK82
-            reason: ''
-            success: 'false'
+          - NotificationRequestItem:
+              additionalData:
+                order-1-pspReference: 861617275047284E
+                order-1-paymentAmount: EUR 10.00
+                order-1-success: 'true'
+                order-1-paymentMethod: ideal
+              amount:
+                currency: EUR
+                value: 1000
+              eventCode: ORDER_CLOSED
+              eventDate: '2021-01-01T01:00:00+01:00'
+              merchantAccountCode: YOUR_MERCHANT_ACCOUNT
+              merchantReference: YOUR_MERCHANT_REFERENCE
+              pspReference: QFQTPCQ8HXSKGK82
+              reason: ''
+              success: 'false'
     post-ORDER_OPENED-order_opened:
       summary: ORDER_OPENED example
       value:
         live: 'false'
         notificationItems:
-        - NotificationRequestItem:
-            amount:
-              currency: EUR
-              value: 1000
-            eventCode: ORDER_OPENED
-            eventDate: '2021-01-01T01:00:00+01:00'
-            merchantAccountCode: YOUR_MERCHANT_ACCOUNT
-            merchantReference: YOUR_MERCHANT_REFERENCE
-            pspReference: QFQTPCQ8HXSKGK82
-            reason: ''
-            success: 'true'
+          - NotificationRequestItem:
+              amount:
+                currency: EUR
+                value: 1000
+              eventCode: ORDER_OPENED
+              eventDate: '2021-01-01T01:00:00+01:00'
+              merchantAccountCode: YOUR_MERCHANT_ACCOUNT
+              merchantReference: YOUR_MERCHANT_REFERENCE
+              pspReference: QFQTPCQ8HXSKGK82
+              reason: ''
+              success: 'true'
     post-PAIDOUT_REVERSED-paidout_reversed:
       summary: PAIDOUT_REVERSED example
       value:
         live: 'false'
         notificationItems:
-        - NotificationRequestItem:
-            amount:
-              currency: EUR
-              value: 1000
-            eventCode: PAIDOUT_REVERSED
-            eventDate: '2021-01-01T01:00:00+01:00'
-            merchantAccountCode: YOUR_MERCHANT_ACCOUNT
-            merchantReference: YOUR_MERCHANT_REFERENCE
-            originalReference: '9913140798220028'
-            pspReference: QFQTPCQ8HXSKGK82
-            reason: ''
-            success: 'true'
+          - NotificationRequestItem:
+              amount:
+                currency: EUR
+                value: 1000
+              eventCode: PAIDOUT_REVERSED
+              eventDate: '2021-01-01T01:00:00+01:00'
+              merchantAccountCode: YOUR_MERCHANT_ACCOUNT
+              merchantReference: YOUR_MERCHANT_REFERENCE
+              originalReference: '9913140798220028'
+              pspReference: QFQTPCQ8HXSKGK82
+              reason: ''
+              success: 'true'
     post-PAYOUT_DECLINE-payout_decline:
       summary: PAYOUT_DECLINE example
       value:
         live: 'false'
         notificationItems:
-        - NotificationRequestItem:
-            additionalData:
-              hmacSignature: b0ea55c2fe60d4d1d605e9c385e0e7...
-              paymentMethodVariant: bankTransfer_IBAN
-            amount:
-              currency: EUR
-              value: 1000
-            eventCode: PAYOUT_DECLINE
-            eventDate: '2021-01-01T01:00:00+01:00'
-            merchantAccountCode: YOUR_MERCHANT_ACCOUNT
-            merchantReference: YOUR_MERCHANT_REFERENCE
-            originalReference: '9913140798220028'
-            paymentMethod: bankTransfer_IBAN
-            pspReference: QFQTPCQ8HXSKGK82
-            reason: ''
-            success: 'true'
+          - NotificationRequestItem:
+              additionalData:
+                hmacSignature: b0ea55c2fe60d4d1d605e9c385e0e7...
+                paymentMethodVariant: bankTransfer_IBAN
+              amount:
+                currency: EUR
+                value: 1000
+              eventCode: PAYOUT_DECLINE
+              eventDate: '2021-01-01T01:00:00+01:00'
+              merchantAccountCode: YOUR_MERCHANT_ACCOUNT
+              merchantReference: YOUR_MERCHANT_REFERENCE
+              originalReference: '9913140798220028'
+              paymentMethod: bankTransfer_IBAN
+              pspReference: QFQTPCQ8HXSKGK82
+              reason: ''
+              success: 'true'
     post-PAYOUT_EXPIRE-payout_expire:
       summary: PAYOUT_EXPIRE example
       value:
         live: 'false'
         notificationItems:
-        - NotificationRequestItem:
-            amount:
-              currency: EUR
-              value: 1000
-            eventCode: PAYOUT_EXPIRE
-            eventDate: '2021-01-01T01:00:00+01:00'
-            merchantAccountCode: YOUR_MERCHANT_ACCOUNT
-            merchantReference: YOUR_MERCHANT_REFERENCE
-            originalReference: '9913140798220028'
-            paymentMethod: bankTransfer_IBAN
-            pspReference: QFQTPCQ8HXSKGK82
-            reason: ''
-            success: 'true'
+          - NotificationRequestItem:
+              amount:
+                currency: EUR
+                value: 1000
+              eventCode: PAYOUT_EXPIRE
+              eventDate: '2021-01-01T01:00:00+01:00'
+              merchantAccountCode: YOUR_MERCHANT_ACCOUNT
+              merchantReference: YOUR_MERCHANT_REFERENCE
+              originalReference: '9913140798220028'
+              paymentMethod: bankTransfer_IBAN
+              pspReference: QFQTPCQ8HXSKGK82
+              reason: ''
+              success: 'true'
     post-PAYOUT_THIRDPARTY-payout_thirdparty:
       summary: PAYOUT_THIRDPARTY example
       value:
         live: 'false'
         notificationItems:
-        - NotificationRequestItem:
-            additionalData:
-              expiryDate: 03/2030
-              paymentMethodVariant: visa
-              cardSummary: '1111'
-              hmacSignature: b0ea55c2fe60d4d1d605e9c385e0e7...
-            amount:
-              currency: EUR
-              value: 1000
-            eventCode: PAYOUT_THIRDPARTY
-            eventDate: '2021-01-01T01:00:00+01:00'
-            merchantAccountCode: YOUR_MERCHANT_ACCOUNT
-            merchantReference: YOUR_MERCHANT_REFERENCE
-            paymentMethod: visa
-            pspReference: QFQTPCQ8HXSKGK82
-            reason: Approved
-            success: 'true'
+          - NotificationRequestItem:
+              additionalData:
+                expiryDate: 03/2030
+                paymentMethodVariant: visa
+                cardSummary: '1111'
+                hmacSignature: b0ea55c2fe60d4d1d605e9c385e0e7...
+              amount:
+                currency: EUR
+                value: 1000
+              eventCode: PAYOUT_THIRDPARTY
+              eventDate: '2021-01-01T01:00:00+01:00'
+              merchantAccountCode: YOUR_MERCHANT_ACCOUNT
+              merchantReference: YOUR_MERCHANT_REFERENCE
+              paymentMethod: visa
+              pspReference: QFQTPCQ8HXSKGK82
+              reason: Approved
+              success: 'true'
     post-POSTPONED_REFUND-postponed_refund:
       summary: POSTPONED_REFUND example
       value:
         live: 'false'
         notificationItems:
-        - NotificationRequestItem:
-            additionalData:
-              hmacSignature: b0ea55c2fe60d4d1d605e9c385e0e7...
-            amount:
-              currency: EUR
-              value: 1000
-            eventCode: POSTPONED_REFUND
-            eventDate: '2021-01-01T01:00:00+01:00'
-            merchantAccountCode: YOUR_MERCHANT_ACCOUNT
-            merchantReference: YOUR_MERCHANT_REFERENCE
-            originalReference: '9913140798220028'
-            paymentMethod: directdebit_NL
-            pspReference: QFQTPCQ8HXSKGK82
-            reason: ''
-            success: 'true'
+          - NotificationRequestItem:
+              additionalData:
+                hmacSignature: b0ea55c2fe60d4d1d605e9c385e0e7...
+              amount:
+                currency: EUR
+                value: 1000
+              eventCode: POSTPONED_REFUND
+              eventDate: '2021-01-01T01:00:00+01:00'
+              merchantAccountCode: YOUR_MERCHANT_ACCOUNT
+              merchantReference: YOUR_MERCHANT_REFERENCE
+              originalReference: '9913140798220028'
+              paymentMethod: directdebit_NL
+              pspReference: QFQTPCQ8HXSKGK82
+              reason: ''
+              success: 'true'
     post-PREARBITRATION_LOST-prearbitration_lost:
       summary: PREARBITRATION_LOST example
       value:
         live: 'true'
         notificationItems:
-        - NotificationRequestItem:
-            additionalData:
-              metadata.type: web_pay
-              metadata.link_id: '111111'
-              arn: ACQUIRER_REFERENCE_NUMBER
-              metadata.company: abc
-            amount:
-              currency: EUR
-              value: 1000
-            eventCode: PREARBITRATION_LOST
-            eventDate: '2021-01-01T01:00:00+01:00'
-            merchantAccountCode: YOUR_MERCHANT_ACCOUNT
-            merchantReference: YOUR_MERCHANT_REFERENCE
-            paymentMethod: visa
-            pspReference: QFQTPCQ8HXSKGK82
-            reason: Other Fraud-Card Absent Environment
-            success: 'true'
+          - NotificationRequestItem:
+              additionalData:
+                metadata.type: web_pay
+                metadata.link_id: '111111'
+                arn: ACQUIRER_REFERENCE_NUMBER
+                metadata.company: abc
+              amount:
+                currency: EUR
+                value: 1000
+              eventCode: PREARBITRATION_LOST
+              eventDate: '2021-01-01T01:00:00+01:00'
+              merchantAccountCode: YOUR_MERCHANT_ACCOUNT
+              merchantReference: YOUR_MERCHANT_REFERENCE
+              paymentMethod: visa
+              pspReference: QFQTPCQ8HXSKGK82
+              reason: Other Fraud-Card Absent Environment
+              success: 'true'
     post-PREARBITRATION_WON-prearbitration_won:
       summary: PREARBITRATION_WON example
       value:
         live: 'false'
         notificationItems:
-        - NotificationRequestItem:
-            amount:
-              currency: EUR
-              value: 1000
-            eventCode: PREARBITRATION_WON
-            eventDate: '2021-01-01T01:00:00+01:00'
-            merchantAccountCode: YOUR_MERCHANT_ACCOUNT
-            merchantReference: YOUR_MERCHANT_REFERENCE
-            paymentMethod: bankTransfer_IBAN
-            pspReference: QFQTPCQ8HXSKGK82
-            reason: ''
-            success: 'true'
+          - NotificationRequestItem:
+              amount:
+                currency: EUR
+                value: 1000
+              eventCode: PREARBITRATION_WON
+              eventDate: '2021-01-01T01:00:00+01:00'
+              merchantAccountCode: YOUR_MERCHANT_ACCOUNT
+              merchantReference: YOUR_MERCHANT_REFERENCE
+              paymentMethod: bankTransfer_IBAN
+              pspReference: QFQTPCQ8HXSKGK82
+              reason: ''
+              success: 'true'
     post-RECURRING_CONTRACT-recurring_contract:
       summary: RECURRING_CONTRACT example
       value:
         live: 'false'
         notificationItems:
-        - NotificationRequestItem:
-            additionalData:
-              recurring.shopperReference: YOUR_SHOPPER_REFERENCE
-              recurring.recurringDetailReference: M5N7TQ4TG5PFWR50
-              hmacSignature: YOUR_HMAC_SIGNATURE
-              shopperReference: YOUR_SHOPPER_REFERENCE
-              checkoutSessionId: '******************'
-            amount:
-              currency: USD
-              value: 0
-            eventCode: RECURRING_CONTRACT
-            eventDate: '2023-06-20T16:09:48+02:00'
-            merchantAccountCode: YOUR_MERCHANT_ACCOUNT
-            merchantReference: YOUR_PAYMENT_REFERENCE
-            originalReference: INITIAL_PAYMENT_PSP_REFERENCE
-            originalPsp: PSP_REFERENCE
-            paymentMethod: ideal
-            pspReference: M5N7TQ4TG5PFWR50
-            reason: ''
-            success: 'true'
+          - NotificationRequestItem:
+              additionalData:
+                recurring.shopperReference: YOUR_SHOPPER_REFERENCE
+                recurring.recurringDetailReference: M5N7TQ4TG5PFWR50
+                hmacSignature: YOUR_HMAC_SIGNATURE
+                shopperReference: YOUR_SHOPPER_REFERENCE
+                checkoutSessionId: '******************'
+              amount:
+                currency: USD
+                value: 0
+              eventCode: RECURRING_CONTRACT
+              eventDate: '2023-06-20T16:09:48+02:00'
+              merchantAccountCode: YOUR_MERCHANT_ACCOUNT
+              merchantReference: YOUR_PAYMENT_REFERENCE
+              originalReference: INITIAL_PAYMENT_PSP_REFERENCE
+              originalPsp: PSP_REFERENCE
+              paymentMethod: ideal
+              pspReference: M5N7TQ4TG5PFWR50
+              reason: ''
+              success: 'true'
     post-REFUND-refund:
       summary: REFUND example
       value:
         live: 'false'
         notificationItems:
-        - NotificationRequestItem:
-            amount:
-              currency: EUR
-              value: 1000
-            eventCode: REFUND
-            eventDate: '2021-01-01T01:00:00+01:00'
-            merchantAccountCode: YOUR_MERCHANT_ACCOUNT
-            merchantReference: YOUR_MERCHANT_REFERENCE
-            originalReference: '9913140798220028'
-            paymentMethod: visa
-            pspReference: QFQTPCQ8HXSKGK82
-            reason: Transaction hasn't been captured, refund not possible
-            success: 'false'
+          - NotificationRequestItem:
+              amount:
+                currency: EUR
+                value: 1000
+              eventCode: REFUND
+              eventDate: '2021-01-01T01:00:00+01:00'
+              merchantAccountCode: YOUR_MERCHANT_ACCOUNT
+              merchantReference: YOUR_MERCHANT_REFERENCE
+              originalReference: '9913140798220028'
+              paymentMethod: visa
+              pspReference: QFQTPCQ8HXSKGK82
+              reason: Transaction hasn't been captured, refund not possible
+              success: 'false'
     post-REFUNDED_REVERSED-refunded_reversed:
       summary: REFUNDED_REVERSED example
       value:
         live: 'false'
         notificationItems:
-        - NotificationRequestItem:
-            amount:
-              currency: EUR
-              value: 1000
-            eventCode: REFUNDED_REVERSED
-            eventDate: '2021-01-01T01:00:00+01:00'
-            merchantAccountCode: YOUR_MERCHANT_ACCOUNT
-            merchantReference: YOUR_MERCHANT_REFERENCE
-            originalReference: '9913140798220028'
-            paymentMethod: mc
-            pspReference: QFQTPCQ8HXSKGK82
-            reason: test_AUTHORISATION_1
-            success: 'true'
+          - NotificationRequestItem:
+              amount:
+                currency: EUR
+                value: 1000
+              eventCode: REFUNDED_REVERSED
+              eventDate: '2021-01-01T01:00:00+01:00'
+              merchantAccountCode: YOUR_MERCHANT_ACCOUNT
+              merchantReference: YOUR_MERCHANT_REFERENCE
+              originalReference: '9913140798220028'
+              paymentMethod: mc
+              pspReference: QFQTPCQ8HXSKGK82
+              reason: test_AUTHORISATION_1
+              success: 'true'
     post-REFUND_FAILED-refund_failed:
       summary: REFUND_FAILED example
       value:
         live: 'false'
         notificationItems:
-        - NotificationRequestItem:
-            additionalData:
-              hmacSignature: b0ea55c2fe60d4d1d605e9c385e0e7...
-              paymentMethodVariant: blik
-            amount:
-              currency: EUR
-              value: 1000
-            eventCode: REFUND_FAILED
-            eventDate: '2021-01-01T01:00:00+01:00'
-            merchantAccountCode: YOUR_MERCHANT_ACCOUNT
-            merchantReference: YOUR_MERCHANT_REFERENCE
-            originalReference: '9913140798220028'
-            paymentMethod: blik
-            pspReference: QFQTPCQ8HXSKGK82
-            reason: Refund Failed
-            success: 'true'
+          - NotificationRequestItem:
+              additionalData:
+                hmacSignature: b0ea55c2fe60d4d1d605e9c385e0e7...
+                paymentMethodVariant: blik
+              amount:
+                currency: EUR
+                value: 1000
+              eventCode: REFUND_FAILED
+              eventDate: '2021-01-01T01:00:00+01:00'
+              merchantAccountCode: YOUR_MERCHANT_ACCOUNT
+              merchantReference: YOUR_MERCHANT_REFERENCE
+              originalReference: '9913140798220028'
+              paymentMethod: blik
+              pspReference: QFQTPCQ8HXSKGK82
+              reason: Refund Failed
+              success: 'true'
     post-REFUND_WITH_DATA-refund_with_data:
       summary: REFUND_WITH_DATA example
       value:
         live: 'false'
         notificationItems:
-        - NotificationRequestItem:
-            amount:
-              currency: EUR
-              value: 1000
-            eventCode: REFUND_WITH_DATA
-            eventDate: '2021-01-01T01:00:00+01:00'
-            merchantAccountCode: YOUR_MERCHANT_ACCOUNT
-            merchantReference: YOUR_MODIFICATION_REFERENCE
-            originalReference: '9913140798220028'
-            paymentMethod: mc
-            pspReference: QFQTPCQ8HXSKGK82
-            reason: ''
-            success: 'true'
+          - NotificationRequestItem:
+              amount:
+                currency: EUR
+                value: 1000
+              eventCode: REFUND_WITH_DATA
+              eventDate: '2021-01-01T01:00:00+01:00'
+              merchantAccountCode: YOUR_MERCHANT_ACCOUNT
+              merchantReference: YOUR_MODIFICATION_REFERENCE
+              originalReference: '9913140798220028'
+              paymentMethod: mc
+              pspReference: QFQTPCQ8HXSKGK82
+              reason: ''
+              success: 'true'
     post-REPORT_AVAILABLE-report_available:
       summary: REPORT_AVAILABLE example
       value:
         live: 'false'
         notificationItems:
-        - NotificationRequestItem:
-            additionalData:
-              hmacSignature: b0ea55c2fe60d4d1d605e9c385e0e7...
-            amount:
-              currency: EUR
-              value: 1000
-            eventCode: REPORT_AVAILABLE
-            eventDate: '2021-01-01T01:00:00+01:00'
-            merchantAccountCode: YOUR_MERCHANT_ACCOUNT
-            merchantReference: ''
-            pspReference: QFQTPCQ8HXSKGK82
-            reason: URL_TO_DOWNLOAD_REPORT
-            success: 'true'
+          - NotificationRequestItem:
+              additionalData:
+                hmacSignature: b0ea55c2fe60d4d1d605e9c385e0e7...
+              amount:
+                currency: EUR
+                value: 1000
+              eventCode: REPORT_AVAILABLE
+              eventDate: '2021-01-01T01:00:00+01:00'
+              merchantAccountCode: YOUR_MERCHANT_ACCOUNT
+              merchantReference: ''
+              pspReference: QFQTPCQ8HXSKGK82
+              reason: URL_TO_DOWNLOAD_REPORT
+              success: 'true'
     post-REQUEST_FOR_INFORMATION-request_for_information:
       summary: REQUEST_FOR_INFORMATION example
       value:
         live: 'false'
         notificationItems:
-        - NotificationRequestItem:
-            additionalData:
-              hmacSignature: b0ea55c2fe60d4d1d605e9c385e0e7...
-              modificationMerchantReferences: '9123140123220028'
-            amount:
-              currency: EUR
-              value: 1000
-            eventCode: REQUEST_FOR_INFORMATION
-            eventDate: '2021-01-01T01:00:00+01:00'
-            merchantAccountCode: YOUR_MERCHANT_ACCOUNT
-            merchantReference: YOUR_MERCHANT_REFERENCE
-            originalReference: '9913140798220028'
-            paymentMethod: mc
-            pspReference: QFQTPCQ8HXSKGK82
-            reason: ''
-            success: 'true'
+          - NotificationRequestItem:
+              additionalData:
+                hmacSignature: b0ea55c2fe60d4d1d605e9c385e0e7...
+                modificationMerchantReferences: '9123140123220028'
+              amount:
+                currency: EUR
+                value: 1000
+              eventCode: REQUEST_FOR_INFORMATION
+              eventDate: '2021-01-01T01:00:00+01:00'
+              merchantAccountCode: YOUR_MERCHANT_ACCOUNT
+              merchantReference: YOUR_MERCHANT_REFERENCE
+              originalReference: '9913140798220028'
+              paymentMethod: mc
+              pspReference: QFQTPCQ8HXSKGK82
+              reason: ''
+              success: 'true'
     post-SECOND_CHARGEBACK-second_chargeback:
       summary: SECOND_CHARGEBACK example
       value:
         live: 'false'
         notificationItems:
-        - NotificationRequestItem:
-            additionalData:
-              chargebackReasonCode: '502'
-              modificationMerchantReferences: shopperReferenceTest
-              chargebackSchemeCode: jcb
-            amount:
-              currency: EUR
-              value: 1000
-            eventCode: SECOND_CHARGEBACK
-            eventDate: '2021-01-01T01:00:00+01:00'
-            merchantAccountCode: YOUR_MERCHANT_ACCOUNT
-            merchantReference: YOUR_MERCHANT_REFERENCE
-            paymentMethod: jcb
-            pspReference: QFQTPCQ8HXSKGK82
-            reason: 502:Cardmember Dispute
-            success: 'true'
+          - NotificationRequestItem:
+              additionalData:
+                chargebackReasonCode: '502'
+                modificationMerchantReferences: shopperReferenceTest
+                chargebackSchemeCode: jcb
+              amount:
+                currency: EUR
+                value: 1000
+              eventCode: SECOND_CHARGEBACK
+              eventDate: '2021-01-01T01:00:00+01:00'
+              merchantAccountCode: YOUR_MERCHANT_ACCOUNT
+              merchantReference: YOUR_MERCHANT_REFERENCE
+              paymentMethod: jcb
+              pspReference: QFQTPCQ8HXSKGK82
+              reason: 502:Cardmember Dispute
+              success: 'true'
     post-TECHNICAL_CANCEL-technical_cancel:
       summary: TECHNICAL_CANCEL example
       value:
         live: 'false'
         notificationItems:
-        - NotificationRequestItem:
-            additionalData:
-              paymentMethodVariant: visa
-            amount:
-              currency: EUR
-              value: 1000
-            eventCode: TECHNICAL_CANCEL
-            eventDate: '2018-07-18T22:35:14+02:00'
-            merchantAccountCode: YOUR_MERCHANT_ACCOUNT
-            merchantReference: YOUR_ORIGINAL_REFERENCE
-            originalReference: '8313547924770610'
-            paymentMethod: visa
-            pspReference: '8515208516304269'
-            reason: ''
-            success: 'true'
+          - NotificationRequestItem:
+              additionalData:
+                paymentMethodVariant: visa
+              amount:
+                currency: EUR
+                value: 1000
+              eventCode: TECHNICAL_CANCEL
+              eventDate: '2018-07-18T22:35:14+02:00'
+              merchantAccountCode: YOUR_MERCHANT_ACCOUNT
+              merchantReference: YOUR_ORIGINAL_REFERENCE
+              originalReference: '8313547924770610'
+              paymentMethod: visa
+              pspReference: '8515208516304269'
+              reason: ''
+              success: 'true'
     post-VOID_PENDING_REFUND-void_pending_refund:
       summary: VOID_PENDING_REFUND example
       value:
         live: 'false'
         notificationItems:
-        - NotificationRequestItem:
-            additionalData:
-              paymentMethodVariant: mc
-            amount:
-              currency: EUR
-              value: 1000
-            eventCode: VOID_PENDING_REFUND
-            eventDate: '2021-01-01T01:00:00+01:00'
-            merchantAccountCode: YOUR_MERCHANT_ACCOUNT
-            merchantReference: YOUR_MERCHANT_REFERENCE
-            originalReference: '9913140798220028'
-            paymentMethod: mc
-            pspReference: QFQTPCQ8HXSKGK82
+          - NotificationRequestItem:
+              additionalData:
+                paymentMethodVariant: mc
+              amount:
+                currency: EUR
+                value: 1000
+              eventCode: VOID_PENDING_REFUND
+              eventDate: '2021-01-01T01:00:00+01:00'
+              merchantAccountCode: YOUR_MERCHANT_ACCOUNT
+              merchantReference: YOUR_MERCHANT_REFERENCE
+              originalReference: '9913140798220028'
+              paymentMethod: mc
+              pspReference: QFQTPCQ8HXSKGK82

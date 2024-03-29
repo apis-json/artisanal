@@ -135,7 +135,13 @@ paths:
   /apiInfo:
     get:
       tags:
-        - api-info
+        - Get
+        - Information
+        - About
+        - The
+        - Public
+        - I.
+        - Info
       summary: Get information about the Public API.
       description: >-
         Get information about the version of the Public API, a link to the
@@ -144,22 +150,49 @@ paths:
   /groups:
     get:
       tags:
-        - group
-        - zfs
+        - Get
+        - All
+        - The
+        - Top-level
+        - Groups
+        - With
+        - Their
+        - Immediate
+        - Descendants
+        - Info
+        - Groups
       summary: Get all the top-level groups with their immediate descendants
       description: Get all the top-level groups with their immediate descendants
   /groups/{groupId}:
     get:
       tags:
-        - group
-        - zfs
+        - Get
+        - Specified
+        - Group
+        - Including
+        - Its
+        - Immediate
+        - Descendants
+        - Info
+        - Groups
+        - Id
       summary: Get a specified group including its immediate descendants
       description: Get a specified group including its immediate descendants
   /groups/{groupId}/caseTemplate:
     get:
       tags:
-        - group
-        - zfs
+        - Get
+        - The
+        - Case
+        - Template
+        - For
+        - Given
+        - Group
+        - Info
+        - Groups
+        - Id
+        - Case
+        - Template
       summary: Get the CaseTemplate for the given Group
       description: |
         Get the CaseTemplate for the given Group, used for constructing a Case
@@ -194,7 +227,20 @@ paths:
   /groups/{groupId}/resolutionToolkit:
     get:
       tags:
-        - group
+        - Get
+        - The
+        - Resolution
+        - Toolkit
+        - For
+        - Given
+        - Group.
+        - Info
+        - Groups
+        - Id
+        - Case
+        - Template
+        - Resolution
+        - Toolkit
       summary: Get the ResolutionToolkit for the given Group.
       description: >
         Get the ResolutionToolkit for the given Group, used to construct a valid
@@ -204,7 +250,22 @@ paths:
   /groups/{groupId}/resolutionToolkits:
     get:
       tags:
-        - group
+        - Get
+        - All
+        - The
+        - Resolution
+        - Toolkits
+        - For
+        - Given
+        - Group
+        - Info
+        - Groups
+        - Id
+        - Case
+        - Template
+        - Resolution
+        - Toolkit
+        - Toolkits
       summary: Get all the ResolutionToolkits for the given Group
       description: >
         Get the ResolutionToolkits for the given Group for all enabled provider
@@ -215,7 +276,26 @@ paths:
   /groups/{groupId}/resolutionToolkits/{providerType}:
     get:
       tags:
-        - group
+        - Get
+        - The
+        - Resolution
+        - Toolkit
+        - For
+        - Specific
+        - Provider
+        - Type
+        - Given
+        - Group
+        - Info
+        - Groups
+        - Id
+        - Case
+        - Template
+        - Resolution
+        - Toolkit
+        - Toolkits
+        - Provider
+        - Type
       summary: >-
         Get the ResolutionToolkit for a specific provider type for the given
         Group
@@ -227,7 +307,26 @@ paths:
   /caseIdentifiers:
     head:
       tags:
-        - case
+        - Check
+        - If
+        - Given
+        - Case
+        - Id
+        - Is
+        - Available
+        - For
+        - Use
+        - Info
+        - Groups
+        - Id
+        - Case
+        - Template
+        - Resolution
+        - Toolkit
+        - Toolkits
+        - Provider
+        - Type
+        - Identifiers
       summary: Check if a given caseId is available for use
       description: >
         caseIds must be unique within each Client. If any Group under a Client
@@ -240,7 +339,28 @@ paths:
   /caseReferences:
     get:
       tags:
-        - case
+        - Return
+        - The
+        - Case
+        - Reference
+        - (case
+        - Id,
+        - System
+        - Id)
+        - For
+        - Id
+        - Info
+        - Groups
+        - Id
+        - Case
+        - Template
+        - Resolution
+        - Toolkit
+        - Toolkits
+        - Provider
+        - Type
+        - Identifiers
+        - References
       summary: Return the CaseReference (caseId, caseSystemId) for a caseId
       description: >
         Returns the CaseReference containing the caseId and caseSystemId pair
@@ -253,7 +373,22 @@ paths:
   /cases:
     post:
       tags:
-        - case
+        - Create
+        - New
+        - Case
+        - Info
+        - Groups
+        - Id
+        - Case
+        - Template
+        - Resolution
+        - Toolkit
+        - Toolkits
+        - Provider
+        - Type
+        - Identifiers
+        - References
+        - Cases
       summary: Create a new case
       description: >
         Creates a new Case for asynchronous screening. Synchronous screening on
@@ -268,8 +403,26 @@ paths:
   /cases/screeningRequest:
     post:
       tags:
-        - case
-        - zfs
+        - Perform
+        - Synchronous
+        - Screening
+        - For
+        - New
+        - Case
+        - Info
+        - Groups
+        - Id
+        - Case
+        - Template
+        - Resolution
+        - Toolkit
+        - Toolkits
+        - Provider
+        - Type
+        - Identifiers
+        - References
+        - Cases
+        - Request
       summary: Perform synchronous screening for a new case
       description: >
         Perform synchronous screening for a new case.
@@ -356,7 +509,29 @@ paths:
   /cases/{caseSystemId}:
     put:
       tags:
-        - case
+        - Update
+        - An
+        - Existing
+        - Case
+        - By
+        - Its
+        - System
+        - Id
+        - Info
+        - Groups
+        - Id
+        - Case
+        - Template
+        - Resolution
+        - Toolkit
+        - Toolkits
+        - Provider
+        - Type
+        - Identifiers
+        - References
+        - Cases
+        - Request
+        - System
       summary: Update an existing Case by its caseSystemId
       description: >
         Updates an existing Case identified by the given caseSystemId. When the
@@ -379,7 +554,30 @@ paths:
         [here](#tag/groups/operation/getCaseTemplateForGroup).**
     patch:
       tags:
-        - case
+        - Partial
+        - Update
+        - An
+        - Existing
+        - Case
+        - By
+        - Its
+        - System
+        - Id
+        - Info
+        - Groups
+        - Id
+        - Case
+        - Template
+        - Resolution
+        - Toolkit
+        - Toolkits
+        - Provider
+        - Type
+        - Identifiers
+        - References
+        - Cases
+        - Request
+        - System
       summary: Partial update an existing Case by its caseSystemId
       description: >
         Updates an existing Case identified by the given caseSystemId. When the
@@ -411,7 +609,25 @@ paths:
         [here](#tag/groups/operation/getCaseTemplateForGroup).**
     get:
       tags:
-        - case
+        - Fetch
+        - Full
+        - Case
+        - Details
+        - Info
+        - Groups
+        - Id
+        - Case
+        - Template
+        - Resolution
+        - Toolkit
+        - Toolkits
+        - Provider
+        - Type
+        - Identifiers
+        - References
+        - Cases
+        - Request
+        - System
       summary: Fetch Full Case Details
       description: >
         Returns full details of the Case identified by the given 'caseSystemId'.
@@ -424,7 +640,23 @@ paths:
                   recommended for the Cases where stats are expected.
     delete:
       tags:
-        - case
+        - Delete
+        - Case
+        - Info
+        - Groups
+        - Id
+        - Case
+        - Template
+        - Resolution
+        - Toolkit
+        - Toolkits
+        - Provider
+        - Type
+        - Identifiers
+        - References
+        - Cases
+        - Request
+        - System
       summary: Delete a Case
       description: >
         Delete a Case identified by the given caseSystemId. The case must be
@@ -440,7 +672,31 @@ paths:
   /cases/{caseSystemId}/screeningRequest:
     post:
       tags:
-        - case
+        - Request
+        - Full
+        - Or
+        - Delta
+        - Screening
+        - For
+        - An
+        - Existing
+        - Case.
+        - Info
+        - Groups
+        - Id
+        - Case
+        - Template
+        - Resolution
+        - Toolkit
+        - Toolkits
+        - Provider
+        - Type
+        - Identifiers
+        - References
+        - Cases
+        - Request
+        - System
+        - Screening
       summary: Request full or delta screening for an existing Case.
       description: >
         Make a request for screening of the Case identified by the given
@@ -482,7 +738,26 @@ paths:
   /cases/{caseSystemId}/ongoingScreening:
     put:
       tags:
-        - case
+        - Enable
+        - For
+        - Case.
+        - Info
+        - Groups
+        - Id
+        - Case
+        - Template
+        - Resolution
+        - Toolkit
+        - Toolkits
+        - Provider
+        - Type
+        - Identifiers
+        - References
+        - Cases
+        - Request
+        - System
+        - Screening
+        - Ongoing
       summary: Enable OGS for a Case.
       description: >
         Enable Ongoing Screening for the Case identified by the given
@@ -499,7 +774,26 @@ paths:
         will be performed for WATCHLIST provider type.
     delete:
       tags:
-        - case
+        - Disable
+        - For
+        - Case.
+        - Info
+        - Groups
+        - Id
+        - Case
+        - Template
+        - Resolution
+        - Toolkit
+        - Toolkits
+        - Provider
+        - Type
+        - Identifiers
+        - References
+        - Cases
+        - Request
+        - System
+        - Screening
+        - Ongoing
       summary: Disable OGS for a Case.
       description: >
         Disable Ongoing Screening for the Case identified by the given
@@ -515,7 +809,26 @@ paths:
   /cases/{caseSystemId}/archive:
     put:
       tags:
-        - case
+        - Archive
+        - Case.
+        - Info
+        - Groups
+        - Id
+        - Case
+        - Template
+        - Resolution
+        - Toolkit
+        - Toolkits
+        - Provider
+        - Type
+        - Identifiers
+        - References
+        - Cases
+        - Request
+        - System
+        - Screening
+        - Ongoing
+        - Archive
       summary: Archive a Case.
       description: >
         Archive the Case identified by the given caseSystemId. This will put the
@@ -526,7 +839,26 @@ paths:
         The user must be active and have the archive permission.
     delete:
       tags:
-        - case
+        - Unarchive
+        - Case
+        - Info
+        - Groups
+        - Id
+        - Case
+        - Template
+        - Resolution
+        - Toolkit
+        - Toolkits
+        - Provider
+        - Type
+        - Identifiers
+        - References
+        - Cases
+        - Request
+        - System
+        - Screening
+        - Ongoing
+        - Archive
       summary: Unarchive a Case
       description: |
         Unarchive the Case identified by the given caseSystemId.
@@ -534,7 +866,29 @@ paths:
   /cases/bulk/archive:
     post:
       tags:
-        - case
+        - Bulk
+        - Update
+        - Archive
+        - States
+        - Info
+        - Groups
+        - Id
+        - Case
+        - Template
+        - Resolution
+        - Toolkit
+        - Toolkits
+        - Provider
+        - Type
+        - Identifiers
+        - References
+        - Cases
+        - Request
+        - System
+        - Screening
+        - Ongoing
+        - Archive
+        - Bulk
       summary: Bulk Update Archive States
       description: >
         Bulk Update Archive States of cases identified by the given
@@ -562,7 +916,30 @@ paths:
   /cases/bulk/assign:
     post:
       tags:
-        - case
+        - Bulk
+        - Update
+        - Case
+        - Assignments
+        - Info
+        - Groups
+        - Id
+        - Case
+        - Template
+        - Resolution
+        - Toolkit
+        - Toolkits
+        - Provider
+        - Type
+        - Identifiers
+        - References
+        - Cases
+        - Request
+        - System
+        - Screening
+        - Ongoing
+        - Archive
+        - Bulk
+        - Assign
       summary: Bulk Update Case Assignments
       description: >
         Bulk Update Case Assignments, where `Case`s are identified by the given
@@ -595,7 +972,30 @@ paths:
   /cases/bulk/delete:
     post:
       tags:
-        - case
+        - Bulk
+        - Delete
+        - Cases
+        - Info
+        - Groups
+        - Id
+        - Case
+        - Template
+        - Resolution
+        - Toolkit
+        - Toolkits
+        - Provider
+        - Type
+        - Identifiers
+        - References
+        - Cases
+        - Request
+        - System
+        - Screening
+        - Ongoing
+        - Archive
+        - Bulk
+        - Assign
+        - Delete
       summary: Bulk Delete Cases
       description: >
         Bulk Delete Cases identified by the given `caseSystemIds`. The cases
@@ -618,7 +1018,33 @@ paths:
   /cases/bulk/move:
     post:
       tags:
-        - case
+        - Bulk
+        - Move
+        - Cases
+        - Between
+        - Groups
+        - Info
+        - Groups
+        - Id
+        - Case
+        - Template
+        - Resolution
+        - Toolkit
+        - Toolkits
+        - Provider
+        - Type
+        - Identifiers
+        - References
+        - Cases
+        - Request
+        - System
+        - Screening
+        - Ongoing
+        - Archive
+        - Bulk
+        - Assign
+        - Delete
+        - Move
       summary: Bulk Move Cases Between Groups
       description: >
         Bulk Move Cases identified by the given `caseSystemIds` to the `Group`
@@ -644,7 +1070,33 @@ paths:
   /cases/bulk/ongoingScreening:
     post:
       tags:
-        - case
+        - Bulk
+        - Update
+        - Ongoing
+        - Screening
+        - States
+        - Info
+        - Groups
+        - Id
+        - Case
+        - Template
+        - Resolution
+        - Toolkit
+        - Toolkits
+        - Provider
+        - Type
+        - Identifiers
+        - References
+        - Cases
+        - Request
+        - System
+        - Screening
+        - Ongoing
+        - Archive
+        - Bulk
+        - Assign
+        - Delete
+        - Move
       summary: Bulk Update Ongoing Screening States
       description: >
         Bulk Update Ongoing Screening (OGS) States of cases with provided
@@ -669,7 +1121,33 @@ paths:
   /cases/bulk/link:
     post:
       tags:
-        - case
+        - Bulk
+        - Update
+        - Case
+        - Links
+        - Info
+        - Groups
+        - Id
+        - Case
+        - Template
+        - Resolution
+        - Toolkit
+        - Toolkits
+        - Provider
+        - Type
+        - Identifiers
+        - References
+        - Cases
+        - Request
+        - System
+        - Screening
+        - Ongoing
+        - Archive
+        - Bulk
+        - Assign
+        - Delete
+        - Move
+        - Link
       summary: Bulk Update Case Links
       description: >
         Bulk Update Case Links for `Case`s with provided `caseSystemIds` and
@@ -695,7 +1173,40 @@ paths:
   /cases/{caseSystemId}/results:
     get:
       tags:
-        - case
+        - Get
+        - Collection
+        - Of
+        - Results
+        - For
+        - Case
+        - By
+        - Its
+        - System
+        - Id
+        - Info
+        - Groups
+        - Id
+        - Case
+        - Template
+        - Resolution
+        - Toolkit
+        - Toolkits
+        - Provider
+        - Type
+        - Identifiers
+        - References
+        - Cases
+        - Request
+        - System
+        - Screening
+        - Ongoing
+        - Archive
+        - Bulk
+        - Assign
+        - Delete
+        - Move
+        - Link
+        - Results
       summary: Get collection of Results for a Case by its caseSystemId
       description: >
         Return a collection of Results for the Case identified by the given
@@ -734,13 +1245,76 @@ paths:
   /cases/{caseSystemId}/results/review:
     put:
       tags:
-        - case
+        - Add
+        - Review
+        - Remark
+        - To
+        - The
+        - Specified
+        - Result
+        - Ds
+        - For
+        - Given
+        - Case
+        - Info
+        - Groups
+        - Id
+        - Case
+        - Template
+        - Resolution
+        - Toolkit
+        - Toolkits
+        - Provider
+        - Type
+        - Identifiers
+        - References
+        - Cases
+        - Request
+        - System
+        - Screening
+        - Ongoing
+        - Archive
+        - Bulk
+        - Assign
+        - Delete
+        - Move
+        - Link
+        - Results
+        - Review
       summary: Add a review remark to the specified result IDs for the given case
       description: Add a review remark to the specified result IDs for the given case.
   /cases/{caseSystemId}/results/resolution:
     put:
       tags:
-        - case
+        - Resolves
+        - List
+        - Of
+        - Results.
+        - Info
+        - Groups
+        - Id
+        - Case
+        - Template
+        - Resolution
+        - Toolkit
+        - Toolkits
+        - Provider
+        - Type
+        - Identifiers
+        - References
+        - Cases
+        - Request
+        - System
+        - Screening
+        - Ongoing
+        - Archive
+        - Bulk
+        - Assign
+        - Delete
+        - Move
+        - Link
+        - Results
+        - Review
       summary: Resolves a list of results.
       description: >
         Resolves a list of results for the Case identified by the given
@@ -758,7 +1332,45 @@ paths:
   /cases/{caseSystemId}/auditEvents:
     post:
       tags:
-        - audit
+        - Get
+        - Filtered
+        - List
+        - Of
+        - Audit
+        - Events
+        - For
+        - Case
+        - By
+        - Its
+        - System
+        - Id
+        - Info
+        - Groups
+        - Id
+        - Case
+        - Template
+        - Resolution
+        - Toolkit
+        - Toolkits
+        - Provider
+        - Type
+        - Identifiers
+        - References
+        - Cases
+        - Request
+        - System
+        - Screening
+        - Ongoing
+        - Archive
+        - Bulk
+        - Assign
+        - Delete
+        - Move
+        - Link
+        - Results
+        - Review
+        - Audit
+        - Events
       summary: Get a filtered list of AuditEvents for a Case by its caseSystemId
       description: >
         Return all audit events related to cases visible to the current user. To
@@ -800,7 +1412,50 @@ paths:
   /cases/{caseSystemId}/auditEvents/{auditEventId}:
     get:
       tags:
-        - audit
+        - Retrieves
+        - The
+        - Audit
+        - Event
+        - With
+        - Given
+        - '''audit'
+        - Id'
+        - Belonging
+        - To
+        - Case
+        - Identified
+        - By
+        - '''case'
+        - System
+        - Id'.
+        - Info
+        - Groups
+        - Id
+        - Case
+        - Template
+        - Resolution
+        - Toolkit
+        - Toolkits
+        - Provider
+        - Type
+        - Identifiers
+        - References
+        - Cases
+        - Request
+        - System
+        - Screening
+        - Ongoing
+        - Archive
+        - Bulk
+        - Assign
+        - Delete
+        - Move
+        - Link
+        - Results
+        - Review
+        - Audit
+        - Events
+        - Event
       summary: >-
         Retrieves the audit event with the given 'auditEventId' belonging to the
         case identified by the given 'caseSystemId'.
@@ -810,7 +1465,39 @@ paths:
   /cases/ongoingScreeningUpdates:
     post:
       tags:
-        - case
+        - Get
+        - Ongoing
+        - Screening
+        - Updates.
+        - Info
+        - Groups
+        - Id
+        - Case
+        - Template
+        - Resolution
+        - Toolkit
+        - Toolkits
+        - Provider
+        - Type
+        - Identifiers
+        - References
+        - Cases
+        - Request
+        - System
+        - Screening
+        - Ongoing
+        - Archive
+        - Bulk
+        - Assign
+        - Delete
+        - Move
+        - Link
+        - Results
+        - Review
+        - Audit
+        - Events
+        - Event
+        - Updates
       summary: Get ongoing screening updates.
       description: >
         Get ongoing screening updates for all `Case` objects that are visible to
@@ -845,14 +1532,79 @@ paths:
   /cases/{caseSystemId}/assignee:
     put:
       tags:
-        - case
+        - Assign
+        - The
+        - Case
+        - To
+        - User.
+        - Info
+        - Groups
+        - Id
+        - Case
+        - Template
+        - Resolution
+        - Toolkit
+        - Toolkits
+        - Provider
+        - Type
+        - Identifiers
+        - References
+        - Cases
+        - Request
+        - System
+        - Screening
+        - Ongoing
+        - Archive
+        - Bulk
+        - Assign
+        - Delete
+        - Move
+        - Link
+        - Results
+        - Review
+        - Audit
+        - Events
+        - Event
+        - Updates
+        - Assignee
       summary: Assign the Case to a User.
       description: |
         Assign the Case to a User. '/users' endpoint provides the active users
         that a Case can be assigned to.
     delete:
       tags:
-        - case
+        - Unassign
+        - Case.
+        - Info
+        - Groups
+        - Id
+        - Case
+        - Template
+        - Resolution
+        - Toolkit
+        - Toolkits
+        - Provider
+        - Type
+        - Identifiers
+        - References
+        - Cases
+        - Request
+        - System
+        - Screening
+        - Ongoing
+        - Archive
+        - Bulk
+        - Assign
+        - Delete
+        - Move
+        - Link
+        - Results
+        - Review
+        - Audit
+        - Events
+        - Event
+        - Updates
+        - Assignee
       summary: Unassign a Case.
       description: >-
         Once you have assigned the case to the User, you can now unassign the
@@ -860,7 +1612,49 @@ paths:
   /cases/search:
     post:
       tags:
-        - case
+        - Search
+        - For
+        - Cases
+        - Based
+        - 'On'
+        - Specified
+        - Criteria
+        - Using
+        - Filter
+        - Or
+        - Query
+        - Parameters.
+        - Info
+        - Groups
+        - Id
+        - Case
+        - Template
+        - Resolution
+        - Toolkit
+        - Toolkits
+        - Provider
+        - Type
+        - Identifiers
+        - References
+        - Cases
+        - Request
+        - System
+        - Screening
+        - Ongoing
+        - Archive
+        - Bulk
+        - Assign
+        - Delete
+        - Move
+        - Link
+        - Results
+        - Review
+        - Audit
+        - Events
+        - Event
+        - Updates
+        - Assignee
+        - Search
       summary: >-
         Search for Cases based on specified criteria using filter or query
         parameters.
@@ -900,7 +1694,43 @@ paths:
   /cases/summaries:
     post:
       tags:
-        - case
+        - User
+        - Activity
+        - Monitoring.
+        - Initial
+        - Request.
+        - Info
+        - Groups
+        - Id
+        - Case
+        - Template
+        - Resolution
+        - Toolkit
+        - Toolkits
+        - Provider
+        - Type
+        - Identifiers
+        - References
+        - Cases
+        - Request
+        - System
+        - Screening
+        - Ongoing
+        - Archive
+        - Bulk
+        - Assign
+        - Delete
+        - Move
+        - Link
+        - Results
+        - Review
+        - Audit
+        - Events
+        - Event
+        - Updates
+        - Assignee
+        - Search
+        - Summaries
       summary: User activity monitoring. Initial request.
       description: >
         Return a collection of Cases that were modified by users in particular
@@ -944,7 +1774,44 @@ paths:
   /cases/summaries/cursor:
     post:
       tags:
-        - case
+        - User
+        - Activity
+        - Monitoring.
+        - Subsequent
+        - Request.
+        - Info
+        - Groups
+        - Id
+        - Case
+        - Template
+        - Resolution
+        - Toolkit
+        - Toolkits
+        - Provider
+        - Type
+        - Identifiers
+        - References
+        - Cases
+        - Request
+        - System
+        - Screening
+        - Ongoing
+        - Archive
+        - Bulk
+        - Assign
+        - Delete
+        - Move
+        - Link
+        - Results
+        - Review
+        - Audit
+        - Events
+        - Event
+        - Updates
+        - Assignee
+        - Search
+        - Summaries
+        - Cursor
       summary: User activity monitoring. Subsequent request.
       description: >
         Continue loading result sets by cursor ID retrieved from
@@ -961,7 +1828,44 @@ paths:
   /cases/{caseSystemId}/mediacheck/results:
     post:
       tags:
-        - media-check
+        - Retrieve
+        - Media
+        - Check
+        - Results
+        - Info
+        - Groups
+        - Id
+        - Case
+        - Template
+        - Resolution
+        - Toolkit
+        - Toolkits
+        - Provider
+        - Type
+        - Identifiers
+        - References
+        - Cases
+        - Request
+        - System
+        - Screening
+        - Ongoing
+        - Archive
+        - Bulk
+        - Assign
+        - Delete
+        - Move
+        - Link
+        - Results
+        - Review
+        - Audit
+        - Events
+        - Event
+        - Updates
+        - Assignee
+        - Search
+        - Summaries
+        - Cursor
+        - Mediacheck
       summary: Retrieve MediaCheck results
       description: >
         Retrieve MediaCheck headlines results by the case ID.
@@ -1208,7 +2112,47 @@ paths:
   /cases/{caseSystemId}/mediacheck/results/metadata:
     post:
       tags:
-        - media-check
+        - Retrieve
+        - Article
+        - Metadata
+        - By
+        - The
+        - Ds
+        - Info
+        - Groups
+        - Id
+        - Case
+        - Template
+        - Resolution
+        - Toolkit
+        - Toolkits
+        - Provider
+        - Type
+        - Identifiers
+        - References
+        - Cases
+        - Request
+        - System
+        - Screening
+        - Ongoing
+        - Archive
+        - Bulk
+        - Assign
+        - Delete
+        - Move
+        - Link
+        - Results
+        - Review
+        - Audit
+        - Events
+        - Event
+        - Updates
+        - Assignee
+        - Search
+        - Summaries
+        - Cursor
+        - Mediacheck
+        - Metadata
       summary: Retrieve article metadata by the article IDs
       description: |
         Retrieve Media Check headlines results by the article IDs.
@@ -1227,14 +2171,96 @@ paths:
   /cases/{caseSystemId}/mediacheck/results/{articleId}/metadata:
     get:
       tags:
-        - media-check
+        - Retrieve
+        - Article
+        - Metadata
+        - By
+        - The
+        - Info
+        - Groups
+        - Id
+        - Case
+        - Template
+        - Resolution
+        - Toolkit
+        - Toolkits
+        - Provider
+        - Type
+        - Identifiers
+        - References
+        - Cases
+        - Request
+        - System
+        - Screening
+        - Ongoing
+        - Archive
+        - Bulk
+        - Assign
+        - Delete
+        - Move
+        - Link
+        - Results
+        - Review
+        - Audit
+        - Events
+        - Event
+        - Updates
+        - Assignee
+        - Search
+        - Summaries
+        - Cursor
+        - Mediacheck
+        - Metadata
+        - Article
       summary: Retrieve article metadata by the article ID
       description: |
         Retrieve Media Check headlines results by the article ID.
   /cases/{caseSystemId}/mediacheck/results/content:
     post:
       tags:
-        - media-check
+        - Retrieve
+        - Media
+        - Check
+        - News
+        - Articles
+        - Content
+        - Info
+        - Groups
+        - Id
+        - Case
+        - Template
+        - Resolution
+        - Toolkit
+        - Toolkits
+        - Provider
+        - Type
+        - Identifiers
+        - References
+        - Cases
+        - Request
+        - System
+        - Screening
+        - Ongoing
+        - Archive
+        - Bulk
+        - Assign
+        - Delete
+        - Move
+        - Link
+        - Results
+        - Review
+        - Audit
+        - Events
+        - Event
+        - Updates
+        - Assignee
+        - Search
+        - Summaries
+        - Cursor
+        - Mediacheck
+        - Metadata
+        - Article
+        - Content
       summary: Retrieve MediaCheck news articles content
       description: >
         Retrieve MediaCheck news articles content and summary by the given
@@ -1256,7 +2282,51 @@ paths:
   /cases/{caseSystemId}/mediacheck/results/{articleId}/content:
     get:
       tags:
-        - media-check
+        - Retrieve
+        - Content
+        - Of
+        - Single
+        - Media
+        - Check
+        - News
+        - Article.
+        - Info
+        - Groups
+        - Id
+        - Case
+        - Template
+        - Resolution
+        - Toolkit
+        - Toolkits
+        - Provider
+        - Type
+        - Identifiers
+        - References
+        - Cases
+        - Request
+        - System
+        - Screening
+        - Ongoing
+        - Archive
+        - Bulk
+        - Assign
+        - Delete
+        - Move
+        - Link
+        - Results
+        - Review
+        - Audit
+        - Events
+        - Event
+        - Updates
+        - Assignee
+        - Search
+        - Summaries
+        - Cursor
+        - Mediacheck
+        - Metadata
+        - Article
+        - Content
       summary: Retrieve content of single MediaCheck news article.
       description: >-
         Retrieve content of single MediaCheck news article by the given
@@ -1264,7 +2334,53 @@ paths:
   /cases/{caseSystemId}/mediacheck/results/review:
     put:
       tags:
-        - media-check
+        - Mark
+        - All
+        - Media
+        - Check
+        - News
+        - Articles
+        - As
+        - Reviewed
+        - For
+        - Case.
+        - Info
+        - Groups
+        - Id
+        - Case
+        - Template
+        - Resolution
+        - Toolkit
+        - Toolkits
+        - Provider
+        - Type
+        - Identifiers
+        - References
+        - Cases
+        - Request
+        - System
+        - Screening
+        - Ongoing
+        - Archive
+        - Bulk
+        - Assign
+        - Delete
+        - Move
+        - Link
+        - Results
+        - Review
+        - Audit
+        - Events
+        - Event
+        - Updates
+        - Assignee
+        - Search
+        - Summaries
+        - Cursor
+        - Mediacheck
+        - Metadata
+        - Article
+        - Content
       summary: Mark all MediaCheck news articles as reviewed for a case.
       description: >-
         Marks all news articles as reviewed for the Case identified by the given
@@ -1272,29 +2388,241 @@ paths:
   /cases/{caseSystemId}/mediacheck/results/attach:
     put:
       tags:
-        - media-check
+        - Attach
+        - Articles
+        - To
+        - Case.
+        - Info
+        - Groups
+        - Id
+        - Case
+        - Template
+        - Resolution
+        - Toolkit
+        - Toolkits
+        - Provider
+        - Type
+        - Identifiers
+        - References
+        - Cases
+        - Request
+        - System
+        - Screening
+        - Ongoing
+        - Archive
+        - Bulk
+        - Assign
+        - Delete
+        - Move
+        - Link
+        - Results
+        - Review
+        - Audit
+        - Events
+        - Event
+        - Updates
+        - Assignee
+        - Search
+        - Summaries
+        - Cursor
+        - Mediacheck
+        - Metadata
+        - Article
+        - Content
+        - Attach
       summary: Attach articles to a case.
       description: Attach articles to a case identified by the given caseSystemId.
     get:
       tags:
-        - media-check
+        - Retrieve
+        - All
+        - Articles
+        - Attached
+        - To
+        - The
+        - Case.
+        - Info
+        - Groups
+        - Id
+        - Case
+        - Template
+        - Resolution
+        - Toolkit
+        - Toolkits
+        - Provider
+        - Type
+        - Identifiers
+        - References
+        - Cases
+        - Request
+        - System
+        - Screening
+        - Ongoing
+        - Archive
+        - Bulk
+        - Assign
+        - Delete
+        - Move
+        - Link
+        - Results
+        - Review
+        - Audit
+        - Events
+        - Event
+        - Updates
+        - Assignee
+        - Search
+        - Summaries
+        - Cursor
+        - Mediacheck
+        - Metadata
+        - Article
+        - Content
+        - Attach
       summary: Retrieve all articles attached to the case.
       description: Retrieve Media Check results by the article attached to the case.
     delete:
       tags:
-        - media-check
+        - Detach
+        - Articles
+        - From
+        - Case.
+        - Info
+        - Groups
+        - Id
+        - Case
+        - Template
+        - Resolution
+        - Toolkit
+        - Toolkits
+        - Provider
+        - Type
+        - Identifiers
+        - References
+        - Cases
+        - Request
+        - System
+        - Screening
+        - Ongoing
+        - Archive
+        - Bulk
+        - Assign
+        - Delete
+        - Move
+        - Link
+        - Results
+        - Review
+        - Audit
+        - Events
+        - Event
+        - Updates
+        - Assignee
+        - Search
+        - Summaries
+        - Cursor
+        - Mediacheck
+        - Metadata
+        - Article
+        - Content
+        - Attach
       summary: Detach articles from a case.
       description: Detach articles from a case identified by the given caseSystemId.
   /cases/{caseSystemId}/mediacheck/results/{articleId}/attach:
     delete:
       tags:
-        - media-check
+        - Detach
+        - Single
+        - Article
+        - From
+        - Case.
+        - Info
+        - Groups
+        - Id
+        - Case
+        - Template
+        - Resolution
+        - Toolkit
+        - Toolkits
+        - Provider
+        - Type
+        - Identifiers
+        - References
+        - Cases
+        - Request
+        - System
+        - Screening
+        - Ongoing
+        - Archive
+        - Bulk
+        - Assign
+        - Delete
+        - Move
+        - Link
+        - Results
+        - Review
+        - Audit
+        - Events
+        - Event
+        - Updates
+        - Assignee
+        - Search
+        - Summaries
+        - Cursor
+        - Mediacheck
+        - Metadata
+        - Article
+        - Content
+        - Attach
       summary: Detach single article from a case.
       description: Detach single article from a case identified by the given caseSystemId.
   /cases/saveAndScreen:
     post:
       tags:
-        - case
+        - Save
+        - And
+        - Screen
+        - Multiple
+        - Cases.
+        - Info
+        - Groups
+        - Id
+        - Case
+        - Template
+        - Resolution
+        - Toolkit
+        - Toolkits
+        - Provider
+        - Type
+        - Identifiers
+        - References
+        - Cases
+        - Request
+        - System
+        - Screening
+        - Ongoing
+        - Archive
+        - Bulk
+        - Assign
+        - Delete
+        - Move
+        - Link
+        - Results
+        - Review
+        - Audit
+        - Events
+        - Event
+        - Updates
+        - Assignee
+        - Search
+        - Summaries
+        - Cursor
+        - Mediacheck
+        - Metadata
+        - Article
+        - Content
+        - Attach
+        - And
+        - Screen
       summary: Save and screen multiple cases.
       description: >
         Save and screen multiple cases for the given group Id. Caller may
@@ -1345,7 +2673,57 @@ paths:
   /cases/screeningStatus:
     post:
       tags:
-        - case
+        - Retrieve
+        - Case
+        - Screening
+        - Status
+        - And
+        - Aggregated
+        - Result
+        - For
+        - Multiple
+        - Cases.
+        - Info
+        - Groups
+        - Id
+        - Case
+        - Template
+        - Resolution
+        - Toolkit
+        - Toolkits
+        - Provider
+        - Type
+        - Identifiers
+        - References
+        - Cases
+        - Request
+        - System
+        - Screening
+        - Ongoing
+        - Archive
+        - Bulk
+        - Assign
+        - Delete
+        - Move
+        - Link
+        - Results
+        - Review
+        - Audit
+        - Events
+        - Event
+        - Updates
+        - Assignee
+        - Search
+        - Summaries
+        - Cursor
+        - Mediacheck
+        - Metadata
+        - Article
+        - Content
+        - Attach
+        - And
+        - Screen
+        - Status
       summary: Retrieve case screening status and aggregated result for multiple cases.
       description: >
         Retrieve case screening statuses and aggregated results. Caller may
@@ -1457,14 +2835,112 @@ paths:
   /reference/countries:
     get:
       tags:
-        - reference
-        - zfs
+        - Get
+        - Map
+        - Of
+        - Country
+        - Codes
+        - And
+        - Names
+        - Info
+        - Groups
+        - Id
+        - Case
+        - Template
+        - Resolution
+        - Toolkit
+        - Toolkits
+        - Provider
+        - Type
+        - Identifiers
+        - References
+        - Cases
+        - Request
+        - System
+        - Screening
+        - Ongoing
+        - Archive
+        - Bulk
+        - Assign
+        - Delete
+        - Move
+        - Link
+        - Results
+        - Review
+        - Audit
+        - Events
+        - Event
+        - Updates
+        - Assignee
+        - Search
+        - Summaries
+        - Cursor
+        - Mediacheck
+        - Metadata
+        - Article
+        - Content
+        - Attach
+        - And
+        - Screen
+        - Status
+        - Reference
+        - Countries
       summary: Get Map of country codes and country names
       description: Get Map of ISO-3166-1 alpha-3 country codes and country names in English
   /reference/nationalities:
     get:
       tags:
-        - reference
+        - Get
+        - Map
+        - Of
+        - Nationality
+        - Codes
+        - And
+        - Names
+        - Info
+        - Groups
+        - Id
+        - Case
+        - Template
+        - Resolution
+        - Toolkit
+        - Toolkits
+        - Provider
+        - Type
+        - Identifiers
+        - References
+        - Cases
+        - Request
+        - System
+        - Screening
+        - Ongoing
+        - Archive
+        - Bulk
+        - Assign
+        - Delete
+        - Move
+        - Link
+        - Results
+        - Review
+        - Audit
+        - Events
+        - Event
+        - Updates
+        - Assignee
+        - Search
+        - Summaries
+        - Cursor
+        - Mediacheck
+        - Metadata
+        - Article
+        - Content
+        - Attach
+        - And
+        - Screen
+        - Status
+        - Reference
+        - Countries
+        - Nationalities
       summary: Get Map of nationality codes and nationality names
       description: >-
         Get Map of ISO-3166-1 alpha-3 nationality codes and nationality names in
@@ -1472,13 +2948,120 @@ paths:
   /reference/providers:
     get:
       tags:
-        - reference
+        - Get
+        - List
+        - Of
+        - Available
+        - Providers
+        - And
+        - Their
+        - Sources.
+        - Info
+        - Groups
+        - Id
+        - Case
+        - Template
+        - Resolution
+        - Toolkit
+        - Toolkits
+        - Provider
+        - Type
+        - Identifiers
+        - References
+        - Cases
+        - Request
+        - System
+        - Screening
+        - Ongoing
+        - Archive
+        - Bulk
+        - Assign
+        - Delete
+        - Move
+        - Link
+        - Results
+        - Review
+        - Audit
+        - Events
+        - Event
+        - Updates
+        - Assignee
+        - Search
+        - Summaries
+        - Cursor
+        - Mediacheck
+        - Metadata
+        - Article
+        - Content
+        - Attach
+        - And
+        - Screen
+        - Status
+        - Reference
+        - Countries
+        - Nationalities
+        - Providers
       summary: Get a list of available providers and their sources.
       description: Get a list of all available providers and their sources.
   /reference/identityDocumentLocationTypes:
     get:
       tags:
-        - reference
+        - Get
+        - Identity
+        - Document
+        - Location
+        - Types
+        - Data
+        - Set
+        - Definition.
+        - Info
+        - Groups
+        - Id
+        - Case
+        - Template
+        - Resolution
+        - Toolkit
+        - Toolkits
+        - Provider
+        - Type
+        - Identifiers
+        - References
+        - Cases
+        - Request
+        - System
+        - Screening
+        - Ongoing
+        - Archive
+        - Bulk
+        - Assign
+        - Delete
+        - Move
+        - Link
+        - Results
+        - Review
+        - Audit
+        - Events
+        - Event
+        - Updates
+        - Assignee
+        - Search
+        - Summaries
+        - Cursor
+        - Mediacheck
+        - Metadata
+        - Article
+        - Content
+        - Attach
+        - And
+        - Screen
+        - Status
+        - Reference
+        - Countries
+        - Nationalities
+        - Providers
+        - Document
+        - Location
+        - Types
       summary: Get identity document location types data set definition.
       description: >-
         Get each identity document location type log, that refers to a specific
@@ -1486,13 +3069,124 @@ paths:
   /reference/searchFilters:
     get:
       tags:
-        - reference
+        - Retrieves
+        - All
+        - Search
+        - Filters
+        - That
+        - Are
+        - Accessible
+        - To
+        - The
+        - User.
+        - Info
+        - Groups
+        - Id
+        - Case
+        - Template
+        - Resolution
+        - Toolkit
+        - Toolkits
+        - Provider
+        - Type
+        - Identifiers
+        - References
+        - Cases
+        - Request
+        - System
+        - Screening
+        - Ongoing
+        - Archive
+        - Bulk
+        - Assign
+        - Delete
+        - Move
+        - Link
+        - Results
+        - Review
+        - Audit
+        - Events
+        - Event
+        - Updates
+        - Assignee
+        - Search
+        - Summaries
+        - Cursor
+        - Mediacheck
+        - Metadata
+        - Article
+        - Content
+        - Attach
+        - And
+        - Screen
+        - Status
+        - Reference
+        - Countries
+        - Nationalities
+        - Providers
+        - Document
+        - Location
+        - Types
+        - Filters
       summary: Retrieves all search filters that are accessible to the User.
       description: Retrieves all search filters that are accessible to the User.
   /reference/profile/{id}:
     get:
       tags:
-        - reference
+        - Get
+        - Profile
+        - By
+        - Its
+        - Info
+        - Groups
+        - Id
+        - Case
+        - Template
+        - Resolution
+        - Toolkit
+        - Toolkits
+        - Provider
+        - Type
+        - Identifiers
+        - References
+        - Cases
+        - Request
+        - System
+        - Screening
+        - Ongoing
+        - Archive
+        - Bulk
+        - Assign
+        - Delete
+        - Move
+        - Link
+        - Results
+        - Review
+        - Audit
+        - Events
+        - Event
+        - Updates
+        - Assignee
+        - Search
+        - Summaries
+        - Cursor
+        - Mediacheck
+        - Metadata
+        - Article
+        - Content
+        - Attach
+        - And
+        - Screen
+        - Status
+        - Reference
+        - Countries
+        - Nationalities
+        - Providers
+        - Document
+        - Location
+        - Types
+        - Filters
+        - Profile
       summary: Get a profile by its ID
       description: >
         Warning: This endpoint is deprecated due to migration to a new one:
@@ -1569,8 +3263,61 @@ paths:
   /reference/records/{id}:
     get:
       tags:
-        - reference
-        - zfs
+        - Get
+        - Record
+        - By
+        - Its
+        - Info
+        - Groups
+        - Id
+        - Case
+        - Template
+        - Resolution
+        - Toolkit
+        - Toolkits
+        - Provider
+        - Type
+        - Identifiers
+        - References
+        - Cases
+        - Request
+        - System
+        - Screening
+        - Ongoing
+        - Archive
+        - Bulk
+        - Assign
+        - Delete
+        - Move
+        - Link
+        - Results
+        - Review
+        - Audit
+        - Events
+        - Event
+        - Updates
+        - Assignee
+        - Search
+        - Summaries
+        - Cursor
+        - Mediacheck
+        - Metadata
+        - Article
+        - Content
+        - Attach
+        - And
+        - Screen
+        - Status
+        - Reference
+        - Countries
+        - Nationalities
+        - Providers
+        - Document
+        - Location
+        - Types
+        - Filters
+        - Profile
+        - Records
       summary: Get a record by its ID
       description: >
         Get a record by its ID.
@@ -1643,7 +3390,64 @@ paths:
   /reference/profile/{id}/pep:
     post:
       tags:
-        - reference
+        - Retrieves
+        - Details
+        - By
+        - The
+        - Given
+        - Profile
+        - Info
+        - Groups
+        - Id
+        - Case
+        - Template
+        - Resolution
+        - Toolkit
+        - Toolkits
+        - Provider
+        - Type
+        - Identifiers
+        - References
+        - Cases
+        - Request
+        - System
+        - Screening
+        - Ongoing
+        - Archive
+        - Bulk
+        - Assign
+        - Delete
+        - Move
+        - Link
+        - Results
+        - Review
+        - Audit
+        - Events
+        - Event
+        - Updates
+        - Assignee
+        - Search
+        - Summaries
+        - Cursor
+        - Mediacheck
+        - Metadata
+        - Article
+        - Content
+        - Attach
+        - And
+        - Screen
+        - Status
+        - Reference
+        - Countries
+        - Nationalities
+        - Providers
+        - Document
+        - Location
+        - Types
+        - Filters
+        - Profile
+        - Records
+        - Pep
       summary: Retrieves PEP details by the given profile ID
       description: >
         Warning: This endpoint is deprecated due to migration to a new one:
@@ -1655,7 +3459,64 @@ paths:
   /reference/records/{id}/pep:
     post:
       tags:
-        - reference
+        - Retrieves
+        - Details
+        - By
+        - The
+        - Given
+        - Record
+        - Info
+        - Groups
+        - Id
+        - Case
+        - Template
+        - Resolution
+        - Toolkit
+        - Toolkits
+        - Provider
+        - Type
+        - Identifiers
+        - References
+        - Cases
+        - Request
+        - System
+        - Screening
+        - Ongoing
+        - Archive
+        - Bulk
+        - Assign
+        - Delete
+        - Move
+        - Link
+        - Results
+        - Review
+        - Audit
+        - Events
+        - Event
+        - Updates
+        - Assignee
+        - Search
+        - Summaries
+        - Cursor
+        - Mediacheck
+        - Metadata
+        - Article
+        - Content
+        - Attach
+        - And
+        - Screen
+        - Status
+        - Reference
+        - Countries
+        - Nationalities
+        - Providers
+        - Document
+        - Location
+        - Types
+        - Filters
+        - Profile
+        - Records
+        - Pep
       summary: Retrieves PEP details by the given record ID
       description: >-
         Retrieves detailed information for "Politically Exposed Person (PEP)"
@@ -1663,8 +3524,65 @@ paths:
   /reference/providers/sources/{identifier}:
     put:
       tags:
-        - client-watchlist
-        - zfs
+        - Create
+        - Or
+        - Update
+        - Provider
+        - Source
+        - Info
+        - Groups
+        - Id
+        - Case
+        - Template
+        - Resolution
+        - Toolkit
+        - Toolkits
+        - Provider
+        - Type
+        - Identifiers
+        - References
+        - Cases
+        - Request
+        - System
+        - Screening
+        - Ongoing
+        - Archive
+        - Bulk
+        - Assign
+        - Delete
+        - Move
+        - Link
+        - Results
+        - Review
+        - Audit
+        - Events
+        - Event
+        - Updates
+        - Assignee
+        - Search
+        - Summaries
+        - Cursor
+        - Mediacheck
+        - Metadata
+        - Article
+        - Content
+        - Attach
+        - And
+        - Screen
+        - Status
+        - Reference
+        - Countries
+        - Nationalities
+        - Providers
+        - Document
+        - Location
+        - Types
+        - Filters
+        - Profile
+        - Records
+        - Pep
+        - Sources
+        - Identifier
       summary: Create or update a provider source
       description: >
         Create or update a provider source for uploading entity records to. An
@@ -1672,8 +3590,65 @@ paths:
   /reference/watchlist:
     post:
       tags:
-        - client-watchlist
-        - zfs
+        - Maintain
+        - Your
+        - Watchlist
+        - Data
+        - Info
+        - Groups
+        - Id
+        - Case
+        - Template
+        - Resolution
+        - Toolkit
+        - Toolkits
+        - Provider
+        - Type
+        - Identifiers
+        - References
+        - Cases
+        - Request
+        - System
+        - Screening
+        - Ongoing
+        - Archive
+        - Bulk
+        - Assign
+        - Delete
+        - Move
+        - Link
+        - Results
+        - Review
+        - Audit
+        - Events
+        - Event
+        - Updates
+        - Assignee
+        - Search
+        - Summaries
+        - Cursor
+        - Mediacheck
+        - Metadata
+        - Article
+        - Content
+        - Attach
+        - And
+        - Screen
+        - Status
+        - Reference
+        - Countries
+        - Nationalities
+        - Providers
+        - Document
+        - Location
+        - Types
+        - Filters
+        - Profile
+        - Records
+        - Pep
+        - Sources
+        - Identifier
+        - Watchlist
       summary: Maintain your Watchlist data
       description: >
         Maintain your Watchlist data using the following supported entity
@@ -1720,13 +3695,137 @@ paths:
   /users:
     get:
       tags:
-        - user
+        - Get
+        - List
+        - Of
+        - Active
+        - Users
+        - In
+        - The
+        - Client's
+        - Account.
+        - Info
+        - Groups
+        - Id
+        - Case
+        - Template
+        - Resolution
+        - Toolkit
+        - Toolkits
+        - Provider
+        - Type
+        - Identifiers
+        - References
+        - Cases
+        - Request
+        - System
+        - Screening
+        - Ongoing
+        - Archive
+        - Bulk
+        - Assign
+        - Delete
+        - Move
+        - Link
+        - Results
+        - Review
+        - Audit
+        - Events
+        - Event
+        - Updates
+        - Assignee
+        - Search
+        - Summaries
+        - Cursor
+        - Mediacheck
+        - Metadata
+        - Article
+        - Content
+        - Attach
+        - And
+        - Screen
+        - Status
+        - Reference
+        - Countries
+        - Nationalities
+        - Providers
+        - Document
+        - Location
+        - Types
+        - Filters
+        - Profile
+        - Records
+        - Pep
+        - Sources
+        - Identifier
+        - Watchlist
+        - Users
       summary: Get a list of active users in the client's account.
       description: Get a list of active users in the client's account.
   /mediacheck/risks:
     get:
       tags:
-        - media-check
+        - Retrieve
+        - Mediacheck
+        - Risk
+        - Definitions
+        - Info
+        - Groups
+        - Id
+        - Case
+        - Template
+        - Resolution
+        - Toolkit
+        - Toolkits
+        - Provider
+        - Type
+        - Identifiers
+        - References
+        - Cases
+        - Request
+        - System
+        - Screening
+        - Ongoing
+        - Archive
+        - Bulk
+        - Assign
+        - Delete
+        - Move
+        - Link
+        - Results
+        - Review
+        - Audit
+        - Events
+        - Event
+        - Updates
+        - Assignee
+        - Search
+        - Summaries
+        - Cursor
+        - Mediacheck
+        - Metadata
+        - Article
+        - Content
+        - Attach
+        - And
+        - Screen
+        - Status
+        - Reference
+        - Countries
+        - Nationalities
+        - Providers
+        - Document
+        - Location
+        - Types
+        - Filters
+        - Profile
+        - Records
+        - Pep
+        - Sources
+        - Identifier
+        - Watchlist
+        - Users
+        - Risks
       summary: Retrieve mediacheck risk definitions
       description: >
         Retrieves a list of mediacheck risk definitions.
@@ -1737,21 +3836,211 @@ paths:
   /passportcheck/mrz:
     post:
       tags:
-        - passport-check
+        - Generates
+        - Data
+        - Info
+        - Groups
+        - Id
+        - Case
+        - Template
+        - Resolution
+        - Toolkit
+        - Toolkits
+        - Provider
+        - Type
+        - Identifiers
+        - References
+        - Cases
+        - Request
+        - System
+        - Screening
+        - Ongoing
+        - Archive
+        - Bulk
+        - Assign
+        - Delete
+        - Move
+        - Link
+        - Results
+        - Review
+        - Audit
+        - Events
+        - Event
+        - Updates
+        - Assignee
+        - Search
+        - Summaries
+        - Cursor
+        - Mediacheck
+        - Metadata
+        - Article
+        - Content
+        - Attach
+        - And
+        - Screen
+        - Status
+        - Reference
+        - Countries
+        - Nationalities
+        - Providers
+        - Document
+        - Location
+        - Types
+        - Filters
+        - Profile
+        - Records
+        - Pep
+        - Sources
+        - Identifier
+        - Watchlist
+        - Users
+        - Risks
+        - Passportcheck
+        - Mrz
       summary: Generates MRZ data
       description: |
         Performs generation of MRZ data according to provided data
   /cases/{caseSystemId}/mediacheck/results/duplicates:
     post:
       tags:
-        - media-check
+        - Retrieve
+        - Media
+        - Check
+        - Article
+        - Duplicates.
+        - Info
+        - Groups
+        - Id
+        - Case
+        - Template
+        - Resolution
+        - Toolkit
+        - Toolkits
+        - Provider
+        - Type
+        - Identifiers
+        - References
+        - Cases
+        - Request
+        - System
+        - Screening
+        - Ongoing
+        - Archive
+        - Bulk
+        - Assign
+        - Delete
+        - Move
+        - Link
+        - Results
+        - Review
+        - Audit
+        - Events
+        - Event
+        - Updates
+        - Assignee
+        - Search
+        - Summaries
+        - Cursor
+        - Mediacheck
+        - Metadata
+        - Article
+        - Content
+        - Attach
+        - And
+        - Screen
+        - Status
+        - Reference
+        - Countries
+        - Nationalities
+        - Providers
+        - Document
+        - Location
+        - Types
+        - Filters
+        - Profile
+        - Records
+        - Pep
+        - Sources
+        - Identifier
+        - Watchlist
+        - Users
+        - Risks
+        - Passportcheck
+        - Mrz
+        - Duplicates
       summary: Retrieve MediaCheck article duplicates.
       description: |
         Retrieve article duplicates by specifying article deduplicationHash.
   /cases/{caseSystemId}/relationship/{relationshipType}:
     post:
       tags:
-        - linked-cases
+        - Retrieve
+        - The
+        - List
+        - Of
+        - Case
+        - Relationships
+        - Info
+        - Groups
+        - Id
+        - Case
+        - Template
+        - Resolution
+        - Toolkit
+        - Toolkits
+        - Provider
+        - Type
+        - Identifiers
+        - References
+        - Cases
+        - Request
+        - System
+        - Screening
+        - Ongoing
+        - Archive
+        - Bulk
+        - Assign
+        - Delete
+        - Move
+        - Link
+        - Results
+        - Review
+        - Audit
+        - Events
+        - Event
+        - Updates
+        - Assignee
+        - Search
+        - Summaries
+        - Cursor
+        - Mediacheck
+        - Metadata
+        - Article
+        - Content
+        - Attach
+        - And
+        - Screen
+        - Status
+        - Reference
+        - Countries
+        - Nationalities
+        - Providers
+        - Document
+        - Location
+        - Types
+        - Filters
+        - Profile
+        - Records
+        - Pep
+        - Sources
+        - Identifier
+        - Watchlist
+        - Users
+        - Risks
+        - Passportcheck
+        - Mrz
+        - Duplicates
+        - Relationship
       summary: Retrieve the list of case relationships
       description: |
         Retrieve the list of case relationships with cases linked to it.
@@ -1764,7 +4053,71 @@ paths:
                                   `subcase-to-primary` relationship type.
     put:
       tags:
-        - linked-cases
+        - Create
+        - Links
+        - Between
+        - Cases
+        - Info
+        - Groups
+        - Id
+        - Case
+        - Template
+        - Resolution
+        - Toolkit
+        - Toolkits
+        - Provider
+        - Type
+        - Identifiers
+        - References
+        - Cases
+        - Request
+        - System
+        - Screening
+        - Ongoing
+        - Archive
+        - Bulk
+        - Assign
+        - Delete
+        - Move
+        - Link
+        - Results
+        - Review
+        - Audit
+        - Events
+        - Event
+        - Updates
+        - Assignee
+        - Search
+        - Summaries
+        - Cursor
+        - Mediacheck
+        - Metadata
+        - Article
+        - Content
+        - Attach
+        - And
+        - Screen
+        - Status
+        - Reference
+        - Countries
+        - Nationalities
+        - Providers
+        - Document
+        - Location
+        - Types
+        - Filters
+        - Profile
+        - Records
+        - Pep
+        - Sources
+        - Identifier
+        - Watchlist
+        - Users
+        - Risks
+        - Passportcheck
+        - Mrz
+        - Duplicates
+        - Relationship
       summary: Create links between cases
       description: >
         Create links between cases based on relationship type
@@ -1799,7 +4152,71 @@ paths:
         ```
     delete:
       tags:
-        - linked-cases
+        - Delete
+        - Links
+        - Between
+        - Cases
+        - Info
+        - Groups
+        - Id
+        - Case
+        - Template
+        - Resolution
+        - Toolkit
+        - Toolkits
+        - Provider
+        - Type
+        - Identifiers
+        - References
+        - Cases
+        - Request
+        - System
+        - Screening
+        - Ongoing
+        - Archive
+        - Bulk
+        - Assign
+        - Delete
+        - Move
+        - Link
+        - Results
+        - Review
+        - Audit
+        - Events
+        - Event
+        - Updates
+        - Assignee
+        - Search
+        - Summaries
+        - Cursor
+        - Mediacheck
+        - Metadata
+        - Article
+        - Content
+        - Attach
+        - And
+        - Screen
+        - Status
+        - Reference
+        - Countries
+        - Nationalities
+        - Providers
+        - Document
+        - Location
+        - Types
+        - Filters
+        - Profile
+        - Records
+        - Pep
+        - Sources
+        - Identifier
+        - Watchlist
+        - Users
+        - Risks
+        - Passportcheck
+        - Mrz
+        - Duplicates
+        - Relationship
       summary: Delete links between cases
       description: |
         Unlink cases based on relationship type strategy(`relationshipType`).
@@ -1813,13 +4230,141 @@ paths:
   /cases/{caseSystemId}/rating:
     get:
       tags:
-        - case-rating
+        - Retrieve
+        - Case
+        - Rating
+        - Info
+        - Groups
+        - Id
+        - Case
+        - Template
+        - Resolution
+        - Toolkit
+        - Toolkits
+        - Provider
+        - Type
+        - Identifiers
+        - References
+        - Cases
+        - Request
+        - System
+        - Screening
+        - Ongoing
+        - Archive
+        - Bulk
+        - Assign
+        - Delete
+        - Move
+        - Link
+        - Results
+        - Review
+        - Audit
+        - Events
+        - Event
+        - Updates
+        - Assignee
+        - Search
+        - Summaries
+        - Cursor
+        - Mediacheck
+        - Metadata
+        - Article
+        - Content
+        - Attach
+        - And
+        - Screen
+        - Status
+        - Reference
+        - Countries
+        - Nationalities
+        - Providers
+        - Document
+        - Location
+        - Types
+        - Filters
+        - Profile
+        - Records
+        - Pep
+        - Sources
+        - Identifier
+        - Watchlist
+        - Users
+        - Risks
+        - Passportcheck
+        - Mrz
+        - Duplicates
+        - Relationship
+        - Rating
       summary: Retrieve a case rating
       description: |
         Retrieve the case rating in the case provided in the request path.
     put:
       tags:
-        - case-rating
+        - Update
+        - Case
+        - Rating
+        - Info
+        - Groups
+        - Id
+        - Case
+        - Template
+        - Resolution
+        - Toolkit
+        - Toolkits
+        - Provider
+        - Type
+        - Identifiers
+        - References
+        - Cases
+        - Request
+        - System
+        - Screening
+        - Ongoing
+        - Archive
+        - Bulk
+        - Assign
+        - Delete
+        - Move
+        - Link
+        - Results
+        - Review
+        - Audit
+        - Events
+        - Event
+        - Updates
+        - Assignee
+        - Search
+        - Summaries
+        - Cursor
+        - Mediacheck
+        - Metadata
+        - Article
+        - Content
+        - Attach
+        - And
+        - Screen
+        - Status
+        - Reference
+        - Countries
+        - Nationalities
+        - Providers
+        - Document
+        - Location
+        - Types
+        - Filters
+        - Profile
+        - Records
+        - Pep
+        - Sources
+        - Identifier
+        - Watchlist
+        - Users
+        - Risks
+        - Passportcheck
+        - Mrz
+        - Duplicates
+        - Relationship
+        - Rating
       summary: Update a case rating
       description: >
         Update the case rating in the case provided in the request path.
@@ -1842,7 +4387,75 @@ paths:
   /cases/{caseSystemId}/mediacheck/smartFilter:
     get:
       tags:
-        - smart-filter
+        - Retrieve
+        - Smart
+        - Filter
+        - 'On'
+        - Case
+        - Info
+        - Groups
+        - Id
+        - Case
+        - Template
+        - Resolution
+        - Toolkit
+        - Toolkits
+        - Provider
+        - Type
+        - Identifiers
+        - References
+        - Cases
+        - Request
+        - System
+        - Screening
+        - Ongoing
+        - Archive
+        - Bulk
+        - Assign
+        - Delete
+        - Move
+        - Link
+        - Results
+        - Review
+        - Audit
+        - Events
+        - Event
+        - Updates
+        - Assignee
+        - Search
+        - Summaries
+        - Cursor
+        - Mediacheck
+        - Metadata
+        - Article
+        - Content
+        - Attach
+        - And
+        - Screen
+        - Status
+        - Reference
+        - Countries
+        - Nationalities
+        - Providers
+        - Document
+        - Location
+        - Types
+        - Filters
+        - Profile
+        - Records
+        - Pep
+        - Sources
+        - Identifier
+        - Watchlist
+        - Users
+        - Risks
+        - Passportcheck
+        - Mrz
+        - Duplicates
+        - Relationship
+        - Rating
+        - Smart
+        - Filter
       summary: Retrieve smart filter on a case
       description: >
         Retrieve the smart filter state on the case provided in the request
@@ -1854,7 +4467,75 @@ paths:
         The case should be created with enabled mediacheck provider.
     put:
       tags:
-        - smart-filter
+        - Enable
+        - Smart
+        - Filter
+        - 'On'
+        - Case
+        - Info
+        - Groups
+        - Id
+        - Case
+        - Template
+        - Resolution
+        - Toolkit
+        - Toolkits
+        - Provider
+        - Type
+        - Identifiers
+        - References
+        - Cases
+        - Request
+        - System
+        - Screening
+        - Ongoing
+        - Archive
+        - Bulk
+        - Assign
+        - Delete
+        - Move
+        - Link
+        - Results
+        - Review
+        - Audit
+        - Events
+        - Event
+        - Updates
+        - Assignee
+        - Search
+        - Summaries
+        - Cursor
+        - Mediacheck
+        - Metadata
+        - Article
+        - Content
+        - Attach
+        - And
+        - Screen
+        - Status
+        - Reference
+        - Countries
+        - Nationalities
+        - Providers
+        - Document
+        - Location
+        - Types
+        - Filters
+        - Profile
+        - Records
+        - Pep
+        - Sources
+        - Identifier
+        - Watchlist
+        - Users
+        - Risks
+        - Passportcheck
+        - Mrz
+        - Duplicates
+        - Relationship
+        - Rating
+        - Smart
+        - Filter
       summary: Enable smart filter on a case
       description: >
         Update the smart filter state on the case provided in the request path.
@@ -1871,7 +4552,75 @@ paths:
         be updated.
     delete:
       tags:
-        - smart-filter
+        - Disable
+        - Smart
+        - Filter
+        - 'On'
+        - Case
+        - Info
+        - Groups
+        - Id
+        - Case
+        - Template
+        - Resolution
+        - Toolkit
+        - Toolkits
+        - Provider
+        - Type
+        - Identifiers
+        - References
+        - Cases
+        - Request
+        - System
+        - Screening
+        - Ongoing
+        - Archive
+        - Bulk
+        - Assign
+        - Delete
+        - Move
+        - Link
+        - Results
+        - Review
+        - Audit
+        - Events
+        - Event
+        - Updates
+        - Assignee
+        - Search
+        - Summaries
+        - Cursor
+        - Mediacheck
+        - Metadata
+        - Article
+        - Content
+        - Attach
+        - And
+        - Screen
+        - Status
+        - Reference
+        - Countries
+        - Nationalities
+        - Providers
+        - Document
+        - Location
+        - Types
+        - Filters
+        - Profile
+        - Records
+        - Pep
+        - Sources
+        - Identifier
+        - Watchlist
+        - Users
+        - Risks
+        - Passportcheck
+        - Mrz
+        - Duplicates
+        - Relationship
+        - Rating
+        - Smart
+        - Filter
       summary: Disable smart filter on a case
       description: >
         Update the smart filter state on the case provided in the request path.
@@ -1889,7 +4638,86 @@ paths:
   /reports:
     post:
       tags:
-        - reporting
+        - Submit
+        - Request
+        - For
+        - Async
+        - Report
+        - Based
+        - 'On'
+        - The
+        - Given
+        - Filter
+        - Conditions
+        - And
+        - Return
+        - '''report'
+        - Id'.
+        - Info
+        - Groups
+        - Id
+        - Case
+        - Template
+        - Resolution
+        - Toolkit
+        - Toolkits
+        - Provider
+        - Type
+        - Identifiers
+        - References
+        - Cases
+        - Request
+        - System
+        - Screening
+        - Ongoing
+        - Archive
+        - Bulk
+        - Assign
+        - Delete
+        - Move
+        - Link
+        - Results
+        - Review
+        - Audit
+        - Events
+        - Event
+        - Updates
+        - Assignee
+        - Search
+        - Summaries
+        - Cursor
+        - Mediacheck
+        - Metadata
+        - Article
+        - Content
+        - Attach
+        - And
+        - Screen
+        - Status
+        - Reference
+        - Countries
+        - Nationalities
+        - Providers
+        - Document
+        - Location
+        - Types
+        - Filters
+        - Profile
+        - Records
+        - Pep
+        - Sources
+        - Identifier
+        - Watchlist
+        - Users
+        - Risks
+        - Passportcheck
+        - Mrz
+        - Duplicates
+        - Relationship
+        - Rating
+        - Smart
+        - Filter
+        - Reports
       summary: >-
         Submit request for async report based on the given filter conditions and
         return the 'reportId'.
@@ -1899,30 +4727,392 @@ paths:
   /reports/{reportId}/status:
     get:
       tags:
-        - reporting
+        - Get
+        - The
+        - Report
+        - Status
+        - For
+        - Given
+        - D.
+        - Info
+        - Groups
+        - Id
+        - Case
+        - Template
+        - Resolution
+        - Toolkit
+        - Toolkits
+        - Provider
+        - Type
+        - Identifiers
+        - References
+        - Cases
+        - Request
+        - System
+        - Screening
+        - Ongoing
+        - Archive
+        - Bulk
+        - Assign
+        - Delete
+        - Move
+        - Link
+        - Results
+        - Review
+        - Audit
+        - Events
+        - Event
+        - Updates
+        - Assignee
+        - Search
+        - Summaries
+        - Cursor
+        - Mediacheck
+        - Metadata
+        - Article
+        - Content
+        - Attach
+        - And
+        - Screen
+        - Status
+        - Reference
+        - Countries
+        - Nationalities
+        - Providers
+        - Document
+        - Location
+        - Types
+        - Filters
+        - Profile
+        - Records
+        - Pep
+        - Sources
+        - Identifier
+        - Watchlist
+        - Users
+        - Risks
+        - Passportcheck
+        - Mrz
+        - Duplicates
+        - Relationship
+        - Rating
+        - Smart
+        - Filter
+        - Reports
       summary: Get the report status for the given report ID.
       description: Get the report status for the given report ID.
   /reports/status:
     get:
       tags:
-        - upcoming
+        - Get
+        - The
+        - Report
+        - Status
+        - For
+        - All
+        - Active
+        - Reports
+        - By
+        - Pagination
+        - Params.
+        - Info
+        - Groups
+        - Id
+        - Case
+        - Template
+        - Resolution
+        - Toolkit
+        - Toolkits
+        - Provider
+        - Type
+        - Identifiers
+        - References
+        - Cases
+        - Request
+        - System
+        - Screening
+        - Ongoing
+        - Archive
+        - Bulk
+        - Assign
+        - Delete
+        - Move
+        - Link
+        - Results
+        - Review
+        - Audit
+        - Events
+        - Event
+        - Updates
+        - Assignee
+        - Search
+        - Summaries
+        - Cursor
+        - Mediacheck
+        - Metadata
+        - Article
+        - Content
+        - Attach
+        - And
+        - Screen
+        - Status
+        - Reference
+        - Countries
+        - Nationalities
+        - Providers
+        - Document
+        - Location
+        - Types
+        - Filters
+        - Profile
+        - Records
+        - Pep
+        - Sources
+        - Identifier
+        - Watchlist
+        - Users
+        - Risks
+        - Passportcheck
+        - Mrz
+        - Duplicates
+        - Relationship
+        - Rating
+        - Smart
+        - Filter
+        - Reports
       summary: Get the report status for all active reports by pagination params.
       description: Get the report status for all active reports by pagination params.
   /reports/{reportId}/error:
     get:
       tags:
-        - upcoming
+        - Get
+        - The
+        - Error
+        - Details
+        - For
+        - Given
+        - '''report'
+        - Id'.
+        - Info
+        - Groups
+        - Id
+        - Case
+        - Template
+        - Resolution
+        - Toolkit
+        - Toolkits
+        - Provider
+        - Type
+        - Identifiers
+        - References
+        - Cases
+        - Request
+        - System
+        - Screening
+        - Ongoing
+        - Archive
+        - Bulk
+        - Assign
+        - Delete
+        - Move
+        - Link
+        - Results
+        - Review
+        - Audit
+        - Events
+        - Event
+        - Updates
+        - Assignee
+        - Search
+        - Summaries
+        - Cursor
+        - Mediacheck
+        - Metadata
+        - Article
+        - Content
+        - Attach
+        - And
+        - Screen
+        - Status
+        - Reference
+        - Countries
+        - Nationalities
+        - Providers
+        - Document
+        - Location
+        - Types
+        - Filters
+        - Profile
+        - Records
+        - Pep
+        - Sources
+        - Identifier
+        - Watchlist
+        - Users
+        - Risks
+        - Passportcheck
+        - Mrz
+        - Duplicates
+        - Relationship
+        - Rating
+        - Smart
+        - Filter
+        - Reports
+        - Error
       summary: Get the error details for the given 'reportId'.
       description: Get the error details for the given 'reportId'.
   /reports/{reportId}:
     get:
       tags:
-        - reporting
+        - Download
+        - The
+        - Report
+        - For
+        - Given
+        - D.
+        - Info
+        - Groups
+        - Id
+        - Case
+        - Template
+        - Resolution
+        - Toolkit
+        - Toolkits
+        - Provider
+        - Type
+        - Identifiers
+        - References
+        - Cases
+        - Request
+        - System
+        - Screening
+        - Ongoing
+        - Archive
+        - Bulk
+        - Assign
+        - Delete
+        - Move
+        - Link
+        - Results
+        - Review
+        - Audit
+        - Events
+        - Event
+        - Updates
+        - Assignee
+        - Search
+        - Summaries
+        - Cursor
+        - Mediacheck
+        - Metadata
+        - Article
+        - Content
+        - Attach
+        - And
+        - Screen
+        - Status
+        - Reference
+        - Countries
+        - Nationalities
+        - Providers
+        - Document
+        - Location
+        - Types
+        - Filters
+        - Profile
+        - Records
+        - Pep
+        - Sources
+        - Identifier
+        - Watchlist
+        - Users
+        - Risks
+        - Passportcheck
+        - Mrz
+        - Duplicates
+        - Relationship
+        - Rating
+        - Smart
+        - Filter
+        - Reports
+        - Error
       summary: Download the report for given report ID.
       description: Download the report for given report ID.
     delete:
       tags:
-        - upcoming
+        - Cancel
+        - The
+        - Report
+        - Request
+        - For
+        - Given
+        - D.
+        - Info
+        - Groups
+        - Id
+        - Case
+        - Template
+        - Resolution
+        - Toolkit
+        - Toolkits
+        - Provider
+        - Type
+        - Identifiers
+        - References
+        - Cases
+        - Request
+        - System
+        - Screening
+        - Ongoing
+        - Archive
+        - Bulk
+        - Assign
+        - Delete
+        - Move
+        - Link
+        - Results
+        - Review
+        - Audit
+        - Events
+        - Event
+        - Updates
+        - Assignee
+        - Search
+        - Summaries
+        - Cursor
+        - Mediacheck
+        - Metadata
+        - Article
+        - Content
+        - Attach
+        - And
+        - Screen
+        - Status
+        - Reference
+        - Countries
+        - Nationalities
+        - Providers
+        - Document
+        - Location
+        - Types
+        - Filters
+        - Profile
+        - Records
+        - Pep
+        - Sources
+        - Identifier
+        - Watchlist
+        - Users
+        - Risks
+        - Passportcheck
+        - Mrz
+        - Duplicates
+        - Relationship
+        - Rating
+        - Smart
+        - Filter
+        - Reports
+        - Error
       summary: Cancel the report request for the given report ID.
       description: Cancel the report request for the given report ID.
 definitions:
@@ -8928,4 +12118,4 @@ definitions:
         description: The type of the object that failed to process.
       errorDescription:
         type: string
-        description: The details about the error.
+        description: The details about

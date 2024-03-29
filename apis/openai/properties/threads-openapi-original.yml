@@ -1,18 +1,17 @@
----
 openapi: 3.0.0
 info:
   title: ' threads'
   description: Needs description.
   version: 2.0.0
-  termsOfService: 'https://openai.com/policies/terms-of-use'
+  termsOfService: https://openai.com/policies/terms-of-use
   contact:
     name: OpenAI Support
-    url: 'https://help.openai.com/'
+    url: https://help.openai.com/
   license:
     name: MIT
-    url: 'https://github.com/openai/openai-openapi/blob/master/LICENSE'
+    url: https://github.com/openai/openai-openapi/blob/master/LICENSE
 servers:
-  - url: 'https://api.openai.com/v1'
+  - url: https://api.openai.com/v1
 tags:
   - name: Assistants
     description: Build Assistants that can call models and use tools.
@@ -38,7 +37,7 @@ tags:
       Files are used to upload documents that can be used with features like
       Assistants and Fine-tuning.
   - name: Images
-    description: 'Given a prompt and/or an input image, the model will generate a new image.'
+    description: Given a prompt and/or an input image, the model will generate a new image.
   - name: Models
     description: List and describe the various models available in the API.
   - name: Moderations
@@ -68,7 +67,7 @@ paths:
         name: Create thread
         group: threads
         beta: true
-        returns: 'A [thread](/docs/api-reference/threads) object.'
+        returns: A [thread](/docs/api-reference/threads) object.
         examples:
           - title: Empty
             request:
@@ -170,7 +169,7 @@ paths:
                 created_at: 1699014083,
                 metadata: {}
               }
-  '/threads/{thread_id}':
+  /threads/{thread_id}:
     get:
       operationId: getThread
       tags:
@@ -370,7 +369,7 @@ paths:
               "object": "thread.deleted",
               "deleted": true
             }
-  '/threads/{thread_id}/messages':
+  /threads/{thread_id}/messages:
     get:
       operationId: listMessages
       tags:
@@ -435,7 +434,7 @@ paths:
         name: List messages
         group: threads
         beta: true
-        returns: 'A list of [message](/docs/api-reference/messages) objects.'
+        returns: A list of [message](/docs/api-reference/messages) objects.
         examples:
           request:
             curl: |
@@ -549,7 +548,7 @@ paths:
         name: Create message
         group: threads
         beta: true
-        returns: 'A [message](/docs/api-reference/messages/object) object.'
+        returns: A [message](/docs/api-reference/messages/object) object.
         examples:
           request:
             curl: |
@@ -607,7 +606,7 @@ paths:
               "run_id": null,
               "metadata": {}
             }
-  '/threads/{thread_id}/messages/{message_id}':
+  /threads/{thread_id}/messages/{message_id}:
     get:
       operationId: getMessage
       tags:
@@ -825,7 +824,7 @@ paths:
         name: Create thread and run
         group: threads
         beta: true
-        returns: 'A [run](/docs/api-reference/runs/object) object.'
+        returns: A [run](/docs/api-reference/runs/object) object.
         examples:
           request:
             curl: |
@@ -893,7 +892,7 @@ paths:
               "metadata": {},
               "usage": null
             }
-  '/threads/{thread_id}/runs':
+  /threads/{thread_id}/runs:
     get:
       operationId: listRuns
       tags:
@@ -956,7 +955,7 @@ paths:
         name: List runs
         group: threads
         beta: true
-        returns: 'A list of [run](/docs/api-reference/runs/object) objects.'
+        returns: A list of [run](/docs/api-reference/runs/object) objects.
         examples:
           request:
             curl: |
@@ -1086,7 +1085,7 @@ paths:
         name: Create run
         group: threads
         beta: true
-        returns: 'A [run](/docs/api-reference/runs/object) object.'
+        returns: A [run](/docs/api-reference/runs/object) object.
         examples:
           request:
             curl: |
@@ -1149,7 +1148,7 @@ paths:
               "metadata": {},
               "usage": null
             }
-  '/threads/{thread_id}/runs/{run_id}':
+  /threads/{thread_id}/runs/{run_id}:
     get:
       operationId: getRun
       tags:
@@ -1161,7 +1160,7 @@ paths:
           required: true
           schema:
             type: string
-          description: 'The ID of the [thread](/docs/api-reference/threads) that was run.'
+          description: The ID of the [thread](/docs/api-reference/threads) that was run.
         - in: path
           name: run_id
           required: true
@@ -1256,7 +1255,7 @@ paths:
           required: true
           schema:
             type: string
-          description: 'The ID of the [thread](/docs/api-reference/threads) that was run.'
+          description: The ID of the [thread](/docs/api-reference/threads) that was run.
         - in: path
           name: run_id
           required: true
@@ -1360,7 +1359,7 @@ paths:
                 "total_tokens": 579
               }
             }
-  '/threads/{thread_id}/runs/{run_id}/submit_tool_outputs':
+  /threads/{thread_id}/runs/{run_id}/submit_tool_outputs:
     post:
       operationId: submitToolOuputsToRun
       tags:
@@ -1508,7 +1507,7 @@ paths:
               "metadata": {},
               "usage": null
             }
-  '/threads/{thread_id}/runs/{run_id}/cancel':
+  /threads/{thread_id}/runs/{run_id}/cancel:
     post:
       operationId: cancelRun
       tags:
@@ -1599,7 +1598,7 @@ paths:
               "metadata": {},
               "usage": null
             }
-  '/threads/{thread_id}/runs/{run_id}/steps':
+  /threads/{thread_id}/runs/{run_id}/steps:
     get:
       operationId: listRunSteps
       tags:
@@ -1668,7 +1667,7 @@ paths:
         name: List run steps
         group: threads
         beta: true
-        returns: 'A list of [run step](/docs/api-reference/runs/step-object) objects.'
+        returns: A list of [run step](/docs/api-reference/runs/step-object) objects.
         examples:
           request:
             curl: >
@@ -1735,7 +1734,7 @@ paths:
               "last_id": "step_abc456",
               "has_more": false
             }
-  '/threads/{thread_id}/runs/{run_id}/steps/{step_id}':
+  /threads/{thread_id}/runs/{run_id}/steps/{step_id}:
     get:
       operationId: getRunStep
       tags:
@@ -1834,7 +1833,7 @@ paths:
                 "total_tokens": 579
               }
             }
-  '/threads/{thread_id}/messages/{message_id}/files':
+  /threads/{thread_id}/messages/{message_id}/files:
     get:
       operationId: listMessageFiles
       tags:
@@ -1958,7 +1957,7 @@ paths:
               "last_id": "file-abc123",
               "has_more": false
             }
-  '/threads/{thread_id}/messages/{message_id}/files/{file_id}':
+  /threads/{thread_id}/messages/{message_id}/files/{file_id}:
     get:
       operationId: getMessageFile
       tags:
@@ -1997,7 +1996,7 @@ paths:
         name: Retrieve message file
         group: threads
         beta: true
-        returns: 'The [message file](/docs/api-reference/messages/file-object) object.'
+        returns: The [message file](/docs/api-reference/messages/file-object) object.
         examples:
           request:
             curl: >
@@ -2052,10 +2051,10 @@ components:
         [messages](/docs/api-reference/messages).
       properties:
         id:
-          description: 'The identifier, which can be referenced in API endpoints.'
+          description: The identifier, which can be referenced in API endpoints.
           type: string
         object:
-          description: 'The object type, which is always `thread`.'
+          description: The object type, which is always `thread`.
           type: string
           enum:
             - thread
@@ -2128,13 +2127,13 @@ components:
     MessageObject:
       type: object
       title: The message object
-      description: 'Represents a message within a [thread](/docs/api-reference/threads).'
+      description: Represents a message within a [thread](/docs/api-reference/threads).
       properties:
         id:
-          description: 'The identifier, which can be referenced in API endpoints.'
+          description: The identifier, which can be referenced in API endpoints.
           type: string
         object:
-          description: 'The object type, which is always `thread.message`.'
+          description: The object type, which is always `thread.message`.
           type: string
           enum:
             - thread.message
@@ -2231,13 +2230,13 @@ components:
     RunObject:
       type: object
       title: A run on a thread
-      description: 'Represents an execution run on a [thread](/docs/api-reference/threads).'
+      description: Represents an execution run on a [thread](/docs/api-reference/threads).
       properties:
         id:
-          description: 'The identifier, which can be referenced in API endpoints.'
+          description: The identifier, which can be referenced in API endpoints.
           type: string
         object:
-          description: 'The object type, which is always `thread.run`.'
+          description: The object type, which is always `thread.run`.
           type: string
           enum:
             - thread.run
@@ -2277,7 +2276,7 @@ components:
           nullable: true
           properties:
             type:
-              description: 'For now, this is always `submit_tool_outputs`.'
+              description: For now, this is always `submit_tool_outputs`.
               type: string
               enum:
                 - submit_tool_outputs
@@ -2484,7 +2483,7 @@ components:
             endpoints.
           type: string
         object:
-          description: 'The object type, which is always `thread.run.step`.'
+          description: The object type, which is always `thread.run.step`.
           type: string
           enum:
             - thread.run.step
@@ -2497,7 +2496,7 @@ components:
             with the run step.
           type: string
         thread_id:
-          description: 'The ID of the [thread](/docs/api-reference/threads) that was run.'
+          description: The ID of the [thread](/docs/api-reference/threads) that was run.
           type: string
         run_id:
           description: >-
@@ -2656,10 +2655,10 @@ components:
       description: A list of files attached to a `message`.
       properties:
         id:
-          description: 'The identifier, which can be referenced in API endpoints.'
+          description: The identifier, which can be referenced in API endpoints.
           type: string
         object:
-          description: 'The object type, which is always `thread.message.file`.'
+          description: The object type, which is always `thread.message.file`.
           type: string
           enum:
             - thread.message.file
@@ -3006,4 +3005,4 @@ x-oaiMeta:
           path: create
         - type: object
           key: CreateCompletionResponse
-          path: object 
+          path: object

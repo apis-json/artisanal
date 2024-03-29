@@ -1,18 +1,17 @@
----
 openapi: 3.0.0
 info:
   title: ' fine tuning'
   description: Needs description.
   version: 2.0.0
-  termsOfService: 'https://openai.com/policies/terms-of-use'
+  termsOfService: https://openai.com/policies/terms-of-use
   contact:
     name: OpenAI Support
-    url: 'https://help.openai.com/'
+    url: https://help.openai.com/
   license:
     name: MIT
-    url: 'https://github.com/openai/openai-openapi/blob/master/LICENSE'
+    url: https://github.com/openai/openai-openapi/blob/master/LICENSE
 servers:
-  - url: 'https://api.openai.com/v1'
+  - url: https://api.openai.com/v1
 tags:
   - name: Assistants
     description: Build Assistants that can call models and use tools.
@@ -38,7 +37,7 @@ tags:
       Files are used to upload documents that can be used with features like
       Assistants and Fine-tuning.
   - name: Images
-    description: 'Given a prompt and/or an input image, the model will generate a new image.'
+    description: Given a prompt and/or an input image, the model will generate a new image.
   - name: Models
     description: List and describe the various models available in the API.
   - name: Moderations
@@ -77,7 +76,7 @@ paths:
       x-oaiMeta:
         name: Create fine-tuning job
         group: fine-tuning
-        returns: 'A [fine-tuning.job](/docs/api-reference/fine-tuning/object) object.'
+        returns: A [fine-tuning.job](/docs/api-reference/fine-tuning/object) object.
         examples:
           - title: Default
             request:
@@ -300,7 +299,7 @@ paths:
                 { ... }
               ], "has_more": true
             }
-  '/fine_tuning/jobs/{fine_tuning_job_id}':
+  /fine_tuning/jobs/{fine_tuning_job_id}:
     get:
       operationId: retrieveFineTuningJob
       tags:
@@ -375,7 +374,7 @@ paths:
               },
               "trained_tokens": 5768
             }
-  '/fine_tuning/jobs/{fine_tuning_job_id}/events':
+  /fine_tuning/jobs/{fine_tuning_job_id}/events:
     get:
       operationId: listFineTuningEvents
       tags:
@@ -468,7 +467,7 @@ paths:
               ],
               "has_more": true
             }
-  '/fine_tuning/jobs/{fine_tuning_job_id}/cancel':
+  /fine_tuning/jobs/{fine_tuning_job_id}/cancel:
     post:
       operationId: cancelFineTuningJob
       tags:
@@ -550,7 +549,7 @@ components:
       properties:
         id:
           type: string
-          description: 'The object identifier, which can be referenced in the API endpoints.'
+          description: The object identifier, which can be referenced in the API endpoints.
         created_at:
           type: integer
           description: >-
@@ -622,7 +621,7 @@ components:
           description: The base model that is being fine-tuned.
         object:
           type: string
-          description: 'The object type, which is always "fine_tuning.job".'
+          description: The object type, which is always "fine_tuning.job".
           enum:
             - fine_tuning.job
         organization_id:
@@ -1054,4 +1053,3 @@ x-oaiMeta:
         - type: object
           key: CreateCompletionResponse
           path: object
----

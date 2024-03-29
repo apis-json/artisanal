@@ -6,42 +6,152 @@ paths:
     POST:
       summary: BatchPutMessage
       description: <p>Sends messages to a channel.</p>
+      tags:
+        - Batch
+        - Put
+        - Message
+        - Messages
+        - Batch
   /pipelines/{pipelineName}/reprocessing/{reprocessingId}:
     DELETE:
       summary: CancelPipelineReprocessing
       description: <p>Cancels the reprocessing of data through the pipeline.</p>
+      tags:
+        - Cancel
+        - Pipeline
+        - Reprocessing
+        - Messages
+        - Batch
+        - Name
+        - Reprocessing
+        - Id
   /channels:
     GET:
       summary: ListChannels
       description: <p>Retrieves a list of channels.</p>
+      tags:
+        - List
+        - Channels
+        - Messages
+        - Batch
+        - Name
+        - Reprocessing
+        - Id
+        - Channels
   /datasets:
     GET:
       summary: ListDatasets
       description: <p>Retrieves information about datasets.</p>
+      tags:
+        - List
+        - Datasets
+        - Messages
+        - Batch
+        - Name
+        - Reprocessing
+        - Id
+        - Channels
+        - Datasets
   /datasets/{datasetName}/content:
     GET:
       summary: GetDatasetContent
       description: <p>Retrieves the contents of a dataset as presigned URIs.</p>
+      tags:
+        - Get
+        - Dataset
+        - Content
+        - Messages
+        - Batch
+        - Name
+        - Reprocessing
+        - Id
+        - Channels
+        - Datasets
+        - Content
   /datastores:
     GET:
       summary: ListDatastores
       description: <p>Retrieves a list of data stores.</p>
+      tags:
+        - List
+        - Datastores
+        - Messages
+        - Batch
+        - Name
+        - Reprocessing
+        - Id
+        - Channels
+        - Datasets
+        - Content
+        - Datastores
   /pipelines:
     GET:
       summary: ListPipelines
       description: <p>Retrieves a list of pipelines.</p>
+      tags:
+        - List
+        - Pipelines
+        - Messages
+        - Batch
+        - Name
+        - Reprocessing
+        - Id
+        - Channels
+        - Datasets
+        - Content
+        - Datastores
+        - Pipelines
   /channels/{channelName}:
     PUT:
       summary: UpdateChannel
       description: <p>Used to update the settings of a channel.</p>
+      tags:
+        - Update
+        - Channel
+        - Messages
+        - Batch
+        - Name
+        - Reprocessing
+        - Id
+        - Channels
+        - Datasets
+        - Content
+        - Datastores
+        - Pipelines
   /datasets/{datasetName}:
     PUT:
       summary: UpdateDataset
       description: <p>Updates the settings of a dataset.</p>
+      tags:
+        - Update
+        - Dataset
+        - Messages
+        - Batch
+        - Name
+        - Reprocessing
+        - Id
+        - Channels
+        - Datasets
+        - Content
+        - Datastores
+        - Pipelines
   /datastores/{datastoreName}:
     PUT:
       summary: UpdateDatastore
       description: <p>Used to update the settings of a data store.</p>
+      tags:
+        - Update
+        - Datastore
+        - Messages
+        - Batch
+        - Name
+        - Reprocessing
+        - Id
+        - Channels
+        - Datasets
+        - Content
+        - Datastores
+        - Pipelines
   /pipelines/{pipelineName}:
     PUT:
       summary: UpdatePipeline
@@ -50,6 +160,19 @@ paths:
         <code>channel</code> and a <code>datastore</code> activity and,
         optionally, as many as 23 additional activities in the
         <code>pipelineActivities</code> array.</p>
+      tags:
+        - Update
+        - Pipeline
+        - Messages
+        - Batch
+        - Name
+        - Reprocessing
+        - Id
+        - Channels
+        - Datasets
+        - Content
+        - Datastores
+        - Pipelines
   /logging:
     PUT:
       summary: PutLoggingOptions
@@ -60,27 +183,133 @@ paths:
         policy attached to the role you specified in the <code>roleArn</code>
         field (for example, to correct an invalid policy), it takes up to five
         minutes for that change to take effect. </p>
+      tags:
+        - Put
+        - Logging
+        - Options
+        - Messages
+        - Batch
+        - Name
+        - Reprocessing
+        - Id
+        - Channels
+        - Datasets
+        - Content
+        - Datastores
+        - Pipelines
+        - Logging
   /datasets/{datasetName}/contents:
     GET:
       summary: ListDatasetContents
       description: <p>Lists information about dataset contents that have been created.</p>
+      tags:
+        - List
+        - Dataset
+        - Contents
+        - Messages
+        - Batch
+        - Name
+        - Reprocessing
+        - Id
+        - Channels
+        - Datasets
+        - Content
+        - Datastores
+        - Pipelines
+        - Logging
+        - Contents
   /tags:
     DELETE:
       summary: UntagResource
       description: <p>Removes the given tags (metadata) from the resource.</p>
+      tags:
+        - Untag
+        - Resource
+        - Messages
+        - Batch
+        - Name
+        - Reprocessing
+        - Id
+        - Channels
+        - Datasets
+        - Content
+        - Datastores
+        - Pipelines
+        - Logging
+        - Contents
+        - Tags
   /pipelineactivities/run:
     POST:
       summary: RunPipelineActivity
       description: >-
         <p>Simulates the results of running a pipeline activity on a message
         payload.</p>
+      tags:
+        - Run
+        - Pipeline
+        - Activity
+        - Messages
+        - Batch
+        - Name
+        - Reprocessing
+        - Id
+        - Channels
+        - Datasets
+        - Content
+        - Datastores
+        - Pipelines
+        - Logging
+        - Contents
+        - Tags
+        - Pipelineactivities
+        - Run
   /channels/{channelName}/sample:
     GET:
       summary: SampleChannelData
       description: >-
         <p>Retrieves a sample of messages from the specified channel ingested
         during the specified timeframe. Up to 10 messages can be retrieved.</p>
+      tags:
+        - Sample
+        - Channel
+        - Data
+        - Messages
+        - Batch
+        - Name
+        - Reprocessing
+        - Id
+        - Channels
+        - Datasets
+        - Content
+        - Datastores
+        - Pipelines
+        - Logging
+        - Contents
+        - Tags
+        - Pipelineactivities
+        - Run
+        - Sample
   /pipelines/{pipelineName}/reprocessing:
     POST:
       summary: StartPipelineReprocessing
-      description: <p>Starts the reprocessing of raw message data through the pipel
+      description: <p>Starts the reprocessing of raw message data through the pip
+      tags:
+        - Start
+        - Pipeline
+        - Reprocessing
+        - Messages
+        - Batch
+        - Name
+        - Reprocessing
+        - Id
+        - Channels
+        - Datasets
+        - Content
+        - Datastores
+        - Pipelines
+        - Logging
+        - Contents
+        - Tags
+        - Pipelineactivities
+        - Run
+        - Samp

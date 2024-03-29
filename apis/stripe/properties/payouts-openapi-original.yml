@@ -5,15 +5,15 @@ info:
   contact:
     email: dev-platform@stripe.com
     name: Stripe Dev Platform Team
-    url: 'https://stripe.com'
-  termsOfService: 'https://stripe.com/us/terms/'
+    url: https://stripe.com
+  termsOfService: https://stripe.com/us/terms/
   version: '2023-10-16'
   x-stripeSpecFilename: spec3
 security:
   - basicAuth: []
   - bearerAuth: []
 servers:
-  - url: 'https://api.stripe.com/'
+  - url: https://api.stripe.com/
 paths:
   /v1/payouts:
     get:
@@ -193,7 +193,7 @@ paths:
               schema:
                 $ref: '#/components/schemas/error'
           description: Error response.
-  '/v1/payouts/{payout}':
+  /v1/payouts/{payout}:
     get:
       description: >-
         <p>Retrieves the details of an existing payout. Supply the unique payout
@@ -281,7 +281,7 @@ paths:
               schema:
                 $ref: '#/components/schemas/error'
           description: Error response.
-  '/v1/payouts/{payout}/cancel':
+  /v1/payouts/{payout}/cancel:
     post:
       description: >-
         <p>You can cancel a previously created payout if it hasn’t been paid out
@@ -320,7 +320,7 @@ paths:
               schema:
                 $ref: '#/components/schemas/error'
           description: Error response.
-  '/v1/payouts/{payout}/reverse':
+  /v1/payouts/{payout}/reverse:
     post:
       description: >-
         <p>Reverses a payout by debiting the destination bank account. At this
@@ -488,7 +488,7 @@ components:
           nullable: true
           type: string
         failure_message:
-          description: 'Message that provides the reason for a payout failure, if available.'
+          description: Message that provides the reason for a payout failure, if available.
           maxLength: 5000
           nullable: true
           type: string

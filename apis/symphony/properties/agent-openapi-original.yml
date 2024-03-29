@@ -24,7 +24,7 @@ info:
     To know more about the endpoints, refer to Create Messages/Events
     Stream and Read Messages/Events Stream. Unless otherwise specified,
     all events were added in 1.46.
-  version: '22.9.1'
+  version: 22.9.1
 servers:
   - url: /
 paths:
@@ -33,13 +33,15 @@ paths:
       tags:
         - System
       summary: Checks health status
-      description: |
+      description: >
         _Available on Agent 2.57.0 and above._
 
-        Returns the connectivity status of your Agent server. If your Agent server is started and running, the status value will be `UP`
+
+        Returns the connectivity status of your Agent server. If your Agent
+        server is started and running, the status value will be `UP`
       operationId: v3Health
       responses:
-        200:
+        '200':
           description: Agent application is alive.
           content:
             application/json:
@@ -50,22 +52,27 @@ paths:
       tags:
         - System
       summary: Checks health status of services and users
-      description: |
+      description: >
         _Available on Agent 2.57.0 and above._
 
-        Returns the connectivity status of the Agent services (**pod**, **key manager** and **datafeed**) as well as users
+
+        Returns the connectivity status of the Agent services (**pod**, **key
+        manager** and **datafeed**) as well as users
+
         connectivity (**agentservice** and **ceservice**).
 
-        The global status will be set to `DOWN` if at least one of the sub-status is also `DOWN`.
+
+        The global status will be set to `DOWN` if at least one of the
+        sub-status is also `DOWN`.
       operationId: v3ExtendedHealth
       responses:
-        200:
+        '200':
           description: Agent is healthy, all components are `UP`.
           content:
             application/json:
               schema:
                 $ref: '#/components/schemas/V3Health'
-        503:
+        '503':
           description: Agent is unhealthy, some components are `DOWN`.
           content:
             application/json:
@@ -76,13 +83,22 @@ paths:
       tags:
         - Messages
       summary: Import messages from other systems into Symphony.
-      description: |
+      description: >
         Sends a message to be imported into the system.
-        Allows you to override the timestamp and author of the message with your desired values.
+
+        Allows you to override the timestamp and author of the message with your
+        desired values.
+
         The requesting user must have the Content Management role.
-        The user that the message is intended to have come from must also be present in the conversation.
-        The intended message timestamp must be a valid time from the past. It cannot be a future timestamp.
-        Optionally the original message ID can be specified to identify the imported message for the purpose of repeat imports.
+
+        The user that the message is intended to have come from must also be
+        present in the conversation.
+
+        The intended message timestamp must be a valid time from the past. It
+        cannot be a future timestamp.
+
+        Optionally the original message ID can be specified to identify the
+        imported message for the purpose of repeat imports.
       parameters:
         - name: sessionToken
           in: header
@@ -103,31 +119,31 @@ paths:
               $ref: '#/components/schemas/V4MessageImportList'
         required: true
       responses:
-        200:
+        '200':
           description: Message sent.
           content:
             application/json:
               schema:
                 $ref: '#/components/schemas/V4ImportResponseList'
-        400:
+        '400':
           description: Client error, see response body for further details.
           content:
             application/json:
               schema:
                 $ref: '#/components/schemas/V2Error'
-        401:
+        '401':
           description: 'Unauthorized: Session tokens invalid.'
           content:
             application/json:
               schema:
                 $ref: '#/components/schemas/V2Error'
-        403:
+        '403':
           description: 'Forbidden: Caller lacks necessary entitlement.'
           content:
             application/json:
               schema:
                 $ref: '#/components/schemas/V2Error'
-        500:
+        '500':
           description: Server error, see response body for further details.
           content:
             application/json:
@@ -139,27 +155,49 @@ paths:
       tags:
         - Messages
       summary: Post a message to multiple existing streams.
-      description: |
-        Post a new message to the given list of streams. The stream can be a chatroom,
+      description: >
+        Post a new message to the given list of streams. The stream can be a
+        chatroom,
+
         an IM or a multiparty IM.
+
 
         You may include an attachment on the message.
 
-        The message can be provided as MessageMLV2 or PresentationML. Both formats support Freemarker templates.
 
-        The optional parameter "data" can be used to provide a JSON payload containing entity data.
-        If the message contains explicit references to entity data (in "data-entity-id" element attributes),
+        The message can be provided as MessageMLV2 or PresentationML. Both
+        formats support Freemarker templates.
+
+
+        The optional parameter "data" can be used to provide a JSON payload
+        containing entity data.
+
+        If the message contains explicit references to entity data (in
+        "data-entity-id" element attributes),
+
         this parameter is required.
 
-        If the message is in MessageML and fails schema validation a client error results
 
-        This endpoint is idempotent, it means that a 200 response will be returned even if the message has not been
-        delivered to some streams. Check the `errors` map from the response in order to see on which stream(s) the
+        If the message is in MessageML and fails schema validation a client
+        error results
+
+
+        This endpoint is idempotent, it means that a 200 response will be
+        returned even if the message has not been
+
+        delivered to some streams. Check the `errors` map from the response in
+        order to see on which stream(s) the
+
         message has not been delivered.
 
-        The maximum number of streams where the message can be sent is limitted to 100.
 
-        Regarding authentication, you must either use the sessionToken which was created for delegated app access
+        The maximum number of streams where the message can be sent is limitted
+        to 100.
+
+
+        Regarding authentication, you must either use the sessionToken which was
+        created for delegated app access
+
         or both the sessionToken and keyManagerToken together.
       parameters:
         - name: sessionToken
@@ -193,8 +231,9 @@ paths:
                   description: Optional message data in EntityJSON.
                 version:
                   type: string
-                  description: |
-                    Optional message version in the format "major.minor". If empty, defaults to the latest supported version.
+                  description: >
+                    Optional message version in the format "major.minor". If
+                    empty, defaults to the latest supported version.
                 attachment:
                   type: string
                   description: Optional file attachment.
@@ -204,37 +243,37 @@ paths:
                   description: Optional attachment preview.
                   format: binary
       responses:
-        200:
+        '200':
           description: Blast message sent.
           content:
             application/json:
               schema:
                 $ref: '#/components/schemas/V4MessageBlastResponse'
-        400:
+        '400':
           description: Client error, see response body for further details.
           content:
             application/json:
               schema:
                 $ref: '#/components/schemas/V2Error'
-        401:
+        '401':
           description: 'Unauthorized: Session tokens invalid.'
           content:
             application/json:
               schema:
                 $ref: '#/components/schemas/V2Error'
-        403:
+        '403':
           description: 'Forbidden: Caller lacks necessary entitlement.'
           content:
             application/json:
               schema:
                 $ref: '#/components/schemas/V2Error'
-        451:
+        '451':
           description: Compliance Issues found in message or file
           content:
             application/json:
               schema:
                 $ref: '#/components/schemas/V2Error'
-        500:
+        '500':
           description: Server error, see response body for further details.
           content:
             application/json:
@@ -265,34 +304,34 @@ paths:
           schema:
             type: string
       responses:
-        200:
+        '200':
           description: OK
           content:
             application/json:
               schema:
                 $ref: '#/components/schemas/V4Message'
-        204:
+        '204':
           description: No Messages.
           content: {}
-        400:
+        '400':
           description: Client error, see response body for further details.
           content:
             application/json:
               schema:
                 $ref: '#/components/schemas/V2Error'
-        401:
+        '401':
           description: 'Unauthorized: Session tokens invalid.'
           content:
             application/json:
               schema:
                 $ref: '#/components/schemas/V2Error'
-        403:
+        '403':
           description: 'Forbidden: Caller lacks necessary entitlement.'
           content:
             application/json:
               schema:
                 $ref: '#/components/schemas/V2Error'
-        500:
+        '500':
           description: Server error, see response body for further details.
           content:
             application/json:
@@ -303,9 +342,12 @@ paths:
       tags:
         - Messages
       summary: Search messages
-      description: |
-        Search messages according to the specified criteria. The "query" parameter takes a search query defined as
-        "field:value" pairs combined by the operator "AND" (e.g. "text:foo AND autor:bar"). Supported fields are
+      description: >
+        Search messages according to the specified criteria. The "query"
+        parameter takes a search query defined as
+
+        "field:value" pairs combined by the operator "AND" (e.g. "text:foo AND
+        autor:bar"). Supported fields are
          (case-insensitive): "text", "author", "hashtag", "cashtag", "mention", "signal", "fromDate", "toDate",
          "streamId", "streamType".
          "text" search requires a "streamId" to be specified.
@@ -325,7 +367,9 @@ paths:
             type: integer
         - name: limit
           in: query
-          description: Max no. of results to return. If no value is provided, 50 is the default.
+          description: >-
+            Max no. of results to return. If no value is provided, 50 is the
+            default.
           schema:
             type: integer
         - name: scope
@@ -354,34 +398,34 @@ paths:
           schema:
             type: string
       responses:
-        200:
+        '200':
           description: OK
           content:
             application/json:
               schema:
                 $ref: '#/components/schemas/V4MessageList'
-        204:
+        '204':
           description: No Messages.
           content: {}
-        400:
+        '400':
           description: Client error, see response body for further details.
           content:
             application/json:
               schema:
                 $ref: '#/components/schemas/V2Error'
-        401:
+        '401':
           description: 'Unauthorized: Session tokens invalid.'
           content:
             application/json:
               schema:
                 $ref: '#/components/schemas/V2Error'
-        403:
+        '403':
           description: 'Forbidden: Caller lacks necessary entitlement.'
           content:
             application/json:
               schema:
                 $ref: '#/components/schemas/V2Error'
-        500:
+        '500':
           description: Server error, see response body for further details.
           content:
             application/json:
@@ -400,7 +444,9 @@ paths:
             type: integer
         - name: limit
           in: query
-          description: Max no. of results to return. If no value is provided, 50 is the default.
+          description: >-
+            Max no. of results to return. If no value is provided, 50 is the
+            default.
           schema:
             type: integer
         - name: scope
@@ -436,34 +482,34 @@ paths:
               $ref: '#/components/schemas/MessageSearchQuery'
         required: true
       responses:
-        200:
+        '200':
           description: OK
           content:
             application/json:
               schema:
                 $ref: '#/components/schemas/V4MessageList'
-        204:
+        '204':
           description: No Messages.
           content: {}
-        400:
+        '400':
           description: Client error, see response body for further details.
           content:
             application/json:
               schema:
                 $ref: '#/components/schemas/V2Error'
-        401:
+        '401':
           description: 'Unauthorized: Session tokens invalid.'
           content:
             application/json:
               schema:
                 $ref: '#/components/schemas/V2Error'
-        403:
+        '403':
           description: 'Forbidden: Caller lacks necessary entitlement.'
           content:
             application/json:
               schema:
                 $ref: '#/components/schemas/V2Error'
-        500:
+        '500':
           description: Server error, see response body for further details.
           content:
             application/json:
@@ -475,7 +521,9 @@ paths:
       tags:
         - Attachments
       summary: Download an attachment.
-      description: Downloads the attachment body by the attachment ID, stream ID, and message ID.
+      description: >-
+        Downloads the attachment body by the attachment ID, stream ID, and
+        message ID.
       parameters:
         - name: sid
           in: path
@@ -508,32 +556,32 @@ paths:
           schema:
             type: string
       responses:
-        200:
+        '200':
           description: Attachment body as Base64 encoded string.
           content:
             application/octet-stream:
               schema:
                 type: string
                 format: byte
-        400:
+        '400':
           description: Client error, see response body for further details.
           content:
             application/octet-stream:
               schema:
                 $ref: '#/components/schemas/Error'
-        401:
+        '401':
           description: 'Unauthorized: Session tokens invalid.'
           content:
             application/octet-stream:
               schema:
                 $ref: '#/components/schemas/Error'
-        403:
+        '403':
           description: 'Forbidden: Caller lacks necessary entitlement.'
           content:
             application/octet-stream:
               schema:
                 $ref: '#/components/schemas/Error'
-        500:
+        '500':
           description: Server error, see response body for further details.
           content:
             application/octet-stream:
@@ -567,7 +615,7 @@ paths:
           in: query
           description: |
             Timestamp of first required message.
-            
+
             This is a long integer value representing milliseconds since
             Jan 1 1970
           required: true
@@ -581,8 +629,9 @@ paths:
             type: integer
         - name: limit
           in: query
-          description: |
-            Max No. of messages to return. If no value is provided, 50 is the default. The maximum supported value is 500.
+          description: >
+            Max No. of messages to return. If no value is provided, 50 is the
+            default. The maximum supported value is 500.
           schema:
             type: integer
         - name: sessionToken
@@ -598,34 +647,34 @@ paths:
           schema:
             type: string
       responses:
-        200:
+        '200':
           description: OK
           content:
             application/json:
               schema:
                 $ref: '#/components/schemas/V4MessageList'
-        204:
+        '204':
           description: No Messages.
           content: {}
-        400:
+        '400':
           description: Client error, see response body for further details.
           content:
             application/json:
               schema:
                 $ref: '#/components/schemas/V2Error'
-        401:
+        '401':
           description: 'Unauthorized: Session tokens invalid.'
           content:
             application/json:
               schema:
                 $ref: '#/components/schemas/V2Error'
-        403:
+        '403':
           description: 'Forbidden: Caller lacks necessary entitlement.'
           content:
             application/json:
               schema:
                 $ref: '#/components/schemas/V2Error'
-        500:
+        '500':
           description: Server error, see response body for further details.
           content:
             application/json:
@@ -636,22 +685,37 @@ paths:
       tags:
         - Messages
       summary: Post a message to one existing stream.
-      description: |
-        Post a new message to the given stream. The stream can be a chatroom,,an IM or a multiparty IM.
+      description: >
+        Post a new message to the given stream. The stream can be a chatroom,,an
+        IM or a multiparty IM.
+
 
         You may include an attachment on the message.
 
-        The message can be provided as MessageMLV2 or PresentationML. Both formats support Freemarker templates.
 
-        The optional parameter "data" can be used to provide a JSON payload containing entity data.
-        If the message contains explicit references to entity data (in "data-entity-id" element attributes),
+        The message can be provided as MessageMLV2 or PresentationML. Both
+        formats support Freemarker templates.
+
+
+        The optional parameter "data" can be used to provide a JSON payload
+        containing entity data.
+
+        If the message contains explicit references to entity data (in
+        "data-entity-id" element attributes),
+
         this parameter is required.
 
-        If the message is in MessageML and fails schema validation a client error will be returned.
+
+        If the message is in MessageML and fails schema validation a client
+        error will be returned.
+
 
         If the message is sent then 200 is returned.
 
-        Regarding authentication, you must either use the sessionToken which was created for delegated app access
+
+        Regarding authentication, you must either use the sessionToken which was
+        created for delegated app access
+
         or both the sessionToken and keyManagerToken together.
       parameters:
         - name: sid
@@ -684,8 +748,9 @@ paths:
                   description: Optional message data in EntityJSON.
                 version:
                   type: string
-                  description: |
-                    Optional message version in the format "major.minor". If empty, defaults to the latest supported version.
+                  description: >
+                    Optional message version in the format "major.minor". If
+                    empty, defaults to the latest supported version.
                 attachment:
                   type: string
                   description: Optional file attachment.
@@ -695,37 +760,37 @@ paths:
                   description: Optional attachment preview.
                   format: binary
       responses:
-        200:
+        '200':
           description: Message sent.
           content:
             application/json:
               schema:
                 $ref: '#/components/schemas/V4Message'
-        400:
+        '400':
           description: Client error, see response body for further details.
           content:
             application/json:
               schema:
                 $ref: '#/components/schemas/V2Error'
-        401:
+        '401':
           description: 'Unauthorized: Session tokens invalid.'
           content:
             application/json:
               schema:
                 $ref: '#/components/schemas/V2Error'
-        403:
+        '403':
           description: 'Forbidden: Caller lacks necessary entitlement.'
           content:
             application/json:
               schema:
                 $ref: '#/components/schemas/V2Error'
-        451:
+        '451':
           description: Compliance Issues found in message or file
           content:
             application/json:
               schema:
                 $ref: '#/components/schemas/V2Error'
-        500:
+        '500':
           description: Server error, see response body for further details.
           content:
             application/json:
@@ -736,17 +801,29 @@ paths:
       tags:
         - Messages
       summary: Update an existing message.
-      description: |
-        Update an existing message. The existing message must be a valid social message, that has not been deleted.
+      description: >
+        Update an existing message. The existing message must be a valid social
+        message, that has not been deleted.
 
-        The message can be provided as MessageMLV2 or PresentationML. Both formats support Freemarker templates.
 
-        The optional parameter "data" can be used to provide a JSON payload containing entity data.
-        If the message contains explicit references to entity data (in "data-entity-id" element attributes),
+        The message can be provided as MessageMLV2 or PresentationML. Both
+        formats support Freemarker templates.
+
+
+        The optional parameter "data" can be used to provide a JSON payload
+        containing entity data.
+
+        If the message contains explicit references to entity data (in
+        "data-entity-id" element attributes),
+
         this parameter is required.
 
-        Regarding authentication, you must either use the sessionToken which was created for delegated app access
+
+        Regarding authentication, you must either use the sessionToken which was
+        created for delegated app access
+
         or both the sessionToken and keyManagerToken together.
+
 
         Starting with SBE v24.1, attachments are supported.
       parameters:
@@ -786,8 +863,9 @@ paths:
                   description: Optional message data in EntityJSON.
                 version:
                   type: string
-                  description: |
-                    Optional message version in the format "major.minor". If empty, defaults to the latest supported version.
+                  description: >
+                    Optional message version in the format "major.minor". If
+                    empty, defaults to the latest supported version.
                 attachment:
                   type: string
                   description: Optional file attachment.
@@ -798,40 +876,41 @@ paths:
                   format: binary
                 silent:
                   type: string
-                  description: |
-                    Optional boolean field that will determine if the user/s should receive the message as read or not (true by default)
+                  description: >
+                    Optional boolean field that will determine if the user/s
+                    should receive the message as read or not (true by default)
       responses:
-        200:
+        '200':
           description: Message sent.
           content:
             application/json:
               schema:
                 $ref: '#/components/schemas/V4Message'
-        400:
+        '400':
           description: Client error, see response body for further details.
           content:
             application/json:
               schema:
                 $ref: '#/components/schemas/V2Error'
-        401:
+        '401':
           description: 'Unauthorized: Session tokens invalid.'
           content:
             application/json:
               schema:
                 $ref: '#/components/schemas/V2Error'
-        403:
+        '403':
           description: 'Forbidden: Caller lacks necessary entitlement.'
           content:
             application/json:
               schema:
                 $ref: '#/components/schemas/V2Error'
-        451:
+        '451':
           description: Compliance Issues found in message or file
           content:
             application/json:
               schema:
                 $ref: '#/components/schemas/V2Error'
-        500:
+        '500':
           description: Server error, see response body for further details.
           content:
             application/json:
@@ -842,8 +921,10 @@ paths:
       tags:
         - Share
       summary: PROVISIONAL -  Share a piece of content into Symphony
-      description: |
-        Given a 3rd party content (eg. news article), it can share to the given stream.
+      description: >
+        Given a 3rd party content (eg. news article), it can share to the given
+        stream.
+
         The stream can be a chatroom, an IM or a multiparty IM.
       parameters:
         - name: sid
@@ -870,31 +951,31 @@ paths:
               $ref: '#/components/schemas/ShareContent'
         required: true
       responses:
-        200:
+        '200':
           description: Success
           content:
             application/json:
               schema:
                 $ref: '#/components/schemas/V2Message'
-        400:
+        '400':
           description: Client error, see response body for further details.
           content:
             application/json:
               schema:
                 $ref: '#/components/schemas/Error'
-        401:
+        '401':
           description: 'Unauthorized: Session tokens invalid.'
           content:
             application/json:
               schema:
                 $ref: '#/components/schemas/Error'
-        403:
+        '403':
           description: 'Forbidden: Caller lacks necessary entitlement.'
           content:
             application/json:
               schema:
                 $ref: '#/components/schemas/Error'
-        500:
+        '500':
           description: Server error, see response body for further details.
           content:
             application/json:
@@ -927,31 +1008,31 @@ paths:
               $ref: '#/components/schemas/SimpleMessage'
         required: true
       responses:
-        200:
+        '200':
           description: Message sent.
           content:
             application/json:
               schema:
                 $ref: '#/components/schemas/SimpleMessage'
-        400:
+        '400':
           description: Client error, see response body for further details.
           content:
             application/json:
               schema:
                 $ref: '#/components/schemas/Error'
-        401:
+        '401':
           description: 'Unauthorized: Session tokens invalid.'
           content:
             application/json:
               schema:
                 $ref: '#/components/schemas/Error'
-        403:
+        '403':
           description: 'Forbidden: Caller lacks necessary entitlement.'
           content:
             application/json:
               schema:
                 $ref: '#/components/schemas/Error'
-        500:
+        '500':
           description: Server error, see response body for further details.
           content:
             application/json:
@@ -962,8 +1043,10 @@ paths:
     get:
       tags:
         - Signals
-      summary: |
-        List signals for the requesting user. This includes signals that the user has created and public signals
+      summary: >
+        List signals for the requesting user. This includes signals that the
+        user has created and public signals
+
         to which they subscribed.
       parameters:
         - name: sessionToken
@@ -984,36 +1067,37 @@ paths:
             type: integer
         - name: limit
           in: query
-          description: |
-            Max no. of signals to return. If no value is provided, 50 is the default. The maximum supported value is 500.
+          description: >
+            Max no. of signals to return. If no value is provided, 50 is the
+            default. The maximum supported value is 500.
           schema:
             type: integer
       responses:
-        200:
+        '200':
           description: List of signals for the requesting user.
           content:
             application/json:
               schema:
                 $ref: '#/components/schemas/SignalList'
-        400:
+        '400':
           description: Client error, see response body for further details.
           content:
             application/json:
               schema:
                 $ref: '#/components/schemas/V2Error'
-        401:
+        '401':
           description: 'Unauthorized: Session tokens invalid.'
           content:
             application/json:
               schema:
                 $ref: '#/components/schemas/V2Error'
-        403:
+        '403':
           description: 'Forbidden: Caller lacks necessary entitlement.'
           content:
             application/json:
               schema:
                 $ref: '#/components/schemas/V2Error'
-        500:
+        '500':
           description: Server error, see response body for further details.
           content:
             application/json:
@@ -1043,31 +1127,31 @@ paths:
           schema:
             type: string
       responses:
-        200:
+        '200':
           description: List of signals for the requesting user.
           content:
             application/json:
               schema:
                 $ref: '#/components/schemas/Signal'
-        400:
+        '400':
           description: Client error, see response body for further details.
           content:
             application/json:
               schema:
                 $ref: '#/components/schemas/V2Error'
-        401:
+        '401':
           description: 'Unauthorized: Session tokens invalid.'
           content:
             application/json:
               schema:
                 $ref: '#/components/schemas/V2Error'
-        403:
+        '403':
           description: 'Forbidden: Caller lacks necessary entitlement.'
           content:
             application/json:
               schema:
                 $ref: '#/components/schemas/V2Error'
-        500:
+        '500':
           description: Server error, see response body for further details.
           content:
             application/json:
@@ -1098,37 +1182,37 @@ paths:
               $ref: '#/components/schemas/BaseSignal'
         required: true
       responses:
-        200:
+        '200':
           description: Signal created.
           content:
             application/json:
               schema:
                 $ref: '#/components/schemas/Signal'
-        400:
+        '400':
           description: Client error, see response body for further details.
           content:
             application/json:
               schema:
                 $ref: '#/components/schemas/V2Error'
-        401:
+        '401':
           description: 'Unauthorized: Session tokens invalid.'
           content:
             application/json:
               schema:
                 $ref: '#/components/schemas/V2Error'
-        403:
+        '403':
           description: 'Forbidden: Caller lacks necessary entitlement.'
           content:
             application/json:
               schema:
                 $ref: '#/components/schemas/V2Error'
-        451:
+        '451':
           description: Compliance Issues found in signal
           content:
             application/json:
               schema:
                 $ref: '#/components/schemas/V2Error'
-        500:
+        '500':
           description: Server error, see response body for further details.
           content:
             application/json:
@@ -1166,37 +1250,37 @@ paths:
               $ref: '#/components/schemas/BaseSignal'
         required: true
       responses:
-        200:
+        '200':
           description: Signal updated.
           content:
             application/json:
               schema:
                 $ref: '#/components/schemas/Signal'
-        400:
+        '400':
           description: Client error, see response body for further details.
           content:
             application/json:
               schema:
                 $ref: '#/components/schemas/V2Error'
-        401:
+        '401':
           description: 'Unauthorized: Session tokens invalid.'
           content:
             application/json:
               schema:
                 $ref: '#/components/schemas/V2Error'
-        403:
+        '403':
           description: 'Forbidden: Caller lacks necessary entitlement.'
           content:
             application/json:
               schema:
                 $ref: '#/components/schemas/V2Error'
-        451:
+        '451':
           description: Compliance Issues found in signal
           content:
             application/json:
               schema:
                 $ref: '#/components/schemas/V2Error'
-        500:
+        '500':
           description: Server error, see response body for further details.
           content:
             application/json:
@@ -1227,31 +1311,31 @@ paths:
           schema:
             type: string
       responses:
-        200:
+        '200':
           description: Signal deleted.
           content:
             application/json:
               schema:
                 $ref: '#/components/schemas/SuccessResponse'
-        400:
+        '400':
           description: Client error, see response body for further details.
           content:
             application/json:
               schema:
                 $ref: '#/components/schemas/V2Error'
-        401:
+        '401':
           description: 'Unauthorized: Session tokens invalid.'
           content:
             application/json:
               schema:
                 $ref: '#/components/schemas/V2Error'
-        403:
+        '403':
           description: 'Forbidden: Caller lacks necessary entitlement.'
           content:
             application/json:
               schema:
                 $ref: '#/components/schemas/V2Error'
-        500:
+        '500':
           description: Server error, see response body for further details.
           content:
             application/json:
@@ -1296,31 +1380,31 @@ paths:
                 format: int64
         required: false
       responses:
-        200:
+        '200':
           description: Signal subscribed.
           content:
             application/json:
               schema:
                 $ref: '#/components/schemas/ChannelSubscriptionResponse'
-        400:
+        '400':
           description: Client error, see response body for further details.
           content:
             application/json:
               schema:
                 $ref: '#/components/schemas/V2Error'
-        401:
+        '401':
           description: 'Unauthorized: Session tokens invalid.'
           content:
             application/json:
               schema:
                 $ref: '#/components/schemas/V2Error'
-        403:
+        '403':
           description: 'Forbidden: Caller lacks necessary entitlement.'
           content:
             application/json:
               schema:
                 $ref: '#/components/schemas/V2Error'
-        500:
+        '500':
           description: Server error, see response body for further details.
           content:
             application/json:
@@ -1361,31 +1445,31 @@ paths:
                 format: int64
         required: false
       responses:
-        200:
+        '200':
           description: Signal unsubscribed.
           content:
             application/json:
               schema:
                 $ref: '#/components/schemas/ChannelSubscriptionResponse'
-        400:
+        '400':
           description: Client error, see response body for further details.
           content:
             application/json:
               schema:
                 $ref: '#/components/schemas/V2Error'
-        401:
+        '401':
           description: 'Unauthorized: Session tokens invalid.'
           content:
             application/json:
               schema:
                 $ref: '#/components/schemas/V2Error'
-        403:
+        '403':
           description: 'Forbidden: Caller lacks necessary entitlement.'
           content:
             application/json:
               schema:
                 $ref: '#/components/schemas/V2Error'
-        500:
+        '500':
           description: Server error, see response body for further details.
           content:
             application/json:
@@ -1423,37 +1507,38 @@ paths:
             default: 0
         - name: limit
           in: query
-          description: Max No. of subscribers to return. If no value is provided, 100
-            is the default.
+          description: >-
+            Max No. of subscribers to return. If no value is provided, 100 is
+            the default.
           schema:
             type: integer
             default: 100
       responses:
-        200:
+        '200':
           description: Signal Subscribers.
           content:
             application/json:
               schema:
                 $ref: '#/components/schemas/ChannelSubscriberResponse'
-        400:
+        '400':
           description: Client error, see response body for further details.
           content:
             application/json:
               schema:
                 $ref: '#/components/schemas/V2Error'
-        401:
+        '401':
           description: 'Unauthorized: Session tokens invalid.'
           content:
             application/json:
               schema:
                 $ref: '#/components/schemas/V2Error'
-        403:
+        '403':
           description: 'Forbidden: Caller lacks necessary entitlement.'
           content:
             application/json:
               schema:
                 $ref: '#/components/schemas/V2Error'
-        500:
+        '500':
           description: Server error, see response body for further details.
           content:
             application/json:
@@ -1465,31 +1550,31 @@ paths:
         - Signals
       summary: Get information about the Agent
       responses:
-        200:
+        '200':
           description: Agent info.
           content:
             application/json:
               schema:
                 $ref: '#/components/schemas/AgentInfo'
-        400:
+        '400':
           description: Client error, see response body for further details.
           content:
             application/json:
               schema:
                 $ref: '#/components/schemas/V2Error'
-        401:
+        '401':
           description: 'Unauthorized: Session tokens invalid.'
           content:
             application/json:
               schema:
                 $ref: '#/components/schemas/V2Error'
-        403:
+        '403':
           description: 'Forbidden: Caller lacks necessary entitlement.'
           content:
             application/json:
               schema:
                 $ref: '#/components/schemas/V2Error'
-        500:
+        '500':
           description: Server error, see response body for further details.
           content:
             application/json:
@@ -1522,37 +1607,38 @@ paths:
             format: int32
         - name: limit
           in: query
-          description: |
-            Optional parameter to specify the number of result to return per page, default is 50. Maximum is 50.
+          description: >
+            Optional parameter to specify the number of result to return per
+            page, default is 50. Maximum is 50.
           schema:
             type: integer
             format: int32
       responses:
-        200:
+        '200':
           description: Success
           content:
             application/json:
               schema:
                 $ref: '#/components/schemas/V1DLPPoliciesCollectionResponse'
-        400:
+        '400':
           description: Client error, see response body for further details.
           content:
             application/json:
               schema:
                 $ref: '#/components/schemas/Error'
-        401:
+        '401':
           description: 'Unauthorized: Session tokens invalid.'
           content:
             application/json:
               schema:
                 $ref: '#/components/schemas/Error'
-        403:
+        '403':
           description: 'Forbidden: Caller lacks necessary entitlement.'
           content:
             application/json:
               schema:
                 $ref: '#/components/schemas/Error'
-        500:
+        '500':
           description: Server error, see response body for further details.
           content:
             application/json:
@@ -1562,12 +1648,17 @@ paths:
       tags:
         - DLP Policies and Dictionary Management
       summary: Creates a policy
-      description: |
+      description: >
         Creates a new policy with dictionary references.
 
-        At the time of policy creation, the caller should only provide - contentTypes, name, scopes and type. The rest of the information is populated automatically.
 
-        Note - You need to enable the policy after creation to start enforcing the policy.
+        At the time of policy creation, the caller should only provide -
+        contentTypes, name, scopes and type. The rest of the information is
+        populated automatically.
+
+
+        Note - You need to enable the policy after creation to start enforcing
+        the policy.
       parameters:
         - name: sessionToken
           in: header
@@ -1589,31 +1680,31 @@ paths:
               $ref: '#/components/schemas/V1DLPPolicyRequest'
         required: true
       responses:
-        200:
+        '200':
           description: Success
           content:
             application/json:
               schema:
                 $ref: '#/components/schemas/V1DLPPolicyResponse'
-        400:
+        '400':
           description: Client error, see response body for further details.
           content:
             application/json:
               schema:
                 $ref: '#/components/schemas/Error'
-        401:
+        '401':
           description: 'Unauthorized: Session tokens invalid.'
           content:
             application/json:
               schema:
                 $ref: '#/components/schemas/Error'
-        403:
+        '403':
           description: 'Forbidden: Caller lacks necessary entitlement.'
           content:
             application/json:
               schema:
                 $ref: '#/components/schemas/Error'
-        500:
+        '500':
           description: Server error, see response body for further details.
           content:
             application/json:
@@ -1647,37 +1738,39 @@ paths:
             type: string
         - name: policyVersion
           in: query
-          description: |
-            Optional parameter, if set to be valid policy version number,  will return policy with specified policyVersion. 
+          description: >
+            Optional parameter, if set to be valid policy version number,  will
+            return policy with specified policyVersion. 
+
             Otherwise, return the latest policy.
           schema:
             type: string
       responses:
-        200:
+        '200':
           description: Success
           content:
             application/json:
               schema:
                 $ref: '#/components/schemas/V1DLPPolicyResponse'
-        400:
+        '400':
           description: Client error, see response body for further details.
           content:
             application/json:
               schema:
                 $ref: '#/components/schemas/Error'
-        401:
+        '401':
           description: 'Unauthorized: Session tokens invalid.'
           content:
             application/json:
               schema:
                 $ref: '#/components/schemas/Error'
-        403:
+        '403':
           description: 'Forbidden: Caller lacks necessary entitlement.'
           content:
             application/json:
               schema:
                 $ref: '#/components/schemas/Error'
-        500:
+        '500':
           description: Server error, see response body for further details.
           content:
             application/json:
@@ -1687,10 +1780,16 @@ paths:
       tags:
         - DLP Policies and Dictionary Management
       summary: Updates a policy. Cannot be used for creation.
-      description: |
-        Update the policy (name, type, contentTypes, scopes) and also the dictionaries for a policy.
-        Warning: If you send empty list of dictionaries during the update operation, then all the
-        dictionaries for this policy are deleted and policy is automatically disabled.
+      description: >
+        Update the policy (name, type, contentTypes, scopes) and also the
+        dictionaries for a policy.
+
+        Warning: If you send empty list of dictionaries during the update
+        operation, then all the
+
+        dictionaries for this policy are deleted and policy is automatically
+        disabled.
+
         Note: The policy should already exist.
       parameters:
         - name: sessionToken
@@ -1718,31 +1817,31 @@ paths:
               $ref: '#/components/schemas/V1DLPPolicyRequest'
         required: true
       responses:
-        200:
+        '200':
           description: Success
           content:
             application/json:
               schema:
                 $ref: '#/components/schemas/V1DLPPolicyResponse'
-        400:
+        '400':
           description: Client error, see response body for further details.
           content:
             application/json:
               schema:
                 $ref: '#/components/schemas/Error'
-        401:
+        '401':
           description: 'Unauthorized: Session tokens invalid.'
           content:
             application/json:
               schema:
                 $ref: '#/components/schemas/Error'
-        403:
+        '403':
           description: 'Forbidden: Caller lacks necessary entitlement.'
           content:
             application/json:
               schema:
                 $ref: '#/components/schemas/Error'
-        500:
+        '500':
           description: Server error, see response body for further details.
           content:
             application/json:
@@ -1776,31 +1875,31 @@ paths:
           schema:
             type: string
       responses:
-        200:
+        '200':
           description: Success
           content:
             application/json:
               schema:
                 $ref: '#/components/schemas/V1DLPPolicyResponse'
-        400:
+        '400':
           description: Client error, see response body for further details.
           content:
             application/json:
               schema:
                 $ref: '#/components/schemas/Error'
-        401:
+        '401':
           description: 'Unauthorized: Session tokens invalid.'
           content:
             application/json:
               schema:
                 $ref: '#/components/schemas/Error'
-        403:
+        '403':
           description: 'Forbidden: Caller lacks necessary entitlement.'
           content:
             application/json:
               schema:
                 $ref: '#/components/schemas/Error'
-        500:
+        '500':
           description: Server error, see response body for further details.
           content:
             application/json:
@@ -1831,31 +1930,31 @@ paths:
           schema:
             type: string
       responses:
-        200:
+        '200':
           description: Success
           content:
             application/json:
               schema:
                 $ref: '#/components/schemas/V1DLPPolicyResponse'
-        400:
+        '400':
           description: Client error, see response body for further details.
           content:
             application/json:
               schema:
                 $ref: '#/components/schemas/Error'
-        401:
+        '401':
           description: 'Unauthorized: Session tokens invalid.'
           content:
             application/json:
               schema:
                 $ref: '#/components/schemas/Error'
-        403:
+        '403':
           description: 'Forbidden: Caller lacks necessary entitlement.'
           content:
             application/json:
               schema:
                 $ref: '#/components/schemas/Error'
-        500:
+        '500':
           description: Server error, see response body for further details.
           content:
             application/json:
@@ -1886,31 +1985,31 @@ paths:
           schema:
             type: string
       responses:
-        200:
+        '200':
           description: Success
           content:
             application/json:
               schema:
                 $ref: '#/components/schemas/V1DLPPolicyResponse'
-        400:
+        '400':
           description: Client error, see response body for further details.
           content:
             application/json:
               schema:
                 $ref: '#/components/schemas/Error'
-        401:
+        '401':
           description: 'Unauthorized: Session tokens invalid.'
           content:
             application/json:
               schema:
                 $ref: '#/components/schemas/Error'
-        403:
+        '403':
           description: 'Forbidden: Caller lacks necessary entitlement.'
           content:
             application/json:
               schema:
                 $ref: '#/components/schemas/Error'
-        500:
+        '500':
           description: Server error, see response body for further details.
           content:
             application/json:
@@ -1921,8 +2020,9 @@ paths:
       tags:
         - DLP Policies and Dictionary Management
       summary: Get all dictionary metadatas
-      description: |
-        Get all dictionary metadatas with the latest version. Each dictionary object will only contain meta data of the content.
+      description: >
+        Get all dictionary metadatas with the latest version. Each dictionary
+        object will only contain meta data of the content.
       parameters:
         - name: sessionToken
           in: header
@@ -1944,37 +2044,38 @@ paths:
             format: int32
         - name: limit
           in: query
-          description: |
-            Optional parameter to specify the number of result to return per page, default is 50. Maximum is 50.
+          description: >
+            Optional parameter to specify the number of result to return per
+            page, default is 50. Maximum is 50.
           schema:
             type: integer
             format: int32
       responses:
-        200:
+        '200':
           description: Success
           content:
             application/json:
               schema:
                 $ref: '#/components/schemas/V1DLPDictionaryMetadataCollectionResponse'
-        400:
+        '400':
           description: Client error, see response body for further details.
           content:
             application/json:
               schema:
                 $ref: '#/components/schemas/Error'
-        401:
+        '401':
           description: 'Unauthorized: Session tokens invalid.'
           content:
             application/json:
               schema:
                 $ref: '#/components/schemas/Error'
-        403:
+        '403':
           description: 'Forbidden: Caller lacks necessary entitlement.'
           content:
             application/json:
               schema:
                 $ref: '#/components/schemas/Error'
-        500:
+        '500':
           description: Server error, see response body for further details.
           content:
             application/json:
@@ -1984,8 +2085,9 @@ paths:
       tags:
         - DLP Policies and Dictionary Management
       summary: Create a dictionary
-      description: |
-        Creates a dictionary with basic metadata and no content. Only "name" and "type" field is used to create a new dictionary entry.
+      description: >
+        Creates a dictionary with basic metadata and no content. Only "name" and
+        "type" field is used to create a new dictionary entry.
       parameters:
         - name: sessionToken
           in: header
@@ -2006,31 +2108,31 @@ paths:
               $ref: '#/components/schemas/V1DLPDictionaryMetadataCreateRequest'
         required: true
       responses:
-        200:
+        '200':
           description: Success
           content:
             application/json:
               schema:
                 $ref: '#/components/schemas/V1DLPDictionaryMetadataResponse'
-        400:
+        '400':
           description: Client error, see response body for further details.
           content:
             application/json:
               schema:
                 $ref: '#/components/schemas/Error'
-        401:
+        '401':
           description: 'Unauthorized: Session tokens invalid.'
           content:
             application/json:
               schema:
                 $ref: '#/components/schemas/Error'
-        403:
+        '403':
           description: 'Forbidden: Caller lacks necessary entitlement.'
           content:
             application/json:
               schema:
                 $ref: '#/components/schemas/Error'
-        500:
+        '500':
           description: Server error, see response body for further details.
           content:
             application/json:
@@ -2064,37 +2166,39 @@ paths:
             type: string
         - name: dictVersion
           in: query
-          description: |
-            If set to be valid dictionary version number, will return dictionary metadata with specified version. 
+          description: >
+            If set to be valid dictionary version number, will return dictionary
+            metadata with specified version. 
+
             Otherwise, return the latest dictionary metadata.
           schema:
             type: string
       responses:
-        200:
+        '200':
           description: Success
           content:
             application/json:
               schema:
                 $ref: '#/components/schemas/V1DLPDictionaryMetadataResponse'
-        400:
+        '400':
           description: Client error, see response body for further details.
           content:
             application/json:
               schema:
                 $ref: '#/components/schemas/Error'
-        401:
+        '401':
           description: 'Unauthorized: Session tokens invalid.'
           content:
             application/json:
               schema:
                 $ref: '#/components/schemas/Error'
-        403:
+        '403':
           description: 'Forbidden: Caller lacks necessary entitlement.'
           content:
             application/json:
               schema:
                 $ref: '#/components/schemas/Error'
-        500:
+        '500':
           description: Server error, see response body for further details.
           content:
             application/json:
@@ -2135,31 +2239,31 @@ paths:
               $ref: '#/components/schemas/V1DLPDictionaryMetadataUpdateRequest'
         required: true
       responses:
-        200:
+        '200':
           description: Success
           content:
             application/json:
               schema:
                 $ref: '#/components/schemas/V1DLPDictionaryMetadataResponse'
-        400:
+        '400':
           description: Client error, see response body for further details.
           content:
             application/json:
               schema:
                 $ref: '#/components/schemas/Error'
-        401:
+        '401':
           description: 'Unauthorized: Session tokens invalid.'
           content:
             application/json:
               schema:
                 $ref: '#/components/schemas/Error'
-        403:
+        '403':
           description: 'Forbidden: Caller lacks necessary entitlement.'
           content:
             application/json:
               schema:
                 $ref: '#/components/schemas/Error'
-        500:
+        '500':
           description: Server error, see response body for further details.
           content:
             application/json:
@@ -2193,31 +2297,31 @@ paths:
           schema:
             type: string
       responses:
-        200:
+        '200':
           description: Success
           content:
             application/json:
               schema:
                 $ref: '#/components/schemas/V1DLPDictionaryMetadataResponse'
-        400:
+        '400':
           description: Client error, see response body for further details.
           content:
             application/json:
               schema:
                 $ref: '#/components/schemas/Error'
-        401:
+        '401':
           description: 'Unauthorized: Session tokens invalid.'
           content:
             application/json:
               schema:
                 $ref: '#/components/schemas/Error'
-        403:
+        '403':
           description: 'Forbidden: Caller lacks necessary entitlement.'
           content:
             application/json:
               schema:
                 $ref: '#/components/schemas/Error'
-        500:
+        '500':
           description: Server error, see response body for further details.
           content:
             application/json:
@@ -2250,38 +2354,40 @@ paths:
             type: string
         - name: dictVersion
           in: query
-          description: |
-            If set to be valid dictionary version number, will return dictionary with specified version. 
+          description: >
+            If set to be valid dictionary version number, will return dictionary
+            with specified version. 
+
             Otherwise, return the latest dictionary.
           schema:
             type: string
       responses:
-        200:
+        '200':
           description: Attachment body as Base64 encoded string.
           content:
             application/octet-stream:
               schema:
                 type: string
                 format: byte
-        400:
+        '400':
           description: Client error, see response body for further details.
           content:
             application/octet-stream:
               schema:
                 $ref: '#/components/schemas/Error'
-        401:
+        '401':
           description: 'Unauthorized: Session tokens invalid.'
           content:
             application/octet-stream:
               schema:
                 $ref: '#/components/schemas/Error'
-        403:
+        '403':
           description: 'Forbidden: Caller lacks necessary entitlement.'
           content:
             application/octet-stream:
               schema:
                 $ref: '#/components/schemas/Error'
-        500:
+        '500':
           description: Server error, see response body for further details.
           content:
             application/octet-stream:
@@ -2324,31 +2430,31 @@ paths:
                   format: binary
         required: true
       responses:
-        200:
+        '200':
           description: Success
           content:
             application/json:
               schema:
                 $ref: '#/components/schemas/V1DLPDictionaryMetadataResponse'
-        400:
+        '400':
           description: Client error, see response body for further details.
           content:
             application/json:
               schema:
                 $ref: '#/components/schemas/Error'
-        401:
+        '401':
           description: 'Unauthorized: Session tokens invalid.'
           content:
             application/json:
               schema:
                 $ref: '#/components/schemas/Error'
-        403:
+        '403':
           description: 'Forbidden: Caller lacks necessary entitlement.'
           content:
             application/json:
               schema:
                 $ref: '#/components/schemas/Error'
-        500:
+        '500':
           description: Server error, see response body for further details.
           content:
             application/json:
@@ -2362,31 +2468,39 @@ paths:
       parameters:
         - name: startTime
           in: query
-          description: |
+          description: >
             Timestamp of the first required violation.
-            This is a long integer value representing milliseconds since Jan 1 1970
+
+            This is a long integer value representing milliseconds since Jan 1
+            1970
           required: true
           schema:
             type: integer
             format: int64
         - name: endTime
           in: query
-          description: |
+          description: >
             Timestamp of the last required violation.
-            This is a long integer value representing milliseconds since Jan 1 1970
+
+            This is a long integer value representing milliseconds since Jan 1
+            1970
+
             If unspecified, it will default to current time of the request.
           schema:
             type: integer
             format: int64
         - name: next
           in: query
-          description: Offset of the next chunk of violations. Value is null for the first request.
+          description: >-
+            Offset of the next chunk of violations. Value is null for the first
+            request.
           schema:
             type: string
         - name: limit
           in: query
-          description: |
-            Max No. of violations to return. If no value is provided, 50 is the default. The maximum supported value is 500.
+          description: >
+            Max No. of violations to return. If no value is provided, 50 is the
+            default. The maximum supported value is 500.
           schema:
             type: integer
         - name: sessionToken
@@ -2402,34 +2516,34 @@ paths:
           schema:
             type: string
       responses:
-        200:
+        '200':
           description: OK
           content:
             application/json:
               schema:
                 $ref: '#/components/schemas/V1DLPViolationMessageResponse'
-        204:
+        '204':
           description: No Messages.
           content: {}
-        400:
+        '400':
           description: Client error, see response body for further details.
           content:
             application/json:
               schema:
                 $ref: '#/components/schemas/Error'
-        401:
+        '401':
           description: 'Unauthorized: Session tokens invalid.'
           content:
             application/json:
               schema:
                 $ref: '#/components/schemas/Error'
-        403:
+        '403':
           description: 'Forbidden: Caller lacks necessary entitlement.'
           content:
             application/json:
               schema:
                 $ref: '#/components/schemas/Error'
-        500:
+        '500':
           description: Server error, see response body for further details.
           content:
             application/json:
@@ -2443,31 +2557,39 @@ paths:
       parameters:
         - name: startTime
           in: query
-          description: |
+          description: >
             Timestamp of the first required violation.
-            This is a long integer value representing milliseconds since Jan 1 1970
+
+            This is a long integer value representing milliseconds since Jan 1
+            1970
           required: true
           schema:
             type: integer
             format: int64
         - name: endTime
           in: query
-          description: |
+          description: >
             Timestamp of the last required violation.
-            This is a long integer value representing milliseconds since Jan 1 1970
+
+            This is a long integer value representing milliseconds since Jan 1
+            1970
+
             If unspecified, it will default to current time of the request.
           schema:
             type: integer
             format: int64
         - name: next
           in: query
-          description: Offset of the next chunk of violations. Value is null for the first request.
+          description: >-
+            Offset of the next chunk of violations. Value is null for the first
+            request.
           schema:
             type: string
         - name: limit
           in: query
-          description: |
-            Max No. of violations to return. If no value is provided, 50 is the default. The maximum supported value is 500.
+          description: >
+            Max No. of violations to return. If no value is provided, 50 is the
+            default. The maximum supported value is 500.
           schema:
             type: integer
         - name: sessionToken
@@ -2483,34 +2605,34 @@ paths:
           schema:
             type: string
       responses:
-        200:
+        '200':
           description: OK
           content:
             application/json:
               schema:
                 $ref: '#/components/schemas/V1DLPViolationStreamResponse'
-        204:
+        '204':
           description: No Messages.
           content: {}
-        400:
+        '400':
           description: Client error, see response body for further details.
           content:
             application/json:
               schema:
                 $ref: '#/components/schemas/Error'
-        401:
+        '401':
           description: 'Unauthorized: Session tokens invalid.'
           content:
             application/json:
               schema:
                 $ref: '#/components/schemas/Error'
-        403:
+        '403':
           description: 'Forbidden: Caller lacks necessary entitlement.'
           content:
             application/json:
               schema:
                 $ref: '#/components/schemas/Error'
-        500:
+        '500':
           description: Server error, see response body for further details.
           content:
             application/json:
@@ -2524,31 +2646,39 @@ paths:
       parameters:
         - name: startTime
           in: query
-          description: |
+          description: >
             Timestamp of the first required violation.
-            This is a long integer value representing milliseconds since Jan 1 1970
+
+            This is a long integer value representing milliseconds since Jan 1
+            1970
           required: true
           schema:
             type: integer
             format: int64
         - name: endTime
           in: query
-          description: |
+          description: >
             Timestamp of the last required violation.
-            This is a long integer value representing milliseconds since Jan 1 1970
+
+            This is a long integer value representing milliseconds since Jan 1
+            1970
+
             If unspecified, it will default to current time of the request.
           schema:
             type: integer
             format: int64
         - name: next
           in: query
-          description: Offset of the next chunk of violations. Value is null for the first request.
+          description: >-
+            Offset of the next chunk of violations. Value is null for the first
+            request.
           schema:
             type: string
         - name: limit
           in: query
-          description: |
-            Max No. of violations to return. If no value is provided, 50 is the default. The maximum supported value is 500.
+          description: >
+            Max No. of violations to return. If no value is provided, 50 is the
+            default. The maximum supported value is 500.
           schema:
             type: integer
         - name: sessionToken
@@ -2564,34 +2694,34 @@ paths:
           schema:
             type: string
       responses:
-        200:
+        '200':
           description: OK
           content:
             application/json:
               schema:
                 $ref: '#/components/schemas/V1DLPViolationSignalResponse'
-        204:
+        '204':
           description: No Messages.
           content: {}
-        400:
+        '400':
           description: Client error, see response body for further details.
           content:
             application/json:
               schema:
                 $ref: '#/components/schemas/Error'
-        401:
+        '401':
           description: 'Unauthorized: Session tokens invalid.'
           content:
             application/json:
               schema:
                 $ref: '#/components/schemas/Error'
-        403:
+        '403':
           description: 'Forbidden: Caller lacks necessary entitlement.'
           content:
             application/json:
               schema:
                 $ref: '#/components/schemas/Error'
-        500:
+        '500':
           description: Server error, see response body for further details.
           content:
             application/json:
@@ -2624,37 +2754,38 @@ paths:
             format: int32
         - name: limit
           in: query
-          description: |
-            Optional parameter to specify the number of result to return per page, default is 50. Maximum is 50.
+          description: >
+            Optional parameter to specify the number of result to return per
+            page, default is 50. Maximum is 50.
           schema:
             type: integer
             format: int32
       responses:
-        200:
+        '200':
           description: Success
           content:
             application/json:
               schema:
                 $ref: '#/components/schemas/V3DLPPoliciesCollectionResponse'
-        400:
+        '400':
           description: Client error, see response body for further details.
           content:
             application/json:
               schema:
                 $ref: '#/components/schemas/Error'
-        401:
+        '401':
           description: 'Unauthorized: Session tokens invalid.'
           content:
             application/json:
               schema:
                 $ref: '#/components/schemas/Error'
-        403:
+        '403':
           description: 'Forbidden: Caller lacks necessary entitlement.'
           content:
             application/json:
               schema:
                 $ref: '#/components/schemas/Error'
-        500:
+        '500':
           description: Server error, see response body for further details.
           content:
             application/json:
@@ -2664,11 +2795,16 @@ paths:
       tags:
         - DLP Policies and Dictionary Management
       summary: Creates a policy
-      description: |
+      description: >
         Creates a new policy with dictionary references.
-        At the time of policy creation, the caller should only provide - contentTypes, name, scopes and type.
+
+        At the time of policy creation, the caller should only provide -
+        contentTypes, name, scopes and type.
+
         The rest of the information is populated automatically.
-        Note - You need to enable the policy after creation to start enforcing the policy.
+
+        Note - You need to enable the policy after creation to start enforcing
+        the policy.
       parameters:
         - name: sessionToken
           in: header
@@ -2690,31 +2826,31 @@ paths:
               $ref: '#/components/schemas/V3DLPPolicyRequest'
         required: true
       responses:
-        200:
+        '200':
           description: Success
           content:
             application/json:
               schema:
                 $ref: '#/components/schemas/V3DLPPolicyResponse'
-        400:
+        '400':
           description: Client error, see response body for further details.
           content:
             application/json:
               schema:
                 $ref: '#/components/schemas/Error'
-        401:
+        '401':
           description: 'Unauthorized: Session tokens invalid.'
           content:
             application/json:
               schema:
                 $ref: '#/components/schemas/Error'
-        403:
+        '403':
           description: 'Forbidden: Caller lacks necessary entitlement.'
           content:
             application/json:
               schema:
                 $ref: '#/components/schemas/Error'
-        500:
+        '500':
           description: Server error, see response body for further details.
           content:
             application/json:
@@ -2748,37 +2884,39 @@ paths:
             type: string
         - name: policyVersion
           in: query
-          description: |
-            Optional parameter, if set to be valid policy version number,  will return policy with specified policyVersion. 
+          description: >
+            Optional parameter, if set to be valid policy version number,  will
+            return policy with specified policyVersion. 
+
             Otherwise, return the latest policy.
           schema:
             type: string
       responses:
-        200:
+        '200':
           description: Success
           content:
             application/json:
               schema:
                 $ref: '#/components/schemas/V3DLPPolicyResponse'
-        400:
+        '400':
           description: Client error, see response body for further details.
           content:
             application/json:
               schema:
                 $ref: '#/components/schemas/Error'
-        401:
+        '401':
           description: 'Unauthorized: Session tokens invalid.'
           content:
             application/json:
               schema:
                 $ref: '#/components/schemas/Error'
-        403:
+        '403':
           description: 'Forbidden: Caller lacks necessary entitlement.'
           content:
             application/json:
               schema:
                 $ref: '#/components/schemas/Error'
-        500:
+        '500':
           description: Server error, see response body for further details.
           content:
             application/json:
@@ -2789,10 +2927,16 @@ paths:
       tags:
         - DLP Policies and Dictionary Management
       summary: Updates a policy. Cannot be used for creation.
-      description: |
-        Update the policy (name, type, contentTypes, scopes) and also the dictionaries for a policy.
-        Warning: If you send empty list of dictionaries during the update operation, then all the
-        dictionaries for this policy are deleted and policy is automatically disabled.
+      description: >
+        Update the policy (name, type, contentTypes, scopes) and also the
+        dictionaries for a policy.
+
+        Warning: If you send empty list of dictionaries during the update
+        operation, then all the
+
+        dictionaries for this policy are deleted and policy is automatically
+        disabled.
+
         Note: The policy should already exist.
       parameters:
         - name: sessionToken
@@ -2820,31 +2964,31 @@ paths:
               $ref: '#/components/schemas/V3DLPPolicyRequest'
         required: true
       responses:
-        200:
+        '200':
           description: Success
           content:
             application/json:
               schema:
                 $ref: '#/components/schemas/V3DLPPolicyResponse'
-        400:
+        '400':
           description: Client error, see response body for further details.
           content:
             application/json:
               schema:
                 $ref: '#/components/schemas/Error'
-        401:
+        '401':
           description: 'Unauthorized: Session tokens invalid.'
           content:
             application/json:
               schema:
                 $ref: '#/components/schemas/Error'
-        403:
+        '403':
           description: 'Forbidden: Caller lacks necessary entitlement.'
           content:
             application/json:
               schema:
                 $ref: '#/components/schemas/Error'
-        500:
+        '500':
           description: Server error, see response body for further details.
           content:
             application/json:
@@ -2879,31 +3023,31 @@ paths:
           schema:
             type: string
       responses:
-        200:
+        '200':
           description: Success
           content:
             application/json:
               schema:
                 $ref: '#/components/schemas/V3DLPPolicyResponse'
-        400:
+        '400':
           description: Client error, see response body for further details.
           content:
             application/json:
               schema:
                 $ref: '#/components/schemas/Error'
-        401:
+        '401':
           description: 'Unauthorized: Session tokens invalid.'
           content:
             application/json:
               schema:
                 $ref: '#/components/schemas/Error'
-        403:
+        '403':
           description: 'Forbidden: Caller lacks necessary entitlement.'
           content:
             application/json:
               schema:
                 $ref: '#/components/schemas/Error'
-        500:
+        '500':
           description: Server error, see response body for further details.
           content:
             application/json:
@@ -2934,31 +3078,31 @@ paths:
           schema:
             type: string
       responses:
-        200:
+        '200':
           description: Success
           content:
             application/json:
               schema:
                 $ref: '#/components/schemas/V3DLPPolicyResponse'
-        400:
+        '400':
           description: Client error, see response body for further details.
           content:
             application/json:
               schema:
                 $ref: '#/components/schemas/Error'
-        401:
+        '401':
           description: 'Unauthorized: Session tokens invalid.'
           content:
             application/json:
               schema:
                 $ref: '#/components/schemas/Error'
-        403:
+        '403':
           description: 'Forbidden: Caller lacks necessary entitlement.'
           content:
             application/json:
               schema:
                 $ref: '#/components/schemas/Error'
-        500:
+        '500':
           description: Server error, see response body for further details.
           content:
             application/json:
@@ -2989,31 +3133,31 @@ paths:
           schema:
             type: string
       responses:
-        200:
+        '200':
           description: Success
           content:
             application/json:
               schema:
                 $ref: '#/components/schemas/V3DLPPolicyResponse'
-        400:
+        '400':
           description: Client error, see response body for further details.
           content:
             application/json:
               schema:
                 $ref: '#/components/schemas/Error'
-        401:
+        '401':
           description: 'Unauthorized: Session tokens invalid.'
           content:
             application/json:
               schema:
                 $ref: '#/components/schemas/Error'
-        403:
+        '403':
           description: 'Forbidden: Caller lacks necessary entitlement.'
           content:
             application/json:
               schema:
                 $ref: '#/components/schemas/Error'
-        500:
+        '500':
           description: Server error, see response body for further details.
           content:
             application/json:
@@ -3028,31 +3172,39 @@ paths:
       parameters:
         - name: startTime
           in: query
-          description: |
+          description: >
             Timestamp of the first required violation.
-            This is a long integer value representing milliseconds since Jan 1 1970
+
+            This is a long integer value representing milliseconds since Jan 1
+            1970
           required: true
           schema:
             type: integer
             format: int64
         - name: endTime
           in: query
-          description: |
+          description: >
             Timestamp of the last required violation.
-            This is a long integer value representing milliseconds since Jan 1 1970
+
+            This is a long integer value representing milliseconds since Jan 1
+            1970
+
             If unspecified, it will default to current time of the request.
           schema:
             type: integer
             format: int64
         - name: next
           in: query
-          description: Offset of the next chunk of violations. Value is null for the first request.
+          description: >-
+            Offset of the next chunk of violations. Value is null for the first
+            request.
           schema:
             type: string
         - name: limit
           in: query
-          description: |
-            Max No. of violations to return. If no value is provided, 50 is the default. The maximum supported value is 500.
+          description: >
+            Max No. of violations to return. If no value is provided, 50 is the
+            default. The maximum supported value is 500.
           schema:
             type: integer
         - name: sessionToken
@@ -3068,34 +3220,34 @@ paths:
           schema:
             type: string
       responses:
-        200:
+        '200':
           description: OK
           content:
             application/json:
               schema:
                 $ref: '#/components/schemas/V3DLPViolationMessageResponse'
-        204:
+        '204':
           description: No Messages.
           content: {}
-        400:
+        '400':
           description: Client error, see response body for further details.
           content:
             application/json:
               schema:
                 $ref: '#/components/schemas/Error'
-        401:
+        '401':
           description: 'Unauthorized: Session tokens invalid.'
           content:
             application/json:
               schema:
                 $ref: '#/components/schemas/Error'
-        403:
+        '403':
           description: 'Forbidden: Caller lacks necessary entitlement.'
           content:
             application/json:
               schema:
                 $ref: '#/components/schemas/Error'
-        500:
+        '500':
           description: Server error, see response body for further details.
           content:
             application/json:
@@ -3110,31 +3262,39 @@ paths:
       parameters:
         - name: startTime
           in: query
-          description: |
+          description: >
             Timestamp of the first required violation.
-            This is a long integer value representing milliseconds since Jan 1 1970
+
+            This is a long integer value representing milliseconds since Jan 1
+            1970
           required: true
           schema:
             type: integer
             format: int64
         - name: endTime
           in: query
-          description: |
+          description: >
             Timestamp of the last required violation.
-            This is a long integer value representing milliseconds since Jan 1 1970
+
+            This is a long integer value representing milliseconds since Jan 1
+            1970
+
             If unspecified, it will default to current time of the request.
           schema:
             type: integer
             format: int64
         - name: next
           in: query
-          description: Offset of the next chunk of violations. Value is null for the first request.
+          description: >-
+            Offset of the next chunk of violations. Value is null for the first
+            request.
           schema:
             type: string
         - name: limit
           in: query
-          description: |
-            Max No. of violations to return. If no value is provided, 50 is the default. The maximum supported value is 500.
+          description: >
+            Max No. of violations to return. If no value is provided, 50 is the
+            default. The maximum supported value is 500.
           schema:
             type: integer
         - name: sessionToken
@@ -3150,34 +3310,34 @@ paths:
           schema:
             type: string
       responses:
-        200:
+        '200':
           description: OK
           content:
             application/json:
               schema:
                 $ref: '#/components/schemas/V3DLPViolationStreamResponse'
-        204:
+        '204':
           description: No Messages.
           content: {}
-        400:
+        '400':
           description: Client error, see response body for further details.
           content:
             application/json:
               schema:
                 $ref: '#/components/schemas/Error'
-        401:
+        '401':
           description: 'Unauthorized: Session tokens invalid.'
           content:
             application/json:
               schema:
                 $ref: '#/components/schemas/Error'
-        403:
+        '403':
           description: 'Forbidden: Caller lacks necessary entitlement.'
           content:
             application/json:
               schema:
                 $ref: '#/components/schemas/Error'
-        500:
+        '500':
           description: Server error, see response body for further details.
           content:
             application/json:
@@ -3192,31 +3352,39 @@ paths:
       parameters:
         - name: startTime
           in: query
-          description: |
+          description: >
             Timestamp of the first required violation.
-            This is a long integer value representing milliseconds since Jan 1 1970
+
+            This is a long integer value representing milliseconds since Jan 1
+            1970
           required: true
           schema:
             type: integer
             format: int64
         - name: endTime
           in: query
-          description: |
+          description: >
             Timestamp of the last required violation.
-            This is a long integer value representing milliseconds since Jan 1 1970
+
+            This is a long integer value representing milliseconds since Jan 1
+            1970
+
             If unspecified, it will default to current time of the request.
           schema:
             type: integer
             format: int64
         - name: next
           in: query
-          description: Offset of the next chunk of violations. Value is null for the first request.
+          description: >-
+            Offset of the next chunk of violations. Value is null for the first
+            request.
           schema:
             type: string
         - name: limit
           in: query
-          description: |
-            Max No. of violations to return. If no value is provided, 50 is the default. The maximum supported value is 500.
+          description: >
+            Max No. of violations to return. If no value is provided, 50 is the
+            default. The maximum supported value is 500.
           schema:
             type: integer
         - name: sessionToken
@@ -3232,34 +3400,34 @@ paths:
           schema:
             type: string
       responses:
-        200:
+        '200':
           description: OK
           content:
             application/json:
               schema:
                 $ref: '#/components/schemas/V3DLPViolationSignalResponse'
-        204:
+        '204':
           description: No Messages.
           content: {}
-        400:
+        '400':
           description: Client error, see response body for further details.
           content:
             application/json:
               schema:
                 $ref: '#/components/schemas/Error'
-        401:
+        '401':
           description: 'Unauthorized: Session tokens invalid.'
           content:
             application/json:
               schema:
                 $ref: '#/components/schemas/Error'
-        403:
+        '403':
           description: 'Forbidden: Caller lacks necessary entitlement.'
           content:
             application/json:
               schema:
                 $ref: '#/components/schemas/Error'
-        500:
+        '500':
           description: Server error, see response body for further details.
           content:
             application/json:
@@ -3269,8 +3437,12 @@ paths:
     get:
       tags:
         - Violations
-      summary: Get attachments that were sent as part of messages that were flagged by the DLP System.
-      description: Retrieves attachments from related message violations as a base64 encoded String.
+      summary: >-
+        Get attachments that were sent as part of messages that were flagged by
+        the DLP System.
+      description: >-
+        Retrieves attachments from related message violations as a base64
+        encoded String.
       parameters:
         - name: fileId
           in: query
@@ -3280,7 +3452,9 @@ paths:
             type: string
         - name: violationId
           in: query
-          description: ID of violation that corresponds to the flagged message that contains the attachment
+          description: >-
+            ID of violation that corresponds to the flagged message that
+            contains the attachment
           required: true
           schema:
             type: string
@@ -3297,38 +3471,38 @@ paths:
           schema:
             type: string
       responses:
-        200:
+        '200':
           description: Attachment body as Base64 encoded string.
           content:
             application/octet-stream:
               schema:
                 type: string
                 format: byte
-        400:
+        '400':
           description: Client error, see response body for further details.
           content:
             application/octet-stream:
               schema:
                 $ref: '#/components/schemas/Error'
-        401:
+        '401':
           description: 'Unauthorized: Session tokens invalid.'
           content:
             application/octet-stream:
               schema:
                 $ref: '#/components/schemas/Error'
-        403:
+        '403':
           description: 'Forbidden: Caller lacks necessary entitlement.'
           content:
             application/octet-stream:
               schema:
                 $ref: '#/components/schemas/Error'
-        404:
+        '404':
           description: Resource not found.
           content:
             application/octet-stream:
               schema:
                 $ref: '#/components/schemas/Error'
-        500:
+        '500':
           description: Server error, see response body for further details.
           content:
             application/octet-stream:
@@ -3338,10 +3512,12 @@ paths:
     get:
       tags:
         - AuditTrail
-      summary: Get a list of  actions performed by a privileged account acting as
+      summary: >-
+        Get a list of  actions performed by a privileged account acting as
         privileged user given a period of time.
-      description: Get a list of actions performed by a privileged account acting
-        as privileged user given a period of time.
+      description: >-
+        Get a list of actions performed by a privileged account acting as
+        privileged user given a period of time.
       parameters:
         - name: sessionToken
           in: header
@@ -3364,81 +3540,105 @@ paths:
             format: int64
         - name: endTimestamp
           in: query
-          description: End timestamp in unix timestamp in millseconds. If not specified, it assumes to be current time.
+          description: >-
+            End timestamp in unix timestamp in millseconds. If not specified, it
+            assumes to be current time.
           schema:
             type: integer
             format: int64
         - name: before
           in: query
-          description: Return results from an opaque “before” cursor value as presented via a response cursor.
+          description: >-
+            Return results from an opaque “before” cursor value as presented via
+            a response cursor.
           schema:
             type: string
         - name: after
           in: query
-          description: Return results from an opaque “after” cursor value as presented via a response cursor.
+          description: >-
+            Return results from an opaque “after” cursor value as presented via
+            a response cursor.
           schema:
             type: string
         - name: limit
           in: query
-          description: |
-            Max No. of violations to return. If no value is provided, 50 is the default.
+          description: >
+            Max No. of violations to return. If no value is provided, 50 is the
+            default.
+
             Some maximums for limit may be enforced for performance reasons.
+
             The maximum supported value is 500.
           schema:
             type: integer
         - name: initiatorId
           in: query
-          description: If present, only the initiator with this initiator <user id> will be returned.
+          description: >-
+            If present, only the initiator with this initiator <user id> will be
+            returned.
           schema:
             type: integer
             format: int64
         - name: role
           in: query
-          description: |
-            If present, only the audit trail initiated by s user with privileged role acting as
+          description: >
+            If present, only the audit trail initiated by s user with privileged
+            role acting as
+
             privileged user will be returned.
+
             Privileged eliglible roles:
+
             User Provisioning (USER_PROVISIONING),
+
             Content Management (CONTENT_MANAGEMENT),
+
             Expression Filter Policy Management (EF_POLICY_MANAGEMENT),
+
             SCO (SUPER_COMPLIANCE_OFFICER),
+
             CO (COMPLIANCE_OFFICER),
+
             Super admin (SUPER_ADMINISTRATOR),
+
             Admin (ADMINISTRATOR),
+
             L1 (L1_SUPPORT),
+
             L2 (L2_SUPPORT),
+
             Scope Manager (SCOPE_MANAGEMENT)
           schema:
             type: string
       responses:
-        200:
+        '200':
           description: OK
           content:
             application/json:
               schema:
                 $ref: '#/components/schemas/V1AuditTrailInitiatorList'
-        204:
+        '204':
           description: No Messages.
           content: {}
-        400:
+        '400':
           description: Client error, see response body for further details.
           content:
             application/json:
               schema:
                 $ref: '#/components/schemas/Error'
-        401:
+        '401':
           description: 'Unauthorized: Session tokens invalid.'
           content:
             application/json:
               schema:
                 $ref: '#/components/schemas/Error'
-        403:
+        '403':
           description: 'Forbidden: Caller lacks necessary entitlement.'
           content:
             application/json:
               schema:
                 $ref: '#/components/schemas/Error'
-        500:
+        '500':
           description: Server error, see response body for further details.
           content:
             application/json:
@@ -3449,14 +3649,21 @@ paths:
       tags:
         - Datafeed
       summary: Read list of real time messages / events stream ("datafeed").
-      description: |
+      description: >
         _Available on Agent 2.57.0 and above._
 
-        The datafeed provides messages and events from all conversations that the user
-        is in. The types of events surfaced in the datafeed can be found in the [Real Time Events](./docs/real-time-events.md) list.
+
+        The datafeed provides messages and events from all conversations that
+        the user
+
+        is in. The types of events surfaced in the datafeed can be found in the
+        [Real Time Events](./docs/real-time-events.md) list.
+
 
         Returns the list of the datafeeds for the user.
-        Any datafeed ID of the list can then be used as input to the Read Messages/Events Stream v4 endpoint.
+
+        Any datafeed ID of the list can then be used as input to the Read
+        Messages/Events Stream v4 endpoint.
       operationId: listDatafeed
       parameters:
         - name: sessionToken
@@ -3473,13 +3680,14 @@ paths:
             type: string
         - name: tag
           in: query
-          description: A unique identifier to ensure uniqueness of the datafeed. Used
-            to restrict search.
+          description: >-
+            A unique identifier to ensure uniqueness of the datafeed. Used to
+            restrict search.
           schema:
             maxLength: 100
             type: string
       responses:
-        200:
+        '200':
           description: Datafeed sucessfully created.
           content:
             application/json:
@@ -3487,19 +3695,19 @@ paths:
                 type: array
                 items:
                   $ref: '#/components/schemas/V5Datafeed'
-        400:
+        '400':
           description: Bad request.
           content:
             application/json:
               schema:
                 $ref: '#/components/schemas/V2Error'
-        401:
+        '401':
           description: Unauthorized.
           content:
             application/json:
               schema:
                 $ref: '#/components/schemas/V2Error'
-        500:
+        '500':
           description: Internal server error.
           content:
             application/json:
@@ -3509,15 +3717,23 @@ paths:
       tags:
         - Datafeed
       summary: Create a new real time messages / events stream ("datafeed").
-      description: |
+      description: >
         _Available on Agent 2.57.0 and above._
 
-        The datafeed provides messages and events from all conversations that the user
-        is in. The types of events surfaced in the datafeed can be found in the Real Time Events list.
+
+        The datafeed provides messages and events from all conversations that
+        the user
+
+        is in. The types of events surfaced in the datafeed can be found in the
+        Real Time Events list.
+
         (see definition on top of the file)
 
+
         Returns the ID of the datafeed that has just been created.
-        This ID should then be used as input to the Read Messages/Events Stream v4 endpoint.
+
+        This ID should then be used as input to the Read Messages/Events Stream
+        v4 endpoint.
       operationId: createDatafeed
       parameters:
         - name: sessionToken
@@ -3539,25 +3755,25 @@ paths:
               $ref: '#/components/schemas/V5DatafeedCreateBody'
         required: false
       responses:
-        201:
+        '201':
           description: Datafeed sucessfully created.
           content:
             application/json:
               schema:
                 $ref: '#/components/schemas/V5Datafeed'
-        400:
+        '400':
           description: Bad request.
           content:
             application/json:
               schema:
                 $ref: '#/components/schemas/V2Error'
-        401:
+        '401':
           description: Unauthorized.
           content:
             application/json:
               schema:
                 $ref: '#/components/schemas/V2Error'
-        500:
+        '500':
           description: Internal server error.
           content:
             application/json:
@@ -3569,12 +3785,18 @@ paths:
       tags:
         - Datafeed
       summary: Delete the specified real time message / event stream ("datafeed").
-      description: |
+      description: >
         _Available on Agent 2.57.0 and above._
 
-        The datafeed provides messages and events from all conversations that the user
-        is in. The types of events surfaced in the datafeed can be found in the Real Time Events list.
+
+        The datafeed provides messages and events from all conversations that
+        the user
+
+        is in. The types of events surfaced in the datafeed can be found in the
+        Real Time Events list.
+
         (see definition on top of the file)
+
 
         Delete the specified datafeed.
       operationId: deleteDatafeed
@@ -3598,25 +3820,25 @@ paths:
           schema:
             type: string
       responses:
-        204:
+        '204':
           description: Datafeed successfully deleted.
           content:
             application/json:
               schema:
                 $ref: '#/components/schemas/V2Error'
-        400:
+        '400':
           description: Bad request.
           content:
             application/json:
               schema:
                 $ref: '#/components/schemas/V2Error'
-        401:
+        '401':
           description: Unauthorized.
           content:
             application/json:
               schema:
                 $ref: '#/components/schemas/V2Error'
-        500:
+        '500':
           description: Internal server error.
           content:
             application/json:
@@ -3627,17 +3849,28 @@ paths:
       tags:
         - Datafeed
       summary: Read the specified real time message / event stream ("datafeed").
-      description: |
+      description: >
         _Available on Agent 2.57.0 and above._
 
-        The datafeed provides messages and events from all conversations that the user
-        is in. The types of events surfaced in the datafeed can be found in the Real Time Events list.
+
+        The datafeed provides messages and events from all conversations that
+        the user
+
+        is in. The types of events surfaced in the datafeed can be found in the
+        Real Time Events list.
+
         (see definition on top of the file)
+
 
         Read the specified datafeed.
 
-        The ackId sent as parameter can be empty for the first call. In the response an ackId will be sent back and it can be used for
-        the next call: in this way you acknowledge that you have received the events that came with that ackId; datafeed will remove the events
+
+        The ackId sent as parameter can be empty for the first call. In the
+        response an ackId will be sent back and it can be used for
+
+        the next call: in this way you acknowledge that you have received the
+        events that came with that ackId; datafeed will remove the events
+
         associated with that ackId from your queue
       operationId: readDatafeed
       parameters:
@@ -3667,31 +3900,31 @@ paths:
               $ref: '#/components/schemas/AckId'
         required: false
       responses:
-        200:
+        '200':
           description: Datafeed successfully read.
           content:
             application/json:
               schema:
                 $ref: '#/components/schemas/V5EventList'
-        400:
+        '400':
           description: Bad request.
           content:
             application/json:
               schema:
                 $ref: '#/components/schemas/V2Error'
-        401:
+        '401':
           description: Unauthorized.
           content:
             application/json:
               schema:
                 $ref: '#/components/schemas/V2Error'
-        403:
+        '403':
           description: Forbidden.
           content:
             application/json:
               schema:
                 $ref: '#/components/schemas/V2Error'
-        500:
+        '500':
           description: Internal server error.
           content:
             application/json:
@@ -3703,23 +3936,46 @@ paths:
       tags:
         - Datafeed
       summary: Read Real Time Events from an event stream (aka datafeed)
-      description: |
+      description: >
         _Available on Agent 22.5.1 and above.This endpoint provides
+
         messages and events from all conversations that the user is in or events
+
         from the whole pod depending on the "type" field value.
-        When "type":"fanout" is provided in the body, then only events from streams 
-        the accountbelongs to are returned. Otherwise, if "type": "datahose" is provided
+
+        When "type":"fanout" is provided in the body, then only events from
+        streams 
+
+        the accountbelongs to are returned. Otherwise, if "type": "datahose" is
+        provided
+
         in the body, then events returned are not limited to the streams user
-        belongs to. In this case, at least one event type must be provided in the
+
+        belongs to. In this case, at least one event type must be provided in
+        the
+
         "filters" field. In case you are using a datahose feed and retrieving
+
         SOCIALMESSAGE events, ceservice account must be properly configured in
+
         the Agent.The types of events returned can be found in the Real Time
-        Events list (see definition on top of the file). The ackId sent as parameter
-        can be empty for the first call. In the response an ackId will be sent back
+
+        Events list (see definition on top of the file). The ackId sent as
+        parameter
+
+        can be empty for the first call. In the response an ackId will be sent
+        back
+
         and it can be used for the next call: in this way you acknowledge that
+
         you have received the events that came with that ackId.
-        If you have several instances of the same bot, they must share the same feed so 
-        that events are spread across all bot instances. To do so, you must: share the same 
+
+        If you have several instances of the same bot, they must share the same
+        feed so 
+
+        that events are spread across all bot instances. To do so, you must:
+        share the same 
+
         service account provide the same "tag" and same "filters" values
       operationId: readEvents
       parameters:
@@ -3743,31 +3999,31 @@ paths:
               $ref: '#/components/schemas/V5EventsReadBody'
         required: true
       responses:
-        200:
+        '200':
           description: Datafeed successfully read.
           content:
             application/json:
               schema:
                 $ref: '#/components/schemas/V5EventList'
-        400:
+        '400':
           description: Bad request.
           content:
             application/json:
               schema:
                 $ref: '#/components/schemas/V2Error'
-        401:
+        '401':
           description: Unauthorized.
           content:
             application/json:
               schema:
                 $ref: '#/components/schemas/V2Error'
-        403:
+        '403':
           description: Forbidden.
           content:
             application/json:
               schema:
                 $ref: '#/components/schemas/V2Error'
-        500:
+        '500':
           description: Internal server error.
           content:
             application/json:
@@ -3816,7 +4072,9 @@ components:
       properties:
         id:
           type: string
-          description: The messageId is assigned by the ingestor service when a message is sent.
+          description: >-
+            The messageId is assigned by the ingestor service when a message is
+            sent.
         timestamp:
           type: string
         v2messageType:
@@ -3840,9 +4098,10 @@ components:
               format: MessageML
             fromUserId:
               type: integer
-              description: the Symphony userId of the user who sent the message. This
-                will be populated by the server (and actually ignored if included when
-                sending a message).
+              description: >-
+                the Symphony userId of the user who sent the message. This will
+                be populated by the server (and actually ignored if included
+                when sending a message).
               format: int64
             attachments:
               type: array
@@ -4037,8 +4296,9 @@ components:
         value:
           type: string
           description: The value of this Tag's label.
-      description: Room Tag object. A key:value pair describing additional properties
-        of the room.
+      description: >-
+        Room Tag object. A key:value pair describing additional properties of
+        the room.
     ShareArticle:
       required:
         - appId
@@ -4049,8 +4309,10 @@ components:
       properties:
         articleId:
           type: string
-          description: |
-            An ID for this article that should be unique to the calling application. 
+          description: >
+            An ID for this article that should be unique to the calling
+            application. 
+
             Either an articleId or an articleUrl is required.
         title:
           type: string
@@ -4094,7 +4356,9 @@ components:
       properties:
         type:
           type: string
-          description: Type of content to be shared.  Currently only support "com.symphony.sharing.article"
+          description: >-
+            Type of content to be shared.  Currently only support
+            "com.symphony.sharing.article"
         content:
           $ref: '#/components/schemas/ShareArticle'
     V2HealthCheckResponse:
@@ -4120,7 +4384,9 @@ components:
           description: Error details in case of no Firehose connectivity
         datafeedConnectivity:
           type: boolean
-          description: Indicates whether the Agent server can connect to Datafeed V2 Service
+          description: >-
+            Indicates whether the Agent server can connect to Datafeed V2
+            Service
         datafeedConnectivityError:
           type: string
           description: Error details in case of no Datafeed V2 connectivity
@@ -4129,10 +4395,14 @@ components:
           description: Indicates the Datafeed V2 version
         encryptDecryptSuccess:
           type: boolean
-          description: Indicates whether the Agent can successfully decrypt and encrypt messages
+          description: >-
+            Indicates whether the Agent can successfully decrypt and encrypt
+            messages
         encryptDecryptError:
           type: string
-          description: Error details in case of the encryption or decryption of the message fails
+          description: >-
+            Error details in case of the encryption or decryption of the message
+            fails
         podVersion:
           type: string
           description: The version number of the pod
@@ -4156,15 +4426,17 @@ components:
       properties:
         text:
           type: string
-          description: Search for messages containing this text. Requires streamId
-            to be specified.
+          description: >-
+            Search for messages containing this text. Requires streamId to be
+            specified.
         streamId:
           type: string
           description: Search for messages sent to this stream
         streamType:
           type: string
-          description: |
-            Search for messages sent to this type of streams. Accepted values are CHAT, IM, MIM, ROOM, POST.
+          description: >
+            Search for messages sent to this type of streams. Accepted values
+            are CHAT, IM, MIM, ROOM, POST.
         author:
           type: integer
           description: Search for messages sent by this user ID
@@ -4181,8 +4453,9 @@ components:
           format: int64
         signal:
           type: string
-          description: |
-            Search for messages matching this signal. Can only be combined with date filtering and paging parameters.
+          description: >
+            Search for messages matching this signal. Can only be combined with
+            date filtering and paging parameters.
         fromDate:
           type: integer
           description: Search for messages sent on or after this timestamp
@@ -4217,13 +4490,17 @@ components:
           format: JSON
         intendedMessageTimestamp:
           type: integer
-          description: |
-            The timestamp representing the time when the message was sent in the original system
+          description: >
+            The timestamp representing the time when the message was sent in the
+            original system
+
             in milliseconds since Jan 1st 1970.
           format: int64
         intendedMessageFromUserId:
           type: integer
-          description: The long integer userid of the Symphony user who you intend to show sent the message.
+          description: >-
+            The long integer userid of the Symphony user who you intend to show
+            sent the message.
           format: int64
         originatingSystemId:
           type: string
@@ -4245,13 +4522,22 @@ components:
           items:
             $ref: '#/components/schemas/V4ImportedMessageAttachment'
           x-since: 20.14
-      description: |
+      description: >
         A historic message to be imported into the system.
+
         The importing user must have the Content Management role.
-        Also, the importing user must be a member of the conversation it is importing into.
-        The user that the message is intended to have come from must also be present in the conversation.
-        The intended message timestamp must be a valid time from the past. It cannot be a future timestamp.
-        By design, imported messages do not stream to datafeed or firehose endpoints.
+
+        Also, the importing user must be a member of the conversation it is
+        importing into.
+
+        The user that the message is intended to have come from must also be
+        present in the conversation.
+
+        The intended message timestamp must be a valid time from the past. It
+        cannot be a future timestamp.
+
+        By design, imported messages do not stream to datafeed or firehose
+        endpoints.
     V4ImportedMessageAttachment:
       type: object
       properties:
@@ -4271,8 +4557,10 @@ components:
       properties:
         messageId:
           type: string
-          description: |
-            If the message was successfully imported then the message ID in the system
+          description: >
+            If the message was successfully imported then the message ID in the
+            system
+
             of the newly created message.
         originatingSystemId:
           type: string
@@ -4282,9 +4570,13 @@ components:
           description: The ID of the message in the original system.
         diagnostic:
           type: string
-          description: |
-            A diagnostic message containing an error message in the event that the
-            message import failed. May also be present in the case of a successful
+          description: >
+            A diagnostic message containing an error message in the event that
+            the
+
+            message import failed. May also be present in the case of a
+            successful
+
             call if there is useful narrative to return.
     V4AttachmentInfo:
       required:
@@ -4329,8 +4621,9 @@ components:
           description: Id of the message
         parentMessageId:
           type: string
-          description: Id of the parent message, set when the message is a reply to
-            another message or a forwarded message. Since Agent 20.14.
+          description: >-
+            Id of the parent message, set when the message is a reply to another
+            message or a forwarded message. Since Agent 20.14.
           x-since: 20.14
         timestamp:
           type: integer
@@ -4358,28 +4651,39 @@ components:
           $ref: '#/components/schemas/V4Stream'
         externalRecipients:
           type: boolean
-          description: Indicates if the message have external recipients. Only present
-            on real time messaging.
+          description: >-
+            Indicates if the message have external recipients. Only present on
+            real time messaging.
         diagnostic:
           type: string
-          description: |
-            Details if event failed to parse for any reason.  The contents of this field may not be useful,
-            depending on the nature of the error. Only present when error occurs.
+          description: >
+            Details if event failed to parse for any reason.  The contents of
+            this field may not be useful,
+
+            depending on the nature of the error. Only present when error
+            occurs.
         userAgent:
           type: string
-          description: |
-            User agent string for client that sent the message.  Allows callers to identify which client sent the
+          description: >
+            User agent string for client that sent the message.  Allows callers
+            to identify which client sent the
+
             origin message (e.g. API Agent, SFE Client, mobile, etc)
         originalFormat:
           type: string
-          description: |
-            Indicates the format in which the message was originally sent.  This could have been either:
+          description: >
+            Indicates the format in which the message was originally sent.  This
+            could have been either:
+
             - com.symphony.markdown - Markdown OR Message ML V1
+
             - com.symphony.messageml.v2 - Message ML V2
         disclaimer:
           type: string
-          description: |
-            Message that may be sent along with a regular message if configured for the POD,
+          description: >
+            Message that may be sent along with a regular message if configured
+            for the POD,
+
             usually the first message sent in a room that day.
         sid:
           type: string
@@ -4388,22 +4692,32 @@ components:
           example: fa691cd3-484a-4109-aeb2-57c05b78c95b
         replacing:
           type: string
-          description: Id of the message that the current message is replacing (present only if set)
+          description: >-
+            Id of the message that the current message is replacing (present
+            only if set)
         replacedBy:
           type: string
-          description: Id of the message that the current message is being replaced with (present only if set)
+          description: >-
+            Id of the message that the current message is being replaced with
+            (present only if set)
         initialTimestamp:
           type: integer
-          description: |
-            Timestamp of when the initial message has been created in milliseconds since 
+          description: >
+            Timestamp of when the initial message has been created in
+            milliseconds since 
+
             Jan 1 1970 (present only if set)
           format: int64
         initialMessageId:
           type: string
-          description: Id the the initial message that has been updated (present only if set)
+          description: >-
+            Id the the initial message that has been updated (present only if
+            set)
         silent:
           type: boolean
-          description: When false the user/s will receive the message update as unread (true by default)
+          description: >-
+            When false the user/s will receive the message update as unread
+            (true by default)
           x-since: 20.14
       description: A representation of a message sent by a user of Symphony
     V4MessageBlastResponse:
@@ -4474,9 +4788,12 @@ components:
           type: boolean
         recipientTenantIds:
           type: array
-          description: |
-            List of tenant identifiers (aka pod identifiers) involved in the conversation. It contains more than one
-            item if the conversation is external. Field is only present for real time messaging.
+          description: >
+            List of tenant identifiers (aka pod identifiers) involved in the
+            conversation. It contains more than one
+
+            item if the conversation is external. Field is only present for real
+            time messaging.
           items:
             type: integer
             format: int32
@@ -4707,9 +5024,12 @@ components:
               - USERREQUESTEDTOJOINROOM
         diagnostic:
           type: string
-          description: |
-            Details if event failed to parse for any reason.  The contents of this field may not be useful,
-            depending on the nature of the error. Only present when error occurs.
+          description: >
+            Details if event failed to parse for any reason.  The contents of
+            this field may not be useful,
+
+            depending on the nature of the error. Only present when error
+            occurs.
         initiator:
           $ref: '#/components/schemas/V4Initiator'
         payload:
@@ -4726,9 +5046,13 @@ components:
           description: Signal name
         query:
           type: string
-          description: |
-            The query used to define this signal. The query is defined as "field:value" pairs combined by the operators
-            "AND" or "OR". Supported fields are (case-insensitive): "author", "hashtag" and "cashtag".
+          description: >
+            The query used to define this signal. The query is defined as
+            "field:value" pairs combined by the operators
+
+            "AND" or "OR". Supported fields are (case-insensitive): "author",
+            "hashtag" and "cashtag".
+
             MUST contain at least one "hashtag" or "cashtag" definition.
         visibleOnProfile:
           type: boolean
@@ -4746,8 +5070,9 @@ components:
               description: Signal ID
             timestamp:
               type: integer
-              description: Timestamp when the signal was created, in milliseconds since
-                Jan 1 1970
+              description: >-
+                Timestamp when the signal was created, in milliseconds since Jan
+                1 1970
               format: int64
             companyWide:
               type: boolean
@@ -4827,8 +5152,9 @@ components:
           format: int64
         timestamp:
           type: integer
-          description: Timestamp when the signal was subscribed, in milliseconds since
-            Jan 1 1970
+          description: >-
+            Timestamp when the signal was subscribed, in milliseconds since Jan
+            1 1970
           format: int64
     AgentInfo:
       type: object
@@ -4841,8 +5167,9 @@ components:
           description: The hostname of the Agent server.
         serverFqdn:
           type: string
-          description: The fully-qualified domain name of the Agent server. Must be
-            set by the user at startup.
+          description: >-
+            The fully-qualified domain name of the Agent server. Must be set by
+            the user at startup.
         version:
           type: string
           description: The version of the Agent.
@@ -4891,14 +5218,19 @@ components:
           description: Indicate whether the policy is active or not
         contentTypes:
           type: array
-          description: |
-            The list of content types that policy should apply to. Cannot be empty. Policy content types could be either of "Messages", "RoomMeta", "SignalMeta".
+          description: >
+            The list of content types that policy should apply to. Cannot be
+            empty. Policy content types could be either of "Messages",
+            "RoomMeta", "SignalMeta".
+
             Default is set to ["Messages"] if not specified.
           items:
             type: string
         creationDate:
           type: integer
-          description: Creation time of the policy in milliseconds elapsed as of epoch time.
+          description: >-
+            Creation time of the policy in milliseconds elapsed as of epoch
+            time.
           format: int64
         creatorId:
           type: string
@@ -4910,23 +5242,30 @@ components:
             $ref: '#/components/schemas/V1DLPDictionaryRef'
         lastDisabledDate:
           type: integer
-          description: Recent disable time of the policy in milliseconds elapsed as of epoch time.
+          description: >-
+            Recent disable time of the policy in milliseconds elapsed as of
+            epoch time.
           format: int64
         lastUpdatedDate:
           type: integer
-          description: Recent update time of the policy in milliseconds elapsed as of epoch time.
+          description: >-
+            Recent update time of the policy in milliseconds elapsed as of epoch
+            time.
           format: int64
         name:
           type: string
-          description: Unique name of a policy, max 30 characters. Cannot be empty.
-            All the leading and trailing blank spaces are trimmed.
+          description: >-
+            Unique name of a policy, max 30 characters. Cannot be empty. All the
+            leading and trailing blank spaces are trimmed.
         policyId:
           type: string
           description: Policy Id
         scopes:
           type: array
-          description: |
-            List of communication scopes. Possible values are "Internal" (for Internal conversations) or "External" (for External conversations).
+          description: >
+            List of communication scopes. Possible values are "Internal" (for
+            Internal conversations) or "External" (for External conversations).
+
             You can apply both scopes if you set it to ["Internal", "External"].
           items:
             type: string
@@ -4935,10 +5274,15 @@ components:
           description: Type of policy. Possible values "Block" or "Warn".
         version:
           type: string
-          description: |
-            The version of a dictionary, in format "major.minor". Initial value will set by backend as "1.0" when created.
-            Whenever the dictionary version needs to be changed, the minor version by 1 unless minor == 999, then the major version is increased by 1 until it reaches 999.
-      description: The policy object for expression filter, one policy can have multiple
+          description: >
+            The version of a dictionary, in format "major.minor". Initial value
+            will set by backend as "1.0" when created.
+
+            Whenever the dictionary version needs to be changed, the minor
+            version by 1 unless minor == 999, then the major version is
+            increased by 1 until it reaches 999.
+      description: >-
+        The policy object for expression filter, one policy can have multiple
         dictionaries
     V1DLPPolicyRequest:
       required:
@@ -4950,8 +5294,11 @@ components:
       properties:
         contentTypes:
           type: array
-          description: |
-            The list of content types that policy should apply to. Cannot be empty. Policy content types could be either of "Messages", "RoomMeta", "SignalMeta".
+          description: >
+            The list of content types that policy should apply to. Cannot be
+            empty. Policy content types could be either of "Messages",
+            "RoomMeta", "SignalMeta".
+
             Default is set to ["Messages"] if not specified.
           items:
             type: string
@@ -4962,12 +5309,15 @@ components:
             type: string
         name:
           type: string
-          description: Unique name of a policy, max 30 characters. Cannot be empty.
-            All the leading and trailing blank spaces are trimmed.
+          description: >-
+            Unique name of a policy, max 30 characters. Cannot be empty. All the
+            leading and trailing blank spaces are trimmed.
         scopes:
           type: array
-          description: |
-            List of communication scopes. Possible values are "Internal" (for Internal conversations) or "External" (for External conversations).
+          description: >
+            List of communication scopes. Possible values are "Internal" (for
+            Internal conversations) or "External" (for External conversations).
+
             You can apply both scopes if you set it to ["Internal", "External"].
           items:
             type: string
@@ -5044,11 +5394,15 @@ components:
             The name of dictionary
         type:
           type: string
-          description: |
-            The type of dictionary, which specify the content is a list of words or a list of regexes.
-            By default set to "Word" if not specified. Possible values - Word, Regex
-      description: Dictionary's metadata (excluding content) to use for dictionary
-        create operations.
+          description: >
+            The type of dictionary, which specify the content is a list of words
+            or a list of regexes.
+
+            By default set to "Word" if not specified. Possible values - Word,
+            Regex
+      description: >-
+        Dictionary's metadata (excluding content) to use for dictionary create
+        operations.
     V1DLPDictionaryMetadataUpdateRequest:
       required:
         - name
@@ -5057,8 +5411,9 @@ components:
         name:
           type: string
           description: The name of dictionary
-      description: Dictionary's metadata (excluding content) to use for dictionary
-        update operations.
+      description: >-
+        Dictionary's metadata (excluding content) to use for dictionary update
+        operations.
     V1DLPDictionaryMetadata:
       required:
         - dictRef
@@ -5067,8 +5422,9 @@ components:
       properties:
         creationDate:
           type: integer
-          description: Creation time of the dictionary in milliseconds elapsed as
-            of epoch time.
+          description: >-
+            Creation time of the dictionary in milliseconds elapsed as of epoch
+            time.
           format: int64
         creatorId:
           type: string
@@ -5081,9 +5437,12 @@ components:
           format: int64
         type:
           type: string
-          description: |
-            The type of dictionary, which specify the content is a list of words or a list of regexes.
-            By default set to "Word" if not specified. Possible values - Word, Regex
+          description: >
+            The type of dictionary, which specify the content is a list of words
+            or a list of regexes.
+
+            By default set to "Word" if not specified. Possible values - Word,
+            Regex
       description: Dictionary's metadata (excluding content)
     V1DLPDictionaryRef:
       required:
@@ -5095,14 +5454,19 @@ components:
           description: Unique dictionary id
         name:
           type: string
-          description: Unique name of a dictionary, max 30 characters, with trimmed
-            leading and trailing blank spaces.
+          description: >-
+            Unique name of a dictionary, max 30 characters, with trimmed leading
+            and trailing blank spaces.
         version:
           type: string
-          description: |
+          description: >
             The version of a dictionary, in format "major.minor".
+
             Initial value will set by backend as "1.0" when created.
-            Whenever the dictionary version needs to be changed, the minor version by 1 unless minor == 999, then the major version is increased by 1 until it reaches 999.
+
+            Whenever the dictionary version needs to be changed, the minor
+            version by 1 unless minor == 999, then the major version is
+            increased by 1 until it reaches 999.
       description: Basic information needed to identify a dictionary
     V1DLPViolationMessageResponse:
       type: object
@@ -5111,14 +5475,16 @@ components:
       properties:
         violations:
           type: array
-          description: A representation of list of violations due to messages sent
-            by a user of Symphony
+          description: >-
+            A representation of list of violations due to messages sent by a
+            user of Symphony
           items:
             $ref: '#/components/schemas/V1DLPViolationMessage'
         nextOffset:
           type: string
-          description: Offset for the next chunk of violations to be submitted in
-            the next request.  Value is null if there are no further violations.
+          description: >-
+            Offset for the next chunk of violations to be submitted in the next
+            request.  Value is null if there are no further violations.
     V1DLPViolationStreamResponse:
       type: object
       required:
@@ -5130,8 +5496,9 @@ components:
             $ref: '#/components/schemas/V1DLPViolationStream'
         nextOffset:
           type: string
-          description: Offset for the next chunk of violations to be submitted in
-            the next request.  Value is null if there are no further violations.
+          description: >-
+            Offset for the next chunk of violations to be submitted in the next
+            request.  Value is null if there are no further violations.
     V1DLPViolationSignalResponse:
       type: object
       required:
@@ -5139,14 +5506,16 @@ components:
       properties:
         violations:
           type: array
-          description: A representation of list of violations due to signal creation/update
+          description: >-
+            A representation of list of violations due to signal creation/update
             sent by a user of Symphony
           items:
             $ref: '#/components/schemas/V1DLPViolationSignal'
         nextOffset:
           type: string
-          description: Offset for the next chunk of violations to be submitted in
-            the next request.  Value is null if there are no further violations.
+          description: >-
+            Offset for the next chunk of violations to be submitted in the next
+            request.  Value is null if there are no further violations.
     V1DLPViolationMessage:
       type: object
       properties:
@@ -5156,9 +5525,12 @@ components:
           $ref: '#/components/schemas/V4Message'
         diagnostic:
           type: string
-          description: |
-            A diagnostic message containing an error message in the event there are parsing errors.
-            May also be present in the case of a successful call if there is useful narrative to return.
+          description: >
+            A diagnostic message containing an error message in the event there
+            are parsing errors.
+
+            May also be present in the case of a successful call if there is
+            useful narrative to return.
     V1DLPViolationStream:
       type: object
       properties:
@@ -5181,15 +5553,17 @@ components:
           description: Enforcement event ID. Unique ID that identifies this enforcement.
         entityID:
           type: string
-          description: Entity ID is the content Id of the violation, for example,
-            for messages, its the Id of the message
+          description: >-
+            Entity ID is the content Id of the violation, for example, for
+            messages, its the Id of the message
         createTime:
           type: integer
           description: Timestamp of the violation in milliseconds since Jan 1 1970
           format: int64
         lastModified:
           type: integer
-          description: Timestamp of the last modification of violation in milliseconds
+          description: >-
+            Timestamp of the last modification of violation in milliseconds
             since Jan 1 1970
           format: int64
         requesterId:
@@ -5200,21 +5574,24 @@ components:
           $ref: '#/components/schemas/V1DLPMatchedPolicyList'
         action:
           type: string
-          description: action taken such as BLOCK or WARN.  See outcome for a more
-            detailed description of the outcome this action.
+          description: >-
+            action taken such as BLOCK or WARN.  See outcome for a more detailed
+            description of the outcome this action.
         outcome:
           $ref: '#/components/schemas/V1DLPOutcome'
         contentType:
           $ref: '#/components/schemas/V1DLPContentType'
         version:
           type: string
-          description: Version of application which processed the message and produced
-            this violation.
+          description: >-
+            Version of application which processed the message and produced this
+            violation.
         ignoreDLPwarning:
           type: boolean
           description: Did the user chose to ignore DLP warning that was presented?
-      description: A representation of a violation due to a message sent by a user
-        of Symphony
+      description: >-
+        A representation of a violation due to a message sent by a user of
+        Symphony
     V1DLPMatchedPolicyList:
       type: array
       description: List of policies that matched the violation.
@@ -5240,27 +5617,34 @@ components:
           description: List of decrypted matched keywords in the policy
         diagnostic:
           type: string
-          description: |
-            A diagnostic message containing an error message in the event that the
-            decryption of terms failed. May also be present in the case of a successful
+          description: >
+            A diagnostic message containing an error message in the event that
+            the
+
+            decryption of terms failed. May also be present in the case of a
+            successful
+
             call if there is useful narrative to return.
-      description: A representation of policy that matched the violation with a list
-        of matched keywords in the policy
+      description: >-
+        A representation of policy that matched the violation with a list of
+        matched keywords in the policy
     V1DLPOutcome:
       type: object
       properties:
         type:
           type: string
           description: Outcome of DLP enforcement
-      description: A representation of outcome of DLP message/stream/signal sent by
-        a user of Symphony
+      description: >-
+        A representation of outcome of DLP message/stream/signal sent by a user
+        of Symphony
     V1DLPContentType:
       type: object
       properties:
         type:
           type: string
           description: content type
-      description: A representation of content type of message sent by a user of Symphony
+      description: >-
+        A representation of content type of message sent by a user of Symphony
         (message/stream/signal)
     V1DLPStream:
       type: object
@@ -5328,9 +5712,13 @@ components:
           description: Is room shareHistoryEnabled
         diagnostic:
           type: string
-          description: |
-            A diagnostic message containing an error message in the event that the
-            stream retrieval failed. May also be present in the case of a successful
+          description: >
+            A diagnostic message containing an error message in the event that
+            the
+
+            stream retrieval failed. May also be present in the case of a
+            successful
+
             call if there is useful narrative to return.
       description: Room details in the context of violation.
     V1DLPSignal:
@@ -5344,9 +5732,13 @@ components:
           description: Signal rules decrypted.
         diagnostic:
           type: string
-          description: |
-            A diagnostic message containing an error message in the event that the
-            signal decryption failed. May also be present in the case of a successful
+          description: >
+            A diagnostic message containing an error message in the event that
+            the
+
+            signal decryption failed. May also be present in the case of a
+            successful
+
             call if there is useful narrative to return.
       description: Signal details
     V3DLPPolicyRequest:
@@ -5358,12 +5750,15 @@ components:
       properties:
         name:
           type: string
-          description: |
-            Unique name of a policy, max 30 characters. Cannot be empty. All the leading and trailing blank spaces are trimmed.
+          description: >
+            Unique name of a policy, max 30 characters. Cannot be empty. All the
+            leading and trailing blank spaces are trimmed.
         scopes:
           type: array
-          description: |
-            List of communication scopes. Possible values are "Internal" (for Internal conversations) or "External" (for External conversations).
+          description: >
+            List of communication scopes. Possible values are "Internal" (for
+            Internal conversations) or "External" (for External conversations).
+
             You can apply both scopes if you set it to ["Internal", "External"].
           items:
             type: string
@@ -5385,22 +5780,29 @@ components:
           description: Policy Id.
         version:
           type: string
-          description: |
-            The version of the policy, in format "major.minor". Initial value will set by backend as "3.0" when created.
-            Whenever the policy version needs to be changed, the minor version by 1 unless minor == 999,
+          description: >
+            The version of the policy, in format "major.minor". Initial value
+            will set by backend as "3.0" when created.
+
+            Whenever the policy version needs to be changed, the minor version
+            by 1 unless minor == 999,
+
             then the major version is increased by 1 until it reaches 999.
         name:
           type: string
-          description: |
-            Unique name of policy, max 30 characters. Cannot be empty. All the leading and trailing blank spaces are trimmed.
+          description: >
+            Unique name of policy, max 30 characters. Cannot be empty. All the
+            leading and trailing blank spaces are trimmed.
         creatorId:
           type: integer
           description: Numeric userId of the creator.
           format: int64
         scopes:
           type: array
-          description: |
-            List of communication scopes. Possible values are "Internal" (for Internal conversations) or "External" (for External conversations).
+          description: >
+            List of communication scopes. Possible values are "Internal" (for
+            Internal conversations) or "External" (for External conversations).
+
             You can apply both scopes if you set it to ["Internal", "External"].
           items:
             type: string
@@ -5416,20 +5818,27 @@ components:
           description: Indicate whether the policy is deleted or not.
         creationDate:
           type: integer
-          description: Creation time of the policy in milliseconds elapsed as of epoch time.
+          description: >-
+            Creation time of the policy in milliseconds elapsed as of epoch
+            time.
           format: int64
         lastUpdatedDate:
           type: integer
-          description: Recent update time of the policy in milliseconds elapsed as of epoch time.
+          description: >-
+            Recent update time of the policy in milliseconds elapsed as of epoch
+            time.
           format: int64
         lastDisabledDate:
           type: integer
-          description: Recent disable time of the policy in milliseconds elapsed as of epoch time.
+          description: >-
+            Recent disable time of the policy in milliseconds elapsed as of
+            epoch time.
           format: int64
         systemPolicy:
           type: boolean
-      description: |
-        A policy is the main entity of V3 policy/rule system. It is responsible to define rules and add scope constraints to the engine.
+      description: >
+        A policy is the main entity of V3 policy/rule system. It is responsible
+        to define rules and add scope constraints to the engine.
     V3DLPRule:
       required:
         - name
@@ -5440,7 +5849,8 @@ components:
           type: string
         type:
           type: string
-          description: Type of a rule used by policy. Can be ["UNKNOWN", "TEXT_MATCH",
+          description: >-
+            Type of a rule used by policy. Can be ["UNKNOWN", "TEXT_MATCH",
             "FILE_EXTENSION", "FILE_SIZE", "FILE_PASSWORD", "FILE_CLASSIFIER"].
         name:
           type: string
@@ -5455,10 +5865,16 @@ components:
           $ref: '#/components/schemas/V3DLPFilePasswordConfig'
         fileClassifierConfig:
           $ref: '#/components/schemas/V3DLPFileClassifierConfig'
-      description: |
-        A Rule defines the actual matching specification for policies. It holds a type and a configuration
-        for the rule, these properties should be used to build the corresponding matching implementation.
-        Only one of the configuration property should be set [textMatchConfig, fileSizeConfig, fileExtensionConfig, filePasswordConfig, fileClassifierConfig].
+      description: >
+        A Rule defines the actual matching specification for policies. It holds
+        a type and a configuration
+
+        for the rule, these properties should be used to build the corresponding
+        matching implementation.
+
+        Only one of the configuration property should be set [textMatchConfig,
+        fileSizeConfig, fileExtensionConfig, filePasswordConfig,
+        fileClassifierConfig].
     V3DLPFilePasswordConfig:
       required:
         - applicableFileTypes
@@ -5467,16 +5883,21 @@ components:
       properties:
         applicableFileTypes:
           type: array
-          description: File types that can be applied. Can be ["PDF", "WORD", "EXCEL",
+          description: >-
+            File types that can be applied. Can be ["PDF", "WORD", "EXCEL",
             "POWERPOINT", "ZIP", "CSV", "TXT"].
           items:
             type: string
         matchCriteria:
           type: string
-          description: |
-            Based on the criteria, whether a file is password protected or not means a match.
-            Can be ["PASSWORD_PROTECTED", "NOT_PASSWORD_PROTECTED"]. The default is "NOT_PASSWORD_PROTECTED".
-      description: Password protected detection config for files that are password
+          description: >
+            Based on the criteria, whether a file is password protected or not
+            means a match.
+
+            Can be ["PASSWORD_PROTECTED", "NOT_PASSWORD_PROTECTED"]. The default
+            is "NOT_PASSWORD_PROTECTED".
+      description: >-
+        Password protected detection config for files that are password
         protected or not.
     V3DLPFileExtensionConfig:
       required:
@@ -5494,7 +5915,8 @@ components:
           description: File extensions that are blocked.
           items:
             type: string
-      description: Extension detection config for allowed and blocked types of file
+      description: >-
+        Extension detection config for allowed and blocked types of file
         extensions.
     V3DLPFileSizeConfig:
       type: object
@@ -5502,7 +5924,9 @@ components:
         sizeLimit:
           type: integer
           format: int32
-      description: File size config defines maximum allowed size of file. Default max size limit is 20 MB.
+      description: >-
+        File size config defines maximum allowed size of file. Default max size
+        limit is 20 MB.
     V3DLPTextMatchConfig:
       type: object
       required:
@@ -5518,15 +5942,21 @@ components:
           format: int32
         applicableFileTypes:
           type: array
-          description: |
-            File types must be applied only for rule type "FileContent", otherwise must be empty.
+          description: >
+            File types must be applied only for rule type "FileContent",
+            otherwise must be empty.
+
             Can be ["PDF", "WORD", "EXCEL", "POWERPOINT", "ZIP", "CSV", "TXT"].
           items:
             type: string
-      description: |
+      description: >
         This is a configuration that can be used to match text or regex.
-        Configuration that can be used by a rule. This is a configuration that can be used to match text or regex.
-        This configuration also corresponds to V2 TextMatch/RegexMatch of dictionaries.
+
+        Configuration that can be used by a rule. This is a configuration that
+        can be used to match text or regex.
+
+        This configuration also corresponds to V2 TextMatch/RegexMatch of
+        dictionaries.
     V3DLPDictionaryMeta:
       required:
         - dictId
@@ -5551,14 +5981,22 @@ components:
           type: object
           additionalProperties:
             type: string
-          description: |
-            Classifier is defined as a Key and its Value: e.g.: "classification": "Internal".
-            Name and value can contain UTF-8 characters. Neither the name nor value cannot be left empty.
+          description: >
+            Classifier is defined as a Key and its Value: e.g.:
+            "classification": "Internal".
+
+            Name and value can contain UTF-8 characters. Neither the name nor
+            value cannot be left empty.
+
             Maximum 30 characters for the name and value, case insensitive.
-            If files contains k-v pairs in the classifers map, it means a match. Maximum 30 classifiers per policy.
+
+            If files contains k-v pairs in the classifers map, it means a match.
+            Maximum 30 classifiers per policy.
         applicableFileTypes:
           type: array
-          description: File types that can be applied. Can be ["PDF", "WORD", "EXCEL", "POWERPOINT", "ZIP", "CSV", "TXT"].
+          description: >-
+            File types that can be applied. Can be ["PDF", "WORD", "EXCEL",
+            "POWERPOINT", "ZIP", "CSV", "TXT"].
           items:
             type: string
     V3DLPPolicyAppliesTo:
@@ -5570,9 +6008,11 @@ components:
       properties:
         dataType:
           type: string
-          description: |
+          description: >
             The list of data types that policy should apply to. Can't be empty.
-            Can be ["Messages","RoomMeta", "SignalMeta", "FileContent", "FileMeta"].
+
+            Can be ["Messages","RoomMeta", "SignalMeta", "FileContent",
+            "FileMeta"].
         action:
           type: string
           description: |
@@ -5618,14 +6058,17 @@ components:
       properties:
         violations:
           type: array
-          description: A representation of list of violations due to messages sent
-            by a user of Symphony
+          description: >-
+            A representation of list of violations due to messages sent by a
+            user of Symphony
           items:
             $ref: '#/components/schemas/V3DLPViolationMessage'
         nextOffset:
           type: string
-          description: |
-            Offset for the next chunk of violations to be submitted in the next request. 
+          description: >
+            Offset for the next chunk of violations to be submitted in the next
+            request. 
+
             Value is null if there are no further violations.
     V3DLPViolationStreamResponse:
       type: object
@@ -5638,8 +6081,10 @@ components:
             $ref: '#/components/schemas/V3DLPViolationStream'
         nextOffset:
           type: string
-          description: |
-            Offset for the next chunk of violations to be submitted in the next request.
+          description: >
+            Offset for the next chunk of violations to be submitted in the next
+            request.
+
             Value is null if there are no further violations.
     V3DLPViolationSignalResponse:
       type: object
@@ -5648,13 +6093,17 @@ components:
       properties:
         violations:
           type: array
-          description: A representation of list of violations due to signal creation/update sent by a user of Symphony
+          description: >-
+            A representation of list of violations due to signal creation/update
+            sent by a user of Symphony
           items:
             $ref: '#/components/schemas/V3DLPViolationSignal'
         nextOffset:
           type: string
-          description: |
-            Offset for the next chunk of violations to be submitted in the next request.
+          description: >
+            Offset for the next chunk of violations to be submitted in the next
+            request.
+
             Value is null if there are no further violations.
     V3DLPViolationMessage:
       type: object
@@ -5667,9 +6116,12 @@ components:
           $ref: '#/components/schemas/V4Message'
         diagnostic:
           type: string
-          description: |
-            A diagnostic message containing an error message in the event there are parsing errors.
-            May also be present in the case of a successful call if there is useful narrative to return.
+          description: >
+            A diagnostic message containing an error message in the event there
+            are parsing errors.
+
+            May also be present in the case of a successful call if there is
+            useful narrative to return.
     V3DLPViolationStream:
       type: object
       properties:
@@ -5692,14 +6144,17 @@ components:
           description: Enforcement event ID. Unique ID that identifies this enforcement.
         entityID:
           type: string
-          description: Entity ID is the content Id of the violation. For example, for messages it's the Id of the message
+          description: >-
+            Entity ID is the content Id of the violation. For example, for
+            messages it's the Id of the message
         createTime:
           type: integer
           description: Timestamp of the violation in milliseconds since Jan 1 1970
           format: int64
         lastModified:
           type: integer
-          description: Timestamp of the last modification of violation in milliseconds
+          description: >-
+            Timestamp of the last modification of violation in milliseconds
             since Jan 1 1970
           format: int64
         requesterId:
@@ -5713,18 +6168,22 @@ components:
             type: object
         action:
           type: string
-          description: action taken such as BLOCK or WARN.  See outcome for a more detailed description of the outcome this action.
+          description: >-
+            action taken such as BLOCK or WARN.  See outcome for a more detailed
+            description of the outcome this action.
         outcome:
           $ref: '#/components/schemas/V1DLPOutcome'
         version:
           type: string
-          description: Version of application which processed the message and produced
-            this violation.
+          description: >-
+            Version of application which processed the message and produced this
+            violation.
         ignoreDLPwarning:
           type: boolean
           description: Did the user chose to ignore DLP warning that was presented?
-      description: A representation of a violation due to an event created by a user
-        of Symphony
+      description: >-
+        A representation of a violation due to an event created by a user of
+        Symphony
     Pagination:
       required:
         - cursors
@@ -5735,30 +6194,44 @@ components:
           properties:
             before:
               type: string
-              description: |
-                This is the opaque url-safe string that points to the start of the page of data
+              description: >
+                This is the opaque url-safe string that points to the start of
+                the page of data
+
                 that has been returned.
               example: MTAxNTExOTQ1MjAwNzI5NDE=
             after:
               type: string
-              description: |
-                This is the opaque url-safe string that points to the end of the page of data
+              description: >
+                This is the opaque url-safe string that points to the end of the
+                page of data
+
                 that has been returned.
               example: NDMyNzQyODI3OTQw
         previous:
           type: string
-          description: |
-            API endpoint that will return the previous page of data. If not included, this is
+          description: >
+            API endpoint that will return the previous page of data. If not
+            included, this is
+
             the first page of data.
-          example: https://tenantapi.d.isym.io/v1/tenantinfo?limit=25&before=MTAxNTExOTQ1MjAwNzI5NDE=
+          example: >-
+            https://tenantapi.d.isym.io/v1/tenantinfo?limit=25&before=MTAxNTExOTQ1MjAwNzI5NDE=
         next:
           type: string
-          description: |
-            API endpoint that will return the next page of data. If not included, this is the
-            last page of data. Due to how pagination works with visibility and privacy, it is
-            possible that a page may be empty but contain a 'next' paging link. Stop paging when
+          description: >
+            API endpoint that will return the next page of data. If not
+            included, this is the
+
+            last page of data. Due to how pagination works with visibility and
+            privacy, it is
+
+            possible that a page may be empty but contain a 'next' paging link.
+            Stop paging when
+
             the 'next' link no longer appears.
-          example: https://tenantapi.d.isym.io/v1/tenantinfo?limit=25&after=NDMyNzQyODI3OTQw
+          example: >-
+            https://tenantapi.d.isym.io/v1/tenantinfo?limit=25&after=NDMyNzQyODI3OTQw
     V1AuditTrailInitiatorResponse:
       type: object
       properties:
@@ -5780,10 +6253,13 @@ components:
         initiatorEmailAddress:
           type: string
           description: The user's e-mail address that has performed the action
-      description: |
+      description: >
         Audit Trail Initiator object response.
+
         The attributes may vary according to the action.
-        There are different types of action and each action could have specific attributes.
+
+        There are different types of action and each action could have specific
+        attributes.
     V1AuditTrailInitiatorList:
       type: object
       properties:
@@ -5824,12 +6300,16 @@ components:
       properties:
         ackId:
           type: string
-          description: |
+          description: >
             A unique id for events that can be deleted from a client's.
-            Empty for the first read. If set to null or missing, it will be considered empty feed.
+
+            Empty for the first read. If set to null or missing, it will be
+            considered empty feed.
         updatePresence:
           type: boolean
-          description: Set to false to avoid updating the user's presence when reading events. Default is true.
+          description: >-
+            Set to false to avoid updating the user's presence when reading
+            events. Default is true.
           default: true
       description: |
         An object containing the ackId (and parameters) associated with 
@@ -5863,23 +6343,40 @@ components:
           description: A unique identifier to ensure uniqueness of the datafeed.
         eventTypes:
           type: array
-          description: |
-            At least one value is required if the type of feed is "datahose". Values must be a valid Real-Time Event type, i.e. one of:
+          description: >
+            At least one value is required if the type of feed is "datahose".
+            Values must be a valid Real-Time Event type, i.e. one of:
+
             * MESSAGESENT
+
             * MESSAGESUPPRESSED
+
             * SYMPHONYELEMENTSACTION
+
             * SHAREDPOST
+
             * INSTANTMESSAGECREATED
+
             * ROOMCREATED
+
             * ROOMUPDATED
+
             * ROOMDEACTIVATED
+
             * ROOMREACTIVATED
+
             * USERREQUESTEDTOJOINROOM
+
             * USERJOINEDROOM
+
             * USERLEFTROOM
+
             * ROOMMEMBERPROMOTEDTOOWNER
+
             * ROOMMEMBERDEMOTEDFROMOWNER
+
             * CONNECTIONREQUESTED
+
             * CONNECTIONACCEPTED
           items:
             type: string

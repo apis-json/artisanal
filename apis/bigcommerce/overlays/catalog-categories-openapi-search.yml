@@ -12,7 +12,11 @@ paths:
   /catalog/categories:
     get:
       tags:
-        - Categories (deprecated)
+        - Get
+        - All
+        - Categories
+        - Catalog
+        - Categories
       summary: Get All Categories
       description: >-
         When possible, use the [Catalog Trees - Get all
@@ -29,12 +33,18 @@ paths:
         The default rate limit for this endpoint is 40 concurrent requests.
     post:
       tags:
-        - Categories (deprecated)
+        - Create
+        - Category
+        - Catalog
+        - Categories
       summary: Create a Category
       description: "When possible, use the [Category Trees - Create categories](/docs/rest-catalog/category-trees/categories#create-categories) endpoint instead.\n\nCreates a *Category*.\n\nUse this endpoint when an API only works with categories of a default BigCommerce storefront (`channel_id=1`). \n\nUse the [Create categories](/docs/rest-catalog/category-trees/categories#create-categories) endpoint when an API works with categories across different category trees that belong to different storefront channels.\n\n**Required Fields**:\n- `parent_id`: \n\t- To create a child category, set the `parent_id` to the parent category.\n\t- To create a top level category, set the `parent_id` to `0`.\n- `name`\n\n**Read-Only Fields**:\n- `id`\n\n**Limits**:\n- 16,000 categories per store limit.\n- 1,000 categories per product limit.\n- 50 characters category name length.\n- 8 levels of category depth limit.\n- 65,642 characters category description length limit.\n\n **Note:**\n The default rate limit for this endpoint is 40 concurrent requests.\n"
     delete:
       tags:
-        - Categories (deprecated)
+        - Delete
+        - Categories
+        - Catalog
+        - Categories
       summary: Delete Categories
       description: >-
         When possible, use the [Category Trees - Delete
@@ -61,7 +71,11 @@ paths:
   /catalog/categories/{category_id}:
     get:
       tags:
-        - Categories (deprecated)
+        - Get
+        - Category
+        - Catalog
+        - Categories
+        - Category_id
       summary: Get a Category
       description: >-
         When possible, use the [Catalog Trees - Get all
@@ -78,7 +92,11 @@ paths:
         The default rate limit for this endpoint is 40 concurrent requests.
     put:
       tags:
-        - Categories (deprecated)
+        - Update
+        - Category
+        - Catalog
+        - Categories
+        - Category_id
       summary: Update a Category
       description: >-
         When possible, use the [Catalog Trees - Update
@@ -104,7 +122,11 @@ paths:
         The default rate limit for this endpoint is 40 concurrent requests.
     delete:
       tags:
-        - Categories (deprecated)
+        - Delete
+        - Category
+        - Catalog
+        - Categories
+        - Category_id
       summary: Delete a Category
       description: >-
         When possible, use the [Category Trees - Delete
@@ -125,6 +147,12 @@ paths:
   /catalog/categories/{category_id}/metafields:
     get:
       tags:
+        - Get
+        - Category
+        - Metafields
+        - Catalog
+        - Categories
+        - Category_id
         - Metafields
       summary: Get Category Metafields
       description: >-
@@ -132,6 +160,12 @@ paths:
         parameters can be passed in.
     post:
       tags:
+        - Create
+        - Category
+        - Metafield
+        - Catalog
+        - Categories
+        - Category_id
         - Metafields
       summary: Create a Category Metafield
       description: >-
@@ -165,19 +199,40 @@ paths:
   /catalog/categories/{category_id}/metafields/{metafield_id}:
     get:
       tags:
+        - Get
+        - Category
+        - Metafield
+        - Catalog
+        - Categories
+        - Category_id
         - Metafields
+        - Metafield_id
       summary: Get a Category Metafield
       description: >-
         Returns a single *Category Metafield*. Optional parameters can be passed
         in.
     put:
       tags:
+        - Update
+        - Category
+        - Metafield
+        - Catalog
+        - Categories
+        - Category_id
         - Metafields
+        - Metafield_id
       summary: Update a Category Metafield
       description: "Updates a *Category Metafield*.\n\n**Required Fields**\n* none\n\n**Read-Only Fields**\n* id\n* These fields can only be modified by the app (API credentials) that created the metafield:\n\t* namespace\n\t* key\n\t* permission_set\n\n**Usage Notes**\n* Attempting to modify `namespace`, `key`, and `permission_set` fields using a client ID different from the one used to create those metafields will result in a 403 error message. "
     delete:
       tags:
+        - Delete
+        - Category
+        - Metafield
+        - Catalog
+        - Categories
+        - Category_id
         - Metafields
+        - Metafield_id
       summary: Delete a Category Metafield
       description: Deletes a *Category Metafield*.
     parameters:
@@ -187,7 +242,15 @@ paths:
   /catalog/categories/{category_id}/image:
     post:
       tags:
-        - Images
+        - Create
+        - Category
+        - Image
+        - Catalog
+        - Categories
+        - Category_id
+        - Metafields
+        - Metafield_id
+        - Image
       summary: Create a Category Image
       description: >-
         Create a *Category Image*.
@@ -205,7 +268,15 @@ paths:
         endpoint and an `image_url`.
     delete:
       tags:
-        - Images
+        - Delete
+        - Category
+        - Image
+        - Catalog
+        - Categories
+        - Category_id
+        - Metafields
+        - Metafield_id
+        - Image
       summary: Delete a Category Image
       description: Deletes a *Category Image*.
     parameters:
@@ -214,7 +285,19 @@ paths:
   /catalog/categories/{category_id}/products/sort-order:
     get:
       tags:
-        - Sort Order
+        - Get
+        - Product
+        - Sort
+        - Order
+        - Catalog
+        - Categories
+        - Category_id
+        - Metafields
+        - Metafield_id
+        - Image
+        - Products
+        - Sort
+        - Order
       summary: Get Product Sort Order
       description: >-
         Returns a list of products and their sort order for a specific category.
@@ -238,7 +321,19 @@ paths:
           - Priority 3: Default sorting by Product ID (newly added products go first) (UI/API).
     put:
       tags:
-        - Sort Order
+        - Update
+        - Product
+        - Sort
+        - Order
+        - Catalog
+        - Categories
+        - Category_id
+        - Metafields
+        - Metafield_id
+        - Image
+        - Products
+        - Sort
+        - Order
       summary: Update Product Sort Order
       description: Updates sort order of products within a specific category.
     parameters:
@@ -248,20 +343,65 @@ paths:
     get:
       summary: Get All Category Metafields
       tags:
-        - Batch metafields
+        - Get
+        - All
+        - Category
+        - Metafields
+        - Catalog
+        - Categories
+        - Category_id
+        - Metafields
+        - Metafield_id
+        - Image
+        - Products
+        - Sort
+        - Order
       description: Get all category metafields.
     post:
       summary: Create multiple Metafields
       tags:
-        - Batch metafields
+        - Create
+        - Multiple
+        - Metafields
+        - Catalog
+        - Categories
+        - Category_id
+        - Metafields
+        - Metafield_id
+        - Image
+        - Products
+        - Sort
+        - Order
       description: Create multiple metafields.
     put:
       summary: Update multiple Metafields
       tags:
-        - Batch metafields
+        - Update
+        - Multiple
+        - Metafields
+        - Catalog
+        - Categories
+        - Category_id
+        - Metafields
+        - Metafield_id
+        - Image
+        - Products
+        - Sort
+        - Order
       description: Create multiple metafields.
     delete:
       summary: Delete All Metafields
       tags:
-        - Batch metafields
-      description: Delete all category metafield
+        - Delete
+        - All
+        - Metafields
+        - Catalog
+        - Categories
+        - Category_id
+        - Metafields
+        - Metafield_id
+        - Image
+        - Products
+        - Sort
+        - Order
+      description: Delete all category

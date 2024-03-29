@@ -13,18 +13,47 @@ paths:
         not supported — Cross-account configurations, such as creating
         associations between a tracker resource in one account and a geofence
         collection in another account.</p> </note>
+      tags:
+        - Associate
+        - Tracker
+        - Consumer
+        - Tracker
+        - Name
+        - Consumers
   /tracking/v0/trackers/{TrackerName}/delete-positions:
     POST:
       summary: BatchDeleteDevicePositionHistory
       description: >-
         <p>Deletes the position history of one or more devices from a tracker
         resource.</p>
+      tags:
+        - Batch
+        - Delete
+        - Device
+        - Position
+        - History
+        - Tracker
+        - Name
+        - Consumers
+        - Delete
+        - Positions
   /geofencing/v0/collections/{CollectionName}/delete-geofences:
     POST:
       summary: BatchDeleteGeofence
       description: >-
         <p>Deletes a batch of geofences from a geofence collection.</p> <note>
         <p>This operation deletes the resource permanently.</p> </note>
+      tags:
+        - Batch
+        - Delete
+        - Geofence
+        - Tracker
+        - Name
+        - Consumers
+        - Delete
+        - Positions
+        - Collection
+        - Geofences
   /geofencing/v0/collections/{CollectionName}/positions:
     POST:
       summary: BatchEvaluateGeofences
@@ -45,10 +74,34 @@ paths:
         </note> <note> <p>The <code>DeviceID</code> is used as a string to
         represent the device. You do not need to have a <code>Tracker</code>
         associated with the <code>DeviceID</code>.</p> </note>
+      tags:
+        - Batch
+        - Evaluate
+        - Geofences
+        - Tracker
+        - Name
+        - Consumers
+        - Delete
+        - Positions
+        - Collection
+        - Geofences
   /tracking/v0/trackers/{TrackerName}/get-positions:
     POST:
       summary: BatchGetDevicePosition
       description: <p>Lists the latest device positions for requested devices.</p>
+      tags:
+        - Batch
+        - Get
+        - Device
+        - Position
+        - Tracker
+        - Name
+        - Consumers
+        - Delete
+        - Positions
+        - Collection
+        - Geofences
+        - Get
   /geofencing/v0/collections/{CollectionName}/put-geofences:
     POST:
       summary: BatchPutGeofence
@@ -56,6 +109,19 @@ paths:
         <p>A batch request for storing geofence geometries into a given geofence
         collection, or updates the geometry of an existing geofence if a
         geofence ID is included in the request.</p>
+      tags:
+        - Batch
+        - Put
+        - Geofence
+        - Tracker
+        - Name
+        - Consumers
+        - Delete
+        - Positions
+        - Collection
+        - Geofences
+        - Get
+        - Put
   /tracking/v0/trackers/{TrackerName}/positions:
     POST:
       summary: BatchUpdateDevicePosition
@@ -84,6 +150,20 @@ paths:
         <code>AccuracyBased</code> filtering, Amazon Location uses the default
         value <code>{ "Horizontal": 0}</code> when accuracy is not provided on a
         <code>DevicePositionUpdate</code>.</p> </note>
+      tags:
+        - Batch
+        - Update
+        - Device
+        - Position
+        - Tracker
+        - Name
+        - Consumers
+        - Delete
+        - Positions
+        - Collection
+        - Geofences
+        - Get
+        - Put
   /routes/v0/calculators/{CalculatorName}/calculate/route:
     POST:
       summary: CalculateRoute
@@ -113,6 +193,21 @@ paths:
         <code>Truck</code>.</p> <note> <p>If you specify <code>walking</code>
         for the travel mode and your data provider is Esri, the start and
         destination must be within 40km.</p> </note> </li> </ul>
+      tags:
+        - Calculate
+        - Route
+        - Tracker
+        - Name
+        - Consumers
+        - Delete
+        - Positions
+        - Collection
+        - Geofences
+        - Get
+        - Put
+        - Calculator
+        - Calculate
+        - Route
   /routes/v0/calculators/{CalculatorName}/calculate/route-matrix:
     POST:
       summary: CalculateRouteMatrix
@@ -150,12 +245,49 @@ paths:
         preferences in <code>CarModeOptions</code> if traveling by
         <code>Car</code>, or <code>TruckModeOptions</code> if traveling by
         <code>Truck</code>.</p> </li> </ul>
+      tags:
+        - Calculate
+        - Route
+        - Matrix
+        - Tracker
+        - Name
+        - Consumers
+        - Delete
+        - Positions
+        - Collection
+        - Geofences
+        - Get
+        - Put
+        - Calculator
+        - Calculate
+        - Route
+        - Matrix
   /geofencing/v0/collections:
     POST:
       summary: CreateGeofenceCollection
       description: >-
         <p>Creates a geofence collection, which manages and stores
         geofences.</p>
+      tags:
+        - Create
+        - Geofence
+        - Collection
+        - Tracker
+        - Name
+        - Consumers
+        - Delete
+        - Positions
+        - Collection
+        - Geofences
+        - Get
+        - Put
+        - Calculator
+        - Calculate
+        - Route
+        - Matrix
+        - Geofencing
+        - V0
+        - Collections
   /metadata/v0/keys:
     POST:
       summary: CreateKey
@@ -165,6 +297,27 @@ paths:
         key bearer.</p> <note> <p>For more information, see <a
         href="https://docs.aws.amazon.com/location/latest/developerguide/using-apikeys.html">Using
         API keys</a>.</p> </note>
+      tags:
+        - Create
+        - Key
+        - Tracker
+        - Name
+        - Consumers
+        - Delete
+        - Positions
+        - Collection
+        - Geofences
+        - Get
+        - Put
+        - Calculator
+        - Calculate
+        - Route
+        - Matrix
+        - Geofencing
+        - V0
+        - Collections
+        - Metadata
+        - Keys
   /maps/v0/maps:
     POST:
       summary: CreateMap
@@ -176,6 +329,28 @@ paths:
         you must not use Esri as your geolocation provider. See section 82 of
         the <a href="http://aws.amazon.com/service-terms">Amazon Web Services
         service terms</a> for more details.</p> </note>
+      tags:
+        - Create
+        - Map
+        - Tracker
+        - Name
+        - Consumers
+        - Delete
+        - Positions
+        - Collection
+        - Geofences
+        - Get
+        - Put
+        - Calculator
+        - Calculate
+        - Route
+        - Matrix
+        - Geofencing
+        - V0
+        - Collections
+        - Metadata
+        - Keys
+        - Maps
   /places/v0/indexes:
     POST:
       summary: CreatePlaceIndex
@@ -191,6 +366,31 @@ paths:
         you must not use Esri as your geolocation provider. See section 82 of
         the <a href="http://aws.amazon.com/service-terms">Amazon Web Services
         service terms</a> for more details.</p> </note>
+      tags:
+        - Create
+        - Place
+        - Index
+        - Tracker
+        - Name
+        - Consumers
+        - Delete
+        - Positions
+        - Collection
+        - Geofences
+        - Get
+        - Put
+        - Calculator
+        - Calculate
+        - Route
+        - Matrix
+        - Geofencing
+        - V0
+        - Collections
+        - Metadata
+        - Keys
+        - Maps
+        - Places
+        - Indexes
   /routes/v0/calculators:
     POST:
       summary: CreateRouteCalculator
@@ -204,38 +404,276 @@ paths:
         you must not use Esri as your geolocation provider. See section 82 of
         the <a href="http://aws.amazon.com/service-terms">Amazon Web Services
         service terms</a> for more details.</p> </note>
+      tags:
+        - Create
+        - Route
+        - Calculator
+        - Tracker
+        - Name
+        - Consumers
+        - Delete
+        - Positions
+        - Collection
+        - Geofences
+        - Get
+        - Put
+        - Calculator
+        - Calculate
+        - Route
+        - Matrix
+        - Geofencing
+        - V0
+        - Collections
+        - Metadata
+        - Keys
+        - Maps
+        - Places
+        - Indexes
+        - Routes
+        - Calculators
   /tracking/v0/trackers:
     POST:
       summary: CreateTracker
       description: >-
         <p>Creates a tracker resource in your Amazon Web Services account, which
         lets you retrieve current and historical location of devices.</p>
+      tags:
+        - Create
+        - Tracker
+        - Tracker
+        - Name
+        - Consumers
+        - Delete
+        - Positions
+        - Collection
+        - Geofences
+        - Get
+        - Put
+        - Calculator
+        - Calculate
+        - Route
+        - Matrix
+        - Geofencing
+        - V0
+        - Collections
+        - Metadata
+        - Keys
+        - Maps
+        - Places
+        - Indexes
+        - Routes
+        - Calculators
+        - Tracking
+        - Trackers
   /geofencing/v0/collections/{CollectionName}:
     PATCH:
       summary: UpdateGeofenceCollection
       description: <p>Updates the specified properties of a given geofence collection.</p>
+      tags:
+        - Update
+        - Geofence
+        - Collection
+        - Tracker
+        - Name
+        - Consumers
+        - Delete
+        - Positions
+        - Collection
+        - Geofences
+        - Get
+        - Put
+        - Calculator
+        - Calculate
+        - Route
+        - Matrix
+        - Geofencing
+        - V0
+        - Collections
+        - Metadata
+        - Keys
+        - Maps
+        - Places
+        - Indexes
+        - Routes
+        - Calculators
+        - Tracking
+        - Trackers
   /metadata/v0/keys/{KeyName}:
     PATCH:
       summary: UpdateKey
       description: <p>Updates the specified properties of a given API key resource.</p>
+      tags:
+        - Update
+        - Key
+        - Tracker
+        - Name
+        - Consumers
+        - Delete
+        - Positions
+        - Collection
+        - Geofences
+        - Get
+        - Put
+        - Calculator
+        - Calculate
+        - Route
+        - Matrix
+        - Geofencing
+        - V0
+        - Collections
+        - Metadata
+        - Keys
+        - Maps
+        - Places
+        - Indexes
+        - Routes
+        - Calculators
+        - Tracking
+        - Trackers
+        - Key
   /maps/v0/maps/{MapName}:
     PATCH:
       summary: UpdateMap
       description: <p>Updates the specified properties of a given map resource.</p>
+      tags:
+        - Update
+        - Map
+        - Tracker
+        - Name
+        - Consumers
+        - Delete
+        - Positions
+        - Collection
+        - Geofences
+        - Get
+        - Put
+        - Calculator
+        - Calculate
+        - Route
+        - Matrix
+        - Geofencing
+        - V0
+        - Collections
+        - Metadata
+        - Keys
+        - Maps
+        - Places
+        - Indexes
+        - Routes
+        - Calculators
+        - Tracking
+        - Trackers
+        - Key
+        - Map
   /places/v0/indexes/{IndexName}:
     PATCH:
       summary: UpdatePlaceIndex
       description: <p>Updates the specified properties of a given place index resource.</p>
+      tags:
+        - Update
+        - Place
+        - Index
+        - Tracker
+        - Name
+        - Consumers
+        - Delete
+        - Positions
+        - Collection
+        - Geofences
+        - Get
+        - Put
+        - Calculator
+        - Calculate
+        - Route
+        - Matrix
+        - Geofencing
+        - V0
+        - Collections
+        - Metadata
+        - Keys
+        - Maps
+        - Places
+        - Indexes
+        - Routes
+        - Calculators
+        - Tracking
+        - Trackers
+        - Key
+        - Map
+        - Index
   /routes/v0/calculators/{CalculatorName}:
     PATCH:
       summary: UpdateRouteCalculator
       description: >-
         <p>Updates the specified properties for a given route calculator
         resource.</p>
+      tags:
+        - Update
+        - Route
+        - Calculator
+        - Tracker
+        - Name
+        - Consumers
+        - Delete
+        - Positions
+        - Collection
+        - Geofences
+        - Get
+        - Put
+        - Calculator
+        - Calculate
+        - Route
+        - Matrix
+        - Geofencing
+        - V0
+        - Collections
+        - Metadata
+        - Keys
+        - Maps
+        - Places
+        - Indexes
+        - Routes
+        - Calculators
+        - Tracking
+        - Trackers
+        - Key
+        - Map
+        - Index
   /tracking/v0/trackers/{TrackerName}:
     PATCH:
       summary: UpdateTracker
       description: <p>Updates the specified properties of a given tracker resource.</p>
+      tags:
+        - Update
+        - Tracker
+        - Tracker
+        - Name
+        - Consumers
+        - Delete
+        - Positions
+        - Collection
+        - Geofences
+        - Get
+        - Put
+        - Calculator
+        - Calculate
+        - Route
+        - Matrix
+        - Geofencing
+        - V0
+        - Collections
+        - Metadata
+        - Keys
+        - Maps
+        - Places
+        - Indexes
+        - Routes
+        - Calculators
+        - Tracking
+        - Trackers
+        - Key
+        - Map
+        - Index
   /tracking/v0/trackers/{TrackerName}/consumers/{ConsumerArn}:
     DELETE:
       summary: DisassociateTrackerConsumer
@@ -244,6 +682,40 @@ paths:
         collection.</p> <note> <p>Once you unlink a tracker resource from a
         geofence collection, the tracker positions will no longer be
         automatically evaluated against geofences.</p> </note>
+      tags:
+        - Disassociate
+        - Tracker
+        - Consumer
+        - Tracker
+        - Name
+        - Consumers
+        - Delete
+        - Positions
+        - Collection
+        - Geofences
+        - Get
+        - Put
+        - Calculator
+        - Calculate
+        - Route
+        - Matrix
+        - Geofencing
+        - V0
+        - Collections
+        - Metadata
+        - Keys
+        - Maps
+        - Places
+        - Indexes
+        - Routes
+        - Calculators
+        - Tracking
+        - Trackers
+        - Key
+        - Map
+        - Index
+        - Consumer
+        - Arn
   /tracking/v0/trackers/{TrackerName}/devices/{DeviceId}/positions/latest:
     GET:
       summary: GetDevicePosition
@@ -251,6 +723,44 @@ paths:
         <p>Retrieves a device's most recent position according to its sample
         time.</p> <note> <p>Device positions are deleted after 30 days.</p>
         </note>
+      tags:
+        - Get
+        - Device
+        - Position
+        - Tracker
+        - Name
+        - Consumers
+        - Delete
+        - Positions
+        - Collection
+        - Geofences
+        - Get
+        - Put
+        - Calculator
+        - Calculate
+        - Route
+        - Matrix
+        - Geofencing
+        - V0
+        - Collections
+        - Metadata
+        - Keys
+        - Maps
+        - Places
+        - Indexes
+        - Routes
+        - Calculators
+        - Tracking
+        - Trackers
+        - Key
+        - Map
+        - Index
+        - Consumer
+        - Arn
+        - Devices
+        - Device
+        - Id
+        - Latest
   /tracking/v0/trackers/{TrackerName}/devices/{DeviceId}/list-positions:
     POST:
       summary: GetDevicePositionHistory
@@ -258,6 +768,46 @@ paths:
         <p>Retrieves the device position history from a tracker resource within
         a specified range of time.</p> <note> <p>Device positions are deleted
         after 30 days.</p> </note>
+      tags:
+        - Get
+        - Device
+        - Position
+        - History
+        - Tracker
+        - Name
+        - Consumers
+        - Delete
+        - Positions
+        - Collection
+        - Geofences
+        - Get
+        - Put
+        - Calculator
+        - Calculate
+        - Route
+        - Matrix
+        - Geofencing
+        - V0
+        - Collections
+        - Metadata
+        - Keys
+        - Maps
+        - Places
+        - Indexes
+        - Routes
+        - Calculators
+        - Tracking
+        - Trackers
+        - Key
+        - Map
+        - Index
+        - Consumer
+        - Arn
+        - Devices
+        - Device
+        - Id
+        - Latest
+        - List
   /geofencing/v0/collections/{CollectionName}/geofences/{GeofenceId}:
     PUT:
       summary: PutGeofence
@@ -265,10 +815,94 @@ paths:
         <p>Stores a geofence geometry in a given geofence collection, or updates
         the geometry of an existing geofence if a geofence ID is included in the
         request. </p>
+      tags:
+        - Put
+        - Geofence
+        - Tracker
+        - Name
+        - Consumers
+        - Delete
+        - Positions
+        - Collection
+        - Geofences
+        - Get
+        - Put
+        - Calculator
+        - Calculate
+        - Route
+        - Matrix
+        - Geofencing
+        - V0
+        - Collections
+        - Metadata
+        - Keys
+        - Maps
+        - Places
+        - Indexes
+        - Routes
+        - Calculators
+        - Tracking
+        - Trackers
+        - Key
+        - Map
+        - Index
+        - Consumer
+        - Arn
+        - Devices
+        - Device
+        - Id
+        - Latest
+        - List
+        - Geofence
   /maps/v0/maps/{MapName}/glyphs/{FontStack}/{FontUnicodeRange}:
     GET:
       summary: GetMapGlyphs
       description: <p>Retrieves glyphs used to display labels on a map.</p>
+      tags:
+        - Get
+        - Map
+        - Glyphs
+        - Tracker
+        - Name
+        - Consumers
+        - Delete
+        - Positions
+        - Collection
+        - Geofences
+        - Get
+        - Put
+        - Calculator
+        - Calculate
+        - Route
+        - Matrix
+        - Geofencing
+        - V0
+        - Collections
+        - Metadata
+        - Keys
+        - Maps
+        - Places
+        - Indexes
+        - Routes
+        - Calculators
+        - Tracking
+        - Trackers
+        - Key
+        - Map
+        - Index
+        - Consumer
+        - Arn
+        - Devices
+        - Device
+        - Id
+        - Latest
+        - List
+        - Geofence
+        - Glyphs
+        - Font
+        - Stack
+        - Unicode
+        - Range
   /maps/v0/maps/{MapName}/sprites/{FileName}:
     GET:
       summary: GetMapSprites
@@ -277,6 +911,53 @@ paths:
         sprite sheet is a PNG image paired with a JSON document describing the
         offsets of individual icons that will be displayed on a rendered
         map.</p>
+      tags:
+        - Get
+        - Map
+        - Sprites
+        - Tracker
+        - Name
+        - Consumers
+        - Delete
+        - Positions
+        - Collection
+        - Geofences
+        - Get
+        - Put
+        - Calculator
+        - Calculate
+        - Route
+        - Matrix
+        - Geofencing
+        - V0
+        - Collections
+        - Metadata
+        - Keys
+        - Maps
+        - Places
+        - Indexes
+        - Routes
+        - Calculators
+        - Tracking
+        - Trackers
+        - Key
+        - Map
+        - Index
+        - Consumer
+        - Arn
+        - Devices
+        - Device
+        - Id
+        - Latest
+        - List
+        - Geofence
+        - Glyphs
+        - Font
+        - Stack
+        - Unicode
+        - Range
+        - Sprites
+        - File
   /maps/v0/maps/{MapName}/style-descriptor:
     GET:
       summary: GetMapStyleDescriptor
@@ -286,6 +967,56 @@ paths:
         For example, what data to display, what order to display the data in,
         and the style for the data. Style descriptors follow the Mapbox Style
         Specification.</p>
+      tags:
+        - Get
+        - Map
+        - Style
+        - Descriptor
+        - Tracker
+        - Name
+        - Consumers
+        - Delete
+        - Positions
+        - Collection
+        - Geofences
+        - Get
+        - Put
+        - Calculator
+        - Calculate
+        - Route
+        - Matrix
+        - Geofencing
+        - V0
+        - Collections
+        - Metadata
+        - Keys
+        - Maps
+        - Places
+        - Indexes
+        - Routes
+        - Calculators
+        - Tracking
+        - Trackers
+        - Key
+        - Map
+        - Index
+        - Consumer
+        - Arn
+        - Devices
+        - Device
+        - Id
+        - Latest
+        - List
+        - Geofence
+        - Glyphs
+        - Font
+        - Stack
+        - Unicode
+        - Range
+        - Sprites
+        - File
+        - Style
+        - Descriptor
   /maps/v0/maps/{MapName}/tiles/{Z}/{X}/{Y}:
     GET:
       summary: GetMapTile
@@ -297,6 +1028,56 @@ paths:
         level by 1 doubles both the X and Y dimensions, so a tile containing
         data for the entire world at (0/0/0) will be split into 4 tiles at zoom
         1 (1/0/0, 1/0/1, 1/1/0, 1/1/1).</p>
+      tags:
+        - Get
+        - Map
+        - Tile
+        - Tracker
+        - Name
+        - Consumers
+        - Delete
+        - Positions
+        - Collection
+        - Geofences
+        - Get
+        - Put
+        - Calculator
+        - Calculate
+        - Route
+        - Matrix
+        - Geofencing
+        - V0
+        - Collections
+        - Metadata
+        - Keys
+        - Maps
+        - Places
+        - Indexes
+        - Routes
+        - Calculators
+        - Tracking
+        - Trackers
+        - Key
+        - Map
+        - Index
+        - Consumer
+        - Arn
+        - Devices
+        - Device
+        - Id
+        - Latest
+        - List
+        - Geofence
+        - Glyphs
+        - Font
+        - Stack
+        - Unicode
+        - Range
+        - Sprites
+        - File
+        - Style
+        - Descriptor
+        - Tiles
   /places/v0/indexes/{IndexName}/places/{PlaceId}:
     GET:
       summary: GetPlace
@@ -308,52 +1089,610 @@ paths:
         account</p> </li> <li> <p>Amazon Web Services Region</p> </li> <li>
         <p>Data provider specified in the place index resource</p> </li> </ul>
         </note>
+      tags:
+        - Get
+        - Place
+        - Tracker
+        - Name
+        - Consumers
+        - Delete
+        - Positions
+        - Collection
+        - Geofences
+        - Get
+        - Put
+        - Calculator
+        - Calculate
+        - Route
+        - Matrix
+        - Geofencing
+        - V0
+        - Collections
+        - Metadata
+        - Keys
+        - Maps
+        - Places
+        - Indexes
+        - Routes
+        - Calculators
+        - Tracking
+        - Trackers
+        - Key
+        - Map
+        - Index
+        - Consumer
+        - Arn
+        - Devices
+        - Device
+        - Id
+        - Latest
+        - List
+        - Geofence
+        - Glyphs
+        - Font
+        - Stack
+        - Unicode
+        - Range
+        - Sprites
+        - File
+        - Style
+        - Descriptor
+        - Tiles
+        - Place
   /tracking/v0/trackers/{TrackerName}/list-positions:
     POST:
       summary: ListDevicePositions
       description: <p>A batch request to retrieve all device positions.</p>
+      tags:
+        - List
+        - Device
+        - Positions
+        - Tracker
+        - Name
+        - Consumers
+        - Delete
+        - Positions
+        - Collection
+        - Geofences
+        - Get
+        - Put
+        - Calculator
+        - Calculate
+        - Route
+        - Matrix
+        - Geofencing
+        - V0
+        - Collections
+        - Metadata
+        - Keys
+        - Maps
+        - Places
+        - Indexes
+        - Routes
+        - Calculators
+        - Tracking
+        - Trackers
+        - Key
+        - Map
+        - Index
+        - Consumer
+        - Arn
+        - Devices
+        - Device
+        - Id
+        - Latest
+        - List
+        - Geofence
+        - Glyphs
+        - Font
+        - Stack
+        - Unicode
+        - Range
+        - Sprites
+        - File
+        - Style
+        - Descriptor
+        - Tiles
+        - Place
   /geofencing/v0/list-collections:
     POST:
       summary: ListGeofenceCollections
       description: <p>Lists geofence collections in your Amazon Web Services account.</p>
+      tags:
+        - List
+        - Geofence
+        - Collections
+        - Tracker
+        - Name
+        - Consumers
+        - Delete
+        - Positions
+        - Collection
+        - Geofences
+        - Get
+        - Put
+        - Calculator
+        - Calculate
+        - Route
+        - Matrix
+        - Geofencing
+        - V0
+        - Collections
+        - Metadata
+        - Keys
+        - Maps
+        - Places
+        - Indexes
+        - Routes
+        - Calculators
+        - Tracking
+        - Trackers
+        - Key
+        - Map
+        - Index
+        - Consumer
+        - Arn
+        - Devices
+        - Device
+        - Id
+        - Latest
+        - List
+        - Geofence
+        - Glyphs
+        - Font
+        - Stack
+        - Unicode
+        - Range
+        - Sprites
+        - File
+        - Style
+        - Descriptor
+        - Tiles
+        - Place
   /geofencing/v0/collections/{CollectionName}/list-geofences:
     POST:
       summary: ListGeofences
       description: <p>Lists geofences stored in a given geofence collection.</p>
+      tags:
+        - List
+        - Geofences
+        - Tracker
+        - Name
+        - Consumers
+        - Delete
+        - Positions
+        - Collection
+        - Geofences
+        - Get
+        - Put
+        - Calculator
+        - Calculate
+        - Route
+        - Matrix
+        - Geofencing
+        - V0
+        - Collections
+        - Metadata
+        - Keys
+        - Maps
+        - Places
+        - Indexes
+        - Routes
+        - Calculators
+        - Tracking
+        - Trackers
+        - Key
+        - Map
+        - Index
+        - Consumer
+        - Arn
+        - Devices
+        - Device
+        - Id
+        - Latest
+        - List
+        - Geofence
+        - Glyphs
+        - Font
+        - Stack
+        - Unicode
+        - Range
+        - Sprites
+        - File
+        - Style
+        - Descriptor
+        - Tiles
+        - Place
   /metadata/v0/list-keys:
     POST:
       summary: ListKeys
       description: <p>Lists API key resources in your Amazon Web Services account.</p>
+      tags:
+        - List
+        - Keys
+        - Tracker
+        - Name
+        - Consumers
+        - Delete
+        - Positions
+        - Collection
+        - Geofences
+        - Get
+        - Put
+        - Calculator
+        - Calculate
+        - Route
+        - Matrix
+        - Geofencing
+        - V0
+        - Collections
+        - Metadata
+        - Keys
+        - Maps
+        - Places
+        - Indexes
+        - Routes
+        - Calculators
+        - Tracking
+        - Trackers
+        - Key
+        - Map
+        - Index
+        - Consumer
+        - Arn
+        - Devices
+        - Device
+        - Id
+        - Latest
+        - List
+        - Geofence
+        - Glyphs
+        - Font
+        - Stack
+        - Unicode
+        - Range
+        - Sprites
+        - File
+        - Style
+        - Descriptor
+        - Tiles
+        - Place
   /maps/v0/list-maps:
     POST:
       summary: ListMaps
       description: <p>Lists map resources in your Amazon Web Services account.</p>
+      tags:
+        - List
+        - Maps
+        - Tracker
+        - Name
+        - Consumers
+        - Delete
+        - Positions
+        - Collection
+        - Geofences
+        - Get
+        - Put
+        - Calculator
+        - Calculate
+        - Route
+        - Matrix
+        - Geofencing
+        - V0
+        - Collections
+        - Metadata
+        - Keys
+        - Maps
+        - Places
+        - Indexes
+        - Routes
+        - Calculators
+        - Tracking
+        - Trackers
+        - Key
+        - Map
+        - Index
+        - Consumer
+        - Arn
+        - Devices
+        - Device
+        - Id
+        - Latest
+        - List
+        - Geofence
+        - Glyphs
+        - Font
+        - Stack
+        - Unicode
+        - Range
+        - Sprites
+        - File
+        - Style
+        - Descriptor
+        - Tiles
+        - Place
   /places/v0/list-indexes:
     POST:
       summary: ListPlaceIndexes
       description: <p>Lists place index resources in your Amazon Web Services account.</p>
+      tags:
+        - List
+        - Place
+        - Indexes
+        - Tracker
+        - Name
+        - Consumers
+        - Delete
+        - Positions
+        - Collection
+        - Geofences
+        - Get
+        - Put
+        - Calculator
+        - Calculate
+        - Route
+        - Matrix
+        - Geofencing
+        - V0
+        - Collections
+        - Metadata
+        - Keys
+        - Maps
+        - Places
+        - Indexes
+        - Routes
+        - Calculators
+        - Tracking
+        - Trackers
+        - Key
+        - Map
+        - Index
+        - Consumer
+        - Arn
+        - Devices
+        - Device
+        - Id
+        - Latest
+        - List
+        - Geofence
+        - Glyphs
+        - Font
+        - Stack
+        - Unicode
+        - Range
+        - Sprites
+        - File
+        - Style
+        - Descriptor
+        - Tiles
+        - Place
   /routes/v0/list-calculators:
     POST:
       summary: ListRouteCalculators
       description: >-
         <p>Lists route calculator resources in your Amazon Web Services
         account.</p>
+      tags:
+        - List
+        - Route
+        - Calculators
+        - Tracker
+        - Name
+        - Consumers
+        - Delete
+        - Positions
+        - Collection
+        - Geofences
+        - Get
+        - Put
+        - Calculator
+        - Calculate
+        - Route
+        - Matrix
+        - Geofencing
+        - V0
+        - Collections
+        - Metadata
+        - Keys
+        - Maps
+        - Places
+        - Indexes
+        - Routes
+        - Calculators
+        - Tracking
+        - Trackers
+        - Key
+        - Map
+        - Index
+        - Consumer
+        - Arn
+        - Devices
+        - Device
+        - Id
+        - Latest
+        - List
+        - Geofence
+        - Glyphs
+        - Font
+        - Stack
+        - Unicode
+        - Range
+        - Sprites
+        - File
+        - Style
+        - Descriptor
+        - Tiles
+        - Place
   /tags/{ResourceArn}:
     DELETE:
       summary: UntagResource
       description: >-
         <p>Removes one or more tags from the specified Amazon Location
         resource.</p>
+      tags:
+        - Untag
+        - Resource
+        - Tracker
+        - Name
+        - Consumers
+        - Delete
+        - Positions
+        - Collection
+        - Geofences
+        - Get
+        - Put
+        - Calculator
+        - Calculate
+        - Route
+        - Matrix
+        - Geofencing
+        - V0
+        - Collections
+        - Metadata
+        - Keys
+        - Maps
+        - Places
+        - Indexes
+        - Routes
+        - Calculators
+        - Tracking
+        - Trackers
+        - Key
+        - Map
+        - Index
+        - Consumer
+        - Arn
+        - Devices
+        - Device
+        - Id
+        - Latest
+        - List
+        - Geofence
+        - Glyphs
+        - Font
+        - Stack
+        - Unicode
+        - Range
+        - Sprites
+        - File
+        - Style
+        - Descriptor
+        - Tiles
+        - Place
+        - Resource
   /tracking/v0/trackers/{TrackerName}/list-consumers:
     POST:
       summary: ListTrackerConsumers
       description: >-
         <p>Lists geofence collections currently associated to the given tracker
         resource.</p>
+      tags:
+        - List
+        - Tracker
+        - Consumers
+        - Tracker
+        - Name
+        - Consumers
+        - Delete
+        - Positions
+        - Collection
+        - Geofences
+        - Get
+        - Put
+        - Calculator
+        - Calculate
+        - Route
+        - Matrix
+        - Geofencing
+        - V0
+        - Collections
+        - Metadata
+        - Keys
+        - Maps
+        - Places
+        - Indexes
+        - Routes
+        - Calculators
+        - Tracking
+        - Trackers
+        - Key
+        - Map
+        - Index
+        - Consumer
+        - Arn
+        - Devices
+        - Device
+        - Id
+        - Latest
+        - List
+        - Geofence
+        - Glyphs
+        - Font
+        - Stack
+        - Unicode
+        - Range
+        - Sprites
+        - File
+        - Style
+        - Descriptor
+        - Tiles
+        - Place
+        - Resource
   /tracking/v0/list-trackers:
     POST:
       summary: ListTrackers
       description: <p>Lists tracker resources in your Amazon Web Services account.</p>
+      tags:
+        - List
+        - Trackers
+        - Tracker
+        - Name
+        - Consumers
+        - Delete
+        - Positions
+        - Collection
+        - Geofences
+        - Get
+        - Put
+        - Calculator
+        - Calculate
+        - Route
+        - Matrix
+        - Geofencing
+        - V0
+        - Collections
+        - Metadata
+        - Keys
+        - Maps
+        - Places
+        - Indexes
+        - Routes
+        - Calculators
+        - Tracking
+        - Trackers
+        - Key
+        - Map
+        - Index
+        - Consumer
+        - Arn
+        - Devices
+        - Device
+        - Id
+        - Latest
+        - List
+        - Geofence
+        - Glyphs
+        - Font
+        - Stack
+        - Unicode
+        - Range
+        - Sprites
+        - File
+        - Style
+        - Descriptor
+        - Tiles
+        - Place
+        - Resource
   /places/v0/indexes/{IndexName}/search/position:
     POST:
       summary: SearchPlaceIndexForPosition
@@ -361,6 +1700,62 @@ paths:
         <p>Reverse geocodes a given coordinate and returns a legible address.
         Allows you to search for Places or points of interest near a given
         position.</p>
+      tags:
+        - Search
+        - Place
+        - Index
+        - For
+        - Position
+        - Tracker
+        - Name
+        - Consumers
+        - Delete
+        - Positions
+        - Collection
+        - Geofences
+        - Get
+        - Put
+        - Calculator
+        - Calculate
+        - Route
+        - Matrix
+        - Geofencing
+        - V0
+        - Collections
+        - Metadata
+        - Keys
+        - Maps
+        - Places
+        - Indexes
+        - Routes
+        - Calculators
+        - Tracking
+        - Trackers
+        - Key
+        - Map
+        - Index
+        - Consumer
+        - Arn
+        - Devices
+        - Device
+        - Id
+        - Latest
+        - List
+        - Geofence
+        - Glyphs
+        - Font
+        - Stack
+        - Unicode
+        - Range
+        - Sprites
+        - File
+        - Style
+        - Descriptor
+        - Tiles
+        - Place
+        - Resource
+        - Search
+        - Position
   /places/v0/indexes/{IndexName}/search/suggestions:
     POST:
       summary: SearchPlaceIndexForSuggestions
@@ -375,6 +1770,63 @@ paths:
         using <code>FilterBBox</code>. These parameters are mutually exclusive;
         using both <code>BiasPosition</code> and <code>FilterBBox</code> in the
         same command returns an error.</p> </note>
+      tags:
+        - Search
+        - Place
+        - Index
+        - For
+        - Suggestions
+        - Tracker
+        - Name
+        - Consumers
+        - Delete
+        - Positions
+        - Collection
+        - Geofences
+        - Get
+        - Put
+        - Calculator
+        - Calculate
+        - Route
+        - Matrix
+        - Geofencing
+        - V0
+        - Collections
+        - Metadata
+        - Keys
+        - Maps
+        - Places
+        - Indexes
+        - Routes
+        - Calculators
+        - Tracking
+        - Trackers
+        - Key
+        - Map
+        - Index
+        - Consumer
+        - Arn
+        - Devices
+        - Device
+        - Id
+        - Latest
+        - List
+        - Geofence
+        - Glyphs
+        - Font
+        - Stack
+        - Unicode
+        - Range
+        - Sprites
+        - File
+        - Style
+        - Descriptor
+        - Tiles
+        - Place
+        - Resource
+        - Search
+        - Position
+        - Suggestions
   /places/v0/indexes/{IndexName}/search/text:
     POST:
       summary: SearchPlaceIndexForText
@@ -387,4 +1839,62 @@ paths:
         using <code>BiasPosition</code>, or filter results within a bounding box
         using <code>FilterBBox</code>. Providing both parameters simultaneously
         returns an error.</p> </note> <p>Search results are returned in order of
-        highest to lowest releva
+        highest to lowest rele
+      tags:
+        - Search
+        - Place
+        - Index
+        - For
+        - Text
+        - Tracker
+        - Name
+        - Consumers
+        - Delete
+        - Positions
+        - Collection
+        - Geofences
+        - Get
+        - Put
+        - Calculator
+        - Calculate
+        - Route
+        - Matrix
+        - Geofencing
+        - V0
+        - Collections
+        - Metadata
+        - Keys
+        - Maps
+        - Places
+        - Indexes
+        - Routes
+        - Calculators
+        - Tracking
+        - Trackers
+        - Key
+        - Map
+        - Index
+        - Consumer
+        - Arn
+        - Devices
+        - Device
+        - Id
+        - Latest
+        - List
+        - Geofence
+        - Glyphs
+        - Font
+        - Stack
+        - Unicode
+        - Range
+        - Sprites
+        - File
+        - Style
+        - Descriptor
+        - Tiles
+        - Place
+        - Resource
+        - Search
+        - Position
+        - Suggestions
+        - Te

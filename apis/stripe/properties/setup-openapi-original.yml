@@ -5,15 +5,15 @@ info:
   contact:
     email: dev-platform@stripe.com
     name: Stripe Dev Platform Team
-    url: 'https://stripe.com'
-  termsOfService: 'https://stripe.com/us/terms/'
+    url: https://stripe.com
+  termsOfService: https://stripe.com/us/terms/
   version: '2023-10-16'
   x-stripeSpecFilename: spec3
 security:
   - basicAuth: []
   - bearerAuth: []
 servers:
-  - url: 'https://api.stripe.com/'
+  - url: https://api.stripe.com/
 paths:
   /v1/setup_attempts:
     get:
@@ -317,7 +317,7 @@ paths:
               schema:
                 $ref: '#/components/schemas/error'
           description: Error response.
-  '/v1/setup_intents/{intent}':
+  /v1/setup_intents/{intent}:
     get:
       description: >-
         <p>Retrieves the details of a SetupIntent that has previously been
@@ -433,7 +433,7 @@ paths:
               schema:
                 $ref: '#/components/schemas/error'
           description: Error response.
-  '/v1/setup_intents/{intent}/cancel':
+  /v1/setup_intents/{intent}/cancel:
     post:
       description: >-
         <p>You can cancel a SetupIntent object when it’s in one of these
@@ -477,7 +477,7 @@ paths:
               schema:
                 $ref: '#/components/schemas/error'
           description: Error response.
-  '/v1/setup_intents/{intent}/confirm':
+  /v1/setup_intents/{intent}/confirm:
     post:
       description: >-
         <p>Confirm that your customer intends to set up the current or
@@ -549,7 +549,7 @@ paths:
               schema:
                 $ref: '#/components/schemas/error'
           description: Error response.
-  '/v1/setup_intents/{intent}/verify_microdeposits':
+  /v1/setup_intents/{intent}/verify_microdeposits:
     post:
       description: <p>Verifies microdeposits on a SetupIntent object.</p>
       operationId: PostSetupIntentsIntentVerifyMicrodeposits

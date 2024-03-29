@@ -6,58 +6,192 @@ paths:
     GET:
       summary: ListCells
       description: <p>Lists the cells for an account.</p>
+      tags:
+        - List
+        - Cells
+        - Cells
   /crossaccountauthorizations:
     GET:
       summary: ListCrossAccountAuthorizations
       description: >-
         <p>Lists the cross-account readiness authorizations that are in place
         for an account.</p>
+      tags:
+        - List
+        - Cross
+        - Account
+        - Authorizations
+        - Cells
+        - Crossaccountauthorizations
   /readinesschecks:
     GET:
       summary: ListReadinessChecks
       description: <p>Lists the readiness checks for an account.</p>
+      tags:
+        - List
+        - Readiness
+        - Checks
+        - Cells
+        - Crossaccountauthorizations
+        - Readinesschecks
   /recoverygroups:
     GET:
       summary: ListRecoveryGroups
       description: <p>Lists the recovery groups in an account.</p>
+      tags:
+        - List
+        - Recovery
+        - Groups
+        - Cells
+        - Crossaccountauthorizations
+        - Readinesschecks
+        - Recoverygroups
   /resourcesets:
     GET:
       summary: ListResourceSets
       description: <p>Lists the resource sets in an account.</p>
+      tags:
+        - List
+        - Resource
+        - Sets
+        - Cells
+        - Crossaccountauthorizations
+        - Readinesschecks
+        - Recoverygroups
+        - Resourcesets
   /cells/{cellName}:
     PUT:
       summary: UpdateCell
       description: >-
         <p>Updates a cell to replace the list of nested cells with a new list of
         nested cells.</p>
+      tags:
+        - Update
+        - Cell
+        - Cells
+        - Crossaccountauthorizations
+        - Readinesschecks
+        - Recoverygroups
+        - Resourcesets
+        - Name
   /crossaccountauthorizations/{crossAccountAuthorization}:
     DELETE:
       summary: DeleteCrossAccountAuthorization
       description: <p>Deletes cross account readiness authorization.</p>
+      tags:
+        - Delete
+        - Cross
+        - Account
+        - Authorization
+        - Cells
+        - Crossaccountauthorizations
+        - Readinesschecks
+        - Recoverygroups
+        - Resourcesets
+        - Name
+        - Account
+        - Authorization
   /readinesschecks/{readinessCheckName}:
     PUT:
       summary: UpdateReadinessCheck
       description: <p>Updates a readiness check.</p>
+      tags:
+        - Update
+        - Readiness
+        - Check
+        - Cells
+        - Crossaccountauthorizations
+        - Readinesschecks
+        - Recoverygroups
+        - Resourcesets
+        - Name
+        - Account
+        - Authorization
+        - Check
   /recoverygroups/{recoveryGroupName}:
     PUT:
       summary: UpdateRecoveryGroup
       description: <p>Updates a recovery group.</p>
+      tags:
+        - Update
+        - Recovery
+        - Group
+        - Cells
+        - Crossaccountauthorizations
+        - Readinesschecks
+        - Recoverygroups
+        - Resourcesets
+        - Name
+        - Account
+        - Authorization
+        - Check
+        - Group
   /resourcesets/{resourceSetName}:
     PUT:
       summary: UpdateResourceSet
       description: <p>Updates a resource set.</p>
+      tags:
+        - Update
+        - Resource
+        - Set
+        - Cells
+        - Crossaccountauthorizations
+        - Readinesschecks
+        - Recoverygroups
+        - Resourcesets
+        - Name
+        - Account
+        - Authorization
+        - Check
+        - Group
+        - Set
   /recoverygroups/{recoveryGroupName}/architectureRecommendations:
     GET:
       summary: GetArchitectureRecommendations
       description: >-
         <p>Gets recommendations about architecture designs for improving
         resiliency for an application, based on a recovery group.</p>
+      tags:
+        - Get
+        - Architecture
+        - Recommendations
+        - Cells
+        - Crossaccountauthorizations
+        - Readinesschecks
+        - Recoverygroups
+        - Resourcesets
+        - Name
+        - Account
+        - Authorization
+        - Check
+        - Group
+        - Set
+        - Architecture
+        - Recommendations
   /cellreadiness/{cellName}:
     GET:
       summary: GetCellReadinessSummary
       description: >-
         <p>Gets readiness for a cell. Aggregates the readiness of all the
         resources that are associated with the cell into a single value.</p>
+      tags:
+        - Get
+        - Cell
+        - Readiness
+        - Summary
+        - Cells
+        - Crossaccountauthorizations
+        - Readinesschecks
+        - Recoverygroups
+        - Resourcesets
+        - Name
+        - Account
+        - Authorization
+        - Check
+        - Group
+        - Set
+        - Architecture
+        - Recommendations
   /readinesschecks/{readinessCheckName}/resource/{resourceIdentifier}/status:
     GET:
       summary: GetReadinessCheckResourceStatus
@@ -66,6 +200,28 @@ paths:
         overall readiness status for a recovery group, that considers the
         readiness status for all the readiness checks in the recovery group, use
         GetRecoveryGroupReadinessSummary.</p>
+      tags:
+        - Get
+        - Readiness
+        - Check
+        - Resource
+        - Status
+        - Cells
+        - Crossaccountauthorizations
+        - Readinesschecks
+        - Recoverygroups
+        - Resourcesets
+        - Name
+        - Account
+        - Authorization
+        - Check
+        - Group
+        - Set
+        - Architecture
+        - Recommendations
+        - Resource
+        - Identifier
+        - Status
   /readinesschecks/{readinessCheckName}/status:
     GET:
       summary: GetReadinessCheckStatus
@@ -74,6 +230,27 @@ paths:
         the overall readiness status for a recovery group, that considers the
         readiness status for all the readiness checks in a recovery group, use
         GetRecoveryGroupReadinessSummary.</p>
+      tags:
+        - Get
+        - Readiness
+        - Check
+        - Status
+        - Cells
+        - Crossaccountauthorizations
+        - Readinesschecks
+        - Recoverygroups
+        - Resourcesets
+        - Name
+        - Account
+        - Authorization
+        - Check
+        - Group
+        - Set
+        - Architecture
+        - Recommendations
+        - Resource
+        - Identifier
+        - Status
   /recoverygroupreadiness/{recoveryGroupName}:
     GET:
       summary: GetRecoveryGroupReadinessSummary
@@ -81,13 +258,77 @@ paths:
         <p>Displays a summary of information about a recovery group's readiness
         status. Includes the readiness checks for resources in the recovery
         group and the readiness status of each one.</p>
+      tags:
+        - Get
+        - Recovery
+        - Group
+        - Readiness
+        - Summary
+        - Cells
+        - Crossaccountauthorizations
+        - Readinesschecks
+        - Recoverygroups
+        - Resourcesets
+        - Name
+        - Account
+        - Authorization
+        - Check
+        - Group
+        - Set
+        - Architecture
+        - Recommendations
+        - Resource
+        - Identifier
+        - Status
   /rules:
     GET:
       summary: ListRules
       description: >-
         <p>Lists all readiness rules, or lists the readiness rules for a
         specific resource type.</p>
+      tags:
+        - List
+        - Rules
+        - Cells
+        - Crossaccountauthorizations
+        - Readinesschecks
+        - Recoverygroups
+        - Resourcesets
+        - Name
+        - Account
+        - Authorization
+        - Check
+        - Group
+        - Set
+        - Architecture
+        - Recommendations
+        - Resource
+        - Identifier
+        - Status
+        - Rules
   /tags/{resource-arn}:
     DELETE:
       summary: UntagResource
-      description: <p>Removes a tag from a resou
+      description: <p>Removes a tag from a res
+      tags:
+        - Untag
+        - Resource
+        - Cells
+        - Crossaccountauthorizations
+        - Readinesschecks
+        - Recoverygroups
+        - Resourcesets
+        - Name
+        - Account
+        - Authorization
+        - Check
+        - Group
+        - Set
+        - Architecture
+        - Recommendations
+        - Resource
+        - Identifier
+        - Status
+        - Rules
+        - Tags
+        - A

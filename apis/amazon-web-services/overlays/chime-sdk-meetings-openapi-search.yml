@@ -10,6 +10,14 @@ paths:
         For more information about the Amazon Chime SDK, see <a
         href="https://docs.aws.amazon.com/chime/latest/dg/meetings-sdk.html">Using
         the Amazon Chime SDK</a> in the <i>Amazon Chime Developer Guide</i>.</p>
+      tags:
+        - Batch
+        - Create
+        - Attendee
+        - Meeting
+        - Id
+        - Attendees?operation=batch
+        - Create
   /meetings/{MeetingId}/attendees/capabilities?operation=batch-update-except:
     PUT:
       summary: BatchUpdateAttendeeCapabilitiesExcept
@@ -47,6 +55,20 @@ paths:
         content streams, remote attendees can receive those streams, but only
         after media renegotiation between the client and the Amazon Chime
         back-end server.</p> </li> </ul>
+      tags:
+        - Batch
+        - Update
+        - Attendee
+        - Capabilities
+        - Except
+        - Meeting
+        - Id
+        - Attendees?operation=batch
+        - Create
+        - Attendees
+        - Capabilities?operation=batch
+        - Update
+        - Except
   /meetings/{MeetingId}/attendees:
     GET:
       summary: ListAttendees
@@ -56,6 +78,17 @@ paths:
         href="https://docs.aws.amazon.com/chime/latest/dg/meetings-sdk.html">Using
         the Amazon Chime SDK</a> in the <i>Amazon Chime Developer Guide</i>.
         </p>
+      tags:
+        - List
+        - Attendees
+        - Meeting
+        - Id
+        - Attendees?operation=batch
+        - Create
+        - Attendees
+        - Capabilities?operation=batch
+        - Update
+        - Except
   /meetings:
     POST:
       summary: CreateMeeting
@@ -69,6 +102,18 @@ paths:
         href="https://docs.aws.amazon.com/chime/latest/dg/meetings-sdk.html">Using
         the Amazon Chime SDK</a> in the <i>Amazon Chime Developer Guide</i>.
         </p>
+      tags:
+        - Create
+        - Meeting
+        - Meeting
+        - Id
+        - Attendees?operation=batch
+        - Create
+        - Attendees
+        - Capabilities?operation=batch
+        - Update
+        - Except
+        - Meetings
   /meetings?operation=create-attendees:
     POST:
       summary: CreateMeetingWithAttendees
@@ -82,6 +127,21 @@ paths:
         href="https://docs.aws.amazon.com/chime/latest/dg/meetings-sdk.html">Using
         the Amazon Chime SDK</a> in the <i>Amazon Chime Developer Guide</i>.
         </p>
+      tags:
+        - Create
+        - Meeting
+        - With
+        - Attendees
+        - Meeting
+        - Id
+        - Attendees?operation=batch
+        - Create
+        - Attendees
+        - Capabilities?operation=batch
+        - Update
+        - Except
+        - Meetings
+        - Meetings?operation=create
   /meetings/{MeetingId}/attendees/{AttendeeId}:
     GET:
       summary: GetAttendee
@@ -92,6 +152,20 @@ paths:
         href="https://docs.aws.amazon.com/chime/latest/dg/meetings-sdk.html">Using
         the Amazon Chime SDK</a> in the <i>Amazon Chime Developer Guide</i>.
         </p>
+      tags:
+        - Get
+        - Attendee
+        - Meeting
+        - Id
+        - Attendees?operation=batch
+        - Create
+        - Attendees
+        - Capabilities?operation=batch
+        - Update
+        - Except
+        - Meetings
+        - Meetings?operation=create
+        - Attendee
   /meetings/{MeetingId}:
     GET:
       summary: GetMeeting
@@ -100,10 +174,41 @@ paths:
         ID. For more information about the Amazon Chime SDK, see <a
         href="https://docs.aws.amazon.com/chime/latest/dg/meetings-sdk.html">Using
         the Amazon Chime SDK</a> in the <i>Amazon Chime Developer Guide</i>.</p>
+      tags:
+        - Get
+        - Meeting
+        - Meeting
+        - Id
+        - Attendees?operation=batch
+        - Create
+        - Attendees
+        - Capabilities?operation=batch
+        - Update
+        - Except
+        - Meetings
+        - Meetings?operation=create
+        - Attendee
   /tags:
     GET:
       summary: ListTagsForResource
       description: <p>Returns a list of the tags available for the specified resource.</p>
+      tags:
+        - List
+        - Tags
+        - For
+        - Resource
+        - Meeting
+        - Id
+        - Attendees?operation=batch
+        - Create
+        - Attendees
+        - Capabilities?operation=batch
+        - Update
+        - Except
+        - Meetings
+        - Meetings?operation=create
+        - Attendee
+        - Tags
   /meetings/{MeetingId}/transcription?operation=start:
     POST:
       summary: StartMeetingTranscription
@@ -133,6 +238,23 @@ paths:
         Services using audio content to develop and improve AWS AI/ML services
         by configuring an AI services opt out policy using Amazon Web Services
         Organizations.</p> </note>
+      tags:
+        - Start
+        - Meeting
+        - Transcription
+        - Meeting
+        - Id
+        - Attendees?operation=batch
+        - Create
+        - Attendees
+        - Capabilities?operation=batch
+        - Update
+        - Except
+        - Meetings
+        - Meetings?operation=create
+        - Attendee
+        - Tags
+        - Transcription?operation=start
   /meetings/{MeetingId}/transcription?operation=stop:
     POST:
       summary: StopMeetingTranscription
@@ -156,10 +278,47 @@ paths:
         Services using audio content to develop and improve Amazon Web Services
         AI/ML services by configuring an AI services opt out policy using Amazon
         Web Services Organizations.</p> </important>
+      tags:
+        - Stop
+        - Meeting
+        - Transcription
+        - Meeting
+        - Id
+        - Attendees?operation=batch
+        - Create
+        - Attendees
+        - Capabilities?operation=batch
+        - Update
+        - Except
+        - Meetings
+        - Meetings?operation=create
+        - Attendee
+        - Tags
+        - Transcription?operation=start
+        - Transcription?operation=stop
   /tags?operation=tag-resource:
     POST:
       summary: TagResource
       description: <p>The resource that supports tags.</p>
+      tags:
+        - Tag
+        - Resource
+        - Meeting
+        - Id
+        - Attendees?operation=batch
+        - Create
+        - Attendees
+        - Capabilities?operation=batch
+        - Update
+        - Except
+        - Meetings
+        - Meetings?operation=create
+        - Attendee
+        - Tags
+        - Transcription?operation=start
+        - Transcription?operation=stop
+        - Tags?operation=tag
+        - Resource
   /tags?operation=untag-resource:
     POST:
       summary: UntagResource
@@ -182,6 +341,26 @@ paths:
         must have both of the following permissions:</p> <p>
         <code>tag:UntagResource</code> </p> <p>
         <code>ChimeSDKMeetings:DeleteTags</code> </p>
+      tags:
+        - Untag
+        - Resource
+        - Meeting
+        - Id
+        - Attendees?operation=batch
+        - Create
+        - Attendees
+        - Capabilities?operation=batch
+        - Update
+        - Except
+        - Meetings
+        - Meetings?operation=create
+        - Attendee
+        - Tags
+        - Transcription?operation=start
+        - Transcription?operation=stop
+        - Tags?operation=tag
+        - Resource
+        - Tags?operation=untag
   /meetings/{MeetingId}/attendees/{AttendeeId}/capabilities:
     PUT:
       summary: UpdateAttendeeCapabilities
@@ -217,4 +396,26 @@ paths:
         <code>SendReceive</code> , and if the attendee turned on their video or
         content streams, remote attendees can receive those streams, but only
         after media renegotiation between the client and the Amazon Chime
-        back-end server.</p> </l
+        back-end server.</p> <
+      tags:
+        - Update
+        - Attendee
+        - Capabilities
+        - Meeting
+        - Id
+        - Attendees?operation=batch
+        - Create
+        - Attendees
+        - Capabilities?operation=batch
+        - Update
+        - Except
+        - Meetings
+        - Meetings?operation=create
+        - Attendee
+        - Tags
+        - Transcription?operation=start
+        - Transcription?operation=stop
+        - Tags?operation=tag
+        - Resource
+        - Tags?operation=untag
+        - Capabiliti

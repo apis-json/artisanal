@@ -5,15 +5,15 @@ info:
   contact:
     email: dev-platform@stripe.com
     name: Stripe Dev Platform Team
-    url: 'https://stripe.com'
-  termsOfService: 'https://stripe.com/us/terms/'
+    url: https://stripe.com
+  termsOfService: https://stripe.com/us/terms/
   version: '2023-10-16'
   x-stripeSpecFilename: spec3
 security:
   - basicAuth: []
   - bearerAuth: []
 servers:
-  - url: 'https://api.stripe.com/'
+  - url: https://api.stripe.com/
 paths:
   /v1/files:
     get:
@@ -177,8 +177,8 @@ paths:
                 $ref: '#/components/schemas/error'
           description: Error response.
       servers:
-        - url: 'https://files.stripe.com/'
-  '/v1/files/{file}':
+        - url: https://files.stripe.com/
+  /v1/files/{file}:
     get:
       description: >-
         <p>Retrieves the details of an existing file object. After you supply a
@@ -348,7 +348,7 @@ components:
           nullable: true
           type: string
         type:
-          description: 'The returned file type (for example, `csv`, `pdf`, `jpg`, or `png`).'
+          description: The returned file type (for example, `csv`, `pdf`, `jpg`, or `png`).
           maxLength: 5000
           nullable: true
           type: string

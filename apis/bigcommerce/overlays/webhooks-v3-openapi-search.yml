@@ -16,7 +16,9 @@ paths:
         headers can be added. Destination URL must be served on port 443 (custom
         ports are not currently supported).
       tags:
-        - Manage Webhooks (Bulk)
+        - Create
+        - Webhook
+        - Hooks
     get:
       summary: Get Webhooks
       description: >-
@@ -26,27 +28,38 @@ paths:
 
         *Note: BigCommerce determines the `client_id` from the `access_token`.*
       tags:
-        - Manage Webhooks (Bulk)
+        - Get
+        - Webhooks
+        - Hooks
   /hooks/{webhook_id}:
     get:
       description: Return a webhook by ID.
       summary: Get a Webhook
       tags:
-        - Manage Webhooks (Single)
+        - Get
+        - Webhook
+        - Hooks
+        - Webhook_id
     parameters:
       - null
     put:
       summary: Update a Webhook
       description: Updates a webhook. Custom headers can be added.
       tags:
-        - Manage Webhooks (Single)
+        - Update
+        - Webhook
+        - Hooks
+        - Webhook_id
     delete:
       summary: Delete a Webhook
       description: >-
         Deletes a webhook. Only one webhook at a time can be deleted. When a
         webhook is deleted, it is returned in the response as a 200 OK.
       tags:
-        - Manage Webhooks (Single)
+        - Delete
+        - Webhook
+        - Hooks
+        - Webhook_id
   /hooks/admin:
     get:
       summary: Get Admin Info
@@ -54,7 +67,12 @@ paths:
         List all notification emails, webhooks, and denylisted domains
         associated with the API account.
       tags:
-        - Webhooks Admin
+        - Get
+        - Admin
+        - Info
+        - Hooks
+        - Webhook_id
+        - Admin
     put:
       summary: Upsert Email Notifications
       description: >
@@ -63,12 +81,22 @@ paths:
         deactivated. Supports `upsert` functionality in the case that no email
         address exists yet.
       tags:
-        - Webhooks Admin
+        - Upsert
+        - Email
+        - Notifications
+        - Hooks
+        - Webhook_id
+        - Admin
   /hooks/events:
     get:
       tags:
-        - Webhook Events
+        - Get
+        - Events
+        - Hooks
+        - Webhook_id
+        - Admin
+        - Events
       summary: Get Events
       description: >
         Get a list of events that were sent but not successfully received.
-        Events are stored for not less than one wee
+        Events are stored for not less th

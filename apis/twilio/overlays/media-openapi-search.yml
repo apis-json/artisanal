@@ -12,11 +12,13 @@ paths:
     post:
       description: ''
       tags:
-        - MediaV1MediaProcessor
+        - Media
+        - Processors
     get:
       description: Returns a list of MediaProcessors.
       tags:
-        - MediaV1MediaProcessor
+        - Media
+        - Processors
   /v1/MediaProcessors/{Sid}:
     description: >-
       A MediaProcessor resource provides the ability to capture content from a
@@ -24,11 +26,15 @@ paths:
     get:
       description: Returns a single MediaProcessor resource identified by a SID.
       tags:
-        - MediaV1MediaProcessor
+        - Media
+        - Processors
+        - Sid
     post:
       description: Updates a MediaProcessor resource identified by a SID.
       tags:
-        - MediaV1MediaProcessor
+        - Media
+        - Processors
+        - Sid
   /v1/MediaRecordings/{Sid}:
     description: >-
       A MediaRecording resource exposes recording metadata and allows the
@@ -36,11 +42,17 @@ paths:
     delete:
       description: Deletes a MediaRecording resource identified by a SID.
       tags:
-        - MediaV1MediaRecording
+        - Media
+        - Processors
+        - Sid
+        - Recordings
     get:
       description: Returns a single MediaRecording resource identified by a SID.
       tags:
-        - MediaV1MediaRecording
+        - Media
+        - Processors
+        - Sid
+        - Recordings
   /v1/MediaRecordings:
     description: >-
       A MediaRecording resource exposes recording metadata and allows the
@@ -48,7 +60,10 @@ paths:
     get:
       description: Returns a list of MediaRecordings.
       tags:
-        - MediaV1MediaRecording
+        - Media
+        - Processors
+        - Sid
+        - Recordings
   /v1/PlayerStreamers/{Sid}:
     description: >-
       A PlayerStreamer resource provides the ability to send a livestream to a
@@ -56,11 +71,21 @@ paths:
     get:
       description: Returns a single PlayerStreamer resource identified by a SID.
       tags:
-        - MediaV1PlayerStreamer
+        - Media
+        - Processors
+        - Sid
+        - Recordings
+        - Player
+        - Streamers
     post:
       description: Updates a PlayerStreamer resource identified by a SID.
       tags:
-        - MediaV1PlayerStreamer
+        - Media
+        - Processors
+        - Sid
+        - Recordings
+        - Player
+        - Streamers
   /v1/PlayerStreamers:
     description: >-
       A PlayerStreamer resource provides the ability to send a livestream to a
@@ -68,11 +93,21 @@ paths:
     post:
       description: ''
       tags:
-        - MediaV1PlayerStreamer
+        - Media
+        - Processors
+        - Sid
+        - Recordings
+        - Player
+        - Streamers
     get:
       description: Returns a list of PlayerStreamers.
       tags:
-        - MediaV1PlayerStreamer
+        - Media
+        - Processors
+        - Sid
+        - Recordings
+        - Player
+        - Streamers
   /v1/PlayerStreamers/{Sid}/PlaybackGrant:
     description: >-
       A PlaybackGrant resource allows developers to generate a grant to
@@ -80,13 +115,27 @@ paths:
     post:
       description: ''
       tags:
-        - MediaV1PlaybackGrant
+        - Media
+        - Processors
+        - Sid
+        - Recordings
+        - Player
+        - Streamers
+        - Playback
+        - Grant
     get:
       description: >-
         **This method is not enabled.** Returns a single PlaybackGrant resource
         identified by a SID.
       tags:
-        - MediaV1PlaybackGrant
+        - Media
+        - Processors
+        - Sid
+        - Recordings
+        - Player
+        - Streamers
+        - Playback
+        - Grant
 tags:
   - name: MediaV1MediaProcessor
   - name: MediaV1MediaRecording
@@ -99,4 +148,4 @@ x-maturity:
     description: >-
       PLEASE NOTE that this is a Preview product that is subject to change. Use
       it with caution. If you currently do not have developer preview access,
-      please contact https://www.twilio.com/help/
+      please contact https://www.twilio

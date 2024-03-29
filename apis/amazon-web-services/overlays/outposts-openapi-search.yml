@@ -6,10 +6,23 @@ paths:
     POST:
       summary: CancelOrder
       description: <p>Cancels the specified order for an Outpost.</p>
+      tags:
+        - Cancel
+        - Order
+        - Order
+        - Id
+        - Cancel
   /orders:
     POST:
       summary: CreateOrder
       description: <p>Creates an order for an Outpost.</p>
+      tags:
+        - Create
+        - Order
+        - Order
+        - Id
+        - Cancel
+        - Orders
   /outposts:
     GET:
       summary: ListOutposts
@@ -20,6 +33,14 @@ paths:
         filters. For a filter where you can specify multiple values, the results
         include items that match any of the values that you specify for the
         filter.</p>
+      tags:
+        - List
+        - Outposts
+        - Order
+        - Id
+        - Cancel
+        - Orders
+        - Outposts
   /sites:
     GET:
       summary: ListSites
@@ -30,18 +51,62 @@ paths:
         only the resources that match all of the specified filters. For a filter
         where you can specify multiple values, the results include items that
         match any of the values that you specify for the filter.</p>
+      tags:
+        - List
+        - Sites
+        - Order
+        - Id
+        - Cancel
+        - Orders
+        - Outposts
+        - Sites
   /outposts/{OutpostId}:
     PATCH:
       summary: UpdateOutpost
       description: <p> Updates an Outpost. </p>
+      tags:
+        - Update
+        - Outpost
+        - Order
+        - Id
+        - Cancel
+        - Orders
+        - Outposts
+        - Sites
+        - Outpost
   /sites/{SiteId}:
     PATCH:
       summary: UpdateSite
       description: <p>Updates the specified site.</p>
+      tags:
+        - Update
+        - Site
+        - Order
+        - Id
+        - Cancel
+        - Orders
+        - Outposts
+        - Sites
+        - Outpost
+        - Site
   /catalog/item/{CatalogItemId}:
     GET:
       summary: GetCatalogItem
       description: <p>Gets information about the specified catalog item.</p>
+      tags:
+        - Get
+        - Catalog
+        - Item
+        - Order
+        - Id
+        - Cancel
+        - Orders
+        - Outposts
+        - Sites
+        - Outpost
+        - Site
+        - Catalog
+        - Item
   /connections/{ConnectionId}:
     GET:
       summary: GetConnection
@@ -58,14 +123,60 @@ paths:
         Logging Amazon Web Services Outposts API calls with Amazon Web Services
         CloudTrail</a> in the <i>Amazon Web Services Outposts User Guide</i>.
         </p>
+      tags:
+        - Get
+        - Connection
+        - Order
+        - Id
+        - Cancel
+        - Orders
+        - Outposts
+        - Sites
+        - Outpost
+        - Site
+        - Catalog
+        - Item
+        - Connection
   /orders/{OrderId}:
     GET:
       summary: GetOrder
       description: <p>Gets information about the specified order.</p>
+      tags:
+        - Get
+        - Order
+        - Order
+        - Id
+        - Cancel
+        - Orders
+        - Outposts
+        - Sites
+        - Outpost
+        - Site
+        - Catalog
+        - Item
+        - Connection
   /outposts/{OutpostId}/instanceTypes:
     GET:
       summary: GetOutpostInstanceTypes
       description: <p>Gets the instance types for the specified Outpost.</p>
+      tags:
+        - Get
+        - Outpost
+        - Instance
+        - Types
+        - Order
+        - Id
+        - Cancel
+        - Orders
+        - Outposts
+        - Sites
+        - Outpost
+        - Site
+        - Catalog
+        - Item
+        - Connection
+        - Instance
+        - Types
   /sites/{SiteId}/address:
     PUT:
       summary: UpdateSiteAddress
@@ -75,6 +186,24 @@ paths:
         order to complete or cancel the order.</p> <p>You can update the
         operating address before you place an order at the site, or after all
         Outposts that belong to the site have been deactivated.</p>
+      tags:
+        - Update
+        - Site
+        - Address
+        - Order
+        - Id
+        - Cancel
+        - Orders
+        - Outposts
+        - Sites
+        - Outpost
+        - Site
+        - Catalog
+        - Item
+        - Connection
+        - Instance
+        - Types
+        - Address
   /outposts/{OutpostId}/assets:
     GET:
       summary: ListAssets
@@ -85,6 +214,24 @@ paths:
         filters. For a filter where you can specify multiple values, the results
         include items that match any of the values that you specify for the
         filter.</p>
+      tags:
+        - List
+        - Assets
+        - Order
+        - Id
+        - Cancel
+        - Orders
+        - Outposts
+        - Sites
+        - Outpost
+        - Site
+        - Catalog
+        - Item
+        - Connection
+        - Instance
+        - Types
+        - Address
+        - Assets
   /catalog/items:
     GET:
       summary: ListCatalogItems
@@ -94,14 +241,76 @@ paths:
         resources that match all of the specified filters. For a filter where
         you can specify multiple values, the results include items that match
         any of the values that you specify for the filter.</p>
+      tags:
+        - List
+        - Catalog
+        - Items
+        - Order
+        - Id
+        - Cancel
+        - Orders
+        - Outposts
+        - Sites
+        - Outpost
+        - Site
+        - Catalog
+        - Item
+        - Connection
+        - Instance
+        - Types
+        - Address
+        - Assets
+        - Items
   /list-orders:
     GET:
       summary: ListOrders
       description: <p>Lists the Outpost orders for your Amazon Web Services account.</p>
+      tags:
+        - List
+        - Orders
+        - Order
+        - Id
+        - Cancel
+        - Orders
+        - Outposts
+        - Sites
+        - Outpost
+        - Site
+        - Catalog
+        - Item
+        - Connection
+        - Instance
+        - Types
+        - Address
+        - Assets
+        - Items
+        - List
   /tags/{ResourceArn}:
     DELETE:
       summary: UntagResource
       description: <p>Removes tags from the specified resource.</p>
+      tags:
+        - Untag
+        - Resource
+        - Order
+        - Id
+        - Cancel
+        - Orders
+        - Outposts
+        - Sites
+        - Outpost
+        - Site
+        - Catalog
+        - Item
+        - Connection
+        - Instance
+        - Types
+        - Address
+        - Assets
+        - Items
+        - List
+        - Resource
+        - Arn
   /connections:
     POST:
       summary: StartConnection
@@ -118,6 +327,29 @@ paths:
         Logging Amazon Web Services Outposts API calls with Amazon Web Services
         CloudTrail</a> in the <i>Amazon Web Services Outposts User Guide</i>.
         </p>
+      tags:
+        - Start
+        - Connection
+        - Order
+        - Id
+        - Cancel
+        - Orders
+        - Outposts
+        - Sites
+        - Outpost
+        - Site
+        - Catalog
+        - Item
+        - Connection
+        - Instance
+        - Types
+        - Address
+        - Assets
+        - Items
+        - List
+        - Resource
+        - Arn
+        - Connections
   /sites/{SiteId}/rackPhysicalProperties:
     PATCH:
       summary: UpdateSiteRackPhysicalProperties
@@ -128,4 +360,33 @@ paths:
         readiness checklist</a> in the Amazon Web Services Outposts User Guide.
         </p> <p>To update a rack at a site with an order of
         <code>IN_PROGRESS</code>, you must wait for the order to complete or
-        cancel the or
+        cancel the 
+      tags:
+        - Update
+        - Site
+        - Rack
+        - Physical
+        - Properties
+        - Order
+        - Id
+        - Cancel
+        - Orders
+        - Outposts
+        - Sites
+        - Outpost
+        - Site
+        - Catalog
+        - Item
+        - Connection
+        - Instance
+        - Types
+        - Address
+        - Assets
+        - Items
+        - List
+        - Resource
+        - Arn
+        - Connections
+        - Rack
+        - Physical
+        - Properti

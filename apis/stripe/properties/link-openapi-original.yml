@@ -5,15 +5,15 @@ info:
   contact:
     email: dev-platform@stripe.com
     name: Stripe Dev Platform Team
-    url: 'https://stripe.com'
-  termsOfService: 'https://stripe.com/us/terms/'
+    url: https://stripe.com
+  termsOfService: https://stripe.com/us/terms/
   version: '2023-10-16'
   x-stripeSpecFilename: spec3
 security:
   - basicAuth: []
   - bearerAuth: []
 servers:
-  - url: 'https://api.stripe.com/'
+  - url: https://api.stripe.com/
 paths:
   /v1/link_account_sessions:
     post:
@@ -58,7 +58,7 @@ paths:
               schema:
                 $ref: '#/components/schemas/error'
           description: Error response.
-  '/v1/link_account_sessions/{session}':
+  /v1/link_account_sessions/{session}:
     get:
       description: >-
         <p>Retrieves the details of a Financial Connections
@@ -210,7 +210,7 @@ paths:
               schema:
                 $ref: '#/components/schemas/error'
           description: Error response.
-  '/v1/linked_accounts/{account}':
+  /v1/linked_accounts/{account}:
     get:
       description: >-
         <p>Retrieves the details of an Financial Connections
@@ -256,7 +256,7 @@ paths:
               schema:
                 $ref: '#/components/schemas/error'
           description: Error response.
-  '/v1/linked_accounts/{account}/disconnect':
+  /v1/linked_accounts/{account}/disconnect:
     post:
       description: >-
         <p>Disables your access to a Financial Connections <code>Account</code>.
@@ -295,7 +295,7 @@ paths:
               schema:
                 $ref: '#/components/schemas/error'
           description: Error response.
-  '/v1/linked_accounts/{account}/owners':
+  /v1/linked_accounts/{account}/owners:
     get:
       description: <p>Lists all owners for a given <code>Account</code></p>
       operationId: GetLinkedAccountsAccountOwners
@@ -385,7 +385,7 @@ paths:
               schema:
                 $ref: '#/components/schemas/error'
           description: Error response.
-  '/v1/linked_accounts/{account}/refresh':
+  /v1/linked_accounts/{account}/refresh:
     post:
       description: >-
         <p>Refreshes the data associated with a Financial Connections

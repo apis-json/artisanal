@@ -15,6 +15,16 @@ paths:
         then that formula will be copied down to the new row. If there is no
         column level formula and no formula in the last row of the table, then
         that column will be left blank for the new rows. </p>
+      tags:
+        - Batch
+        - Create
+        - Table
+        - Rows
+        - Id
+        - Tables
+        - Table
+        - Rows
+        - Batchcreate
   /workbooks/{workbookId}/tables/{tableId}/rows/batchdelete:
     POST:
       summary: BatchDeleteTableRows
@@ -22,6 +32,17 @@ paths:
         <p> The BatchDeleteTableRows API allows you to delete one or more rows
         from a table in a workbook. You need to specify the ids of the rows that
         you want to delete from the table. </p>
+      tags:
+        - Batch
+        - Delete
+        - Table
+        - Rows
+        - Id
+        - Tables
+        - Table
+        - Rows
+        - Batchcreate
+        - Batchdelete
   /workbooks/{workbookId}/tables/{tableId}/rows/batchupdate:
     POST:
       summary: BatchUpdateTableRows
@@ -32,6 +53,18 @@ paths:
         column is not explicitly specified in a particular row, then that column
         will not be updated for that row. To clear out the data in a specific
         cell, you need to set the value as an empty string (""). </p>
+      tags:
+        - Batch
+        - Update
+        - Table
+        - Rows
+        - Id
+        - Tables
+        - Table
+        - Rows
+        - Batchcreate
+        - Batchdelete
+        - Batchupdate
   /workbooks/{workbookId}/tables/{tableId}/rows/batchupsert:
     POST:
       summary: BatchUpsertTableRows
@@ -48,12 +81,41 @@ paths:
         for a particular row, then that column will not be updated for that row.
         To clear out the data in a specific cell, you need to set the value as
         an empty string (""). </p>
+      tags:
+        - Batch
+        - Upsert
+        - Table
+        - Rows
+        - Id
+        - Tables
+        - Table
+        - Rows
+        - Batchcreate
+        - Batchdelete
+        - Batchupdate
+        - Batchupsert
   /workbooks/{workbookId}/tables/{tableId}/import/{jobId}:
     GET:
       summary: DescribeTableDataImportJob
       description: >-
         <p> The DescribeTableDataImportJob API allows you to retrieve the status
         and details of a table data import job. </p>
+      tags:
+        - Describe
+        - Table
+        - Data
+        - Import
+        - Job
+        - Id
+        - Tables
+        - Table
+        - Rows
+        - Batchcreate
+        - Batchdelete
+        - Batchupdate
+        - Batchupsert
+        - Import
+        - Job
   /screendata:
     POST:
       summary: GetScreenData
@@ -62,6 +124,21 @@ paths:
         Honeycode app. The API allows setting local variables in the screen to
         filter, sort or otherwise affect what will be displayed on the screen.
         </p>
+      tags:
+        - Get
+        - Screen
+        - Data
+        - Id
+        - Tables
+        - Table
+        - Rows
+        - Batchcreate
+        - Batchdelete
+        - Batchupdate
+        - Batchupsert
+        - Import
+        - Job
+        - Screendata
   /workbooks/{workbookId}/apps/{appId}/screens/{screenId}/automations/{automationId}:
     POST:
       summary: InvokeScreenAutomation
@@ -71,24 +148,112 @@ paths:
         which can then be used in the automation being invoked. This allows
         automating the Honeycode app interactions to write, update or delete
         data in the workbook. </p>
+      tags:
+        - Invoke
+        - Screen
+        - Automation
+        - Id
+        - Tables
+        - Table
+        - Rows
+        - Batchcreate
+        - Batchdelete
+        - Batchupdate
+        - Batchupsert
+        - Import
+        - Job
+        - Screendata
+        - Apps
+        - App
+        - Screens
+        - Screen
+        - Automations
+        - Automation
   /workbooks/{workbookId}/tables/{tableId}/columns:
     GET:
       summary: ListTableColumns
       description: >-
         <p> The ListTableColumns API allows you to retrieve a list of all the
         columns in a table in a workbook. </p>
+      tags:
+        - List
+        - Table
+        - Columns
+        - Id
+        - Tables
+        - Table
+        - Rows
+        - Batchcreate
+        - Batchdelete
+        - Batchupdate
+        - Batchupsert
+        - Import
+        - Job
+        - Screendata
+        - Apps
+        - App
+        - Screens
+        - Screen
+        - Automations
+        - Automation
+        - Columns
   /workbooks/{workbookId}/tables/{tableId}/rows/list:
     POST:
       summary: ListTableRows
       description: >-
         <p> The ListTableRows API allows you to retrieve a list of all the rows
         in a table in a workbook. </p>
+      tags:
+        - List
+        - Table
+        - Rows
+        - Id
+        - Tables
+        - Table
+        - Rows
+        - Batchcreate
+        - Batchdelete
+        - Batchupdate
+        - Batchupsert
+        - Import
+        - Job
+        - Screendata
+        - Apps
+        - App
+        - Screens
+        - Screen
+        - Automations
+        - Automation
+        - Columns
+        - List
   /workbooks/{workbookId}/tables:
     GET:
       summary: ListTables
       description: >-
         <p> The ListTables API allows you to retrieve a list of all the tables
         in a workbook. </p>
+      tags:
+        - List
+        - Tables
+        - Id
+        - Tables
+        - Table
+        - Rows
+        - Batchcreate
+        - Batchdelete
+        - Batchupdate
+        - Batchupsert
+        - Import
+        - Job
+        - Screendata
+        - Apps
+        - App
+        - Screens
+        - Screen
+        - Automations
+        - Automation
+        - Columns
+        - List
   /tags/{resourceArn}:
     DELETE:
       summary: UntagResource
@@ -96,12 +261,60 @@ paths:
         <p> The UntagResource API allows you to removes tags from an ARN-able
         resource. Resource includes workbook, table, screen and
         screen-automation. </p>
+      tags:
+        - Untag
+        - Resource
+        - Id
+        - Tables
+        - Table
+        - Rows
+        - Batchcreate
+        - Batchdelete
+        - Batchupdate
+        - Batchupsert
+        - Import
+        - Job
+        - Screendata
+        - Apps
+        - App
+        - Screens
+        - Screen
+        - Automations
+        - Automation
+        - Columns
+        - List
+        - Arn
   /workbooks/{workbookId}/tables/{tableId}/rows/query:
     POST:
       summary: QueryTableRows
       description: >-
         <p> The QueryTableRows API allows you to use a filter formula to query
         for specific rows in a table. </p>
+      tags:
+        - Query
+        - Table
+        - Rows
+        - Id
+        - Tables
+        - Table
+        - Rows
+        - Batchcreate
+        - Batchdelete
+        - Batchupdate
+        - Batchupsert
+        - Import
+        - Job
+        - Screendata
+        - Apps
+        - App
+        - Screens
+        - Screen
+        - Automations
+        - Automation
+        - Columns
+        - List
+        - Arn
+        - Query
   /workbooks/{workbookId}/tables/{tableId}/import:
     POST:
       summary: StartTableDataImportJob
@@ -109,4 +322,31 @@ paths:
         <p> The StartTableDataImportJob API allows you to start an import job on
         a table. This API will only return the id of the job that was started.
         To find out the status of the import request, you need to call the
-        DescribeTableDataImportJob A
+        DescribeTableDataImportJob
+      tags:
+        - Start
+        - Table
+        - Data
+        - Import
+        - Job
+        - Id
+        - Tables
+        - Table
+        - Rows
+        - Batchcreate
+        - Batchdelete
+        - Batchupdate
+        - Batchupsert
+        - Import
+        - Job
+        - Screendata
+        - Apps
+        - App
+        - Screens
+        - Screen
+        - Automations
+        - Automation
+        - Columns
+        - List
+        - Arn
+        - Que

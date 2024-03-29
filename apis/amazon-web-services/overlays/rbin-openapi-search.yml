@@ -10,6 +10,10 @@ paths:
         href="https://docs.aws.amazon.com/AWSEC2/latest/UserGuide/recycle-bin-working-with-rules.html#recycle-bin-create-rule">
         Create Recycle Bin retention rules</a> in the <i>Amazon Elastic Compute
         Cloud User Guide</i>.</p>
+      tags:
+        - Create
+        - Rule
+        - Rules
   /rules/{identifier}:
     PATCH:
       summary: UpdateRule
@@ -21,23 +25,58 @@ paths:
         href="https://docs.aws.amazon.com/AWSEC2/latest/UserGuide/recycle-bin-working-with-rules.html#recycle-bin-update-rule">
         Update Recycle Bin retention rules</a> in the <i>Amazon Elastic Compute
         Cloud User Guide</i>.</p>
+      tags:
+        - Update
+        - Rule
+        - Rules
+        - Identifier
   /list-rules:
     POST:
       summary: ListRules
       description: <p>Lists the Recycle Bin retention rules in the Region.</p>
+      tags:
+        - List
+        - Rules
+        - Rules
+        - Identifier
+        - List
   /tags/{resourceArn}:
     DELETE:
       summary: UntagResource
       description: <p>Unassigns a tag from a retention rule.</p>
+      tags:
+        - Untag
+        - Resource
+        - Rules
+        - Identifier
+        - List
+        - Arn
   /rules/{identifier}/lock:
     PATCH:
       summary: LockRule
       description: >-
         <p>Locks a retention rule. A locked retention rule can't be modified or
         deleted.</p>
+      tags:
+        - Lock
+        - Rule
+        - Rules
+        - Identifier
+        - List
+        - Arn
+        - Lock
   /rules/{identifier}/unlock:
     PATCH:
       summary: UnlockRule
       description: >-
         <p>Unlocks a retention rule. After a retention rule is unlocked, it can
-        be modified or deleted only after the unlock delay period expi
+        be modified or deleted only after the unlock delay period ex
+      tags:
+        - Unlock
+        - Rule
+        - Rules
+        - Identifier
+        - List
+        - Arn
+        - Lock
+        - Unlo

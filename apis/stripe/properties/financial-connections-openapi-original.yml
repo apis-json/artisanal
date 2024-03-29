@@ -5,15 +5,15 @@ info:
   contact:
     email: dev-platform@stripe.com
     name: Stripe Dev Platform Team
-    url: 'https://stripe.com'
-  termsOfService: 'https://stripe.com/us/terms/'
+    url: https://stripe.com
+  termsOfService: https://stripe.com/us/terms/
   version: '2023-10-16'
   x-stripeSpecFilename: spec3
 security:
   - basicAuth: []
   - bearerAuth: []
 servers:
-  - url: 'https://api.stripe.com/'
+  - url: https://api.stripe.com/
 paths:
   /v1/financial_connections/accounts:
     get:
@@ -121,7 +121,7 @@ paths:
               schema:
                 $ref: '#/components/schemas/error'
           description: Error response.
-  '/v1/financial_connections/accounts/{account}':
+  /v1/financial_connections/accounts/{account}:
     get:
       description: >-
         <p>Retrieves the details of an Financial Connections
@@ -168,7 +168,7 @@ paths:
               schema:
                 $ref: '#/components/schemas/error'
           description: Error response.
-  '/v1/financial_connections/accounts/{account}/disconnect':
+  /v1/financial_connections/accounts/{account}/disconnect:
     post:
       description: >-
         <p>Disables your access to a Financial Connections <code>Account</code>.
@@ -208,7 +208,7 @@ paths:
               schema:
                 $ref: '#/components/schemas/error'
           description: Error response.
-  '/v1/financial_connections/accounts/{account}/owners':
+  /v1/financial_connections/accounts/{account}/owners:
     get:
       description: <p>Lists all owners for a given <code>Account</code></p>
       operationId: GetFinancialConnectionsAccountsAccountOwners
@@ -299,7 +299,7 @@ paths:
               schema:
                 $ref: '#/components/schemas/error'
           description: Error response.
-  '/v1/financial_connections/accounts/{account}/refresh':
+  /v1/financial_connections/accounts/{account}/refresh:
     post:
       description: >-
         <p>Refreshes the data associated with a Financial Connections
@@ -341,7 +341,7 @@ paths:
               schema:
                 $ref: '#/components/schemas/error'
           description: Error response.
-  '/v1/financial_connections/accounts/{account}/subscribe':
+  /v1/financial_connections/accounts/{account}/subscribe:
     post:
       description: >-
         <p>Subscribes to periodic refreshes of data associated with a Financial
@@ -383,7 +383,7 @@ paths:
               schema:
                 $ref: '#/components/schemas/error'
           description: Error response.
-  '/v1/financial_connections/accounts/{account}/unsubscribe':
+  /v1/financial_connections/accounts/{account}/unsubscribe:
     post:
       description: >-
         <p>Unsubscribes from periodic refreshes of data associated with a
@@ -468,7 +468,7 @@ paths:
               schema:
                 $ref: '#/components/schemas/error'
           description: Error response.
-  '/v1/financial_connections/sessions/{session}':
+  /v1/financial_connections/sessions/{session}:
     get:
       description: >-
         <p>Retrieves the details of a Financial Connections
@@ -640,7 +640,7 @@ paths:
               schema:
                 $ref: '#/components/schemas/error'
           description: Error response.
-  '/v1/financial_connections/transactions/{transaction}':
+  /v1/financial_connections/transactions/{transaction}:
     get:
       description: >-
         <p>Retrieves the details of a Financial Connections
@@ -997,7 +997,7 @@ components:
           maxLength: 5000
           type: string
         amount:
-          description: 'The amount of this transaction, in cents (or local equivalent).'
+          description: The amount of this transaction, in cents (or local equivalent).
           type: integer
         currency:
           description: >-

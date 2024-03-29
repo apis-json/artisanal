@@ -7,8 +7,14 @@ paths:
       description: >-
         <p>Returns a list of your customers. The customers are returned sorted
         by creation date, with the most recent customers appearing first.</p>
+      tags:
+        - V1
+        - Customers
     post:
       description: <p>Creates a new customer object.</p>
+      tags:
+        - V1
+        - Customers
   /v1/customers/search:
     get:
       description: >-
@@ -23,13 +29,27 @@ paths:
 
         to an hour behind during outages. Search functionality is not available
         to merchants in India.</p>
+      tags:
+        - V1
+        - Customers
+        - Search
   /v1/customers/{customer}:
     delete:
       description: >-
         <p>Permanently deletes a customer. It cannot be undone. Also immediately
         cancels any active subscriptions on the customer.</p>
+      tags:
+        - V1
+        - Customers
+        - Search
+        - Customer
     get:
       description: <p>Retrieves a Customer object.</p>
+      tags:
+        - V1
+        - Customers
+        - Search
+        - Customer
     post:
       description: >-
         <p>Updates the specified customer by setting the values of the
@@ -49,24 +69,55 @@ paths:
 
         <p>This request accepts mostly the same arguments as the customer
         creation call.</p>
+      tags:
+        - V1
+        - Customers
+        - Search
+        - Customer
   /v1/customers/{customer}/balance_transactions:
     get:
       description: >-
         <p>Returns a list of transactions that updated the customer’s <a
         href="/docs/billing/customer/balance">balances</a>.</p>
+      tags:
+        - V1
+        - Customers
+        - Search
+        - Customer
+        - Balance_transactions
     post:
       description: >-
         <p>Creates an immutable transaction that updates the customer’s credit
         <a href="/docs/billing/customer/balance">balance</a>.</p>
+      tags:
+        - V1
+        - Customers
+        - Search
+        - Customer
+        - Balance_transactions
   /v1/customers/{customer}/balance_transactions/{transaction}:
     get:
       description: >-
         <p>Retrieves a specific customer balance transaction that updated the
         customer’s <a href="/docs/billing/customer/balance">balances</a>.</p>
+      tags:
+        - V1
+        - Customers
+        - Search
+        - Customer
+        - Balance_transactions
+        - Transaction
     post:
       description: >-
         <p>Most credit balance transaction fields are immutable, but you may
         update its <code>description</code> and <code>metadata</code>.</p>
+      tags:
+        - V1
+        - Customers
+        - Search
+        - Customer
+        - Balance_transactions
+        - Transaction
   /v1/customers/{customer}/bank_accounts:
     get:
       description: >-
@@ -75,6 +126,14 @@ paths:
         Customer. If you need more than those 10, you can use this API method
         and the <code>limit</code> and <code>starting_after</code> parameters to
         page through additional bank accounts.</p>
+      tags:
+        - V1
+        - Customers
+        - Search
+        - Customer
+        - Balance_transactions
+        - Transaction
+        - Bank_accounts
     post:
       description: >-
         <p>When you create a new credit card, you must specify a customer or
@@ -89,19 +148,64 @@ paths:
         To change the default, you should <a
         href="/docs/api#update_customer">update the customer</a> to have a new
         <code>default_source</code>.</p>
+      tags:
+        - V1
+        - Customers
+        - Search
+        - Customer
+        - Balance_transactions
+        - Transaction
+        - Bank_accounts
   /v1/customers/{customer}/bank_accounts/{id}:
     delete:
       description: <p>Delete a specified source for a given customer.</p>
+      tags:
+        - V1
+        - Customers
+        - Search
+        - Customer
+        - Balance_transactions
+        - Transaction
+        - Bank_accounts
+        - Id
     get:
       description: >-
         <p>By default, you can see the 10 most recent sources stored on a
         Customer directly on the object, but you can also retrieve details about
         a specific bank account stored on the Stripe account.</p>
+      tags:
+        - V1
+        - Customers
+        - Search
+        - Customer
+        - Balance_transactions
+        - Transaction
+        - Bank_accounts
+        - Id
     post:
       description: <p>Update a specified source for a given customer.</p>
+      tags:
+        - V1
+        - Customers
+        - Search
+        - Customer
+        - Balance_transactions
+        - Transaction
+        - Bank_accounts
+        - Id
   /v1/customers/{customer}/bank_accounts/{id}/verify:
     post:
       description: <p>Verify a specified bank account for a given customer.</p>
+      tags:
+        - V1
+        - Customers
+        - Search
+        - Customer
+        - Balance_transactions
+        - Transaction
+        - Bank_accounts
+        - Id
+        - Verify
   /v1/customers/{customer}/cards:
     get:
       description: >-
@@ -113,6 +217,17 @@ paths:
         If you need more than those 10, you can use this API method and the
         <code>limit</code> and <code>starting_after</code> parameters to page
         through additional cards.</p>
+      tags:
+        - V1
+        - Customers
+        - Search
+        - Customer
+        - Balance_transactions
+        - Transaction
+        - Bank_accounts
+        - Id
+        - Verify
+        - Cards
     post:
       description: >-
         <p>When you create a new credit card, you must specify a customer or
@@ -127,37 +242,159 @@ paths:
         To change the default, you should <a
         href="/docs/api#update_customer">update the customer</a> to have a new
         <code>default_source</code>.</p>
+      tags:
+        - V1
+        - Customers
+        - Search
+        - Customer
+        - Balance_transactions
+        - Transaction
+        - Bank_accounts
+        - Id
+        - Verify
+        - Cards
   /v1/customers/{customer}/cards/{id}:
     delete:
       description: <p>Delete a specified source for a given customer.</p>
+      tags:
+        - V1
+        - Customers
+        - Search
+        - Customer
+        - Balance_transactions
+        - Transaction
+        - Bank_accounts
+        - Id
+        - Verify
+        - Cards
     get:
       description: >-
         <p>You can always see the 10 most recent cards directly on a customer;
         this method lets you retrieve details about a specific card stored on
         the customer.</p>
+      tags:
+        - V1
+        - Customers
+        - Search
+        - Customer
+        - Balance_transactions
+        - Transaction
+        - Bank_accounts
+        - Id
+        - Verify
+        - Cards
     post:
       description: <p>Update a specified source for a given customer.</p>
+      tags:
+        - V1
+        - Customers
+        - Search
+        - Customer
+        - Balance_transactions
+        - Transaction
+        - Bank_accounts
+        - Id
+        - Verify
+        - Cards
   /v1/customers/{customer}/cash_balance:
     get:
       description: <p>Retrieves a customer’s cash balance.</p>
+      tags:
+        - V1
+        - Customers
+        - Search
+        - Customer
+        - Balance_transactions
+        - Transaction
+        - Bank_accounts
+        - Id
+        - Verify
+        - Cards
+        - Cash_balance
     post:
       description: <p>Changes the settings on a customer’s cash balance.</p>
+      tags:
+        - V1
+        - Customers
+        - Search
+        - Customer
+        - Balance_transactions
+        - Transaction
+        - Bank_accounts
+        - Id
+        - Verify
+        - Cards
+        - Cash_balance
   /v1/customers/{customer}/cash_balance_transactions:
     get:
       description: >-
         <p>Returns a list of transactions that modified the customer’s <a
         href="/docs/payments/customer-balance">cash balance</a>.</p>
+      tags:
+        - V1
+        - Customers
+        - Search
+        - Customer
+        - Balance_transactions
+        - Transaction
+        - Bank_accounts
+        - Id
+        - Verify
+        - Cards
+        - Cash_balance
+        - Cash_balance_transactions
   /v1/customers/{customer}/cash_balance_transactions/{transaction}:
     get:
       description: >-
         <p>Retrieves a specific cash balance transaction, which updated the
         customer’s <a href="/docs/payments/customer-balance">cash
         balance</a>.</p>
+      tags:
+        - V1
+        - Customers
+        - Search
+        - Customer
+        - Balance_transactions
+        - Transaction
+        - Bank_accounts
+        - Id
+        - Verify
+        - Cards
+        - Cash_balance
+        - Cash_balance_transactions
   /v1/customers/{customer}/discount:
     delete:
       description: <p>Removes the currently applied discount on a customer.</p>
+      tags:
+        - V1
+        - Customers
+        - Search
+        - Customer
+        - Balance_transactions
+        - Transaction
+        - Bank_accounts
+        - Id
+        - Verify
+        - Cards
+        - Cash_balance
+        - Cash_balance_transactions
+        - Discount
     get:
       description: ''
+      tags:
+        - V1
+        - Customers
+        - Search
+        - Customer
+        - Balance_transactions
+        - Transaction
+        - Bank_accounts
+        - Id
+        - Verify
+        - Cards
+        - Cash_balance
+        - Cash_balance_transactions
+        - Discount
   /v1/customers/{customer}/funding_instructions:
     post:
       description: >-
@@ -169,15 +406,81 @@ paths:
 
         funding instructions will be retrieved. In other words, we will return
         the same funding instructions each time.</p>
+      tags:
+        - V1
+        - Customers
+        - Search
+        - Customer
+        - Balance_transactions
+        - Transaction
+        - Bank_accounts
+        - Id
+        - Verify
+        - Cards
+        - Cash_balance
+        - Cash_balance_transactions
+        - Discount
+        - Funding_instructions
   /v1/customers/{customer}/payment_methods:
     get:
       description: <p>Returns a list of PaymentMethods for a given Customer</p>
+      tags:
+        - V1
+        - Customers
+        - Search
+        - Customer
+        - Balance_transactions
+        - Transaction
+        - Bank_accounts
+        - Id
+        - Verify
+        - Cards
+        - Cash_balance
+        - Cash_balance_transactions
+        - Discount
+        - Funding_instructions
+        - Payment_methods
   /v1/customers/{customer}/payment_methods/{payment_method}:
     get:
       description: <p>Retrieves a PaymentMethod object for a given Customer.</p>
+      tags:
+        - V1
+        - Customers
+        - Search
+        - Customer
+        - Balance_transactions
+        - Transaction
+        - Bank_accounts
+        - Id
+        - Verify
+        - Cards
+        - Cash_balance
+        - Cash_balance_transactions
+        - Discount
+        - Funding_instructions
+        - Payment_methods
+        - Payment_method
   /v1/customers/{customer}/sources:
     get:
       description: <p>List sources for a specified customer.</p>
+      tags:
+        - V1
+        - Customers
+        - Search
+        - Customer
+        - Balance_transactions
+        - Transaction
+        - Bank_accounts
+        - Id
+        - Verify
+        - Cards
+        - Cash_balance
+        - Cash_balance_transactions
+        - Discount
+        - Funding_instructions
+        - Payment_methods
+        - Payment_method
+        - Sources
     post:
       description: >-
         <p>When you create a new credit card, you must specify a customer or
@@ -192,16 +495,106 @@ paths:
         To change the default, you should <a
         href="/docs/api#update_customer">update the customer</a> to have a new
         <code>default_source</code>.</p>
+      tags:
+        - V1
+        - Customers
+        - Search
+        - Customer
+        - Balance_transactions
+        - Transaction
+        - Bank_accounts
+        - Id
+        - Verify
+        - Cards
+        - Cash_balance
+        - Cash_balance_transactions
+        - Discount
+        - Funding_instructions
+        - Payment_methods
+        - Payment_method
+        - Sources
   /v1/customers/{customer}/sources/{id}:
     delete:
       description: <p>Delete a specified source for a given customer.</p>
+      tags:
+        - V1
+        - Customers
+        - Search
+        - Customer
+        - Balance_transactions
+        - Transaction
+        - Bank_accounts
+        - Id
+        - Verify
+        - Cards
+        - Cash_balance
+        - Cash_balance_transactions
+        - Discount
+        - Funding_instructions
+        - Payment_methods
+        - Payment_method
+        - Sources
     get:
       description: <p>Retrieve a specified source for a given customer.</p>
+      tags:
+        - V1
+        - Customers
+        - Search
+        - Customer
+        - Balance_transactions
+        - Transaction
+        - Bank_accounts
+        - Id
+        - Verify
+        - Cards
+        - Cash_balance
+        - Cash_balance_transactions
+        - Discount
+        - Funding_instructions
+        - Payment_methods
+        - Payment_method
+        - Sources
     post:
       description: <p>Update a specified source for a given customer.</p>
+      tags:
+        - V1
+        - Customers
+        - Search
+        - Customer
+        - Balance_transactions
+        - Transaction
+        - Bank_accounts
+        - Id
+        - Verify
+        - Cards
+        - Cash_balance
+        - Cash_balance_transactions
+        - Discount
+        - Funding_instructions
+        - Payment_methods
+        - Payment_method
+        - Sources
   /v1/customers/{customer}/sources/{id}/verify:
     post:
       description: <p>Verify a specified bank account for a given customer.</p>
+      tags:
+        - V1
+        - Customers
+        - Search
+        - Customer
+        - Balance_transactions
+        - Transaction
+        - Bank_accounts
+        - Id
+        - Verify
+        - Cards
+        - Cash_balance
+        - Cash_balance_transactions
+        - Discount
+        - Funding_instructions
+        - Payment_methods
+        - Payment_method
+        - Sources
   /v1/customers/{customer}/subscriptions:
     get:
       description: >-
@@ -210,8 +603,46 @@ paths:
         on the customer object. If you need more than those 10, you can use the
         limit and starting_after parameters to page through additional
         subscriptions.</p>
+      tags:
+        - V1
+        - Customers
+        - Search
+        - Customer
+        - Balance_transactions
+        - Transaction
+        - Bank_accounts
+        - Id
+        - Verify
+        - Cards
+        - Cash_balance
+        - Cash_balance_transactions
+        - Discount
+        - Funding_instructions
+        - Payment_methods
+        - Payment_method
+        - Sources
+        - Subscriptions
     post:
       description: <p>Creates a new subscription on an existing customer.</p>
+      tags:
+        - V1
+        - Customers
+        - Search
+        - Customer
+        - Balance_transactions
+        - Transaction
+        - Bank_accounts
+        - Id
+        - Verify
+        - Cards
+        - Cash_balance
+        - Cash_balance_transactions
+        - Discount
+        - Funding_instructions
+        - Payment_methods
+        - Payment_method
+        - Sources
+        - Subscriptions
   /v1/customers/{customer}/subscriptions/{subscription_exposed_id}:
     delete:
       description: >-
@@ -240,8 +671,48 @@ paths:
         the invoices manually after subscription cancellation to have us
         proceed. Or, you could check for unpaid invoices before allowing the
         customer to cancel the subscription at all.</p>
+      tags:
+        - V1
+        - Customers
+        - Search
+        - Customer
+        - Balance_transactions
+        - Transaction
+        - Bank_accounts
+        - Id
+        - Verify
+        - Cards
+        - Cash_balance
+        - Cash_balance_transactions
+        - Discount
+        - Funding_instructions
+        - Payment_methods
+        - Payment_method
+        - Sources
+        - Subscriptions
+        - Subscription_exposed_id
     get:
       description: <p>Retrieves the subscription with the given ID.</p>
+      tags:
+        - V1
+        - Customers
+        - Search
+        - Customer
+        - Balance_transactions
+        - Transaction
+        - Bank_accounts
+        - Id
+        - Verify
+        - Cards
+        - Cash_balance
+        - Cash_balance_transactions
+        - Discount
+        - Funding_instructions
+        - Payment_methods
+        - Payment_method
+        - Sources
+        - Subscriptions
+        - Subscription_exposed_id
     post:
       description: >-
         <p>Updates an existing subscription on a customer to match the specified
@@ -249,18 +720,162 @@ paths:
         prorate the price we charge next month to make up for any price changes.
         To preview how the proration will be calculated, use the <a
         href="#upcoming_invoice">upcoming invoice</a> endpoint.</p>
+      tags:
+        - V1
+        - Customers
+        - Search
+        - Customer
+        - Balance_transactions
+        - Transaction
+        - Bank_accounts
+        - Id
+        - Verify
+        - Cards
+        - Cash_balance
+        - Cash_balance_transactions
+        - Discount
+        - Funding_instructions
+        - Payment_methods
+        - Payment_method
+        - Sources
+        - Subscriptions
+        - Subscription_exposed_id
   /v1/customers/{customer}/subscriptions/{subscription_exposed_id}/discount:
     delete:
       description: <p>Removes the currently applied discount on a customer.</p>
+      tags:
+        - V1
+        - Customers
+        - Search
+        - Customer
+        - Balance_transactions
+        - Transaction
+        - Bank_accounts
+        - Id
+        - Verify
+        - Cards
+        - Cash_balance
+        - Cash_balance_transactions
+        - Discount
+        - Funding_instructions
+        - Payment_methods
+        - Payment_method
+        - Sources
+        - Subscriptions
+        - Subscription_exposed_id
     get:
       description: ''
+      tags:
+        - V1
+        - Customers
+        - Search
+        - Customer
+        - Balance_transactions
+        - Transaction
+        - Bank_accounts
+        - Id
+        - Verify
+        - Cards
+        - Cash_balance
+        - Cash_balance_transactions
+        - Discount
+        - Funding_instructions
+        - Payment_methods
+        - Payment_method
+        - Sources
+        - Subscriptions
+        - Subscription_exposed_id
   /v1/customers/{customer}/tax_ids:
     get:
       description: <p>Returns a list of tax IDs for a customer.</p>
+      tags:
+        - V1
+        - Customers
+        - Search
+        - Customer
+        - Balance_transactions
+        - Transaction
+        - Bank_accounts
+        - Id
+        - Verify
+        - Cards
+        - Cash_balance
+        - Cash_balance_transactions
+        - Discount
+        - Funding_instructions
+        - Payment_methods
+        - Payment_method
+        - Sources
+        - Subscriptions
+        - Subscription_exposed_id
+        - Tax_ids
     post:
       description: <p>Creates a new <code>tax_id</code> object for a customer.</p>
+      tags:
+        - V1
+        - Customers
+        - Search
+        - Customer
+        - Balance_transactions
+        - Transaction
+        - Bank_accounts
+        - Id
+        - Verify
+        - Cards
+        - Cash_balance
+        - Cash_balance_transactions
+        - Discount
+        - Funding_instructions
+        - Payment_methods
+        - Payment_method
+        - Sources
+        - Subscriptions
+        - Subscription_exposed_id
+        - Tax_ids
   /v1/customers/{customer}/tax_ids/{id}:
     delete:
       description: <p>Deletes an existing <code>tax_id</code> object.</p>
+      tags:
+        - V1
+        - Customers
+        - Search
+        - Customer
+        - Balance_transactions
+        - Transaction
+        - Bank_accounts
+        - Id
+        - Verify
+        - Cards
+        - Cash_balance
+        - Cash_balance_transactions
+        - Discount
+        - Funding_instructions
+        - Payment_methods
+        - Payment_method
+        - Sources
+        - Subscriptions
+        - Subscription_exposed_id
+        - Tax_ids
     get:
-      description: <p>Retrieves the <code>tax_id</code> object with the given identif
+      description: <p>Retrieves the <code>tax_id</code> object with the given ident
+      tags:
+        - V1
+        - Customers
+        - Search
+        - Customer
+        - Balance_transactions
+        - Transaction
+        - Bank_accounts
+        - Id
+        - Verify
+        - Cards
+        - Cash_balance
+        - Cash_balance_transactions
+        - Discount
+        - Funding_instructions
+        - Payment_methods
+        - Payment_method
+        - Sources
+        - Subscriptions
+        - Subscription_exposed_id
+        - Tax_i

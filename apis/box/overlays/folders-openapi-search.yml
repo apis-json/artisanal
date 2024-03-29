@@ -6,7 +6,11 @@ paths:
     get:
       summary: Get folder information
       tags:
+        - Get
+        - Folder
+        - Information
         - Folders
+        - Folder_id
       description: |-
         Retrieves details for a folder, including the first 100 entries
         in the folder.
@@ -21,7 +25,10 @@ paths:
     post:
       summary: Restore folder
       tags:
-        - Trashed folders
+        - Restore
+        - Folder
+        - Folders
+        - Folder_id
       description: >-
         Restores a folder that has been moved to the trash.
 
@@ -52,19 +59,31 @@ paths:
         Updates a folder. This can be also be used to move the folder,
         create shared links, update collaborations, and more.
       tags:
+        - Update
+        - Folder
         - Folders
+        - Folder_id
     delete:
       summary: Delete folder
       description: |-
         Deletes a folder, either permanently or by moving it to
         the trash.
       tags:
+        - Delete
+        - Folder
         - Folders
+        - Folder_id
   /folders/{folder_id}/items:
     get:
       summary: List items in folder
       tags:
+        - List
+        - Items
+        - In
+        - Folder
         - Folders
+        - Folder_id
+        - Items
       description: |-
         Retrieves a page of items in a folder. These items can be files,
         folders, and web links.
@@ -75,7 +94,11 @@ paths:
     post:
       summary: Create folder
       tags:
+        - Create
+        - Folder
         - Folders
+        - Folder_id
+        - Items
       description: Creates a new empty folder within the specified parent folder.
   /folders/{folder_id}/copy:
     post:
@@ -85,7 +108,12 @@ paths:
 
         The original folder will not be changed.
       tags:
+        - Copy
+        - Folder
         - Folders
+        - Folder_id
+        - Items
+        - Copy
   /folders/{folder_id}/collaborations:
     get:
       summary: List folder collaborations
@@ -94,12 +122,27 @@ paths:
         folder. This returns all the users that have access to the folder
         or have been invited to the folder.
       tags:
-        - Collaborations (List)
+        - List
+        - Folder
+        - Collaborations
+        - Folders
+        - Folder_id
+        - Items
+        - Copy
+        - Collaborations
   /folders/{folder_id}/trash:
     get:
       summary: Get trashed folder
       tags:
-        - Trashed folders
+        - Get
+        - Trashed
+        - Folder
+        - Folders
+        - Folder_id
+        - Items
+        - Copy
+        - Collaborations
+        - Trash
       description: |-
         Retrieves a folder that has been moved to the trash.
 
@@ -115,7 +158,15 @@ paths:
     delete:
       summary: Permanently remove folder
       tags:
-        - Trashed folders
+        - Permanently
+        - Remove
+        - Folder
+        - Folders
+        - Folder_id
+        - Items
+        - Copy
+        - Collaborations
+        - Trash
       description: |-
         Permanently deletes a folder that is in the trash.
         This action cannot be undone.
@@ -123,7 +174,18 @@ paths:
     get:
       summary: List metadata instances on folder
       tags:
-        - Metadata instances (Folders)
+        - List
+        - Metadata
+        - Instances
+        - 'On'
+        - Folder
+        - Folders
+        - Folder_id
+        - Items
+        - Copy
+        - Collaborations
+        - Trash
+        - Metadata
       description: >-
         Retrieves all metadata for a given folder. This can not be used on the
         root
@@ -133,7 +195,20 @@ paths:
     get:
       summary: Get classification on folder
       tags:
-        - Classifications on folders
+        - Get
+        - Classification
+        - 'On'
+        - Folder
+        - Folders
+        - Folder_id
+        - Items
+        - Copy
+        - Collaborations
+        - Trash
+        - Metadata
+        - Classification
+        - Vochw
+        - Wo
       description: |-
         Retrieves the classification metadata instance that
         has been applied to a folder.
@@ -144,7 +219,20 @@ paths:
     post:
       summary: Add classification to folder
       tags:
-        - Classifications on folders
+        - Add
+        - Classification
+        - To
+        - Folder
+        - Folders
+        - Folder_id
+        - Items
+        - Copy
+        - Collaborations
+        - Trash
+        - Metadata
+        - Classification
+        - Vochw
+        - Wo
       description: |-
         Adds a classification to a folder by specifying the label of the
         classification to add.
@@ -155,7 +243,20 @@ paths:
     put:
       summary: Update classification on folder
       tags:
-        - Classifications on folders
+        - Update
+        - Classification
+        - 'On'
+        - Folder
+        - Folders
+        - Folder_id
+        - Items
+        - Copy
+        - Collaborations
+        - Trash
+        - Metadata
+        - Classification
+        - Vochw
+        - Wo
       description: >-
         Updates a classification on a folder.
 
@@ -170,7 +271,20 @@ paths:
     delete:
       summary: Remove classification from folder
       tags:
-        - Classifications on folders
+        - Remove
+        - Classification
+        - From
+        - Folder
+        - Folders
+        - Folder_id
+        - Items
+        - Copy
+        - Collaborations
+        - Trash
+        - Metadata
+        - Classification
+        - Vochw
+        - Wo
       description: |-
         Removes any classifications from a folder.
 
@@ -181,14 +295,46 @@ paths:
     get:
       summary: Get metadata instance on folder
       tags:
-        - Metadata instances (Folders)
+        - Get
+        - Metadata
+        - Instance
+        - 'On'
+        - Folder
+        - Folders
+        - Folder_id
+        - Items
+        - Copy
+        - Collaborations
+        - Trash
+        - Metadata
+        - Classification
+        - Vochw
+        - Wo
+        - Scope
+        - Template_key
       description: |-
         Retrieves the instance of a metadata template that has been applied to a
         folder. This can not be used on the root folder with ID `0`.
     post:
       summary: Create metadata instance on folder
       tags:
-        - Metadata instances (Folders)
+        - Create
+        - Metadata
+        - Instance
+        - 'On'
+        - Folder
+        - Folders
+        - Folder_id
+        - Items
+        - Copy
+        - Collaborations
+        - Trash
+        - Metadata
+        - Classification
+        - Vochw
+        - Wo
+        - Scope
+        - Template_key
       description: >-
         Applies an instance of a metadata template to a folder.
 
@@ -211,7 +357,23 @@ paths:
     put:
       summary: Update metadata instance on folder
       tags:
-        - Metadata instances (Folders)
+        - Update
+        - Metadata
+        - Instance
+        - 'On'
+        - Folder
+        - Folders
+        - Folder_id
+        - Items
+        - Copy
+        - Collaborations
+        - Trash
+        - Metadata
+        - Classification
+        - Vochw
+        - Wo
+        - Scope
+        - Template_key
       description: >-
         Updates a piece of metadata on a folder.
 
@@ -232,13 +394,43 @@ paths:
     delete:
       summary: Remove metadata instance from folder
       tags:
-        - Metadata instances (Folders)
+        - Remove
+        - Metadata
+        - Instance
+        - From
+        - Folder
+        - Folders
+        - Folder_id
+        - Items
+        - Copy
+        - Collaborations
+        - Trash
+        - Metadata
+        - Classification
+        - Vochw
+        - Wo
+        - Scope
+        - Template_key
       description: Deletes a piece of folder metadata.
   /folders/trash/items:
     get:
       summary: List trashed items
       tags:
-        - Trashed items
+        - List
+        - Trashed
+        - Items
+        - Folders
+        - Folder_id
+        - Items
+        - Copy
+        - Collaborations
+        - Trash
+        - Metadata
+        - Classification
+        - Vochw
+        - Wo
+        - Scope
+        - Template_key
       description: |-
         Retrieves the files and folders that have been moved
         to the trash.
@@ -253,47 +445,194 @@ paths:
     get:
       summary: Get watermark for folder
       tags:
-        - Watermarks (Folders)
+        - Get
+        - Watermark
+        - For
+        - Folder
+        - Folders
+        - Folder_id
+        - Items
+        - Copy
+        - Collaborations
+        - Trash
+        - Metadata
+        - Classification
+        - Vochw
+        - Wo
+        - Scope
+        - Template_key
+        - Watermark
       description: Retrieve the watermark for a folder.
     put:
       summary: Apply watermark to folder
       tags:
-        - Watermarks (Folders)
+        - Apply
+        - Watermark
+        - To
+        - Folder
+        - Folders
+        - Folder_id
+        - Items
+        - Copy
+        - Collaborations
+        - Trash
+        - Metadata
+        - Classification
+        - Vochw
+        - Wo
+        - Scope
+        - Template_key
+        - Watermark
       description: Applies or update a watermark on a folder.
     delete:
       summary: Remove watermark from folder
       tags:
-        - Watermarks (Folders)
+        - Remove
+        - Watermark
+        - From
+        - Folder
+        - Folders
+        - Folder_id
+        - Items
+        - Copy
+        - Collaborations
+        - Trash
+        - Metadata
+        - Classification
+        - Vochw
+        - Wo
+        - Scope
+        - Template_key
+        - Watermark
       description: Removes the watermark from a folder.
   /folders/{folder_id}#get_shared_link:
     get:
       summary: Get shared link for folder
       tags:
-        - Shared links (Folders)
+        - Get
+        - Shared
+        - Link
+        - For
+        - Folder
+        - Folders
+        - Folder_id
+        - Items
+        - Copy
+        - Collaborations
+        - Trash
+        - Metadata
+        - Classification
+        - Vochw
+        - Wo
+        - Scope
+        - Template_key
+        - Watermark
+        - '#get_shared_link'
       description: Gets the information for a shared link on a folder.
   /folders/{folder_id}#add_shared_link:
     put:
       summary: Add shared link to folder
       tags:
-        - Shared links (Folders)
+        - Add
+        - Shared
+        - Link
+        - To
+        - Folder
+        - Folders
+        - Folder_id
+        - Items
+        - Copy
+        - Collaborations
+        - Trash
+        - Metadata
+        - Classification
+        - Vochw
+        - Wo
+        - Scope
+        - Template_key
+        - Watermark
+        - '#get_shared_link'
+        - '#add_shared_link'
       description: Adds a shared link to a folder.
   /folders/{folder_id}#update_shared_link:
     put:
       summary: Update shared link on folder
       tags:
-        - Shared links (Folders)
+        - Update
+        - Shared
+        - Link
+        - 'On'
+        - Folder
+        - Folders
+        - Folder_id
+        - Items
+        - Copy
+        - Collaborations
+        - Trash
+        - Metadata
+        - Classification
+        - Vochw
+        - Wo
+        - Scope
+        - Template_key
+        - Watermark
+        - '#get_shared_link'
+        - '#add_shared_link'
+        - '#update_shared_link'
       description: Updates a shared link on a folder.
   /folders/{folder_id}#remove_shared_link:
     put:
       summary: Remove shared link from folder
       tags:
-        - Shared links (Folders)
+        - Remove
+        - Shared
+        - Link
+        - From
+        - Folder
+        - Folders
+        - Folder_id
+        - Items
+        - Copy
+        - Collaborations
+        - Trash
+        - Metadata
+        - Classification
+        - Vochw
+        - Wo
+        - Scope
+        - Template_key
+        - Watermark
+        - '#get_shared_link'
+        - '#add_shared_link'
+        - '#update_shared_link'
+        - '#remove_shared_link'
       description: Removes a shared link from a folder.
   /users/{user_id}/folders/0:
     put:
       summary: Transfer owned folders
       tags:
-        - Transfer folders
+        - Transfer
+        - Owned
+        - Folders
+        - Folders
+        - Folder_id
+        - Items
+        - Copy
+        - Collaborations
+        - Trash
+        - Metadata
+        - Classification
+        - Vochw
+        - Wo
+        - Scope
+        - Template_key
+        - Watermark
+        - '#get_shared_link'
+        - '#add_shared_link'
+        - '#update_shared_link'
+        - '#remove_shared_link'
+        - Users
+        - User_id
       description: >-
         Move all of the items (files, folders and workflows) owned by a user
         into
@@ -355,4 +694,4 @@ paths:
         transferred.
 
 
-        Admins will receive an email when the operation is complete
+        Admins will receive an email when the operation i

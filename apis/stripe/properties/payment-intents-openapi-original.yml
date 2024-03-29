@@ -5,15 +5,15 @@ info:
   contact:
     email: dev-platform@stripe.com
     name: Stripe Dev Platform Team
-    url: 'https://stripe.com'
-  termsOfService: 'https://stripe.com/us/terms/'
+    url: https://stripe.com
+  termsOfService: https://stripe.com/us/terms/
   version: '2023-10-16'
   x-stripeSpecFilename: spec3
 security:
   - basicAuth: []
   - bearerAuth: []
 servers:
-  - url: 'https://api.stripe.com/'
+  - url: https://api.stripe.com/
 paths:
   /v1/payment_intents:
     get:
@@ -285,7 +285,7 @@ paths:
               schema:
                 $ref: '#/components/schemas/error'
           description: Error response.
-  '/v1/payment_intents/{intent}':
+  /v1/payment_intents/{intent}:
     get:
       description: >-
         <p>Retrieves the details of a PaymentIntent that has previously been
@@ -426,7 +426,7 @@ paths:
               schema:
                 $ref: '#/components/schemas/error'
           description: Error response.
-  '/v1/payment_intents/{intent}/apply_customer_balance':
+  /v1/payment_intents/{intent}/apply_customer_balance:
     post:
       description: >-
         <p>Manually reconcile the remaining amount for a
@@ -465,7 +465,7 @@ paths:
               schema:
                 $ref: '#/components/schemas/error'
           description: Error response.
-  '/v1/payment_intents/{intent}/cancel':
+  /v1/payment_intents/{intent}/cancel:
     post:
       description: >-
         <p>You can cancel a PaymentIntent object when it’s in one of these
@@ -518,7 +518,7 @@ paths:
               schema:
                 $ref: '#/components/schemas/error'
           description: Error response.
-  '/v1/payment_intents/{intent}/capture':
+  /v1/payment_intents/{intent}/capture:
     post:
       description: >-
         <p>Capture the funds of an existing uncaptured PaymentIntent when its
@@ -570,7 +570,7 @@ paths:
               schema:
                 $ref: '#/components/schemas/error'
           description: Error response.
-  '/v1/payment_intents/{intent}/confirm':
+  /v1/payment_intents/{intent}/confirm:
     post:
       description: >-
         <p>Confirm that your customer intends to pay with current or provided
@@ -689,7 +689,7 @@ paths:
               schema:
                 $ref: '#/components/schemas/error'
           description: Error response.
-  '/v1/payment_intents/{intent}/increment_authorization':
+  /v1/payment_intents/{intent}/increment_authorization:
     post:
       description: >-
         <p>Perform an incremental authorization on an eligible
@@ -784,7 +784,7 @@ paths:
               schema:
                 $ref: '#/components/schemas/error'
           description: Error response.
-  '/v1/payment_intents/{intent}/verify_microdeposits':
+  /v1/payment_intents/{intent}/verify_microdeposits:
     post:
       description: <p>Verifies microdeposits on a PaymentIntent object.</p>
       operationId: PostPaymentIntentsIntentVerifyMicrodeposits
@@ -1020,7 +1020,7 @@ components:
             - maxLength: 5000
               type: string
             - $ref: '#/components/schemas/invoice'
-          description: 'ID of the invoice that created this PaymentIntent, if it exists.'
+          description: ID of the invoice that created this PaymentIntent, if it exists.
           nullable: true
           x-expansionResources:
             oneOf:
@@ -1140,7 +1140,7 @@ components:
             - maxLength: 5000
               type: string
             - $ref: '#/components/schemas/review'
-          description: 'ID of the review associated with this PaymentIntent, if any.'
+          description: ID of the review associated with this PaymentIntent, if any.
           nullable: true
           x-expansionResources:
             oneOf:

@@ -5,15 +5,15 @@ info:
   contact:
     email: dev-platform@stripe.com
     name: Stripe Dev Platform Team
-    url: 'https://stripe.com'
-  termsOfService: 'https://stripe.com/us/terms/'
+    url: https://stripe.com
+  termsOfService: https://stripe.com/us/terms/
   version: '2023-10-16'
   x-stripeSpecFilename: spec3
 security:
   - basicAuth: []
   - bearerAuth: []
 servers:
-  - url: 'https://api.stripe.com/'
+  - url: https://api.stripe.com/
 paths:
   /v1/identity/verification_reports:
     get:
@@ -130,7 +130,7 @@ paths:
               schema:
                 $ref: '#/components/schemas/error'
           description: Error response.
-  '/v1/identity/verification_reports/{report}':
+  /v1/identity/verification_reports/{report}:
     get:
       description: <p>Retrieves an existing VerificationReport</p>
       operationId: GetIdentityVerificationReportsReport
@@ -331,7 +331,7 @@ paths:
               schema:
                 $ref: '#/components/schemas/error'
           description: Error response.
-  '/v1/identity/verification_sessions/{session}':
+  /v1/identity/verification_sessions/{session}:
     get:
       description: >-
         <p>Retrieves the details of a VerificationSession that was previously
@@ -434,7 +434,7 @@ paths:
               schema:
                 $ref: '#/components/schemas/error'
           description: Error response.
-  '/v1/identity/verification_sessions/{session}/cancel':
+  /v1/identity/verification_sessions/{session}/cancel:
     post:
       description: >-
         <p>A VerificationSession object can be canceled when it is in
@@ -479,7 +479,7 @@ paths:
               schema:
                 $ref: '#/components/schemas/error'
           description: Error response.
-  '/v1/identity/verification_sessions/{session}/redact':
+  /v1/identity/verification_sessions/{session}/redact:
     post:
       description: >-
         <p>Redact a VerificationSession to remove all collected information from

@@ -40,66 +40,180 @@ paths:
   /threads:
     post:
       tags:
-        - Assistants
+        - Create
+        - Thread.
+        - Threads
       summary: Create a thread.
   /threads/{thread_id}:
     get:
       tags:
-        - Assistants
+        - Retrieves
+        - Thread.
+        - Threads
+        - Thread_id
       summary: Retrieves a thread.
     post:
       tags:
-        - Assistants
+        - Modifies
+        - Thread.
+        - Threads
+        - Thread_id
       summary: Modifies a thread.
     delete:
       tags:
-        - Assistants
+        - Delete
+        - Thread.
+        - Threads
+        - Thread_id
       summary: Delete a thread.
   /threads/{thread_id}/messages:
     get:
       tags:
-        - Assistants
+        - Returns
+        - List
+        - Of
+        - Messages
+        - For
+        - Given
+        - Thread.
+        - Threads
+        - Thread_id
+        - Messages
       summary: Returns a list of messages for a given thread.
     post:
       tags:
-        - Assistants
+        - Create
+        - Message.
+        - Threads
+        - Thread_id
+        - Messages
       summary: Create a message.
   /threads/{thread_id}/messages/{message_id}:
     get:
       tags:
-        - Assistants
+        - Retrieve
+        - Message.
+        - Threads
+        - Thread_id
+        - Messages
+        - Message_id
       summary: Retrieve a message.
     post:
       tags:
-        - Assistants
+        - Modifies
+        - Message.
+        - Threads
+        - Thread_id
+        - Messages
+        - Message_id
       summary: Modifies a message.
   /threads/runs:
     post:
       tags:
-        - Assistants
+        - Create
+        - Thread
+        - And
+        - Run
+        - It
+        - In
+        - One
+        - Request.
+        - Threads
+        - Thread_id
+        - Messages
+        - Message_id
+        - Runs
       summary: Create a thread and run it in one request.
   /threads/{thread_id}/runs:
     get:
       tags:
-        - Assistants
+        - Returns
+        - List
+        - Of
+        - Runs
+        - Belonging
+        - To
+        - Thread.
+        - Threads
+        - Thread_id
+        - Messages
+        - Message_id
+        - Runs
       summary: Returns a list of runs belonging to a thread.
     post:
       tags:
-        - Assistants
+        - Create
+        - Run.
+        - Threads
+        - Thread_id
+        - Messages
+        - Message_id
+        - Runs
       summary: Create a run.
   /threads/{thread_id}/runs/{run_id}:
     get:
       tags:
-        - Assistants
+        - Retrieves
+        - Run.
+        - Threads
+        - Thread_id
+        - Messages
+        - Message_id
+        - Runs
+        - Run_id
       summary: Retrieves a run.
     post:
       tags:
-        - Assistants
+        - Modifies
+        - Run.
+        - Threads
+        - Thread_id
+        - Messages
+        - Message_id
+        - Runs
+        - Run_id
       summary: Modifies a run.
   /threads/{thread_id}/runs/{run_id}/submit_tool_outputs:
     post:
       tags:
-        - Assistants
+        - When
+        - Run
+        - Has
+        - The
+        - '`status:'
+        - '"requires_action"`'
+        - And
+        - '`required_action.type`'
+        - Is
+        - '`submit_tool_outputs`,'
+        - This
+        - Endpoint
+        - Can
+        - Be
+        - Used
+        - To
+        - Submit
+        - Outputs
+        - From
+        - Tool
+        - Calls
+        - Once
+        - They're
+        - All
+        - Completed.
+        - Must
+        - Submitted
+        - In
+        - Single
+        - |
+          Request.
+        - Threads
+        - Thread_id
+        - Messages
+        - Message_id
+        - Runs
+        - Run_id
+        - Submit_tool_outputs
       summary: >
         When a run has the `status: "requires_action"` and
         `required_action.type` is `submit_tool_outputs`, this endpoint can be
@@ -108,27 +222,96 @@ paths:
   /threads/{thread_id}/runs/{run_id}/cancel:
     post:
       tags:
-        - Assistants
+        - Cancels
+        - Run
+        - That
+        - Is
+        - '`in_progress`.'
+        - Threads
+        - Thread_id
+        - Messages
+        - Message_id
+        - Runs
+        - Run_id
+        - Submit_tool_outputs
+        - Cancel
       summary: Cancels a run that is `in_progress`.
   /threads/{thread_id}/runs/{run_id}/steps:
     get:
       tags:
-        - Assistants
+        - Returns
+        - List
+        - Of
+        - Run
+        - Steps
+        - Belonging
+        - To
+        - Run.
+        - Threads
+        - Thread_id
+        - Messages
+        - Message_id
+        - Runs
+        - Run_id
+        - Submit_tool_outputs
+        - Cancel
+        - Steps
       summary: Returns a list of run steps belonging to a run.
   /threads/{thread_id}/runs/{run_id}/steps/{step_id}:
     get:
       tags:
-        - Assistants
+        - Retrieves
+        - Run
+        - Step.
+        - Threads
+        - Thread_id
+        - Messages
+        - Message_id
+        - Runs
+        - Run_id
+        - Submit_tool_outputs
+        - Cancel
+        - Steps
+        - Step_id
       summary: Retrieves a run step.
   /threads/{thread_id}/messages/{message_id}/files:
     get:
       tags:
-        - Assistants
+        - Returns
+        - List
+        - Of
+        - Message
+        - Files.
+        - Threads
+        - Thread_id
+        - Messages
+        - Message_id
+        - Runs
+        - Run_id
+        - Submit_tool_outputs
+        - Cancel
+        - Steps
+        - Step_id
+        - Files
       summary: Returns a list of message files.
   /threads/{thread_id}/messages/{message_id}/files/{file_id}:
     get:
       tags:
-        - Assistants
+        - Retrieves
+        - Message
+        - File.
+        - Threads
+        - Thread_id
+        - Messages
+        - Message_id
+        - Runs
+        - Run_id
+        - Submit_tool_outputs
+        - Cancel
+        - Steps
+        - Step_id
+        - Files
+        - File_id
       summary: Retrieves a message file.
 x-oaiMeta:
   groups:
@@ -445,4 +628,4 @@ x-oaiMeta:
           path: create
         - type: object
           key: CreateCompletionResponse
-          path: nu
+          path: null

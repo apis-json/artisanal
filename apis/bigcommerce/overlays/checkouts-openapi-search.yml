@@ -17,7 +17,9 @@ paths:
       - null
     get:
       tags:
+        - Get
         - Checkout
+        - Id
       summary: Get a Checkout
       description: |-
         Returns a *Checkout*.
@@ -27,7 +29,10 @@ paths:
         The cart ID and checkout ID are the same.
     put:
       tags:
-        - Checkout
+        - Update
+        - Customer
+        - Messages
+        - Id
       summary: Update Customer Messages
       description: |-
         Change customer message pertaining to an existing *Checkout*.
@@ -37,7 +42,12 @@ paths:
   /checkouts/{checkoutId}/discounts:
     post:
       tags:
-        - Checkout Discounts
+        - Add
+        - Discount
+        - To
+        - Checkout
+        - Id
+        - Discounts
       summary: Add Discount to Checkout
       description: >-
         Adds a discount to an existing *checkout*.
@@ -58,7 +68,14 @@ paths:
   /checkouts/{checkoutId}/billing-address:
     post:
       tags:
-        - Checkout Billing Address
+        - Add
+        - Checkout
+        - Billing
+        - Address
+        - Id
+        - Discounts
+        - Billing
+        - Address
       summary: Add Checkout Billing Address
       description: |-
         Adds a billing address to an existing checkout.
@@ -69,13 +86,28 @@ paths:
   /checkouts/{checkoutId}/billing-address/{addressId}:
     put:
       tags:
-        - Checkout Billing Address
+        - Update
+        - Checkout
+        - Billing
+        - Address
+        - Id
+        - Discounts
+        - Billing
+        - Address
       summary: Update Checkout Billing Address
       description: Updates an existing billing address on a checkout.
   /checkouts/{checkoutId}/consignments:
     post:
       tags:
-        - Checkout Consignments
+        - Add
+        - Consignment
+        - To
+        - Checkout
+        - Id
+        - Discounts
+        - Billing
+        - Address
+        - Consignments
       summary: Add Consignment to Checkout
       description: >-
         Adds a new consignment to a checkout.
@@ -125,7 +157,15 @@ paths:
       - null
     put:
       tags:
-        - Checkout Consignments
+        - Update
+        - Checkout
+        - Consignment
+        - Id
+        - Discounts
+        - Billing
+        - Address
+        - Consignments
+        - Consignment
       summary: Update Checkout Consignment
       description: >-
         Updates an existing consignment. The address, line item IDs, and
@@ -166,7 +206,15 @@ paths:
         obtained in Step One. 
     delete:
       tags:
-        - Checkout Consignments
+        - Delete
+        - Checkout
+        - Consignment
+        - Id
+        - Discounts
+        - Billing
+        - Address
+        - Consignments
+        - Consignment
       summary: Delete Checkout Consignment
       description: >-
         Removes an existing consignment from a checkout.
@@ -178,7 +226,17 @@ paths:
   /checkouts/{checkoutId}/coupons:
     post:
       tags:
-        - Checkout Coupons
+        - Add
+        - Coupon
+        - To
+        - Checkout
+        - Id
+        - Discounts
+        - Billing
+        - Address
+        - Consignments
+        - Consignment
+        - Coupons
       summary: Add Coupon to Checkout
       description: |-
         Adds a coupon code to a checkout.
@@ -191,13 +249,36 @@ paths:
   /checkouts/{checkoutId}/coupons/{couponCode}:
     delete:
       tags:
-        - Checkout Coupons
+        - Delete
+        - Checkout
+        - Coupon
+        - Id
+        - Discounts
+        - Billing
+        - Address
+        - Consignments
+        - Consignment
+        - Coupons
+        - Coupon
+        - Code
       summary: Delete Checkout Coupon
       description: Deletes a coupon code from a checkout.
   /checkouts/{checkoutId}/orders:
     post:
       tags:
-        - Checkout Orders
+        - Create
+        - An
+        - Order
+        - Id
+        - Discounts
+        - Billing
+        - Address
+        - Consignments
+        - Consignment
+        - Coupons
+        - Coupon
+        - Code
+        - Orders
       summary: Create an Order
       description: >-
         Creates an order.
@@ -221,12 +302,40 @@ paths:
       - null
     get:
       tags:
-        - Checkout Settings
+        - Get
+        - Checkout
+        - Settings
+        - Id
+        - Discounts
+        - Billing
+        - Address
+        - Consignments
+        - Consignment
+        - Coupons
+        - Coupon
+        - Code
+        - Orders
+        - Checkouts
+        - Settings
       summary: Get Checkout Settings
       description: Get checkout settings
     put:
       tags:
-        - Checkout Settings
+        - Update
+        - Checkout
+        - Settings
+        - Id
+        - Discounts
+        - Billing
+        - Address
+        - Consignments
+        - Consignment
+        - Coupons
+        - Coupon
+        - Code
+        - Orders
+        - Checkouts
+        - Settings
       summary: Update Checkout Settings
       description: Update checkout settings
   /checkouts/{checkoutId}/token:
@@ -235,7 +344,22 @@ paths:
       - null
     post:
       tags:
-        - Checkout Token
+        - Create
+        - Checkout
+        - Token
+        - Id
+        - Discounts
+        - Billing
+        - Address
+        - Consignments
+        - Consignment
+        - Coupons
+        - Coupon
+        - Code
+        - Orders
+        - Checkouts
+        - Settings
+        - Token
       summary: Create Checkout Token
       description: >-
         Use the checkout token to display a confirmation page for a guest
@@ -247,5 +371,4 @@ paths:
         * After completing the order, you can redirect the shopper to
         /order-confirmation/{orderId}?t={checkoutToken}. * After token
         validation, the /order-confirmation/{orderId} page displays. * The
-        `ORDER_TOKEN` should match the order or the logged-in customer can
-        access the orde
+        `ORDER_TOKEN` should match the order or the logged-in customer can acces

@@ -6,9 +6,9 @@ info:
 security:
   - ApiKeyAuth: []
 tags:
-  - name: order
+  - name: Orders
     description: Manage delivery and pickup orders.
-  - name: quote
+  - name: Quotes
     description: Manage delivery estimates and pricing before initiating a delivery.
 servers:
   - url: https://dev-api.relay.delivery/v2
@@ -48,7 +48,9 @@ paths:
                       type: string
                     quoteKey:
                       type: string
-                      description: If you are using the quote service then you must provide the quoteKey here
+                      description: >-
+                        If you are using the quote service then you must provide
+                        the quoteKey here
                     isCash:
                       type: boolean
                       default: false
@@ -61,7 +63,9 @@ paths:
                     requireReadyEvent:
                       type: boolean
                       default: false
-                      description: If you will be triggering a call to `order/ready` then set this field to true.
+                      description: >-
+                        If you will be triggering a call to `order/ready` then
+                        set this field to true.
                     consumer:
                       type: object
                       required:
@@ -123,19 +127,29 @@ paths:
                           type: string
                         proof:
                           type: object
-                          description: Control the proof of delivery collected by the rider. It is not recommended that you require more than one POD as it can become bothersome to the consumer.
+                          description: >-
+                            Control the proof of delivery collected by the
+                            rider. It is not recommended that you require more
+                            than one POD as it can become bothersome to the
+                            consumer.
                           properties:
                             photo:
                               type: boolean
                               default: false
-                              description: Should the delivery rider collect a photo as proof of delivery
+                              description: >-
+                                Should the delivery rider collect a photo as
+                                proof of delivery
                             signature:
                               type: boolean
-                              description: Should the delivery rider collect a signature as proof of delivery
+                              description: >-
+                                Should the delivery rider collect a signature as
+                                proof of delivery
                               default: false
                             idScan:
                               type: boolean
-                              description: Should the delivery rider require an ID as proof of alcohol delivery
+                              description: >-
+                                Should the delivery rider require an ID as proof
+                                of alcohol delivery
                               default: false
                     producer:
                       anyOf:
@@ -177,7 +191,8 @@ paths:
                                     zip:
                                       type: string
                                       format: zip-code
-                                - $id: http://relay.delivery/coordinate-request.json
+                                - $id: >-
+                                    http://relay.delivery/coordinate-request.json
                                   type: object
                                   required:
                                     - text
@@ -211,7 +226,9 @@ paths:
                       properties:
                         orderSourceKey:
                           type: string
-                          description: Optional source system of the order. orderSourceKey can be provided by relay.
+                          description: >-
+                            Optional source system of the order. orderSourceKey
+                            can be provided by relay.
                     price:
                       type: object
                       required:
@@ -232,7 +249,9 @@ paths:
                           minimum: 0
                         discount:
                           type: number
-                          description: Always treated as negative. Only useful for cash orders or reporting purposes.
+                          description: >-
+                            Always treated as negative. Only useful for cash
+                            orders or reporting purposes.
                     time:
                       type: object
                       properties:
@@ -250,7 +269,9 @@ paths:
                         expectedReady:
                           type: string
                           format: date-time
-                          description: The time at which the order is estimated to be ready for pickup
+                          description: >-
+                            The time at which the order is estimated to be ready
+                            for pickup
                     specialInstructions:
                       type: string
                     items:
@@ -309,7 +330,9 @@ paths:
                       subTotal: 25
                       tip: 4
               simple-asap-delivery-with-photo-pod:
-                description: Creates an order to be delivered ASAP and ask the delivery person to take a photo proof of delivery.
+                description: >-
+                  Creates an order to be delivered ASAP and ask the delivery
+                  person to take a photo proof of delivery.
                 value:
                   order:
                     externalId: XJA-243
@@ -361,7 +384,10 @@ paths:
                       subTotal: 25
                       tip: 4
               quoted-asap-delivery:
-                description: This order is gauranteed to be accepted because a valid quoteKey is being provided. The relay fee from the quote will be provided.
+                description: >-
+                  This order is gauranteed to be accepted because a valid
+                  quoteKey is being provided. The relay fee from the quote will
+                  be provided.
                 value:
                   order:
                     externalId: XJA-273
@@ -437,7 +463,9 @@ paths:
                             price: 0.5
       responses:
         '200':
-          description: OK - request was successfully evaluated, but the order was not accepted for delivery
+          description: >-
+            OK - request was successfully evaluated, but the order was not
+            accepted for delivery
           content:
             application/json:
               schema:
@@ -449,9 +477,14 @@ paths:
                   message:
                     type: string
               example:
-                message: Order not accepted. Provide a valid quoteKey or talk to your sales rep to get all your orders accepted.
+                message: >-
+                  Order not accepted. Provide a valid quoteKey or talk to your
+                  sales rep to get all your orders accepted.
         '201':
-          description: OK - order created and accepted. <a href="/schemas/platform-order-response.html">Click here</a> for more details on the 201 schema response.
+          description: >-
+            OK - order created and accepted. <a
+            href="/schemas/platform-order-response.html">Click here</a> for more
+            details on the 201 schema response.
           content:
             application/json:
               schema:
@@ -556,7 +589,11 @@ paths:
                             enum:
                               - STATIC
                               - DYNAMIC
-                            description: A STATIC location is one that has an active restaurant users and those users can interact with/manage your order. A DYNAMIC restaurant has no users associated with it.
+                            description: >-
+                              A STATIC location is one that has an active
+                              restaurant users and those users can interact
+                              with/manage your order. A DYNAMIC restaurant has
+                              no users associated with it.
                           location:
                             $id: http://relay.delivery/location-response.json
                             type: object
@@ -618,7 +655,9 @@ paths:
                             minimum: 0
                           discount:
                             type: number
-                            description: Always treated as negative. Only useful for cash orders or reporting purposes.
+                            description: >-
+                              Always treated as negative. Only useful for cash
+                              orders or reporting purposes.
                       specialInstructions:
                         type: string
               example:
@@ -678,7 +717,9 @@ paths:
                         message:
                           type: string
         '409':
-          description: Invalid configuration. Your account is not yet configured to accept orders.
+          description: >-
+            Invalid configuration. Your account is not yet configured to accept
+            orders.
           content:
             application/json:
               schema:
@@ -690,13 +731,17 @@ paths:
                   message:
                     type: string
               example:
-                message: Invalid configuration. Your account is not yet configured to accept orders.
+                message: >-
+                  Invalid configuration. Your account is not yet configured to
+                  accept orders.
   /order/{orderKey}:
     patch:
       tags:
         - order
       summary: Make changes to an active order.
-      description: Some fields of the order may be updated. See /schemas/platform-order-update-request.html
+      description: >-
+        Some fields of the order may be updated. See
+        /schemas/platform-order-update-request.html
       operationId: order-update
       externalDocs:
         description: See Request Schema Details
@@ -903,7 +948,11 @@ paths:
                             enum:
                               - STATIC
                               - DYNAMIC
-                            description: A STATIC location is one that has an active restaurant users and those users can interact with/manage your order. A DYNAMIC restaurant has no users associated with it.
+                            description: >-
+                              A STATIC location is one that has an active
+                              restaurant users and those users can interact
+                              with/manage your order. A DYNAMIC restaurant has
+                              no users associated with it.
                           location:
                             $id: http://relay.delivery/location-response.json
                             type: object
@@ -965,7 +1014,9 @@ paths:
                             minimum: 0
                           discount:
                             type: number
-                            description: Always treated as negative. Only useful for cash orders or reporting purposes.
+                            description: >-
+                              Always treated as negative. Only useful for cash
+                              orders or reporting purposes.
                       specialInstructions:
                         type: string
               example:
@@ -1038,7 +1089,9 @@ paths:
       tags:
         - order
       summary: Fetch an order.
-      description: Review order details and hooks. Polling this method is not expected. You should rely on the webhooks to recieve updates.
+      description: >-
+        Review order details and hooks. Polling this method is not expected. You
+        should rely on the webhooks to recieve updates.
       operationId: order-fetch
       parameters:
         - in: path
@@ -1152,7 +1205,11 @@ paths:
                             enum:
                               - STATIC
                               - DYNAMIC
-                            description: A STATIC location is one that has an active restaurant users and those users can interact with/manage your order. A DYNAMIC restaurant has no users associated with it.
+                            description: >-
+                              A STATIC location is one that has an active
+                              restaurant users and those users can interact
+                              with/manage your order. A DYNAMIC restaurant has
+                              no users associated with it.
                           location:
                             $id: http://relay.delivery/location-response.json
                             type: object
@@ -1214,7 +1271,9 @@ paths:
                             minimum: 0
                           discount:
                             type: number
-                            description: Always treated as negative. Only useful for cash orders or reporting purposes.
+                            description: >-
+                              Always treated as negative. Only useful for cash
+                              orders or reporting purposes.
                       specialInstructions:
                         type: string
                   hooks:
@@ -1224,7 +1283,10 @@ paths:
                       properties:
                         body:
                           type: object
-                          description: Schema will match the corresponding webhook event (see https://docs.relay.delivery/schemas/v2-order.html)
+                          description: >-
+                            Schema will match the corresponding webhook event
+                            (see
+                            https://docs.relay.delivery/schemas/v2-order.html)
               example:
                 order:
                   externalId: XJA-243
@@ -1334,7 +1396,8 @@ paths:
                                     zip:
                                       type: string
                                       format: zip-code
-                                - $id: http://relay.delivery/coordinate-request.json
+                                - $id: >-
+                                    http://relay.delivery/coordinate-request.json
                                   type: object
                                   required:
                                     - text
@@ -1455,7 +1518,10 @@ paths:
                             before-after-constraint: contraints.after must be > constraints.before
                   v2-quote-constraints: {}
                   errorMessage:
-                    v2-quote-constraints: Can have either producer.constraints or consumer.constraints, but not both. ASAP orders should have no constraints.
+                    v2-quote-constraints: >-
+                      Can have either producer.constraints or
+                      consumer.constraints, but not both. ASAP orders should
+                      have no constraints.
             examples:
               simple-asap-quote:
                 value:
@@ -1554,7 +1620,9 @@ paths:
                         before: '2022-03-15T14:35:00.000Z'
       responses:
         '200':
-          description: OK - quote request was successfully evaluated, but relay is not offering a quote at this time.
+          description: >-
+            OK - quote request was successfully evaluated, but relay is not
+            offering a quote at this time.
           content:
             application/json:
               schema:
@@ -1568,7 +1636,9 @@ paths:
               example:
                 message: Quote not accepted.
         '201':
-          description: OK - quote request was successfully evaluated and a quote has been created and returned
+          description: >-
+            OK - quote request was successfully evaluated and a quote has been
+            created and returned
           content:
             application/json:
               schema:
@@ -1603,10 +1673,14 @@ paths:
                         properties:
                           reponse:
                             type: number
-                            description: The expected seconds between delivery ready and rider arrival at the consumer's location.
+                            description: >-
+                              The expected seconds between delivery ready and
+                              rider arrival at the consumer's location.
                           delivery:
                             type: number
-                            description: The expected seconds between delivery pickup and delivery arrival at the consumer's location.
+                            description: >-
+                              The expected seconds between delivery pickup and
+                              delivery arrival at the consumer's location.
               example:
                 quote:
                   quoteKey: 642039e7-d39c-4be7-a994-e2d818abdfd9
@@ -1642,7 +1716,9 @@ paths:
                         message:
                           type: string
         '409':
-          description: Invalid configuration. Your account is not configured to accept quotes.
+          description: >-
+            Invalid configuration. Your account is not configured to accept
+            quotes.
           content:
             application/json:
               schema:
@@ -1658,7 +1734,11 @@ paths:
       tags:
         - quote
       summary: Fetch a previously created quote.
-      description: If you created a quote a in the past and you want to check if the quote is still valid then you can attempt to fetch it by the quote key. If the quote is no longer valid then it will not be found. If you are using your quotes right away then there is no need to call this route.
+      description: >-
+        If you created a quote a in the past and you want to check if the quote
+        is still valid then you can attempt to fetch it by the quote key. If the
+        quote is no longer valid then it will not be found. If you are using
+        your quotes right away then there is no need to call this route.
       operationId: quote-fetch
       parameters:
         - in: path
@@ -1701,10 +1781,14 @@ paths:
                         properties:
                           reponse:
                             type: number
-                            description: The expected seconds between delivery ready and rider arrival at the consumer's location.
+                            description: >-
+                              The expected seconds between delivery ready and
+                              rider arrival at the consumer's location.
                           delivery:
                             type: number
-                            description: The expected seconds between delivery pickup and delivery arrival at the consumer's location.
+                            description: >-
+                              The expected seconds between delivery pickup and
+                              delivery arrival at the consumer's location.
               example:
                 quote:
                   quoteKey: 642039e7-d39c-4be7-a994-e2d818abdfd9
@@ -1733,7 +1817,9 @@ paths:
       tags:
         - delivery-zone
       summary: Retrieve the delivery zone for any address
-      description: Relay's maximum possible operating zone for a specific address. Orders outside of this range will never be accepted.
+      description: >-
+        Relay's maximum possible operating zone for a specific address. Orders
+        outside of this range will never be accepted.
       operationId: fetch-delivery-zone
       requestBody:
         required: true
@@ -1803,13 +1889,18 @@ paths:
                     longitude: -73.9932413
       responses:
         '200':
-          description: OK - request was successfully evaluated. A delivery zone is returned if we service the address and no delivery zone is returned if the address is outside of Relay's operating area.
+          description: >-
+            OK - request was successfully evaluated. A delivery zone is returned
+            if we service the address and no delivery zone is returned if the
+            address is outside of Relay's operating area.
           content:
             application/json:
               schema:
                 $id: http://relay.delivery/delivery-zone-response.json
                 type: object
-                description: No delivery zone will be returned if the provided address is outside Relay's operating area.
+                description: >-
+                  No delivery zone will be returned if the provided address is
+                  outside Relay's operating area.
                 required: []
                 properties:
                   deliveryZone:
@@ -1865,7 +1956,11 @@ paths:
       tags:
         - order
       summary: Toggle the ready status of an order.
-      description: If you have an event for when an order is ready to be picked up then you can use this route to dramatically improve the quality of service your orders receive on the Relay Platform. Be sure to set `requireReadyEvent` to true when creating the order if you intend to use this method.
+      description: >-
+        If you have an event for when an order is ready to be picked up then you
+        can use this route to dramatically improve the quality of service your
+        orders receive on the Relay Platform. Be sure to set `requireReadyEvent`
+        to true when creating the order if you intend to use this method.
       operationId: order-ready
       requestBody:
         required: true
@@ -1902,7 +1997,10 @@ paths:
       tags:
         - order
       summary: Void/cancel an Order
-      description: Cancel an order when a customer no longer wants an order. Voiding an order should be extremely rare and excessive voiding is treated as abuse.
+      description: >-
+        Cancel an order when a customer no longer wants an order. Voiding an
+        order should be extremely rare and excessive voiding is treated as
+        abuse.
       operationId: order-void
       requestBody:
         required: true

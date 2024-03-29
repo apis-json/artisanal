@@ -7,21 +7,39 @@ paths:
       description: >-
         <p>Returns a list of your subscription items for a given
         subscription.</p>
+      tags:
+        - V1
+        - Subscription_items
     post:
       description: >-
         <p>Adds a new item to an existing subscription. No existing items will
         be changed or replaced.</p>
+      tags:
+        - V1
+        - Subscription_items
   /v1/subscription_items/{item}:
     delete:
       description: >-
         <p>Deletes an item from the subscription. Removing a subscription item
         from a subscription will not cancel the subscription.</p>
+      tags:
+        - V1
+        - Subscription_items
+        - Item
     get:
       description: <p>Retrieves the subscription item with the given ID.</p>
+      tags:
+        - V1
+        - Subscription_items
+        - Item
     post:
       description: >-
         <p>Updates the plan or quantity of an item on a current
         subscription.</p>
+      tags:
+        - V1
+        - Subscription_items
+        - Item
   /v1/subscription_items/{subscription_item}/usage_record_summaries:
     get:
       description: >-
@@ -36,6 +54,12 @@ paths:
         ended yet. Since new usage records can still be added, the returned
         summary information for the subscription item’s ID should be seen as
         unstable until the subscription billing period ends.</p>
+      tags:
+        - V1
+        - Subscription_items
+        - Item
+        - Subscription_item
+        - Usage_record_summaries
   /v1/subscription_items/{subscription_item}/usage_records:
     post:
       description: >-
@@ -68,21 +92,62 @@ paths:
         have a <a
         href="https://stripe.com/docs/billing/subscriptions/tiers">tiered
         pricing</a> model.</p>
+      tags:
+        - V1
+        - Subscription_items
+        - Item
+        - Subscription_item
+        - Usage_record_summaries
+        - Usage_records
   /v1/subscription_schedules:
     get:
       description: <p>Retrieves the list of your subscription schedules.</p>
+      tags:
+        - V1
+        - Subscription_items
+        - Item
+        - Subscription_item
+        - Usage_record_summaries
+        - Usage_records
+        - Subscription_schedules
     post:
       description: >-
         <p>Creates a new subscription schedule object. Each customer can have up
         to 500 active or scheduled subscriptions.</p>
+      tags:
+        - V1
+        - Subscription_items
+        - Item
+        - Subscription_item
+        - Usage_record_summaries
+        - Usage_records
+        - Subscription_schedules
   /v1/subscription_schedules/{schedule}:
     get:
       description: >-
         <p>Retrieves the details of an existing subscription schedule. You only
         need to supply the unique subscription schedule identifier that was
         returned upon subscription schedule creation.</p>
+      tags:
+        - V1
+        - Subscription_items
+        - Item
+        - Subscription_item
+        - Usage_record_summaries
+        - Usage_records
+        - Subscription_schedules
+        - Schedule
     post:
       description: <p>Updates an existing subscription schedule.</p>
+      tags:
+        - V1
+        - Subscription_items
+        - Item
+        - Subscription_item
+        - Usage_record_summaries
+        - Usage_records
+        - Subscription_schedules
+        - Schedule
   /v1/subscription_schedules/{schedule}/cancel:
     post:
       description: >-
@@ -90,6 +155,16 @@ paths:
         immediately (if the subscription schedule has an active subscription). A
         subscription schedule can only be canceled if its status is
         <code>not_started</code> or <code>active</code>.</p>
+      tags:
+        - V1
+        - Subscription_items
+        - Item
+        - Subscription_item
+        - Usage_record_summaries
+        - Usage_records
+        - Subscription_schedules
+        - Schedule
+        - Cancel
   /v1/subscription_schedules/{schedule}/release:
     post:
       description: >-
@@ -100,12 +175,35 @@ paths:
         schedule is currently associated with a subscription, releasing it will
         remove its <code>subscription</code> property and set the subscription’s
         ID to the <code>released_subscription</code> property.</p>
+      tags:
+        - V1
+        - Subscription_items
+        - Item
+        - Subscription_item
+        - Usage_record_summaries
+        - Usage_records
+        - Subscription_schedules
+        - Schedule
+        - Cancel
+        - Release
   /v1/subscriptions:
     get:
       description: >-
         <p>By default, returns a list of subscriptions that have not been
         canceled. In order to list canceled subscriptions, specify
         <code>status=canceled</code>.</p>
+      tags:
+        - V1
+        - Subscription_items
+        - Item
+        - Subscription_item
+        - Usage_record_summaries
+        - Usage_records
+        - Subscription_schedules
+        - Schedule
+        - Cancel
+        - Release
+        - Subscriptions
     post:
       description: >-
         <p>Creates a new subscription on an existing customer. Each customer can
@@ -127,6 +225,18 @@ paths:
 
         Schedules provide the flexibility to model more complex billing
         configurations that change over time.</p>
+      tags:
+        - V1
+        - Subscription_items
+        - Item
+        - Subscription_item
+        - Usage_record_summaries
+        - Usage_records
+        - Subscription_schedules
+        - Schedule
+        - Cancel
+        - Release
+        - Subscriptions
   /v1/subscriptions/search:
     get:
       description: >-
@@ -141,6 +251,19 @@ paths:
 
         to an hour behind during outages. Search functionality is not available
         to merchants in India.</p>
+      tags:
+        - V1
+        - Subscription_items
+        - Item
+        - Subscription_item
+        - Usage_record_summaries
+        - Usage_records
+        - Subscription_schedules
+        - Schedule
+        - Cancel
+        - Release
+        - Subscriptions
+        - Search
   /v1/subscriptions/{subscription_exposed_id}:
     delete:
       description: >-
@@ -164,8 +287,36 @@ paths:
         the invoices manually after subscription cancellation to have us
         proceed. Or, you could check for unpaid invoices before allowing the
         customer to cancel the subscription at all.</p>
+      tags:
+        - V1
+        - Subscription_items
+        - Item
+        - Subscription_item
+        - Usage_record_summaries
+        - Usage_records
+        - Subscription_schedules
+        - Schedule
+        - Cancel
+        - Release
+        - Subscriptions
+        - Search
+        - Subscription_exposed_id
     get:
       description: <p>Retrieves the subscription with the given ID.</p>
+      tags:
+        - V1
+        - Subscription_items
+        - Item
+        - Subscription_item
+        - Usage_record_summaries
+        - Usage_records
+        - Subscription_schedules
+        - Schedule
+        - Cancel
+        - Release
+        - Subscriptions
+        - Search
+        - Subscription_exposed_id
     post:
       description: >-
         <p>Updates an existing subscription to match the specified parameters.
@@ -234,9 +385,38 @@ paths:
         bill for a frequently changing quantity, consider integrating <a
         href="/docs/billing/subscriptions/usage-based">usage-based billing</a>
         instead.</p>
+      tags:
+        - V1
+        - Subscription_items
+        - Item
+        - Subscription_item
+        - Usage_record_summaries
+        - Usage_records
+        - Subscription_schedules
+        - Schedule
+        - Cancel
+        - Release
+        - Subscriptions
+        - Search
+        - Subscription_exposed_id
   /v1/subscriptions/{subscription_exposed_id}/discount:
     delete:
       description: <p>Removes the currently applied discount on a subscription.</p>
+      tags:
+        - V1
+        - Subscription_items
+        - Item
+        - Subscription_item
+        - Usage_record_summaries
+        - Usage_records
+        - Subscription_schedules
+        - Schedule
+        - Cancel
+        - Release
+        - Subscriptions
+        - Search
+        - Subscription_exposed_id
+        - Discount
   /v1/subscriptions/{subscription}/resume:
     post:
       description: >-
@@ -246,4 +426,21 @@ paths:
         subscription will be unpaused. If payment succeeds the subscription will
         become <code>active</code>, and if payment fails the subscription will
         be <code>past_due</code>. The resumption invoice will void automatically
-        if not paid by the expiration d
+        if not paid by the expiration
+      tags:
+        - V1
+        - Subscription_items
+        - Item
+        - Subscription_item
+        - Usage_record_summaries
+        - Usage_records
+        - Subscription_schedules
+        - Schedule
+        - Cancel
+        - Release
+        - Subscriptions
+        - Search
+        - Subscription_exposed_id
+        - Discount
+        - Subscription
+        - Resu

@@ -5,15 +5,15 @@ info:
   contact:
     email: dev-platform@stripe.com
     name: Stripe Dev Platform Team
-    url: 'https://stripe.com'
-  termsOfService: 'https://stripe.com/us/terms/'
+    url: https://stripe.com
+  termsOfService: https://stripe.com/us/terms/
   version: '2023-10-16'
   x-stripeSpecFilename: spec3
 security:
   - basicAuth: []
   - bearerAuth: []
 servers:
-  - url: 'https://api.stripe.com/'
+  - url: https://api.stripe.com/
 paths:
   /v1/transfers:
     get:
@@ -164,7 +164,7 @@ paths:
               schema:
                 $ref: '#/components/schemas/error'
           description: Error response.
-  '/v1/transfers/{id}/reversals':
+  /v1/transfers/{id}/reversals:
     get:
       description: >-
         <p>You can see a list of the reversals belonging to a specific transfer.
@@ -301,7 +301,7 @@ paths:
               schema:
                 $ref: '#/components/schemas/error'
           description: Error response.
-  '/v1/transfers/{transfer}':
+  /v1/transfers/{transfer}:
     get:
       description: >-
         <p>Retrieves the details of an existing transfer. Supply the unique
@@ -392,7 +392,7 @@ paths:
               schema:
                 $ref: '#/components/schemas/error'
           description: Error response.
-  '/v1/transfers/{transfer}/reversals/{id}':
+  /v1/transfers/{transfer}/reversals/{id}:
     get:
       description: >-
         <p>By default, you can see the 10 most recent reversals stored directly
@@ -732,7 +732,7 @@ components:
         transfers](https://stripe.com/docs/connect/separate-charges-and-transfers#reversing-transfers)
       properties:
         amount:
-          description: 'Amount, in cents (or local equivalent).'
+          description: Amount, in cents (or local equivalent).
           type: integer
         balance_transaction:
           anyOf:
@@ -869,7 +869,7 @@ components:
             much to transfer.
           type: integer
         currency:
-          description: '3-letter [ISO code for currency](https://stripe.com/docs/payouts).'
+          description: 3-letter [ISO code for currency](https://stripe.com/docs/payouts).
           type: string
         description:
           description: >-

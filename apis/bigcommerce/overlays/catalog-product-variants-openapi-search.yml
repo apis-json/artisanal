@@ -12,14 +12,27 @@ paths:
   /catalog/products/{product_id}/variants:
     get:
       tags:
-        - Product Variants
+        - Get
+        - All
+        - Product
+        - Variants
+        - Catalog
+        - Products
+        - Product_id
+        - Variants
       summary: Get All Product Variants
       description: >-
         Returns a list of product *Variants*. Optional parameters can be passed
         in.
     post:
       tags:
-        - Product Variants
+        - Create
+        - Product
+        - Variant
+        - Catalog
+        - Products
+        - Product_id
+        - Variants
       summary: Create a Product Variant
       description: >-
         Creates a *Product Variant*.
@@ -54,19 +67,40 @@ paths:
   /catalog/products/{product_id}/variants/{variant_id}:
     get:
       tags:
-        - Product Variants
+        - Get
+        - Product
+        - Variant
+        - Catalog
+        - Products
+        - Product_id
+        - Variants
+        - Variant_id
       summary: Get a Product Variant
       description: >-
         Returns a single product *Variant*. Optional parameters can be passed
         in.
     put:
       tags:
-        - Product Variants
+        - Update
+        - Product
+        - Variant
+        - Catalog
+        - Products
+        - Product_id
+        - Variants
+        - Variant_id
       summary: Update a Product Variant
       description: Updates a product *Variant*.
     delete:
       tags:
-        - Product Variants
+        - Delete
+        - Product
+        - Variant
+        - Catalog
+        - Products
+        - Product_id
+        - Variants
+        - Variant_id
       summary: Delete a Product Variant
       description: Deletes a product *Variant*.
     parameters:
@@ -76,6 +110,15 @@ paths:
   /catalog/products/{product_id}/variants/{variant_id}/metafields:
     get:
       tags:
+        - Get
+        - Product
+        - Variant
+        - Metafields
+        - Catalog
+        - Products
+        - Product_id
+        - Variants
+        - Variant_id
         - Metafields
       summary: Get Product Variant Metafields
       description: >-
@@ -83,6 +126,15 @@ paths:
         be passed in.
     post:
       tags:
+        - Create
+        - Product
+        - Variant
+        - Metafield
+        - Catalog
+        - Products
+        - Product_id
+        - Variants
+        - Variant_id
         - Metafields
       summary: Create a Product Variant Metafield
       description: >-
@@ -117,19 +169,49 @@ paths:
   /catalog/products/{product_id}/variants/{variant_id}/metafields/{metafield_id}:
     get:
       tags:
+        - Get
+        - Product
+        - Variant
         - Metafields
+        - Catalog
+        - Products
+        - Product_id
+        - Variants
+        - Variant_id
+        - Metafields
+        - Metafield_id
       summary: Get a Product Variant Metafields
       description: >-
         Returns a single product variant *Metafield*. Optional parameters can be
         passed in.
     put:
       tags:
+        - Update
+        - Product
+        - Variant
         - Metafields
+        - Catalog
+        - Products
+        - Product_id
+        - Variants
+        - Variant_id
+        - Metafields
+        - Metafield_id
       summary: Update Product Variant Metafields
       description: "Updates a product variant *Metafield*.\n\n**Required Fields:**\n* none\n\n**Read-Only Fields**\n* id\n* These fields can only be modified by the app (API credentials) that created the metafield:\n\t* namespace\n\t* key\n\t* permission_set\n\n**Usage Notes**\n* Attempting to modify `namespace`, `key`, and `permission_set` fields using a client ID different from the one used to create those metafields will result in a 403 error message. "
     delete:
       tags:
+        - Delete
+        - Product
+        - Variant
+        - Metafield
+        - Catalog
+        - Products
+        - Product_id
+        - Variants
+        - Variant_id
         - Metafields
+        - Metafield_id
       summary: Delete a Product Variant Metafield
       description: Deletes a product variant *Metafield*.
     parameters:
@@ -140,7 +222,18 @@ paths:
   /catalog/products/{product_id}/variants/{variant_id}/image:
     post:
       tags:
-        - Images
+        - Create
+        - Product
+        - Variant
+        - Image
+        - Catalog
+        - Products
+        - Product_id
+        - Variants
+        - Variant_id
+        - Metafields
+        - Metafield_id
+        - Image
       summary: Create a Product Variant Image
       description: >-
         Creates a *Variant Image*.
@@ -164,14 +257,34 @@ paths:
   /catalog/variants:
     get:
       tags:
-        - Variants (Batch)
+        - Get
+        - All
+        - Variants
+        - Catalog
+        - Products
+        - Product_id
+        - Variants
+        - Variant_id
+        - Metafields
+        - Metafield_id
+        - Image
       summary: Get All Variants
       description: >-
         Returns a list of all variants in your catalog. Optional parameters can
         be passed in.
     put:
       tags:
-        - Variants (Batch)
+        - Update
+        - Variants
+        - Batch)
+        - Catalog
+        - Products
+        - Product_id
+        - Variants
+        - Variant_id
+        - Metafields
+        - Metafield_id
+        - Image
       summary: Update Variants (Batch)
       description: >-
         Updates a batch of `variant` objects. Currently the limit is 50 variants
@@ -201,20 +314,62 @@ paths:
     get:
       summary: Get All Product Variant Metafields
       tags:
-        - Batch metafields
+        - Get
+        - All
+        - Product
+        - Variant
+        - Metafields
+        - Catalog
+        - Products
+        - Product_id
+        - Variants
+        - Variant_id
+        - Metafields
+        - Metafield_id
+        - Image
       description: Get all variant metafields.
     post:
       summary: Create multiple Metafields
       tags:
-        - Batch metafields
+        - Create
+        - Multiple
+        - Metafields
+        - Catalog
+        - Products
+        - Product_id
+        - Variants
+        - Variant_id
+        - Metafields
+        - Metafield_id
+        - Image
       description: Create multiple metafields.
     put:
       summary: Update multiple Metafields
       tags:
-        - Batch metafields
+        - Update
+        - Multiple
+        - Metafields
+        - Catalog
+        - Products
+        - Product_id
+        - Variants
+        - Variant_id
+        - Metafields
+        - Metafield_id
+        - Image
       description: Create multiple metafields.
     delete:
       summary: Delete All Metafields
       tags:
-        - Batch metafields
-      description: Delete all variant metafield
+        - Delete
+        - All
+        - Metafields
+        - Catalog
+        - Products
+        - Product_id
+        - Variants
+        - Variant_id
+        - Metafields
+        - Metafield_id
+        - Image
+      description: Delete all variant

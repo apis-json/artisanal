@@ -5,15 +5,15 @@ info:
   contact:
     email: dev-platform@stripe.com
     name: Stripe Dev Platform Team
-    url: 'https://stripe.com'
-  termsOfService: 'https://stripe.com/us/terms/'
+    url: https://stripe.com
+  termsOfService: https://stripe.com/us/terms/
   version: '2023-10-16'
   x-stripeSpecFilename: spec3
 security:
   - basicAuth: []
   - bearerAuth: []
 servers:
-  - url: 'https://api.stripe.com/'
+  - url: https://api.stripe.com/
 paths:
   /v1/climate/orders:
     get:
@@ -131,7 +131,7 @@ paths:
               schema:
                 $ref: '#/components/schemas/error'
           description: Error response.
-  '/v1/climate/orders/{order}':
+  /v1/climate/orders/{order}:
     get:
       description: >-
         <p>Retrieves the details of a Climate order object with the given
@@ -222,7 +222,7 @@ paths:
               schema:
                 $ref: '#/components/schemas/error'
           description: Error response.
-  '/v1/climate/orders/{order}/cancel':
+  /v1/climate/orders/{order}/cancel:
     post:
       description: >-
         <p>Cancels a Climate order. You can cancel an order within 30 days of
@@ -345,7 +345,7 @@ paths:
               schema:
                 $ref: '#/components/schemas/error'
           description: Error response.
-  '/v1/climate/products/{product}':
+  /v1/climate/products/{product}:
     get:
       description: <p>Retrieves the details of a Climate product with the given ID.</p>
       operationId: GetClimateProductsProduct
@@ -505,7 +505,7 @@ paths:
               schema:
                 $ref: '#/components/schemas/error'
           description: Error response.
-  '/v1/climate/reservations/{order}':
+  /v1/climate/reservations/{order}:
     get:
       description: >-
         <p>Retrieves the details of a Climate order object with the given
@@ -596,7 +596,7 @@ paths:
               schema:
                 $ref: '#/components/schemas/error'
           description: Error response.
-  '/v1/climate/reservations/{order}/cancel':
+  /v1/climate/reservations/{order}/cancel:
     post:
       description: >-
         <p>Cancels a Climate order. You can cancel an order within 30 days of
@@ -644,7 +644,7 @@ paths:
               schema:
                 $ref: '#/components/schemas/error'
           description: Error response.
-  '/v1/climate/reservations/{order}/confirm':
+  /v1/climate/reservations/{order}/confirm:
     post:
       description: >-
         <p>Confirms a Climate order. When you confirm your order, we immediately
@@ -760,7 +760,7 @@ paths:
               schema:
                 $ref: '#/components/schemas/error'
           description: Error response.
-  '/v1/climate/suppliers/{supplier}':
+  /v1/climate/suppliers/{supplier}:
     get:
       description: <p>Retrieves a Climate supplier object.</p>
       operationId: GetClimateSuppliersSupplier
@@ -853,7 +853,7 @@ components:
           type: string
           x-stripeBypassValidation: true
         certificate:
-          description: 'For delivered orders, a URL to a delivery certificate for the order.'
+          description: For delivered orders, a URL to a delivery certificate for the order.
           maxLength: 5000
           nullable: true
           type: string

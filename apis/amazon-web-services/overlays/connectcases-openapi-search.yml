@@ -8,12 +8,29 @@ paths:
       description: >-
         <p>Returns the description for the list of fields in the request
         parameters. </p>
+      tags:
+        - Batch
+        - Get
+        - Field
+        - Id
+        - Fields
+        - Batch
   /domains/{domainId}/fields/{fieldId}/options:
     PUT:
       summary: BatchPutFieldOptions
       description: >-
         <p>Creates and updates a set of field options for a single select field
         in a Cases domain.</p>
+      tags:
+        - Batch
+        - Put
+        - Field
+        - Options
+        - Id
+        - Fields
+        - Batch
+        - Field
+        - Options
   /domains/{domainId}/cases:
     POST:
       summary: CreateCase
@@ -33,6 +50,15 @@ paths:
         &lt;/p&gt; &lt;/li&gt; &lt;li&gt; &lt;p&gt;
         &lt;code&gt;title&lt;/code&gt; &lt;/p&gt; &lt;/li&gt; &lt;/ul&gt;
         </code></pre>
+      tags:
+        - Create
+        - Case
+        - Id
+        - Fields
+        - Batch
+        - Field
+        - Options
+        - Cases
   /domains:
     POST:
       summary: CreateDomain
@@ -47,6 +73,16 @@ paths:
         Cases domain. For more information, see <a
         href="https://docs.aws.amazon.com/connect/latest/adminguide/required-permissions-iam-cases.html#onboard-cases-iam">Onboard
         to Cases</a>.</p> <pre><code> &lt;/important&gt; </code></pre>
+      tags:
+        - Create
+        - Domain
+        - Id
+        - Fields
+        - Batch
+        - Field
+        - Options
+        - Cases
+        - Domains
   /domains/{domainId}/fields:
     POST:
       summary: CreateField
@@ -54,6 +90,16 @@ paths:
         <p>Creates a field in the Cases domain. This field is used to define the
         case object model (that is, defines what data can be captured on cases)
         in a Cases domain. </p>
+      tags:
+        - Create
+        - Field
+        - Id
+        - Fields
+        - Batch
+        - Field
+        - Options
+        - Cases
+        - Domains
   /domains/{domainId}/layouts:
     POST:
       summary: CreateLayout
@@ -63,6 +109,17 @@ paths:
         interface:</p> <ul> <li> <p>Fields to display to the users</p> </li>
         <li> <p>Field ordering</p> </li> </ul> <note> <p>Title and Status fields
         cannot be part of layouts since they are not configurable.</p> </note>
+      tags:
+        - Create
+        - Layout
+        - Id
+        - Fields
+        - Batch
+        - Field
+        - Options
+        - Cases
+        - Domains
+        - Layouts
   /domains/{domainId}/cases/{caseId}/related-items/:
     POST:
       summary: CreateRelatedItem
@@ -79,6 +136,21 @@ paths:
         href="https://docs.aws.amazon.com/connect/latest/APIReference/API_DescribeUser.html">DescribeUser</a>
         permission on the ARN of the user that you provide.</p> </li> </ul>
         <pre><code> &lt;/note&gt; </code></pre>
+      tags:
+        - Create
+        - Related
+        - Item
+        - Id
+        - Fields
+        - Batch
+        - Field
+        - Options
+        - Cases
+        - Domains
+        - Layouts
+        - Case
+        - Related
+        - Items
   /domains/{domainId}/templates:
     POST:
       summary: CreateTemplate
@@ -91,10 +163,40 @@ paths:
         the same Template. A template can be either Active or Inactive, as
         indicated by its status. Inactive templates cannot be used to create
         cases.</p>
+      tags:
+        - Create
+        - Template
+        - Id
+        - Fields
+        - Batch
+        - Field
+        - Options
+        - Cases
+        - Domains
+        - Layouts
+        - Case
+        - Related
+        - Items
+        - Templates
   /domains/{domainId}:
     POST:
       summary: GetDomain
       description: <p>Returns information about a specific domain if it exists. </p>
+      tags:
+        - Get
+        - Domain
+        - Id
+        - Fields
+        - Batch
+        - Field
+        - Options
+        - Cases
+        - Domains
+        - Layouts
+        - Case
+        - Related
+        - Items
+        - Templates
   /domains/{domainId}/cases/{caseId}:
     PUT:
       summary: UpdateCase
@@ -108,10 +210,44 @@ paths:
         &lt;code&gt;CreateCase&lt;/code&gt; input .&lt;/p&gt; &lt;p&gt;If the
         action is successful, the service sends back an HTTP 200 response with
         an empty HTTP body.&lt;/p&gt; </code></pre>
+      tags:
+        - Update
+        - Case
+        - Id
+        - Fields
+        - Batch
+        - Field
+        - Options
+        - Cases
+        - Domains
+        - Layouts
+        - Case
+        - Related
+        - Items
+        - Templates
   /domains/{domainId}/cases/{caseId}/audit-history:
     POST:
       summary: GetCaseAuditEvents
       description: <p>Returns the audit history about a specific case if it exists.</p>
+      tags:
+        - Get
+        - Case
+        - Audit
+        - Events
+        - Id
+        - Fields
+        - Batch
+        - Field
+        - Options
+        - Cases
+        - Domains
+        - Layouts
+        - Case
+        - Related
+        - Items
+        - Templates
+        - Audit
+        - History
   /domains/{domainId}/case-event-configuration:
     PUT:
       summary: PutCaseEventConfiguration
@@ -120,6 +256,27 @@ paths:
         fields you can add to the event message, see <a
         href="https://docs.aws.amazon.com/connect/latest/adminguide/case-fields.html">Create
         case fields</a> in the <i>Amazon Connect Administrator Guide</i> </p>
+      tags:
+        - Put
+        - Case
+        - Event
+        - Configuration
+        - Id
+        - Fields
+        - Batch
+        - Field
+        - Options
+        - Cases
+        - Domains
+        - Layouts
+        - Case
+        - Related
+        - Items
+        - Templates
+        - Audit
+        - History
+        - Event
+        - Configuration
   /domains/{domainId}/layouts/{layoutId}:
     PUT:
       summary: UpdateLayout
@@ -130,6 +287,26 @@ paths:
         you add non-existent <code>fieldIds</code> to a layout.</p> <note>
         <p>Title and Status fields cannot be part of layouts because they are
         not configurable.</p> </note>
+      tags:
+        - Update
+        - Layout
+        - Id
+        - Fields
+        - Batch
+        - Field
+        - Options
+        - Cases
+        - Domains
+        - Layouts
+        - Case
+        - Related
+        - Items
+        - Templates
+        - Audit
+        - History
+        - Event
+        - Configuration
+        - Layout
   /domains/{domainId}/templates/{templateId}:
     PUT:
       summary: UpdateTemplate
@@ -141,42 +318,238 @@ paths:
         these attributes must not be null. If a null value is provided for a
         given attribute, that attribute is ignored and its current value is
         preserved.</p>
+      tags:
+        - Update
+        - Template
+        - Id
+        - Fields
+        - Batch
+        - Field
+        - Options
+        - Cases
+        - Domains
+        - Layouts
+        - Case
+        - Related
+        - Items
+        - Templates
+        - Audit
+        - History
+        - Event
+        - Configuration
+        - Layout
+        - Template
   /domains/{domainId}/list-cases-for-contact:
     POST:
       summary: ListCasesForContact
       description: <p>Lists cases for a given contact.</p>
+      tags:
+        - List
+        - Cases
+        - For
+        - Contact
+        - Id
+        - Fields
+        - Batch
+        - Field
+        - Options
+        - Cases
+        - Domains
+        - Layouts
+        - Case
+        - Related
+        - Items
+        - Templates
+        - Audit
+        - History
+        - Event
+        - Configuration
+        - Layout
+        - Template
+        - List
+        - For
+        - Contact
   /domains-list:
     POST:
       summary: ListDomains
       description: >-
         <p>Lists all cases domains in the Amazon Web Services account. Each list
         item is a condensed summary object of the domain.</p>
+      tags:
+        - List
+        - Domains
+        - Id
+        - Fields
+        - Batch
+        - Field
+        - Options
+        - Cases
+        - Domains
+        - Layouts
+        - Case
+        - Related
+        - Items
+        - Templates
+        - Audit
+        - History
+        - Event
+        - Configuration
+        - Layout
+        - Template
+        - List
+        - For
+        - Contact
   /domains/{domainId}/fields/{fieldId}/options-list:
     POST:
       summary: ListFieldOptions
       description: >-
         <p>Lists all of the field options for a field identifier in the domain.
         </p>
+      tags:
+        - List
+        - Field
+        - Options
+        - Id
+        - Fields
+        - Batch
+        - Field
+        - Options
+        - Cases
+        - Domains
+        - Layouts
+        - Case
+        - Related
+        - Items
+        - Templates
+        - Audit
+        - History
+        - Event
+        - Configuration
+        - Layout
+        - Template
+        - List
+        - For
+        - Contact
   /domains/{domainId}/fields-list:
     POST:
       summary: ListFields
       description: <p>Lists all fields in a Cases domain.</p>
+      tags:
+        - List
+        - Fields
+        - Id
+        - Fields
+        - Batch
+        - Field
+        - Options
+        - Cases
+        - Domains
+        - Layouts
+        - Case
+        - Related
+        - Items
+        - Templates
+        - Audit
+        - History
+        - Event
+        - Configuration
+        - Layout
+        - Template
+        - List
+        - For
+        - Contact
   /domains/{domainId}/layouts-list:
     POST:
       summary: ListLayouts
       description: >-
         <p>Lists all layouts in the given cases domain. Each list item is a
         condensed summary object of the layout.</p>
+      tags:
+        - List
+        - Layouts
+        - Id
+        - Fields
+        - Batch
+        - Field
+        - Options
+        - Cases
+        - Domains
+        - Layouts
+        - Case
+        - Related
+        - Items
+        - Templates
+        - Audit
+        - History
+        - Event
+        - Configuration
+        - Layout
+        - Template
+        - List
+        - For
+        - Contact
   /tags/{arn}:
     DELETE:
       summary: UntagResource
       description: <p>Untags a resource.</p>
+      tags:
+        - Untag
+        - Resource
+        - Id
+        - Fields
+        - Batch
+        - Field
+        - Options
+        - Cases
+        - Domains
+        - Layouts
+        - Case
+        - Related
+        - Items
+        - Templates
+        - Audit
+        - History
+        - Event
+        - Configuration
+        - Layout
+        - Template
+        - List
+        - For
+        - Contact
+        - Tags
+        - Arn
   /domains/{domainId}/templates-list:
     POST:
       summary: ListTemplates
       description: >-
         <p>Lists all of the templates in a Cases domain. Each list item is a
         condensed summary object of the template. </p>
+      tags:
+        - List
+        - Templates
+        - Id
+        - Fields
+        - Batch
+        - Field
+        - Options
+        - Cases
+        - Domains
+        - Layouts
+        - Case
+        - Related
+        - Items
+        - Templates
+        - Audit
+        - History
+        - Event
+        - Configuration
+        - Layout
+        - Template
+        - List
+        - For
+        - Contact
+        - Tags
+        - Arn
   /domains/{domainId}/cases-search:
     POST:
       summary: SearchCases
@@ -187,6 +560,33 @@ paths:
         customer profile ARN in this format: <code> arn:aws:profile:your AWS
         Region:your AWS account ID:domains/profiles domain name/profiles/profile
         ID</code>. </p> </note>
+      tags:
+        - Search
+        - Cases
+        - Id
+        - Fields
+        - Batch
+        - Field
+        - Options
+        - Cases
+        - Domains
+        - Layouts
+        - Case
+        - Related
+        - Items
+        - Templates
+        - Audit
+        - History
+        - Event
+        - Configuration
+        - Layout
+        - Template
+        - List
+        - For
+        - Contact
+        - Tags
+        - Arn
+        - Search
   /domains/{domainId}/cases/{caseId}/related-items-search:
     POST:
       summary: SearchRelatedItems
@@ -194,7 +594,62 @@ paths:
         <p>Searches for related items that are associated with a case.</p>
         <note> <p>If no filters are provided, this returns all related items
         associated with a case.</p> </note>
+      tags:
+        - Search
+        - Related
+        - Items
+        - Id
+        - Fields
+        - Batch
+        - Field
+        - Options
+        - Cases
+        - Domains
+        - Layouts
+        - Case
+        - Related
+        - Items
+        - Templates
+        - Audit
+        - History
+        - Event
+        - Configuration
+        - Layout
+        - Template
+        - List
+        - For
+        - Contact
+        - Tags
+        - Arn
+        - Search
   /domains/{domainId}/fields/{fieldId}:
     PUT:
       summary: UpdateField
-      description: <p>Updates the properties of an existing fi
+      description: <p>Updates the properties of an existing
+      tags:
+        - Update
+        - Field
+        - Id
+        - Fields
+        - Batch
+        - Field
+        - Options
+        - Cases
+        - Domains
+        - Layouts
+        - Case
+        - Related
+        - Items
+        - Templates
+        - Audit
+        - History
+        - Event
+        - Configuration
+        - Layout
+        - Template
+        - List
+        - For
+        - Contact
+        - Tags
+        - Arn
+        - Sear

@@ -1,541 +1,561 @@
----
 openapi: 3.0.2
 info:
   title: Acuris Entities API
   version: 1.0.0
 servers:
-- url: https://api.acuris.com
+  - url: https://api.acuris.com
 tags:
-- name: entities
-  description: Get list of entities
+  - name: Entities
+    description: Get list of entities
 security:
-- apiKey: []
+  - apiKey: []
 paths:
-  "/entities":
+  /entities:
     get:
       tags:
-      - entities
+        - entities
       summary: Get list of entities (with optional filters)
-      description: Returns JSON containing entities matching given filtering criteria
-        set (or top ten entities when no filters are provided).
+      description: >-
+        Returns JSON containing entities matching given filtering criteria set
+        (or top ten entities when no filters are provided).
       parameters:
-      - name: Accept-Encoding
-        in: header
-        description: We recommend the use of GZIP compression which produces savings
-          from 60 to 80% in the json data transfer.
-        example: deflate,gzip
-        required: false
-        schema:
-          type: string
-      - name: entityName
-        in: query
-        description: Search by entity name.
-        required: false
-        schema:
-          type: string
-      - name: entityType
-        in: query
-        description: Search by entity type.
-        required: false
-        schema:
-          type: array
-          nullable: false
-          items:
+        - name: Accept-Encoding
+          in: header
+          description: >-
+            We recommend the use of GZIP compression which produces savings from
+            60 to 80% in the json data transfer.
+          example: deflate,gzip
+          required: false
+          schema:
             type: string
-            enum:
-            - eduinst
-            - pevchouse
-            - investmentbank
-            - lawfirm
-            - prfirm
-            - corporate
-            - accountants
-            - consultancy
-            - searchfirm
-            - broker
-            - fund
-            - other
-            - privateindividual
-            - asset
-          minItems: 1
-      - name: before
-        in: query
-        description: it acts as a live cursor and specify cursor where to end the
-          result set
-        required: false
-        schema:
-          type: string
-      - name: after
-        in: query
-        description: it acts as a live cursor and specify cursor where to start the
-          result set
-        required: false
-        schema:
-          type: string
-      - name: sector
-        in: query
-        description: Search by entity sector. <br>To see available values please visit
-          <a href="/reference/docs#Industries, Sectors and Subsectors">Reference data</a>.
-        schema:
-          type: array
-          nullable: false
-          items:
+        - name: entityName
+          in: query
+          description: Search by entity name.
+          required: false
+          schema:
             type: string
-            enum:
-            - agriculture
-            - automotive
-            - biotechnology
-            - chemicalmat
-            - computerhard
-            - computersemi
-            - computerserv
-            - computersoft
-            - consumerfoods
-            - consumerother
-            - consumerretail
-            - contruction
-            - defence
-            - energy
-            - finance
-            - government
-            - indauto
-            - indelectronics
-            - indprod
-            - internet
-            - leisure
-            - manufacturing
-            - media
-            - medical
-            - medicalpharm
-            - mining
-            - other
-            - realestate
-            - servicesother
-            - telcomhardware
-            - telecomcarriers
-            - transportation
-            - utilities
-          minItems: 1
-        required: false
-        style: form
-        explode: false
-      - name: subsector
-        in: query
-        description: Search by entity subsector. <br>To see available values please
-          visit <a href="/reference/docs#Industries, Sectors and Subsectors">Reference
-          data</a>.
-        schema:
-          type: array
-          nullable: false
-          items:
+        - name: entityType
+          in: query
+          description: Search by entity type.
+          required: false
+          schema:
+            type: array
+            nullable: false
+            items:
+              type: string
+              enum:
+                - eduinst
+                - pevchouse
+                - investmentbank
+                - lawfirm
+                - prfirm
+                - corporate
+                - accountants
+                - consultancy
+                - searchfirm
+                - broker
+                - fund
+                - other
+                - privateindividual
+                - asset
+            minItems: 1
+        - name: before
+          in: query
+          description: >-
+            it acts as a live cursor and specify cursor where to end the result
+            set
+          required: false
+          schema:
             type: string
-            enum:
-            - accomodation
-            - advertising
-            - aerospace
-            - aggregates
-            - agricultural
-            - agriprocessing
-            - agrochem
-            - airlines
-            - airports
-            - aluminiumprod
-            - amouredvehicles
-            - animalhusbandry
-            - apparel
-            - autocomp
-            - babyfood
-            - bakedgoods
-            - banking
-            - batterypsu
-            - beer
-            - bioproduction
-            - bioresearch
-            - bottlingcanning
-            - browsers
-            - builders
-            - buildingmaterial
-            - buildsuppliers
-            - buses
-            - businessprod
-            - businesssupp
-            - cable
-            - cablecarriers
-            - cement
-            - chemists
-            - clothes
-            - coal
-            - commoditychem
-            - compmainframes
-            - compperipherals
-            - concrete
-            - conglomerates
-            - construction
-            - constructionchem
-            - consultancy
-            - cosmeticcarechem
-            - cropcultivation
-            - dairy
-            - dataproc
-            - defence
-            - deptstores
-            - distributors
-            - drugdevelopment
-            - drugmanufacture
-            - drugsupply
-            - edutraining
-            - electricalapp
-            - electricalcomp
-            - electricalgen
-            - electricaltrans
-            - electronics
-            - energyalt
-            - eneryconserve
-            - engineering
-            - entertainother
-            - eretailing
-            - exploredrill
-            - fibreelec
-            - finechemother
-            - finechempharm
-            - fishing
-            - fishmeatpoultry
-            - fixedlinecomms
-            - flavourfragrance
-            - foodadditives
-            - foodingredients
-            - foodothers
-            - forestry
-            - freshproduce
-            - frozenproduce
-            - fundmanagement
-            - furniture
-            - glass
-            - government
-            - handicap
-            - hardwaremain
-            - hardwareplumb
-            - health
-            - heavyconstruct
-            - heavysideother
-            - hospitalmgnt
-            - householdelec
-            - householdprod
-            - importwholesale
-            - indbio
-            - indequip
-            - indgases
-            - indmeas
-            - indserv
-            - inorganicchem
-            - instrumentation
-            - insurance
-            - integrateutil
-            - invbanking
-            - investbroking
-            - ironsteel
-            - isp
-            - itconsult
-            - ittrain
-            - laptops
-            - lifestyle
-            - lightsideother
-            - luxurygoods
-            - machinetools
-            - machinevision
-            - mail
-            - manufother
-            - manufprefab
-            - media
-            - medical
-            - metalore
-            - metalother
-            - minicomputers
-            - miningother
-            - missilesguidance
-            - nonmetalores
-            - officefurniture
-            - oilgasexplore
-            - operatingsys
-            - optical
-            - ordinanceother
-            - packaging
-            - paintchem
-            - pda
-            - perrochemderiv
-            - personalcare
-            - petrochembase
-            - plastics
-            - pollution
-            - portals
-            - principalfinance
-            - printing
-            - processcontrol
-            - publishing
-            - pulppaper
-            - pumps
-            - pvc
-            - radiobroadcast
-            - rail
-            - railstockparts
-            - realestate
-            - refridgeration
-            - rentallease
-            - restaurantpubs
-            - retailother
-            - robotics
-            - satnetwork
-            - sattelecom
-            - searchengine
-            - seccommbrokers
-            - security
-            - semiconductors
-            - semiconfab
-            - servicesother
-            - shipbuild
-            - shipping
-            - smallarms
-            - softbeverages
-            - software
-            - softwaredev
-            - sovereignwealthf
-            - speciality
-            - specialityinter
-            - sugarconfect
-            - supermarkets
-            - sysintegration
-            - textiles
-            - tobacco
-            - toys
-            - tradingproc
-            - transportother
-            - travel
-            - tvbroadcast
-            - utilityother
-            - vehiclemanuf
-            - vehicles
-            - ventilation
-            - venturecapital
-            - voicedatacomms
-            - voicesynth
-            - water
-            - websiteconsult
-            - winespirits
-          minItems: 1
-        required: false
-        style: form
-        explode: false
-      - name: hqCountry
-        in: query
-        description: Search by headquarters country. <br>To see available values please
-          visit <a href="/reference/docs#Countries and States">Reference data</a>.
-        schema:
-          type: array
-          nullable: false
-          items:
+        - name: after
+          in: query
+          description: >-
+            it acts as a live cursor and specify cursor where to start the
+            result set
+          required: false
+          schema:
             type: string
-          minItems: 1
-        required: false
-        style: form
-        explode: false
-      - name: hqState
-        in: query
-        description: Search by headquarters state. <br>To see available values please
-          visit <a href="/reference/docs#Countries and States">Reference data</a>.
-        schema:
-          type: array
-          nullable: false
-          items:
+        - name: sector
+          in: query
+          description: >-
+            Search by entity sector. <br>To see available values please visit <a
+            href="/reference/docs#Industries, Sectors and Subsectors">Reference
+            data</a>.
+          schema:
+            type: array
+            nullable: false
+            items:
+              type: string
+              enum:
+                - agriculture
+                - automotive
+                - biotechnology
+                - chemicalmat
+                - computerhard
+                - computersemi
+                - computerserv
+                - computersoft
+                - consumerfoods
+                - consumerother
+                - consumerretail
+                - contruction
+                - defence
+                - energy
+                - finance
+                - government
+                - indauto
+                - indelectronics
+                - indprod
+                - internet
+                - leisure
+                - manufacturing
+                - media
+                - medical
+                - medicalpharm
+                - mining
+                - other
+                - realestate
+                - servicesother
+                - telcomhardware
+                - telecomcarriers
+                - transportation
+                - utilities
+            minItems: 1
+          required: false
+          style: form
+          explode: false
+        - name: subsector
+          in: query
+          description: >-
+            Search by entity subsector. <br>To see available values please visit
+            <a href="/reference/docs#Industries, Sectors and
+            Subsectors">Reference data</a>.
+          schema:
+            type: array
+            nullable: false
+            items:
+              type: string
+              enum:
+                - accomodation
+                - advertising
+                - aerospace
+                - aggregates
+                - agricultural
+                - agriprocessing
+                - agrochem
+                - airlines
+                - airports
+                - aluminiumprod
+                - amouredvehicles
+                - animalhusbandry
+                - apparel
+                - autocomp
+                - babyfood
+                - bakedgoods
+                - banking
+                - batterypsu
+                - beer
+                - bioproduction
+                - bioresearch
+                - bottlingcanning
+                - browsers
+                - builders
+                - buildingmaterial
+                - buildsuppliers
+                - buses
+                - businessprod
+                - businesssupp
+                - cable
+                - cablecarriers
+                - cement
+                - chemists
+                - clothes
+                - coal
+                - commoditychem
+                - compmainframes
+                - compperipherals
+                - concrete
+                - conglomerates
+                - construction
+                - constructionchem
+                - consultancy
+                - cosmeticcarechem
+                - cropcultivation
+                - dairy
+                - dataproc
+                - defence
+                - deptstores
+                - distributors
+                - drugdevelopment
+                - drugmanufacture
+                - drugsupply
+                - edutraining
+                - electricalapp
+                - electricalcomp
+                - electricalgen
+                - electricaltrans
+                - electronics
+                - energyalt
+                - eneryconserve
+                - engineering
+                - entertainother
+                - eretailing
+                - exploredrill
+                - fibreelec
+                - finechemother
+                - finechempharm
+                - fishing
+                - fishmeatpoultry
+                - fixedlinecomms
+                - flavourfragrance
+                - foodadditives
+                - foodingredients
+                - foodothers
+                - forestry
+                - freshproduce
+                - frozenproduce
+                - fundmanagement
+                - furniture
+                - glass
+                - government
+                - handicap
+                - hardwaremain
+                - hardwareplumb
+                - health
+                - heavyconstruct
+                - heavysideother
+                - hospitalmgnt
+                - householdelec
+                - householdprod
+                - importwholesale
+                - indbio
+                - indequip
+                - indgases
+                - indmeas
+                - indserv
+                - inorganicchem
+                - instrumentation
+                - insurance
+                - integrateutil
+                - invbanking
+                - investbroking
+                - ironsteel
+                - isp
+                - itconsult
+                - ittrain
+                - laptops
+                - lifestyle
+                - lightsideother
+                - luxurygoods
+                - machinetools
+                - machinevision
+                - mail
+                - manufother
+                - manufprefab
+                - media
+                - medical
+                - metalore
+                - metalother
+                - minicomputers
+                - miningother
+                - missilesguidance
+                - nonmetalores
+                - officefurniture
+                - oilgasexplore
+                - operatingsys
+                - optical
+                - ordinanceother
+                - packaging
+                - paintchem
+                - pda
+                - perrochemderiv
+                - personalcare
+                - petrochembase
+                - plastics
+                - pollution
+                - portals
+                - principalfinance
+                - printing
+                - processcontrol
+                - publishing
+                - pulppaper
+                - pumps
+                - pvc
+                - radiobroadcast
+                - rail
+                - railstockparts
+                - realestate
+                - refridgeration
+                - rentallease
+                - restaurantpubs
+                - retailother
+                - robotics
+                - satnetwork
+                - sattelecom
+                - searchengine
+                - seccommbrokers
+                - security
+                - semiconductors
+                - semiconfab
+                - servicesother
+                - shipbuild
+                - shipping
+                - smallarms
+                - softbeverages
+                - software
+                - softwaredev
+                - sovereignwealthf
+                - speciality
+                - specialityinter
+                - sugarconfect
+                - supermarkets
+                - sysintegration
+                - textiles
+                - tobacco
+                - toys
+                - tradingproc
+                - transportother
+                - travel
+                - tvbroadcast
+                - utilityother
+                - vehiclemanuf
+                - vehicles
+                - ventilation
+                - venturecapital
+                - voicedatacomms
+                - voicesynth
+                - water
+                - websiteconsult
+                - winespirits
+            minItems: 1
+          required: false
+          style: form
+          explode: false
+        - name: hqCountry
+          in: query
+          description: >-
+            Search by headquarters country. <br>To see available values please
+            visit <a href="/reference/docs#Countries and States">Reference
+            data</a>.
+          schema:
+            type: array
+            nullable: false
+            items:
+              type: string
+            minItems: 1
+          required: false
+          style: form
+          explode: false
+        - name: hqState
+          in: query
+          description: >-
+            Search by headquarters state. <br>To see available values please
+            visit <a href="/reference/docs#Countries and States">Reference
+            data</a>.
+          schema:
+            type: array
+            nullable: false
+            items:
+              type: string
+            minItems: 1
+          required: false
+          style: form
+          explode: false
+        - name: instrumentIsin
+          in: query
+          description: Search by ISIN.
+          required: false
+          schema:
             type: string
-          minItems: 1
-        required: false
-        style: form
-        explode: false
-      - name: instrumentIsin
-        in: query
-        description: Search by ISIN.
-        required: false
-        schema:
-          type: string
-      - name: instrumentLei
-        in: query
-        description: Search by LEI.
-        required: false
-        schema:
-          type: string
+        - name: instrumentLei
+          in: query
+          description: Search by LEI.
+          required: false
+          schema:
+            type: string
       responses:
         '200':
           description: Successful response
           content:
             application/json:
               schema:
-                "$ref": "#/components/schemas/EntitiesResponse"
+                $ref: '#/components/schemas/EntitiesResponse'
         '400':
           description: Provided parameters were invalid.
           content:
             application/json:
               schema:
-                "$ref": "#/components/schemas/ApiResponse"
+                $ref: '#/components/schemas/ApiResponse'
         '401':
-          description: Request rejected due to lack of valid authentication credentials
-            for target content
+          description: >-
+            Request rejected due to lack of valid authentication credentials for
+            target content
           content:
             application/json:
               schema:
-                "$ref": "#/components/schemas/ApiResponse"
+                $ref: '#/components/schemas/ApiResponse'
         '403':
-          description: User does not exist, is inactive or doesn't have rights to
-            view content
+          description: >-
+            User does not exist, is inactive or doesn't have rights to view
+            content
           content:
             application/json:
               schema:
-                "$ref": "#/components/schemas/ApiResponse"
+                $ref: '#/components/schemas/ApiResponse'
         '404':
           description: Invalid URL.
           content:
             application/json:
               schema:
-                "$ref": "#/components/schemas/ApiResponse"
+                $ref: '#/components/schemas/ApiResponse'
         '405':
           description: Invalid HTTP method - only GET is supported
           content:
             application/json:
               schema:
-                "$ref": "#/components/schemas/ApiResponse"
+                $ref: '#/components/schemas/ApiResponse'
         '500':
           description: Internal Server Error
           content:
             application/json:
               schema:
-                "$ref": "#/components/schemas/ApiResponse"
-  "/entities/{id}":
+                $ref: '#/components/schemas/ApiResponse'
+  /entities/{id}:
     get:
       tags:
-      - entityById
+        - entityById
       summary: Get one entity by its ID
       parameters:
-      - name: Accept-Encoding
-        in: header
-        description: We recommend the use of GZIP compression which produces savings
-          from 60 to 80% in the json data transfer.
-        example: deflate,gzip
-        required: false
-        schema:
-          type: string
-      - name: id
-        in: path
-        pattern: "^prime-[0-9]+$"
-        description: 'ID of the entity. This parameter is required and needs to match
-          the following RegExp: ^prime-[0-9]+$'
-        required: true
-        schema:
-          type: string
+        - name: Accept-Encoding
+          in: header
+          description: >-
+            We recommend the use of GZIP compression which produces savings from
+            60 to 80% in the json data transfer.
+          example: deflate,gzip
+          required: false
+          schema:
+            type: string
+        - name: id
+          in: path
+          pattern: ^prime-[0-9]+$
+          description: >-
+            ID of the entity. This parameter is required and needs to match the
+            following RegExp: ^prime-[0-9]+$
+          required: true
+          schema:
+            type: string
       responses:
         '200':
           description: Successful response
           content:
             application/json:
               schema:
-                "$ref": "#/components/schemas/EntityInfo"
+                $ref: '#/components/schemas/EntityInfo'
         '401':
-          description: Request rejected due to lack of valid authentication credentials
-            for target content
+          description: >-
+            Request rejected due to lack of valid authentication credentials for
+            target content
           content:
             application/json:
               schema:
-                "$ref": "#/components/schemas/ApiResponse"
+                $ref: '#/components/schemas/ApiResponse'
         '403':
-          description: User does not exist, is inactive or doesn't have rights to
-            view content
+          description: >-
+            User does not exist, is inactive or doesn't have rights to view
+            content
           content:
             application/json:
               schema:
-                "$ref": "#/components/schemas/ApiResponse"
+                $ref: '#/components/schemas/ApiResponse'
         '404':
           description: Invalid URL, deal ID is in invalid format or deal not found
           content:
             application/json:
               schema:
-                "$ref": "#/components/schemas/ApiResponse"
+                $ref: '#/components/schemas/ApiResponse'
         '405':
           description: Invalid HTTP method - only GET is supported
           content:
             application/json:
               schema:
-                "$ref": "#/components/schemas/ApiResponse"
+                $ref: '#/components/schemas/ApiResponse'
         '500':
           description: Internal Server Error
           content:
             application/json:
               schema:
-                "$ref": "#/components/schemas/ApiResponse"
-  "/entities/hierarchy":
+                $ref: '#/components/schemas/ApiResponse'
+  /entities/hierarchy:
     get:
       tags:
-      - entitiesHierarchy
+        - entitiesHierarchy
       summary: Get entities hierarchy (with optional filters)
-      description: Returns JSON containing entities matching given filtering criteria
-        set (or top ten entities when no filters are provided).
+      description: >-
+        Returns JSON containing entities matching given filtering criteria set
+        (or top ten entities when no filters are provided).
       parameters:
-      - name: Accept-Encoding
-        in: header
-        description: We recommend the use of GZIP compression which produces savings
-          from 60 to 80% in the json data transfer.
-        example: deflate,gzip
-        required: false
-        schema:
-          type: string
-      - name: instrumentIsin
-        in: query
-        description: Search by ISIN.
-        required: false
-        schema:
-          type: string
+        - name: Accept-Encoding
+          in: header
+          description: >-
+            We recommend the use of GZIP compression which produces savings from
+            60 to 80% in the json data transfer.
+          example: deflate,gzip
+          required: false
+          schema:
+            type: string
+        - name: instrumentIsin
+          in: query
+          description: Search by ISIN.
+          required: false
+          schema:
+            type: string
       responses:
         '200':
           description: Successful response
           content:
             application/json:
               schema:
-                "$ref": "#/components/schemas/EntitiesHierarchyResponse"
+                $ref: '#/components/schemas/EntitiesHierarchyResponse'
         '400':
           description: Provided parameters were invalid.
           content:
             application/json:
               schema:
-                "$ref": "#/components/schemas/ApiResponse"
+                $ref: '#/components/schemas/ApiResponse'
         '401':
-          description: Request rejected due to lack of valid authentication credentials
-            for target content
+          description: >-
+            Request rejected due to lack of valid authentication credentials for
+            target content
           content:
             application/json:
               schema:
-                "$ref": "#/components/schemas/ApiResponse"
+                $ref: '#/components/schemas/ApiResponse'
         '403':
-          description: User does not exist, is inactive or doesn't have rights to
-            view content
+          description: >-
+            User does not exist, is inactive or doesn't have rights to view
+            content
           content:
             application/json:
               schema:
-                "$ref": "#/components/schemas/ApiResponse"
+                $ref: '#/components/schemas/ApiResponse'
         '404':
           description: Invalid URL.
           content:
             application/json:
               schema:
-                "$ref": "#/components/schemas/ApiResponse"
+                $ref: '#/components/schemas/ApiResponse'
         '405':
           description: Invalid HTTP method - only GET is supported
           content:
             application/json:
               schema:
-                "$ref": "#/components/schemas/ApiResponse"
+                $ref: '#/components/schemas/ApiResponse'
         '500':
           description: Internal Server Error
           content:
             application/json:
               schema:
-                "$ref": "#/components/schemas/ApiResponse"
+                $ref: '#/components/schemas/ApiResponse'
 components:
   securitySchemes:
     apiKey:
@@ -553,17 +573,17 @@ components:
         results:
           type: array
           items:
-            "$ref": "#/components/schemas/EntityInfo"
+            $ref: '#/components/schemas/EntityInfo'
         _links:
           type: object
           properties:
             previous:
               type: string
-              description: "-"
+              description: '-'
               example: https://api.acuris.com/entities?before=prime-24348
             next:
               type: string
-              description: "-"
+              description: '-'
               example: https://api.acuris.com/entities?after=prime-24348
     EntityInfo:
       type: object
@@ -579,7 +599,8 @@ components:
         description:
           type: string
           description: Entity description
-          example: US-based investment bank and investment banking arm of Bank of
+          example: >-
+            US-based investment bank and investment banking arm of Bank of
             America corporation
         aliases:
           type: array
@@ -628,11 +649,11 @@ components:
         telephone:
           type: string
           description: ''
-          example: "+1 408 996 1010"
+          example: +1 408 996 1010
         fax:
           type: string
           description: ''
-          example: "+1 408 996 0275"
+          example: +1 408 996 0275
         registry:
           type: object
           description: ''
@@ -829,35 +850,37 @@ components:
         results:
           type: array
           items:
-            "$ref": "#/components/schemas/EntityHierarchy"
+            $ref: '#/components/schemas/EntityHierarchy'
         _links:
           type: object
           properties:
             previous:
               type: string
-              description: "-"
-              example: https://api.acuris.com/entities/hierarchy?before=NjBkMWU2ZTQ2NmIxNzUwOTU3ZDJkMDBh.3573e609
+              description: '-'
+              example: >-
+                https://api.acuris.com/entities/hierarchy?before=NjBkMWU2ZTQ2NmIxNzUwOTU3ZDJkMDBh.3573e609
             next:
               type: string
-              description: "-"
-              example: https://api.acuris.com/entities/hierarchy?after=NjBkNDg5YjE2OTk3YjQ2ODNiMDhjMGU0.4ab96e02
+              description: '-'
+              example: >-
+                https://api.acuris.com/entities/hierarchy?after=NjBkNDg5YjE2OTk3YjQ2ODNiMDhjMGU0.4ab96e02
     EntityHierarchy:
       type: object
       properties:
         self:
-          "$ref": "#/components/schemas/HierarchyNode"
+          $ref: '#/components/schemas/HierarchyNode'
         ancestors:
           type: array
           items:
-            "$ref": "#/components/schemas/HierarchyNode"
+            $ref: '#/components/schemas/HierarchyNode'
         descendants:
           type: array
           items:
-            "$ref": "#/components/schemas/HierarchyNode"
+            $ref: '#/components/schemas/HierarchyNode'
         siblings:
           type: array
           items:
-            "$ref": "#/components/schemas/HierarchyNode"
+            $ref: '#/components/schemas/HierarchyNode'
     HierarchyNode:
       type: object
       properties:
@@ -875,17 +898,17 @@ components:
           description: ISIN identifiers
           required: 'false'
           example:
-          - DE000DL2TRD5
-          - DE000DL2TRFF
+            - DE000DL2TRD5
+            - DE000DL2TRFF
           items:
             type: string
         mmgId:
           type: array
-          description: "'prime-id' of the entity in /entity/ API endpoint"
+          description: '''prime-id'' of the entity in /entity/ API endpoint'
           required: 'false'
           example:
-          - '275710'
-          - '285711'
+            - '275710'
+            - '285711'
           items:
             type: string
     ApiResponse:

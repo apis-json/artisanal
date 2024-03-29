@@ -29,10 +29,19 @@ paths:
         hour (24-hour clock)</p> </li> <li> <p> <code> <i>mm</i> </code> is the
         2-digit minutes</p> </li> <li> <p> <code> <i>ss</i> </code> is the
         2-digit seconds</p> </li> </ul>
+      tags:
+        - Create
+        - Snapshot
+        - Createsnapshot
   /deleteapp:
     DELETE:
       summary: DeleteApp
       description: <p>Deletes the instance of the given custom app.</p>
+      tags:
+        - Delete
+        - App
+        - Createsnapshot
+        - Deleteapp
   /deletesimulation:
     DELETE:
       summary: DeleteSimulation
@@ -41,26 +50,66 @@ paths:
         simulation.</p> <note> <p>Your simulation uses resources in other Amazon
         Web Services. This API operation doesn't delete resources in other
         Amazon Web Services.</p> </note>
+      tags:
+        - Delete
+        - Simulation
+        - Createsnapshot
+        - Deleteapp
+        - Deletesimulation
   /describeapp:
     GET:
       summary: DescribeApp
       description: <p>Returns the state of the given custom app.</p>
+      tags:
+        - Describe
+        - App
+        - Createsnapshot
+        - Deleteapp
+        - Deletesimulation
+        - Describeapp
   /describesimulation:
     GET:
       summary: DescribeSimulation
       description: <p>Returns the current state of the given simulation.</p>
+      tags:
+        - Describe
+        - Simulation
+        - Createsnapshot
+        - Deleteapp
+        - Deletesimulation
+        - Describeapp
+        - Describesimulation
   /listapps:
     GET:
       summary: ListApps
       description: >-
         <p>Lists all custom apps or service apps for the given simulation and
         domain.</p>
+      tags:
+        - List
+        - Apps
+        - Createsnapshot
+        - Deleteapp
+        - Deletesimulation
+        - Describeapp
+        - Describesimulation
+        - Listapps
   /listsimulations:
     GET:
       summary: ListSimulations
       description: >-
         <p>Lists the SimSpace Weaver simulations in the Amazon Web Services
         account used to make the API call.</p>
+      tags:
+        - List
+        - Simulations
+        - Createsnapshot
+        - Deleteapp
+        - Deletesimulation
+        - Describeapp
+        - Describesimulation
+        - Listapps
+        - Listsimulations
   /tags/{ResourceArn}:
     DELETE:
       summary: UntagResource
@@ -70,16 +119,55 @@ paths:
         href="https://docs.aws.amazon.com/general/latest/gr/aws_tagging.html">Tagging
         Amazon Web Services resources</a> in the <i>Amazon Web Services General
         Reference</i>.</p>
+      tags:
+        - Untag
+        - Resource
+        - Createsnapshot
+        - Deleteapp
+        - Deletesimulation
+        - Describeapp
+        - Describesimulation
+        - Listapps
+        - Listsimulations
+        - Resource
+        - Arn
   /startapp:
     POST:
       summary: StartApp
       description: >-
         <p>Starts a custom app with the configuration specified in the
         simulation schema.</p>
+      tags:
+        - Start
+        - App
+        - Createsnapshot
+        - Deleteapp
+        - Deletesimulation
+        - Describeapp
+        - Describesimulation
+        - Listapps
+        - Listsimulations
+        - Resource
+        - Arn
+        - Startapp
   /startclock:
     POST:
       summary: StartClock
       description: <p>Starts the simulation clock.</p>
+      tags:
+        - Start
+        - Clock
+        - Createsnapshot
+        - Deleteapp
+        - Deletesimulation
+        - Describeapp
+        - Describesimulation
+        - Listapps
+        - Listsimulations
+        - Resource
+        - Arn
+        - Startapp
+        - Startclock
   /startsimulation:
     POST:
       summary: StartSimulation
@@ -92,20 +180,86 @@ paths:
         information about snapshots, see <a
         href="https://docs.aws.amazon.com/simspaceweaver/latest/userguide/working-with_snapshots.html">Snapshots</a>
         in the <i>SimSpace Weaver User Guide</i>.</p>
+      tags:
+        - Start
+        - Simulation
+        - Createsnapshot
+        - Deleteapp
+        - Deletesimulation
+        - Describeapp
+        - Describesimulation
+        - Listapps
+        - Listsimulations
+        - Resource
+        - Arn
+        - Startapp
+        - Startclock
+        - Startsimulation
   /stopapp:
     POST:
       summary: StopApp
       description: >-
         <p>Stops the given custom app and shuts down all of its allocated
         compute resources.</p>
+      tags:
+        - Stop
+        - App
+        - Createsnapshot
+        - Deleteapp
+        - Deletesimulation
+        - Describeapp
+        - Describesimulation
+        - Listapps
+        - Listsimulations
+        - Resource
+        - Arn
+        - Startapp
+        - Startclock
+        - Startsimulation
+        - Stopapp
   /stopclock:
     POST:
       summary: StopClock
       description: <p>Stops the simulation clock.</p>
+      tags:
+        - Stop
+        - Clock
+        - Createsnapshot
+        - Deleteapp
+        - Deletesimulation
+        - Describeapp
+        - Describesimulation
+        - Listapps
+        - Listsimulations
+        - Resource
+        - Arn
+        - Startapp
+        - Startclock
+        - Startsimulation
+        - Stopapp
+        - Stopclock
   /stopsimulation:
     POST:
       summary: StopSimulation
       description: >-
         <p>Stops the given simulation.</p> <important> <p>You can't restart a
         simulation after you stop it. If you want to restart a simulation, then
-        you must stop it, delete it, and start a new instance of it.</p> </im
+        you must stop it, delete it, and start a new instance of it.</p> </
+      tags:
+        - Stop
+        - Simulation
+        - Createsnapshot
+        - Deleteapp
+        - Deletesimulation
+        - Describeapp
+        - Describesimulation
+        - Listapps
+        - Listsimulations
+        - Resource
+        - Arn
+        - Startapp
+        - Startclock
+        - Startsimulation
+        - Stopapp
+        - Stopclock
+        - Stopsimulati

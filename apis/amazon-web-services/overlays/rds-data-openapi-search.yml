@@ -23,6 +23,12 @@ paths:
         parameter set.</p> <p>The response size limit is 1 MiB. If the call
         returns more than 1 MiB of response data, the call is terminated.</p>
         </note>
+      tags:
+        - Batch
+        - Execute
+        - Statement
+        - Batch
+        - Execute
   /BeginTransaction:
     POST:
       summary: BeginTransaction
@@ -36,12 +42,27 @@ paths:
         that you run each DDL statement in a separate
         <code>ExecuteStatement</code> call with
         <code>continueAfterTimeout</code> enabled.</p> </note>
+      tags:
+        - Begin
+        - Transaction
+        - Batch
+        - Execute
+        - Begin
+        - Transaction
   /CommitTransaction:
     POST:
       summary: CommitTransaction
       description: >-
         <p>Ends a SQL transaction started with the <code>BeginTransaction</code>
         operation and commits the changes.</p>
+      tags:
+        - Commit
+        - Transaction
+        - Batch
+        - Execute
+        - Begin
+        - Transaction
+        - Commit
   /ExecuteSql:
     POST:
       summary: ExecuteSql
@@ -51,6 +72,15 @@ paths:
         clusters, and for Aurora Serverless v1 DB clusters, the operation is
         deprecated. Use the <code>BatchExecuteStatement</code> or
         <code>ExecuteStatement</code> operation.</p> </note>
+      tags:
+        - Execute
+        - Sql
+        - Batch
+        - Execute
+        - Begin
+        - Transaction
+        - Commit
+        - Sql
   /Execute:
     POST:
       summary: ExecuteStatement
@@ -60,9 +90,28 @@ paths:
         <code>transactionID</code> parameter, changes that result from the call
         are committed automatically.</p> <p>If the binary response data from the
         database is more than 1 MB, the call is terminated.</p> </note>
+      tags:
+        - Execute
+        - Statement
+        - Batch
+        - Execute
+        - Begin
+        - Transaction
+        - Commit
+        - Sql
   /RollbackTransaction:
     POST:
       summary: RollbackTransaction
       description: >-
         <p>Performs a rollback of a transaction. Rolling back a transaction
-        cancels its chan
+        cancels its ch
+      tags:
+        - Rollback
+        - Transaction
+        - Batch
+        - Execute
+        - Begin
+        - Transaction
+        - Commit
+        - Sql
+        - Rollba

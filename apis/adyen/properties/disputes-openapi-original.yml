@@ -1,25 +1,27 @@
 openapi: 3.1.0
 servers:
-- url: https://ca-test.adyen.com/ca/services/DisputeService/v30
+  - url: https://ca-test.adyen.com/ca/services/DisputeService/v30
 info:
   version: '30'
   x-publicVersion: true
   title: Disputes API
-  description: You can use the [Disputes API](https://docs.adyen.com/risk-management/disputes-api)
-    to automate the dispute handling process so that you can respond to disputes and
-    chargebacks as soon as they are initiated. The Disputes API lets you retrieve
-    defense reasons, supply and delete defense documents, and accept or defend disputes.
+  description: >-
+    You can use the [Disputes
+    API](https://docs.adyen.com/risk-management/disputes-api) to automate the
+    dispute handling process so that you can respond to disputes and chargebacks
+    as soon as they are initiated. The Disputes API lets you retrieve defense
+    reasons, supply and delete defense documents, and accept or defend disputes.
   termsOfService: https://www.adyen.com/legal/terms-and-conditions
   contact:
     name: Adyen Developer Experience team
     url: https://github.com/Adyen/adyen-openapi
 tags:
-- name: General
+  - name: General
 paths:
   /acceptDispute:
     post:
       tags:
-      - General
+        - General
       summary: Accept a dispute
       description: Accepts a specific dispute.
       x-addedInVersion: '1'
@@ -27,8 +29,8 @@ paths:
       x-sortIndex: 1
       x-methodName: acceptDispute
       security:
-      - BasicAuth: []
-      - ApiKeyAuth: []
+        - BasicAuth: []
+        - ApiKeyAuth: []
       requestBody:
         content:
           application/json:
@@ -80,7 +82,7 @@ paths:
   /defendDispute:
     post:
       tags:
-      - General
+        - General
       summary: Defend a dispute
       description: Defends a specific dispute.
       x-addedInVersion: '1'
@@ -88,8 +90,8 @@ paths:
       x-sortIndex: 1
       x-methodName: defendDispute
       security:
-      - BasicAuth: []
-      - ApiKeyAuth: []
+        - BasicAuth: []
+        - ApiKeyAuth: []
       requestBody:
         content:
           application/json:
@@ -141,7 +143,7 @@ paths:
   /deleteDisputeDefenseDocument:
     post:
       tags:
-      - General
+        - General
       summary: Delete a defense document
       description: Deletes a specific dispute defense document that was supplied earlier.
       x-addedInVersion: '1'
@@ -149,14 +151,15 @@ paths:
       x-sortIndex: 1
       x-methodName: deleteDisputeDefenseDocument
       security:
-      - BasicAuth: []
-      - ApiKeyAuth: []
+        - BasicAuth: []
+        - ApiKeyAuth: []
       requestBody:
         content:
           application/json:
             examples:
               delete-dispute-defense-document:
-                $ref: '#/components/examples/post-deleteDisputeDefenseDocument-delete-dispute-defense-document'
+                $ref: >-
+                  #/components/examples/post-deleteDisputeDefenseDocument-delete-dispute-defense-document
             schema:
               $ref: '#/components/schemas/DeleteDefenseDocumentRequest'
       responses:
@@ -165,7 +168,8 @@ paths:
             application/json:
               examples:
                 delete-dispute-defense-document:
-                  $ref: '#/components/examples/post-deleteDisputeDefenseDocument-delete-dispute-defense-document-200'
+                  $ref: >-
+                    #/components/examples/post-deleteDisputeDefenseDocument-delete-dispute-defense-document-200
               schema:
                 $ref: '#/components/schemas/DeleteDefenseDocumentResponse'
           description: OK - the request has succeeded.
@@ -202,23 +206,25 @@ paths:
   /retrieveApplicableDefenseReasons:
     post:
       tags:
-      - General
+        - General
       summary: Get applicable defense reasons
-      description: Returns a list of all applicable defense reasons to defend a specific
+      description: >-
+        Returns a list of all applicable defense reasons to defend a specific
         dispute.
       x-addedInVersion: '1'
       operationId: post-retrieveApplicableDefenseReasons
       x-sortIndex: 1
       x-methodName: retrieveApplicableDefenseReasons
       security:
-      - BasicAuth: []
-      - ApiKeyAuth: []
+        - BasicAuth: []
+        - ApiKeyAuth: []
       requestBody:
         content:
           application/json:
             examples:
               retrieve-defense-reasons:
-                $ref: '#/components/examples/post-retrieveApplicableDefenseReasons-retrieve-defense-reasons'
+                $ref: >-
+                  #/components/examples/post-retrieveApplicableDefenseReasons-retrieve-defense-reasons
             schema:
               $ref: '#/components/schemas/DefenseReasonsRequest'
       responses:
@@ -227,7 +233,8 @@ paths:
             application/json:
               examples:
                 retrieve-defense-reasons:
-                  $ref: '#/components/examples/post-retrieveApplicableDefenseReasons-retrieve-defense-reasons-200'
+                  $ref: >-
+                    #/components/examples/post-retrieveApplicableDefenseReasons-retrieve-defense-reasons-200
               schema:
                 $ref: '#/components/schemas/DefenseReasonsResponse'
           description: OK - the request has succeeded.
@@ -264,7 +271,7 @@ paths:
   /supplyDefenseDocument:
     post:
       tags:
-      - General
+        - General
       summary: Supply a defense document
       description: Supplies a specific dispute defense document.
       x-addedInVersion: '1'
@@ -272,14 +279,15 @@ paths:
       x-sortIndex: 1
       x-methodName: supplyDefenseDocument
       security:
-      - BasicAuth: []
-      - ApiKeyAuth: []
+        - BasicAuth: []
+        - ApiKeyAuth: []
       requestBody:
         content:
           application/json:
             examples:
               supply-defense-document:
-                $ref: '#/components/examples/post-supplyDefenseDocument-supply-defense-document'
+                $ref: >-
+                  #/components/examples/post-supplyDefenseDocument-supply-defense-document
             schema:
               $ref: '#/components/schemas/SupplyDefenseDocumentRequest'
       responses:
@@ -288,7 +296,8 @@ paths:
             application/json:
               examples:
                 supply-defense-document:
-                  $ref: '#/components/examples/post-supplyDefenseDocument-supply-defense-document-200'
+                  $ref: >-
+                    #/components/examples/post-supplyDefenseDocument-supply-defense-document-200
               schema:
                 $ref: '#/components/schemas/SupplyDefenseDocumentResponse'
           description: OK - the request has succeeded.
@@ -330,12 +339,13 @@ components:
           description: The PSP reference assigned to the dispute.
           type: string
         merchantAccountCode:
-          description: The merchant account identifier, for which you want to process
-            the dispute transaction.
+          description: >-
+            The merchant account identifier, for which you want to process the
+            dispute transaction.
           type: string
       required:
-      - merchantAccountCode
-      - disputePspReference
+        - merchantAccountCode
+        - disputePspReference
       type: object
     AcceptDisputeResponse:
       properties:
@@ -343,7 +353,7 @@ components:
           description: The result of the dispute service.
           $ref: '#/components/schemas/DisputeServiceResult'
       required:
-      - disputeServiceResult
+        - disputeServiceResult
       type: object
     DefendDisputeRequest:
       properties:
@@ -354,13 +364,14 @@ components:
           description: The PSP reference assigned to the dispute.
           type: string
         merchantAccountCode:
-          description: The merchant account identifier, for which you want to process
-            the dispute transaction.
+          description: >-
+            The merchant account identifier, for which you want to process the
+            dispute transaction.
           type: string
       required:
-      - merchantAccountCode
-      - disputePspReference
-      - defenseReasonCode
+        - merchantAccountCode
+        - disputePspReference
+        - defenseReasonCode
       type: object
     DefendDisputeResponse:
       properties:
@@ -368,7 +379,7 @@ components:
           description: The result of the dispute service.
           $ref: '#/components/schemas/DisputeServiceResult'
       required:
-      - disputeServiceResult
+        - disputeServiceResult
       type: object
     DefenseDocument:
       properties:
@@ -383,40 +394,54 @@ components:
           description: The document type code of the defense document.
           type: string
       required:
-      - defenseDocumentTypeCode
-      - contentType
-      - content
+        - defenseDocumentTypeCode
+        - contentType
+        - content
       type: object
     DefenseDocumentType:
       properties:
         available:
-          description: When **true**, you've successfully uploaded this type of defense
-            document. When **false**, you haven't uploaded this defense document type.
+          description: >-
+            When **true**, you've successfully uploaded this type of defense
+            document. When **false**, you haven't uploaded this defense document
+            type.
           type: boolean
         defenseDocumentTypeCode:
           description: The document type code of the defense document.
           type: string
         requirementLevel:
-          description: "Indicates to what extent the defense document is required\
-            \ in the defense process.\n\nPossible values: \n\n* **Required**: You\
-            \ must supply the document.\n\n * **OneOrMore**: You must supply at least\
-            \ one of the documents with this label.\n\n* **Optional**: You can choose\
-            \ to supply the document.\n\n* **AlternativeRequired**: You must supply\
-            \ a generic defense document. To enable this functionality, contact our\
-            \ Support Team. When enabled, you can supply a generic defense document\
-            \ for all schemes."
+          description: >-
+            Indicates to what extent the defense document is required in the
+            defense process.
+
+
+            Possible values: 
+
+
+            * **Required**: You must supply the document.
+
+             * **OneOrMore**: You must supply at least one of the documents with this label.
+
+            * **Optional**: You can choose to supply the document.
+
+
+            * **AlternativeRequired**: You must supply a generic defense
+            document. To enable this functionality, contact our Support Team.
+            When enabled, you can supply a generic defense document for all
+            schemes.
           type: string
       required:
-      - defenseDocumentTypeCode
-      - requirementLevel
-      - available
+        - defenseDocumentTypeCode
+        - requirementLevel
+        - available
       type: object
     DefenseReason:
       properties:
         defenseDocumentTypes:
-          description: Array of defense document types for a specific defense reason.
-            Indicates the document types that you can submit to the schemes to defend
-            this dispute, and whether they are required.
+          description: >-
+            Array of defense document types for a specific defense reason.
+            Indicates the document types that you can submit to the schemes to
+            defend this dispute, and whether they are required.
           items:
             $ref: '#/components/schemas/DefenseDocumentType'
           type: array
@@ -427,8 +452,8 @@ components:
           description: Indicates if sufficient defense material has been supplied.
           type: boolean
       required:
-      - defenseReasonCode
-      - satisfied
+        - defenseReasonCode
+        - satisfied
       type: object
     DefenseReasonsRequest:
       properties:
@@ -436,12 +461,13 @@ components:
           description: The PSP reference assigned to the dispute.
           type: string
         merchantAccountCode:
-          description: The merchant account identifier, for which you want to process
-            the dispute transaction.
+          description: >-
+            The merchant account identifier, for which you want to process the
+            dispute transaction.
           type: string
       required:
-      - merchantAccountCode
-      - disputePspReference
+        - merchantAccountCode
+        - disputePspReference
       type: object
     DefenseReasonsResponse:
       properties:
@@ -454,7 +480,7 @@ components:
           description: The result of the dispute service.
           $ref: '#/components/schemas/DisputeServiceResult'
       required:
-      - disputeServiceResult
+        - disputeServiceResult
       type: object
     DeleteDefenseDocumentRequest:
       properties:
@@ -465,13 +491,14 @@ components:
           description: The PSP reference assigned to the dispute.
           type: string
         merchantAccountCode:
-          description: The merchant account identifier, for which you want to process
-            the dispute transaction.
+          description: >-
+            The merchant account identifier, for which you want to process the
+            dispute transaction.
           type: string
       required:
-      - merchantAccountCode
-      - disputePspReference
-      - defenseDocumentType
+        - merchantAccountCode
+        - disputePspReference
+        - defenseDocumentType
       type: object
     DeleteDefenseDocumentResponse:
       properties:
@@ -479,7 +506,7 @@ components:
           description: The result of the dispute service.
           $ref: '#/components/schemas/DisputeServiceResult'
       required:
-      - disputeServiceResult
+        - disputeServiceResult
       type: object
     DisputeServiceResult:
       properties:
@@ -490,7 +517,7 @@ components:
           description: Indicates whether the request succeeded.
           type: boolean
       required:
-      - success
+        - success
       type: object
     ServiceError:
       properties:
@@ -522,13 +549,14 @@ components:
           description: The PSP reference assigned to the dispute.
           type: string
         merchantAccountCode:
-          description: The merchant account identifier, for which you want to process
-            the dispute transaction.
+          description: >-
+            The merchant account identifier, for which you want to process the
+            dispute transaction.
           type: string
       required:
-      - merchantAccountCode
-      - disputePspReference
-      - defenseDocuments
+        - merchantAccountCode
+        - disputePspReference
+        - defenseDocuments
       type: object
     SupplyDefenseDocumentResponse:
       properties:
@@ -536,7 +564,7 @@ components:
           description: The result of the dispute service.
           $ref: '#/components/schemas/DisputeServiceResult'
       required:
-      - disputeServiceResult
+        - disputeServiceResult
       type: object
   securitySchemes:
     ApiKeyAuth:
@@ -588,51 +616,51 @@ components:
       summary: Applicable dispute defense reasons retrieved
       value:
         defenseReasons:
-        - defenseDocumentTypes:
-          - available: false
-            defenseDocumentTypeCode: TIDorInvoice
-            requirementLevel: Optional
-          - available: false
-            defenseDocumentTypeCode: GoodsNotReturned
-            requirementLevel: Required
-          defenseReasonCode: GoodsNotReturned
-          satisfied: false
-        - defenseDocumentTypes:
-          - available: false
-            defenseDocumentTypeCode: TIDorInvoice
-            requirementLevel: Optional
-          - available: false
-            defenseDocumentTypeCode: GoodsRepairedOrReplaced
-            requirementLevel: Required
-          defenseReasonCode: GoodsRepairedOrReplaced
-          satisfied: false
-        - defenseDocumentTypes:
-          - available: false
-            defenseDocumentTypeCode: GoodsWereAsDescribed
-            requirementLevel: Required
-          - available: false
-            defenseDocumentTypeCode: TIDorInvoice
-            requirementLevel: Required
-          defenseReasonCode: GoodsWereAsDescribed
-          satisfied: false
-        - defenseDocumentTypes:
-          - available: false
-            defenseDocumentTypeCode: TIDorInvoice
-            requirementLevel: Optional
-          - available: false
-            defenseDocumentTypeCode: DefenseMaterial
-            requirementLevel: Required
-          defenseReasonCode: SupplyDefenseMaterial
-          satisfied: false
+          - defenseDocumentTypes:
+              - available: false
+                defenseDocumentTypeCode: TIDorInvoice
+                requirementLevel: Optional
+              - available: false
+                defenseDocumentTypeCode: GoodsNotReturned
+                requirementLevel: Required
+            defenseReasonCode: GoodsNotReturned
+            satisfied: false
+          - defenseDocumentTypes:
+              - available: false
+                defenseDocumentTypeCode: TIDorInvoice
+                requirementLevel: Optional
+              - available: false
+                defenseDocumentTypeCode: GoodsRepairedOrReplaced
+                requirementLevel: Required
+            defenseReasonCode: GoodsRepairedOrReplaced
+            satisfied: false
+          - defenseDocumentTypes:
+              - available: false
+                defenseDocumentTypeCode: GoodsWereAsDescribed
+                requirementLevel: Required
+              - available: false
+                defenseDocumentTypeCode: TIDorInvoice
+                requirementLevel: Required
+            defenseReasonCode: GoodsWereAsDescribed
+            satisfied: false
+          - defenseDocumentTypes:
+              - available: false
+                defenseDocumentTypeCode: TIDorInvoice
+                requirementLevel: Optional
+              - available: false
+                defenseDocumentTypeCode: DefenseMaterial
+                requirementLevel: Required
+            defenseReasonCode: SupplyDefenseMaterial
+            satisfied: false
         disputeServiceResult:
           success: true
     post-supplyDefenseDocument-supply-defense-document:
       summary: Supply dispute defense documents
       value:
         defenseDocuments:
-        - content: JVBERi0xLjQKJcOkw7zDtsOfCjIgMCBv+f/ub0j6JPRX+E3EmC==
-          contentType: application/pdf
-          defenseDocumentTypeCode: DefenseMaterial
+          - content: JVBERi0xLjQKJcOkw7zDtsOfCjIgMCBv+f/ub0j6JPRX+E3EmC==
+            contentType: application/pdf
+            defenseDocumentTypeCode: DefenseMaterial
         disputePspReference: DZ4DPSHB4WD2WN82
         merchantAccountCode: YOUR_MERCHANT_ACCOUNT
     post-supplyDefenseDocument-supply-defense-document-200:

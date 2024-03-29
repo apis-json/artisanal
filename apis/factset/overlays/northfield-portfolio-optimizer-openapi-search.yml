@@ -8,7 +8,17 @@ paths:
   /analytics/lookups/v3/accounts/{path}:
     get:
       tags:
+        - Get
         - Accounts
+        - And
+        - Sub-directories
+        - In
+        - Directory
+        - Analytics
+        - Lookups
+        - V3
+        - Accounts
+        - Path
       summary: Get accounts and sub-directories in a directory
       description: >-
         This endpoint looks up all ACCT and ACTM files and sub-directories in a
@@ -16,6 +26,13 @@ paths:
   /analytics/lookups/v3/currencies:
     get:
       tags:
+        - Get
+        - Currencies
+        - Analytics
+        - Lookups
+        - V3
+        - Accounts
+        - Path
         - Currencies
       summary: Get currencies
       description: >-
@@ -24,13 +41,41 @@ paths:
   /analytics/engines/npo/v3/optimizations:
     post:
       tags:
-        - NPO Optimizer
+        - Create
+        - And
+        - Run
+        - Optimization
+        - Analytics
+        - Lookups
+        - V3
+        - Accounts
+        - Path
+        - Currencies
+        - Engines
+        - Npo
+        - Optimizations
       summary: Create and Run NPO optimization
       description: "This endpoint creates and runs NPO optimization specified in the POST body parameters.\r\n            \r\nRemarks:\r\n            \r\n*\tAny settings in POST body will act as a one-time override over the settings saved in the strategy document."
   /analytics/engines/npo/v3/optimizations/{id}:
     put:
       tags:
-        - NPO Optimizer
+        - Create
+        - Or
+        - Update
+        - Optimization
+        - And
+        - Run
+        - It.
+        - Analytics
+        - Lookups
+        - V3
+        - Accounts
+        - Path
+        - Currencies
+        - Engines
+        - Npo
+        - Optimizations
+        - Id
       summary: Create or Update NPO optimization and run it.
       description: >-
         This endpoint updates and run the NPO optimization specified in the PUT
@@ -38,26 +83,84 @@ paths:
         with custom id.
     get:
       tags:
-        - NPO Optimizer
+        - Get
+        - Optimization
+        - Parameters
+        - By
+        - Id
+        - Analytics
+        - Lookups
+        - V3
+        - Accounts
+        - Path
+        - Currencies
+        - Engines
+        - Npo
+        - Optimizations
+        - Id
       summary: Get NPO optimization parameters by id
       description: >-
         This is the endpoint that returns the optimization parameters passed for
         an optimization.
     delete:
       tags:
-        - NPO Optimizer
+        - Cancel
+        - Optimization
+        - By
+        - Id
+        - Analytics
+        - Lookups
+        - V3
+        - Accounts
+        - Path
+        - Currencies
+        - Engines
+        - Npo
+        - Optimizations
+        - Id
       summary: Cancel NPO optimization by id
       description: This is the endpoint to cancel a previously submitted optimization.
   /analytics/engines/npo/v3/optimizations/{id}/status:
     get:
       tags:
-        - NPO Optimizer
+        - Get
+        - Optimization
+        - Status
+        - By
+        - Id
+        - Analytics
+        - Lookups
+        - V3
+        - Accounts
+        - Path
+        - Currencies
+        - Engines
+        - Npo
+        - Optimizations
+        - Id
+        - Status
       summary: Get NPO optimization status by id
       description: "This is the endpoint to check on the progress of a previously requested optimization.\r\nIf the optimization has finished computing, the body of the response will contain result in JSON.\r\nOtherwise, the optimization is still running and the X-FactSet-Api-PickUp-Progress header will contain a progress percentage."
   /analytics/engines/npo/v3/optimizations/{id}/result:
     get:
       tags:
-        - NPO Optimizer
+        - Get
+        - Optimization
+        - Result
+        - By
+        - Id
+        - Analytics
+        - Lookups
+        - V3
+        - Accounts
+        - Path
+        - Currencies
+        - Engines
+        - Npo
+        - Optimizations
+        - Id
+        - Status
+        - Result
       summary: Get NPO optimization result by id
       description: >-
         This is the endpoint to get the result of a previously requested
@@ -65,8 +168,28 @@ paths:
   /analytics/engines/npo/v3/strategies/{path}:
     get:
       tags:
-        - StrategyDocuments
+        - Get
+        - Northfield
+        - Strategy
+        - Documents
+        - And
+        - Sub-directories
+        - In
+        - Directory
+        - Analytics
+        - Lookups
+        - V3
+        - Accounts
+        - Path
+        - Currencies
+        - Engines
+        - Npo
+        - Optimizations
+        - Id
+        - Status
+        - Result
+        - Strategies
       summary: Get Northfield strategy documents and sub-directories in a directory
       description: >-
         This endpoint looks up all Northfield strategy documents and
-        sub-directories in a given 
+        sub-directories i

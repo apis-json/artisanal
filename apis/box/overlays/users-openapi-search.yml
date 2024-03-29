@@ -6,6 +6,9 @@ paths:
     get:
       summary: List enterprise users
       tags:
+        - List
+        - Enterprise
+        - Users
         - Users
       description: >-
         Returns a list of all users for the Enterprise along with their
@@ -22,6 +25,8 @@ paths:
     post:
       summary: Create user
       tags:
+        - Create
+        - User
         - Users
       description: |-
         Creates a new managed user in an enterprise. This endpoint
@@ -31,7 +36,11 @@ paths:
     get:
       summary: Get current user
       tags:
+        - Get
+        - Current
+        - User
         - Users
+        - Me
       description: >-
         Retrieves information about the user who is currently authenticated.
 
@@ -54,7 +63,15 @@ paths:
     post:
       summary: Create jobs to terminate users session
       tags:
-        - Session termination
+        - Create
+        - Jobs
+        - To
+        - Terminate
+        - Users
+        - Session
+        - Users
+        - Me
+        - Terminate_sessions
       description: |-
         Validates the roles and permissions of the user,
         and creates asynchronous jobs
@@ -64,7 +81,12 @@ paths:
     get:
       summary: Get user
       tags:
+        - Get
+        - User
         - Users
+        - Me
+        - Terminate_sessions
+        - User_id
       description: |-
         Retrieves information about a user in the enterprise.
 
@@ -80,7 +102,12 @@ paths:
     put:
       summary: Update user
       tags:
+        - Update
+        - User
         - Users
+        - Me
+        - Terminate_sessions
+        - User_id
       description: |-
         Updates a managed or app user in an enterprise. This endpoint
         is only available to users and applications with the right
@@ -88,7 +115,12 @@ paths:
     delete:
       summary: Delete user
       tags:
+        - Delete
+        - User
         - Users
+        - Me
+        - Terminate_sessions
+        - User_id
       description: |-
         Deletes a user. By default this will fail if the user
         still owns any content. Move their owned content first
@@ -98,17 +130,40 @@ paths:
     get:
       summary: Get user avatar
       tags:
-        - User avatars
+        - Get
+        - User
+        - Avatar
+        - Users
+        - Me
+        - Terminate_sessions
+        - User_id
+        - Avatar
       description: Retrieves an image of a the user's avatar.
     post:
       summary: Add or update user avatar
       tags:
-        - User avatars
+        - Add
+        - Or
+        - Update
+        - User
+        - Avatar
+        - Users
+        - Me
+        - Terminate_sessions
+        - User_id
+        - Avatar
       description: Adds or updates a user avatar.
     delete:
       summary: Delete user avatar
       tags:
-        - User avatars
+        - Delete
+        - User
+        - Avatar
+        - Users
+        - Me
+        - Terminate_sessions
+        - User_id
+        - Avatar
       description: |-
         Removes an existing user avatar.
         You cannot reverse this operation.
@@ -116,7 +171,15 @@ paths:
     put:
       summary: Transfer owned folders
       tags:
-        - Transfer folders
+        - Transfer
+        - Owned
+        - Folders
+        - Users
+        - Me
+        - Terminate_sessions
+        - User_id
+        - Avatar
+        - Folders
       description: >-
         Move all of the items (files, folders and workflows) owned by a user
         into
@@ -183,27 +246,67 @@ paths:
     get:
       summary: List user's email aliases
       tags:
-        - Email aliases
+        - List
+        - User's
+        - Email
+        - Aliases
+        - Users
+        - Me
+        - Terminate_sessions
+        - User_id
+        - Avatar
+        - Folders
+        - Email_aliases
       description: |-
         Retrieves all email aliases for a user. The collection
         does not include the primary login for the user.
     post:
       summary: Create email alias
       tags:
-        - Email aliases
+        - Create
+        - Email
+        - Alias
+        - Users
+        - Me
+        - Terminate_sessions
+        - User_id
+        - Avatar
+        - Folders
+        - Email_aliases
       description: Adds a new email alias to a user account..
   /users/{user_id}/email_aliases/{email_alias_id}:
     delete:
       summary: Remove email alias
       tags:
-        - Email aliases
+        - Remove
+        - Email
+        - Alias
+        - Users
+        - Me
+        - Terminate_sessions
+        - User_id
+        - Avatar
+        - Folders
+        - Email_aliases
+        - Email_alias_id
       description: Removes an email alias from a user.
   /users/{user_id}/memberships:
     get:
       summary: List user's groups
       tags:
-        - Group memberships
+        - List
+        - User's
+        - Groups
+        - Users
+        - Me
+        - Terminate_sessions
+        - User_id
+        - Avatar
+        - Folders
+        - Email_aliases
+        - Email_alias_id
+        - Memberships
       description: |-
         Retrieves all the groups for a user. Only members of this
         group or users with admin-level permissions will be able to
-        use this AP
+        u

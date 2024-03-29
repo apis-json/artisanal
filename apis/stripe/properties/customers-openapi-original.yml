@@ -5,15 +5,15 @@ info:
   contact:
     email: dev-platform@stripe.com
     name: Stripe Dev Platform Team
-    url: 'https://stripe.com'
-  termsOfService: 'https://stripe.com/us/terms/'
+    url: https://stripe.com
+  termsOfService: https://stripe.com/us/terms/
   version: '2023-10-16'
   x-stripeSpecFilename: spec3
 security:
   - basicAuth: []
   - bearerAuth: []
 servers:
-  - url: 'https://api.stripe.com/'
+  - url: https://api.stripe.com/
 paths:
   /v1/customers:
     get:
@@ -266,7 +266,7 @@ paths:
               schema:
                 $ref: '#/components/schemas/error'
           description: Error response.
-  '/v1/customers/{customer}':
+  /v1/customers/{customer}:
     delete:
       description: >-
         <p>Permanently deletes a customer. It cannot be undone. Also immediately
@@ -425,7 +425,7 @@ paths:
               schema:
                 $ref: '#/components/schemas/error'
           description: Error response.
-  '/v1/customers/{customer}/balance_transactions':
+  /v1/customers/{customer}/balance_transactions:
     get:
       description: >-
         <p>Returns a list of transactions that updated the customer’s <a
@@ -551,7 +551,7 @@ paths:
               schema:
                 $ref: '#/components/schemas/error'
           description: Error response.
-  '/v1/customers/{customer}/balance_transactions/{transaction}':
+  /v1/customers/{customer}/balance_transactions/{transaction}:
     get:
       description: >-
         <p>Retrieves a specific customer balance transaction that updated the
@@ -652,7 +652,7 @@ paths:
               schema:
                 $ref: '#/components/schemas/error'
           description: Error response.
-  '/v1/customers/{customer}/bank_accounts':
+  /v1/customers/{customer}/bank_accounts:
     get:
       deprecated: true
       description: >-
@@ -794,7 +794,7 @@ paths:
               schema:
                 $ref: '#/components/schemas/error'
           description: Error response.
-  '/v1/customers/{customer}/bank_accounts/{id}':
+  /v1/customers/{customer}/bank_accounts/{id}:
     delete:
       description: <p>Delete a specified source for a given customer.</p>
       operationId: DeleteCustomersCustomerBankAccountsId
@@ -944,7 +944,7 @@ paths:
               schema:
                 $ref: '#/components/schemas/error'
           description: Error response.
-  '/v1/customers/{customer}/bank_accounts/{id}/verify':
+  /v1/customers/{customer}/bank_accounts/{id}/verify:
     post:
       description: <p>Verify a specified bank account for a given customer.</p>
       operationId: PostCustomersCustomerBankAccountsIdVerify
@@ -991,7 +991,7 @@ paths:
               schema:
                 $ref: '#/components/schemas/error'
           description: Error response.
-  '/v1/customers/{customer}/cards':
+  /v1/customers/{customer}/cards:
     get:
       deprecated: true
       description: >-
@@ -1136,7 +1136,7 @@ paths:
               schema:
                 $ref: '#/components/schemas/error'
           description: Error response.
-  '/v1/customers/{customer}/cards/{id}':
+  /v1/customers/{customer}/cards/{id}:
     delete:
       description: <p>Delete a specified source for a given customer.</p>
       operationId: DeleteCustomersCustomerCardsId
@@ -1285,7 +1285,7 @@ paths:
               schema:
                 $ref: '#/components/schemas/error'
           description: Error response.
-  '/v1/customers/{customer}/cash_balance':
+  /v1/customers/{customer}/cash_balance:
     get:
       description: <p>Retrieves a customer’s cash balance.</p>
       operationId: GetCustomersCustomerCashBalance
@@ -1367,7 +1367,7 @@ paths:
               schema:
                 $ref: '#/components/schemas/error'
           description: Error response.
-  '/v1/customers/{customer}/cash_balance_transactions':
+  /v1/customers/{customer}/cash_balance_transactions:
     get:
       description: >-
         <p>Returns a list of transactions that modified the customer’s <a
@@ -1462,7 +1462,7 @@ paths:
               schema:
                 $ref: '#/components/schemas/error'
           description: Error response.
-  '/v1/customers/{customer}/cash_balance_transactions/{transaction}':
+  /v1/customers/{customer}/cash_balance_transactions/{transaction}:
     get:
       description: >-
         <p>Retrieves a specific cash balance transaction, which updated the
@@ -1516,7 +1516,7 @@ paths:
               schema:
                 $ref: '#/components/schemas/error'
           description: Error response.
-  '/v1/customers/{customer}/discount':
+  /v1/customers/{customer}/discount:
     delete:
       description: <p>Removes the currently applied discount on a customer.</p>
       operationId: DeleteCustomersCustomerDiscount
@@ -1592,7 +1592,7 @@ paths:
               schema:
                 $ref: '#/components/schemas/error'
           description: Error response.
-  '/v1/customers/{customer}/funding_instructions':
+  /v1/customers/{customer}/funding_instructions:
     post:
       description: >-
         <p>Retrieve funding instructions for a customer cash balance. If funding
@@ -1640,7 +1640,7 @@ paths:
               schema:
                 $ref: '#/components/schemas/error'
           description: Error response.
-  '/v1/customers/{customer}/payment_methods':
+  /v1/customers/{customer}/payment_methods:
     get:
       description: <p>Returns a list of PaymentMethods for a given Customer</p>
       operationId: GetCustomersCustomerPaymentMethods
@@ -1766,7 +1766,7 @@ paths:
               schema:
                 $ref: '#/components/schemas/error'
           description: Error response.
-  '/v1/customers/{customer}/payment_methods/{payment_method}':
+  /v1/customers/{customer}/payment_methods/{payment_method}:
     get:
       description: <p>Retrieves a PaymentMethod object for a given Customer.</p>
       operationId: GetCustomersCustomerPaymentMethodsPaymentMethod
@@ -1818,7 +1818,7 @@ paths:
               schema:
                 $ref: '#/components/schemas/error'
           description: Error response.
-  '/v1/customers/{customer}/sources':
+  /v1/customers/{customer}/sources:
     get:
       description: <p>List sources for a specified customer.</p>
       operationId: GetCustomersCustomerSources
@@ -1962,7 +1962,7 @@ paths:
               schema:
                 $ref: '#/components/schemas/error'
           description: Error response.
-  '/v1/customers/{customer}/sources/{id}':
+  /v1/customers/{customer}/sources/{id}:
     delete:
       description: <p>Delete a specified source for a given customer.</p>
       operationId: DeleteCustomersCustomerSourcesId
@@ -2107,7 +2107,7 @@ paths:
               schema:
                 $ref: '#/components/schemas/error'
           description: Error response.
-  '/v1/customers/{customer}/sources/{id}/verify':
+  /v1/customers/{customer}/sources/{id}/verify:
     post:
       description: <p>Verify a specified bank account for a given customer.</p>
       operationId: PostCustomersCustomerSourcesIdVerify
@@ -2153,7 +2153,7 @@ paths:
               schema:
                 $ref: '#/components/schemas/error'
           description: Error response.
-  '/v1/customers/{customer}/subscriptions':
+  /v1/customers/{customer}/subscriptions:
     get:
       description: >-
         <p>You can see a list of the customer’s active subscriptions. Note that
@@ -2308,7 +2308,7 @@ paths:
               schema:
                 $ref: '#/components/schemas/error'
           description: Error response.
-  '/v1/customers/{customer}/subscriptions/{subscription_exposed_id}':
+  /v1/customers/{customer}/subscriptions/{subscription_exposed_id}:
     delete:
       description: >-
         <p>Cancels a customer’s subscription. If you set the
@@ -2521,7 +2521,7 @@ paths:
               schema:
                 $ref: '#/components/schemas/error'
           description: Error response.
-  '/v1/customers/{customer}/subscriptions/{subscription_exposed_id}/discount':
+  /v1/customers/{customer}/subscriptions/{subscription_exposed_id}/discount:
     delete:
       description: <p>Removes the currently applied discount on a customer.</p>
       operationId: DeleteCustomersCustomerSubscriptionsSubscriptionExposedIdDiscount
@@ -2613,7 +2613,7 @@ paths:
               schema:
                 $ref: '#/components/schemas/error'
           description: Error response.
-  '/v1/customers/{customer}/tax_ids':
+  /v1/customers/{customer}/tax_ids:
     get:
       description: <p>Returns a list of tax IDs for a customer.</p>
       operationId: GetCustomersCustomerTaxIds
@@ -2730,7 +2730,7 @@ paths:
               schema:
                 $ref: '#/components/schemas/error'
           description: Error response.
-  '/v1/customers/{customer}/tax_ids/{id}':
+  /v1/customers/{customer}/tax_ids/{id}:
     delete:
       description: <p>Deletes an existing <code>tax_id</code> object.</p>
       operationId: DeleteCustomersCustomerTaxIdsId
@@ -3001,7 +3001,7 @@ components:
           nullable: true
           type: string
         preferred_locales:
-          description: 'The customer''s preferred locales (languages), ordered by preference.'
+          description: The customer's preferred locales (languages), ordered by preference.
           items:
             maxLength: 5000
             type: string
@@ -3015,7 +3015,7 @@ components:
             emailed to this customer.
           nullable: true
         sources:
-          description: 'The customer''s payment sources, if any.'
+          description: The customer's payment sources, if any.
           properties:
             data:
               description: Details about each object.
@@ -3053,7 +3053,7 @@ components:
           x-expandableFields:
             - data
         subscriptions:
-          description: 'The customer''s current subscriptions, if any.'
+          description: The customer's current subscriptions, if any.
           properties:
             data:
               description: Details about each object.
@@ -3563,7 +3563,7 @@ components:
           nullable: true
           type: string
         address_country:
-          description: 'Billing address country, if provided when creating card.'
+          description: Billing address country, if provided when creating card.
           maxLength: 5000
           nullable: true
           type: string
@@ -4603,7 +4603,7 @@ components:
             overrides a discount applied on a customer-wide basis.
           nullable: true
         ended_at:
-          description: 'If the subscription has ended, the date the subscription ended.'
+          description: If the subscription has ended, the date the subscription ended.
           format: unix-time
           nullable: true
           type: integer
@@ -4612,7 +4612,7 @@ components:
           maxLength: 5000
           type: string
         items:
-          description: 'List of subscription items, each with an attached price.'
+          description: List of subscription items, each with an attached price.
           properties:
             data:
               description: Details about each object.
@@ -4822,7 +4822,7 @@ components:
             transferred to for each of the subscription's invoices.
           nullable: true
         trial_end:
-          description: 'If the subscription has a trial, the end of that trial.'
+          description: If the subscription has a trial, the end of that trial.
           format: unix-time
           nullable: true
           type: integer
@@ -4833,7 +4833,7 @@ components:
           description: Settings related to subscription trials.
           nullable: true
         trial_start:
-          description: 'If the subscription has a trial, the beginning of that trial.'
+          description: If the subscription has a trial, the beginning of that trial.
           format: unix-time
           nullable: true
           type: integer
@@ -5250,7 +5250,7 @@ components:
           maxLength: 20
           type: string
         preferred_locales:
-          description: 'Customer''s preferred languages, ordered by preference.'
+          description: Customer's preferred languages, ordered by preference.
           items:
             maxLength: 5000
             type: string
@@ -5325,7 +5325,7 @@ components:
           title: tax_param
           type: object
         tax_exempt:
-          description: 'The customer''s tax exemption. One of `none`, `exempt`, or `reverse`.'
+          description: The customer's tax exemption. One of `none`, `exempt`, or `reverse`.
           enum:
             - ''
             - exempt
@@ -5742,7 +5742,7 @@ components:
           maxLength: 20
           type: string
         preferred_locales:
-          description: 'Customer''s preferred languages, ordered by preference.'
+          description: Customer's preferred languages, ordered by preference.
           items:
             maxLength: 5000
             type: string
@@ -5817,7 +5817,7 @@ components:
           title: tax_param
           type: object
         tax_exempt:
-          description: 'The customer''s tax exemption. One of `none`, `exempt`, or `reverse`.'
+          description: The customer's tax exemption. One of `none`, `exempt`, or `reverse`.
           enum:
             - ''
             - exempt
@@ -6126,7 +6126,7 @@ components:
           maxLength: 5000
           type: string
         address_country:
-          description: 'Billing address country, if provided when creating card.'
+          description: Billing address country, if provided when creating card.
           maxLength: 5000
           type: string
         address_line1:
@@ -6417,7 +6417,7 @@ components:
           maxLength: 5000
           type: string
         address_country:
-          description: 'Billing address country, if provided when creating card.'
+          description: Billing address country, if provided when creating card.
           maxLength: 5000
           type: string
         address_line1:
@@ -6856,7 +6856,7 @@ components:
           maxLength: 5000
           type: string
         address_country:
-          description: 'Billing address country, if provided when creating card.'
+          description: Billing address country, if provided when creating card.
           maxLength: 5000
           type: string
         address_line1:
@@ -7183,7 +7183,7 @@ components:
             type: string
           type: array
         items:
-          description: 'A list of up to 20 subscription items, each with an attached price.'
+          description: A list of up to 20 subscription items, each with an attached price.
           items:
             properties:
               billing_thresholds:
@@ -7877,7 +7877,7 @@ components:
             type: string
           type: array
         items:
-          description: 'A list of up to 20 subscription items, each with an attached price.'
+          description: A list of up to 20 subscription items, each with an attached price.
           items:
             properties:
               billing_thresholds:

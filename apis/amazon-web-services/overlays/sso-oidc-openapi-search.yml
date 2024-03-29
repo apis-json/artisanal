@@ -10,6 +10,10 @@ paths:
         authenticated using client secrets. The access token can be used to
         fetch short-term credentials for the assigned AWS accounts or to access
         application APIs using <code>bearer</code> authentication.</p>
+      tags:
+        - Create
+        - Token
+        - Token
   /token?aws_iam=t:
     POST:
       summary: CreateTokenWithIAM
@@ -19,6 +23,12 @@ paths:
         can be used to fetch short-term credentials for the assigned AWS
         accounts or to access application APIs using <code>bearer</code>
         authentication.</p>
+      tags:
+        - Create
+        - Token
+        - With
+        - Token
+        - Token?aws_iam=t
   /client/register:
     POST:
       summary: RegisterClient
@@ -26,9 +36,25 @@ paths:
         <p>Registers a client with IAM Identity Center. This allows clients to
         initiate device authorization. The output should be persisted for reuse
         through many authentication requests.</p>
+      tags:
+        - Register
+        - Client
+        - Token
+        - Token?aws_iam=t
+        - Client
+        - Register
   /device_authorization:
     POST:
       summary: StartDeviceAuthorization
       description: >-
         <p>Initiates device authorization by requesting a pair of verification
-        codes from the authorization serv
+        codes from the authorization se
+      tags:
+        - Start
+        - Device
+        - Authorization
+        - Token
+        - Token?aws_iam=t
+        - Client
+        - Register
+        - Device_authorizati

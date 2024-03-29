@@ -5,15 +5,15 @@ info:
   contact:
     email: dev-platform@stripe.com
     name: Stripe Dev Platform Team
-    url: 'https://stripe.com'
-  termsOfService: 'https://stripe.com/us/terms/'
+    url: https://stripe.com
+  termsOfService: https://stripe.com/us/terms/
   version: '2023-10-16'
   x-stripeSpecFilename: spec3
 security:
   - basicAuth: []
   - bearerAuth: []
 servers:
-  - url: 'https://api.stripe.com/'
+  - url: https://api.stripe.com/
 paths:
   /v1/subscription_items:
     get:
@@ -139,7 +139,7 @@ paths:
               schema:
                 $ref: '#/components/schemas/error'
           description: Error response.
-  '/v1/subscription_items/{item}':
+  /v1/subscription_items/{item}:
     delete:
       description: >-
         <p>Deletes an item from the subscription. Removing a subscription item
@@ -266,7 +266,7 @@ paths:
               schema:
                 $ref: '#/components/schemas/error'
           description: Error response.
-  '/v1/subscription_items/{subscription_item}/usage_record_summaries':
+  /v1/subscription_items/{subscription_item}/usage_record_summaries:
     get:
       description: >-
         <p>For the specified subscription item, returns a list of summary
@@ -359,7 +359,7 @@ paths:
               schema:
                 $ref: '#/components/schemas/error'
           description: Error response.
-  '/v1/subscription_items/{subscription_item}/usage_records':
+  /v1/subscription_items/{subscription_item}/usage_records:
     post:
       description: >-
         <p>Creates a usage record for a specified subscription item and date,
@@ -646,7 +646,7 @@ paths:
               schema:
                 $ref: '#/components/schemas/error'
           description: Error response.
-  '/v1/subscription_schedules/{schedule}':
+  /v1/subscription_schedules/{schedule}:
     get:
       description: >-
         <p>Retrieves the details of an existing subscription schedule. You only
@@ -737,7 +737,7 @@ paths:
               schema:
                 $ref: '#/components/schemas/error'
           description: Error response.
-  '/v1/subscription_schedules/{schedule}/cancel':
+  /v1/subscription_schedules/{schedule}/cancel:
     post:
       description: >-
         <p>Cancels a subscription schedule and its associated subscription
@@ -778,7 +778,7 @@ paths:
               schema:
                 $ref: '#/components/schemas/error'
           description: Error response.
-  '/v1/subscription_schedules/{schedule}/release':
+  /v1/subscription_schedules/{schedule}/release:
     post:
       description: >-
         <p>Releases the subscription schedule immediately, which will stop
@@ -1202,7 +1202,7 @@ paths:
               schema:
                 $ref: '#/components/schemas/error'
           description: Error response.
-  '/v1/subscriptions/{subscription_exposed_id}':
+  /v1/subscriptions/{subscription_exposed_id}:
     delete:
       description: >-
         <p>Cancels a customer’s subscription immediately. The customer will not
@@ -1459,7 +1459,7 @@ paths:
               schema:
                 $ref: '#/components/schemas/error'
           description: Error response.
-  '/v1/subscriptions/{subscription_exposed_id}/discount':
+  /v1/subscriptions/{subscription_exposed_id}/discount:
     delete:
       description: <p>Removes the currently applied discount on a subscription.</p>
       operationId: DeleteSubscriptionsSubscriptionExposedIdDiscount
@@ -1493,7 +1493,7 @@ paths:
               schema:
                 $ref: '#/components/schemas/error'
           description: Error response.
-  '/v1/subscriptions/{subscription}/resume':
+  /v1/subscriptions/{subscription}/resume:
     post:
       description: >-
         <p>Initiates resumption of a paused subscription, optionally resetting
@@ -2065,7 +2065,7 @@ components:
             overrides a discount applied on a customer-wide basis.
           nullable: true
         ended_at:
-          description: 'If the subscription has ended, the date the subscription ended.'
+          description: If the subscription has ended, the date the subscription ended.
           format: unix-time
           nullable: true
           type: integer
@@ -2074,7 +2074,7 @@ components:
           maxLength: 5000
           type: string
         items:
-          description: 'List of subscription items, each with an attached price.'
+          description: List of subscription items, each with an attached price.
           properties:
             data:
               description: Details about each object.
@@ -2284,7 +2284,7 @@ components:
             transferred to for each of the subscription's invoices.
           nullable: true
         trial_end:
-          description: 'If the subscription has a trial, the end of that trial.'
+          description: If the subscription has a trial, the end of that trial.
           format: unix-time
           nullable: true
           type: integer
@@ -2295,7 +2295,7 @@ components:
           description: Settings related to subscription trials.
           nullable: true
         trial_start:
-          description: 'If the subscription has a trial, the beginning of that trial.'
+          description: If the subscription has a trial, the beginning of that trial.
           format: unix-time
           nullable: true
           type: integer
@@ -3952,7 +3952,7 @@ components:
             type: string
           type: array
         items:
-          description: 'A list of up to 20 subscription items, each with an attached price.'
+          description: A list of up to 20 subscription items, each with an attached price.
           items:
             properties:
               billing_thresholds:
@@ -4725,7 +4725,7 @@ components:
             type: string
           type: array
         items:
-          description: 'A list of up to 20 subscription items, each with an attached price.'
+          description: A list of up to 20 subscription items, each with an attached price.
           items:
             properties:
               billing_thresholds:

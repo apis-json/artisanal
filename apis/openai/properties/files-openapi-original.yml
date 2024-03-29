@@ -1,18 +1,17 @@
----
 openapi: 3.0.0
 info:
   title: ' files'
   description: Needs description.
   version: 2.0.0
-  termsOfService: 'https://openai.com/policies/terms-of-use'
+  termsOfService: https://openai.com/policies/terms-of-use
   contact:
     name: OpenAI Support
-    url: 'https://help.openai.com/'
+    url: https://help.openai.com/
   license:
     name: MIT
-    url: 'https://github.com/openai/openai-openapi/blob/master/LICENSE'
+    url: https://github.com/openai/openai-openapi/blob/master/LICENSE
 servers:
-  - url: 'https://api.openai.com/v1'
+  - url: https://api.openai.com/v1
 tags:
   - name: Assistants
     description: Build Assistants that can call models and use tools.
@@ -38,7 +37,7 @@ tags:
       Files are used to upload documents that can be used with features like
       Assistants and Fine-tuning.
   - name: Images
-    description: 'Given a prompt and/or an input image, the model will generate a new image.'
+    description: Given a prompt and/or an input image, the model will generate a new image.
   - name: Models
     description: List and describe the various models available in the API.
   - name: Moderations
@@ -69,7 +68,7 @@ paths:
       x-oaiMeta:
         name: List files
         group: files
-        returns: 'A list of [File](/docs/api-reference/files/object) objects.'
+        returns: A list of [File](/docs/api-reference/files/object) objects.
         examples:
           request:
             curl: |
@@ -149,7 +148,7 @@ paths:
       x-oaiMeta:
         name: Upload file
         group: files
-        returns: 'The uploaded [File](/docs/api-reference/files/object) object.'
+        returns: The uploaded [File](/docs/api-reference/files/object) object.
         examples:
           request:
             curl: |
@@ -190,7 +189,7 @@ paths:
               "filename": "mydata.jsonl",
               "purpose": "fine-tune",
             }
-  '/files/{file_id}':
+  /files/{file_id}:
     delete:
       operationId: deleteFile
       tags:
@@ -299,7 +298,7 @@ paths:
               "filename": "mydata.jsonl",
               "purpose": "fine-tune",
             }
-  '/files/{file_id}/content':
+  /files/{file_id}/content:
     get:
       operationId: downloadFile
       tags:
@@ -345,7 +344,7 @@ paths:
               }
 
               main();
-  '/assistants/{assistant_id}/files':
+  /assistants/{assistant_id}/files:
     get:
       operationId: listAssistantFiles
       tags:
@@ -537,7 +536,7 @@ paths:
               "created_at": 1699055364,
               "assistant_id": "asst_abc123"
             }
-  '/assistants/{assistant_id}/files/{file_id}':
+  /assistants/{assistant_id}/files/{file_id}:
     get:
       operationId: getAssistantFile
       tags:
@@ -676,7 +675,7 @@ paths:
               object: "assistant.file.deleted",
               deleted: true
             }
-  '/threads/{thread_id}/messages/{message_id}/files':
+  /threads/{thread_id}/messages/{message_id}/files:
     get:
       operationId: listMessageFiles
       tags:
@@ -800,7 +799,7 @@ paths:
               "last_id": "file-abc123",
               "has_more": false
             }
-  '/threads/{thread_id}/messages/{message_id}/files/{file_id}':
+  /threads/{thread_id}/messages/{message_id}/files/{file_id}:
     get:
       operationId: getMessageFile
       tags:
@@ -839,7 +838,7 @@ paths:
         name: Retrieve message file
         group: threads
         beta: true
-        returns: 'The [message file](/docs/api-reference/messages/file-object) object.'
+        returns: The [message file](/docs/api-reference/messages/file-object) object.
         examples:
           request:
             curl: >
@@ -908,10 +907,10 @@ components:
       properties:
         id:
           type: string
-          description: 'The file identifier, which can be referenced in the API endpoints.'
+          description: The file identifier, which can be referenced in the API endpoints.
         bytes:
           type: integer
-          description: 'The size of the file, in bytes.'
+          description: The size of the file, in bytes.
         created_at:
           type: integer
           description: The Unix timestamp (in seconds) for when the file was created.
@@ -920,7 +919,7 @@ components:
           description: The name of the file.
         object:
           type: string
-          description: 'The object type, which is always `file`.'
+          description: The object type, which is always `file`.
           enum:
             - file
         purpose:
@@ -1011,13 +1010,13 @@ components:
     AssistantFileObject:
       type: object
       title: Assistant files
-      description: 'A list of [Files](/docs/api-reference/files) attached to an `assistant`.'
+      description: A list of [Files](/docs/api-reference/files) attached to an `assistant`.
       properties:
         id:
-          description: 'The identifier, which can be referenced in API endpoints.'
+          description: The identifier, which can be referenced in API endpoints.
           type: string
         object:
-          description: 'The object type, which is always `assistant.file`.'
+          description: The object type, which is always `assistant.file`.
           type: string
           enum:
             - assistant.file
@@ -1093,10 +1092,10 @@ components:
       description: A list of files attached to a `message`.
       properties:
         id:
-          description: 'The identifier, which can be referenced in API endpoints.'
+          description: The identifier, which can be referenced in API endpoints.
           type: string
         object:
-          description: 'The object type, which is always `thread.message.file`.'
+          description: The object type, which is always `thread.message.file`.
           type: string
           enum:
             - thread.message.file
@@ -1444,4 +1443,3 @@ x-oaiMeta:
         - type: object
           key: CreateCompletionResponse
           path: object
----

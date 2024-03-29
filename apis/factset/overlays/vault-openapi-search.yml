@@ -8,6 +8,13 @@ paths:
   /analytics/engines/vault/v3/components:
     get:
       tags:
+        - Get
+        - Vault
+        - Components
+        - Analytics
+        - Engines
+        - Vault
+        - V3
         - Components
       summary: Get Vault components
       description: >-
@@ -16,12 +23,31 @@ paths:
   /analytics/engines/vault/v3/components/{id}:
     get:
       tags:
+        - Get
+        - Vault
+        - Component
+        - By
+        - Id
+        - Analytics
+        - Engines
+        - Vault
+        - V3
         - Components
+        - Id
       summary: Get Vault component by id
       description: This endpoint returns the default settings of a Vault component.
   /analytics/engines/vault/v3/configurations:
     get:
       tags:
+        - Get
+        - Vault
+        - Configurations
+        - Analytics
+        - Engines
+        - Vault
+        - V3
+        - Components
+        - Id
         - Configurations
       summary: Get Vault configurations
       description: >-
@@ -30,6 +56,17 @@ paths:
   /analytics/engines/vault/v3/configurations/{id}:
     get:
       tags:
+        - Get
+        - Vault
+        - Configuration
+        - By
+        - Id
+        - Analytics
+        - Engines
+        - Vault
+        - V3
+        - Components
+        - Id
         - Configurations
       summary: Get Vault configuration by id
       description: >-
@@ -38,6 +75,19 @@ paths:
   /analytics/engines/vault/v3/dates:
     get:
       tags:
+        - Convert
+        - Vault
+        - Dates
+        - To
+        - Absolute
+        - Format
+        - Analytics
+        - Engines
+        - Vault
+        - V3
+        - Components
+        - Id
+        - Configurations
         - Dates
       summary: Convert Vault dates to absolute format
       description: >-
@@ -48,7 +98,23 @@ paths:
   /analytics/engines/vault/v3/documents/{path}:
     get:
       tags:
+        - Get
+        - Vault
         - Documents
+        - And
+        - Sub-directories
+        - In
+        - Directory
+        - Analytics
+        - Engines
+        - Vault
+        - V3
+        - Components
+        - Id
+        - Configurations
+        - Dates
+        - Documents
+        - Path
       summary: Get Vault documents and sub-directories in a directory
       description: >-
         This endpoint looks up all Vault documents and sub-directories in a
@@ -56,6 +122,19 @@ paths:
   /analytics/engines/vault/v3/frequencies:
     get:
       tags:
+        - Get
+        - Vault
+        - Frequencies
+        - Analytics
+        - Engines
+        - Vault
+        - V3
+        - Components
+        - Id
+        - Configurations
+        - Dates
+        - Documents
+        - Path
         - Frequencies
       summary: Get Vault frequencies
       description: >-
@@ -64,44 +143,163 @@ paths:
   /analytics/engines/vault/v3/calculations:
     post:
       tags:
-        - VaultCalculations
+        - Create
+        - And
+        - Run
+        - Vault
+        - Calculation
+        - Analytics
+        - Engines
+        - Vault
+        - V3
+        - Components
+        - Id
+        - Configurations
+        - Dates
+        - Documents
+        - Path
+        - Frequencies
+        - Calculations
       summary: Create and Run Vault calculation
       description: "This endpoint runs the Vault calculation specified in the POST body parameters.\r\nIt can take one or more units as input.\r\n\r\nRemarks:\r\n\r\n*   Start and and end date must be within the configuration's min and max date range"
     get:
       tags:
-        - VaultCalculations
+        - Get
+        - All
+        - Calculations
+        - Analytics
+        - Engines
+        - Vault
+        - V3
+        - Components
+        - Id
+        - Configurations
+        - Dates
+        - Documents
+        - Path
+        - Frequencies
+        - Calculations
       summary: Get all calculations
       description: This endpoints returns all calculation requests.
   /analytics/engines/vault/v3/calculations/{id}:
     put:
       tags:
-        - VaultCalculations
+        - Create
+        - Or
+        - Update
+        - Vault
+        - Calculation
+        - And
+        - Run
+        - It.
+        - Analytics
+        - Engines
+        - Vault
+        - V3
+        - Components
+        - Id
+        - Configurations
+        - Dates
+        - Documents
+        - Path
+        - Frequencies
+        - Calculations
       summary: Create or Update Vault calculation and run it.
       description: "This endpoint updates and run the Vault calculation specified in the PUT body parameters. This also allows creating new Vault calculations with custom ids.\r\nIt can take one or more units as input.\r\n\r\nRemarks:\r\n\r\n*   Start and and end date must be within the configuration's min and max date range"
     get:
       tags:
-        - VaultCalculations
+        - Get
+        - Vault
+        - Calculation
+        - Parameters
+        - By
+        - Id
+        - Analytics
+        - Engines
+        - Vault
+        - V3
+        - Components
+        - Id
+        - Configurations
+        - Dates
+        - Documents
+        - Path
+        - Frequencies
+        - Calculations
       summary: Get Vault calculation parameters by id
       description: >-
         This is the endpoint that returns the calculation parameters passed for
         a calculation.
     delete:
       tags:
-        - VaultCalculations
+        - Cancel
+        - Vault
+        - Calculation
+        - By
+        - Id
+        - Analytics
+        - Engines
+        - Vault
+        - V3
+        - Components
+        - Id
+        - Configurations
+        - Dates
+        - Documents
+        - Path
+        - Frequencies
+        - Calculations
       summary: Cancel Vault calculation by id
       description: This is the endpoint to cancel a previously submitted calculation.
   /analytics/engines/vault/v3/calculations/{id}/status:
     get:
       tags:
-        - VaultCalculations
+        - Get
+        - Vault
+        - Calculation
+        - Status
+        - By
+        - Id
+        - Analytics
+        - Engines
+        - Vault
+        - V3
+        - Components
+        - Id
+        - Configurations
+        - Dates
+        - Documents
+        - Path
+        - Frequencies
+        - Calculations
+        - Status
       summary: Get Vault calculation status by id
       description: "This is the endpoint to check on the progress of a previously requested calculation.\r\nIf the calculation has finished computing, the location header will point to the result url."
   /analytics/engines/vault/v3/calculations/{id}/units/{unitId}/result:
     get:
       tags:
-        - VaultCalculations
+        - Get
+        - Vault
+        - Calculation
+        - Result
+        - By
+        - Id
+        - Analytics
+        - Engines
+        - Vault
+        - V3
+        - Components
+        - Id
+        - Configurations
+        - Dates
+        - Documents
+        - Path
+        - Frequencies
+        - Calculations
+        - Status
+        - Result
       summary: Get Vault calculation result by id
       description: "This is the endpoint to get the result of a previously requested calculation.\r\nIf the calculation has finished computing, the body of the response will contain the requested document in JSON."
 externalDocs:
   description: API Documentation
-  url: https://developer.factset.com/api-catalog/v
+  url: https://developer.factset.com/api

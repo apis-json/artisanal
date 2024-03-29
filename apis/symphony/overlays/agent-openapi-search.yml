@@ -5,7 +5,11 @@ paths:
   /v3/health:
     get:
       tags:
-        - System
+        - Checks
+        - Health
+        - Status
+        - V3
+        - Health
       summary: Checks health status
       description: >
         _Available on Agent 2.57.0 and above._
@@ -16,7 +20,16 @@ paths:
   /v3/health/extended:
     get:
       tags:
-        - System
+        - Checks
+        - Health
+        - Status
+        - Of
+        - Services
+        - And
+        - Users
+        - V3
+        - Health
+        - Extended
       summary: Checks health status of services and users
       description: >
         _Available on Agent 2.57.0 and above._
@@ -33,7 +46,19 @@ paths:
   /v4/message/import:
     post:
       tags:
+        - Import
         - Messages
+        - From
+        - Other
+        - Systems
+        - Into
+        - Symphony.
+        - V3
+        - Health
+        - Extended
+        - V4
+        - Message
+        - Import
       summary: Import messages from other systems into Symphony.
       description: >
         Sends a message to be imported into the system.
@@ -54,7 +79,19 @@ paths:
   /v4/message/blast:
     post:
       tags:
-        - Messages
+        - Post
+        - Message
+        - To
+        - Multiple
+        - Existing
+        - Streams.
+        - V3
+        - Health
+        - Extended
+        - V4
+        - Message
+        - Import
+        - Blast
       summary: Post a message to multiple existing streams.
       description: >
         Post a new message to the given list of streams. The stream can be a
@@ -103,12 +140,34 @@ paths:
   /v1/message/{id}:
     get:
       tags:
-        - Messages
+        - Get
+        - Message
+        - By
+        - V3
+        - Health
+        - Extended
+        - V4
+        - Message
+        - Import
+        - Blast
+        - V1
+        - Id
       summary: Get a message by ID
   /v1/message/search:
     get:
       tags:
+        - Search
         - Messages
+        - V3
+        - Health
+        - Extended
+        - V4
+        - Message
+        - Import
+        - Blast
+        - V1
+        - Id
+        - Search
       summary: Search messages
       description: >
         Search messages according to the specified criteria. The "query"
@@ -123,13 +182,39 @@ paths:
          "signal" queries can only be combined with "fromDate", "toDate", "skip" and "limit" parameters.
     post:
       tags:
+        - Search
         - Messages
+        - V3
+        - Health
+        - Extended
+        - V4
+        - Message
+        - Import
+        - Blast
+        - V1
+        - Id
+        - Search
       summary: Search messages
       description: Search messages according to the specified criteria.
   /v1/stream/{sid}/attachment:
     get:
       tags:
-        - Attachments
+        - Download
+        - An
+        - Attachment.
+        - V3
+        - Health
+        - Extended
+        - V4
+        - Message
+        - Import
+        - Blast
+        - V1
+        - Id
+        - Search
+        - Stream
+        - Sid
+        - Attachment
       summary: Download an attachment.
       description: >-
         Downloads the attachment body by the attachment ID, stream ID, and
@@ -137,7 +222,25 @@ paths:
   /v4/stream/{sid}/message:
     get:
       tags:
+        - Get
         - Messages
+        - From
+        - An
+        - Existing
+        - Stream.
+        - V3
+        - Health
+        - Extended
+        - V4
+        - Message
+        - Import
+        - Blast
+        - V1
+        - Id
+        - Search
+        - Stream
+        - Sid
+        - Attachment
       summary: Get messages from an existing stream.
       description: |
         A caller can fetch all unseen messages by passing the timestamp of
@@ -154,7 +257,26 @@ paths:
   /v4/stream/{sid}/message/create:
     post:
       tags:
-        - Messages
+        - Post
+        - Message
+        - To
+        - One
+        - Existing
+        - Stream.
+        - V3
+        - Health
+        - Extended
+        - V4
+        - Message
+        - Import
+        - Blast
+        - V1
+        - Id
+        - Search
+        - Stream
+        - Sid
+        - Attachment
+        - Create
       summary: Post a message to one existing stream.
       description: >
         Post a new message to the given stream. The stream can be a chatroom,,an
@@ -191,7 +313,26 @@ paths:
   /v4/stream/{sid}/message/{mid}/update:
     post:
       tags:
-        - Messages
+        - Update
+        - An
+        - Existing
+        - Message.
+        - V3
+        - Health
+        - Extended
+        - V4
+        - Message
+        - Import
+        - Blast
+        - V1
+        - Id
+        - Search
+        - Stream
+        - Sid
+        - Attachment
+        - Create
+        - Mid
+        - Update
       summary: Update an existing message.
       description: >
         Update an existing message. The existing message must be a valid social
@@ -222,6 +363,28 @@ paths:
     post:
       tags:
         - Share
+        - Piece
+        - Of
+        - Content
+        - Into
+        - Symphony
+        - V3
+        - Health
+        - Extended
+        - V4
+        - Message
+        - Import
+        - Blast
+        - V1
+        - Id
+        - Search
+        - Stream
+        - Sid
+        - Attachment
+        - Create
+        - Mid
+        - Update
+        - Share
       summary: PROVISIONAL -  Share a piece of content into Symphony
       description: >
         Given a 3rd party content (eg. news article), it can share to the given
@@ -231,12 +394,75 @@ paths:
   /v1/util/echo:
     post:
       tags:
+        - Test
+        - Endpoint,
+        - Returns
+        - Input.
+        - V3
+        - Health
+        - Extended
+        - V4
+        - Message
+        - Import
+        - Blast
+        - V1
+        - Id
+        - Search
+        - Stream
+        - Sid
+        - Attachment
+        - Create
+        - Mid
+        - Update
+        - Share
         - Util
+        - Echo
       summary: Test endpoint, returns input.
   /v1/signals/list:
     get:
       tags:
+        - List
         - Signals
+        - For
+        - The
+        - Requesting
+        - User.
+        - This
+        - Includes
+        - That
+        - User
+        - Has
+        - Created
+        - And
+        - Public
+        - |-
+          Signals
+          to
+        - Which
+        - They
+        - |
+          Subscribed.
+        - V3
+        - Health
+        - Extended
+        - V4
+        - Message
+        - Import
+        - Blast
+        - V1
+        - Id
+        - Search
+        - Stream
+        - Sid
+        - Attachment
+        - Create
+        - Mid
+        - Update
+        - Share
+        - Util
+        - Echo
+        - Signals
+        - List
       summary: >
         List signals for the requesting user. This includes signals that the
         user has created and public signals
@@ -245,52 +471,324 @@ paths:
   /v1/signals/{id}/get:
     get:
       tags:
+        - Get
+        - Details
+        - Of
+        - The
+        - Requested
+        - Signal.
+        - V3
+        - Health
+        - Extended
+        - V4
+        - Message
+        - Import
+        - Blast
+        - V1
+        - Id
+        - Search
+        - Stream
+        - Sid
+        - Attachment
+        - Create
+        - Mid
+        - Update
+        - Share
+        - Util
+        - Echo
         - Signals
+        - List
+        - Get
       summary: Get details of the requested signal.
   /v1/signals/create:
     post:
       tags:
+        - Create
+        - Signal.
+        - V3
+        - Health
+        - Extended
+        - V4
+        - Message
+        - Import
+        - Blast
+        - V1
+        - Id
+        - Search
+        - Stream
+        - Sid
+        - Attachment
+        - Create
+        - Mid
+        - Update
+        - Share
+        - Util
+        - Echo
         - Signals
+        - List
+        - Get
       summary: Create a signal.
   /v1/signals/{id}/update:
     post:
       tags:
+        - Update
+        - Signal.
+        - V3
+        - Health
+        - Extended
+        - V4
+        - Message
+        - Import
+        - Blast
+        - V1
+        - Id
+        - Search
+        - Stream
+        - Sid
+        - Attachment
+        - Create
+        - Mid
+        - Update
+        - Share
+        - Util
+        - Echo
         - Signals
+        - List
+        - Get
       summary: Update a signal.
   /v1/signals/{id}/delete:
     post:
       tags:
+        - Delete
+        - Signal.
+        - V3
+        - Health
+        - Extended
+        - V4
+        - Message
+        - Import
+        - Blast
+        - V1
+        - Id
+        - Search
+        - Stream
+        - Sid
+        - Attachment
+        - Create
+        - Mid
+        - Update
+        - Share
+        - Util
+        - Echo
         - Signals
+        - List
+        - Get
+        - Delete
       summary: Delete a signal.
   /v1/signals/{id}/subscribe:
     post:
       tags:
+        - Subscribe
+        - To
+        - Signal.
+        - V3
+        - Health
+        - Extended
+        - V4
+        - Message
+        - Import
+        - Blast
+        - V1
+        - Id
+        - Search
+        - Stream
+        - Sid
+        - Attachment
+        - Create
+        - Mid
+        - Update
+        - Share
+        - Util
+        - Echo
         - Signals
+        - List
+        - Get
+        - Delete
+        - Subscribe
       summary: Subscribe to a Signal.
   /v1/signals/{id}/unsubscribe:
     post:
       tags:
+        - Unsubscribe
+        - To
+        - Signal.
+        - V3
+        - Health
+        - Extended
+        - V4
+        - Message
+        - Import
+        - Blast
+        - V1
+        - Id
+        - Search
+        - Stream
+        - Sid
+        - Attachment
+        - Create
+        - Mid
+        - Update
+        - Share
+        - Util
+        - Echo
         - Signals
+        - List
+        - Get
+        - Delete
+        - Subscribe
+        - Unsubscribe
       summary: Unsubscribe to a Signal.
   /v1/signals/{id}/subscribers:
     get:
       tags:
+        - Get
+        - The
+        - Subscribers
+        - Of
+        - Signal
+        - V3
+        - Health
+        - Extended
+        - V4
+        - Message
+        - Import
+        - Blast
+        - V1
+        - Id
+        - Search
+        - Stream
+        - Sid
+        - Attachment
+        - Create
+        - Mid
+        - Update
+        - Share
+        - Util
+        - Echo
         - Signals
+        - List
+        - Get
+        - Delete
+        - Subscribe
+        - Unsubscribe
+        - Subscribers
       summary: Get the subscribers of a signal
   /v1/info:
     get:
       tags:
+        - Get
+        - Information
+        - About
+        - The
+        - Agent
+        - V3
+        - Health
+        - Extended
+        - V4
+        - Message
+        - Import
+        - Blast
+        - V1
+        - Id
+        - Search
+        - Stream
+        - Sid
+        - Attachment
+        - Create
+        - Mid
+        - Update
+        - Share
+        - Util
+        - Echo
         - Signals
+        - List
+        - Get
+        - Delete
+        - Subscribe
+        - Unsubscribe
+        - Subscribers
+        - Info
       summary: Get information about the Agent
   /v1/dlp/policies:
     get:
       tags:
-        - DLP Policies and Dictionary Management
+        - Get
+        - All
+        - Policies
+        - V3
+        - Health
+        - Extended
+        - V4
+        - Message
+        - Import
+        - Blast
+        - V1
+        - Id
+        - Search
+        - Stream
+        - Sid
+        - Attachment
+        - Create
+        - Mid
+        - Update
+        - Share
+        - Util
+        - Echo
+        - Signals
+        - List
+        - Get
+        - Delete
+        - Subscribe
+        - Unsubscribe
+        - Subscribers
+        - Info
+        - Dlp
+        - Policies
       summary: Get all policies
       description: Get all policies
     post:
       tags:
-        - DLP Policies and Dictionary Management
+        - Creates
+        - Policy
+        - V3
+        - Health
+        - Extended
+        - V4
+        - Message
+        - Import
+        - Blast
+        - V1
+        - Id
+        - Search
+        - Stream
+        - Sid
+        - Attachment
+        - Create
+        - Mid
+        - Update
+        - Share
+        - Util
+        - Echo
+        - Signals
+        - List
+        - Get
+        - Delete
+        - Subscribe
+        - Unsubscribe
+        - Subscribers
+        - Info
+        - Dlp
+        - Policies
       summary: Creates a policy
       description: >
         Creates a new policy with dictionary references.
@@ -306,12 +804,77 @@ paths:
   /v1/dlp/policies/{policyId}:
     get:
       tags:
-        - DLP Policies and Dictionary Management
+        - Get
+        - Policy
+        - V3
+        - Health
+        - Extended
+        - V4
+        - Message
+        - Import
+        - Blast
+        - V1
+        - Id
+        - Search
+        - Stream
+        - Sid
+        - Attachment
+        - Create
+        - Mid
+        - Update
+        - Share
+        - Util
+        - Echo
+        - Signals
+        - List
+        - Get
+        - Delete
+        - Subscribe
+        - Unsubscribe
+        - Subscribers
+        - Info
+        - Dlp
+        - Policies
       summary: Get a policy
       description: Get a policy
     put:
       tags:
-        - DLP Policies and Dictionary Management
+        - Updates
+        - Policy.
+        - Cannot
+        - Be
+        - Used
+        - For
+        - Creation.
+        - V3
+        - Health
+        - Extended
+        - V4
+        - Message
+        - Import
+        - Blast
+        - V1
+        - Id
+        - Search
+        - Stream
+        - Sid
+        - Attachment
+        - Create
+        - Mid
+        - Update
+        - Share
+        - Util
+        - Echo
+        - Signals
+        - List
+        - Get
+        - Delete
+        - Subscribe
+        - Unsubscribe
+        - Subscribers
+        - Info
+        - Dlp
+        - Policies
       summary: Updates a policy. Cannot be used for creation.
       description: >
         Update the policy (name, type, contentTypes, scopes) and also the
@@ -326,7 +889,37 @@ paths:
         Note: The policy should already exist.
     delete:
       tags:
-        - DLP Policies and Dictionary Management
+        - Delete
+        - Policy
+        - V3
+        - Health
+        - Extended
+        - V4
+        - Message
+        - Import
+        - Blast
+        - V1
+        - Id
+        - Search
+        - Stream
+        - Sid
+        - Attachment
+        - Create
+        - Mid
+        - Update
+        - Share
+        - Util
+        - Echo
+        - Signals
+        - List
+        - Get
+        - Delete
+        - Subscribe
+        - Unsubscribe
+        - Subscribers
+        - Info
+        - Dlp
+        - Policies
       summary: Delete a policy
       description: |
         Delete a policy.
@@ -334,26 +927,157 @@ paths:
   /v1/dlp/policies/{policyId}/enable:
     post:
       tags:
-        - DLP Policies and Dictionary Management
+        - Enables
+        - Policy.
+        - V3
+        - Health
+        - Extended
+        - V4
+        - Message
+        - Import
+        - Blast
+        - V1
+        - Id
+        - Search
+        - Stream
+        - Sid
+        - Attachment
+        - Create
+        - Mid
+        - Update
+        - Share
+        - Util
+        - Echo
+        - Signals
+        - List
+        - Get
+        - Delete
+        - Subscribe
+        - Unsubscribe
+        - Subscribers
+        - Info
+        - Dlp
+        - Policies
+        - Enable
       summary: Enables a policy.
       description: Enables a policy.
   /v1/dlp/policies/{policyId}/disable:
     post:
       tags:
-        - DLP Policies and Dictionary Management
+        - Disables
+        - Policy.
+        - V3
+        - Health
+        - Extended
+        - V4
+        - Message
+        - Import
+        - Blast
+        - V1
+        - Id
+        - Search
+        - Stream
+        - Sid
+        - Attachment
+        - Create
+        - Mid
+        - Update
+        - Share
+        - Util
+        - Echo
+        - Signals
+        - List
+        - Get
+        - Delete
+        - Subscribe
+        - Unsubscribe
+        - Subscribers
+        - Info
+        - Dlp
+        - Policies
+        - Enable
+        - Disable
       summary: Disables a policy.
       description: Disables a policy.
   /v1/dlp/dictionaries:
     get:
       tags:
-        - DLP Policies and Dictionary Management
+        - Get
+        - All
+        - Dictionary
+        - Metadatas
+        - V3
+        - Health
+        - Extended
+        - V4
+        - Message
+        - Import
+        - Blast
+        - V1
+        - Id
+        - Search
+        - Stream
+        - Sid
+        - Attachment
+        - Create
+        - Mid
+        - Update
+        - Share
+        - Util
+        - Echo
+        - Signals
+        - List
+        - Get
+        - Delete
+        - Subscribe
+        - Unsubscribe
+        - Subscribers
+        - Info
+        - Dlp
+        - Policies
+        - Enable
+        - Disable
+        - Dictionaries
       summary: Get all dictionary metadatas
       description: >
         Get all dictionary metadatas with the latest version. Each dictionary
         object will only contain meta data of the content.
     post:
       tags:
-        - DLP Policies and Dictionary Management
+        - Create
+        - Dictionary
+        - V3
+        - Health
+        - Extended
+        - V4
+        - Message
+        - Import
+        - Blast
+        - V1
+        - Id
+        - Search
+        - Stream
+        - Sid
+        - Attachment
+        - Create
+        - Mid
+        - Update
+        - Share
+        - Util
+        - Echo
+        - Signals
+        - List
+        - Get
+        - Delete
+        - Subscribe
+        - Unsubscribe
+        - Subscribers
+        - Info
+        - Dlp
+        - Policies
+        - Enable
+        - Disable
+        - Dictionaries
       summary: Create a dictionary
       description: >
         Creates a dictionary with basic metadata and no content. Only "name" and
@@ -361,12 +1085,79 @@ paths:
   /v1/dlp/dictionaries/{dictId}:
     get:
       tags:
-        - DLP Policies and Dictionary Management
+        - Get
+        - Dictionary
+        - Metadata
+        - V3
+        - Health
+        - Extended
+        - V4
+        - Message
+        - Import
+        - Blast
+        - V1
+        - Id
+        - Search
+        - Stream
+        - Sid
+        - Attachment
+        - Create
+        - Mid
+        - Update
+        - Share
+        - Util
+        - Echo
+        - Signals
+        - List
+        - Get
+        - Delete
+        - Subscribe
+        - Unsubscribe
+        - Subscribers
+        - Info
+        - Dlp
+        - Policies
+        - Enable
+        - Disable
+        - Dictionaries
       summary: Get dictionary metadata
       description: Get basic information for a dictionary.
     put:
       tags:
-        - DLP Policies and Dictionary Management
+        - Updates
+        - Dictionary
+        - V3
+        - Health
+        - Extended
+        - V4
+        - Message
+        - Import
+        - Blast
+        - V1
+        - Id
+        - Search
+        - Stream
+        - Sid
+        - Attachment
+        - Create
+        - Mid
+        - Update
+        - Share
+        - Util
+        - Echo
+        - Signals
+        - List
+        - Get
+        - Delete
+        - Subscribe
+        - Unsubscribe
+        - Subscribers
+        - Info
+        - Dlp
+        - Policies
+        - Enable
+        - Disable
+        - Dictionaries
       summary: Updates a dictionary
       description: |
         Updates the dictionary's basic metadata without content.
@@ -375,7 +1166,40 @@ paths:
         Note: All related policies will also have versions updated.
     delete:
       tags:
-        - DLP Policies and Dictionary Management
+        - Delete
+        - Dictionary
+        - V3
+        - Health
+        - Extended
+        - V4
+        - Message
+        - Import
+        - Blast
+        - V1
+        - Id
+        - Search
+        - Stream
+        - Sid
+        - Attachment
+        - Create
+        - Mid
+        - Update
+        - Share
+        - Util
+        - Echo
+        - Signals
+        - List
+        - Get
+        - Delete
+        - Subscribe
+        - Unsubscribe
+        - Subscribers
+        - Info
+        - Dlp
+        - Policies
+        - Enable
+        - Disable
+        - Dictionaries
       summary: Delete a dictionary
       description: |
         Deletes a dictionary.
@@ -383,39 +1207,328 @@ paths:
   /v1/dlp/dictionaries/{dictId}/data/download:
     get:
       tags:
-        - DLP Policies and Dictionary Management
+        - Downloads
+        - Base
+        - '64'
+        - Encoded
+        - Dictionary
+        - Content.
+        - V3
+        - Health
+        - Extended
+        - V4
+        - Message
+        - Import
+        - Blast
+        - V1
+        - Id
+        - Search
+        - Stream
+        - Sid
+        - Attachment
+        - Create
+        - Mid
+        - Update
+        - Share
+        - Util
+        - Echo
+        - Signals
+        - List
+        - Get
+        - Delete
+        - Subscribe
+        - Unsubscribe
+        - Subscribers
+        - Info
+        - Dlp
+        - Policies
+        - Enable
+        - Disable
+        - Dictionaries
+        - Data
+        - Download
       summary: Downloads Base 64 encoded dictionary content.
       description: Downloads Base 64 encoded dictionary content.
   /v1/dlp/dictionaries/{dictId}/data/upload:
     post:
       tags:
-        - DLP Policies and Dictionary Management
+        - Override
+        - Dictionary
+        - Content
+        - With
+        - Provided
+        - Content.
+        - V3
+        - Health
+        - Extended
+        - V4
+        - Message
+        - Import
+        - Blast
+        - V1
+        - Id
+        - Search
+        - Stream
+        - Sid
+        - Attachment
+        - Create
+        - Mid
+        - Update
+        - Share
+        - Util
+        - Echo
+        - Signals
+        - List
+        - Get
+        - Delete
+        - Subscribe
+        - Unsubscribe
+        - Subscribers
+        - Info
+        - Dlp
+        - Policies
+        - Enable
+        - Disable
+        - Dictionaries
+        - Data
+        - Download
+        - Upload
       summary: Override dictionary content with provided content.
       description: Override dictionary content with provided content.
   /v1/dlp/violations/message:
     get:
       tags:
+        - Get
+        - Violations
+        - As
+        - Result
+        - Of
+        - Policy
+        - Enforcement
+        - 'On'
+        - Messages.
+        - V3
+        - Health
+        - Extended
+        - V4
+        - Message
+        - Import
+        - Blast
+        - V1
+        - Id
+        - Search
+        - Stream
+        - Sid
+        - Attachment
+        - Create
+        - Mid
+        - Update
+        - Share
+        - Util
+        - Echo
+        - Signals
+        - List
+        - Get
+        - Delete
+        - Subscribe
+        - Unsubscribe
+        - Subscribers
+        - Info
+        - Dlp
+        - Policies
+        - Enable
+        - Disable
+        - Dictionaries
+        - Data
+        - Download
+        - Upload
         - Violations
       summary: Get violations as a result of policy enforcement on messages.
   /v1/dlp/violations/stream:
     get:
       tags:
+        - Get
+        - Violations
+        - As
+        - Result
+        - Of
+        - Policy
+        - Enforcement
+        - 'On'
+        - Streams.
+        - V3
+        - Health
+        - Extended
+        - V4
+        - Message
+        - Import
+        - Blast
+        - V1
+        - Id
+        - Search
+        - Stream
+        - Sid
+        - Attachment
+        - Create
+        - Mid
+        - Update
+        - Share
+        - Util
+        - Echo
+        - Signals
+        - List
+        - Get
+        - Delete
+        - Subscribe
+        - Unsubscribe
+        - Subscribers
+        - Info
+        - Dlp
+        - Policies
+        - Enable
+        - Disable
+        - Dictionaries
+        - Data
+        - Download
+        - Upload
         - Violations
       summary: Get violations as a result of policy enforcement on streams.
   /v1/dlp/violations/signal:
     get:
       tags:
+        - Get
         - Violations
+        - As
+        - Result
+        - Of
+        - Policy
+        - Enforcement
+        - 'On'
+        - Signals.
+        - V3
+        - Health
+        - Extended
+        - V4
+        - Message
+        - Import
+        - Blast
+        - V1
+        - Id
+        - Search
+        - Stream
+        - Sid
+        - Attachment
+        - Create
+        - Mid
+        - Update
+        - Share
+        - Util
+        - Echo
+        - Signals
+        - List
+        - Get
+        - Delete
+        - Subscribe
+        - Unsubscribe
+        - Subscribers
+        - Info
+        - Dlp
+        - Policies
+        - Enable
+        - Disable
+        - Dictionaries
+        - Data
+        - Download
+        - Upload
+        - Violations
+        - Signal
       summary: Get violations as a result of policy enforcement on signals.
   /v3/dlp/policies:
     get:
       tags:
-        - DLP Policies and Dictionary Management
+        - Get
+        - All
+        - Policies
+        - V3
+        - Health
+        - Extended
+        - V4
+        - Message
+        - Import
+        - Blast
+        - V1
+        - Id
+        - Search
+        - Stream
+        - Sid
+        - Attachment
+        - Create
+        - Mid
+        - Update
+        - Share
+        - Util
+        - Echo
+        - Signals
+        - List
+        - Get
+        - Delete
+        - Subscribe
+        - Unsubscribe
+        - Subscribers
+        - Info
+        - Dlp
+        - Policies
+        - Enable
+        - Disable
+        - Dictionaries
+        - Data
+        - Download
+        - Upload
+        - Violations
+        - Signal
       summary: Get all policies
       description: Get all policies
     post:
       tags:
-        - DLP Policies and Dictionary Management
+        - Creates
+        - Policy
+        - V3
+        - Health
+        - Extended
+        - V4
+        - Message
+        - Import
+        - Blast
+        - V1
+        - Id
+        - Search
+        - Stream
+        - Sid
+        - Attachment
+        - Create
+        - Mid
+        - Update
+        - Share
+        - Util
+        - Echo
+        - Signals
+        - List
+        - Get
+        - Delete
+        - Subscribe
+        - Unsubscribe
+        - Subscribers
+        - Info
+        - Dlp
+        - Policies
+        - Enable
+        - Disable
+        - Dictionaries
+        - Data
+        - Download
+        - Upload
+        - Violations
+        - Signal
       summary: Creates a policy
       description: >
         Creates a new policy with dictionary references.
@@ -430,13 +1543,94 @@ paths:
   /v3/dlp/policies/{policyId}:
     get:
       tags:
-        - DLP Policies and Dictionary Management
+        - Get
+        - Policy
+        - V3
+        - Health
+        - Extended
+        - V4
+        - Message
+        - Import
+        - Blast
+        - V1
+        - Id
+        - Search
+        - Stream
+        - Sid
+        - Attachment
+        - Create
+        - Mid
+        - Update
+        - Share
+        - Util
+        - Echo
+        - Signals
+        - List
+        - Get
+        - Delete
+        - Subscribe
+        - Unsubscribe
+        - Subscribers
+        - Info
+        - Dlp
+        - Policies
+        - Enable
+        - Disable
+        - Dictionaries
+        - Data
+        - Download
+        - Upload
+        - Violations
+        - Signal
       summary: Get a policy
       description: Get a policy
   /v3/dlp/policies/{policyId}/update:
     post:
       tags:
-        - DLP Policies and Dictionary Management
+        - Updates
+        - Policy.
+        - Cannot
+        - Be
+        - Used
+        - For
+        - Creation.
+        - V3
+        - Health
+        - Extended
+        - V4
+        - Message
+        - Import
+        - Blast
+        - V1
+        - Id
+        - Search
+        - Stream
+        - Sid
+        - Attachment
+        - Create
+        - Mid
+        - Update
+        - Share
+        - Util
+        - Echo
+        - Signals
+        - List
+        - Get
+        - Delete
+        - Subscribe
+        - Unsubscribe
+        - Subscribers
+        - Info
+        - Dlp
+        - Policies
+        - Enable
+        - Disable
+        - Dictionaries
+        - Data
+        - Download
+        - Upload
+        - Violations
+        - Signal
       summary: Updates a policy. Cannot be used for creation.
       description: >
         Update the policy (name, type, contentTypes, scopes) and also the
@@ -452,7 +1646,45 @@ paths:
   /v3/dlp/policies/{policyId}/delete:
     post:
       tags:
-        - DLP Policies and Dictionary Management
+        - Delete
+        - Policy
+        - V3
+        - Health
+        - Extended
+        - V4
+        - Message
+        - Import
+        - Blast
+        - V1
+        - Id
+        - Search
+        - Stream
+        - Sid
+        - Attachment
+        - Create
+        - Mid
+        - Update
+        - Share
+        - Util
+        - Echo
+        - Signals
+        - List
+        - Get
+        - Delete
+        - Subscribe
+        - Unsubscribe
+        - Subscribers
+        - Info
+        - Dlp
+        - Policies
+        - Enable
+        - Disable
+        - Dictionaries
+        - Data
+        - Download
+        - Upload
+        - Violations
+        - Signal
       summary: Delete a policy
       description: |
         Delete a policy.
@@ -460,37 +1692,298 @@ paths:
   /v3/dlp/policies/{policyId}/enable:
     post:
       tags:
-        - DLP Policies and Dictionary Management
+        - Enables
+        - Policy.
+        - V3
+        - Health
+        - Extended
+        - V4
+        - Message
+        - Import
+        - Blast
+        - V1
+        - Id
+        - Search
+        - Stream
+        - Sid
+        - Attachment
+        - Create
+        - Mid
+        - Update
+        - Share
+        - Util
+        - Echo
+        - Signals
+        - List
+        - Get
+        - Delete
+        - Subscribe
+        - Unsubscribe
+        - Subscribers
+        - Info
+        - Dlp
+        - Policies
+        - Enable
+        - Disable
+        - Dictionaries
+        - Data
+        - Download
+        - Upload
+        - Violations
+        - Signal
       summary: Enables a policy.
       description: Enables a policy.
   /v3/dlp/policies/{policyId}/disable:
     post:
       tags:
-        - DLP Policies and Dictionary Management
+        - Disables
+        - Policy.
+        - V3
+        - Health
+        - Extended
+        - V4
+        - Message
+        - Import
+        - Blast
+        - V1
+        - Id
+        - Search
+        - Stream
+        - Sid
+        - Attachment
+        - Create
+        - Mid
+        - Update
+        - Share
+        - Util
+        - Echo
+        - Signals
+        - List
+        - Get
+        - Delete
+        - Subscribe
+        - Unsubscribe
+        - Subscribers
+        - Info
+        - Dlp
+        - Policies
+        - Enable
+        - Disable
+        - Dictionaries
+        - Data
+        - Download
+        - Upload
+        - Violations
+        - Signal
       summary: Disables a policy.
       description: Disables a policy.
   /v3/dlp/violations/message:
     get:
       tags:
+        - Get
         - Violations
+        - As
+        - Result
+        - Of
+        - Policy
+        - Enforcement
+        - 'On'
+        - Messages.
+        - V3
+        - Health
+        - Extended
+        - V4
+        - Message
+        - Import
+        - Blast
+        - V1
+        - Id
+        - Search
+        - Stream
+        - Sid
+        - Attachment
+        - Create
+        - Mid
+        - Update
+        - Share
+        - Util
+        - Echo
+        - Signals
+        - List
+        - Get
+        - Delete
+        - Subscribe
+        - Unsubscribe
+        - Subscribers
+        - Info
+        - Dlp
+        - Policies
+        - Enable
+        - Disable
+        - Dictionaries
+        - Data
+        - Download
+        - Upload
+        - Violations
+        - Signal
       summary: Get violations as a result of policy enforcement on messages.
       description: Retrieves DLP v3 message related violations for a given time range
   /v3/dlp/violations/stream:
     get:
       tags:
+        - Get
         - Violations
+        - As
+        - Result
+        - Of
+        - Policy
+        - Enforcement
+        - 'On'
+        - Streams.
+        - V3
+        - Health
+        - Extended
+        - V4
+        - Message
+        - Import
+        - Blast
+        - V1
+        - Id
+        - Search
+        - Stream
+        - Sid
+        - Attachment
+        - Create
+        - Mid
+        - Update
+        - Share
+        - Util
+        - Echo
+        - Signals
+        - List
+        - Get
+        - Delete
+        - Subscribe
+        - Unsubscribe
+        - Subscribers
+        - Info
+        - Dlp
+        - Policies
+        - Enable
+        - Disable
+        - Dictionaries
+        - Data
+        - Download
+        - Upload
+        - Violations
+        - Signal
       summary: Get violations as a result of policy enforcement on streams.
       description: Retrieves DLP v3 signal related violations for a given time range
   /v3/dlp/violations/signal:
     get:
       tags:
+        - Get
         - Violations
+        - As
+        - Result
+        - Of
+        - Policy
+        - Enforcement
+        - 'On'
+        - Signals.
+        - V3
+        - Health
+        - Extended
+        - V4
+        - Message
+        - Import
+        - Blast
+        - V1
+        - Id
+        - Search
+        - Stream
+        - Sid
+        - Attachment
+        - Create
+        - Mid
+        - Update
+        - Share
+        - Util
+        - Echo
+        - Signals
+        - List
+        - Get
+        - Delete
+        - Subscribe
+        - Unsubscribe
+        - Subscribers
+        - Info
+        - Dlp
+        - Policies
+        - Enable
+        - Disable
+        - Dictionaries
+        - Data
+        - Download
+        - Upload
+        - Violations
+        - Signal
       summary: Get violations as a result of policy enforcement on signals.
       description: Retrieves DLP v3 signal related violations for a given time range
   /v3/dlp/violation/attachment:
     get:
       tags:
+        - Get
+        - Attachments
+        - That
+        - Were
+        - Sent
+        - As
+        - Part
+        - Of
+        - Messages
+        - Flagged
+        - By
+        - The
+        - System.
+        - V3
+        - Health
+        - Extended
+        - V4
+        - Message
+        - Import
+        - Blast
+        - V1
+        - Id
+        - Search
+        - Stream
+        - Sid
+        - Attachment
+        - Create
+        - Mid
+        - Update
+        - Share
+        - Util
+        - Echo
+        - Signals
+        - List
+        - Get
+        - Delete
+        - Subscribe
+        - Unsubscribe
+        - Subscribers
+        - Info
+        - Dlp
+        - Policies
+        - Enable
+        - Disable
+        - Dictionaries
+        - Data
+        - Download
+        - Upload
         - Violations
+        - Signal
+        - Violation
       summary: >-
         Get attachments that were sent as part of messages that were flagged by
         the DLP System.
@@ -500,7 +1993,60 @@ paths:
   /v1/audittrail/privilegeduser:
     get:
       tags:
-        - AuditTrail
+        - Get
+        - List
+        - Of
+        - Actions
+        - Performed
+        - By
+        - Privileged
+        - Account
+        - Acting
+        - As
+        - User
+        - Given
+        - Period
+        - Time.
+        - V3
+        - Health
+        - Extended
+        - V4
+        - Message
+        - Import
+        - Blast
+        - V1
+        - Id
+        - Search
+        - Stream
+        - Sid
+        - Attachment
+        - Create
+        - Mid
+        - Update
+        - Share
+        - Util
+        - Echo
+        - Signals
+        - List
+        - Get
+        - Delete
+        - Subscribe
+        - Unsubscribe
+        - Subscribers
+        - Info
+        - Dlp
+        - Policies
+        - Enable
+        - Disable
+        - Dictionaries
+        - Data
+        - Download
+        - Upload
+        - Violations
+        - Signal
+        - Violation
+        - Audittrail
+        - Privilegeduser
       summary: >-
         Get a list of  actions performed by a privileged account acting as
         privileged user given a period of time.
@@ -510,7 +2056,57 @@ paths:
   /v5/datafeeds:
     get:
       tags:
-        - Datafeed
+        - Read
+        - List
+        - Of
+        - Real
+        - Time
+        - Messages
+        - Events
+        - Stream
+        - ("datafeed").
+        - V3
+        - Health
+        - Extended
+        - V4
+        - Message
+        - Import
+        - Blast
+        - V1
+        - Id
+        - Search
+        - Stream
+        - Sid
+        - Attachment
+        - Create
+        - Mid
+        - Update
+        - Share
+        - Util
+        - Echo
+        - Signals
+        - List
+        - Get
+        - Delete
+        - Subscribe
+        - Unsubscribe
+        - Subscribers
+        - Info
+        - Dlp
+        - Policies
+        - Enable
+        - Disable
+        - Dictionaries
+        - Data
+        - Download
+        - Upload
+        - Violations
+        - Signal
+        - Violation
+        - Audittrail
+        - Privilegeduser
+        - V5
+        - Datafeeds
       summary: Read list of real time messages / events stream ("datafeed").
       description: >
         _Available on Agent 2.57.0 and above._
@@ -529,7 +2125,56 @@ paths:
         Messages/Events Stream v4 endpoint.
     post:
       tags:
-        - Datafeed
+        - Create
+        - New
+        - Real
+        - Time
+        - Messages
+        - Events
+        - Stream
+        - ("datafeed").
+        - V3
+        - Health
+        - Extended
+        - V4
+        - Message
+        - Import
+        - Blast
+        - V1
+        - Id
+        - Search
+        - Stream
+        - Sid
+        - Attachment
+        - Create
+        - Mid
+        - Update
+        - Share
+        - Util
+        - Echo
+        - Signals
+        - List
+        - Get
+        - Delete
+        - Subscribe
+        - Unsubscribe
+        - Subscribers
+        - Info
+        - Dlp
+        - Policies
+        - Enable
+        - Disable
+        - Dictionaries
+        - Data
+        - Download
+        - Upload
+        - Violations
+        - Signal
+        - Violation
+        - Audittrail
+        - Privilegeduser
+        - V5
+        - Datafeeds
       summary: Create a new real time messages / events stream ("datafeed").
       description: >
         _Available on Agent 2.57.0 and above._
@@ -551,7 +2196,57 @@ paths:
   /v5/datafeeds/{datafeedId}:
     delete:
       tags:
-        - Datafeed
+        - Delete
+        - The
+        - Specified
+        - Real
+        - Time
+        - Message
+        - Event
+        - Stream
+        - ("datafeed").
+        - V3
+        - Health
+        - Extended
+        - V4
+        - Message
+        - Import
+        - Blast
+        - V1
+        - Id
+        - Search
+        - Stream
+        - Sid
+        - Attachment
+        - Create
+        - Mid
+        - Update
+        - Share
+        - Util
+        - Echo
+        - Signals
+        - List
+        - Get
+        - Delete
+        - Subscribe
+        - Unsubscribe
+        - Subscribers
+        - Info
+        - Dlp
+        - Policies
+        - Enable
+        - Disable
+        - Dictionaries
+        - Data
+        - Download
+        - Upload
+        - Violations
+        - Signal
+        - Violation
+        - Audittrail
+        - Privilegeduser
+        - V5
+        - Datafeeds
       summary: Delete the specified real time message / event stream ("datafeed").
       description: >
         _Available on Agent 2.57.0 and above._
@@ -570,7 +2265,58 @@ paths:
   /v5/datafeeds/{datafeedId}/read:
     post:
       tags:
-        - Datafeed
+        - Read
+        - The
+        - Specified
+        - Real
+        - Time
+        - Message
+        - Event
+        - Stream
+        - ("datafeed").
+        - V3
+        - Health
+        - Extended
+        - V4
+        - Message
+        - Import
+        - Blast
+        - V1
+        - Id
+        - Search
+        - Stream
+        - Sid
+        - Attachment
+        - Create
+        - Mid
+        - Update
+        - Share
+        - Util
+        - Echo
+        - Signals
+        - List
+        - Get
+        - Delete
+        - Subscribe
+        - Unsubscribe
+        - Subscribers
+        - Info
+        - Dlp
+        - Policies
+        - Enable
+        - Disable
+        - Dictionaries
+        - Data
+        - Download
+        - Upload
+        - Violations
+        - Signal
+        - Violation
+        - Audittrail
+        - Privilegeduser
+        - V5
+        - Datafeeds
+        - Read
       summary: Read the specified real time message / event stream ("datafeed").
       description: >
         _Available on Agent 2.57.0 and above._
@@ -598,7 +2344,60 @@ paths:
   /v5/events/read:
     post:
       tags:
-        - Datafeed
+        - Read
+        - Real
+        - Time
+        - Events
+        - From
+        - An
+        - Event
+        - Stream
+        - (aka
+        - Datafeed)
+        - V3
+        - Health
+        - Extended
+        - V4
+        - Message
+        - Import
+        - Blast
+        - V1
+        - Id
+        - Search
+        - Stream
+        - Sid
+        - Attachment
+        - Create
+        - Mid
+        - Update
+        - Share
+        - Util
+        - Echo
+        - Signals
+        - List
+        - Get
+        - Delete
+        - Subscribe
+        - Unsubscribe
+        - Subscribers
+        - Info
+        - Dlp
+        - Policies
+        - Enable
+        - Disable
+        - Dictionaries
+        - Data
+        - Download
+        - Upload
+        - Violations
+        - Signal
+        - Violation
+        - Audittrail
+        - Privilegeduser
+        - V5
+        - Datafeeds
+        - Read
+        - Events
       summary: Read Real Time Events from an event stream (aka datafeed)
       description: >
         _Available on Agent 22.5.1 and above.This endpoint provides
@@ -640,4 +2439,4 @@ paths:
         that events are spread across all bot instances. To do so, you must:
         share the same 
 
-        service account provide the same "tag" and same "filters" values
+        service account provide the same "tag" and same "filte

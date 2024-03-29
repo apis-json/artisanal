@@ -1,18 +1,17 @@
----
 openapi: 3.0.0
 info:
   title: ' models'
   description: Needs description.
   version: 2.0.0
-  termsOfService: 'https://openai.com/policies/terms-of-use'
+  termsOfService: https://openai.com/policies/terms-of-use
   contact:
     name: OpenAI Support
-    url: 'https://help.openai.com/'
+    url: https://help.openai.com/
   license:
     name: MIT
-    url: 'https://github.com/openai/openai-openapi/blob/master/LICENSE'
+    url: https://github.com/openai/openai-openapi/blob/master/LICENSE
 servers:
-  - url: 'https://api.openai.com/v1'
+  - url: https://api.openai.com/v1
 tags:
   - name: Models
     description: List and describe the various models available in the API.
@@ -35,7 +34,7 @@ paths:
       x-oaiMeta:
         name: List models
         group: models
-        returns: 'A list of [model](/docs/api-reference/models/object) objects.'
+        returns: A list of [model](/docs/api-reference/models/object) objects.
         examples:
           request:
             curl: |
@@ -84,7 +83,7 @@ paths:
               ],
               "object": "list"
             }
-  '/models/{model}':
+  /models/{model}:
     get:
       operationId: retrieveModel
       tags:
@@ -155,7 +154,7 @@ paths:
           required: true
           schema:
             type: string
-            example: 'ft:gpt-3.5-turbo:acemeco:suffix:abc123'
+            example: ft:gpt-3.5-turbo:acemeco:suffix:abc123
           description: The model to delete
       responses:
         '200':
@@ -224,13 +223,13 @@ components:
       properties:
         id:
           type: string
-          description: 'The model identifier, which can be referenced in the API endpoints.'
+          description: The model identifier, which can be referenced in the API endpoints.
         created:
           type: integer
           description: The Unix timestamp (in seconds) when the model was created.
         object:
           type: string
-          description: 'The object type, which is always "model".'
+          description: The object type, which is always "model".
           enum:
             - model
         owned_by:
@@ -581,4 +580,3 @@ x-oaiMeta:
         - type: object
           key: CreateCompletionResponse
           path: object
----

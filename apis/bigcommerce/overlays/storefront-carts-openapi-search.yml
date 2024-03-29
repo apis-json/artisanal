@@ -9,7 +9,9 @@ paths:
   /carts:
     get:
       tags:
+        - Get
         - Cart
+        - Carts
       summary: Get a Cart
       description: >-
         Returns a *Cart*.
@@ -23,7 +25,9 @@ paths:
         endpoint.  
     post:
       tags:
+        - Create
         - Cart
+        - Carts
       summary: Create a Cart
       description: >-
         Creates a *Cart*.
@@ -38,7 +42,10 @@ paths:
   /carts/{cartId}:
     delete:
       tags:
+        - Delete
         - Cart
+        - Carts
+        - Id
       summary: Delete a Cart
       description: >-
         Deletes a *Cart*. Once a *Cart* has been deleted it can not be
@@ -55,7 +62,13 @@ paths:
   /carts/{cartId}/items:
     post:
       tags:
-        - Cart Items
+        - Add
+        - Cart
+        - Line
+        - Items
+        - Carts
+        - Id
+        - Items
       summary: Add Cart Line Items
       description: >-
         Adds a line items to the *Cart*.
@@ -74,7 +87,14 @@ paths:
   /carts/{cartId}/items/{itemId}:
     put:
       tags:
-        - Cart Items
+        - Update
+        - Cart
+        - Line
+        - Item
+        - Carts
+        - Id
+        - Items
+        - Item
       summary: Update Cart Line Item
       description: >-
         Updates a *Cart* line item. Updates an existing, single line item
@@ -105,7 +125,14 @@ paths:
         inconsistent results.
     delete:
       tags:
-        - Cart Items
+        - Delete
+        - Cart
+        - Line
+        - Item
+        - Carts
+        - Id
+        - Items
+        - Item
       summary: Delete Cart Line Item
       description: >-
         Deletes a *Cart* line item.
@@ -123,7 +150,14 @@ paths:
   /carts/{cartId}/currency:
     post:
       tags:
-        - Cart Currency
+        - Update
+        - Cart
+        - Currency
+        - Carts
+        - Id
+        - Items
+        - Item
+        - Currency
       summary: Update Cart Currency
       description: >-
         Update currency of the *Cart*. 
@@ -140,4 +174,3 @@ paths:
         > * Substitute your storefront domain for `yourstore.example.com`. 
 
         > * The Send a Test Request feature is not currently supported for this
-        endpoint.

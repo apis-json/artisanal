@@ -6,71 +6,318 @@ paths:
     GET:
       summary: ListDiscoverers
       description: <p>List the discoverers.</p>
+      tags:
+        - List
+        - Discoverers
+        - V1
+        - Discoverers
   /v1/registries/name/{registryName}:
     PUT:
       summary: UpdateRegistry
       description: <p>Updates a registry.</p>
+      tags:
+        - Update
+        - Registry
+        - V1
+        - Discoverers
+        - Name
   /v1/registries/name/{registryName}/schemas/name/{schemaName}:
     PUT:
       summary: UpdateSchema
       description: >-
         <p>Updates the schema definition</p> <note><p>Inactive schemas will be
         deleted after two years.</p></note>
+      tags:
+        - Update
+        - Schema
+        - V1
+        - Discoverers
+        - Name
+        - Schemas
+        - Schema
   /v1/discoverers/id/{discovererId}:
     PUT:
       summary: UpdateDiscoverer
       description: <p>Updates the discoverer</p>
+      tags:
+        - Update
+        - Discoverer
+        - V1
+        - Discoverers
+        - Name
+        - Schemas
+        - Schema
+        - Id
   /v1/policy:
     PUT:
       summary: PutResourcePolicy
       description: <p>The name of the policy.</p>
+      tags:
+        - Put
+        - Resource
+        - Policy
+        - V1
+        - Discoverers
+        - Name
+        - Schemas
+        - Schema
+        - Id
+        - Policy
   /v1/registries/name/{registryName}/schemas/name/{schemaName}/version/{schemaVersion}:
     DELETE:
       summary: DeleteSchemaVersion
       description: <p>Delete the schema version definition</p>
+      tags:
+        - Delete
+        - Schema
+        - Version
+        - V1
+        - Discoverers
+        - Name
+        - Schemas
+        - Schema
+        - Id
+        - Policy
+        - Version
   /v1/registries/name/{registryName}/schemas/name/{schemaName}/language/{language}:
     POST:
       summary: PutCodeBinding
       description: <p>Put code binding URI</p>
+      tags:
+        - Put
+        - Code
+        - Binding
+        - V1
+        - Discoverers
+        - Name
+        - Schemas
+        - Schema
+        - Id
+        - Policy
+        - Version
+        - Language
   /v1/registries/name/{registryName}/schemas/name/{schemaName}/language/{language}/source:
     GET:
       summary: GetCodeBindingSource
       description: <p>Get the code binding source URI.</p>
+      tags:
+        - Get
+        - Code
+        - Binding
+        - Source
+        - V1
+        - Discoverers
+        - Name
+        - Schemas
+        - Schema
+        - Id
+        - Policy
+        - Version
+        - Language
+        - Source
   /v1/discover:
     POST:
       summary: GetDiscoveredSchema
       description: >-
         <p>Get the discovered schema that was generated based on sampled
         events.</p>
+      tags:
+        - Get
+        - Discovered
+        - Schema
+        - V1
+        - Discoverers
+        - Name
+        - Schemas
+        - Schema
+        - Id
+        - Policy
+        - Version
+        - Language
+        - Source
+        - Discover
   /v1/registries:
     GET:
       summary: ListRegistries
       description: <p>List the registries.</p>
+      tags:
+        - List
+        - Registries
+        - V1
+        - Discoverers
+        - Name
+        - Schemas
+        - Schema
+        - Id
+        - Policy
+        - Version
+        - Language
+        - Source
+        - Discover
+        - Registries
   /v1/registries/name/{registryName}/schemas/name/{schemaName}/versions:
     GET:
       summary: ListSchemaVersions
       description: <p>Provides a list of the schema versions and related information.</p>
+      tags:
+        - List
+        - Schema
+        - Versions
+        - V1
+        - Discoverers
+        - Name
+        - Schemas
+        - Schema
+        - Id
+        - Policy
+        - Version
+        - Language
+        - Source
+        - Discover
+        - Registries
+        - Versions
   /v1/registries/name/{registryName}/schemas:
     GET:
       summary: ListSchemas
       description: <p>List the schemas.</p>
+      tags:
+        - List
+        - Schemas
+        - V1
+        - Discoverers
+        - Name
+        - Schemas
+        - Schema
+        - Id
+        - Policy
+        - Version
+        - Language
+        - Source
+        - Discover
+        - Registries
+        - Versions
   /tags/{resource-arn}:
     DELETE:
       summary: UntagResource
       description: <p>Removes tags from a resource.</p>
+      tags:
+        - Untag
+        - Resource
+        - V1
+        - Discoverers
+        - Name
+        - Schemas
+        - Schema
+        - Id
+        - Policy
+        - Version
+        - Language
+        - Source
+        - Discover
+        - Registries
+        - Versions
+        - Tags
+        - Resource
+        - Arn
   /v1/registries/name/{registryName}/schemas/search:
     GET:
       summary: SearchSchemas
       description: <p>Search the schemas</p>
+      tags:
+        - Search
+        - Schemas
+        - V1
+        - Discoverers
+        - Name
+        - Schemas
+        - Schema
+        - Id
+        - Policy
+        - Version
+        - Language
+        - Source
+        - Discover
+        - Registries
+        - Versions
+        - Tags
+        - Resource
+        - Arn
+        - Search
   /v1/discoverers/id/{discovererId}/start:
     POST:
       summary: StartDiscoverer
       description: <p>Starts the discoverer</p>
+      tags:
+        - Start
+        - Discoverer
+        - V1
+        - Discoverers
+        - Name
+        - Schemas
+        - Schema
+        - Id
+        - Policy
+        - Version
+        - Language
+        - Source
+        - Discover
+        - Registries
+        - Versions
+        - Tags
+        - Resource
+        - Arn
+        - Search
+        - Start
   /v1/discoverers/id/{discovererId}/stop:
     POST:
       summary: StopDiscoverer
       description: <p>Stops the discoverer</p>
+      tags:
+        - Stop
+        - Discoverer
+        - V1
+        - Discoverers
+        - Name
+        - Schemas
+        - Schema
+        - Id
+        - Policy
+        - Version
+        - Language
+        - Source
+        - Discover
+        - Registries
+        - Versions
+        - Tags
+        - Resource
+        - Arn
+        - Search
+        - Start
+        - Stop
   /v1/registries/name/{registryName}/schemas/name/{schemaName}/export:
     GET:
       summary: ExportSchema
-      description: <p>Exports a schema to a different specificat
+      description: <p>Exports a schema to a different specific
+      tags:
+        - Export
+        - Schema
+        - V1
+        - Discoverers
+        - Name
+        - Schemas
+        - Schema
+        - Id
+        - Policy
+        - Version
+        - Language
+        - Source
+        - Discover
+        - Registries
+        - Versions
+        - Tags
+        - Resource
+        - Arn
+        - Search
+        - Start
+        - Stop
+        - Expo

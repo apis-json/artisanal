@@ -12,11 +12,11 @@ paths:
     get:
       description: Fetch the global configuration of conversations on your account
       tags:
-        - ConversationsV1Configuration
+        - Configuration
     post:
       description: Update the global configuration of conversations on your account
       tags:
-        - ConversationsV1Configuration
+        - Configuration
   /v1/Configuration/Addresses:
     description: >-
       Address Configuration resource manages the configurations related to a
@@ -24,11 +24,13 @@ paths:
     get:
       description: Retrieve a list of address configurations for an account
       tags:
-        - ConversationsV1AddressConfiguration
+        - Configuration
+        - Addresses
     post:
       description: Create a new address configuration
       tags:
-        - ConversationsV1AddressConfiguration
+        - Configuration
+        - Addresses
   /v1/Configuration/Addresses/{Sid}:
     description: >-
       Address Configuration resource manages the configurations related to a
@@ -36,15 +38,21 @@ paths:
     get:
       description: 'Fetch an address configuration '
       tags:
-        - ConversationsV1AddressConfiguration
+        - Configuration
+        - Addresses
+        - Sid
     post:
       description: Update an existing address configuration
       tags:
-        - ConversationsV1AddressConfiguration
+        - Configuration
+        - Addresses
+        - Sid
     delete:
       description: Remove an existing address configuration
       tags:
-        - ConversationsV1AddressConfiguration
+        - Configuration
+        - Addresses
+        - Sid
   /v1/Configuration/Webhooks:
     description: >-
       A Webhook resource manages a service-level set of callback URLs and their
@@ -52,11 +60,17 @@ paths:
     get:
       description: ''
       tags:
-        - ConversationsV1Webhook
+        - Configuration
+        - Addresses
+        - Sid
+        - Webhooks
     post:
       description: ''
       tags:
-        - ConversationsV1Webhook
+        - Configuration
+        - Addresses
+        - Sid
+        - Webhooks
   /v1/Conversations:
     description: >-
       A Conversation resource represents an omnichannel group conversation with
@@ -64,11 +78,19 @@ paths:
     post:
       description: Create a new conversation in your account's default service
       tags:
-        - ConversationsV1Conversation
+        - Configuration
+        - Addresses
+        - Sid
+        - Webhooks
+        - Conversations
     get:
       description: Retrieve a list of conversations in your account's default service
       tags:
-        - ConversationsV1Conversation
+        - Configuration
+        - Addresses
+        - Sid
+        - Webhooks
+        - Conversations
   /v1/Conversations/{Sid}:
     description: >-
       A Conversation resource represents an omnichannel group conversation with
@@ -76,39 +98,81 @@ paths:
     post:
       description: Update an existing conversation in your account's default service
       tags:
-        - ConversationsV1Conversation
+        - Configuration
+        - Addresses
+        - Sid
+        - Webhooks
+        - Conversations
     delete:
       description: Remove a conversation from your account's default service
       tags:
-        - ConversationsV1Conversation
+        - Configuration
+        - Addresses
+        - Sid
+        - Webhooks
+        - Conversations
     get:
       description: Fetch a conversation from your account's default service
       tags:
-        - ConversationsV1Conversation
+        - Configuration
+        - Addresses
+        - Sid
+        - Webhooks
+        - Conversations
   /v1/Conversations/{ConversationSid}/Messages:
     description: A Message resource represents a message in a conversation.
     post:
       description: Add a new message to the conversation
       tags:
-        - ConversationsV1Message
+        - Configuration
+        - Addresses
+        - Sid
+        - Webhooks
+        - Conversations
+        - Conversation
+        - Messages
     get:
       description: Retrieve a list of all messages in the conversation
       tags:
-        - ConversationsV1Message
+        - Configuration
+        - Addresses
+        - Sid
+        - Webhooks
+        - Conversations
+        - Conversation
+        - Messages
   /v1/Conversations/{ConversationSid}/Messages/{Sid}:
     description: A Message resource represents a message in a conversation.
     post:
       description: Update an existing message in the conversation
       tags:
-        - ConversationsV1Message
+        - Configuration
+        - Addresses
+        - Sid
+        - Webhooks
+        - Conversations
+        - Conversation
+        - Messages
     delete:
       description: Remove a message from the conversation
       tags:
-        - ConversationsV1Message
+        - Configuration
+        - Addresses
+        - Sid
+        - Webhooks
+        - Conversations
+        - Conversation
+        - Messages
     get:
       description: Fetch a message from the conversation
       tags:
-        - ConversationsV1Message
+        - Configuration
+        - Addresses
+        - Sid
+        - Webhooks
+        - Conversations
+        - Conversation
+        - Messages
   /v1/Conversations/{ConversationSid}/Messages/{MessageSid}/Receipts/{Sid}:
     description: >-
       A Message Receipt resource represents a delivery/read receipt of a message
@@ -116,7 +180,15 @@ paths:
     get:
       description: Fetch the delivery and read receipts of the conversation message
       tags:
-        - ConversationsV1DeliveryReceipt
+        - Configuration
+        - Addresses
+        - Sid
+        - Webhooks
+        - Conversations
+        - Conversation
+        - Messages
+        - Message
+        - Receipts
   /v1/Conversations/{ConversationSid}/Messages/{MessageSid}/Receipts:
     description: >-
       A Message Receipt resource represents a delivery/read receipt of a message
@@ -126,31 +198,84 @@ paths:
         Retrieve a list of all delivery and read receipts of the conversation
         message
       tags:
-        - ConversationsV1DeliveryReceipt
+        - Configuration
+        - Addresses
+        - Sid
+        - Webhooks
+        - Conversations
+        - Conversation
+        - Messages
+        - Message
+        - Receipts
   /v1/Conversations/{ConversationSid}/Participants:
     description: A Participant resource represents a member of the conversation.
     post:
       description: Add a new participant to the conversation
       tags:
-        - ConversationsV1Participant
+        - Configuration
+        - Addresses
+        - Sid
+        - Webhooks
+        - Conversations
+        - Conversation
+        - Messages
+        - Message
+        - Receipts
+        - Participants
     get:
       description: Retrieve a list of all participants of the conversation
       tags:
-        - ConversationsV1Participant
+        - Configuration
+        - Addresses
+        - Sid
+        - Webhooks
+        - Conversations
+        - Conversation
+        - Messages
+        - Message
+        - Receipts
+        - Participants
   /v1/Conversations/{ConversationSid}/Participants/{Sid}:
     description: A Participant resource represents a member of the conversation.
     post:
       description: Update an existing participant in the conversation
       tags:
-        - ConversationsV1Participant
+        - Configuration
+        - Addresses
+        - Sid
+        - Webhooks
+        - Conversations
+        - Conversation
+        - Messages
+        - Message
+        - Receipts
+        - Participants
     delete:
       description: Remove a participant from the conversation
       tags:
-        - ConversationsV1Participant
+        - Configuration
+        - Addresses
+        - Sid
+        - Webhooks
+        - Conversations
+        - Conversation
+        - Messages
+        - Message
+        - Receipts
+        - Participants
     get:
       description: Fetch a participant of the conversation
       tags:
-        - ConversationsV1Participant
+        - Configuration
+        - Addresses
+        - Sid
+        - Webhooks
+        - Conversations
+        - Conversation
+        - Messages
+        - Message
+        - Receipts
+        - Participants
   /v1/Conversations/{ConversationSid}/Webhooks:
     description: >-
       A Scoped Webhook resource manages a set of callback URLs and their
@@ -158,11 +283,29 @@ paths:
     get:
       description: Retrieve a list of all webhooks scoped to the conversation
       tags:
-        - ConversationsV1Webhook
+        - Configuration
+        - Addresses
+        - Sid
+        - Webhooks
+        - Conversations
+        - Conversation
+        - Messages
+        - Message
+        - Receipts
+        - Participants
     post:
       description: Create a new webhook scoped to the conversation
       tags:
-        - ConversationsV1Webhook
+        - Configuration
+        - Addresses
+        - Sid
+        - Webhooks
+        - Conversations
+        - Conversation
+        - Messages
+        - Message
+        - Receipts
+        - Participants
   /v1/Conversations/{ConversationSid}/Webhooks/{Sid}:
     description: >-
       A Scoped Webhook resource manages a set of callback URLs and their
@@ -170,39 +313,116 @@ paths:
     get:
       description: Fetch the configuration of a conversation-scoped webhook
       tags:
-        - ConversationsV1Webhook
+        - Configuration
+        - Addresses
+        - Sid
+        - Webhooks
+        - Conversations
+        - Conversation
+        - Messages
+        - Message
+        - Receipts
+        - Participants
     post:
       description: Update an existing conversation-scoped webhook
       tags:
-        - ConversationsV1Webhook
+        - Configuration
+        - Addresses
+        - Sid
+        - Webhooks
+        - Conversations
+        - Conversation
+        - Messages
+        - Message
+        - Receipts
+        - Participants
     delete:
       description: Remove an existing webhook scoped to the conversation
       tags:
-        - ConversationsV1Webhook
+        - Configuration
+        - Addresses
+        - Sid
+        - Webhooks
+        - Conversations
+        - Conversation
+        - Messages
+        - Message
+        - Receipts
+        - Participants
   /v1/Credentials:
     description: A Credential resource represents a push notification credential.
     post:
       description: Add a new push notification credential to your account
       tags:
-        - ConversationsV1Credential
+        - Configuration
+        - Addresses
+        - Sid
+        - Webhooks
+        - Conversations
+        - Conversation
+        - Messages
+        - Message
+        - Receipts
+        - Participants
+        - Credentials
     get:
       description: Retrieve a list of all push notification credentials on your account
       tags:
-        - ConversationsV1Credential
+        - Configuration
+        - Addresses
+        - Sid
+        - Webhooks
+        - Conversations
+        - Conversation
+        - Messages
+        - Message
+        - Receipts
+        - Participants
+        - Credentials
   /v1/Credentials/{Sid}:
     description: A Credential resource represents a push notification credential.
     post:
       description: Update an existing push notification credential on your account
       tags:
-        - ConversationsV1Credential
+        - Configuration
+        - Addresses
+        - Sid
+        - Webhooks
+        - Conversations
+        - Conversation
+        - Messages
+        - Message
+        - Receipts
+        - Participants
+        - Credentials
     delete:
       description: Remove a push notification credential from your account
       tags:
-        - ConversationsV1Credential
+        - Configuration
+        - Addresses
+        - Sid
+        - Webhooks
+        - Conversations
+        - Conversation
+        - Messages
+        - Message
+        - Receipts
+        - Participants
+        - Credentials
     get:
       description: Fetch a push notification credential from your account
       tags:
-        - ConversationsV1Credential
+        - Configuration
+        - Addresses
+        - Sid
+        - Webhooks
+        - Conversations
+        - Conversation
+        - Messages
+        - Message
+        - Receipts
+        - Participants
+        - Credentials
   /v1/ParticipantConversations:
     description: >-
       Participant Conversations resource represents a list of Conversations that
@@ -212,7 +432,18 @@ paths:
         Retrieve a list of all Conversations that this Participant belongs to by
         identity or by address. Only one parameter should be specified.
       tags:
-        - ConversationsV1ParticipantConversation
+        - Configuration
+        - Addresses
+        - Sid
+        - Webhooks
+        - Conversations
+        - Conversation
+        - Messages
+        - Message
+        - Receipts
+        - Participants
+        - Credentials
+        - Participant
   /v1/Roles:
     description: >-
       A Role resource represents a set of permissions granted to a user within a
@@ -220,11 +451,35 @@ paths:
     post:
       description: Create a new user role in your account's default service
       tags:
-        - ConversationsV1Role
+        - Configuration
+        - Addresses
+        - Sid
+        - Webhooks
+        - Conversations
+        - Conversation
+        - Messages
+        - Message
+        - Receipts
+        - Participants
+        - Credentials
+        - Participant
+        - Roles
     get:
       description: Retrieve a list of all user roles in your account's default service
       tags:
-        - ConversationsV1Role
+        - Configuration
+        - Addresses
+        - Sid
+        - Webhooks
+        - Conversations
+        - Conversation
+        - Messages
+        - Message
+        - Receipts
+        - Participants
+        - Credentials
+        - Participant
+        - Roles
   /v1/Roles/{Sid}:
     description: >-
       A Role resource represents a set of permissions granted to a user within a
@@ -232,15 +487,51 @@ paths:
     post:
       description: Update an existing user role in your account's default service
       tags:
-        - ConversationsV1Role
+        - Configuration
+        - Addresses
+        - Sid
+        - Webhooks
+        - Conversations
+        - Conversation
+        - Messages
+        - Message
+        - Receipts
+        - Participants
+        - Credentials
+        - Participant
+        - Roles
     delete:
       description: Remove a user role from your account's default service
       tags:
-        - ConversationsV1Role
+        - Configuration
+        - Addresses
+        - Sid
+        - Webhooks
+        - Conversations
+        - Conversation
+        - Messages
+        - Message
+        - Receipts
+        - Participants
+        - Credentials
+        - Participant
+        - Roles
     get:
       description: Fetch a user role from your account's default service
       tags:
-        - ConversationsV1Role
+        - Configuration
+        - Addresses
+        - Sid
+        - Webhooks
+        - Conversations
+        - Conversation
+        - Messages
+        - Message
+        - Receipts
+        - Participants
+        - Credentials
+        - Participant
+        - Roles
   /v1/Services:
     description: >-
       A Service resource is a top-level conversation resource container that
@@ -248,11 +539,37 @@ paths:
     post:
       description: Create a new conversation service on your account
       tags:
-        - ConversationsV1Service
+        - Configuration
+        - Addresses
+        - Sid
+        - Webhooks
+        - Conversations
+        - Conversation
+        - Messages
+        - Message
+        - Receipts
+        - Participants
+        - Credentials
+        - Participant
+        - Roles
+        - Services
     get:
       description: Retrieve a list of all conversation services on your account
       tags:
-        - ConversationsV1Service
+        - Configuration
+        - Addresses
+        - Sid
+        - Webhooks
+        - Conversations
+        - Conversation
+        - Messages
+        - Message
+        - Receipts
+        - Participants
+        - Credentials
+        - Participant
+        - Roles
+        - Services
   /v1/Services/{Sid}:
     description: >-
       A Service resource is a top-level conversation resource container that
@@ -262,11 +579,37 @@ paths:
         Remove a conversation service with all its nested resources from your
         account
       tags:
-        - ConversationsV1Service
+        - Configuration
+        - Addresses
+        - Sid
+        - Webhooks
+        - Conversations
+        - Conversation
+        - Messages
+        - Message
+        - Receipts
+        - Participants
+        - Credentials
+        - Participant
+        - Roles
+        - Services
     get:
       description: Fetch a conversation service from your account
       tags:
-        - ConversationsV1Service
+        - Configuration
+        - Addresses
+        - Sid
+        - Webhooks
+        - Conversations
+        - Conversation
+        - Messages
+        - Message
+        - Receipts
+        - Participants
+        - Credentials
+        - Participant
+        - Roles
+        - Services
   /v1/Services/{ChatServiceSid}/Bindings/{Sid}:
     description: >-
       A Binding resource represents a push notification binding and its
@@ -275,11 +618,43 @@ paths:
     delete:
       description: Remove a push notification binding from the conversation service
       tags:
-        - ConversationsV1Binding
+        - Configuration
+        - Addresses
+        - Sid
+        - Webhooks
+        - Conversations
+        - Conversation
+        - Messages
+        - Message
+        - Receipts
+        - Participants
+        - Credentials
+        - Participant
+        - Roles
+        - Services
+        - Chat
+        - Service
+        - Bindings
     get:
       description: Fetch a push notification binding from the conversation service
       tags:
-        - ConversationsV1Binding
+        - Configuration
+        - Addresses
+        - Sid
+        - Webhooks
+        - Conversations
+        - Conversation
+        - Messages
+        - Message
+        - Receipts
+        - Participants
+        - Credentials
+        - Participant
+        - Roles
+        - Services
+        - Chat
+        - Service
+        - Bindings
   /v1/Services/{ChatServiceSid}/Bindings:
     description: >-
       A Binding resource represents a push notification binding and its
@@ -290,7 +665,23 @@ paths:
         Retrieve a list of all push notification bindings in the conversation
         service
       tags:
-        - ConversationsV1Binding
+        - Configuration
+        - Addresses
+        - Sid
+        - Webhooks
+        - Conversations
+        - Conversation
+        - Messages
+        - Message
+        - Receipts
+        - Participants
+        - Credentials
+        - Participant
+        - Roles
+        - Services
+        - Chat
+        - Service
+        - Bindings
   /v1/Services/{ChatServiceSid}/Configuration:
     description: >-
       A Service Configuration resource manages service-level settings applicable
@@ -298,11 +689,43 @@ paths:
     get:
       description: Fetch the configuration of a conversation service
       tags:
-        - ConversationsV1Configuration
+        - Configuration
+        - Addresses
+        - Sid
+        - Webhooks
+        - Conversations
+        - Conversation
+        - Messages
+        - Message
+        - Receipts
+        - Participants
+        - Credentials
+        - Participant
+        - Roles
+        - Services
+        - Chat
+        - Service
+        - Bindings
     post:
       description: Update configuration settings of a conversation service
       tags:
-        - ConversationsV1Configuration
+        - Configuration
+        - Addresses
+        - Sid
+        - Webhooks
+        - Conversations
+        - Conversation
+        - Messages
+        - Message
+        - Receipts
+        - Participants
+        - Credentials
+        - Participant
+        - Roles
+        - Services
+        - Chat
+        - Service
+        - Bindings
   /v1/Services/{ChatServiceSid}/Conversations:
     description: >-
       A Service Conversation resource represents an omnichannel group
@@ -310,11 +733,43 @@ paths:
     post:
       description: Create a new conversation in your service
       tags:
-        - ConversationsV1Conversation
+        - Configuration
+        - Addresses
+        - Sid
+        - Webhooks
+        - Conversations
+        - Conversation
+        - Messages
+        - Message
+        - Receipts
+        - Participants
+        - Credentials
+        - Participant
+        - Roles
+        - Services
+        - Chat
+        - Service
+        - Bindings
     get:
       description: Retrieve a list of conversations in your service
       tags:
-        - ConversationsV1Conversation
+        - Configuration
+        - Addresses
+        - Sid
+        - Webhooks
+        - Conversations
+        - Conversation
+        - Messages
+        - Message
+        - Receipts
+        - Participants
+        - Credentials
+        - Participant
+        - Roles
+        - Services
+        - Chat
+        - Service
+        - Bindings
   /v1/Services/{ChatServiceSid}/Conversations/{Sid}:
     description: >-
       A Service Conversation resource represents an omnichannel group
@@ -322,15 +777,63 @@ paths:
     post:
       description: Update an existing conversation in your service
       tags:
-        - ConversationsV1Conversation
+        - Configuration
+        - Addresses
+        - Sid
+        - Webhooks
+        - Conversations
+        - Conversation
+        - Messages
+        - Message
+        - Receipts
+        - Participants
+        - Credentials
+        - Participant
+        - Roles
+        - Services
+        - Chat
+        - Service
+        - Bindings
     delete:
       description: Remove a conversation from your service
       tags:
-        - ConversationsV1Conversation
+        - Configuration
+        - Addresses
+        - Sid
+        - Webhooks
+        - Conversations
+        - Conversation
+        - Messages
+        - Message
+        - Receipts
+        - Participants
+        - Credentials
+        - Participant
+        - Roles
+        - Services
+        - Chat
+        - Service
+        - Bindings
     get:
       description: Fetch a conversation from your service
       tags:
-        - ConversationsV1Conversation
+        - Configuration
+        - Addresses
+        - Sid
+        - Webhooks
+        - Conversations
+        - Conversation
+        - Messages
+        - Message
+        - Receipts
+        - Participants
+        - Credentials
+        - Participant
+        - Roles
+        - Services
+        - Chat
+        - Service
+        - Bindings
   /v1/Services/{ChatServiceSid}/Conversations/{ConversationSid}/Messages:
     description: >-
       A Service Message resource represents a message in a conversation within a
@@ -338,11 +841,43 @@ paths:
     post:
       description: Add a new message to the conversation in a specific service
       tags:
-        - ConversationsV1Message
+        - Configuration
+        - Addresses
+        - Sid
+        - Webhooks
+        - Conversations
+        - Conversation
+        - Messages
+        - Message
+        - Receipts
+        - Participants
+        - Credentials
+        - Participant
+        - Roles
+        - Services
+        - Chat
+        - Service
+        - Bindings
     get:
       description: Retrieve a list of all messages in the conversation
       tags:
-        - ConversationsV1Message
+        - Configuration
+        - Addresses
+        - Sid
+        - Webhooks
+        - Conversations
+        - Conversation
+        - Messages
+        - Message
+        - Receipts
+        - Participants
+        - Credentials
+        - Participant
+        - Roles
+        - Services
+        - Chat
+        - Service
+        - Bindings
   /v1/Services/{ChatServiceSid}/Conversations/{ConversationSid}/Messages/{Sid}:
     description: >-
       A Service Message resource represents a message in a conversation within a
@@ -350,15 +885,63 @@ paths:
     post:
       description: Update an existing message in the conversation
       tags:
-        - ConversationsV1Message
+        - Configuration
+        - Addresses
+        - Sid
+        - Webhooks
+        - Conversations
+        - Conversation
+        - Messages
+        - Message
+        - Receipts
+        - Participants
+        - Credentials
+        - Participant
+        - Roles
+        - Services
+        - Chat
+        - Service
+        - Bindings
     delete:
       description: Remove a message from the conversation
       tags:
-        - ConversationsV1Message
+        - Configuration
+        - Addresses
+        - Sid
+        - Webhooks
+        - Conversations
+        - Conversation
+        - Messages
+        - Message
+        - Receipts
+        - Participants
+        - Credentials
+        - Participant
+        - Roles
+        - Services
+        - Chat
+        - Service
+        - Bindings
     get:
       description: Fetch a message from the conversation
       tags:
-        - ConversationsV1Message
+        - Configuration
+        - Addresses
+        - Sid
+        - Webhooks
+        - Conversations
+        - Conversation
+        - Messages
+        - Message
+        - Receipts
+        - Participants
+        - Credentials
+        - Participant
+        - Roles
+        - Services
+        - Chat
+        - Service
+        - Bindings
   /v1/Services/{ChatServiceSid}/Conversations/{ConversationSid}/Messages/{MessageSid}/Receipts/{Sid}:
     description: >-
       A Service Message Receipt resource represents a delivery/read receipt of a
@@ -366,7 +949,23 @@ paths:
     get:
       description: Fetch the delivery and read receipts of the conversation message
       tags:
-        - ConversationsV1DeliveryReceipt
+        - Configuration
+        - Addresses
+        - Sid
+        - Webhooks
+        - Conversations
+        - Conversation
+        - Messages
+        - Message
+        - Receipts
+        - Participants
+        - Credentials
+        - Participant
+        - Roles
+        - Services
+        - Chat
+        - Service
+        - Bindings
   /v1/Services/{ChatServiceSid}/Conversations/{ConversationSid}/Messages/{MessageSid}/Receipts:
     description: >-
       A Service Message Receipt resource represents a delivery/read receipt of a
@@ -376,7 +975,23 @@ paths:
         Retrieve a list of all delivery and read receipts of the conversation
         message
       tags:
-        - ConversationsV1DeliveryReceipt
+        - Configuration
+        - Addresses
+        - Sid
+        - Webhooks
+        - Conversations
+        - Conversation
+        - Messages
+        - Message
+        - Receipts
+        - Participants
+        - Credentials
+        - Participant
+        - Roles
+        - Services
+        - Chat
+        - Service
+        - Bindings
   /v1/Services/{ChatServiceSid}/Conversations/{ConversationSid}/Participants:
     description: >-
       A Service Participant resource represents a member of the conversation
@@ -384,11 +999,43 @@ paths:
     post:
       description: Add a new participant to the conversation in a specific service
       tags:
-        - ConversationsV1Participant
+        - Configuration
+        - Addresses
+        - Sid
+        - Webhooks
+        - Conversations
+        - Conversation
+        - Messages
+        - Message
+        - Receipts
+        - Participants
+        - Credentials
+        - Participant
+        - Roles
+        - Services
+        - Chat
+        - Service
+        - Bindings
     get:
       description: Retrieve a list of all participants of the conversation
       tags:
-        - ConversationsV1Participant
+        - Configuration
+        - Addresses
+        - Sid
+        - Webhooks
+        - Conversations
+        - Conversation
+        - Messages
+        - Message
+        - Receipts
+        - Participants
+        - Credentials
+        - Participant
+        - Roles
+        - Services
+        - Chat
+        - Service
+        - Bindings
   /v1/Services/{ChatServiceSid}/Conversations/{ConversationSid}/Participants/{Sid}:
     description: >-
       A Service Participant resource represents a member of the conversation
@@ -396,15 +1043,63 @@ paths:
     post:
       description: Update an existing participant in the conversation
       tags:
-        - ConversationsV1Participant
+        - Configuration
+        - Addresses
+        - Sid
+        - Webhooks
+        - Conversations
+        - Conversation
+        - Messages
+        - Message
+        - Receipts
+        - Participants
+        - Credentials
+        - Participant
+        - Roles
+        - Services
+        - Chat
+        - Service
+        - Bindings
     delete:
       description: Remove a participant from the conversation
       tags:
-        - ConversationsV1Participant
+        - Configuration
+        - Addresses
+        - Sid
+        - Webhooks
+        - Conversations
+        - Conversation
+        - Messages
+        - Message
+        - Receipts
+        - Participants
+        - Credentials
+        - Participant
+        - Roles
+        - Services
+        - Chat
+        - Service
+        - Bindings
     get:
       description: Fetch a participant of the conversation
       tags:
-        - ConversationsV1Participant
+        - Configuration
+        - Addresses
+        - Sid
+        - Webhooks
+        - Conversations
+        - Conversation
+        - Messages
+        - Message
+        - Receipts
+        - Participants
+        - Credentials
+        - Participant
+        - Roles
+        - Services
+        - Chat
+        - Service
+        - Bindings
   /v1/Services/{ChatServiceSid}/Conversations/{ConversationSid}/Webhooks:
     description: >-
       A Conversation-scoped Webhook resource manages a set of callback URLs and
@@ -412,11 +1107,43 @@ paths:
     post:
       description: Create a new webhook scoped to the conversation in a specific service
       tags:
-        - ConversationsV1Webhook
+        - Configuration
+        - Addresses
+        - Sid
+        - Webhooks
+        - Conversations
+        - Conversation
+        - Messages
+        - Message
+        - Receipts
+        - Participants
+        - Credentials
+        - Participant
+        - Roles
+        - Services
+        - Chat
+        - Service
+        - Bindings
     get:
       description: Retrieve a list of all webhooks scoped to the conversation
       tags:
-        - ConversationsV1Webhook
+        - Configuration
+        - Addresses
+        - Sid
+        - Webhooks
+        - Conversations
+        - Conversation
+        - Messages
+        - Message
+        - Receipts
+        - Participants
+        - Credentials
+        - Participant
+        - Roles
+        - Services
+        - Chat
+        - Service
+        - Bindings
   /v1/Services/{ChatServiceSid}/Conversations/{ConversationSid}/Webhooks/{Sid}:
     description: >-
       A Conversation-scoped Webhook resource manages a set of callback URLs and
@@ -424,15 +1151,63 @@ paths:
     post:
       description: Update an existing conversation-scoped webhook
       tags:
-        - ConversationsV1Webhook
+        - Configuration
+        - Addresses
+        - Sid
+        - Webhooks
+        - Conversations
+        - Conversation
+        - Messages
+        - Message
+        - Receipts
+        - Participants
+        - Credentials
+        - Participant
+        - Roles
+        - Services
+        - Chat
+        - Service
+        - Bindings
     delete:
       description: Remove an existing webhook scoped to the conversation
       tags:
-        - ConversationsV1Webhook
+        - Configuration
+        - Addresses
+        - Sid
+        - Webhooks
+        - Conversations
+        - Conversation
+        - Messages
+        - Message
+        - Receipts
+        - Participants
+        - Credentials
+        - Participant
+        - Roles
+        - Services
+        - Chat
+        - Service
+        - Bindings
     get:
       description: Fetch the configuration of a conversation-scoped webhook
       tags:
-        - ConversationsV1Webhook
+        - Configuration
+        - Addresses
+        - Sid
+        - Webhooks
+        - Conversations
+        - Conversation
+        - Messages
+        - Message
+        - Receipts
+        - Participants
+        - Credentials
+        - Participant
+        - Roles
+        - Services
+        - Chat
+        - Service
+        - Bindings
   /v1/Services/{ChatServiceSid}/Configuration/Notifications:
     description: >-
       A Service Notification resource manages a set of settings to determine
@@ -440,11 +1215,45 @@ paths:
     post:
       description: Update push notification service settings
       tags:
-        - ConversationsV1Notification
+        - Configuration
+        - Addresses
+        - Sid
+        - Webhooks
+        - Conversations
+        - Conversation
+        - Messages
+        - Message
+        - Receipts
+        - Participants
+        - Credentials
+        - Participant
+        - Roles
+        - Services
+        - Chat
+        - Service
+        - Bindings
+        - Notifications
     get:
       description: Fetch push notification service settings
       tags:
-        - ConversationsV1Notification
+        - Configuration
+        - Addresses
+        - Sid
+        - Webhooks
+        - Conversations
+        - Conversation
+        - Messages
+        - Message
+        - Receipts
+        - Participants
+        - Credentials
+        - Participant
+        - Roles
+        - Services
+        - Chat
+        - Service
+        - Bindings
+        - Notifications
   /v1/Services/{ChatServiceSid}/ParticipantConversations:
     description: >-
       Service Participant Conversations resource represents a list of
@@ -455,7 +1264,24 @@ paths:
         Retrieve a list of all Conversations that this Participant belongs to by
         identity or by address. Only one parameter should be specified.
       tags:
-        - ConversationsV1ParticipantConversation
+        - Configuration
+        - Addresses
+        - Sid
+        - Webhooks
+        - Conversations
+        - Conversation
+        - Messages
+        - Message
+        - Receipts
+        - Participants
+        - Credentials
+        - Participant
+        - Roles
+        - Services
+        - Chat
+        - Service
+        - Bindings
+        - Notifications
   /v1/Services/{ChatServiceSid}/Roles:
     description: >-
       A Service Role resource represents a set of permissions granted to a user
@@ -463,11 +1289,45 @@ paths:
     post:
       description: Create a new user role in your service
       tags:
-        - ConversationsV1Role
+        - Configuration
+        - Addresses
+        - Sid
+        - Webhooks
+        - Conversations
+        - Conversation
+        - Messages
+        - Message
+        - Receipts
+        - Participants
+        - Credentials
+        - Participant
+        - Roles
+        - Services
+        - Chat
+        - Service
+        - Bindings
+        - Notifications
     get:
       description: Retrieve a list of all user roles in your service
       tags:
-        - ConversationsV1Role
+        - Configuration
+        - Addresses
+        - Sid
+        - Webhooks
+        - Conversations
+        - Conversation
+        - Messages
+        - Message
+        - Receipts
+        - Participants
+        - Credentials
+        - Participant
+        - Roles
+        - Services
+        - Chat
+        - Service
+        - Bindings
+        - Notifications
   /v1/Services/{ChatServiceSid}/Roles/{Sid}:
     description: >-
       A Service Role resource represents a set of permissions granted to a user
@@ -475,15 +1335,66 @@ paths:
     post:
       description: Update an existing user role in your service
       tags:
-        - ConversationsV1Role
+        - Configuration
+        - Addresses
+        - Sid
+        - Webhooks
+        - Conversations
+        - Conversation
+        - Messages
+        - Message
+        - Receipts
+        - Participants
+        - Credentials
+        - Participant
+        - Roles
+        - Services
+        - Chat
+        - Service
+        - Bindings
+        - Notifications
     delete:
       description: Remove a user role from your service
       tags:
-        - ConversationsV1Role
+        - Configuration
+        - Addresses
+        - Sid
+        - Webhooks
+        - Conversations
+        - Conversation
+        - Messages
+        - Message
+        - Receipts
+        - Participants
+        - Credentials
+        - Participant
+        - Roles
+        - Services
+        - Chat
+        - Service
+        - Bindings
+        - Notifications
     get:
       description: Fetch a user role from your service
       tags:
-        - ConversationsV1Role
+        - Configuration
+        - Addresses
+        - Sid
+        - Webhooks
+        - Conversations
+        - Conversation
+        - Messages
+        - Message
+        - Receipts
+        - Participants
+        - Credentials
+        - Participant
+        - Roles
+        - Services
+        - Chat
+        - Service
+        - Bindings
+        - Notifications
   /v1/Services/{ChatServiceSid}/Users:
     description: >-
       A Service User resource represents a conversation user belonging to a
@@ -491,11 +1402,47 @@ paths:
     post:
       description: Add a new conversation user to your service
       tags:
-        - ConversationsV1User
+        - Configuration
+        - Addresses
+        - Sid
+        - Webhooks
+        - Conversations
+        - Conversation
+        - Messages
+        - Message
+        - Receipts
+        - Participants
+        - Credentials
+        - Participant
+        - Roles
+        - Services
+        - Chat
+        - Service
+        - Bindings
+        - Notifications
+        - Users
     get:
       description: Retrieve a list of all conversation users in your service
       tags:
-        - ConversationsV1User
+        - Configuration
+        - Addresses
+        - Sid
+        - Webhooks
+        - Conversations
+        - Conversation
+        - Messages
+        - Message
+        - Receipts
+        - Participants
+        - Credentials
+        - Participant
+        - Roles
+        - Services
+        - Chat
+        - Service
+        - Bindings
+        - Notifications
+        - Users
   /v1/Services/{ChatServiceSid}/Users/{Sid}:
     description: >-
       A Service User resource represents a conversation user belonging to a
@@ -503,15 +1450,69 @@ paths:
     post:
       description: Update an existing conversation user in your service
       tags:
-        - ConversationsV1User
+        - Configuration
+        - Addresses
+        - Sid
+        - Webhooks
+        - Conversations
+        - Conversation
+        - Messages
+        - Message
+        - Receipts
+        - Participants
+        - Credentials
+        - Participant
+        - Roles
+        - Services
+        - Chat
+        - Service
+        - Bindings
+        - Notifications
+        - Users
     delete:
       description: Remove a conversation user from your service
       tags:
-        - ConversationsV1User
+        - Configuration
+        - Addresses
+        - Sid
+        - Webhooks
+        - Conversations
+        - Conversation
+        - Messages
+        - Message
+        - Receipts
+        - Participants
+        - Credentials
+        - Participant
+        - Roles
+        - Services
+        - Chat
+        - Service
+        - Bindings
+        - Notifications
+        - Users
     get:
       description: Fetch a conversation user from your service
       tags:
-        - ConversationsV1User
+        - Configuration
+        - Addresses
+        - Sid
+        - Webhooks
+        - Conversations
+        - Conversation
+        - Messages
+        - Message
+        - Receipts
+        - Participants
+        - Credentials
+        - Participant
+        - Roles
+        - Services
+        - Chat
+        - Service
+        - Bindings
+        - Notifications
+        - Users
   /v1/Services/{ChatServiceSid}/Users/{UserSid}/Conversations/{ConversationSid}:
     description: >-
       A Service User Conversation resource represents a conversation of the user
@@ -519,15 +1520,72 @@ paths:
     post:
       description: Update a specific User Conversation.
       tags:
-        - ConversationsV1UserConversation
+        - Configuration
+        - Addresses
+        - Sid
+        - Webhooks
+        - Conversations
+        - Conversation
+        - Messages
+        - Message
+        - Receipts
+        - Participants
+        - Credentials
+        - Participant
+        - Roles
+        - Services
+        - Chat
+        - Service
+        - Bindings
+        - Notifications
+        - Users
+        - User
     delete:
       description: Delete a specific User Conversation.
       tags:
-        - ConversationsV1UserConversation
+        - Configuration
+        - Addresses
+        - Sid
+        - Webhooks
+        - Conversations
+        - Conversation
+        - Messages
+        - Message
+        - Receipts
+        - Participants
+        - Credentials
+        - Participant
+        - Roles
+        - Services
+        - Chat
+        - Service
+        - Bindings
+        - Notifications
+        - Users
+        - User
     get:
       description: Fetch a specific User Conversation.
       tags:
-        - ConversationsV1UserConversation
+        - Configuration
+        - Addresses
+        - Sid
+        - Webhooks
+        - Conversations
+        - Conversation
+        - Messages
+        - Message
+        - Receipts
+        - Participants
+        - Credentials
+        - Participant
+        - Roles
+        - Services
+        - Chat
+        - Service
+        - Bindings
+        - Notifications
+        - Users
+        - User
   /v1/Services/{ChatServiceSid}/Users/{UserSid}/Conversations:
     description: >-
       A Service User Conversation resource represents a conversation of the user
@@ -535,7 +1593,26 @@ paths:
     get:
       description: Retrieve a list of all User Conversations for the User.
       tags:
-        - ConversationsV1UserConversation
+        - Configuration
+        - Addresses
+        - Sid
+        - Webhooks
+        - Conversations
+        - Conversation
+        - Messages
+        - Message
+        - Receipts
+        - Participants
+        - Credentials
+        - Participant
+        - Roles
+        - Services
+        - Chat
+        - Service
+        - Bindings
+        - Notifications
+        - Users
+        - User
   /v1/Services/{ChatServiceSid}/Configuration/Webhooks:
     description: >-
       A service webhook configuration resource manages a service-level set of
@@ -544,11 +1621,49 @@ paths:
     post:
       description: Update a specific Webhook.
       tags:
-        - ConversationsV1Webhook
+        - Configuration
+        - Addresses
+        - Sid
+        - Webhooks
+        - Conversations
+        - Conversation
+        - Messages
+        - Message
+        - Receipts
+        - Participants
+        - Credentials
+        - Participant
+        - Roles
+        - Services
+        - Chat
+        - Service
+        - Bindings
+        - Notifications
+        - Users
+        - User
     get:
       description: Fetch a specific service webhook configuration.
       tags:
-        - ConversationsV1Webhook
+        - Configuration
+        - Addresses
+        - Sid
+        - Webhooks
+        - Conversations
+        - Conversation
+        - Messages
+        - Message
+        - Receipts
+        - Participants
+        - Credentials
+        - Participant
+        - Roles
+        - Services
+        - Chat
+        - Service
+        - Bindings
+        - Notifications
+        - Users
+        - User
   /v1/Users:
     description: >-
       A User resource represents a conversation user belonging to a default
@@ -556,13 +1671,51 @@ paths:
     post:
       description: Add a new conversation user to your account's default service
       tags:
-        - ConversationsV1User
+        - Configuration
+        - Addresses
+        - Sid
+        - Webhooks
+        - Conversations
+        - Conversation
+        - Messages
+        - Message
+        - Receipts
+        - Participants
+        - Credentials
+        - Participant
+        - Roles
+        - Services
+        - Chat
+        - Service
+        - Bindings
+        - Notifications
+        - Users
+        - User
     get:
       description: >-
         Retrieve a list of all conversation users in your account's default
         service
       tags:
-        - ConversationsV1User
+        - Configuration
+        - Addresses
+        - Sid
+        - Webhooks
+        - Conversations
+        - Conversation
+        - Messages
+        - Message
+        - Receipts
+        - Participants
+        - Credentials
+        - Participant
+        - Roles
+        - Services
+        - Chat
+        - Service
+        - Bindings
+        - Notifications
+        - Users
+        - User
   /v1/Users/{Sid}:
     description: >-
       A User resource represents a conversation user belonging to a default
@@ -570,15 +1723,72 @@ paths:
     post:
       description: Update an existing conversation user in your account's default service
       tags:
-        - ConversationsV1User
+        - Configuration
+        - Addresses
+        - Sid
+        - Webhooks
+        - Conversations
+        - Conversation
+        - Messages
+        - Message
+        - Receipts
+        - Participants
+        - Credentials
+        - Participant
+        - Roles
+        - Services
+        - Chat
+        - Service
+        - Bindings
+        - Notifications
+        - Users
+        - User
     delete:
       description: Remove a conversation user from your account's default service
       tags:
-        - ConversationsV1User
+        - Configuration
+        - Addresses
+        - Sid
+        - Webhooks
+        - Conversations
+        - Conversation
+        - Messages
+        - Message
+        - Receipts
+        - Participants
+        - Credentials
+        - Participant
+        - Roles
+        - Services
+        - Chat
+        - Service
+        - Bindings
+        - Notifications
+        - Users
+        - User
     get:
       description: Fetch a conversation user from your account's default service
       tags:
-        - ConversationsV1User
+        - Configuration
+        - Addresses
+        - Sid
+        - Webhooks
+        - Conversations
+        - Conversation
+        - Messages
+        - Message
+        - Receipts
+        - Participants
+        - Credentials
+        - Participant
+        - Roles
+        - Services
+        - Chat
+        - Service
+        - Bindings
+        - Notifications
+        - Users
+        - User
   /v1/Users/{UserSid}/Conversations/{ConversationSid}:
     description: >-
       A User Conversation resource represents a conversation of the user
@@ -586,15 +1796,72 @@ paths:
     post:
       description: Update a specific User Conversation.
       tags:
-        - ConversationsV1UserConversation
+        - Configuration
+        - Addresses
+        - Sid
+        - Webhooks
+        - Conversations
+        - Conversation
+        - Messages
+        - Message
+        - Receipts
+        - Participants
+        - Credentials
+        - Participant
+        - Roles
+        - Services
+        - Chat
+        - Service
+        - Bindings
+        - Notifications
+        - Users
+        - User
     delete:
       description: Delete a specific User Conversation.
       tags:
-        - ConversationsV1UserConversation
+        - Configuration
+        - Addresses
+        - Sid
+        - Webhooks
+        - Conversations
+        - Conversation
+        - Messages
+        - Message
+        - Receipts
+        - Participants
+        - Credentials
+        - Participant
+        - Roles
+        - Services
+        - Chat
+        - Service
+        - Bindings
+        - Notifications
+        - Users
+        - User
     get:
       description: Fetch a specific User Conversation.
       tags:
-        - ConversationsV1UserConversation
+        - Configuration
+        - Addresses
+        - Sid
+        - Webhooks
+        - Conversations
+        - Conversation
+        - Messages
+        - Message
+        - Receipts
+        - Participants
+        - Credentials
+        - Participant
+        - Roles
+        - Services
+        - Chat
+        - Service
+        - Bindings
+        - Notifications
+        - Users
+        - User
   /v1/Users/{UserSid}/Conversations:
     description: >-
       A User Conversation resource represents a conversation of the user
@@ -602,7 +1869,26 @@ paths:
     get:
       description: Retrieve a list of all User Conversations for the User.
       tags:
-        - ConversationsV1UserConversation
+        - Configuration
+        - Addresses
+        - Sid
+        - Webhooks
+        - Conversations
+        - Conversation
+        - Messages
+        - Message
+        - Receipts
+        - Participants
+        - Credentials
+        - Participant
+        - Roles
+        - Services
+        - Chat
+        - Service
+        - Bindings
+        - Notifications
+        - Users
+        - User
 tags:
   - name: ConversationsV1AddressConfiguration
   - name: ConversationsV1Binding
@@ -621,4 +1907,4 @@ tags:
   - name: ConversationsV1Webhook
 x-maturity:
   - name: GA
-    description: This product is Generally Av
+    description: This product is G

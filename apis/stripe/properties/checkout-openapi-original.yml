@@ -5,15 +5,15 @@ info:
   contact:
     email: dev-platform@stripe.com
     name: Stripe Dev Platform Team
-    url: 'https://stripe.com'
-  termsOfService: 'https://stripe.com/us/terms/'
+    url: https://stripe.com
+  termsOfService: https://stripe.com/us/terms/
   version: '2023-10-16'
   x-stripeSpecFilename: spec3
 security:
   - basicAuth: []
   - bearerAuth: []
 servers:
-  - url: 'https://api.stripe.com/'
+  - url: https://api.stripe.com/
 paths:
   /v1/checkout/sessions:
     get:
@@ -255,7 +255,7 @@ paths:
               schema:
                 $ref: '#/components/schemas/error'
           description: Error response.
-  '/v1/checkout/sessions/{session}':
+  /v1/checkout/sessions/{session}:
     get:
       description: <p>Retrieves a Session object.</p>
       operationId: GetCheckoutSessionsSession
@@ -299,7 +299,7 @@ paths:
               schema:
                 $ref: '#/components/schemas/error'
           description: Error response.
-  '/v1/checkout/sessions/{session}/expire':
+  /v1/checkout/sessions/{session}/expire:
     post:
       description: >-
         <p>A Session can be expired when it is in one of these statuses:
@@ -341,7 +341,7 @@ paths:
               schema:
                 $ref: '#/components/schemas/error'
           description: Error response.
-  '/v1/checkout/sessions/{session}/line_items':
+  /v1/checkout/sessions/{session}/line_items:
     get:
       description: >-
         <p>When retrieving a Checkout Session, there is an includable
@@ -640,7 +640,7 @@ components:
             - maxLength: 5000
               type: string
             - $ref: '#/components/schemas/invoice'
-          description: 'ID of the invoice created by the Checkout Session, if it exists.'
+          description: ID of the invoice created by the Checkout Session, if it exists.
           nullable: true
           x-expansionResources:
             oneOf:

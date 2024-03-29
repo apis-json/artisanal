@@ -9,6 +9,15 @@ paths:
         <p>Modifies one existing metric definition for CloudWatch RUM extended
         metrics. For more information about extended metrics, see <a
         href="https://docs.aws.amazon.com/cloudwatchrum/latest/APIReference/API_BatchCreateRumMetricsDefinitions.html">BatchCreateRumMetricsDefinitions</a>.</p>
+      tags:
+        - Update
+        - Rum
+        - Metric
+        - Definition
+        - App
+        - Monitor
+        - Name
+        - Metrics
   /appmonitor:
     POST:
       summary: CreateAppMonitor
@@ -25,6 +34,15 @@ paths:
         web application. For more information, see <a
         href="https://docs.aws.amazon.com/AmazonCloudWatch/latest/monitoring/CloudWatch-RUM-find-code-snippet.html">How
         do I find a code snippet that I've already generated?</a> </p>
+      tags:
+        - Create
+        - App
+        - Monitor
+        - App
+        - Monitor
+        - Name
+        - Metrics
+        - Appmonitor
   /appmonitor/{Name}:
     PATCH:
       summary: UpdateAppMonitor
@@ -43,6 +61,15 @@ paths:
         application. For more information, see <a
         href="https://docs.aws.amazon.com/AmazonCloudWatch/latest/monitoring/CloudWatch-RUM-find-code-snippet.html">How
         do I find a code snippet that I've already generated?</a> </p>
+      tags:
+        - Update
+        - App
+        - Monitor
+        - App
+        - Monitor
+        - Name
+        - Metrics
+        - Appmonitor
   /rummetrics/{AppMonitorName}/metricsdestination:
     POST:
       summary: PutRumMetricsDestination
@@ -52,6 +79,17 @@ paths:
         CloudWatch Evidently experiment.</p> <p>For more information about
         extended metrics, see <a
         href="https://docs.aws.amazon.com/cloudwatchrum/latest/APIReference/API_BatchCreateRumMetricDefinitions.html">BatchCreateRumMetricDefinitions</a>.</p>
+      tags:
+        - Put
+        - Rum
+        - Metrics
+        - Destination
+        - App
+        - Monitor
+        - Name
+        - Metrics
+        - Appmonitor
+        - Metricsdestination
   /appmonitor/{Name}/data:
     POST:
       summary: GetAppMonitorData
@@ -59,16 +97,53 @@ paths:
         <p>Retrieves the raw performance events that RUM has collected from your
         web application, so that you can do your own processing or analysis of
         this data.</p>
+      tags:
+        - Get
+        - App
+        - Monitor
+        - Data
+        - App
+        - Monitor
+        - Name
+        - Metrics
+        - Appmonitor
+        - Metricsdestination
+        - Data
   /appmonitors:
     POST:
       summary: ListAppMonitors
       description: >-
         <p>Returns a list of the Amazon CloudWatch RUM app monitors in the
         account.</p>
+      tags:
+        - List
+        - App
+        - Monitors
+        - App
+        - Monitor
+        - Name
+        - Metrics
+        - Appmonitor
+        - Metricsdestination
+        - Data
+        - Appmonitors
   /tags/{ResourceArn}:
     DELETE:
       summary: UntagResource
       description: <p>Removes one or more tags from the specified resource.</p>
+      tags:
+        - Untag
+        - Resource
+        - App
+        - Monitor
+        - Name
+        - Metrics
+        - Appmonitor
+        - Metricsdestination
+        - Data
+        - Appmonitors
+        - Resource
+        - Arn
   /appmonitors/{Id}/:
     POST:
       summary: PutRumEvents
@@ -77,4 +152,19 @@ paths:
         behavior to CloudWatch RUM. The code snippet that RUM generates for you
         to add to your application includes <code>PutRumEvents</code> operations
         to send this data to RUM.</p> <p>Each <code>PutRumEvents</code>
-        operation can send a batch of events from one user sess
+        operation can send a batch of events from one user se
+      tags:
+        - Put
+        - Rum
+        - Events
+        - App
+        - Monitor
+        - Name
+        - Metrics
+        - Appmonitor
+        - Metricsdestination
+        - Data
+        - Appmonitors
+        - Resource
+        - Arn
+        - null

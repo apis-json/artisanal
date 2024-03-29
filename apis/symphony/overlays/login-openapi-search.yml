@@ -18,7 +18,12 @@ paths:
         malformed authentication token, user's public key not imported in the
         pod, invalid token signature etc.).
       tags:
-        - Authentication
+        - Authenticate
+        - With
+        - Public
+        - Key
+        - Pubkey
+        - Authenticate
   /v1/pubkey/app/authenticate/extensionApp:
     post:
       summary: Authenticate extension app with public key
@@ -35,7 +40,15 @@ paths:
         malformed authentication token, user's public key not imported in the
         pod, invalid token signature etc.).
       tags:
-        - Authentication
+        - Authenticate
+        - Extension
+        - App
+        - With
+        - Public
+        - Key
+        - Pubkey
+        - Authenticate
+        - App
   /pubkey/app/authenticate:
     post:
       summary: Authenticate an App with public key
@@ -52,28 +65,86 @@ paths:
         malformed authentication token, app's public key not imported in the
         pod, invalid token signature etc.).
       tags:
-        - Authentication
+        - Authenticate
+        - An
+        - App
+        - With
+        - Public
+        - Key
+        - Pubkey
+        - Authenticate
+        - App
   /pubkey/app/username/{username}/authenticate:
     post:
       summary: >-
         Authenticate an application in a delegated context to act on behalf of a
         user
       tags:
-        - Authentication
+        - Authenticate
+        - An
+        - Application
+        - In
+        - Delegated
+        - Context
+        - To
+        - Act
+        - 'On'
+        - Behalf
+        - Of
+        - User
+        - Pubkey
+        - Authenticate
+        - App
+        - Username
   /pubkey/app/user/{userId}/authenticate:
     post:
       summary: >-
         Authenticate an application in a delegated context to act on behalf of a
         user
       tags:
-        - Authentication
+        - Authenticate
+        - An
+        - Application
+        - In
+        - Delegated
+        - Context
+        - To
+        - Act
+        - 'On'
+        - Behalf
+        - Of
+        - User
+        - Pubkey
+        - Authenticate
+        - App
+        - Username
+        - Id
   /idm/tokens:
     post:
       summary: >-
         Returns a valid OAuth2 access token from a given session token to be
         used for authentication
       tags:
+        - Returns
+        - Valid
+        - Auth2
+        - Access
+        - Token
+        - From
+        - Given
+        - Session
+        - To
+        - Be
+        - Used
+        - For
         - Authentication
+        - Pubkey
+        - Authenticate
+        - App
+        - Username
+        - Id
+        - Idm
+        - Tokens
   /idm/keys:
     get:
       summary: Returns the Common Access Token (JWT) public keys as a JWKS.
@@ -82,7 +153,24 @@ paths:
         be used to verify JWT issued by the idm/tokens endpoint. Since SBE
         20.14.
       tags:
-        - Authentication
+        - Returns
+        - The
+        - Common
+        - Access
+        - Token
+        - T)
+        - Public
+        - Keys
+        - As
+        - S.
+        - Pubkey
+        - Authenticate
+        - App
+        - Username
+        - Id
+        - Idm
+        - Tokens
+        - Keys
 definitions:
   Error:
     type: object
@@ -188,4 +276,4 @@ definitions:
       A JWK object as defined in
       https://datatracker.ietf.org/doc/html/rfc7517#section-4.
     additionalProperties:
-      type: string
+      type: null

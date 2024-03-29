@@ -10,6 +10,17 @@ paths:
         href="https://docs.aws.amazon.com/lambda/latest/dg/configuration-layers.html">Lambda
         layer</a>. For more information, see
         <a>AddLayerVersionPermission</a>.</p>
+      tags:
+        - Get
+        - Layer
+        - Version
+        - Policy
+        - Layer
+        - Name
+        - Versions
+        - Version
+        - Number
+        - Policy
   /2015-03-31/functions/{FunctionName}/policy:
     GET:
       summary: GetPolicy
@@ -17,6 +28,16 @@ paths:
         <p>Returns the <a
         href="https://docs.aws.amazon.com/lambda/latest/dg/access-control-resource-based.html">resource-based
         IAM policy</a> for a function, version, or alias.</p>
+      tags:
+        - Get
+        - Policy
+        - Layer
+        - Name
+        - Versions
+        - Version
+        - Number
+        - Policy
+        - Function
   /2015-03-31/functions/{FunctionName}/aliases:
     GET:
       summary: ListAliases
@@ -24,6 +45,17 @@ paths:
         <p>Returns a list of <a
         href="https://docs.aws.amazon.com/lambda/latest/dg/configuration-aliases.html">aliases</a>
         for a Lambda function.</p>
+      tags:
+        - List
+        - Aliases
+        - Layer
+        - Name
+        - Versions
+        - Version
+        - Number
+        - Policy
+        - Function
+        - Aliases
   /2020-04-22/code-signing-configs/:
     GET:
       summary: ListCodeSigningConfigs
@@ -33,12 +65,56 @@ paths:
         signing configurations</a>. A request returns up to 10,000
         configurations per call. You can use the <code>MaxItems</code> parameter
         to return fewer configurations per call. </p>
+      tags:
+        - List
+        - Code
+        - Signing
+        - Configs
+        - Layer
+        - Name
+        - Versions
+        - Version
+        - Number
+        - Policy
+        - Function
+        - Aliases
+        - '2020'
+        - '04'
+        - '22'
+        - Code
+        - Signing
+        - Configs
   /2015-03-31/event-source-mappings/:
     GET:
       summary: ListEventSourceMappings
       description: >-
         <p>Lists event source mappings. Specify an <code>EventSourceArn</code>
         to show only event source mappings for a single event source.</p>
+      tags:
+        - List
+        - Event
+        - Source
+        - Mappings
+        - Layer
+        - Name
+        - Versions
+        - Version
+        - Number
+        - Policy
+        - Function
+        - Aliases
+        - '2020'
+        - '04'
+        - '22'
+        - Code
+        - Signing
+        - Configs
+        - '2015'
+        - '03'
+        - '31'
+        - Event
+        - Source
+        - Mappings
   /2015-03-31/functions:
     POST:
       summary: CreateFunction
@@ -103,16 +179,92 @@ paths:
         trigger in the other service. For more information, see <a
         href="https://docs.aws.amazon.com/lambda/latest/dg/lambda-invocation.html">Invoking
         Lambda functions</a>.</p>
+      tags:
+        - Create
+        - Function
+        - Layer
+        - Name
+        - Versions
+        - Version
+        - Number
+        - Policy
+        - Function
+        - Aliases
+        - '2020'
+        - '04'
+        - '22'
+        - Code
+        - Signing
+        - Configs
+        - '2015'
+        - '03'
+        - '31'
+        - Event
+        - Source
+        - Mappings
+        - Functions
   /2021-10-31/functions/{FunctionName}/url:
     PUT:
       summary: UpdateFunctionUrlConfig
       description: <p>Updates the configuration for a Lambda function URL.</p>
+      tags:
+        - Update
+        - Function
+        - Url
+        - Config
+        - Layer
+        - Name
+        - Versions
+        - Version
+        - Number
+        - Policy
+        - Function
+        - Aliases
+        - '2020'
+        - '04'
+        - '22'
+        - Code
+        - Signing
+        - Configs
+        - '2015'
+        - '03'
+        - '31'
+        - Event
+        - Source
+        - Mappings
+        - Functions
+        - Url
   /2015-03-31/functions/{FunctionName}/aliases/{Name}:
     PUT:
       summary: UpdateAlias
       description: >-
         <p>Updates the configuration of a Lambda function <a
         href="https://docs.aws.amazon.com/lambda/latest/dg/configuration-aliases.html">alias</a>.</p>
+      tags:
+        - Update
+        - Alias
+        - Layer
+        - Name
+        - Versions
+        - Version
+        - Number
+        - Policy
+        - Function
+        - Aliases
+        - '2020'
+        - '04'
+        - '22'
+        - Code
+        - Signing
+        - Configs
+        - '2015'
+        - '03'
+        - '31'
+        - Event
+        - Source
+        - Mappings
+        - Functions
+        - Url
   /2020-04-22/code-signing-configs/{CodeSigningConfigArn}:
     PUT:
       summary: UpdateCodeSigningConfig
@@ -120,6 +272,35 @@ paths:
         <p>Update the code signing configuration. Changes to the code signing
         configuration take effect the next time a user tries to deploy a code
         package to the function. </p>
+      tags:
+        - Update
+        - Code
+        - Signing
+        - Config
+        - Layer
+        - Name
+        - Versions
+        - Version
+        - Number
+        - Policy
+        - Function
+        - Aliases
+        - '2020'
+        - '04'
+        - '22'
+        - Code
+        - Signing
+        - Configs
+        - '2015'
+        - '03'
+        - '31'
+        - Event
+        - Source
+        - Mappings
+        - Functions
+        - Url
+        - Config
+        - Arn
   /2015-03-31/event-source-mappings/{UUID}:
     PUT:
       summary: UpdateEventSourceMapping
@@ -171,6 +352,36 @@ paths:
         Apache Kafka</a> </p> </li> <li> <p> <a
         href="https://docs.aws.amazon.com/lambda/latest/dg/with-documentdb.html#docdb-configuration">
         Amazon DocumentDB</a> </p> </li> </ul>
+      tags:
+        - Update
+        - Event
+        - Source
+        - Mapping
+        - Layer
+        - Name
+        - Versions
+        - Version
+        - Number
+        - Policy
+        - Function
+        - Aliases
+        - '2020'
+        - '04'
+        - '22'
+        - Code
+        - Signing
+        - Configs
+        - '2015'
+        - '03'
+        - '31'
+        - Event
+        - Source
+        - Mappings
+        - Functions
+        - Url
+        - Config
+        - Arn
+        - UUID
   /2015-03-31/functions/{FunctionName}:
     GET:
       summary: GetFunction
@@ -179,6 +390,34 @@ paths:
         link to download the deployment package that's valid for 10 minutes. If
         you specify a function version, only details that are specific to that
         version are returned.</p>
+      tags:
+        - Get
+        - Function
+        - Layer
+        - Name
+        - Versions
+        - Version
+        - Number
+        - Policy
+        - Function
+        - Aliases
+        - '2020'
+        - '04'
+        - '22'
+        - Code
+        - Signing
+        - Configs
+        - '2015'
+        - '03'
+        - '31'
+        - Event
+        - Source
+        - Mappings
+        - Functions
+        - Url
+        - Config
+        - Arn
+        - UUID
   /2020-06-30/functions/{FunctionName}/code-signing-config:
     PUT:
       summary: PutFunctionCodeSigningConfig
@@ -186,6 +425,37 @@ paths:
         <p>Update the code signing configuration for the function. Changes to
         the code signing configuration take effect the next time a user tries to
         deploy a code package to the function. </p>
+      tags:
+        - Put
+        - Function
+        - Code
+        - Signing
+        - Config
+        - Layer
+        - Name
+        - Versions
+        - Version
+        - Number
+        - Policy
+        - Function
+        - Aliases
+        - '2020'
+        - '04'
+        - '22'
+        - Code
+        - Signing
+        - Configs
+        - '2015'
+        - '03'
+        - '31'
+        - Event
+        - Source
+        - Mappings
+        - Functions
+        - Url
+        - Config
+        - Arn
+        - UUID
   /2017-10-31/functions/{FunctionName}/concurrency:
     PUT:
       summary: PutFunctionConcurrency
@@ -204,6 +474,36 @@ paths:
         information, see <a
         href="https://docs.aws.amazon.com/lambda/latest/dg/invocation-scaling.html">Lambda
         function scaling</a>.</p>
+      tags:
+        - Put
+        - Function
+        - Concurrency
+        - Layer
+        - Name
+        - Versions
+        - Version
+        - Number
+        - Policy
+        - Function
+        - Aliases
+        - '2020'
+        - '04'
+        - '22'
+        - Code
+        - Signing
+        - Configs
+        - '2015'
+        - '03'
+        - '31'
+        - Event
+        - Source
+        - Mappings
+        - Functions
+        - Url
+        - Config
+        - Arn
+        - UUID
+        - Concurrency
   /2019-09-25/functions/{FunctionName}/event-invoke-config:
     POST:
       summary: UpdateFunctionEventInvokeConfig
@@ -211,6 +511,39 @@ paths:
         <p>Updates the configuration for asynchronous invocation for a function,
         version, or alias.</p> <p>To configure options for asynchronous
         invocation, use <a>PutFunctionEventInvokeConfig</a>.</p>
+      tags:
+        - Update
+        - Function
+        - Event
+        - Invoke
+        - Config
+        - Layer
+        - Name
+        - Versions
+        - Version
+        - Number
+        - Policy
+        - Function
+        - Aliases
+        - '2020'
+        - '04'
+        - '22'
+        - Code
+        - Signing
+        - Configs
+        - '2015'
+        - '03'
+        - '31'
+        - Event
+        - Source
+        - Mappings
+        - Functions
+        - Url
+        - Config
+        - Arn
+        - UUID
+        - Concurrency
+        - Invoke
   /2018-10-31/layers/{LayerName}/versions/{VersionNumber}:
     GET:
       summary: GetLayerVersion
@@ -219,12 +552,76 @@ paths:
         href="https://docs.aws.amazon.com/lambda/latest/dg/configuration-layers.html">Lambda
         layer</a>, with a link to download the layer archive that's valid for 10
         minutes.</p>
+      tags:
+        - Get
+        - Layer
+        - Version
+        - Layer
+        - Name
+        - Versions
+        - Version
+        - Number
+        - Policy
+        - Function
+        - Aliases
+        - '2020'
+        - '04'
+        - '22'
+        - Code
+        - Signing
+        - Configs
+        - '2015'
+        - '03'
+        - '31'
+        - Event
+        - Source
+        - Mappings
+        - Functions
+        - Url
+        - Config
+        - Arn
+        - UUID
+        - Concurrency
+        - Invoke
   /2019-09-30/functions/{FunctionName}/provisioned-concurrency:
     PUT:
       summary: PutProvisionedConcurrencyConfig
       description: >-
         <p>Adds a provisioned concurrency configuration to a function's alias or
         version.</p>
+      tags:
+        - Put
+        - Provisioned
+        - Concurrency
+        - Config
+        - Layer
+        - Name
+        - Versions
+        - Version
+        - Number
+        - Policy
+        - Function
+        - Aliases
+        - '2020'
+        - '04'
+        - '22'
+        - Code
+        - Signing
+        - Configs
+        - '2015'
+        - '03'
+        - '31'
+        - Event
+        - Source
+        - Mappings
+        - Functions
+        - Url
+        - Config
+        - Arn
+        - UUID
+        - Concurrency
+        - Invoke
+        - Provisioned
   /2016-08-19/account-settings/:
     GET:
       summary: GetAccountSettings
@@ -232,6 +629,43 @@ paths:
         <p>Retrieves details about your account's <a
         href="https://docs.aws.amazon.com/lambda/latest/dg/limits.html">limits</a>
         and usage in an Amazon Web Services Region.</p>
+      tags:
+        - Get
+        - Account
+        - Settings
+        - Layer
+        - Name
+        - Versions
+        - Version
+        - Number
+        - Policy
+        - Function
+        - Aliases
+        - '2020'
+        - '04'
+        - '22'
+        - Code
+        - Signing
+        - Configs
+        - '2015'
+        - '03'
+        - '31'
+        - Event
+        - Source
+        - Mappings
+        - Functions
+        - Url
+        - Config
+        - Arn
+        - UUID
+        - Concurrency
+        - Invoke
+        - Provisioned
+        - '2016'
+        - '08'
+        - '19'
+        - Account
+        - Settings
   /2019-09-30/functions/{FunctionName}/concurrency:
     GET:
       summary: GetFunctionConcurrency
@@ -239,6 +673,43 @@ paths:
         <p>Returns details about the reserved concurrency configuration for a
         function. To set a concurrency limit for a function, use
         <a>PutFunctionConcurrency</a>.</p>
+      tags:
+        - Get
+        - Function
+        - Concurrency
+        - Layer
+        - Name
+        - Versions
+        - Version
+        - Number
+        - Policy
+        - Function
+        - Aliases
+        - '2020'
+        - '04'
+        - '22'
+        - Code
+        - Signing
+        - Configs
+        - '2015'
+        - '03'
+        - '31'
+        - Event
+        - Source
+        - Mappings
+        - Functions
+        - Url
+        - Config
+        - Arn
+        - UUID
+        - Concurrency
+        - Invoke
+        - Provisioned
+        - '2016'
+        - '08'
+        - '19'
+        - Account
+        - Settings
   /2015-03-31/functions/{FunctionName}/configuration:
     PUT:
       summary: UpdateFunctionConfiguration
@@ -261,6 +732,44 @@ paths:
         <a>PutFunctionConcurrency</a>. To grant invoke permissions to an Amazon
         Web Services account or Amazon Web Service, use
         <a>AddPermission</a>.</p>
+      tags:
+        - Update
+        - Function
+        - Configuration
+        - Layer
+        - Name
+        - Versions
+        - Version
+        - Number
+        - Policy
+        - Function
+        - Aliases
+        - '2020'
+        - '04'
+        - '22'
+        - Code
+        - Signing
+        - Configs
+        - '2015'
+        - '03'
+        - '31'
+        - Event
+        - Source
+        - Mappings
+        - Functions
+        - Url
+        - Config
+        - Arn
+        - UUID
+        - Concurrency
+        - Invoke
+        - Provisioned
+        - '2016'
+        - '08'
+        - '19'
+        - Account
+        - Settings
+        - Configuration
   /2018-10-31/layers?find=LayerVersion:
     GET:
       summary: GetLayerVersionByArn
@@ -269,6 +778,46 @@ paths:
         href="https://docs.aws.amazon.com/lambda/latest/dg/configuration-layers.html">Lambda
         layer</a>, with a link to download the layer archive that's valid for 10
         minutes.</p>
+      tags:
+        - Get
+        - Layer
+        - Version
+        - By
+        - Arn
+        - Layer
+        - Name
+        - Versions
+        - Version
+        - Number
+        - Policy
+        - Function
+        - Aliases
+        - '2020'
+        - '04'
+        - '22'
+        - Code
+        - Signing
+        - Configs
+        - '2015'
+        - '03'
+        - '31'
+        - Event
+        - Source
+        - Mappings
+        - Functions
+        - Url
+        - Config
+        - Arn
+        - UUID
+        - Concurrency
+        - Invoke
+        - Provisioned
+        - '2016'
+        - '08'
+        - '19'
+        - Account
+        - Settings
+        - Configuration
   /2021-07-20/functions/{FunctionName}/runtime-management-config:
     PUT:
       summary: PutRuntimeManagementConfig
@@ -277,6 +826,47 @@ paths:
         For more information, see <a
         href="https://docs.aws.amazon.com/lambda/latest/dg/runtimes-update.html">Runtime
         updates</a>.</p>
+      tags:
+        - Put
+        - Runtime
+        - Management
+        - Config
+        - Layer
+        - Name
+        - Versions
+        - Version
+        - Number
+        - Policy
+        - Function
+        - Aliases
+        - '2020'
+        - '04'
+        - '22'
+        - Code
+        - Signing
+        - Configs
+        - '2015'
+        - '03'
+        - '31'
+        - Event
+        - Source
+        - Mappings
+        - Functions
+        - Url
+        - Config
+        - Arn
+        - UUID
+        - Concurrency
+        - Invoke
+        - Provisioned
+        - '2016'
+        - '08'
+        - '19'
+        - Account
+        - Settings
+        - Configuration
+        - Runtime
+        - Management
   /2015-03-31/functions/{FunctionName}/invocations:
     POST:
       summary: Invoke
@@ -329,6 +919,45 @@ paths:
         invocations, see <a
         href="https://docs.aws.amazon.com/lambda/latest/dg/access-control-resource-based.html#permissions-resource-xaccountinvoke">Granting
         function access to other accounts</a>.</p>
+      tags:
+        - Invoke
+        - Layer
+        - Name
+        - Versions
+        - Version
+        - Number
+        - Policy
+        - Function
+        - Aliases
+        - '2020'
+        - '04'
+        - '22'
+        - Code
+        - Signing
+        - Configs
+        - '2015'
+        - '03'
+        - '31'
+        - Event
+        - Source
+        - Mappings
+        - Functions
+        - Url
+        - Config
+        - Arn
+        - UUID
+        - Concurrency
+        - Invoke
+        - Provisioned
+        - '2016'
+        - '08'
+        - '19'
+        - Account
+        - Settings
+        - Configuration
+        - Runtime
+        - Management
+        - Invocations
   /2014-11-13/functions/{FunctionName}/invoke-async/:
     POST:
       summary: InvokeAsync
@@ -336,6 +965,47 @@ paths:
         <important> <p>For asynchronous function invocation, use
         <a>Invoke</a>.</p> </important> <p>Invokes a function
         asynchronously.</p>
+      tags:
+        - Invoke
+        - Async
+        - Layer
+        - Name
+        - Versions
+        - Version
+        - Number
+        - Policy
+        - Function
+        - Aliases
+        - '2020'
+        - '04'
+        - '22'
+        - Code
+        - Signing
+        - Configs
+        - '2015'
+        - '03'
+        - '31'
+        - Event
+        - Source
+        - Mappings
+        - Functions
+        - Url
+        - Config
+        - Arn
+        - UUID
+        - Concurrency
+        - Invoke
+        - Provisioned
+        - '2016'
+        - '08'
+        - '19'
+        - Account
+        - Settings
+        - Configuration
+        - Runtime
+        - Management
+        - Invocations
+        - Async
   /2021-11-15/functions/{FunctionName}/response-streaming-invocations:
     POST:
       summary: InvokeWithResponseStream
@@ -350,6 +1020,51 @@ paths:
         invocations, see <a
         href="https://docs.aws.amazon.com/lambda/latest/dg/access-control-resource-based.html#permissions-resource-xaccountinvoke">Granting
         function access to other accounts</a>.</p>
+      tags:
+        - Invoke
+        - With
+        - Response
+        - Stream
+        - Layer
+        - Name
+        - Versions
+        - Version
+        - Number
+        - Policy
+        - Function
+        - Aliases
+        - '2020'
+        - '04'
+        - '22'
+        - Code
+        - Signing
+        - Configs
+        - '2015'
+        - '03'
+        - '31'
+        - Event
+        - Source
+        - Mappings
+        - Functions
+        - Url
+        - Config
+        - Arn
+        - UUID
+        - Concurrency
+        - Invoke
+        - Provisioned
+        - '2016'
+        - '08'
+        - '19'
+        - Account
+        - Settings
+        - Configuration
+        - Runtime
+        - Management
+        - Invocations
+        - Async
+        - Response
+        - Streaming
   /2019-09-25/functions/{FunctionName}/event-invoke-config/list:
     GET:
       summary: ListFunctionEventInvokeConfigs
@@ -357,12 +1072,106 @@ paths:
         <p>Retrieves a list of configurations for asynchronous invocation for a
         function.</p> <p>To configure options for asynchronous invocation, use
         <a>PutFunctionEventInvokeConfig</a>.</p>
+      tags:
+        - List
+        - Function
+        - Event
+        - Invoke
+        - Configs
+        - Layer
+        - Name
+        - Versions
+        - Version
+        - Number
+        - Policy
+        - Function
+        - Aliases
+        - '2020'
+        - '04'
+        - '22'
+        - Code
+        - Signing
+        - Configs
+        - '2015'
+        - '03'
+        - '31'
+        - Event
+        - Source
+        - Mappings
+        - Functions
+        - Url
+        - Config
+        - Arn
+        - UUID
+        - Concurrency
+        - Invoke
+        - Provisioned
+        - '2016'
+        - '08'
+        - '19'
+        - Account
+        - Settings
+        - Configuration
+        - Runtime
+        - Management
+        - Invocations
+        - Async
+        - Response
+        - Streaming
+        - List
   /2021-10-31/functions/{FunctionName}/urls:
     GET:
       summary: ListFunctionUrlConfigs
       description: >-
         <p>Returns a list of Lambda function URLs for the specified
         function.</p>
+      tags:
+        - List
+        - Function
+        - Url
+        - Configs
+        - Layer
+        - Name
+        - Versions
+        - Version
+        - Number
+        - Policy
+        - Function
+        - Aliases
+        - '2020'
+        - '04'
+        - '22'
+        - Code
+        - Signing
+        - Configs
+        - '2015'
+        - '03'
+        - '31'
+        - Event
+        - Source
+        - Mappings
+        - Functions
+        - Url
+        - Config
+        - Arn
+        - UUID
+        - Concurrency
+        - Invoke
+        - Provisioned
+        - '2016'
+        - '08'
+        - '19'
+        - Account
+        - Settings
+        - Configuration
+        - Runtime
+        - Management
+        - Invocations
+        - Async
+        - Response
+        - Streaming
+        - List
+        - Urls
   /2015-03-31/functions/:
     GET:
       summary: ListFunctions
@@ -377,6 +1186,51 @@ paths:
         LastUpdateStatus, LastUpdateStatusReason, LastUpdateStatusReasonCode,
         RuntimeVersionConfig) for a function or version, use
         <a>GetFunction</a>.</p> </note>
+      tags:
+        - List
+        - Functions
+        - Layer
+        - Name
+        - Versions
+        - Version
+        - Number
+        - Policy
+        - Function
+        - Aliases
+        - '2020'
+        - '04'
+        - '22'
+        - Code
+        - Signing
+        - Configs
+        - '2015'
+        - '03'
+        - '31'
+        - Event
+        - Source
+        - Mappings
+        - Functions
+        - Url
+        - Config
+        - Arn
+        - UUID
+        - Concurrency
+        - Invoke
+        - Provisioned
+        - '2016'
+        - '08'
+        - '19'
+        - Account
+        - Settings
+        - Configuration
+        - Runtime
+        - Management
+        - Invocations
+        - Async
+        - Response
+        - Streaming
+        - List
+        - Urls
   /2020-04-22/code-signing-configs/{CodeSigningConfigArn}/functions:
     GET:
       summary: ListFunctionsByCodeSigningConfig
@@ -384,6 +1238,55 @@ paths:
         <p>List the functions that use the specified code signing configuration.
         You can use this method prior to deleting a code signing configuration,
         to verify that no functions are using it.</p>
+      tags:
+        - List
+        - Functions
+        - By
+        - Code
+        - Signing
+        - Config
+        - Layer
+        - Name
+        - Versions
+        - Version
+        - Number
+        - Policy
+        - Function
+        - Aliases
+        - '2020'
+        - '04'
+        - '22'
+        - Code
+        - Signing
+        - Configs
+        - '2015'
+        - '03'
+        - '31'
+        - Event
+        - Source
+        - Mappings
+        - Functions
+        - Url
+        - Config
+        - Arn
+        - UUID
+        - Concurrency
+        - Invoke
+        - Provisioned
+        - '2016'
+        - '08'
+        - '19'
+        - Account
+        - Settings
+        - Configuration
+        - Runtime
+        - Management
+        - Invocations
+        - Async
+        - Response
+        - Streaming
+        - List
+        - Urls
   /2018-10-31/layers/{LayerName}/versions:
     POST:
       summary: PublishLayerVersion
@@ -394,6 +1297,52 @@ paths:
         <code>PublishLayerVersion</code> with the same layer name, a new version
         is created.</p> <p>Add layers to your function with
         <a>CreateFunction</a> or <a>UpdateFunctionConfiguration</a>.</p>
+      tags:
+        - Publish
+        - Layer
+        - Version
+        - Layer
+        - Name
+        - Versions
+        - Version
+        - Number
+        - Policy
+        - Function
+        - Aliases
+        - '2020'
+        - '04'
+        - '22'
+        - Code
+        - Signing
+        - Configs
+        - '2015'
+        - '03'
+        - '31'
+        - Event
+        - Source
+        - Mappings
+        - Functions
+        - Url
+        - Config
+        - Arn
+        - UUID
+        - Concurrency
+        - Invoke
+        - Provisioned
+        - '2016'
+        - '08'
+        - '19'
+        - Account
+        - Settings
+        - Configuration
+        - Runtime
+        - Management
+        - Invocations
+        - Async
+        - Response
+        - Streaming
+        - List
+        - Urls
   /2018-10-31/layers:
     GET:
       summary: ListLayers
@@ -408,12 +1357,112 @@ paths:
         layers that are compatible with that <a
         href="https://docs.aws.amazon.com/lambda/latest/dg/foundation-arch.html">instruction
         set architecture</a>.</p>
+      tags:
+        - List
+        - Layers
+        - Layer
+        - Name
+        - Versions
+        - Version
+        - Number
+        - Policy
+        - Function
+        - Aliases
+        - '2020'
+        - '04'
+        - '22'
+        - Code
+        - Signing
+        - Configs
+        - '2015'
+        - '03'
+        - '31'
+        - Event
+        - Source
+        - Mappings
+        - Functions
+        - Url
+        - Config
+        - Arn
+        - UUID
+        - Concurrency
+        - Invoke
+        - Provisioned
+        - '2016'
+        - '08'
+        - '19'
+        - Account
+        - Settings
+        - Configuration
+        - Runtime
+        - Management
+        - Invocations
+        - Async
+        - Response
+        - Streaming
+        - List
+        - Urls
+        - '2018'
+        - '10'
+        - Layers
   /2019-09-30/functions/{FunctionName}/provisioned-concurrency?List=ALL:
     GET:
       summary: ListProvisionedConcurrencyConfigs
       description: >-
         <p>Retrieves a list of provisioned concurrency configurations for a
         function.</p>
+      tags:
+        - List
+        - Provisioned
+        - Concurrency
+        - Configs
+        - Layer
+        - Name
+        - Versions
+        - Version
+        - Number
+        - Policy
+        - Function
+        - Aliases
+        - '2020'
+        - '04'
+        - '22'
+        - Code
+        - Signing
+        - Configs
+        - '2015'
+        - '03'
+        - '31'
+        - Event
+        - Source
+        - Mappings
+        - Functions
+        - Url
+        - Config
+        - Arn
+        - UUID
+        - Concurrency
+        - Invoke
+        - Provisioned
+        - '2016'
+        - '08'
+        - '19'
+        - Account
+        - Settings
+        - Configuration
+        - Runtime
+        - Management
+        - Invocations
+        - Async
+        - Response
+        - Streaming
+        - List
+        - Urls
+        - '2018'
+        - '10'
+        - Layers
+        - Concurrency?
+        - List=
   /2017-03-31/tags/{ARN}:
     DELETE:
       summary: UntagResource
@@ -421,6 +1470,58 @@ paths:
         <p>Removes <a
         href="https://docs.aws.amazon.com/lambda/latest/dg/tagging.html">tags</a>
         from a function.</p>
+      tags:
+        - Untag
+        - Resource
+        - Layer
+        - Name
+        - Versions
+        - Version
+        - Number
+        - Policy
+        - Function
+        - Aliases
+        - '2020'
+        - '04'
+        - '22'
+        - Code
+        - Signing
+        - Configs
+        - '2015'
+        - '03'
+        - '31'
+        - Event
+        - Source
+        - Mappings
+        - Functions
+        - Url
+        - Config
+        - Arn
+        - UUID
+        - Concurrency
+        - Invoke
+        - Provisioned
+        - '2016'
+        - '08'
+        - '19'
+        - Account
+        - Settings
+        - Configuration
+        - Runtime
+        - Management
+        - Invocations
+        - Async
+        - Response
+        - Streaming
+        - List
+        - Urls
+        - '2018'
+        - '10'
+        - Layers
+        - Concurrency?
+        - List=
+        - '2017'
+        - Tags
   /2015-03-31/functions/{FunctionName}/versions:
     POST:
       summary: PublishVersion
@@ -435,6 +1536,58 @@ paths:
         update the function before publishing a version.</p> <p>Clients can
         invoke versions directly or with an alias. To create an alias, use
         <a>CreateAlias</a>.</p>
+      tags:
+        - Publish
+        - Version
+        - Layer
+        - Name
+        - Versions
+        - Version
+        - Number
+        - Policy
+        - Function
+        - Aliases
+        - '2020'
+        - '04'
+        - '22'
+        - Code
+        - Signing
+        - Configs
+        - '2015'
+        - '03'
+        - '31'
+        - Event
+        - Source
+        - Mappings
+        - Functions
+        - Url
+        - Config
+        - Arn
+        - UUID
+        - Concurrency
+        - Invoke
+        - Provisioned
+        - '2016'
+        - '08'
+        - '19'
+        - Account
+        - Settings
+        - Configuration
+        - Runtime
+        - Management
+        - Invocations
+        - Async
+        - Response
+        - Streaming
+        - List
+        - Urls
+        - '2018'
+        - '10'
+        - Layers
+        - Concurrency?
+        - List=
+        - '2017'
+        - Tags
   /2018-10-31/layers/{LayerName}/versions/{VersionNumber}/policy/{StatementId}:
     DELETE:
       summary: RemoveLayerVersionPermission
@@ -444,6 +1597,62 @@ paths:
         href="https://docs.aws.amazon.com/lambda/latest/dg/configuration-layers.html">Lambda
         layer</a>. For more information, see
         <a>AddLayerVersionPermission</a>.</p>
+      tags:
+        - Remove
+        - Layer
+        - Version
+        - Permission
+        - Layer
+        - Name
+        - Versions
+        - Version
+        - Number
+        - Policy
+        - Function
+        - Aliases
+        - '2020'
+        - '04'
+        - '22'
+        - Code
+        - Signing
+        - Configs
+        - '2015'
+        - '03'
+        - '31'
+        - Event
+        - Source
+        - Mappings
+        - Functions
+        - Url
+        - Config
+        - Arn
+        - UUID
+        - Concurrency
+        - Invoke
+        - Provisioned
+        - '2016'
+        - '08'
+        - '19'
+        - Account
+        - Settings
+        - Configuration
+        - Runtime
+        - Management
+        - Invocations
+        - Async
+        - Response
+        - Streaming
+        - List
+        - Urls
+        - '2018'
+        - '10'
+        - Layers
+        - Concurrency?
+        - List=
+        - '2017'
+        - Tags
+        - Statement
+        - Id
   /2015-03-31/functions/{FunctionName}/policy/{StatementId}:
     DELETE:
       summary: RemovePermission
@@ -451,6 +1660,60 @@ paths:
         <p>Revokes function-use permission from an Amazon Web Service or another
         Amazon Web Services account. You can get the ID of the statement from
         the output of <a>GetPolicy</a>.</p>
+      tags:
+        - Remove
+        - Permission
+        - Layer
+        - Name
+        - Versions
+        - Version
+        - Number
+        - Policy
+        - Function
+        - Aliases
+        - '2020'
+        - '04'
+        - '22'
+        - Code
+        - Signing
+        - Configs
+        - '2015'
+        - '03'
+        - '31'
+        - Event
+        - Source
+        - Mappings
+        - Functions
+        - Url
+        - Config
+        - Arn
+        - UUID
+        - Concurrency
+        - Invoke
+        - Provisioned
+        - '2016'
+        - '08'
+        - '19'
+        - Account
+        - Settings
+        - Configuration
+        - Runtime
+        - Management
+        - Invocations
+        - Async
+        - Response
+        - Streaming
+        - List
+        - Urls
+        - '2018'
+        - '10'
+        - Layers
+        - Concurrency?
+        - List=
+        - '2017'
+        - Tags
+        - Statement
+        - Id
   /2015-03-31/functions/{FunctionName}/code:
     PUT:
       summary: UpdateFunctionCode
@@ -476,5 +1739,59 @@ paths:
         the code of a published version, only the unpublished version.</p>
         <note> <p>For a function defined as a container image, Lambda resolves
         the image tag to an image digest. In Amazon ECR, if you update the image
-        tag to a new image, Lambda does not automatically update the
-        function.</p>
+        tag to a new image, Lambda does not automatically update the function.</
+      tags:
+        - Update
+        - Function
+        - Code
+        - Layer
+        - Name
+        - Versions
+        - Version
+        - Number
+        - Policy
+        - Function
+        - Aliases
+        - '2020'
+        - '04'
+        - '22'
+        - Code
+        - Signing
+        - Configs
+        - '2015'
+        - '03'
+        - '31'
+        - Event
+        - Source
+        - Mappings
+        - Functions
+        - Url
+        - Config
+        - Arn
+        - UUID
+        - Concurrency
+        - Invoke
+        - Provisioned
+        - '2016'
+        - '08'
+        - '19'
+        - Account
+        - Settings
+        - Configuration
+        - Runtime
+        - Management
+        - Invocations
+        - Async
+        - Response
+        - Streaming
+        - List
+        - Urls
+        - '2018'
+        - '10'
+        - Layers
+        - Concurrency?
+        - List=
+        - '2017'
+        - Tags
+        - Statement
+        - null

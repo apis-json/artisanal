@@ -5,15 +5,15 @@ info:
   contact:
     email: dev-platform@stripe.com
     name: Stripe Dev Platform Team
-    url: 'https://stripe.com'
-  termsOfService: 'https://stripe.com/us/terms/'
+    url: https://stripe.com
+  termsOfService: https://stripe.com/us/terms/
   version: '2023-10-16'
   x-stripeSpecFilename: spec3
 security:
   - basicAuth: []
   - bearerAuth: []
 servers:
-  - url: 'https://api.stripe.com/'
+  - url: https://api.stripe.com/
 paths:
   /v1/application_fees:
     get:
@@ -151,7 +151,7 @@ paths:
               schema:
                 $ref: '#/components/schemas/error'
           description: Error response.
-  '/v1/application_fees/{fee}/refunds/{id}':
+  /v1/application_fees/{fee}/refunds/{id}:
     get:
       description: >-
         <p>By default, you can see the 10 most recent refunds stored directly on
@@ -280,7 +280,7 @@ paths:
               schema:
                 $ref: '#/components/schemas/error'
           description: Error response.
-  '/v1/application_fees/{id}':
+  /v1/application_fees/{id}:
     get:
       description: >-
         <p>Retrieves the details of an application fee that your account has
@@ -328,7 +328,7 @@ paths:
               schema:
                 $ref: '#/components/schemas/error'
           description: Error response.
-  '/v1/application_fees/{id}/refund':
+  /v1/application_fees/{id}/refund:
     post:
       description: ''
       operationId: PostApplicationFeesIdRefund
@@ -376,7 +376,7 @@ paths:
               schema:
                 $ref: '#/components/schemas/error'
           description: Error response.
-  '/v1/application_fees/{id}/refunds':
+  /v1/application_fees/{id}/refunds:
     get:
       description: >-
         <p>You can see a list of the refunds belonging to a specific application
@@ -601,7 +601,7 @@ components:
         fees](https://stripe.com/docs/connect/destination-charges#refunding-app-fee)
       properties:
         amount:
-          description: 'Amount, in cents (or local equivalent).'
+          description: Amount, in cents (or local equivalent).
           type: integer
         balance_transaction:
           anyOf:
@@ -684,7 +684,7 @@ components:
             oneOf:
               - $ref: '#/components/schemas/account'
         amount:
-          description: 'Amount earned, in cents (or local equivalent).'
+          description: Amount earned, in cents (or local equivalent).
           type: integer
         amount_refunded:
           description: >-

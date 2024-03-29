@@ -1,33 +1,37 @@
 openapi: 3.1.0
 servers:
-- url: https://ca-test.adyen.com/ca/services/DataProtectionService/v1
+  - url: https://ca-test.adyen.com/ca/services/DataProtectionService/v1
 info:
   version: '1'
   x-publicVersion: true
   title: Adyen Data Protection API
-  description: Adyen Data Protection API provides a way for you to process [Subject
-    Erasure Requests](https://gdpr-info.eu/art-17-gdpr/) as mandated in GDPR. Use our API to submit a request to delete shopper''s data, including payment details
-    and other related information (for example, delivery address or shopper email).
+  description: >-
+    Adyen Data Protection API provides a way for you to process [Subject Erasure
+    Requests](https://gdpr-info.eu/art-17-gdpr/) as mandated in GDPR. Use our
+    API to submit a request to delete shopper''s data, including payment details
+    and other related information (for example, delivery address or shopper
+    email).
   termsOfService: https://www.adyen.com/legal/terms-and-conditions
   contact:
     name: Adyen Developer Experience team
     url: https://github.com/Adyen/adyen-openapi
 tags:
-- name: General
+  - name: General
 paths:
   /requestSubjectErasure:
     post:
       tags:
-      - General
+        - General
       summary: Submit a Subject Erasure Request.
-      description: Sends the PSP reference containing the shopper data that should
-        be deleted.
+      description: >-
+        Sends the PSP reference containing the shopper data that should be
+        deleted.
       operationId: post-requestSubjectErasure
       x-sortIndex: 0
       x-methodName: requestSubjectErasure
       security:
-      - BasicAuth: []
-      - ApiKeyAuth: []
+        - BasicAuth: []
+        - ApiKeyAuth: []
       requestBody:
         content:
           application/json:
@@ -94,16 +98,18 @@ components:
     SubjectErasureByPspReferenceRequest:
       properties:
         forceErasure:
-          description: Set this to **true** if you want to delete shopper-related
-            data, even if the shopper has an existing recurring transaction. This
-            only deletes the shopper-related data for the specific payment, but does
+          description: >-
+            Set this to **true** if you want to delete shopper-related data,
+            even if the shopper has an existing recurring transaction. This only
+            deletes the shopper-related data for the specific payment, but does
             not cancel the existing recurring transaction.
           type: boolean
         merchantAccount:
           description: Your merchant account
           type: string
         pspReference:
-          description: The PSP reference of the payment. We will delete all shopper-related
+          description: >-
+            The PSP reference of the payment. We will delete all shopper-related
             data for this payment.
           type: string
       type: object
@@ -112,10 +118,10 @@ components:
         result:
           description: The result of this operation.
           enum:
-          - ACTIVE_RECURRING_TOKEN_EXISTS
-          - ALREADY_PROCESSED
-          - PAYMENT_NOT_FOUND
-          - SUCCESS
+            - ACTIVE_RECURRING_TOKEN_EXISTS
+            - ALREADY_PROCESSED
+            - PAYMENT_NOT_FOUND
+            - SUCCESS
           type: string
       type: object
   securitySchemes:

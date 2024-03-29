@@ -8,6 +8,11 @@ paths:
       description: >-
         <p>Retrieves information about all the applications that are associated
         with your Amazon Pinpoint account.</p>
+      tags:
+        - Get
+        - Apps
+        - V1
+        - Apps
   /v1/apps/{application-id}/campaigns:
     GET:
       summary: GetCampaigns
@@ -15,30 +20,100 @@ paths:
         <p>Retrieves information about the status, configuration, and other
         settings for all the campaigns that are associated with an
         application.</p>
+      tags:
+        - Get
+        - Campaigns
+        - V1
+        - Apps
+        - Application
+        - Id
+        - Campaigns
   /v1/templates/{template-name}/email:
     PUT:
       summary: UpdateEmailTemplate
       description: >-
         <p>Updates an existing message template for messages that are sent
         through the email channel.</p>
+      tags:
+        - Update
+        - Email
+        - Template
+        - V1
+        - Apps
+        - Application
+        - Id
+        - Campaigns
+        - Templates
+        - Template
+        - Name
+        - Email
   /v1/apps/{application-id}/jobs/export:
     GET:
       summary: GetExportJobs
       description: >-
         <p>Retrieves information about the status and settings of all the export
         jobs for an application.</p>
+      tags:
+        - Get
+        - Export
+        - Jobs
+        - V1
+        - Apps
+        - Application
+        - Id
+        - Campaigns
+        - Templates
+        - Template
+        - Name
+        - Email
+        - Jobs
+        - Export
   /v1/apps/{application-id}/jobs/import:
     GET:
       summary: GetImportJobs
       description: >-
         <p>Retrieves information about the status and settings of all the import
         jobs for an application.</p>
+      tags:
+        - Get
+        - Import
+        - Jobs
+        - V1
+        - Apps
+        - Application
+        - Id
+        - Campaigns
+        - Templates
+        - Template
+        - Name
+        - Email
+        - Jobs
+        - Export
+        - Import
   /v1/templates/{template-name}/inapp:
     PUT:
       summary: UpdateInAppTemplate
       description: >-
         <p>Updates an existing message template for messages sent through the
         in-app message channel.</p>
+      tags:
+        - Update
+        - In
+        - App
+        - Template
+        - V1
+        - Apps
+        - Application
+        - Id
+        - Campaigns
+        - Templates
+        - Template
+        - Name
+        - Email
+        - Jobs
+        - Export
+        - Import
+        - Inapp
   /v1/apps/{application-id}/journeys:
     GET:
       summary: ListJourneys
@@ -46,18 +121,74 @@ paths:
         <p>Retrieves information about the status, configuration, and other
         settings for all the journeys that are associated with an
         application.</p>
+      tags:
+        - List
+        - Journeys
+        - V1
+        - Apps
+        - Application
+        - Id
+        - Campaigns
+        - Templates
+        - Template
+        - Name
+        - Email
+        - Jobs
+        - Export
+        - Import
+        - Inapp
+        - Journeys
   /v1/templates/{template-name}/push:
     PUT:
       summary: UpdatePushTemplate
       description: >-
         <p>Updates an existing message template for messages that are sent
         through a push notification channel.</p>
+      tags:
+        - Update
+        - Push
+        - Template
+        - V1
+        - Apps
+        - Application
+        - Id
+        - Campaigns
+        - Templates
+        - Template
+        - Name
+        - Email
+        - Jobs
+        - Export
+        - Import
+        - Inapp
+        - Journeys
+        - Push
   /v1/recommenders:
     GET:
       summary: GetRecommenderConfigurations
       description: >-
         <p>Retrieves information about all the recommender model configurations
         that are associated with your Amazon Pinpoint account.</p>
+      tags:
+        - Get
+        - Recommender
+        - Configurations
+        - V1
+        - Apps
+        - Application
+        - Id
+        - Campaigns
+        - Templates
+        - Template
+        - Name
+        - Email
+        - Jobs
+        - Export
+        - Import
+        - Inapp
+        - Journeys
+        - Push
+        - Recommenders
   /v1/apps/{application-id}/segments:
     GET:
       summary: GetSegments
@@ -65,42 +196,215 @@ paths:
         <p>Retrieves information about the configuration, dimension, and other
         settings for all the segments that are associated with an
         application.</p>
+      tags:
+        - Get
+        - Segments
+        - V1
+        - Apps
+        - Application
+        - Id
+        - Campaigns
+        - Templates
+        - Template
+        - Name
+        - Email
+        - Jobs
+        - Export
+        - Import
+        - Inapp
+        - Journeys
+        - Push
+        - Recommenders
+        - Segments
   /v1/templates/{template-name}/sms:
     PUT:
       summary: UpdateSmsTemplate
       description: >-
         <p>Updates an existing message template for messages that are sent
         through the SMS channel.</p>
+      tags:
+        - Update
+        - Sms
+        - Template
+        - V1
+        - Apps
+        - Application
+        - Id
+        - Campaigns
+        - Templates
+        - Template
+        - Name
+        - Email
+        - Jobs
+        - Export
+        - Import
+        - Inapp
+        - Journeys
+        - Push
+        - Recommenders
+        - Segments
+        - Sms
   /v1/templates/{template-name}/voice:
     PUT:
       summary: UpdateVoiceTemplate
       description: >-
         <p>Updates an existing message template for messages that are sent
         through the voice channel.</p>
+      tags:
+        - Update
+        - Voice
+        - Template
+        - V1
+        - Apps
+        - Application
+        - Id
+        - Campaigns
+        - Templates
+        - Template
+        - Name
+        - Email
+        - Jobs
+        - Export
+        - Import
+        - Inapp
+        - Journeys
+        - Push
+        - Recommenders
+        - Segments
+        - Sms
+        - Voice
   /v1/apps/{application-id}/channels/adm:
     PUT:
       summary: UpdateAdmChannel
       description: >-
         <p>Enables the ADM channel for an application or updates the status and
         settings of the ADM channel for an application.</p>
+      tags:
+        - Update
+        - Adm
+        - Channel
+        - V1
+        - Apps
+        - Application
+        - Id
+        - Campaigns
+        - Templates
+        - Template
+        - Name
+        - Email
+        - Jobs
+        - Export
+        - Import
+        - Inapp
+        - Journeys
+        - Push
+        - Recommenders
+        - Segments
+        - Sms
+        - Voice
+        - Channels
+        - Adm
   /v1/apps/{application-id}/channels/apns:
     PUT:
       summary: UpdateApnsChannel
       description: >-
         <p>Enables the APNs channel for an application or updates the status and
         settings of the APNs channel for an application.</p>
+      tags:
+        - Update
+        - Apns
+        - Channel
+        - V1
+        - Apps
+        - Application
+        - Id
+        - Campaigns
+        - Templates
+        - Template
+        - Name
+        - Email
+        - Jobs
+        - Export
+        - Import
+        - Inapp
+        - Journeys
+        - Push
+        - Recommenders
+        - Segments
+        - Sms
+        - Voice
+        - Channels
+        - Adm
+        - Apns
   /v1/apps/{application-id}/channels/apns_sandbox:
     PUT:
       summary: UpdateApnsSandboxChannel
       description: >-
         <p>Enables the APNs sandbox channel for an application or updates the
         status and settings of the APNs sandbox channel for an application.</p>
+      tags:
+        - Update
+        - Apns
+        - Sandbox
+        - Channel
+        - V1
+        - Apps
+        - Application
+        - Id
+        - Campaigns
+        - Templates
+        - Template
+        - Name
+        - Email
+        - Jobs
+        - Export
+        - Import
+        - Inapp
+        - Journeys
+        - Push
+        - Recommenders
+        - Segments
+        - Sms
+        - Voice
+        - Channels
+        - Adm
+        - Apns
+        - Apns_sandbox
   /v1/apps/{application-id}/channels/apns_voip:
     PUT:
       summary: UpdateApnsVoipChannel
       description: >-
         <p>Enables the APNs VoIP channel for an application or updates the
         status and settings of the APNs VoIP channel for an application.</p>
+      tags:
+        - Update
+        - Apns
+        - Voip
+        - Channel
+        - V1
+        - Apps
+        - Application
+        - Id
+        - Campaigns
+        - Templates
+        - Template
+        - Name
+        - Email
+        - Jobs
+        - Export
+        - Import
+        - Inapp
+        - Journeys
+        - Push
+        - Recommenders
+        - Segments
+        - Sms
+        - Voice
+        - Channels
+        - Adm
+        - Apns
+        - Apns_sandbox
+        - Apns_voip
   /v1/apps/{application-id}/channels/apns_voip_sandbox:
     PUT:
       summary: UpdateApnsVoipSandboxChannel
@@ -108,26 +412,176 @@ paths:
         <p>Enables the APNs VoIP sandbox channel for an application or updates
         the status and settings of the APNs VoIP sandbox channel for an
         application.</p>
+      tags:
+        - Update
+        - Apns
+        - Voip
+        - Sandbox
+        - Channel
+        - V1
+        - Apps
+        - Application
+        - Id
+        - Campaigns
+        - Templates
+        - Template
+        - Name
+        - Email
+        - Jobs
+        - Export
+        - Import
+        - Inapp
+        - Journeys
+        - Push
+        - Recommenders
+        - Segments
+        - Sms
+        - Voice
+        - Channels
+        - Adm
+        - Apns
+        - Apns_sandbox
+        - Apns_voip
+        - Apns_voip_sandbox
   /v1/apps/{application-id}:
     GET:
       summary: GetApp
       description: <p>Retrieves information about an application.</p>
+      tags:
+        - Get
+        - App
+        - V1
+        - Apps
+        - Application
+        - Id
+        - Campaigns
+        - Templates
+        - Template
+        - Name
+        - Email
+        - Jobs
+        - Export
+        - Import
+        - Inapp
+        - Journeys
+        - Push
+        - Recommenders
+        - Segments
+        - Sms
+        - Voice
+        - Channels
+        - Adm
+        - Apns
+        - Apns_sandbox
+        - Apns_voip
+        - Apns_voip_sandbox
   /v1/apps/{application-id}/channels/baidu:
     PUT:
       summary: UpdateBaiduChannel
       description: >-
         <p>Enables the Baidu channel for an application or updates the status
         and settings of the Baidu channel for an application.</p>
+      tags:
+        - Update
+        - Baidu
+        - Channel
+        - V1
+        - Apps
+        - Application
+        - Id
+        - Campaigns
+        - Templates
+        - Template
+        - Name
+        - Email
+        - Jobs
+        - Export
+        - Import
+        - Inapp
+        - Journeys
+        - Push
+        - Recommenders
+        - Segments
+        - Sms
+        - Voice
+        - Channels
+        - Adm
+        - Apns
+        - Apns_sandbox
+        - Apns_voip
+        - Apns_voip_sandbox
+        - Baidu
   /v1/apps/{application-id}/campaigns/{campaign-id}:
     PUT:
       summary: UpdateCampaign
       description: <p>Updates the configuration and other settings for a campaign.</p>
+      tags:
+        - Update
+        - Campaign
+        - V1
+        - Apps
+        - Application
+        - Id
+        - Campaigns
+        - Templates
+        - Template
+        - Name
+        - Email
+        - Jobs
+        - Export
+        - Import
+        - Inapp
+        - Journeys
+        - Push
+        - Recommenders
+        - Segments
+        - Sms
+        - Voice
+        - Channels
+        - Adm
+        - Apns
+        - Apns_sandbox
+        - Apns_voip
+        - Apns_voip_sandbox
+        - Baidu
+        - Campaign
   /v1/apps/{application-id}/channels/email:
     PUT:
       summary: UpdateEmailChannel
       description: >-
         <p>Enables the email channel for an application or updates the status
         and settings of the email channel for an application.</p>
+      tags:
+        - Update
+        - Email
+        - Channel
+        - V1
+        - Apps
+        - Application
+        - Id
+        - Campaigns
+        - Templates
+        - Template
+        - Name
+        - Email
+        - Jobs
+        - Export
+        - Import
+        - Inapp
+        - Journeys
+        - Push
+        - Recommenders
+        - Segments
+        - Sms
+        - Voice
+        - Channels
+        - Adm
+        - Apns
+        - Apns_sandbox
+        - Apns_voip
+        - Apns_voip_sandbox
+        - Baidu
+        - Campaign
   /v1/apps/{application-id}/endpoints/{endpoint-id}:
     PUT:
       summary: UpdateEndpoint
@@ -137,26 +591,199 @@ paths:
         this operation to define custom attributes for an endpoint. If an update
         includes one or more values for a custom attribute, Amazon Pinpoint
         replaces (overwrites) any existing values with the new values.</p>
+      tags:
+        - Update
+        - Endpoint
+        - V1
+        - Apps
+        - Application
+        - Id
+        - Campaigns
+        - Templates
+        - Template
+        - Name
+        - Email
+        - Jobs
+        - Export
+        - Import
+        - Inapp
+        - Journeys
+        - Push
+        - Recommenders
+        - Segments
+        - Sms
+        - Voice
+        - Channels
+        - Adm
+        - Apns
+        - Apns_sandbox
+        - Apns_voip
+        - Apns_voip_sandbox
+        - Baidu
+        - Campaign
+        - Endpoints
+        - Endpoint
   /v1/apps/{application-id}/eventstream:
     POST:
       summary: PutEventStream
       description: >-
         <p>Creates a new event stream for an application or updates the settings
         of an existing event stream for an application.</p>
+      tags:
+        - Put
+        - Event
+        - Stream
+        - V1
+        - Apps
+        - Application
+        - Id
+        - Campaigns
+        - Templates
+        - Template
+        - Name
+        - Email
+        - Jobs
+        - Export
+        - Import
+        - Inapp
+        - Journeys
+        - Push
+        - Recommenders
+        - Segments
+        - Sms
+        - Voice
+        - Channels
+        - Adm
+        - Apns
+        - Apns_sandbox
+        - Apns_voip
+        - Apns_voip_sandbox
+        - Baidu
+        - Campaign
+        - Endpoints
+        - Endpoint
+        - Eventstream
   /v1/apps/{application-id}/channels/gcm:
     PUT:
       summary: UpdateGcmChannel
       description: >-
         <p>Enables the GCM channel for an application or updates the status and
         settings of the GCM channel for an application.</p>
+      tags:
+        - Update
+        - Gcm
+        - Channel
+        - V1
+        - Apps
+        - Application
+        - Id
+        - Campaigns
+        - Templates
+        - Template
+        - Name
+        - Email
+        - Jobs
+        - Export
+        - Import
+        - Inapp
+        - Journeys
+        - Push
+        - Recommenders
+        - Segments
+        - Sms
+        - Voice
+        - Channels
+        - Adm
+        - Apns
+        - Apns_sandbox
+        - Apns_voip
+        - Apns_voip_sandbox
+        - Baidu
+        - Campaign
+        - Endpoints
+        - Endpoint
+        - Eventstream
+        - Gcm
   /v1/apps/{application-id}/journeys/{journey-id}:
     PUT:
       summary: UpdateJourney
       description: <p>Updates the configuration and other settings for a journey.</p>
+      tags:
+        - Update
+        - Journey
+        - V1
+        - Apps
+        - Application
+        - Id
+        - Campaigns
+        - Templates
+        - Template
+        - Name
+        - Email
+        - Jobs
+        - Export
+        - Import
+        - Inapp
+        - Journeys
+        - Push
+        - Recommenders
+        - Segments
+        - Sms
+        - Voice
+        - Channels
+        - Adm
+        - Apns
+        - Apns_sandbox
+        - Apns_voip
+        - Apns_voip_sandbox
+        - Baidu
+        - Campaign
+        - Endpoints
+        - Endpoint
+        - Eventstream
+        - Gcm
+        - Journey
   /v1/recommenders/{recommender-id}:
     PUT:
       summary: UpdateRecommenderConfiguration
       description: <p>Updates an Amazon Pinpoint configuration for a recommender model.</p>
+      tags:
+        - Update
+        - Recommender
+        - Configuration
+        - V1
+        - Apps
+        - Application
+        - Id
+        - Campaigns
+        - Templates
+        - Template
+        - Name
+        - Email
+        - Jobs
+        - Export
+        - Import
+        - Inapp
+        - Journeys
+        - Push
+        - Recommenders
+        - Segments
+        - Sms
+        - Voice
+        - Channels
+        - Adm
+        - Apns
+        - Apns_sandbox
+        - Apns_voip
+        - Apns_voip_sandbox
+        - Baidu
+        - Campaign
+        - Endpoints
+        - Endpoint
+        - Eventstream
+        - Gcm
+        - Journey
+        - Recommender
   /v1/apps/{application-id}/segments/{segment-id}:
     PUT:
       summary: UpdateSegment
@@ -164,126 +791,1183 @@ paths:
         <p>Creates a new segment for an application or updates the
         configuration, dimension, and other settings for an existing segment
         that's associated with an application.</p>
+      tags:
+        - Update
+        - Segment
+        - V1
+        - Apps
+        - Application
+        - Id
+        - Campaigns
+        - Templates
+        - Template
+        - Name
+        - Email
+        - Jobs
+        - Export
+        - Import
+        - Inapp
+        - Journeys
+        - Push
+        - Recommenders
+        - Segments
+        - Sms
+        - Voice
+        - Channels
+        - Adm
+        - Apns
+        - Apns_sandbox
+        - Apns_voip
+        - Apns_voip_sandbox
+        - Baidu
+        - Campaign
+        - Endpoints
+        - Endpoint
+        - Eventstream
+        - Gcm
+        - Journey
+        - Recommender
+        - Segment
   /v1/apps/{application-id}/channels/sms:
     PUT:
       summary: UpdateSmsChannel
       description: >-
         <p>Enables the SMS channel for an application or updates the status and
         settings of the SMS channel for an application.</p>
+      tags:
+        - Update
+        - Sms
+        - Channel
+        - V1
+        - Apps
+        - Application
+        - Id
+        - Campaigns
+        - Templates
+        - Template
+        - Name
+        - Email
+        - Jobs
+        - Export
+        - Import
+        - Inapp
+        - Journeys
+        - Push
+        - Recommenders
+        - Segments
+        - Sms
+        - Voice
+        - Channels
+        - Adm
+        - Apns
+        - Apns_sandbox
+        - Apns_voip
+        - Apns_voip_sandbox
+        - Baidu
+        - Campaign
+        - Endpoints
+        - Endpoint
+        - Eventstream
+        - Gcm
+        - Journey
+        - Recommender
+        - Segment
   /v1/apps/{application-id}/users/{user-id}:
     GET:
       summary: GetUserEndpoints
       description: >-
         <p>Retrieves information about all the endpoints that are associated
         with a specific user ID.</p>
+      tags:
+        - Get
+        - User
+        - Endpoints
+        - V1
+        - Apps
+        - Application
+        - Id
+        - Campaigns
+        - Templates
+        - Template
+        - Name
+        - Email
+        - Jobs
+        - Export
+        - Import
+        - Inapp
+        - Journeys
+        - Push
+        - Recommenders
+        - Segments
+        - Sms
+        - Voice
+        - Channels
+        - Adm
+        - Apns
+        - Apns_sandbox
+        - Apns_voip
+        - Apns_voip_sandbox
+        - Baidu
+        - Campaign
+        - Endpoints
+        - Endpoint
+        - Eventstream
+        - Gcm
+        - Journey
+        - Recommender
+        - Segment
+        - Users
+        - User
   /v1/apps/{application-id}/channels/voice:
     PUT:
       summary: UpdateVoiceChannel
       description: >-
         <p>Enables the voice channel for an application or updates the status
         and settings of the voice channel for an application.</p>
+      tags:
+        - Update
+        - Voice
+        - Channel
+        - V1
+        - Apps
+        - Application
+        - Id
+        - Campaigns
+        - Templates
+        - Template
+        - Name
+        - Email
+        - Jobs
+        - Export
+        - Import
+        - Inapp
+        - Journeys
+        - Push
+        - Recommenders
+        - Segments
+        - Sms
+        - Voice
+        - Channels
+        - Adm
+        - Apns
+        - Apns_sandbox
+        - Apns_voip
+        - Apns_voip_sandbox
+        - Baidu
+        - Campaign
+        - Endpoints
+        - Endpoint
+        - Eventstream
+        - Gcm
+        - Journey
+        - Recommender
+        - Segment
+        - Users
+        - User
   /v1/apps/{application-id}/kpis/daterange/{kpi-name}:
     GET:
       summary: GetApplicationDateRangeKpi
       description: >-
         <p>Retrieves (queries) pre-aggregated data for a standard metric that
         applies to an application.</p>
+      tags:
+        - Get
+        - Application
+        - Date
+        - Range
+        - Kpi
+        - V1
+        - Apps
+        - Application
+        - Id
+        - Campaigns
+        - Templates
+        - Template
+        - Name
+        - Email
+        - Jobs
+        - Export
+        - Import
+        - Inapp
+        - Journeys
+        - Push
+        - Recommenders
+        - Segments
+        - Sms
+        - Voice
+        - Channels
+        - Adm
+        - Apns
+        - Apns_sandbox
+        - Apns_voip
+        - Apns_voip_sandbox
+        - Baidu
+        - Campaign
+        - Endpoints
+        - Endpoint
+        - Eventstream
+        - Gcm
+        - Journey
+        - Recommender
+        - Segment
+        - Users
+        - User
+        - Kpis
+        - Daterange
+        - Kpi
   /v1/apps/{application-id}/settings:
     PUT:
       summary: UpdateApplicationSettings
       description: <p>Updates the settings for an application.</p>
+      tags:
+        - Update
+        - Application
+        - Settings
+        - V1
+        - Apps
+        - Application
+        - Id
+        - Campaigns
+        - Templates
+        - Template
+        - Name
+        - Email
+        - Jobs
+        - Export
+        - Import
+        - Inapp
+        - Journeys
+        - Push
+        - Recommenders
+        - Segments
+        - Sms
+        - Voice
+        - Channels
+        - Adm
+        - Apns
+        - Apns_sandbox
+        - Apns_voip
+        - Apns_voip_sandbox
+        - Baidu
+        - Campaign
+        - Endpoints
+        - Endpoint
+        - Eventstream
+        - Gcm
+        - Journey
+        - Recommender
+        - Segment
+        - Users
+        - User
+        - Kpis
+        - Daterange
+        - Kpi
+        - Settings
   /v1/apps/{application-id}/campaigns/{campaign-id}/activities:
     GET:
       summary: GetCampaignActivities
       description: <p>Retrieves information about all the activities for a campaign.</p>
+      tags:
+        - Get
+        - Campaign
+        - Activities
+        - V1
+        - Apps
+        - Application
+        - Id
+        - Campaigns
+        - Templates
+        - Template
+        - Name
+        - Email
+        - Jobs
+        - Export
+        - Import
+        - Inapp
+        - Journeys
+        - Push
+        - Recommenders
+        - Segments
+        - Sms
+        - Voice
+        - Channels
+        - Adm
+        - Apns
+        - Apns_sandbox
+        - Apns_voip
+        - Apns_voip_sandbox
+        - Baidu
+        - Campaign
+        - Endpoints
+        - Endpoint
+        - Eventstream
+        - Gcm
+        - Journey
+        - Recommender
+        - Segment
+        - Users
+        - User
+        - Kpis
+        - Daterange
+        - Kpi
+        - Settings
+        - Activities
   /v1/apps/{application-id}/campaigns/{campaign-id}/kpis/daterange/{kpi-name}:
     GET:
       summary: GetCampaignDateRangeKpi
       description: >-
         <p>Retrieves (queries) pre-aggregated data for a standard metric that
         applies to a campaign.</p>
+      tags:
+        - Get
+        - Campaign
+        - Date
+        - Range
+        - Kpi
+        - V1
+        - Apps
+        - Application
+        - Id
+        - Campaigns
+        - Templates
+        - Template
+        - Name
+        - Email
+        - Jobs
+        - Export
+        - Import
+        - Inapp
+        - Journeys
+        - Push
+        - Recommenders
+        - Segments
+        - Sms
+        - Voice
+        - Channels
+        - Adm
+        - Apns
+        - Apns_sandbox
+        - Apns_voip
+        - Apns_voip_sandbox
+        - Baidu
+        - Campaign
+        - Endpoints
+        - Endpoint
+        - Eventstream
+        - Gcm
+        - Journey
+        - Recommender
+        - Segment
+        - Users
+        - User
+        - Kpis
+        - Daterange
+        - Kpi
+        - Settings
+        - Activities
   /v1/apps/{application-id}/campaigns/{campaign-id}/versions/{version}:
     GET:
       summary: GetCampaignVersion
       description: >-
         <p>Retrieves information about the status, configuration, and other
         settings for a specific version of a campaign.</p>
+      tags:
+        - Get
+        - Campaign
+        - Version
+        - V1
+        - Apps
+        - Application
+        - Id
+        - Campaigns
+        - Templates
+        - Template
+        - Name
+        - Email
+        - Jobs
+        - Export
+        - Import
+        - Inapp
+        - Journeys
+        - Push
+        - Recommenders
+        - Segments
+        - Sms
+        - Voice
+        - Channels
+        - Adm
+        - Apns
+        - Apns_sandbox
+        - Apns_voip
+        - Apns_voip_sandbox
+        - Baidu
+        - Campaign
+        - Endpoints
+        - Endpoint
+        - Eventstream
+        - Gcm
+        - Journey
+        - Recommender
+        - Segment
+        - Users
+        - User
+        - Kpis
+        - Daterange
+        - Kpi
+        - Settings
+        - Activities
+        - Versions
+        - Version
   /v1/apps/{application-id}/campaigns/{campaign-id}/versions:
     GET:
       summary: GetCampaignVersions
       description: >-
         <p>Retrieves information about the status, configuration, and other
         settings for all versions of a campaign.</p>
+      tags:
+        - Get
+        - Campaign
+        - Versions
+        - V1
+        - Apps
+        - Application
+        - Id
+        - Campaigns
+        - Templates
+        - Template
+        - Name
+        - Email
+        - Jobs
+        - Export
+        - Import
+        - Inapp
+        - Journeys
+        - Push
+        - Recommenders
+        - Segments
+        - Sms
+        - Voice
+        - Channels
+        - Adm
+        - Apns
+        - Apns_sandbox
+        - Apns_voip
+        - Apns_voip_sandbox
+        - Baidu
+        - Campaign
+        - Endpoints
+        - Endpoint
+        - Eventstream
+        - Gcm
+        - Journey
+        - Recommender
+        - Segment
+        - Users
+        - User
+        - Kpis
+        - Daterange
+        - Kpi
+        - Settings
+        - Activities
+        - Versions
+        - Version
   /v1/apps/{application-id}/channels:
     GET:
       summary: GetChannels
       description: >-
         <p>Retrieves information about the history and status of each channel
         for an application.</p>
+      tags:
+        - Get
+        - Channels
+        - V1
+        - Apps
+        - Application
+        - Id
+        - Campaigns
+        - Templates
+        - Template
+        - Name
+        - Email
+        - Jobs
+        - Export
+        - Import
+        - Inapp
+        - Journeys
+        - Push
+        - Recommenders
+        - Segments
+        - Sms
+        - Voice
+        - Channels
+        - Adm
+        - Apns
+        - Apns_sandbox
+        - Apns_voip
+        - Apns_voip_sandbox
+        - Baidu
+        - Campaign
+        - Endpoints
+        - Endpoint
+        - Eventstream
+        - Gcm
+        - Journey
+        - Recommender
+        - Segment
+        - Users
+        - User
+        - Kpis
+        - Daterange
+        - Kpi
+        - Settings
+        - Activities
+        - Versions
+        - Version
   /v1/apps/{application-id}/jobs/export/{job-id}:
     GET:
       summary: GetExportJob
       description: >-
         <p>Retrieves information about the status and settings of a specific
         export job for an application.</p>
+      tags:
+        - Get
+        - Export
+        - Job
+        - V1
+        - Apps
+        - Application
+        - Id
+        - Campaigns
+        - Templates
+        - Template
+        - Name
+        - Email
+        - Jobs
+        - Export
+        - Import
+        - Inapp
+        - Journeys
+        - Push
+        - Recommenders
+        - Segments
+        - Sms
+        - Voice
+        - Channels
+        - Adm
+        - Apns
+        - Apns_sandbox
+        - Apns_voip
+        - Apns_voip_sandbox
+        - Baidu
+        - Campaign
+        - Endpoints
+        - Endpoint
+        - Eventstream
+        - Gcm
+        - Journey
+        - Recommender
+        - Segment
+        - Users
+        - User
+        - Kpis
+        - Daterange
+        - Kpi
+        - Settings
+        - Activities
+        - Versions
+        - Version
+        - Job
   /v1/apps/{application-id}/jobs/import/{job-id}:
     GET:
       summary: GetImportJob
       description: >-
         <p>Retrieves information about the status and settings of a specific
         import job for an application.</p>
+      tags:
+        - Get
+        - Import
+        - Job
+        - V1
+        - Apps
+        - Application
+        - Id
+        - Campaigns
+        - Templates
+        - Template
+        - Name
+        - Email
+        - Jobs
+        - Export
+        - Import
+        - Inapp
+        - Journeys
+        - Push
+        - Recommenders
+        - Segments
+        - Sms
+        - Voice
+        - Channels
+        - Adm
+        - Apns
+        - Apns_sandbox
+        - Apns_voip
+        - Apns_voip_sandbox
+        - Baidu
+        - Campaign
+        - Endpoints
+        - Endpoint
+        - Eventstream
+        - Gcm
+        - Journey
+        - Recommender
+        - Segment
+        - Users
+        - User
+        - Kpis
+        - Daterange
+        - Kpi
+        - Settings
+        - Activities
+        - Versions
+        - Version
+        - Job
   /v1/apps/{application-id}/endpoints/{endpoint-id}/inappmessages:
     GET:
       summary: GetInAppMessages
       description: >-
         <p>Retrieves the in-app messages targeted for the provided endpoint
         ID.</p>
+      tags:
+        - Get
+        - In
+        - App
+        - Messages
+        - V1
+        - Apps
+        - Application
+        - Id
+        - Campaigns
+        - Templates
+        - Template
+        - Name
+        - Email
+        - Jobs
+        - Export
+        - Import
+        - Inapp
+        - Journeys
+        - Push
+        - Recommenders
+        - Segments
+        - Sms
+        - Voice
+        - Channels
+        - Adm
+        - Apns
+        - Apns_sandbox
+        - Apns_voip
+        - Apns_voip_sandbox
+        - Baidu
+        - Campaign
+        - Endpoints
+        - Endpoint
+        - Eventstream
+        - Gcm
+        - Journey
+        - Recommender
+        - Segment
+        - Users
+        - User
+        - Kpis
+        - Daterange
+        - Kpi
+        - Settings
+        - Activities
+        - Versions
+        - Version
+        - Job
+        - Inappmessages
   /v1/apps/{application-id}/journeys/{journey-id}/kpis/daterange/{kpi-name}:
     GET:
       summary: GetJourneyDateRangeKpi
       description: >-
         <p>Retrieves (queries) pre-aggregated data for a standard engagement
         metric that applies to a journey.</p>
+      tags:
+        - Get
+        - Journey
+        - Date
+        - Range
+        - Kpi
+        - V1
+        - Apps
+        - Application
+        - Id
+        - Campaigns
+        - Templates
+        - Template
+        - Name
+        - Email
+        - Jobs
+        - Export
+        - Import
+        - Inapp
+        - Journeys
+        - Push
+        - Recommenders
+        - Segments
+        - Sms
+        - Voice
+        - Channels
+        - Adm
+        - Apns
+        - Apns_sandbox
+        - Apns_voip
+        - Apns_voip_sandbox
+        - Baidu
+        - Campaign
+        - Endpoints
+        - Endpoint
+        - Eventstream
+        - Gcm
+        - Journey
+        - Recommender
+        - Segment
+        - Users
+        - User
+        - Kpis
+        - Daterange
+        - Kpi
+        - Settings
+        - Activities
+        - Versions
+        - Version
+        - Job
+        - Inappmessages
   /v1/apps/{application-id}/journeys/{journey-id}/activities/{journey-activity-id}/execution-metrics:
     GET:
       summary: GetJourneyExecutionActivityMetrics
       description: >-
         <p>Retrieves (queries) pre-aggregated data for a standard execution
         metric that applies to a journey activity.</p>
+      tags:
+        - Get
+        - Journey
+        - Execution
+        - Activity
+        - Metrics
+        - V1
+        - Apps
+        - Application
+        - Id
+        - Campaigns
+        - Templates
+        - Template
+        - Name
+        - Email
+        - Jobs
+        - Export
+        - Import
+        - Inapp
+        - Journeys
+        - Push
+        - Recommenders
+        - Segments
+        - Sms
+        - Voice
+        - Channels
+        - Adm
+        - Apns
+        - Apns_sandbox
+        - Apns_voip
+        - Apns_voip_sandbox
+        - Baidu
+        - Campaign
+        - Endpoints
+        - Endpoint
+        - Eventstream
+        - Gcm
+        - Journey
+        - Recommender
+        - Segment
+        - Users
+        - User
+        - Kpis
+        - Daterange
+        - Kpi
+        - Settings
+        - Activities
+        - Versions
+        - Version
+        - Job
+        - Inappmessages
+        - Activity
+        - Execution
+        - Metrics
   /v1/apps/{application-id}/journeys/{journey-id}/execution-metrics:
     GET:
       summary: GetJourneyExecutionMetrics
       description: >-
         <p>Retrieves (queries) pre-aggregated data for a standard execution
         metric that applies to a journey.</p>
+      tags:
+        - Get
+        - Journey
+        - Execution
+        - Metrics
+        - V1
+        - Apps
+        - Application
+        - Id
+        - Campaigns
+        - Templates
+        - Template
+        - Name
+        - Email
+        - Jobs
+        - Export
+        - Import
+        - Inapp
+        - Journeys
+        - Push
+        - Recommenders
+        - Segments
+        - Sms
+        - Voice
+        - Channels
+        - Adm
+        - Apns
+        - Apns_sandbox
+        - Apns_voip
+        - Apns_voip_sandbox
+        - Baidu
+        - Campaign
+        - Endpoints
+        - Endpoint
+        - Eventstream
+        - Gcm
+        - Journey
+        - Recommender
+        - Segment
+        - Users
+        - User
+        - Kpis
+        - Daterange
+        - Kpi
+        - Settings
+        - Activities
+        - Versions
+        - Version
+        - Job
+        - Inappmessages
+        - Activity
+        - Execution
+        - Metrics
   /v1/apps/{application-id}/journeys/{journey-id}/runs/{run-id}/activities/{journey-activity-id}/execution-metrics:
     GET:
       summary: GetJourneyRunExecutionActivityMetrics
       description: >-
         <p>Retrieves (queries) pre-aggregated data for a standard run execution
         metric that applies to a journey activity.</p>
+      tags:
+        - Get
+        - Journey
+        - Run
+        - Execution
+        - Activity
+        - Metrics
+        - V1
+        - Apps
+        - Application
+        - Id
+        - Campaigns
+        - Templates
+        - Template
+        - Name
+        - Email
+        - Jobs
+        - Export
+        - Import
+        - Inapp
+        - Journeys
+        - Push
+        - Recommenders
+        - Segments
+        - Sms
+        - Voice
+        - Channels
+        - Adm
+        - Apns
+        - Apns_sandbox
+        - Apns_voip
+        - Apns_voip_sandbox
+        - Baidu
+        - Campaign
+        - Endpoints
+        - Endpoint
+        - Eventstream
+        - Gcm
+        - Journey
+        - Recommender
+        - Segment
+        - Users
+        - User
+        - Kpis
+        - Daterange
+        - Kpi
+        - Settings
+        - Activities
+        - Versions
+        - Version
+        - Job
+        - Inappmessages
+        - Activity
+        - Execution
+        - Metrics
+        - Runs
+        - Run
   /v1/apps/{application-id}/journeys/{journey-id}/runs/{run-id}/execution-metrics:
     GET:
       summary: GetJourneyRunExecutionMetrics
       description: >-
         <p>Retrieves (queries) pre-aggregated data for a standard run execution
         metric that applies to a journey.</p>
+      tags:
+        - Get
+        - Journey
+        - Run
+        - Execution
+        - Metrics
+        - V1
+        - Apps
+        - Application
+        - Id
+        - Campaigns
+        - Templates
+        - Template
+        - Name
+        - Email
+        - Jobs
+        - Export
+        - Import
+        - Inapp
+        - Journeys
+        - Push
+        - Recommenders
+        - Segments
+        - Sms
+        - Voice
+        - Channels
+        - Adm
+        - Apns
+        - Apns_sandbox
+        - Apns_voip
+        - Apns_voip_sandbox
+        - Baidu
+        - Campaign
+        - Endpoints
+        - Endpoint
+        - Eventstream
+        - Gcm
+        - Journey
+        - Recommender
+        - Segment
+        - Users
+        - User
+        - Kpis
+        - Daterange
+        - Kpi
+        - Settings
+        - Activities
+        - Versions
+        - Version
+        - Job
+        - Inappmessages
+        - Activity
+        - Execution
+        - Metrics
+        - Runs
+        - Run
   /v1/apps/{application-id}/journeys/{journey-id}/runs:
     GET:
       summary: GetJourneyRuns
       description: <p>Provides information about the runs of a journey.</p>
+      tags:
+        - Get
+        - Journey
+        - Runs
+        - V1
+        - Apps
+        - Application
+        - Id
+        - Campaigns
+        - Templates
+        - Template
+        - Name
+        - Email
+        - Jobs
+        - Export
+        - Import
+        - Inapp
+        - Journeys
+        - Push
+        - Recommenders
+        - Segments
+        - Sms
+        - Voice
+        - Channels
+        - Adm
+        - Apns
+        - Apns_sandbox
+        - Apns_voip
+        - Apns_voip_sandbox
+        - Baidu
+        - Campaign
+        - Endpoints
+        - Endpoint
+        - Eventstream
+        - Gcm
+        - Journey
+        - Recommender
+        - Segment
+        - Users
+        - User
+        - Kpis
+        - Daterange
+        - Kpi
+        - Settings
+        - Activities
+        - Versions
+        - Version
+        - Job
+        - Inappmessages
+        - Activity
+        - Execution
+        - Metrics
+        - Runs
+        - Run
   /v1/apps/{application-id}/segments/{segment-id}/jobs/export:
     GET:
       summary: GetSegmentExportJobs
       description: >-
         <p>Retrieves information about the status and settings of the export
         jobs for a segment.</p>
+      tags:
+        - Get
+        - Segment
+        - Export
+        - Jobs
+        - V1
+        - Apps
+        - Application
+        - Id
+        - Campaigns
+        - Templates
+        - Template
+        - Name
+        - Email
+        - Jobs
+        - Export
+        - Import
+        - Inapp
+        - Journeys
+        - Push
+        - Recommenders
+        - Segments
+        - Sms
+        - Voice
+        - Channels
+        - Adm
+        - Apns
+        - Apns_sandbox
+        - Apns_voip
+        - Apns_voip_sandbox
+        - Baidu
+        - Campaign
+        - Endpoints
+        - Endpoint
+        - Eventstream
+        - Gcm
+        - Journey
+        - Recommender
+        - Segment
+        - Users
+        - User
+        - Kpis
+        - Daterange
+        - Kpi
+        - Settings
+        - Activities
+        - Versions
+        - Version
+        - Job
+        - Inappmessages
+        - Activity
+        - Execution
+        - Metrics
+        - Runs
+        - Run
   /v1/apps/{application-id}/segments/{segment-id}/jobs/import:
     GET:
       summary: GetSegmentImportJobs
       description: >-
         <p>Retrieves information about the status and settings of the import
         jobs for a segment.</p>
+      tags:
+        - Get
+        - Segment
+        - Import
+        - Jobs
+        - V1
+        - Apps
+        - Application
+        - Id
+        - Campaigns
+        - Templates
+        - Template
+        - Name
+        - Email
+        - Jobs
+        - Export
+        - Import
+        - Inapp
+        - Journeys
+        - Push
+        - Recommenders
+        - Segments
+        - Sms
+        - Voice
+        - Channels
+        - Adm
+        - Apns
+        - Apns_sandbox
+        - Apns_voip
+        - Apns_voip_sandbox
+        - Baidu
+        - Campaign
+        - Endpoints
+        - Endpoint
+        - Eventstream
+        - Gcm
+        - Journey
+        - Recommender
+        - Segment
+        - Users
+        - User
+        - Kpis
+        - Daterange
+        - Kpi
+        - Settings
+        - Activities
+        - Versions
+        - Version
+        - Job
+        - Inappmessages
+        - Activity
+        - Execution
+        - Metrics
+        - Runs
+        - Run
   /v1/apps/{application-id}/segments/{segment-id}/versions/{version}:
     GET:
       summary: GetSegmentVersion
@@ -291,6 +1975,60 @@ paths:
         <p>Retrieves information about the configuration, dimension, and other
         settings for a specific version of a segment that's associated with an
         application.</p>
+      tags:
+        - Get
+        - Segment
+        - Version
+        - V1
+        - Apps
+        - Application
+        - Id
+        - Campaigns
+        - Templates
+        - Template
+        - Name
+        - Email
+        - Jobs
+        - Export
+        - Import
+        - Inapp
+        - Journeys
+        - Push
+        - Recommenders
+        - Segments
+        - Sms
+        - Voice
+        - Channels
+        - Adm
+        - Apns
+        - Apns_sandbox
+        - Apns_voip
+        - Apns_voip_sandbox
+        - Baidu
+        - Campaign
+        - Endpoints
+        - Endpoint
+        - Eventstream
+        - Gcm
+        - Journey
+        - Recommender
+        - Segment
+        - Users
+        - User
+        - Kpis
+        - Daterange
+        - Kpi
+        - Settings
+        - Activities
+        - Versions
+        - Version
+        - Job
+        - Inappmessages
+        - Activity
+        - Execution
+        - Metrics
+        - Runs
+        - Run
   /v1/apps/{application-id}/segments/{segment-id}/versions:
     GET:
       summary: GetSegmentVersions
@@ -298,34 +2036,381 @@ paths:
         <p>Retrieves information about the configuration, dimension, and other
         settings for all the versions of a specific segment that's associated
         with an application.</p>
+      tags:
+        - Get
+        - Segment
+        - Versions
+        - V1
+        - Apps
+        - Application
+        - Id
+        - Campaigns
+        - Templates
+        - Template
+        - Name
+        - Email
+        - Jobs
+        - Export
+        - Import
+        - Inapp
+        - Journeys
+        - Push
+        - Recommenders
+        - Segments
+        - Sms
+        - Voice
+        - Channels
+        - Adm
+        - Apns
+        - Apns_sandbox
+        - Apns_voip
+        - Apns_voip_sandbox
+        - Baidu
+        - Campaign
+        - Endpoints
+        - Endpoint
+        - Eventstream
+        - Gcm
+        - Journey
+        - Recommender
+        - Segment
+        - Users
+        - User
+        - Kpis
+        - Daterange
+        - Kpi
+        - Settings
+        - Activities
+        - Versions
+        - Version
+        - Job
+        - Inappmessages
+        - Activity
+        - Execution
+        - Metrics
+        - Runs
+        - Run
   /v1/tags/{resource-arn}:
     DELETE:
       summary: UntagResource
       description: >-
         <p>Removes one or more tags (keys and values) from an application,
         campaign, message template, or segment.</p>
+      tags:
+        - Untag
+        - Resource
+        - V1
+        - Apps
+        - Application
+        - Id
+        - Campaigns
+        - Templates
+        - Template
+        - Name
+        - Email
+        - Jobs
+        - Export
+        - Import
+        - Inapp
+        - Journeys
+        - Push
+        - Recommenders
+        - Segments
+        - Sms
+        - Voice
+        - Channels
+        - Adm
+        - Apns
+        - Apns_sandbox
+        - Apns_voip
+        - Apns_voip_sandbox
+        - Baidu
+        - Campaign
+        - Endpoints
+        - Endpoint
+        - Eventstream
+        - Gcm
+        - Journey
+        - Recommender
+        - Segment
+        - Users
+        - User
+        - Kpis
+        - Daterange
+        - Kpi
+        - Settings
+        - Activities
+        - Versions
+        - Version
+        - Job
+        - Inappmessages
+        - Activity
+        - Execution
+        - Metrics
+        - Runs
+        - Run
+        - Tags
+        - Resource
+        - Arn
   /v1/templates/{template-name}/{template-type}/versions:
     GET:
       summary: ListTemplateVersions
       description: >-
         <p>Retrieves information about all the versions of a specific message
         template.</p>
+      tags:
+        - List
+        - Template
+        - Versions
+        - V1
+        - Apps
+        - Application
+        - Id
+        - Campaigns
+        - Templates
+        - Template
+        - Name
+        - Email
+        - Jobs
+        - Export
+        - Import
+        - Inapp
+        - Journeys
+        - Push
+        - Recommenders
+        - Segments
+        - Sms
+        - Voice
+        - Channels
+        - Adm
+        - Apns
+        - Apns_sandbox
+        - Apns_voip
+        - Apns_voip_sandbox
+        - Baidu
+        - Campaign
+        - Endpoints
+        - Endpoint
+        - Eventstream
+        - Gcm
+        - Journey
+        - Recommender
+        - Segment
+        - Users
+        - User
+        - Kpis
+        - Daterange
+        - Kpi
+        - Settings
+        - Activities
+        - Versions
+        - Version
+        - Job
+        - Inappmessages
+        - Activity
+        - Execution
+        - Metrics
+        - Runs
+        - Run
+        - Tags
+        - Resource
+        - Arn
+        - Type
   /v1/templates:
     GET:
       summary: ListTemplates
       description: >-
         <p>Retrieves information about all the message templates that are
         associated with your Amazon Pinpoint account.</p>
+      tags:
+        - List
+        - Templates
+        - V1
+        - Apps
+        - Application
+        - Id
+        - Campaigns
+        - Templates
+        - Template
+        - Name
+        - Email
+        - Jobs
+        - Export
+        - Import
+        - Inapp
+        - Journeys
+        - Push
+        - Recommenders
+        - Segments
+        - Sms
+        - Voice
+        - Channels
+        - Adm
+        - Apns
+        - Apns_sandbox
+        - Apns_voip
+        - Apns_voip_sandbox
+        - Baidu
+        - Campaign
+        - Endpoints
+        - Endpoint
+        - Eventstream
+        - Gcm
+        - Journey
+        - Recommender
+        - Segment
+        - Users
+        - User
+        - Kpis
+        - Daterange
+        - Kpi
+        - Settings
+        - Activities
+        - Versions
+        - Version
+        - Job
+        - Inappmessages
+        - Activity
+        - Execution
+        - Metrics
+        - Runs
+        - Run
+        - Tags
+        - Resource
+        - Arn
+        - Type
   /v1/phone/number/validate:
     POST:
       summary: PhoneNumberValidate
       description: <p>Retrieves information about a phone number.</p>
+      tags:
+        - Phone
+        - Number
+        - Validate
+        - V1
+        - Apps
+        - Application
+        - Id
+        - Campaigns
+        - Templates
+        - Template
+        - Name
+        - Email
+        - Jobs
+        - Export
+        - Import
+        - Inapp
+        - Journeys
+        - Push
+        - Recommenders
+        - Segments
+        - Sms
+        - Voice
+        - Channels
+        - Adm
+        - Apns
+        - Apns_sandbox
+        - Apns_voip
+        - Apns_voip_sandbox
+        - Baidu
+        - Campaign
+        - Endpoints
+        - Endpoint
+        - Eventstream
+        - Gcm
+        - Journey
+        - Recommender
+        - Segment
+        - Users
+        - User
+        - Kpis
+        - Daterange
+        - Kpi
+        - Settings
+        - Activities
+        - Versions
+        - Version
+        - Job
+        - Inappmessages
+        - Activity
+        - Execution
+        - Metrics
+        - Runs
+        - Run
+        - Tags
+        - Resource
+        - Arn
+        - Type
+        - Phone
+        - Number
+        - Validate
   /v1/apps/{application-id}/events:
     POST:
       summary: PutEvents
       description: >-
         <p>Creates a new event to record for endpoints, or creates or updates
         endpoint data that existing events are associated with.</p>
+      tags:
+        - Put
+        - Events
+        - V1
+        - Apps
+        - Application
+        - Id
+        - Campaigns
+        - Templates
+        - Template
+        - Name
+        - Email
+        - Jobs
+        - Export
+        - Import
+        - Inapp
+        - Journeys
+        - Push
+        - Recommenders
+        - Segments
+        - Sms
+        - Voice
+        - Channels
+        - Adm
+        - Apns
+        - Apns_sandbox
+        - Apns_voip
+        - Apns_voip_sandbox
+        - Baidu
+        - Campaign
+        - Endpoints
+        - Endpoint
+        - Eventstream
+        - Gcm
+        - Journey
+        - Recommender
+        - Segment
+        - Users
+        - User
+        - Kpis
+        - Daterange
+        - Kpi
+        - Settings
+        - Activities
+        - Versions
+        - Version
+        - Job
+        - Inappmessages
+        - Activity
+        - Execution
+        - Metrics
+        - Runs
+        - Run
+        - Tags
+        - Resource
+        - Arn
+        - Type
+        - Phone
+        - Number
+        - Validate
+        - Events
   /v1/apps/{application-id}/attributes/{attribute-type}:
     PUT:
       summary: RemoveAttributes
@@ -334,18 +2419,276 @@ paths:
         from the application. Existing endpoints still have the attributes but
         Amazon Pinpoint will stop capturing new or changed values for these
         attributes.</p>
+      tags:
+        - Remove
+        - Attributes
+        - V1
+        - Apps
+        - Application
+        - Id
+        - Campaigns
+        - Templates
+        - Template
+        - Name
+        - Email
+        - Jobs
+        - Export
+        - Import
+        - Inapp
+        - Journeys
+        - Push
+        - Recommenders
+        - Segments
+        - Sms
+        - Voice
+        - Channels
+        - Adm
+        - Apns
+        - Apns_sandbox
+        - Apns_voip
+        - Apns_voip_sandbox
+        - Baidu
+        - Campaign
+        - Endpoints
+        - Endpoint
+        - Eventstream
+        - Gcm
+        - Journey
+        - Recommender
+        - Segment
+        - Users
+        - User
+        - Kpis
+        - Daterange
+        - Kpi
+        - Settings
+        - Activities
+        - Versions
+        - Version
+        - Job
+        - Inappmessages
+        - Activity
+        - Execution
+        - Metrics
+        - Runs
+        - Run
+        - Tags
+        - Resource
+        - Arn
+        - Type
+        - Phone
+        - Number
+        - Validate
+        - Events
+        - Attributes
+        - Attribute
   /v1/apps/{application-id}/messages:
     POST:
       summary: SendMessages
       description: <p>Creates and sends a direct message.</p>
+      tags:
+        - Send
+        - Messages
+        - V1
+        - Apps
+        - Application
+        - Id
+        - Campaigns
+        - Templates
+        - Template
+        - Name
+        - Email
+        - Jobs
+        - Export
+        - Import
+        - Inapp
+        - Journeys
+        - Push
+        - Recommenders
+        - Segments
+        - Sms
+        - Voice
+        - Channels
+        - Adm
+        - Apns
+        - Apns_sandbox
+        - Apns_voip
+        - Apns_voip_sandbox
+        - Baidu
+        - Campaign
+        - Endpoints
+        - Endpoint
+        - Eventstream
+        - Gcm
+        - Journey
+        - Recommender
+        - Segment
+        - Users
+        - User
+        - Kpis
+        - Daterange
+        - Kpi
+        - Settings
+        - Activities
+        - Versions
+        - Version
+        - Job
+        - Inappmessages
+        - Activity
+        - Execution
+        - Metrics
+        - Runs
+        - Run
+        - Tags
+        - Resource
+        - Arn
+        - Type
+        - Phone
+        - Number
+        - Validate
+        - Events
+        - Attributes
+        - Attribute
+        - Messages
   /v1/apps/{application-id}/otp:
     POST:
       summary: SendOTPMessage
       description: <p>Send an OTP message</p>
+      tags:
+        - Send
+        - Message
+        - V1
+        - Apps
+        - Application
+        - Id
+        - Campaigns
+        - Templates
+        - Template
+        - Name
+        - Email
+        - Jobs
+        - Export
+        - Import
+        - Inapp
+        - Journeys
+        - Push
+        - Recommenders
+        - Segments
+        - Sms
+        - Voice
+        - Channels
+        - Adm
+        - Apns
+        - Apns_sandbox
+        - Apns_voip
+        - Apns_voip_sandbox
+        - Baidu
+        - Campaign
+        - Endpoints
+        - Endpoint
+        - Eventstream
+        - Gcm
+        - Journey
+        - Recommender
+        - Segment
+        - Users
+        - User
+        - Kpis
+        - Daterange
+        - Kpi
+        - Settings
+        - Activities
+        - Versions
+        - Version
+        - Job
+        - Inappmessages
+        - Activity
+        - Execution
+        - Metrics
+        - Runs
+        - Run
+        - Tags
+        - Resource
+        - Arn
+        - Type
+        - Phone
+        - Number
+        - Validate
+        - Events
+        - Attributes
+        - Attribute
+        - Messages
+        - Otp
   /v1/apps/{application-id}/users-messages:
     POST:
       summary: SendUsersMessages
       description: <p>Creates and sends a message to a list of users.</p>
+      tags:
+        - Send
+        - Users
+        - Messages
+        - V1
+        - Apps
+        - Application
+        - Id
+        - Campaigns
+        - Templates
+        - Template
+        - Name
+        - Email
+        - Jobs
+        - Export
+        - Import
+        - Inapp
+        - Journeys
+        - Push
+        - Recommenders
+        - Segments
+        - Sms
+        - Voice
+        - Channels
+        - Adm
+        - Apns
+        - Apns_sandbox
+        - Apns_voip
+        - Apns_voip_sandbox
+        - Baidu
+        - Campaign
+        - Endpoints
+        - Endpoint
+        - Eventstream
+        - Gcm
+        - Journey
+        - Recommender
+        - Segment
+        - Users
+        - User
+        - Kpis
+        - Daterange
+        - Kpi
+        - Settings
+        - Activities
+        - Versions
+        - Version
+        - Job
+        - Inappmessages
+        - Activity
+        - Execution
+        - Metrics
+        - Runs
+        - Run
+        - Tags
+        - Resource
+        - Arn
+        - Type
+        - Phone
+        - Number
+        - Validate
+        - Events
+        - Attributes
+        - Attribute
+        - Messages
+        - Otp
   /v1/apps/{application-id}/endpoints:
     PUT:
       summary: UpdateEndpointsBatch
@@ -356,17 +2699,287 @@ paths:
         for a batch of endpoints. If an update includes one or more values for a
         custom attribute, Amazon Pinpoint replaces (overwrites) any existing
         values with the new values.</p>
+      tags:
+        - Update
+        - Endpoints
+        - Batch
+        - V1
+        - Apps
+        - Application
+        - Id
+        - Campaigns
+        - Templates
+        - Template
+        - Name
+        - Email
+        - Jobs
+        - Export
+        - Import
+        - Inapp
+        - Journeys
+        - Push
+        - Recommenders
+        - Segments
+        - Sms
+        - Voice
+        - Channels
+        - Adm
+        - Apns
+        - Apns_sandbox
+        - Apns_voip
+        - Apns_voip_sandbox
+        - Baidu
+        - Campaign
+        - Endpoints
+        - Endpoint
+        - Eventstream
+        - Gcm
+        - Journey
+        - Recommender
+        - Segment
+        - Users
+        - User
+        - Kpis
+        - Daterange
+        - Kpi
+        - Settings
+        - Activities
+        - Versions
+        - Version
+        - Job
+        - Inappmessages
+        - Activity
+        - Execution
+        - Metrics
+        - Runs
+        - Run
+        - Tags
+        - Resource
+        - Arn
+        - Type
+        - Phone
+        - Number
+        - Validate
+        - Events
+        - Attributes
+        - Attribute
+        - Messages
+        - Otp
   /v1/apps/{application-id}/journeys/{journey-id}/state:
     PUT:
       summary: UpdateJourneyState
       description: <p>Pause, resume or cancels (stops) a journey.</p>
+      tags:
+        - Update
+        - Journey
+        - State
+        - V1
+        - Apps
+        - Application
+        - Id
+        - Campaigns
+        - Templates
+        - Template
+        - Name
+        - Email
+        - Jobs
+        - Export
+        - Import
+        - Inapp
+        - Journeys
+        - Push
+        - Recommenders
+        - Segments
+        - Sms
+        - Voice
+        - Channels
+        - Adm
+        - Apns
+        - Apns_sandbox
+        - Apns_voip
+        - Apns_voip_sandbox
+        - Baidu
+        - Campaign
+        - Endpoints
+        - Endpoint
+        - Eventstream
+        - Gcm
+        - Journey
+        - Recommender
+        - Segment
+        - Users
+        - User
+        - Kpis
+        - Daterange
+        - Kpi
+        - Settings
+        - Activities
+        - Versions
+        - Version
+        - Job
+        - Inappmessages
+        - Activity
+        - Execution
+        - Metrics
+        - Runs
+        - Run
+        - Tags
+        - Resource
+        - Arn
+        - Type
+        - Phone
+        - Number
+        - Validate
+        - Events
+        - Attributes
+        - Attribute
+        - Messages
+        - Otp
+        - State
   /v1/templates/{template-name}/{template-type}/active-version:
     PUT:
       summary: UpdateTemplateActiveVersion
       description: >-
         <p>Changes the status of a specific version of a message template to
         <i>active</i>.</p>
+      tags:
+        - Update
+        - Template
+        - Active
+        - Version
+        - V1
+        - Apps
+        - Application
+        - Id
+        - Campaigns
+        - Templates
+        - Template
+        - Name
+        - Email
+        - Jobs
+        - Export
+        - Import
+        - Inapp
+        - Journeys
+        - Push
+        - Recommenders
+        - Segments
+        - Sms
+        - Voice
+        - Channels
+        - Adm
+        - Apns
+        - Apns_sandbox
+        - Apns_voip
+        - Apns_voip_sandbox
+        - Baidu
+        - Campaign
+        - Endpoints
+        - Endpoint
+        - Eventstream
+        - Gcm
+        - Journey
+        - Recommender
+        - Segment
+        - Users
+        - User
+        - Kpis
+        - Daterange
+        - Kpi
+        - Settings
+        - Activities
+        - Versions
+        - Version
+        - Job
+        - Inappmessages
+        - Activity
+        - Execution
+        - Metrics
+        - Runs
+        - Run
+        - Tags
+        - Resource
+        - Arn
+        - Type
+        - Phone
+        - Number
+        - Validate
+        - Events
+        - Attributes
+        - Attribute
+        - Messages
+        - Otp
+        - State
+        - Active
   /v1/apps/{application-id}/verify-otp:
     POST:
       summary: VerifyOTPMessage
-      description: <p>Verify an
+      description: <p>Verify
+      tags:
+        - Verify
+        - Message
+        - V1
+        - Apps
+        - Application
+        - Id
+        - Campaigns
+        - Templates
+        - Template
+        - Name
+        - Email
+        - Jobs
+        - Export
+        - Import
+        - Inapp
+        - Journeys
+        - Push
+        - Recommenders
+        - Segments
+        - Sms
+        - Voice
+        - Channels
+        - Adm
+        - Apns
+        - Apns_sandbox
+        - Apns_voip
+        - Apns_voip_sandbox
+        - Baidu
+        - Campaign
+        - Endpoints
+        - Endpoint
+        - Eventstream
+        - Gcm
+        - Journey
+        - Recommender
+        - Segment
+        - Users
+        - User
+        - Kpis
+        - Daterange
+        - Kpi
+        - Settings
+        - Activities
+        - Versions
+        - Version
+        - Job
+        - Inappmessages
+        - Activity
+        - Execution
+        - Metrics
+        - Runs
+        - Run
+        - Tags
+        - Resource
+        - Arn
+        - Type
+        - Phone
+        - Number
+        - Validate
+        - Events
+        - Attributes
+        - Attribute
+        - Messages
+        - Otp
+        - State
+        - Active
+        - Veri

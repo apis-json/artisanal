@@ -17,6 +17,11 @@ paths:
         for the value of <code>DatasetType</code>. </p> <p>This operation
         requires permissions to perform the
         <code>lookoutvision:CreateDataset</code> operation.</p>
+      tags:
+        - Create
+        - Dataset
+        - Name
+        - Datasets
   /2020-11-20/projects/{projectName}/models:
     GET:
       summary: ListModels
@@ -27,6 +32,12 @@ paths:
         to appear in the response from <code>ListProjects</code>.</p> <p>This
         operation requires permissions to perform the
         <code>lookoutvision:ListModels</code> operation.</p>
+      tags:
+        - List
+        - Models
+        - Name
+        - Datasets
+        - Models
   /2020-11-20/projects:
     GET:
       summary: ListProjects
@@ -39,6 +50,16 @@ paths:
         from <code>ListProjects</code>.</p> <p>This operation requires
         permissions to perform the <code>lookoutvision:ListProjects</code>
         operation.</p>
+      tags:
+        - List
+        - Projects
+        - Name
+        - Datasets
+        - Models
+        - '2020'
+        - '11'
+        - '20'
+        - Projects
   /2020-11-20/projects/{projectName}/datasets/{datasetType}:
     GET:
       summary: DescribeDataset
@@ -46,6 +67,18 @@ paths:
         <p>Describe an Amazon Lookout for Vision dataset.</p> <p>This operation
         requires permissions to perform the
         <code>lookoutvision:DescribeDataset</code> operation.</p>
+      tags:
+        - Describe
+        - Dataset
+        - Name
+        - Datasets
+        - Models
+        - '2020'
+        - '11'
+        - '20'
+        - Projects
+        - Dataset
+        - Type
   /2020-11-20/projects/{projectName}/models/{modelVersion}:
     GET:
       summary: DescribeModel
@@ -53,6 +86,20 @@ paths:
         <p>Describes a version of an Amazon Lookout for Vision model.</p>
         <p>This operation requires permissions to perform the
         <code>lookoutvision:DescribeModel</code> operation.</p>
+      tags:
+        - Describe
+        - Model
+        - Name
+        - Datasets
+        - Models
+        - '2020'
+        - '11'
+        - '20'
+        - Projects
+        - Dataset
+        - Type
+        - Model
+        - Version
   /2020-11-20/projects/{projectName}:
     GET:
       summary: DescribeProject
@@ -60,6 +107,20 @@ paths:
         <p>Describes an Amazon Lookout for Vision project.</p> <p>This operation
         requires permissions to perform the
         <code>lookoutvision:DescribeProject</code> operation.</p>
+      tags:
+        - Describe
+        - Project
+        - Name
+        - Datasets
+        - Models
+        - '2020'
+        - '11'
+        - '20'
+        - Projects
+        - Dataset
+        - Type
+        - Model
+        - Version
   /2020-11-20/projects/{projectName}/modelpackagingjobs/{jobName}:
     GET:
       summary: DescribeModelPackagingJob
@@ -70,6 +131,24 @@ paths:
         <p>For more information, see <i>Using your Amazon Lookout for Vision
         model on an edge device</i> in the Amazon Lookout for Vision Developer
         Guide. </p>
+      tags:
+        - Describe
+        - Model
+        - Packaging
+        - Job
+        - Name
+        - Datasets
+        - Models
+        - '2020'
+        - '11'
+        - '20'
+        - Projects
+        - Dataset
+        - Type
+        - Model
+        - Version
+        - Modelpackagingjobs
+        - Job
   /2020-11-20/projects/{projectName}/models/{modelVersion}/detect:
     POST:
       summary: DetectAnomalies
@@ -88,6 +167,23 @@ paths:
         anomalies in an image</i> in the Amazon Lookout for Vision developer
         guide.</p> <p>This operation requires permissions to perform the
         <code>lookoutvision:DetectAnomalies</code> operation.</p>
+      tags:
+        - Detect
+        - Anomalies
+        - Name
+        - Datasets
+        - Models
+        - '2020'
+        - '11'
+        - '20'
+        - Projects
+        - Dataset
+        - Type
+        - Model
+        - Version
+        - Modelpackagingjobs
+        - Job
+        - Detect
   /2020-11-20/projects/{projectName}/datasets/{datasetType}/entries:
     PATCH:
       summary: UpdateDatasetEntries
@@ -107,6 +203,25 @@ paths:
         call <a>DescribeDataset</a> and check the <code>Status</code> field in
         the response.</p> <p>This operation requires permissions to perform the
         <code>lookoutvision:UpdateDatasetEntries</code> operation.</p>
+      tags:
+        - Update
+        - Dataset
+        - Entries
+        - Name
+        - Datasets
+        - Models
+        - '2020'
+        - '11'
+        - '20'
+        - Projects
+        - Dataset
+        - Type
+        - Model
+        - Version
+        - Modelpackagingjobs
+        - Job
+        - Detect
+        - Entries
   /2020-11-20/projects/{projectName}/modelpackagingjobs:
     POST:
       summary: StartModelPackagingJob
@@ -132,6 +247,26 @@ paths:
         the component.</p> </li> </ul> <p>For more information, see <i>Using
         your Amazon Lookout for Vision model on an edge device</i> in the Amazon
         Lookout for Vision Developer Guide. </p>
+      tags:
+        - Start
+        - Model
+        - Packaging
+        - Job
+        - Name
+        - Datasets
+        - Models
+        - '2020'
+        - '11'
+        - '20'
+        - Projects
+        - Dataset
+        - Type
+        - Model
+        - Version
+        - Modelpackagingjobs
+        - Job
+        - Detect
+        - Entries
   /2020-11-20/tags/{resourceArn}:
     DELETE:
       summary: UntagResource
@@ -141,6 +276,25 @@ paths:
         for Vision Developer Guide</i>. </p> <p>This operation requires
         permissions to perform the <code>lookoutvision:UntagResource</code>
         operation.</p>
+      tags:
+        - Untag
+        - Resource
+        - Name
+        - Datasets
+        - Models
+        - '2020'
+        - '11'
+        - '20'
+        - Projects
+        - Dataset
+        - Type
+        - Model
+        - Version
+        - Modelpackagingjobs
+        - Job
+        - Detect
+        - Entries
+        - Arn
   /2020-11-20/projects/{projectName}/models/{modelVersion}/start:
     POST:
       summary: StartModel
@@ -154,6 +308,26 @@ paths:
         time that the model is running. To stop a running model, call
         <a>StopModel</a>.</p> </note> <p>This operation requires permissions to
         perform the <code>lookoutvision:StartModel</code> operation.</p>
+      tags:
+        - Start
+        - Model
+        - Name
+        - Datasets
+        - Models
+        - '2020'
+        - '11'
+        - '20'
+        - Projects
+        - Dataset
+        - Type
+        - Model
+        - Version
+        - Modelpackagingjobs
+        - Job
+        - Detect
+        - Entries
+        - Arn
+        - Start
   /2020-11-20/projects/{projectName}/models/{modelVersion}/stop:
     POST:
       summary: StopModel
@@ -163,4 +337,25 @@ paths:
         <a>DescribeModel</a>. </p> <p>After the model hosting stops, the
         <code>Status</code> of the model is <code>TRAINED</code>.</p> <p>This
         operation requires permissions to perform the
-        <code>lookoutvision:StopModel</code> operat
+        <code>lookoutvision:StopModel</code> oper
+      tags:
+        - Stop
+        - Model
+        - Name
+        - Datasets
+        - Models
+        - '2020'
+        - '11'
+        - '20'
+        - Projects
+        - Dataset
+        - Type
+        - Model
+        - Version
+        - Modelpackagingjobs
+        - Job
+        - Detect
+        - Entries
+        - Arn
+        - Start
+        - St

@@ -41,6 +41,12 @@ paths:
         </p> </li> <li> <p> <a
         href="https://docs.aws.amazon.com/payment-cryptography/latest/APIReference/API_ImportKey.html">ImportKey</a>
         </p> </li> </ul>
+      tags:
+        - Decrypt
+        - Data
+        - Key
+        - Identifier
+        - Decrypt
   /keys/{KeyIdentifier}/encrypt:
     POST:
       summary: EncryptData
@@ -81,6 +87,13 @@ paths:
         </p> </li> <li> <p> <a
         href="https://docs.aws.amazon.com/payment-cryptography/latest/APIReference/API_ImportKey.html">ImportKey</a>
         </p> </li> <li> <p> <a>ReEncryptData</a> </p> </li> </ul>
+      tags:
+        - Encrypt
+        - Data
+        - Key
+        - Identifier
+        - Decrypt
+        - Encrypt
   /cardvalidationdata/generate:
     POST:
       summary: GenerateCardValidationData
@@ -112,6 +125,17 @@ paths:
         accounts.</p> <p> <b>Related operations:</b> </p> <ul> <li> <p> <a
         href="https://docs.aws.amazon.com/payment-cryptography/latest/APIReference/API_ImportKey.html">ImportKey</a>
         </p> </li> <li> <p> <a>VerifyCardValidationData</a> </p> </li> </ul>
+      tags:
+        - Generate
+        - Card
+        - Validation
+        - Data
+        - Key
+        - Identifier
+        - Decrypt
+        - Encrypt
+        - Cardvalidationdata
+        - Generate
   /mac/generate:
     POST:
       summary: GenerateMac
@@ -137,6 +161,16 @@ paths:
         This operation can't be used across different Amazon Web Services
         accounts.</p> <p> <b>Related operations:</b> </p> <ul> <li> <p>
         <a>VerifyMac</a> </p> </li> </ul>
+      tags:
+        - Generate
+        - Mac
+        - Key
+        - Identifier
+        - Decrypt
+        - Encrypt
+        - Cardvalidationdata
+        - Generate
+        - Mac
   /pindata/generate:
     POST:
       summary: GeneratePinData
@@ -163,6 +197,18 @@ paths:
         <a>GenerateCardValidationData</a> </p> </li> <li> <p>
         <a>TranslatePinData</a> </p> </li> <li> <p> <a>VerifyPinData</a> </p>
         </li> </ul>
+      tags:
+        - Generate
+        - Pin
+        - Data
+        - Key
+        - Identifier
+        - Decrypt
+        - Encrypt
+        - Cardvalidationdata
+        - Generate
+        - Mac
+        - Pindata
   /keys/{IncomingKeyIdentifier}/reencrypt:
     POST:
       summary: ReEncryptData
@@ -201,6 +247,20 @@ paths:
         </p> </li> <li> <p> <a
         href="https://docs.aws.amazon.com/payment-cryptography/latest/APIReference/API_ImportKey.html">ImportKey</a>
         </p> </li> </ul>
+      tags:
+        - Re
+        - Encrypt
+        - Data
+        - Key
+        - Identifier
+        - Decrypt
+        - Encrypt
+        - Cardvalidationdata
+        - Generate
+        - Mac
+        - Pindata
+        - Incoming
+        - Reencrypt
   /pindata/translate:
     POST:
       summary: TranslatePinData
@@ -237,6 +297,21 @@ paths:
         be used across different Amazon Web Services accounts.</p> <p>
         <b>Related operations:</b> </p> <ul> <li> <p> <a>GeneratePinData</a>
         </p> </li> <li> <p> <a>VerifyPinData</a> </p> </li> </ul>
+      tags:
+        - Translate
+        - Pin
+        - Data
+        - Key
+        - Identifier
+        - Decrypt
+        - Encrypt
+        - Cardvalidationdata
+        - Generate
+        - Mac
+        - Pindata
+        - Incoming
+        - Reencrypt
+        - Translate
   /cryptogram/verify:
     POST:
       summary: VerifyAuthRequestCryptogram
@@ -270,6 +345,24 @@ paths:
         accounts.</p> <p> <b>Related operations:</b> </p> <ul> <li> <p>
         <a>VerifyCardValidationData</a> </p> </li> <li> <p> <a>VerifyPinData</a>
         </p> </li> </ul>
+      tags:
+        - Verify
+        - Auth
+        - Request
+        - Cryptogram
+        - Key
+        - Identifier
+        - Decrypt
+        - Encrypt
+        - Cardvalidationdata
+        - Generate
+        - Mac
+        - Pindata
+        - Incoming
+        - Reencrypt
+        - Translate
+        - Cryptogram
+        - Verify
   /cardvalidationdata/verify:
     POST:
       summary: VerifyCardValidationData
@@ -299,6 +392,24 @@ paths:
         <a>GenerateCardValidationData</a> </p> </li> <li> <p>
         <a>VerifyAuthRequestCryptogram</a> </p> </li> <li> <p>
         <a>VerifyPinData</a> </p> </li> </ul>
+      tags:
+        - Verify
+        - Card
+        - Validation
+        - Data
+        - Key
+        - Identifier
+        - Decrypt
+        - Encrypt
+        - Cardvalidationdata
+        - Generate
+        - Mac
+        - Pindata
+        - Incoming
+        - Reencrypt
+        - Translate
+        - Cryptogram
+        - Verify
   /mac/verify:
     POST:
       summary: VerifyMac
@@ -320,6 +431,22 @@ paths:
         This operation can't be used across different Amazon Web Services
         accounts.</p> <p> <b>Related operations:</b> </p> <ul> <li> <p>
         <a>GenerateMac</a> </p> </li> </ul>
+      tags:
+        - Verify
+        - Mac
+        - Key
+        - Identifier
+        - Decrypt
+        - Encrypt
+        - Cardvalidationdata
+        - Generate
+        - Mac
+        - Pindata
+        - Incoming
+        - Reencrypt
+        - Translate
+        - Cryptogram
+        - Verify
   /pindata/verify:
     POST:
       summary: VerifyPinData
@@ -344,4 +471,21 @@ paths:
         This operation can't be used across different Amazon Web Services
         accounts.</p> <p> <b>Related operations:</b> </p> <ul> <li> <p>
         <a>GeneratePinData</a> </p> </li> <li> <p> <a>TranslatePinData</a> </p>
-        </l
+        <
+      tags:
+        - Verify
+        - Pin
+        - Data
+        - Key
+        - Identifier
+        - Decrypt
+        - Encrypt
+        - Cardvalidationdata
+        - Generate
+        - Mac
+        - Pindata
+        - Incoming
+        - Reencrypt
+        - Translate
+        - Cryptogram
+        - Veri

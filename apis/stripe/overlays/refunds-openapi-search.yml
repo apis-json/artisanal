@@ -8,6 +8,9 @@ paths:
         <p>Returns a list of all refunds you created. We return the refunds in
         sorted order, with the most recent refunds appearing first The 10 most
         recent refunds are always available by default on the Charge object.</p>
+      tags:
+        - V1
+        - Refunds
     post:
       description: >-
         <p>When you create a new refund, you must specify a Charge or a
@@ -33,9 +36,16 @@ paths:
         charge,
 
         or when trying to refund more money than is left on a charge.</p>
+      tags:
+        - V1
+        - Refunds
   /v1/refunds/{refund}:
     get:
       description: <p>Retrieves the details of an existing refund.</p>
+      tags:
+        - V1
+        - Refunds
+        - Refund
     post:
       description: >-
         <p>Updates the refund that you specify by setting the values of the
@@ -44,6 +54,10 @@ paths:
 
 
         <p>This request only accepts <code>metadata</code> as an argument.</p>
+      tags:
+        - V1
+        - Refunds
+        - Refund
   /v1/refunds/{refund}/cancel:
     post:
       description: >-
@@ -52,4 +66,9 @@ paths:
 
         <p>You can’t cancel refunds in other states. Only refunds for payment
         methods that require customer action can enter the
-        <code>requires_action</code> st
+        <code>requires_action</code> 
+      tags:
+        - V1
+        - Refunds
+        - Refund
+        - Canc

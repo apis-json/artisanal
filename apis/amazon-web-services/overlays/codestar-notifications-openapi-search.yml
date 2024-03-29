@@ -10,40 +10,111 @@ paths:
         events you want notifications about and the targets (such as Chatbot
         topics or Chatbot clients configured for Slack) where you want to
         receive them.</p>
+      tags:
+        - Create
+        - Notification
+        - Rule
+        - Notification
+        - Rule
   /deleteNotificationRule:
     POST:
       summary: DeleteNotificationRule
       description: <p>Deletes a notification rule for a resource.</p>
+      tags:
+        - Delete
+        - Notification
+        - Rule
+        - Notification
+        - Rule
   /deleteTarget:
     POST:
       summary: DeleteTarget
       description: <p>Deletes a specified target for notifications.</p>
+      tags:
+        - Delete
+        - Target
+        - Notification
+        - Rule
+        - Target
   /describeNotificationRule:
     POST:
       summary: DescribeNotificationRule
       description: <p>Returns information about a specified notification rule.</p>
+      tags:
+        - Describe
+        - Notification
+        - Rule
+        - Notification
+        - Rule
+        - Target
   /listEventTypes:
     POST:
       summary: ListEventTypes
       description: >-
         <p>Returns information about the event types available for configuring
         notifications.</p>
+      tags:
+        - List
+        - Event
+        - Types
+        - Notification
+        - Rule
+        - Target
+        - Event
+        - Types
   /listNotificationRules:
     POST:
       summary: ListNotificationRules
       description: >-
         <p>Returns a list of the notification rules for an Amazon Web Services
         account.</p>
+      tags:
+        - List
+        - Notification
+        - Rules
+        - Notification
+        - Rule
+        - Target
+        - Event
+        - Types
+        - Rules
   /listTagsForResource:
     POST:
       summary: ListTagsForResource
       description: <p>Returns a list of the tags associated with a notification rule.</p>
+      tags:
+        - List
+        - Tags
+        - For
+        - Resource
+        - Notification
+        - Rule
+        - Target
+        - Event
+        - Types
+        - Rules
+        - Tags
+        - For
+        - Resource
   /listTargets:
     POST:
       summary: ListTargets
       description: >-
         <p>Returns a list of the notification rule targets for an Amazon Web
         Services account.</p>
+      tags:
+        - List
+        - Targets
+        - Notification
+        - Rule
+        - Target
+        - Event
+        - Types
+        - Rules
+        - Tags
+        - For
+        - Resource
+        - Targets
   /subscribe:
     POST:
       summary: Subscribe
@@ -51,10 +122,37 @@ paths:
         <p>Creates an association between a notification rule and an Chatbot
         topic or Chatbot client so that the associated target can receive
         notifications when the events described in the rule are triggered.</p>
+      tags:
+        - Subscribe
+        - Notification
+        - Rule
+        - Target
+        - Event
+        - Types
+        - Rules
+        - Tags
+        - For
+        - Resource
+        - Targets
+        - Subscribe
   /tagResource:
     POST:
       summary: TagResource
       description: <p>Associates a set of provided tags with a notification rule.</p>
+      tags:
+        - Tag
+        - Resource
+        - Notification
+        - Rule
+        - Target
+        - Event
+        - Types
+        - Rules
+        - Tags
+        - For
+        - Resource
+        - Targets
+        - Subscribe
   /unsubscribe:
     POST:
       summary: Unsubscribe
@@ -62,12 +160,42 @@ paths:
         <p>Removes an association between a notification rule and an Chatbot
         topic so that subscribers to that topic stop receiving notifications
         when the events described in the rule are triggered.</p>
+      tags:
+        - Unsubscribe
+        - Notification
+        - Rule
+        - Target
+        - Event
+        - Types
+        - Rules
+        - Tags
+        - For
+        - Resource
+        - Targets
+        - Subscribe
+        - Unsubscribe
   /untagResource/{resourceArn}:
     POST:
       summary: UntagResource
       description: >-
         <p>Removes the association between one or more provided tags and a
         notification rule.</p>
+      tags:
+        - Untag
+        - Resource
+        - Notification
+        - Rule
+        - Target
+        - Event
+        - Types
+        - Rules
+        - Tags
+        - For
+        - Resource
+        - Targets
+        - Subscribe
+        - Unsubscribe
+        - Arn
   /updateNotificationRule:
     POST:
       summary: UpdateNotificationRule
@@ -76,4 +204,21 @@ paths:
         that trigger the notification rule, the status of the rule, and the
         targets that receive the notifications.</p> <note> <p>To add or remove
         tags for a notification rule, you must use <a>TagResource</a> and
-        <a>UntagResource</a>.</p>
+        <a>UntagResource</a>.</
+      tags:
+        - Update
+        - Notification
+        - Rule
+        - Notification
+        - Rule
+        - Target
+        - Event
+        - Types
+        - Rules
+        - Tags
+        - For
+        - Resource
+        - Targets
+        - Subscribe
+        - Unsubscribe
+        - A

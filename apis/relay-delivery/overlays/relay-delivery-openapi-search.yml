@@ -11,20 +11,37 @@ paths:
   /order:
     post:
       tags:
-        - order
+        - Create
+        - New
+        - Delivery
+        - Or
+        - Pickup
+        - Order.
+        - Order
       summary: Create a new delivery or pickup order.
       description: ''
   /order/{orderKey}:
     patch:
       tags:
-        - order
+        - Make
+        - Changes
+        - To
+        - An
+        - Active
+        - Order.
+        - Order
+        - Key
       summary: Make changes to an active order.
       description: >-
         Some fields of the order may be updated. See
         /schemas/platform-order-update-request.html
     get:
       tags:
-        - order
+        - Fetch
+        - An
+        - Order.
+        - Order
+        - Key
       summary: Fetch an order.
       description: >-
         Review order details and hooks. Polling this method is not expected. You
@@ -32,13 +49,24 @@ paths:
   /quote:
     post:
       tags:
-        - quote
+        - Request
+        - New
+        - Quote
+        - Order
+        - Key
+        - Quote
       summary: Request a new quote
       description: ''
   /quote/{quoteKey}:
     get:
       tags:
-        - quote
+        - Fetch
+        - Previously
+        - Created
+        - Quote.
+        - Order
+        - Key
+        - Quote
       summary: Fetch a previously created quote.
       description: >-
         If you created a quote a in the past and you want to check if the quote
@@ -48,7 +76,18 @@ paths:
   /delivery-zone:
     post:
       tags:
-        - delivery-zone
+        - Retrieve
+        - The
+        - Delivery
+        - Zone
+        - For
+        - Any
+        - Address
+        - Order
+        - Key
+        - Quote
+        - Delivery
+        - Zone
       summary: Retrieve the delivery zone for any address
       description: >-
         Relay's maximum possible operating zone for a specific address. Orders
@@ -56,7 +95,19 @@ paths:
   /order/ready:
     post:
       tags:
-        - order
+        - Toggle
+        - The
+        - Ready
+        - Status
+        - Of
+        - An
+        - Order.
+        - Order
+        - Key
+        - Quote
+        - Delivery
+        - Zone
+        - Ready
       summary: Toggle the ready status of an order.
       description: >-
         If you have an event for when an order is ready to be picked up then you
@@ -66,8 +117,17 @@ paths:
   /order/void:
     post:
       tags:
-        - order
+        - Void/cancel
+        - An
+        - Order
+        - Order
+        - Key
+        - Quote
+        - Delivery
+        - Zone
+        - Ready
+        - Void
       summary: Void/cancel an Order
       description: >-
         Cancel an order when a customer no longer wants an order. Voiding an
-        order should be extremely rare and excessive voiding is treated a
+        order should be extremely rare and excessive voiding is

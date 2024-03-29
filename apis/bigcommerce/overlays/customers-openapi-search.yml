@@ -31,6 +31,9 @@ paths:
         Attribute names are not available on the customer object.
       summary: Get All Customers
       tags:
+        - Get
+        - All
+        - Customers
         - Customers
     post:
       description: >-
@@ -83,6 +86,8 @@ paths:
           * Provide a `channel_ids` array containing the channels accessible by the customer. This array cannot be empty.
       summary: Create Customers
       tags:
+        - Create
+        - Customers
         - Customers
     put:
       description: >-
@@ -121,6 +126,8 @@ paths:
         given a channel.
       summary: Update Customers
       tags:
+        - Update
+        - Customers
         - Customers
     delete:
       description: >-
@@ -139,6 +146,8 @@ paths:
         returned, with no changes to the data.
       summary: Delete Customers
       tags:
+        - Delete
+        - Customers
         - Customers
   /customers/addresses:
     get:
@@ -147,6 +156,11 @@ paths:
         passed in.
       summary: Get All Customer Addresses
       tags:
+        - Get
+        - All
+        - Customer
+        - Addresses
+        - Customers
         - Addresses
     post:
       description: >-
@@ -192,6 +206,10 @@ paths:
         * The default rate limit for this endpoint is 10 concurrent requests.
       summary: Create a Customer Address
       tags:
+        - Create
+        - Customer
+        - Address
+        - Customers
         - Addresses
     put:
       description: >-
@@ -231,6 +249,10 @@ paths:
         body.
       summary: Update a Customer Address
       tags:
+        - Update
+        - Customer
+        - Address
+        - Customers
         - Addresses
     delete:
       description: |-
@@ -240,11 +262,21 @@ paths:
         * id:in -- ID of the *Customer Address*
       summary: Delete a Customer Address
       tags:
+        - Delete
+        - Customer
+        - Address
+        - Customers
         - Addresses
   /customers/validate-credentials:
     post:
       tags:
-        - Validate Credentials
+        - Validate
+        - Customer
+        - Credentials
+        - Customers
+        - Addresses
+        - Validate
+        - Credentials
       description: >-
         Validate a customer credentials - This endpoint has special rate
         limiting protections to protect against abuse.
@@ -252,18 +284,43 @@ paths:
   /customers/settings:
     get:
       tags:
-        - Global Settings
+        - Get
+        - Customer
+        - Settings
+        - Customers
+        - Addresses
+        - Validate
+        - Credentials
+        - Settings
       description: Returns the global-level customer settings.
       summary: Get Customer Settings
     put:
       tags:
-        - Global Settings
+        - Update
+        - Customer
+        - Settings
+        - Customers
+        - Addresses
+        - Validate
+        - Credentials
+        - Settings
       description: Updates the customer settings on the global level.
       summary: Update Customer Settings
   /customers/settings/channels/{channel_id}:
     get:
       tags:
-        - Channel Settings
+        - Get
+        - Customer
+        - Settings
+        - Per
+        - Channel
+        - Customers
+        - Addresses
+        - Validate
+        - Credentials
+        - Settings
+        - Channels
+        - Channel_id
       description: |-
         Returns the customer settings per channel.
 
@@ -273,7 +330,18 @@ paths:
       summary: Get Customer Settings per Channel
     put:
       tags:
-        - Channel Settings
+        - Update
+        - Customer
+        - Settings
+        - Per
+        - Channel
+        - Customers
+        - Addresses
+        - Validate
+        - Credentials
+        - Settings
+        - Channels
+        - Channel_id
       description: >-
         Update the customer settings per channel
 
@@ -302,6 +370,17 @@ paths:
         parameters.
       summary: Get All Customer Attributes
       tags:
+        - Get
+        - All
+        - Customer
+        - Attributes
+        - Customers
+        - Addresses
+        - Validate
+        - Credentials
+        - Settings
+        - Channels
+        - Channel_id
         - Attributes
     post:
       description: >-
@@ -337,6 +416,16 @@ paths:
         A store cannot have more than 50 customer attributes.
       summary: Create a Customer Attribute
       tags:
+        - Create
+        - Customer
+        - Attribute
+        - Customers
+        - Addresses
+        - Validate
+        - Credentials
+        - Settings
+        - Channels
+        - Channel_id
         - Attributes
     put:
       description: >-
@@ -359,6 +448,16 @@ paths:
         * Limit of 3 concurrent requests.
       summary: Update a Customer Attribute
       tags:
+        - Update
+        - Customer
+        - Attribute
+        - Customers
+        - Addresses
+        - Validate
+        - Credentials
+        - Settings
+        - Channels
+        - Channel_id
         - Attributes
     delete:
       description: |-
@@ -368,6 +467,16 @@ paths:
         * id:in -- ID of the *Customer Attribute*
       summary: Delete Customer Attributes
       tags:
+        - Delete
+        - Customer
+        - Attributes
+        - Customers
+        - Addresses
+        - Validate
+        - Credentials
+        - Settings
+        - Channels
+        - Channel_id
         - Attributes
   /customers/attribute-values:
     get:
@@ -376,7 +485,21 @@ paths:
         can be passed in.
       summary: Get All Customer Attribute Values
       tags:
-        - Attribute Values
+        - Get
+        - All
+        - Customer
+        - Attribute
+        - Values
+        - Customers
+        - Addresses
+        - Validate
+        - Credentials
+        - Settings
+        - Channels
+        - Channel_id
+        - Attributes
+        - Attribute
+        - Values
     put:
       description: >-
         Upserts Customer Attribute Values. Updates the attribute values on the
@@ -392,7 +515,20 @@ paths:
         * 10 per call limit.
       summary: Upsert Customer Attribute Values
       tags:
-        - Attribute Values
+        - Upsert
+        - Customer
+        - Attribute
+        - Values
+        - Customers
+        - Addresses
+        - Validate
+        - Credentials
+        - Settings
+        - Channels
+        - Channel_id
+        - Attributes
+        - Attribute
+        - Values
     delete:
       description: >-
         Deletes Customer Attribute Values. Deletes the attribute value from the
@@ -404,7 +540,20 @@ paths:
         * id:in - ID of the *Customer Attribute Value*
       summary: Delete Customer Attribute Values
       tags:
-        - Attribute Values
+        - Delete
+        - Customer
+        - Attribute
+        - Values
+        - Customers
+        - Addresses
+        - Validate
+        - Credentials
+        - Settings
+        - Channels
+        - Channel_id
+        - Attributes
+        - Attribute
+        - Values
   /customers/form-field-values:
     get:
       summary: Get Customer Form Field Values
@@ -417,7 +566,23 @@ paths:
         Fields in the Account Signup
         Form](https://support.bigcommerce.com/s/article/Editing-Form-Fields).
       tags:
-        - Form Field Values
+        - Get
+        - Customer
+        - Form
+        - Field
+        - Values
+        - Customers
+        - Addresses
+        - Validate
+        - Credentials
+        - Settings
+        - Channels
+        - Channel_id
+        - Attributes
+        - Attribute
+        - Values
+        - Form
+        - Field
     put:
       summary: Upsert Customer Form Field Values
       description: >-
@@ -438,7 +603,23 @@ paths:
 
         * Limit of 10 concurrent requests.
       tags:
-        - Form Field Values
+        - Upsert
+        - Customer
+        - Form
+        - Field
+        - Values
+        - Customers
+        - Addresses
+        - Validate
+        - Credentials
+        - Settings
+        - Channels
+        - Channel_id
+        - Attributes
+        - Attribute
+        - Values
+        - Form
+        - Field
   /customers/{customerId}/consent:
     get:
       description: >-
@@ -446,6 +627,22 @@ paths:
         cookies and scripts while shopping on a storefront.
       summary: Get Customer Consent
       tags:
+        - Get
+        - Customer
+        - Consent
+        - Customers
+        - Addresses
+        - Validate
+        - Credentials
+        - Settings
+        - Channels
+        - Channel_id
+        - Attributes
+        - Attribute
+        - Values
+        - Form
+        - Field
+        - Id
         - Consent
     put:
       description: >-
@@ -453,6 +650,22 @@ paths:
         cookies and scripts while shopping on a storefront.
       summary: Update Customer Consent
       tags:
+        - Update
+        - Customer
+        - Consent
+        - Customers
+        - Addresses
+        - Validate
+        - Credentials
+        - Settings
+        - Channels
+        - Channel_id
+        - Attributes
+        - Attribute
+        - Values
+        - Form
+        - Field
+        - Id
         - Consent
     parameters:
       - null
@@ -460,7 +673,25 @@ paths:
     get:
       summary: Get Stored Instruments
       tags:
-        - Stored Instruments
+        - Get
+        - Stored
+        - Instruments
+        - Customers
+        - Addresses
+        - Validate
+        - Credentials
+        - Settings
+        - Channels
+        - Channel_id
+        - Attributes
+        - Attribute
+        - Values
+        - Form
+        - Field
+        - Id
+        - Consent
+        - Stored
+        - Instruments
       description: >-
         Lists all available stored instruments for a customer. This list will
         include all types of stored instruments namely card, account and
@@ -471,14 +702,52 @@ paths:
     get:
       summary: Get Customer Metafields
       tags:
-        - Customer Metafields
+        - Get
+        - Customer
+        - Metafields
+        - Customers
+        - Addresses
+        - Validate
+        - Credentials
+        - Settings
+        - Channels
+        - Channel_id
+        - Attributes
+        - Attribute
+        - Values
+        - Form
+        - Field
+        - Id
+        - Consent
+        - Stored
+        - Instruments
+        - Metafields
       description: >-
         Gets customer metafields by passing the `customerId` in the query
         parameters.
     post:
       summary: Create Customer Metafields
       tags:
-        - Customer Metafields
+        - Create
+        - Customer
+        - Metafields
+        - Customers
+        - Addresses
+        - Validate
+        - Credentials
+        - Settings
+        - Channels
+        - Channel_id
+        - Attributes
+        - Attribute
+        - Values
+        - Form
+        - Field
+        - Id
+        - Consent
+        - Stored
+        - Instruments
+        - Metafields
       description: >-
         Creates Customer metafields by passing the `customerId` in the query
         parameters.
@@ -489,18 +758,78 @@ paths:
         Lists available metafields for a customer. To retrieve the list, use
         `customerId` and `metafieldId` in the query parameters.
       tags:
-        - Customer Metafields
+        - Get
+        - Customer
+        - Metafields
+        - List
+        - Customers
+        - Addresses
+        - Validate
+        - Credentials
+        - Settings
+        - Channels
+        - Channel_id
+        - Attributes
+        - Attribute
+        - Values
+        - Form
+        - Field
+        - Id
+        - Consent
+        - Stored
+        - Instruments
+        - Metafields
+        - Metafield
     put:
       summary: Update a Metafield
       tags:
-        - Customer Metafields
+        - Update
+        - Metafield
+        - Customers
+        - Addresses
+        - Validate
+        - Credentials
+        - Settings
+        - Channels
+        - Channel_id
+        - Attributes
+        - Attribute
+        - Values
+        - Form
+        - Field
+        - Id
+        - Consent
+        - Stored
+        - Instruments
+        - Metafields
+        - Metafield
       description: >-
         Updates customer metafields. To update the customer metafields, use
         'customerId' and 'metafield' in the query parameters.
     delete:
       summary: Delete Customer Metafields
       tags:
-        - Customer Metafields
+        - Delete
+        - Customer
+        - Metafields
+        - Customers
+        - Addresses
+        - Validate
+        - Credentials
+        - Settings
+        - Channels
+        - Channel_id
+        - Attributes
+        - Attribute
+        - Values
+        - Form
+        - Field
+        - Id
+        - Consent
+        - Stored
+        - Instruments
+        - Metafields
+        - Metafield
       description: >
         Deletes customer metafields. To delete customer metafields, use
         'customerId' and 'metafieldId' in the query parameters.
@@ -508,20 +837,101 @@ paths:
     get:
       summary: Get All Customer Metafields
       tags:
-        - Customer Batch Metafields
+        - Get
+        - All
+        - Customer
+        - Metafields
+        - Customers
+        - Addresses
+        - Validate
+        - Credentials
+        - Settings
+        - Channels
+        - Channel_id
+        - Attributes
+        - Attribute
+        - Values
+        - Form
+        - Field
+        - Id
+        - Consent
+        - Stored
+        - Instruments
+        - Metafields
+        - Metafield
       description: Get all customer metafields.
     post:
       summary: Create Multiple Metafields
       tags:
-        - Customer Batch Metafields
+        - Create
+        - Multiple
+        - Metafields
+        - Customers
+        - Addresses
+        - Validate
+        - Credentials
+        - Settings
+        - Channels
+        - Channel_id
+        - Attributes
+        - Attribute
+        - Values
+        - Form
+        - Field
+        - Id
+        - Consent
+        - Stored
+        - Instruments
+        - Metafields
+        - Metafield
       description: Create multiple metafields.
     put:
       summary: Update Multiple Metafields
       tags:
-        - Customer Batch Metafields
+        - Update
+        - Multiple
+        - Metafields
+        - Customers
+        - Addresses
+        - Validate
+        - Credentials
+        - Settings
+        - Channels
+        - Channel_id
+        - Attributes
+        - Attribute
+        - Values
+        - Form
+        - Field
+        - Id
+        - Consent
+        - Stored
+        - Instruments
+        - Metafields
+        - Metafield
       description: Create multiple metafields.
     delete:
       summary: Delete All Metafields
       tags:
-        - Customer Batch Metafields
-      description: Delete all customer metafield
+        - Delete
+        - All
+        - Metafields
+        - Customers
+        - Addresses
+        - Validate
+        - Credentials
+        - Settings
+        - Channels
+        - Channel_id
+        - Attributes
+        - Attribute
+        - Values
+        - Form
+        - Field
+        - Id
+        - Consent
+        - Stored
+        - Instruments
+        - Metafields
+        - Metafield
+      description: Delete all customer
