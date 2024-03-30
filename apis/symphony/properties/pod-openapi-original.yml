@@ -7425,8 +7425,8 @@ paths:
                 url: https://some.url
                 apiKey: 123456
               cert: >-
-                --BEGIN PUBLIC KEY--\nMIICIANBgkqhw0BAQ...cCAwEAAQ==\n-----END
-                PUBLIC KEY-----
+                --BEGIN PUBLIC KEY--\nMIICIANBgkqhw0BAQ...cCAwEAAQ==\n--END
+                PUBLIC KEY--
               authenticationKeys: null
               properties:
                 - key: port
@@ -7515,9 +7515,9 @@ paths:
                 url: https://some.url
                 apiKey: 123456
               cert: >-
-                -----BEGIN PUBLIC
-                KEY-----\nMIICIANBgkqhw0BAQ...cCAwEAAQ==\n-----END PUBLIC
-                KEY-----
+                --BEGIN PUBLIC
+                KEY--\nMIICIANBgkqhw0BAQ...cCAwEAAQ==\n--END PUBLIC
+                KEY--
               authenticationKeys: null
               properties:
                 - key: port
@@ -7663,9 +7663,9 @@ paths:
                 url: https://some.url
                 apiKey: 123456
               cert: >-
-                -----BEGIN PUBLIC
-                KEY-----\nMIICIANBgkqhw0BAQ...cCAwEAAQ==\n-----END PUBLIC
-                KEY-----
+                --BEGIN PUBLIC
+                KEY--\nMIICIANBgkqhw0BAQ...cCAwEAAQ==\n--END PUBLIC
+                KEY--
               authenticationKeys: null
               properties:
                 - key: port
@@ -8628,7 +8628,7 @@ definitions:
       pem:
         type: string
         description: An X509 certificate in PEM format
-        example: '-----BEGIN CERTIFICATE-----MIIH/TC...p9DBiB/-----END CERTIFICATE-----'
+        example: '--BEGIN CERTIFICATE--MIIH/TC...p9DBiB/--END CERTIFICATE--'
       attributes:
         $ref: '#/definitions/CompanyCertAttributes'
   CompanyCertDetail:
@@ -10157,8 +10157,8 @@ definitions:
         description: User RSA public key.
         type: string
         example: >-
-          -----BEGIN PUBLIC KEY-----\nMIICIANBgkqhw0BAQ...cCAwEAAQ==\n-----END
-          PUBLIC KEY-----
+          --BEGIN PUBLIC KEY--\nMIICIANBgkqhw0BAQ...cCAwEAAQ==\n--END
+          PUBLIC KEY--
       expirationDate:
         description: RSA key expiration date. This value is set just for rotated keys.
         type: integer
@@ -10997,8 +10997,8 @@ definitions:
         description: The app public certificate in pem format.
         type: string
         example: >-
-          -----BEGIN PUBLIC KEY-----\nMIICIANBgkqhw0BAQ...cCAwEAAQ==\n-----END
-          PUBLIC KEY-----
+          --BEGIN PUBLIC KEY--\nMIICIANBgkqhw0BAQ...cCAwEAAQ==\n--END
+          PUBLIC KEY--
       authenticationKeys:
         $ref: '#/definitions/AppAuthenticationKeys'
       notification:
@@ -11336,8 +11336,8 @@ definitions:
         description: Application RSA public key.
         type: string
         example: >-
-          -----BEGIN PUBLIC KEY-----\nMIICIANBgkqhw0BAQ...cCAwEAAQ==\n-----END
-          PUBLIC KEY-----
+          --BEGIN PUBLIC KEY--\nMIICIANBgkqhw0BAQ...cCAwEAAQ==\n--END
+          PUBLIC KEY--
       expirationDate:
         description: RSA key expiration date. This value is set just for rotated keys.
         type: integer
