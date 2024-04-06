@@ -8,12 +8,12 @@ paths:
       description: <p>This operation clones an existing backend.</p>
       tags:
         - Clone
-        - Backend
-        - Id
+        - Backends
+        - Identifiers
         - Environments
-        - Backend
-        - Environment
-        - Name
+        - Backends
+        - Environments
+        - Names
         - Clone
   /backend:
     POST:
@@ -23,12 +23,12 @@ paths:
         automatically created at the time of app creation.</p>
       tags:
         - Create
-        - Backend
-        - Id
+        - Backends
+        - Identifiers
         - Environments
-        - Backend
-        - Environment
-        - Name
+        - Backends
+        - Environments
+        - Names
         - Clone
   /backend/{appId}/api:
     POST:
@@ -36,64 +36,64 @@ paths:
       description: <p>Creates a new backend API resource.</p>
       tags:
         - Create
-        - Backend
-        - Id
+        - Backends
+        - Identifiers
         - Environments
-        - Backend
-        - Environment
-        - Name
+        - Backends
+        - Environments
+        - Names
         - Clone
-        - Api
+        - APIs
   /backend/{appId}/auth:
     POST:
       summary: CreateBackendAuth
       description: <p>Creates a new backend authentication resource.</p>
       tags:
         - Create
-        - Backend
-        - Auth
-        - Id
+        - Backends
+        - Authentication
+        - Identifiers
         - Environments
-        - Backend
-        - Environment
-        - Name
+        - Backends
+        - Environments
+        - Names
         - Clone
-        - Api
-        - Auth
+        - APIs
+        - Authentication
   /backend/{appId}/config:
     POST:
       summary: CreateBackendConfig
       description: <p>Creates a config object for a backend.</p>
       tags:
         - Create
-        - Backend
-        - Config
-        - Id
+        - Backends
+        - Configurations
+        - Identifiers
         - Environments
-        - Backend
-        - Environment
-        - Name
+        - Backends
+        - Environments
+        - Names
         - Clone
-        - Api
-        - Auth
-        - Config
+        - APIs
+        - Authentication
+        - Configurations
   /backend/{appId}/storage:
     POST:
       summary: CreateBackendStorage
       description: <p>Creates a backend storage resource.</p>
       tags:
         - Create
-        - Backend
+        - Backends
         - Storage
-        - Id
+        - Identifiers
         - Environments
-        - Backend
-        - Environment
-        - Name
+        - Backends
+        - Environments
+        - Names
         - Clone
-        - Api
-        - Auth
-        - Config
+        - APIs
+        - Authentication
+        - Configurations
         - Storage
   /backend/{appId}/challenge:
     POST:
@@ -103,96 +103,96 @@ paths:
         Amplify Admin UI.</p>
       tags:
         - Create
-        - Token
-        - Id
+        - Tokens
+        - Identifiers
         - Environments
-        - Backend
-        - Environment
-        - Name
+        - Backends
+        - Environments
+        - Names
         - Clone
-        - Api
-        - Auth
-        - Config
+        - APIs
+        - Authentication
+        - Configurations
         - Storage
-        - Challenge
+        - Challenges
   /backend/{appId}/environments/{backendEnvironmentName}/remove:
     POST:
       summary: DeleteBackend
       description: <p>Removes an existing environment from your Amplify project.</p>
       tags:
         - Delete
-        - Backend
-        - Id
+        - Backends
+        - Identifiers
         - Environments
-        - Backend
-        - Environment
-        - Name
+        - Backends
+        - Environments
+        - Names
         - Clone
-        - Api
-        - Auth
-        - Config
+        - APIs
+        - Authentication
+        - Configurations
         - Storage
-        - Challenge
-        - Remove
+        - Challenges
+        - Removes
   /backend/{appId}/api/{backendEnvironmentName}/remove:
     POST:
       summary: DeleteBackendAPI
       description: <p>Deletes an existing backend API resource.</p>
       tags:
         - Delete
-        - Backend
-        - Id
+        - Backends
+        - Identifiers
         - Environments
-        - Backend
-        - Environment
-        - Name
+        - Backends
+        - Environments
+        - Names
         - Clone
-        - Api
-        - Auth
-        - Config
+        - APIs
+        - Authentication
+        - Configurations
         - Storage
-        - Challenge
-        - Remove
+        - Challenges
+        - Removes
   /backend/{appId}/auth/{backendEnvironmentName}/remove:
     POST:
       summary: DeleteBackendAuth
       description: <p>Deletes an existing backend authentication resource.</p>
       tags:
         - Delete
-        - Backend
-        - Auth
-        - Id
+        - Backends
+        - Authentication
+        - Identifiers
         - Environments
-        - Backend
-        - Environment
-        - Name
+        - Backends
+        - Environments
+        - Names
         - Clone
-        - Api
-        - Auth
-        - Config
+        - APIs
+        - Authentication
+        - Configurations
         - Storage
-        - Challenge
-        - Remove
+        - Challenges
+        - Removes
   /backend/{appId}/storage/{backendEnvironmentName}/remove:
     POST:
       summary: DeleteBackendStorage
       description: <p>Removes the specified backend storage resource.</p>
       tags:
         - Delete
-        - Backend
+        - Backends
         - Storage
-        - Id
+        - Identifiers
         - Environments
-        - Backend
-        - Environment
-        - Name
+        - Backends
+        - Environments
+        - Names
         - Clone
-        - Api
-        - Auth
-        - Config
+        - APIs
+        - Authentication
+        - Configurations
         - Storage
-        - Challenge
-        - Remove
+        - Challenges
+        - Removes
   /backend/{appId}/challenge/{sessionId}/remove:
     POST:
       summary: DeleteToken
@@ -201,41 +201,41 @@ paths:
         sessionId.</p>
       tags:
         - Delete
-        - Token
-        - Id
+        - Tokens
+        - Identifiers
         - Environments
-        - Backend
-        - Environment
-        - Name
+        - Backends
+        - Environments
+        - Names
         - Clone
-        - Api
-        - Auth
-        - Config
+        - APIs
+        - Authentication
+        - Configurations
         - Storage
-        - Challenge
-        - Remove
-        - Session
+        - Challenges
+        - Removes
+        - Sessions
   /backend/{appId}/api/{backendEnvironmentName}/generateModels:
     POST:
       summary: GenerateBackendAPIModels
       description: <p>Generates a model schema for an existing backend API resource.</p>
       tags:
         - Generate
-        - Backend
+        - Backends
         - Models
-        - Id
+        - Identifiers
         - Environments
-        - Backend
-        - Environment
-        - Name
+        - Backends
+        - Environments
+        - Names
         - Clone
-        - Api
-        - Auth
-        - Config
+        - APIs
+        - Authentication
+        - Configurations
         - Storage
-        - Challenge
-        - Remove
-        - Session
+        - Challenges
+        - Removes
+        - Sessions
         - Generate
         - Models
   /backend/{appId}/details:
@@ -244,20 +244,20 @@ paths:
       description: <p>Provides project-level details for your Amplify UI project.</p>
       tags:
         - Get
-        - Backend
-        - Id
+        - Backends
+        - Identifiers
         - Environments
-        - Backend
-        - Environment
-        - Name
+        - Backends
+        - Environments
+        - Names
         - Clone
-        - Api
-        - Auth
-        - Config
+        - APIs
+        - Authentication
+        - Configurations
         - Storage
-        - Challenge
-        - Remove
-        - Session
+        - Challenges
+        - Removes
+        - Sessions
         - Generate
         - Models
         - Details
@@ -267,20 +267,20 @@ paths:
       description: <p>Gets the details for a backend API.</p>
       tags:
         - Get
-        - Backend
-        - Id
+        - Backends
+        - Identifiers
         - Environments
-        - Backend
-        - Environment
-        - Name
+        - Backends
+        - Environments
+        - Names
         - Clone
-        - Api
-        - Auth
-        - Config
+        - APIs
+        - Authentication
+        - Configurations
         - Storage
-        - Challenge
-        - Remove
-        - Session
+        - Challenges
+        - Removes
+        - Sessions
         - Generate
         - Models
         - Details
@@ -292,21 +292,21 @@ paths:
         resource.</p>
       tags:
         - Get
-        - Backend
+        - Backends
         - Models
-        - Id
+        - Identifiers
         - Environments
-        - Backend
-        - Environment
-        - Name
+        - Backends
+        - Environments
+        - Names
         - Clone
-        - Api
-        - Auth
-        - Config
+        - APIs
+        - Authentication
+        - Configurations
         - Storage
-        - Challenge
-        - Remove
-        - Session
+        - Challenges
+        - Removes
+        - Sessions
         - Generate
         - Models
         - Details
@@ -317,21 +317,21 @@ paths:
       description: <p>Gets a backend auth details.</p>
       tags:
         - Get
-        - Backend
-        - Auth
-        - Id
+        - Backends
+        - Authentication
+        - Identifiers
         - Environments
-        - Backend
-        - Environment
-        - Name
+        - Backends
+        - Environments
+        - Names
         - Clone
-        - Api
-        - Auth
-        - Config
+        - APIs
+        - Authentication
+        - Configurations
         - Storage
-        - Challenge
-        - Remove
-        - Session
+        - Challenges
+        - Removes
+        - Sessions
         - Generate
         - Models
         - Details
@@ -342,103 +342,103 @@ paths:
       description: <p>Updates a specific job.</p>
       tags:
         - Update
-        - Backend
-        - Job
-        - Id
+        - Backends
+        - Jobs
+        - Identifiers
         - Environments
-        - Backend
-        - Environment
-        - Name
+        - Backends
+        - Environments
+        - Names
         - Clone
-        - Api
-        - Auth
-        - Config
+        - APIs
+        - Authentication
+        - Configurations
         - Storage
-        - Challenge
-        - Remove
-        - Session
+        - Challenges
+        - Removes
+        - Sessions
         - Generate
         - Models
         - Details
         - Get
-        - Job
+        - Jobs
   /backend/{appId}/storage/{backendEnvironmentName}/details:
     POST:
       summary: GetBackendStorage
       description: <p>Gets details for a backend storage resource.</p>
       tags:
         - Get
-        - Backend
+        - Backends
         - Storage
-        - Id
+        - Identifiers
         - Environments
-        - Backend
-        - Environment
-        - Name
+        - Backends
+        - Environments
+        - Names
         - Clone
-        - Api
-        - Auth
-        - Config
+        - APIs
+        - Authentication
+        - Configurations
         - Storage
-        - Challenge
-        - Remove
-        - Session
+        - Challenges
+        - Removes
+        - Sessions
         - Generate
         - Models
         - Details
         - Get
-        - Job
+        - Jobs
   /backend/{appId}/challenge/{sessionId}:
     GET:
       summary: GetToken
       description: <p>Gets the challenge token based on the given appId and sessionId.</p>
       tags:
         - Get
-        - Token
-        - Id
+        - Tokens
+        - Identifiers
         - Environments
-        - Backend
-        - Environment
-        - Name
+        - Backends
+        - Environments
+        - Names
         - Clone
-        - Api
-        - Auth
-        - Config
+        - APIs
+        - Authentication
+        - Configurations
         - Storage
-        - Challenge
-        - Remove
-        - Session
+        - Challenges
+        - Removes
+        - Sessions
         - Generate
         - Models
         - Details
         - Get
-        - Job
+        - Jobs
   /backend/{appId}/auth/{backendEnvironmentName}/import:
     POST:
       summary: ImportBackendAuth
       description: <p>Imports an existing backend authentication resource.</p>
       tags:
         - Import
-        - Backend
-        - Auth
-        - Id
+        - Backends
+        - Authentication
+        - Identifiers
         - Environments
-        - Backend
-        - Environment
-        - Name
+        - Backends
+        - Environments
+        - Names
         - Clone
-        - Api
-        - Auth
-        - Config
+        - APIs
+        - Authentication
+        - Configurations
         - Storage
-        - Challenge
-        - Remove
-        - Session
+        - Challenges
+        - Removes
+        - Sessions
         - Generate
         - Models
         - Details
         - Get
-        - Job
+        - Jobs
         - Import
   /backend/{appId}/storage/{backendEnvironmentName}/import:
     POST:
@@ -446,80 +446,80 @@ paths:
       description: <p>Imports an existing backend storage resource.</p>
       tags:
         - Import
-        - Backend
+        - Backends
         - Storage
-        - Id
+        - Identifiers
         - Environments
-        - Backend
-        - Environment
-        - Name
+        - Backends
+        - Environments
+        - Names
         - Clone
-        - Api
-        - Auth
-        - Config
+        - APIs
+        - Authentication
+        - Configurations
         - Storage
-        - Challenge
-        - Remove
-        - Session
+        - Challenges
+        - Removes
+        - Sessions
         - Generate
         - Models
         - Details
         - Get
-        - Job
+        - Jobs
         - Import
   /backend/{appId}/job/{backendEnvironmentName}:
     POST:
       summary: ListBackendJobs
       description: <p>Lists the jobs for the backend of an Amplify app.</p>
       tags:
-        - List
-        - Backend
+        - Lists
+        - Backends
         - Jobs
-        - Id
+        - Identifiers
         - Environments
-        - Backend
-        - Environment
-        - Name
+        - Backends
+        - Environments
+        - Names
         - Clone
-        - Api
-        - Auth
-        - Config
+        - APIs
+        - Authentication
+        - Configurations
         - Storage
-        - Challenge
-        - Remove
-        - Session
+        - Challenges
+        - Removes
+        - Sessions
         - Generate
         - Models
         - Details
         - Get
-        - Job
+        - Jobs
         - Import
   /s3Buckets:
     POST:
       summary: ListS3Buckets
       description: <p>The list of S3 buckets in your account.</p>
       tags:
-        - List
+        - Lists
         - S3
         - Buckets
-        - Id
+        - Identifiers
         - Environments
-        - Backend
-        - Environment
-        - Name
+        - Backends
+        - Environments
+        - Names
         - Clone
-        - Api
-        - Auth
-        - Config
+        - APIs
+        - Authentication
+        - Configurations
         - Storage
-        - Challenge
-        - Remove
-        - Session
+        - Challenges
+        - Removes
+        - Sessions
         - Generate
         - Models
         - Details
         - Get
-        - Job
+        - Jobs
         - Import
         - Buckets
   /backend/{appId}/remove:
@@ -527,27 +527,27 @@ paths:
       summary: RemoveAllBackends
       description: <p>Removes all backend environments from your Amplify project.</p>
       tags:
-        - Remove
+        - Removes
         - All
         - Backends
-        - Id
+        - Identifiers
         - Environments
-        - Backend
-        - Environment
-        - Name
+        - Backends
+        - Environments
+        - Names
         - Clone
-        - Api
-        - Auth
-        - Config
+        - APIs
+        - Authentication
+        - Configurations
         - Storage
-        - Challenge
-        - Remove
-        - Session
+        - Challenges
+        - Removes
+        - Sessions
         - Generate
         - Models
         - Details
         - Get
-        - Job
+        - Jobs
         - Import
         - Buckets
   /backend/{appId}/config/remove:
@@ -557,27 +557,27 @@ paths:
         <p>Removes the AWS resources required to access the Amplify Admin
         UI.</p>
       tags:
-        - Remove
-        - Backend
-        - Config
-        - Id
+        - Removes
+        - Backends
+        - Configurations
+        - Identifiers
         - Environments
-        - Backend
-        - Environment
-        - Name
+        - Backends
+        - Environments
+        - Names
         - Clone
-        - Api
-        - Auth
-        - Config
+        - APIs
+        - Authentication
+        - Configurations
         - Storage
-        - Challenge
-        - Remove
-        - Session
+        - Challenges
+        - Removes
+        - Sessions
         - Generate
         - Models
         - Details
         - Get
-        - Job
+        - Jobs
         - Import
         - Buckets
   /backend/{appId}/api/{backendEnvironmentName}:
@@ -586,25 +586,25 @@ paths:
       description: <p>Updates an existing backend API resource.</p>
       tags:
         - Update
-        - Backend
-        - Id
+        - Backends
+        - Identifiers
         - Environments
-        - Backend
-        - Environment
-        - Name
+        - Backends
+        - Environments
+        - Names
         - Clone
-        - Api
-        - Auth
-        - Config
+        - APIs
+        - Authentication
+        - Configurations
         - Storage
-        - Challenge
-        - Remove
-        - Session
+        - Challenges
+        - Removes
+        - Sessions
         - Generate
         - Models
         - Details
         - Get
-        - Job
+        - Jobs
         - Import
         - Buckets
   /backend/{appId}/auth/{backendEnvironmentName}:
@@ -613,26 +613,26 @@ paths:
       description: <p>Updates an existing backend authentication resource.</p>
       tags:
         - Update
-        - Backend
-        - Auth
-        - Id
+        - Backends
+        - Authentication
+        - Identifiers
         - Environments
-        - Backend
-        - Environment
-        - Name
+        - Backends
+        - Environments
+        - Names
         - Clone
-        - Api
-        - Auth
-        - Config
+        - APIs
+        - Authentication
+        - Configurations
         - Storage
-        - Challenge
-        - Remove
-        - Session
+        - Challenges
+        - Removes
+        - Sessions
         - Generate
         - Models
         - Details
         - Get
-        - Job
+        - Jobs
         - Import
         - Buckets
   /backend/{appId}/config/update:
@@ -643,26 +643,26 @@ paths:
         UI.</p>
       tags:
         - Update
-        - Backend
-        - Config
-        - Id
+        - Backends
+        - Configurations
+        - Identifiers
         - Environments
-        - Backend
-        - Environment
-        - Name
+        - Backends
+        - Environments
+        - Names
         - Clone
-        - Api
-        - Auth
-        - Config
+        - APIs
+        - Authentication
+        - Configurations
         - Storage
-        - Challenge
-        - Remove
-        - Session
+        - Challenges
+        - Removes
+        - Sessions
         - Generate
         - Models
         - Details
         - Get
-        - Job
+        - Jobs
         - Import
         - Buckets
         - Update
@@ -672,26 +672,26 @@ paths:
       description: <p>Updates an existing backend storage res
       tags:
         - Update
-        - Backend
+        - Backends
         - Storage
-        - Id
+        - Identifiers
         - Environments
-        - Backend
-        - Environment
-        - Name
+        - Backends
+        - Environments
+        - Names
         - Clone
-        - Api
-        - Auth
-        - Config
+        - APIs
+        - Authentication
+        - Configurations
         - Storage
-        - Challenge
-        - Remove
-        - Session
+        - Challenges
+        - Removes
+        - Sessions
         - Generate
         - Models
         - Details
         - Get
-        - Job
+        - Jobs
         - Import
         - Buckets
         - Upda

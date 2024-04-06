@@ -8,66 +8,66 @@ paths:
       description: Start upload containing one or many chunks.
       tags:
         - Start
-        - Object
-        - Id
-        - Object
-        - Name
+        - Objects
+        - Identifiers
+        - Objects
+        - Names
   /restore-jobs/{jobId}/chunk/{chunkToken}:
     GET:
       summary: GetChunk
       description: Gets the specified object's chunk.
       tags:
         - Get
-        - Chunk
-        - Id
-        - Object
-        - Name
-        - Chunk
-        - Token
+        - Chunks
+        - Identifiers
+        - Objects
+        - Names
+        - Chunks
+        - Tokens
   /restore-jobs/{jobId}/object/{objectToken}/metadata:
     GET:
       summary: GetObjectMetadata
       description: Get metadata associated with an Object.
       tags:
         - Get
-        - Object
+        - Objects
         - Metadata
-        - Id
-        - Object
-        - Name
-        - Chunk
-        - Token
+        - Identifiers
+        - Objects
+        - Names
+        - Chunks
+        - Tokens
         - Metadata
   /restore-jobs/{jobId}/chunks/{objectToken}/list:
     GET:
       summary: ListChunks
       description: List chunks in a given Object
       tags:
-        - List
+        - Lists
         - Chunks
-        - Id
-        - Object
-        - Name
-        - Chunk
-        - Token
+        - Identifiers
+        - Objects
+        - Names
+        - Chunks
+        - Tokens
         - Metadata
         - Chunks
-        - List
+        - Lists
   /restore-jobs/{jobId}/objects/list:
     GET:
       summary: ListObjects
       description: List all Objects in a given Backup.
       tags:
-        - List
+        - Lists
         - Objects
-        - Id
-        - Object
-        - Name
-        - Chunk
-        - Token
+        - Identifiers
+        - Objects
+        - Names
+        - Chunks
+        - Tokens
         - Metadata
         - Chunks
-        - List
+        - Lists
         - Objects
   /backup-jobs/{jobId}/object/{uploadId}/complete:
     PUT:
@@ -75,18 +75,18 @@ paths:
       description: Complete upload
       tags:
         - Notify
-        - Object
+        - Objects
         - Complete
-        - Id
-        - Object
-        - Name
-        - Chunk
-        - Token
+        - Identifiers
+        - Objects
+        - Names
+        - Chunks
+        - Tokens
         - Metadata
         - Chunks
-        - List
+        - Lists
         - Objects
-        - Upload
+        - Uploads
         - Complete
   /backup-jobs/{jobId}/chunk/{uploadId}/{chunkIndex}:
     PUT:
@@ -94,17 +94,17 @@ paths:
       description: Upload chunk.
       tags:
         - Put
-        - Chunk
-        - Id
-        - Object
-        - Name
-        - Chunk
-        - Token
+        - Chunks
+        - Identifiers
+        - Objects
+        - Names
+        - Chunks
+        - Tokens
         - Metadata
         - Chunks
-        - List
+        - Lists
         - Objects
-        - Upload
+        - Uploads
         - Complete
         - Index
   /backup-jobs/{jobId}/object/{objectName}/put-object:
@@ -115,17 +115,17 @@ paths:
         single API call using inline ch
       tags:
         - Put
-        - Object
-        - Id
-        - Object
-        - Name
-        - Chunk
-        - Token
+        - Objects
+        - Identifiers
+        - Objects
+        - Names
+        - Chunks
+        - Tokens
         - Metadata
         - Chunks
-        - List
+        - Lists
         - Objects
-        - Upload
+        - Uploads
         - Complete
         - Index
         - P

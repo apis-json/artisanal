@@ -14,7 +14,7 @@ paths:
         - Legal
         - Hold
         - Hold
-        - Id
+        - Identifiers
   /backup/plans/:
     GET:
       summary: ListBackupPlans
@@ -24,11 +24,11 @@ paths:
         (ARNs), plan IDs, creation and deletion dates, version IDs, plan names,
         and creator request IDs.</p>
       tags:
-        - List
+        - Lists
         - Backup
         - Plans
         - Hold
-        - Id
+        - Identifiers
         - Backup
         - Plans
   /backup/plans/{backupPlanId}/selections/:
@@ -38,11 +38,11 @@ paths:
         <p>Returns an array containing metadata of the resources associated with
         the target backup plan.</p>
       tags:
-        - List
+        - Lists
         - Backup
         - Selections
         - Hold
-        - Id
+        - Identifiers
         - Backup
         - Plans
         - Plan
@@ -56,13 +56,13 @@ paths:
         - Backup
         - Vault
         - Hold
-        - Id
+        - Identifiers
         - Backup
         - Plans
         - Plan
         - Selections
         - Vault
-        - Name
+        - Names
   /audit/frameworks:
     GET:
       summary: ListFrameworks
@@ -70,16 +70,16 @@ paths:
         <p>Returns a list of all frameworks for an Amazon Web Services account
         and Amazon Web Services Region.</p>
       tags:
-        - List
+        - Lists
         - Frameworks
         - Hold
-        - Id
+        - Identifiers
         - Backup
         - Plans
         - Plan
         - Selections
         - Vault
-        - Name
+        - Names
         - Audit
         - Frameworks
   /legal-holds/:
@@ -89,17 +89,17 @@ paths:
         <p>This action returns metadata about active and previous legal
         holds.</p>
       tags:
-        - List
+        - Lists
         - Legal
         - Holds
         - Hold
-        - Id
+        - Identifiers
         - Backup
         - Plans
         - Plan
         - Selections
         - Vault
-        - Name
+        - Names
         - Audit
         - Frameworks
         - Legal
@@ -122,13 +122,13 @@ paths:
         - Backup
         - Vault
         - Hold
-        - Id
+        - Identifiers
         - Backup
         - Plans
         - Plan
         - Selections
         - Vault
-        - Name
+        - Names
         - Audit
         - Frameworks
         - Legal
@@ -140,44 +140,44 @@ paths:
         <p>Returns a list of your report plans. For detailed information about a
         single report plan, use <code>DescribeReportPlan</code>.</p>
       tags:
-        - List
-        - Report
+        - Lists
+        - Reports
         - Plans
         - Hold
-        - Id
+        - Identifiers
         - Backup
         - Plans
         - Plan
         - Selections
         - Vault
-        - Name
+        - Names
         - Audit
         - Frameworks
         - Legal
         - Holds
-        - Report
+        - Reports
   /restore-testing/plans:
     GET:
       summary: ListRestoreTestingPlans
       description: <p>Returns a list of restore testing plans.</p>
       tags:
-        - List
+        - Lists
         - Restore
         - Testing
         - Plans
         - Hold
-        - Id
+        - Identifiers
         - Backup
         - Plans
         - Plan
         - Selections
         - Vault
-        - Name
+        - Names
         - Audit
         - Frameworks
         - Legal
         - Holds
-        - Report
+        - Reports
         - Restore
         - Testing
   /restore-testing/plans/{RestoreTestingPlanName}/selections:
@@ -187,23 +187,23 @@ paths:
         <p>Returns a list of restore testing selections. Can be filtered by
         <code>MaxResults</code> and <code>RestoreTestingPlanName</code>.</p>
       tags:
-        - List
+        - Lists
         - Restore
         - Testing
         - Selections
         - Hold
-        - Id
+        - Identifiers
         - Backup
         - Plans
         - Plan
         - Selections
         - Vault
-        - Name
+        - Names
         - Audit
         - Frameworks
         - Legal
         - Holds
-        - Report
+        - Reports
         - Restore
         - Testing
   /backup/plans/{backupPlanId}:
@@ -218,18 +218,18 @@ paths:
         - Backup
         - Plan
         - Hold
-        - Id
+        - Identifiers
         - Backup
         - Plans
         - Plan
         - Selections
         - Vault
-        - Name
+        - Names
         - Audit
         - Frameworks
         - Legal
         - Holds
-        - Report
+        - Reports
         - Restore
         - Testing
   /backup/plans/{backupPlanId}/selections/{selectionId}:
@@ -242,23 +242,23 @@ paths:
       tags:
         - Get
         - Backup
-        - Selection
+        - Selections
         - Hold
-        - Id
+        - Identifiers
         - Backup
         - Plans
         - Plan
         - Selections
         - Vault
-        - Name
+        - Names
         - Audit
         - Frameworks
         - Legal
         - Holds
-        - Report
+        - Reports
         - Restore
         - Testing
-        - Selection
+        - Selections
   /backup-vaults/{backupVaultName}/access-policy:
     PUT:
       summary: PutBackupVaultAccessPolicy
@@ -271,25 +271,25 @@ paths:
         - Backup
         - Vault
         - Access
-        - Policy
+        - Policies
         - Hold
-        - Id
+        - Identifiers
         - Backup
         - Plans
         - Plan
         - Selections
         - Vault
-        - Name
+        - Names
         - Audit
         - Frameworks
         - Legal
         - Holds
-        - Report
+        - Reports
         - Restore
         - Testing
-        - Selection
+        - Selections
         - Access
-        - Policy
+        - Policies
   /backup-vaults/{backupVaultName}/vault-lock:
     PUT:
       summary: PutBackupVaultLockConfiguration
@@ -309,27 +309,27 @@ paths:
         - Put
         - Backup
         - Vault
-        - Lock
-        - Configuration
+        - Locks
+        - Configurations
         - Hold
-        - Id
+        - Identifiers
         - Backup
         - Plans
         - Plan
         - Selections
         - Vault
-        - Name
+        - Names
         - Audit
         - Frameworks
         - Legal
         - Holds
-        - Report
+        - Reports
         - Restore
         - Testing
-        - Selection
+        - Selections
         - Access
-        - Policy
-        - Lock
+        - Policies
+        - Locks
   /backup-vaults/{backupVaultName}/notification-configuration:
     PUT:
       summary: PutBackupVaultNotifications
@@ -342,26 +342,26 @@ paths:
         - Vault
         - Notifications
         - Hold
-        - Id
+        - Identifiers
         - Backup
         - Plans
         - Plan
         - Selections
         - Vault
-        - Name
+        - Names
         - Audit
         - Frameworks
         - Legal
         - Holds
-        - Report
+        - Reports
         - Restore
         - Testing
-        - Selection
+        - Selections
         - Access
-        - Policy
-        - Lock
-        - Notification
-        - Configuration
+        - Policies
+        - Locks
+        - Notifications
+        - Configurations
   /audit/frameworks/{frameworkName}:
     PUT:
       summary: UpdateFramework
@@ -370,28 +370,28 @@ paths:
         <code>FrameworkName</code> with the input document in JSON format.</p>
       tags:
         - Update
-        - Framework
+        - Frameworks
         - Hold
-        - Id
+        - Identifiers
         - Backup
         - Plans
         - Plan
         - Selections
         - Vault
-        - Name
+        - Names
         - Audit
         - Frameworks
         - Legal
         - Holds
-        - Report
+        - Reports
         - Restore
         - Testing
-        - Selection
+        - Selections
         - Access
-        - Policy
-        - Lock
-        - Notification
-        - Configuration
+        - Policies
+        - Locks
+        - Notifications
+        - Configurations
   /backup-vaults/{backupVaultName}/recovery-points/{recoveryPointArn}:
     POST:
       summary: UpdateRecoveryPointLifecycle
@@ -414,33 +414,33 @@ paths:
       tags:
         - Update
         - Recovery
-        - Point
+        - Points
         - Lifecycle
         - Hold
-        - Id
+        - Identifiers
         - Backup
         - Plans
         - Plan
         - Selections
         - Vault
-        - Name
+        - Names
         - Audit
         - Frameworks
         - Legal
         - Holds
-        - Report
+        - Reports
         - Restore
         - Testing
-        - Selection
+        - Selections
         - Access
-        - Policy
-        - Lock
-        - Notification
-        - Configuration
+        - Policies
+        - Locks
+        - Notifications
+        - Configurations
         - Recovery
         - Points
-        - Point
-        - Arn
+        - Points
+        - ARN
   /audit/report-plans/{reportPlanName}:
     PUT:
       summary: UpdateReportPlan
@@ -449,33 +449,33 @@ paths:
         <code>ReportPlanName</code> with the input document in JSON format.</p>
       tags:
         - Update
-        - Report
+        - Reports
         - Plan
         - Hold
-        - Id
+        - Identifiers
         - Backup
         - Plans
         - Plan
         - Selections
         - Vault
-        - Name
+        - Names
         - Audit
         - Frameworks
         - Legal
         - Holds
-        - Report
+        - Reports
         - Restore
         - Testing
-        - Selection
+        - Selections
         - Access
-        - Policy
-        - Lock
-        - Notification
-        - Configuration
+        - Policies
+        - Locks
+        - Notifications
+        - Configurations
         - Recovery
         - Points
-        - Point
-        - Arn
+        - Points
+        - ARN
   /restore-testing/plans/{RestoreTestingPlanName}:
     PUT:
       summary: UpdateRestoreTestingPlan
@@ -494,30 +494,30 @@ paths:
         - Testing
         - Plan
         - Hold
-        - Id
+        - Identifiers
         - Backup
         - Plans
         - Plan
         - Selections
         - Vault
-        - Name
+        - Names
         - Audit
         - Frameworks
         - Legal
         - Holds
-        - Report
+        - Reports
         - Restore
         - Testing
-        - Selection
+        - Selections
         - Access
-        - Policy
-        - Lock
-        - Notification
-        - Configuration
+        - Policies
+        - Locks
+        - Notifications
+        - Configurations
         - Recovery
         - Points
-        - Point
-        - Arn
+        - Points
+        - ARN
   /restore-testing/plans/{RestoreTestingPlanName}/selections/{RestoreTestingSelectionName}:
     PUT:
       summary: UpdateRestoreTestingSelection
@@ -533,32 +533,32 @@ paths:
         - Update
         - Restore
         - Testing
-        - Selection
+        - Selections
         - Hold
-        - Id
+        - Identifiers
         - Backup
         - Plans
         - Plan
         - Selections
         - Vault
-        - Name
+        - Names
         - Audit
         - Frameworks
         - Legal
         - Holds
-        - Report
+        - Reports
         - Restore
         - Testing
-        - Selection
+        - Selections
         - Access
-        - Policy
-        - Lock
-        - Notification
-        - Configuration
+        - Policies
+        - Locks
+        - Notifications
+        - Configurations
         - Recovery
         - Points
-        - Point
-        - Arn
+        - Points
+        - ARN
   /backup-jobs/{backupJobId}:
     POST:
       summary: StopBackupJob
@@ -571,33 +571,33 @@ paths:
       tags:
         - Stop
         - Backup
-        - Job
+        - Jobs
         - Hold
-        - Id
+        - Identifiers
         - Backup
         - Plans
         - Plan
         - Selections
         - Vault
-        - Name
+        - Names
         - Audit
         - Frameworks
         - Legal
         - Holds
-        - Report
+        - Reports
         - Restore
         - Testing
-        - Selection
+        - Selections
         - Access
-        - Policy
-        - Lock
-        - Notification
-        - Configuration
+        - Policies
+        - Locks
+        - Notifications
+        - Configurations
         - Recovery
         - Points
-        - Point
-        - Arn
-        - Job
+        - Points
+        - ARN
+        - Jobs
   /copy-jobs/{copyJobId}:
     GET:
       summary: DescribeCopyJob
@@ -605,33 +605,33 @@ paths:
       tags:
         - Describe
         - Copy
-        - Job
+        - Jobs
         - Hold
-        - Id
+        - Identifiers
         - Backup
         - Plans
         - Plan
         - Selections
         - Vault
-        - Name
+        - Names
         - Audit
         - Frameworks
         - Legal
         - Holds
-        - Report
+        - Reports
         - Restore
         - Testing
-        - Selection
+        - Selections
         - Access
-        - Policy
-        - Lock
-        - Notification
-        - Configuration
+        - Policies
+        - Locks
+        - Notifications
+        - Configurations
         - Recovery
         - Points
-        - Point
-        - Arn
-        - Job
+        - Points
+        - ARN
+        - Jobs
   /global-settings:
     PUT:
       summary: UpdateGlobalSettings
@@ -646,31 +646,31 @@ paths:
         - Global
         - Settings
         - Hold
-        - Id
+        - Identifiers
         - Backup
         - Plans
         - Plan
         - Selections
         - Vault
-        - Name
+        - Names
         - Audit
         - Frameworks
         - Legal
         - Holds
-        - Report
+        - Reports
         - Restore
         - Testing
-        - Selection
+        - Selections
         - Access
-        - Policy
-        - Lock
-        - Notification
-        - Configuration
+        - Policies
+        - Locks
+        - Notifications
+        - Configurations
         - Recovery
         - Points
-        - Point
-        - Arn
-        - Job
+        - Points
+        - ARN
+        - Jobs
         - Global
         - Settings
   /resources/{resourceArn}:
@@ -683,33 +683,33 @@ paths:
       tags:
         - Describe
         - Protected
-        - Resource
+        - Resources
         - Hold
-        - Id
+        - Identifiers
         - Backup
         - Plans
         - Plan
         - Selections
         - Vault
-        - Name
+        - Names
         - Audit
         - Frameworks
         - Legal
         - Holds
-        - Report
+        - Reports
         - Restore
         - Testing
-        - Selection
+        - Selections
         - Access
-        - Policy
-        - Lock
-        - Notification
-        - Configuration
+        - Policies
+        - Locks
+        - Notifications
+        - Configurations
         - Recovery
         - Points
-        - Point
-        - Arn
-        - Job
+        - Points
+        - ARN
+        - Jobs
         - Global
         - Settings
   /account-settings:
@@ -721,34 +721,34 @@ paths:
         resource types that are supported.</p>
       tags:
         - Update
-        - Region
+        - Regions
         - Settings
         - Hold
-        - Id
+        - Identifiers
         - Backup
         - Plans
         - Plan
         - Selections
         - Vault
-        - Name
+        - Names
         - Audit
         - Frameworks
         - Legal
         - Holds
-        - Report
+        - Reports
         - Restore
         - Testing
-        - Selection
+        - Selections
         - Access
-        - Policy
-        - Lock
-        - Notification
-        - Configuration
+        - Policies
+        - Locks
+        - Notifications
+        - Configurations
         - Recovery
         - Points
-        - Point
-        - Arn
-        - Job
+        - Points
+        - ARN
+        - Jobs
         - Global
         - Settings
         - Account
@@ -760,34 +760,34 @@ paths:
         its <code>ReportJobId</code>.</p>
       tags:
         - Describe
-        - Report
-        - Job
+        - Reports
+        - Jobs
         - Hold
-        - Id
+        - Identifiers
         - Backup
         - Plans
         - Plan
         - Selections
         - Vault
-        - Name
+        - Names
         - Audit
         - Frameworks
         - Legal
         - Holds
-        - Report
+        - Reports
         - Restore
         - Testing
-        - Selection
+        - Selections
         - Access
-        - Policy
-        - Lock
-        - Notification
-        - Configuration
+        - Policies
+        - Locks
+        - Notifications
+        - Configurations
         - Recovery
         - Points
-        - Point
-        - Arn
-        - Job
+        - Points
+        - ARN
+        - Jobs
         - Global
         - Settings
         - Account
@@ -800,33 +800,33 @@ paths:
       tags:
         - Describe
         - Restore
-        - Job
+        - Jobs
         - Hold
-        - Id
+        - Identifiers
         - Backup
         - Plans
         - Plan
         - Selections
         - Vault
-        - Name
+        - Names
         - Audit
         - Frameworks
         - Legal
         - Holds
-        - Report
+        - Reports
         - Restore
         - Testing
-        - Selection
+        - Selections
         - Access
-        - Policy
-        - Lock
-        - Notification
-        - Configuration
+        - Policies
+        - Locks
+        - Notifications
+        - Configurations
         - Recovery
         - Points
-        - Point
-        - Arn
-        - Job
+        - Points
+        - ARN
+        - Jobs
         - Global
         - Settings
         - Account
@@ -843,33 +843,33 @@ paths:
       tags:
         - Disassociate
         - Recovery
-        - Point
+        - Points
         - Hold
-        - Id
+        - Identifiers
         - Backup
         - Plans
         - Plan
         - Selections
         - Vault
-        - Name
+        - Names
         - Audit
         - Frameworks
         - Legal
         - Holds
-        - Report
+        - Reports
         - Restore
         - Testing
-        - Selection
+        - Selections
         - Access
-        - Policy
-        - Lock
-        - Notification
-        - Configuration
+        - Policies
+        - Locks
+        - Notifications
+        - Configurations
         - Recovery
         - Points
-        - Point
-        - Arn
-        - Job
+        - Points
+        - ARN
+        - Jobs
         - Global
         - Settings
         - Account
@@ -884,40 +884,40 @@ paths:
       tags:
         - Disassociate
         - Recovery
-        - Point
+        - Points
         - From
-        - Parent
+        - Parents
         - Hold
-        - Id
+        - Identifiers
         - Backup
         - Plans
         - Plan
         - Selections
         - Vault
-        - Name
+        - Names
         - Audit
         - Frameworks
         - Legal
         - Holds
-        - Report
+        - Reports
         - Restore
         - Testing
-        - Selection
+        - Selections
         - Access
-        - Policy
-        - Lock
-        - Notification
-        - Configuration
+        - Policies
+        - Locks
+        - Notifications
+        - Configurations
         - Recovery
         - Points
-        - Point
-        - Arn
-        - Job
+        - Points
+        - ARN
+        - Jobs
         - Global
         - Settings
         - Account
         - Disassociate
-        - Parent
+        - Parents
         - Association
   /backup/plans/{backupPlanId}/toTemplate/:
     GET:
@@ -929,41 +929,41 @@ paths:
         - Export
         - Backup
         - Plan
-        - Template
+        - Templates
         - Hold
-        - Id
+        - Identifiers
         - Backup
         - Plans
         - Plan
         - Selections
         - Vault
-        - Name
+        - Names
         - Audit
         - Frameworks
         - Legal
         - Holds
-        - Report
+        - Reports
         - Restore
         - Testing
-        - Selection
+        - Selections
         - Access
-        - Policy
-        - Lock
-        - Notification
-        - Configuration
+        - Policies
+        - Locks
+        - Notifications
+        - Configurations
         - Recovery
         - Points
-        - Point
-        - Arn
-        - Job
+        - Points
+        - ARN
+        - Jobs
         - Global
         - Settings
         - Account
         - Disassociate
-        - Parent
+        - Parents
         - Association
         - To
-        - Template
+        - Templates
   /backup/plans/{backupPlanId}/:
     GET:
       summary: GetBackupPlan
@@ -976,39 +976,39 @@ paths:
         - Backup
         - Plan
         - Hold
-        - Id
+        - Identifiers
         - Backup
         - Plans
         - Plan
         - Selections
         - Vault
-        - Name
+        - Names
         - Audit
         - Frameworks
         - Legal
         - Holds
-        - Report
+        - Reports
         - Restore
         - Testing
-        - Selection
+        - Selections
         - Access
-        - Policy
-        - Lock
-        - Notification
-        - Configuration
+        - Policies
+        - Locks
+        - Notifications
+        - Configurations
         - Recovery
         - Points
-        - Point
-        - Arn
-        - Job
+        - Points
+        - ARN
+        - Jobs
         - Global
         - Settings
         - Account
         - Disassociate
-        - Parent
+        - Parents
         - Association
         - To
-        - Template
+        - Templates
   /backup/template/json/toPlan:
     POST:
       summary: GetBackupPlanFromJSON
@@ -1021,39 +1021,39 @@ paths:
         - Plan
         - From
         - Hold
-        - Id
+        - Identifiers
         - Backup
         - Plans
         - Plan
         - Selections
         - Vault
-        - Name
+        - Names
         - Audit
         - Frameworks
         - Legal
         - Holds
-        - Report
+        - Reports
         - Restore
         - Testing
-        - Selection
+        - Selections
         - Access
-        - Policy
-        - Lock
-        - Notification
-        - Configuration
+        - Policies
+        - Locks
+        - Notifications
+        - Configurations
         - Recovery
         - Points
-        - Point
-        - Arn
-        - Job
+        - Points
+        - ARN
+        - Jobs
         - Global
         - Settings
         - Account
         - Disassociate
-        - Parent
+        - Parents
         - Association
         - To
-        - Template
+        - Templates
   /backup/template/plans/{templateId}/toPlan:
     GET:
       summary: GetBackupPlanFromTemplate
@@ -1065,41 +1065,41 @@ paths:
         - Backup
         - Plan
         - From
-        - Template
+        - Templates
         - Hold
-        - Id
+        - Identifiers
         - Backup
         - Plans
         - Plan
         - Selections
         - Vault
-        - Name
+        - Names
         - Audit
         - Frameworks
         - Legal
         - Holds
-        - Report
+        - Reports
         - Restore
         - Testing
-        - Selection
+        - Selections
         - Access
-        - Policy
-        - Lock
-        - Notification
-        - Configuration
+        - Policies
+        - Locks
+        - Notifications
+        - Configurations
         - Recovery
         - Points
-        - Point
-        - Arn
-        - Job
+        - Points
+        - ARN
+        - Jobs
         - Global
         - Settings
         - Account
         - Disassociate
-        - Parent
+        - Parents
         - Association
         - To
-        - Template
+        - Templates
   /legal-holds/{legalHoldId}/:
     GET:
       summary: GetLegalHold
@@ -1112,39 +1112,39 @@ paths:
         - Legal
         - Hold
         - Hold
-        - Id
+        - Identifiers
         - Backup
         - Plans
         - Plan
         - Selections
         - Vault
-        - Name
+        - Names
         - Audit
         - Frameworks
         - Legal
         - Holds
-        - Report
+        - Reports
         - Restore
         - Testing
-        - Selection
+        - Selections
         - Access
-        - Policy
-        - Lock
-        - Notification
-        - Configuration
+        - Policies
+        - Locks
+        - Notifications
+        - Configurations
         - Recovery
         - Points
-        - Point
-        - Arn
-        - Job
+        - Points
+        - ARN
+        - Jobs
         - Global
         - Settings
         - Account
         - Disassociate
-        - Parent
+        - Parents
         - Association
         - To
-        - Template
+        - Templates
   /backup-vaults/{backupVaultName}/recovery-points/{recoveryPointArn}/restore-metadata:
     GET:
       summary: GetRecoveryPointRestoreMetadata
@@ -1154,43 +1154,43 @@ paths:
       tags:
         - Get
         - Recovery
-        - Point
+        - Points
         - Restore
         - Metadata
         - Hold
-        - Id
+        - Identifiers
         - Backup
         - Plans
         - Plan
         - Selections
         - Vault
-        - Name
+        - Names
         - Audit
         - Frameworks
         - Legal
         - Holds
-        - Report
+        - Reports
         - Restore
         - Testing
-        - Selection
+        - Selections
         - Access
-        - Policy
-        - Lock
-        - Notification
-        - Configuration
+        - Policies
+        - Locks
+        - Notifications
+        - Configurations
         - Recovery
         - Points
-        - Point
-        - Arn
-        - Job
+        - Points
+        - ARN
+        - Jobs
         - Global
         - Settings
         - Account
         - Disassociate
-        - Parent
+        - Parents
         - Association
         - To
-        - Template
+        - Templates
         - Metadata
   /restore-jobs/{restoreJobId}/metadata:
     GET:
@@ -1199,42 +1199,42 @@ paths:
       tags:
         - Get
         - Restore
-        - Job
+        - Jobs
         - Metadata
         - Hold
-        - Id
+        - Identifiers
         - Backup
         - Plans
         - Plan
         - Selections
         - Vault
-        - Name
+        - Names
         - Audit
         - Frameworks
         - Legal
         - Holds
-        - Report
+        - Reports
         - Restore
         - Testing
-        - Selection
+        - Selections
         - Access
-        - Policy
-        - Lock
-        - Notification
-        - Configuration
+        - Policies
+        - Locks
+        - Notifications
+        - Configurations
         - Recovery
         - Points
-        - Point
-        - Arn
-        - Job
+        - Points
+        - ARN
+        - Jobs
         - Global
         - Settings
         - Account
         - Disassociate
-        - Parent
+        - Parents
         - Association
         - To
-        - Template
+        - Templates
         - Metadata
   /restore-testing/inferred-metadata:
     GET:
@@ -1252,39 +1252,39 @@ paths:
         - Inferred
         - Metadata
         - Hold
-        - Id
+        - Identifiers
         - Backup
         - Plans
         - Plan
         - Selections
         - Vault
-        - Name
+        - Names
         - Audit
         - Frameworks
         - Legal
         - Holds
-        - Report
+        - Reports
         - Restore
         - Testing
-        - Selection
+        - Selections
         - Access
-        - Policy
-        - Lock
-        - Notification
-        - Configuration
+        - Policies
+        - Locks
+        - Notifications
+        - Configurations
         - Recovery
         - Points
-        - Point
-        - Arn
-        - Job
+        - Points
+        - ARN
+        - Jobs
         - Global
         - Settings
         - Account
         - Disassociate
-        - Parent
+        - Parents
         - Association
         - To
-        - Template
+        - Templates
         - Metadata
         - Inferred
   /supported-resource-types:
@@ -1296,46 +1296,46 @@ paths:
       tags:
         - Get
         - Supported
-        - Resource
+        - Resources
         - Types
         - Hold
-        - Id
+        - Identifiers
         - Backup
         - Plans
         - Plan
         - Selections
         - Vault
-        - Name
+        - Names
         - Audit
         - Frameworks
         - Legal
         - Holds
-        - Report
+        - Reports
         - Restore
         - Testing
-        - Selection
+        - Selections
         - Access
-        - Policy
-        - Lock
-        - Notification
-        - Configuration
+        - Policies
+        - Locks
+        - Notifications
+        - Configurations
         - Recovery
         - Points
-        - Point
-        - Arn
-        - Job
+        - Points
+        - ARN
+        - Jobs
         - Global
         - Settings
         - Account
         - Disassociate
-        - Parent
+        - Parents
         - Association
         - To
-        - Template
+        - Templates
         - Metadata
         - Inferred
         - Supported
-        - Resource
+        - Resources
         - Types
   /audit/backup-job-summaries:
     GET:
@@ -1348,48 +1348,48 @@ paths:
         contains Region, Account, State, ResourceType, MessageCategory,
         StartTime, EndTime, and Count of included jobs.</p>
       tags:
-        - List
+        - Lists
         - Backup
-        - Job
+        - Jobs
         - Summaries
         - Hold
-        - Id
+        - Identifiers
         - Backup
         - Plans
         - Plan
         - Selections
         - Vault
-        - Name
+        - Names
         - Audit
         - Frameworks
         - Legal
         - Holds
-        - Report
+        - Reports
         - Restore
         - Testing
-        - Selection
+        - Selections
         - Access
-        - Policy
-        - Lock
-        - Notification
-        - Configuration
+        - Policies
+        - Locks
+        - Notifications
+        - Configurations
         - Recovery
         - Points
-        - Point
-        - Arn
-        - Job
+        - Points
+        - ARN
+        - Jobs
         - Global
         - Settings
         - Account
         - Disassociate
-        - Parent
+        - Parents
         - Association
         - To
-        - Template
+        - Templates
         - Metadata
         - Inferred
         - Supported
-        - Resource
+        - Resources
         - Types
         - Summaries
   /backup-jobs/:
@@ -1402,47 +1402,47 @@ paths:
         href="https://docs.aws.amazon.com/aws-backup/latest/devguide/monitoring.html">monitoring
         tools</a>.</p>
       tags:
-        - List
+        - Lists
         - Backup
         - Jobs
         - Hold
-        - Id
+        - Identifiers
         - Backup
         - Plans
         - Plan
         - Selections
         - Vault
-        - Name
+        - Names
         - Audit
         - Frameworks
         - Legal
         - Holds
-        - Report
+        - Reports
         - Restore
         - Testing
-        - Selection
+        - Selections
         - Access
-        - Policy
-        - Lock
-        - Notification
-        - Configuration
+        - Policies
+        - Locks
+        - Notifications
+        - Configurations
         - Recovery
         - Points
-        - Point
-        - Arn
-        - Job
+        - Points
+        - ARN
+        - Jobs
         - Global
         - Settings
         - Account
         - Disassociate
-        - Parent
+        - Parents
         - Association
         - To
-        - Template
+        - Templates
         - Metadata
         - Inferred
         - Supported
-        - Resource
+        - Resources
         - Types
         - Summaries
         - Jobs
@@ -1453,48 +1453,48 @@ paths:
         <p>Returns metadata of your saved backup plan templates, including the
         template ID, name, and the creation and deletion dates.</p>
       tags:
-        - List
+        - Lists
         - Backup
         - Plan
         - Templates
         - Hold
-        - Id
+        - Identifiers
         - Backup
         - Plans
         - Plan
         - Selections
         - Vault
-        - Name
+        - Names
         - Audit
         - Frameworks
         - Legal
         - Holds
-        - Report
+        - Reports
         - Restore
         - Testing
-        - Selection
+        - Selections
         - Access
-        - Policy
-        - Lock
-        - Notification
-        - Configuration
+        - Policies
+        - Locks
+        - Notifications
+        - Configurations
         - Recovery
         - Points
-        - Point
-        - Arn
-        - Job
+        - Points
+        - ARN
+        - Jobs
         - Global
         - Settings
         - Account
         - Disassociate
-        - Parent
+        - Parents
         - Association
         - To
-        - Template
+        - Templates
         - Metadata
         - Inferred
         - Supported
-        - Resource
+        - Resources
         - Types
         - Summaries
         - Jobs
@@ -1506,48 +1506,48 @@ paths:
         Resource Names (ARNs), backup plan IDs, creation and deletion dates,
         plan names, and version IDs.</p>
       tags:
-        - List
+        - Lists
         - Backup
         - Plan
         - Versions
         - Hold
-        - Id
+        - Identifiers
         - Backup
         - Plans
         - Plan
         - Selections
         - Vault
-        - Name
+        - Names
         - Audit
         - Frameworks
         - Legal
         - Holds
-        - Report
+        - Reports
         - Restore
         - Testing
-        - Selection
+        - Selections
         - Access
-        - Policy
-        - Lock
-        - Notification
-        - Configuration
+        - Policies
+        - Locks
+        - Notifications
+        - Configurations
         - Recovery
         - Points
-        - Point
-        - Arn
-        - Job
+        - Points
+        - ARN
+        - Jobs
         - Global
         - Settings
         - Account
         - Disassociate
-        - Parent
+        - Parents
         - Association
         - To
-        - Template
+        - Templates
         - Metadata
         - Inferred
         - Supported
-        - Resource
+        - Resources
         - Types
         - Summaries
         - Jobs
@@ -1559,47 +1559,47 @@ paths:
         <p>Returns a list of recovery point storage containers along with
         information about them.</p>
       tags:
-        - List
+        - Lists
         - Backup
         - Vaults
         - Hold
-        - Id
+        - Identifiers
         - Backup
         - Plans
         - Plan
         - Selections
         - Vault
-        - Name
+        - Names
         - Audit
         - Frameworks
         - Legal
         - Holds
-        - Report
+        - Reports
         - Restore
         - Testing
-        - Selection
+        - Selections
         - Access
-        - Policy
-        - Lock
-        - Notification
-        - Configuration
+        - Policies
+        - Locks
+        - Notifications
+        - Configurations
         - Recovery
         - Points
-        - Point
-        - Arn
-        - Job
+        - Points
+        - ARN
+        - Jobs
         - Global
         - Settings
         - Account
         - Disassociate
-        - Parent
+        - Parents
         - Association
         - To
-        - Template
+        - Templates
         - Metadata
         - Inferred
         - Supported
-        - Resource
+        - Resources
         - Types
         - Summaries
         - Jobs
@@ -1616,48 +1616,48 @@ paths:
         contains Region, Account, State, RestourceType, MessageCategory,
         StartTime, EndTime, and Count of included jobs.</p>
       tags:
-        - List
+        - Lists
         - Copy
-        - Job
+        - Jobs
         - Summaries
         - Hold
-        - Id
+        - Identifiers
         - Backup
         - Plans
         - Plan
         - Selections
         - Vault
-        - Name
+        - Names
         - Audit
         - Frameworks
         - Legal
         - Holds
-        - Report
+        - Reports
         - Restore
         - Testing
-        - Selection
+        - Selections
         - Access
-        - Policy
-        - Lock
-        - Notification
-        - Configuration
+        - Policies
+        - Locks
+        - Notifications
+        - Configurations
         - Recovery
         - Points
-        - Point
-        - Arn
-        - Job
+        - Points
+        - ARN
+        - Jobs
         - Global
         - Settings
         - Account
         - Disassociate
-        - Parent
+        - Parents
         - Association
         - To
-        - Template
+        - Templates
         - Metadata
         - Inferred
         - Supported
-        - Resource
+        - Resources
         - Types
         - Summaries
         - Jobs
@@ -1669,47 +1669,47 @@ paths:
       summary: ListCopyJobs
       description: <p>Returns metadata about your copy jobs.</p>
       tags:
-        - List
+        - Lists
         - Copy
         - Jobs
         - Hold
-        - Id
+        - Identifiers
         - Backup
         - Plans
         - Plan
         - Selections
         - Vault
-        - Name
+        - Names
         - Audit
         - Frameworks
         - Legal
         - Holds
-        - Report
+        - Reports
         - Restore
         - Testing
-        - Selection
+        - Selections
         - Access
-        - Policy
-        - Lock
-        - Notification
-        - Configuration
+        - Policies
+        - Locks
+        - Notifications
+        - Configurations
         - Recovery
         - Points
-        - Point
-        - Arn
-        - Job
+        - Points
+        - ARN
+        - Jobs
         - Global
         - Settings
         - Account
         - Disassociate
-        - Parent
+        - Parents
         - Association
         - To
-        - Template
+        - Templates
         - Metadata
         - Inferred
         - Supported
-        - Resource
+        - Resources
         - Types
         - Summaries
         - Jobs
@@ -1724,47 +1724,47 @@ paths:
         including the time the resource was saved, an Amazon Resource Name (ARN)
         of the resource, and a resource type.</p>
       tags:
-        - List
+        - Lists
         - Protected
         - Resources
         - Hold
-        - Id
+        - Identifiers
         - Backup
         - Plans
         - Plan
         - Selections
         - Vault
-        - Name
+        - Names
         - Audit
         - Frameworks
         - Legal
         - Holds
-        - Report
+        - Reports
         - Restore
         - Testing
-        - Selection
+        - Selections
         - Access
-        - Policy
-        - Lock
-        - Notification
-        - Configuration
+        - Policies
+        - Locks
+        - Notifications
+        - Configurations
         - Recovery
         - Points
-        - Point
-        - Arn
-        - Job
+        - Points
+        - ARN
+        - Jobs
         - Global
         - Settings
         - Account
         - Disassociate
-        - Parent
+        - Parents
         - Association
         - To
-        - Template
+        - Templates
         - Metadata
         - Inferred
         - Supported
-        - Resource
+        - Resources
         - Types
         - Summaries
         - Jobs
@@ -1779,50 +1779,50 @@ paths:
         <p>This request lists the protected resources corresponding to each
         backup vault.</p>
       tags:
-        - List
+        - Lists
         - Protected
         - Resources
         - By
         - Backup
         - Vault
         - Hold
-        - Id
+        - Identifiers
         - Backup
         - Plans
         - Plan
         - Selections
         - Vault
-        - Name
+        - Names
         - Audit
         - Frameworks
         - Legal
         - Holds
-        - Report
+        - Reports
         - Restore
         - Testing
-        - Selection
+        - Selections
         - Access
-        - Policy
-        - Lock
-        - Notification
-        - Configuration
+        - Policies
+        - Locks
+        - Notifications
+        - Configurations
         - Recovery
         - Points
-        - Point
-        - Arn
-        - Job
+        - Points
+        - ARN
+        - Jobs
         - Global
         - Settings
         - Account
         - Disassociate
-        - Parent
+        - Parents
         - Association
         - To
-        - Template
+        - Templates
         - Metadata
         - Inferred
         - Supported
-        - Resource
+        - Resources
         - Types
         - Summaries
         - Jobs
@@ -1837,50 +1837,50 @@ paths:
         <p>Returns detailed information about the recovery points stored in a
         backup vault.</p>
       tags:
-        - List
+        - Lists
         - Recovery
         - Points
         - By
         - Backup
         - Vault
         - Hold
-        - Id
+        - Identifiers
         - Backup
         - Plans
         - Plan
         - Selections
         - Vault
-        - Name
+        - Names
         - Audit
         - Frameworks
         - Legal
         - Holds
-        - Report
+        - Reports
         - Restore
         - Testing
-        - Selection
+        - Selections
         - Access
-        - Policy
-        - Lock
-        - Notification
-        - Configuration
+        - Policies
+        - Locks
+        - Notifications
+        - Configurations
         - Recovery
         - Points
-        - Point
-        - Arn
-        - Job
+        - Points
+        - ARN
+        - Jobs
         - Global
         - Settings
         - Account
         - Disassociate
-        - Parent
+        - Parents
         - Association
         - To
-        - Template
+        - Templates
         - Metadata
         - Inferred
         - Supported
-        - Resource
+        - Resources
         - Types
         - Summaries
         - Jobs
@@ -1895,50 +1895,50 @@ paths:
         <p>This action returns recovery point ARNs (Amazon Resource Names) of
         the specified legal hold.</p>
       tags:
-        - List
+        - Lists
         - Recovery
         - Points
         - By
         - Legal
         - Hold
         - Hold
-        - Id
+        - Identifiers
         - Backup
         - Plans
         - Plan
         - Selections
         - Vault
-        - Name
+        - Names
         - Audit
         - Frameworks
         - Legal
         - Holds
-        - Report
+        - Reports
         - Restore
         - Testing
-        - Selection
+        - Selections
         - Access
-        - Policy
-        - Lock
-        - Notification
-        - Configuration
+        - Policies
+        - Locks
+        - Notifications
+        - Configurations
         - Recovery
         - Points
-        - Point
-        - Arn
-        - Job
+        - Points
+        - ARN
+        - Jobs
         - Global
         - Settings
         - Account
         - Disassociate
-        - Parent
+        - Parents
         - Association
         - To
-        - Template
+        - Templates
         - Metadata
         - Inferred
         - Supported
-        - Resource
+        - Resources
         - Types
         - Summaries
         - Jobs
@@ -1955,49 +1955,49 @@ paths:
         <p>For Amazon EFS and Amazon EC2, this action only lists recovery points
         created by Backup.</p> </note>
       tags:
-        - List
+        - Lists
         - Recovery
         - Points
         - By
-        - Resource
+        - Resources
         - Hold
-        - Id
+        - Identifiers
         - Backup
         - Plans
         - Plan
         - Selections
         - Vault
-        - Name
+        - Names
         - Audit
         - Frameworks
         - Legal
         - Holds
-        - Report
+        - Reports
         - Restore
         - Testing
-        - Selection
+        - Selections
         - Access
-        - Policy
-        - Lock
-        - Notification
-        - Configuration
+        - Policies
+        - Locks
+        - Notifications
+        - Configurations
         - Recovery
         - Points
-        - Point
-        - Arn
-        - Job
+        - Points
+        - ARN
+        - Jobs
         - Global
         - Settings
         - Account
         - Disassociate
-        - Parent
+        - Parents
         - Association
         - To
-        - Template
+        - Templates
         - Metadata
         - Inferred
         - Supported
-        - Resource
+        - Resources
         - Types
         - Summaries
         - Jobs
@@ -2010,47 +2010,47 @@ paths:
       summary: ListReportJobs
       description: <p>Returns details about your report jobs.</p>
       tags:
-        - List
-        - Report
+        - Lists
+        - Reports
         - Jobs
         - Hold
-        - Id
+        - Identifiers
         - Backup
         - Plans
         - Plan
         - Selections
         - Vault
-        - Name
+        - Names
         - Audit
         - Frameworks
         - Legal
         - Holds
-        - Report
+        - Reports
         - Restore
         - Testing
-        - Selection
+        - Selections
         - Access
-        - Policy
-        - Lock
-        - Notification
-        - Configuration
+        - Policies
+        - Locks
+        - Notifications
+        - Configurations
         - Recovery
         - Points
-        - Point
-        - Arn
-        - Job
+        - Points
+        - ARN
+        - Jobs
         - Global
         - Settings
         - Account
         - Disassociate
-        - Parent
+        - Parents
         - Association
         - To
-        - Template
+        - Templates
         - Metadata
         - Inferred
         - Supported
-        - Resource
+        - Resources
         - Types
         - Summaries
         - Jobs
@@ -2069,48 +2069,48 @@ paths:
         contains Region, Account, State, RestourceType, MessageCategory,
         StartTime, EndTime, and Count of included jobs.</p>
       tags:
-        - List
+        - Lists
         - Restore
-        - Job
+        - Jobs
         - Summaries
         - Hold
-        - Id
+        - Identifiers
         - Backup
         - Plans
         - Plan
         - Selections
         - Vault
-        - Name
+        - Names
         - Audit
         - Frameworks
         - Legal
         - Holds
-        - Report
+        - Reports
         - Restore
         - Testing
-        - Selection
+        - Selections
         - Access
-        - Policy
-        - Lock
-        - Notification
-        - Configuration
+        - Policies
+        - Locks
+        - Notifications
+        - Configurations
         - Recovery
         - Points
-        - Point
-        - Arn
-        - Job
+        - Points
+        - ARN
+        - Jobs
         - Global
         - Settings
         - Account
         - Disassociate
-        - Parent
+        - Parents
         - Association
         - To
-        - Template
+        - Templates
         - Metadata
         - Inferred
         - Supported
-        - Resource
+        - Resources
         - Types
         - Summaries
         - Jobs
@@ -2125,47 +2125,47 @@ paths:
         <p>Returns a list of jobs that Backup initiated to restore a saved
         resource, including details about the recovery process.</p>
       tags:
-        - List
+        - Lists
         - Restore
         - Jobs
         - Hold
-        - Id
+        - Identifiers
         - Backup
         - Plans
         - Plan
         - Selections
         - Vault
-        - Name
+        - Names
         - Audit
         - Frameworks
         - Legal
         - Holds
-        - Report
+        - Reports
         - Restore
         - Testing
-        - Selection
+        - Selections
         - Access
-        - Policy
-        - Lock
-        - Notification
-        - Configuration
+        - Policies
+        - Locks
+        - Notifications
+        - Configurations
         - Recovery
         - Points
-        - Point
-        - Arn
-        - Job
+        - Points
+        - ARN
+        - Jobs
         - Global
         - Settings
         - Account
         - Disassociate
-        - Parent
+        - Parents
         - Association
         - To
-        - Template
+        - Templates
         - Metadata
         - Inferred
         - Supported
-        - Resource
+        - Resources
         - Types
         - Summaries
         - Jobs
@@ -2183,50 +2183,50 @@ paths:
         <code>MaxResults</code>, <code>ByRecoveryPointCreationDateAfter</code> ,
         and <code>ByRecoveryPointCreationDateBefore</code>.</p>
       tags:
-        - List
+        - Lists
         - Restore
         - Jobs
         - By
         - Protected
-        - Resource
+        - Resources
         - Hold
-        - Id
+        - Identifiers
         - Backup
         - Plans
         - Plan
         - Selections
         - Vault
-        - Name
+        - Names
         - Audit
         - Frameworks
         - Legal
         - Holds
-        - Report
+        - Reports
         - Restore
         - Testing
-        - Selection
+        - Selections
         - Access
-        - Policy
-        - Lock
-        - Notification
-        - Configuration
+        - Policies
+        - Locks
+        - Notifications
+        - Configurations
         - Recovery
         - Points
-        - Point
-        - Arn
-        - Job
+        - Points
+        - ARN
+        - Jobs
         - Global
         - Settings
         - Account
         - Disassociate
-        - Parent
+        - Parents
         - Association
         - To
-        - Template
+        - Templates
         - Metadata
         - Inferred
         - Supported
-        - Resource
+        - Resources
         - Types
         - Summaries
         - Jobs
@@ -2246,46 +2246,46 @@ paths:
         href="https://docs.aws.amazon.com/aws-backup/latest/devguide/whatisbackup.html#features-by-resource">
         Feature availability by resource</a> table.</p>
       tags:
-        - List
+        - Lists
         - Tags
         - Hold
-        - Id
+        - Identifiers
         - Backup
         - Plans
         - Plan
         - Selections
         - Vault
-        - Name
+        - Names
         - Audit
         - Frameworks
         - Legal
         - Holds
-        - Report
+        - Reports
         - Restore
         - Testing
-        - Selection
+        - Selections
         - Access
-        - Policy
-        - Lock
-        - Notification
-        - Configuration
+        - Policies
+        - Locks
+        - Notifications
+        - Configurations
         - Recovery
         - Points
-        - Point
-        - Arn
-        - Job
+        - Points
+        - ARN
+        - Jobs
         - Global
         - Settings
         - Account
         - Disassociate
-        - Parent
+        - Parents
         - Association
         - To
-        - Template
+        - Templates
         - Metadata
         - Inferred
         - Supported
-        - Resource
+        - Resources
         - Types
         - Summaries
         - Jobs
@@ -2304,46 +2304,46 @@ paths:
       tags:
         - Put
         - Restore
-        - Validation
-        - Result
+        - Validations
+        - Results
         - Hold
-        - Id
+        - Identifiers
         - Backup
         - Plans
         - Plan
         - Selections
         - Vault
-        - Name
+        - Names
         - Audit
         - Frameworks
         - Legal
         - Holds
-        - Report
+        - Reports
         - Restore
         - Testing
-        - Selection
+        - Selections
         - Access
-        - Policy
-        - Lock
-        - Notification
-        - Configuration
+        - Policies
+        - Locks
+        - Notifications
+        - Configurations
         - Recovery
         - Points
-        - Point
-        - Arn
-        - Job
+        - Points
+        - ARN
+        - Jobs
         - Global
         - Settings
         - Account
         - Disassociate
-        - Parent
+        - Parents
         - Association
         - To
-        - Template
+        - Templates
         - Metadata
         - Inferred
         - Supported
-        - Resource
+        - Resources
         - Types
         - Summaries
         - Jobs
@@ -2359,45 +2359,45 @@ paths:
       tags:
         - Start
         - Backup
-        - Job
+        - Jobs
         - Hold
-        - Id
+        - Identifiers
         - Backup
         - Plans
         - Plan
         - Selections
         - Vault
-        - Name
+        - Names
         - Audit
         - Frameworks
         - Legal
         - Holds
-        - Report
+        - Reports
         - Restore
         - Testing
-        - Selection
+        - Selections
         - Access
-        - Policy
-        - Lock
-        - Notification
-        - Configuration
+        - Policies
+        - Locks
+        - Notifications
+        - Configurations
         - Recovery
         - Points
-        - Point
-        - Arn
-        - Job
+        - Points
+        - ARN
+        - Jobs
         - Global
         - Settings
         - Account
         - Disassociate
-        - Parent
+        - Parents
         - Association
         - To
-        - Template
+        - Templates
         - Metadata
         - Inferred
         - Supported
-        - Resource
+        - Resources
         - Types
         - Summaries
         - Jobs
@@ -2415,45 +2415,45 @@ paths:
       tags:
         - Start
         - Copy
-        - Job
+        - Jobs
         - Hold
-        - Id
+        - Identifiers
         - Backup
         - Plans
         - Plan
         - Selections
         - Vault
-        - Name
+        - Names
         - Audit
         - Frameworks
         - Legal
         - Holds
-        - Report
+        - Reports
         - Restore
         - Testing
-        - Selection
+        - Selections
         - Access
-        - Policy
-        - Lock
-        - Notification
-        - Configuration
+        - Policies
+        - Locks
+        - Notifications
+        - Configurations
         - Recovery
         - Points
-        - Point
-        - Arn
-        - Job
+        - Points
+        - ARN
+        - Jobs
         - Global
         - Settings
         - Account
         - Disassociate
-        - Parent
+        - Parents
         - Association
         - To
-        - Template
+        - Templates
         - Metadata
         - Inferred
         - Supported
-        - Resource
+        - Resources
         - Types
         - Summaries
         - Jobs
@@ -2468,46 +2468,46 @@ paths:
       description: <p>Starts an on-demand report job for the specified report plan.</p>
       tags:
         - Start
-        - Report
-        - Job
+        - Reports
+        - Jobs
         - Hold
-        - Id
+        - Identifiers
         - Backup
         - Plans
         - Plan
         - Selections
         - Vault
-        - Name
+        - Names
         - Audit
         - Frameworks
         - Legal
         - Holds
-        - Report
+        - Reports
         - Restore
         - Testing
-        - Selection
+        - Selections
         - Access
-        - Policy
-        - Lock
-        - Notification
-        - Configuration
+        - Policies
+        - Locks
+        - Notifications
+        - Configurations
         - Recovery
         - Points
-        - Point
-        - Arn
-        - Job
+        - Points
+        - ARN
+        - Jobs
         - Global
         - Settings
         - Account
         - Disassociate
-        - Parent
+        - Parents
         - Association
         - To
-        - Template
+        - Templates
         - Metadata
         - Inferred
         - Supported
-        - Resource
+        - Resources
         - Types
         - Summaries
         - Jobs
@@ -2525,45 +2525,45 @@ paths:
       tags:
         - Start
         - Restore
-        - Job
+        - Jobs
         - Hold
-        - Id
+        - Identifiers
         - Backup
         - Plans
         - Plan
         - Selections
         - Vault
-        - Name
+        - Names
         - Audit
         - Frameworks
         - Legal
         - Holds
-        - Report
+        - Reports
         - Restore
         - Testing
-        - Selection
+        - Selections
         - Access
-        - Policy
-        - Lock
-        - Notification
-        - Configuration
+        - Policies
+        - Locks
+        - Notifications
+        - Configurations
         - Recovery
         - Points
-        - Point
-        - Arn
-        - Job
+        - Points
+        - ARN
+        - Jobs
         - Global
         - Settings
         - Account
         - Disassociate
-        - Parent
+        - Parents
         - Association
         - To
-        - Template
+        - Templates
         - Metadata
         - Inferred
         - Supported
-        - Resource
+        - Resources
         - Types
         - Summaries
         - Jobs
@@ -2579,46 +2579,46 @@ paths:
         <p>Assigns a set of key-value pairs to a recovery point, backup plan, or
         backup vault identified by an Amazon Resource Name (ARN).</p>
       tags:
-        - Tag
-        - Resource
+        - Tags
+        - Resources
         - Hold
-        - Id
+        - Identifiers
         - Backup
         - Plans
         - Plan
         - Selections
         - Vault
-        - Name
+        - Names
         - Audit
         - Frameworks
         - Legal
         - Holds
-        - Report
+        - Reports
         - Restore
         - Testing
-        - Selection
+        - Selections
         - Access
-        - Policy
-        - Lock
-        - Notification
-        - Configuration
+        - Policies
+        - Locks
+        - Notifications
+        - Configurations
         - Recovery
         - Points
-        - Point
-        - Arn
-        - Job
+        - Points
+        - ARN
+        - Jobs
         - Global
         - Settings
         - Account
         - Disassociate
-        - Parent
+        - Parents
         - Association
         - To
-        - Template
+        - Templates
         - Metadata
         - Inferred
         - Supported
-        - Resource
+        - Resources
         - Types
         - Summaries
         - Jobs
@@ -2635,45 +2635,45 @@ paths:
         or backup vault identified by an Amazon Resource Name
       tags:
         - Untag
-        - Resource
+        - Resources
         - Hold
-        - Id
+        - Identifiers
         - Backup
         - Plans
         - Plan
         - Selections
         - Vault
-        - Name
+        - Names
         - Audit
         - Frameworks
         - Legal
         - Holds
-        - Report
+        - Reports
         - Restore
         - Testing
-        - Selection
+        - Selections
         - Access
-        - Policy
-        - Lock
-        - Notification
-        - Configuration
+        - Policies
+        - Locks
+        - Notifications
+        - Configurations
         - Recovery
         - Points
-        - Point
-        - Arn
-        - Job
+        - Points
+        - ARN
+        - Jobs
         - Global
         - Settings
         - Account
         - Disassociate
-        - Parent
+        - Parents
         - Association
         - To
-        - Template
+        - Templates
         - Metadata
         - Inferred
         - Supported
-        - Resource
+        - Resources
         - Types
         - Summaries
         - Jobs
@@ -2681,4 +2681,4 @@ paths:
         - Vaults
         - Copy
         - Resources
-        - Validatio
+        - Validations

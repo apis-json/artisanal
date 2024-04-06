@@ -7,30 +7,30 @@ paths:
       summary: ListApps
       description: <p>Returns a list of the existing Amplify apps. </p>
       tags:
-        - List
-        - Apps
-        - Apps
+        - Lists
+        - Applications
+        - Applications
   /apps/{appId}/backendenvironments:
     GET:
       summary: ListBackendEnvironments
       description: <p>Lists the backend environments for an Amplify app. </p>
       tags:
-        - List
-        - Backend
+        - Lists
+        - Backends
         - Environments
-        - Apps
-        - Id
-        - Backendenvironments
+        - Applications
+        - Identifiers
+        - Backend Environments
   /apps/{appId}/branches:
     GET:
       summary: ListBranches
       description: <p> Lists the branches of an Amplify app. </p>
       tags:
-        - List
+        - Lists
         - Branches
-        - Apps
-        - Id
-        - Backendenvironments
+        - Applications
+        - Identifiers
+        - Backend Environments
         - Branches
   /apps/{appId}/branches/{branchName}/deployments:
     POST:
@@ -44,28 +44,28 @@ paths:
         associated <code>Job</code> will fail.</p>
       tags:
         - Create
-        - Deployment
-        - Apps
-        - Id
-        - Backendenvironments
+        - Deployments
+        - Applications
+        - Identifiers
+        - Backend Environments
         - Branches
         - Branch
-        - Name
+        - Names
         - Deployments
   /apps/{appId}/domains:
     GET:
       summary: ListDomainAssociations
       description: <p> Returns the domain associations for an Amplify app. </p>
       tags:
-        - List
-        - Domain
+        - Lists
+        - Domains
         - Associations
-        - Apps
-        - Id
-        - Backendenvironments
+        - Applications
+        - Identifiers
+        - Backend Environments
         - Branches
         - Branch
-        - Name
+        - Names
         - Deployments
         - Domains
   /apps/{appId}/webhooks:
@@ -73,14 +73,14 @@ paths:
       summary: ListWebhooks
       description: <p>Returns a list of webhooks for an Amplify app. </p>
       tags:
-        - List
+        - Lists
         - Webhooks
-        - Apps
-        - Id
-        - Backendenvironments
+        - Applications
+        - Identifiers
+        - Backend Environments
         - Branches
         - Branch
-        - Name
+        - Names
         - Deployments
         - Domains
         - Webhooks
@@ -90,13 +90,13 @@ paths:
       description: <p>Updates an existing Amplify app. </p>
       tags:
         - Update
-        - App
-        - Apps
-        - Id
-        - Backendenvironments
+        - Applications
+        - Applications
+        - Identifiers
+        - Backend Environments
         - Branches
         - Branch
-        - Name
+        - Names
         - Deployments
         - Domains
         - Webhooks
@@ -106,18 +106,18 @@ paths:
       description: <p>Returns a backend environment for an Amplify app. </p>
       tags:
         - Get
-        - Backend
-        - Environment
-        - Apps
-        - Id
-        - Backendenvironments
+        - Backends
+        - Environments
+        - Applications
+        - Identifiers
+        - Backend Environments
         - Branches
         - Branch
-        - Name
+        - Names
         - Deployments
         - Domains
         - Webhooks
-        - Environment
+        - Environments
   /apps/{appId}/branches/{branchName}:
     POST:
       summary: UpdateBranch
@@ -125,75 +125,75 @@ paths:
       tags:
         - Update
         - Branch
-        - Apps
-        - Id
-        - Backendenvironments
+        - Applications
+        - Identifiers
+        - Backend Environments
         - Branches
         - Branch
-        - Name
+        - Names
         - Deployments
         - Domains
         - Webhooks
-        - Environment
+        - Environments
   /apps/{appId}/domains/{domainName}:
     POST:
       summary: UpdateDomainAssociation
       description: <p> Creates a new domain association for an Amplify app.</p>
       tags:
         - Update
-        - Domain
+        - Domains
         - Association
-        - Apps
-        - Id
-        - Backendenvironments
+        - Applications
+        - Identifiers
+        - Backend Environments
         - Branches
         - Branch
-        - Name
+        - Names
         - Deployments
         - Domains
         - Webhooks
-        - Environment
-        - Domain
+        - Environments
+        - Domains
   /apps/{appId}/branches/{branchName}/jobs/{jobId}:
     GET:
       summary: GetJob
       description: <p> Returns a job for a branch of an Amplify app. </p>
       tags:
         - Get
-        - Job
-        - Apps
-        - Id
-        - Backendenvironments
+        - Jobs
+        - Applications
+        - Identifiers
+        - Backend Environments
         - Branches
         - Branch
-        - Name
+        - Names
         - Deployments
         - Domains
         - Webhooks
-        - Environment
-        - Domain
+        - Environments
+        - Domains
         - Jobs
-        - Job
+        - Jobs
   /webhooks/{webhookId}:
     POST:
       summary: UpdateWebhook
       description: <p>Updates a webhook. </p>
       tags:
         - Update
-        - Webhook
-        - Apps
-        - Id
-        - Backendenvironments
+        - Webhooks
+        - Applications
+        - Identifiers
+        - Backend Environments
         - Branches
         - Branch
-        - Name
+        - Names
         - Deployments
         - Domains
         - Webhooks
-        - Environment
-        - Domain
+        - Environments
+        - Domains
         - Jobs
-        - Job
+        - Jobs
   /apps/{appId}/accesslogs:
     POST:
       summary: GenerateAccessLogs
@@ -204,42 +204,42 @@ paths:
         - Generate
         - Access
         - Logs
-        - Apps
-        - Id
-        - Backendenvironments
+        - Applications
+        - Identifiers
+        - Backend Environments
         - Branches
         - Branch
-        - Name
+        - Names
         - Deployments
         - Domains
         - Webhooks
-        - Environment
-        - Domain
+        - Environments
+        - Domains
         - Jobs
-        - Job
-        - Accesslogs
+        - Jobs
+        - Access Logs
   /artifacts/{artifactId}:
     GET:
       summary: GetArtifactUrl
       description: <p>Returns the artifact info that corresponds to an artifact id. </p>
       tags:
         - Get
-        - Artifact
-        - Url
-        - Apps
-        - Id
-        - Backendenvironments
+        - Artifacts
+        - URL
+        - Applications
+        - Identifiers
+        - Backend Environments
         - Branches
         - Branch
-        - Name
+        - Names
         - Deployments
         - Domains
         - Webhooks
-        - Environment
-        - Domain
+        - Environments
+        - Domains
         - Jobs
-        - Job
-        - Accesslogs
+        - Jobs
+        - Access Logs
   /apps/{appId}/branches/{branchName}/jobs/{jobId}/artifacts:
     GET:
       summary: ListArtifacts
@@ -247,22 +247,22 @@ paths:
         <p>Returns a list of artifacts for a specified app, branch, and job.
         </p>
       tags:
-        - List
+        - Lists
         - Artifacts
-        - Apps
-        - Id
-        - Backendenvironments
+        - Applications
+        - Identifiers
+        - Backend Environments
         - Branches
         - Branch
-        - Name
+        - Names
         - Deployments
         - Domains
         - Webhooks
-        - Environment
-        - Domain
+        - Environments
+        - Domains
         - Jobs
-        - Job
-        - Accesslogs
+        - Jobs
+        - Access Logs
         - Artifacts
   /apps/{appId}/branches/{branchName}/jobs:
     POST:
@@ -270,21 +270,21 @@ paths:
       description: <p> Starts a new job for a branch of an Amplify app. </p>
       tags:
         - Start
-        - Job
-        - Apps
-        - Id
-        - Backendenvironments
+        - Jobs
+        - Applications
+        - Identifiers
+        - Backend Environments
         - Branches
         - Branch
-        - Name
+        - Names
         - Deployments
         - Domains
         - Webhooks
-        - Environment
-        - Domain
+        - Environments
+        - Domains
         - Jobs
-        - Job
-        - Accesslogs
+        - Jobs
+        - Access Logs
         - Artifacts
   /tags/{resourceArn}:
     DELETE:
@@ -292,23 +292,23 @@ paths:
       description: <p>Untags a resource with a specified Amazon Resource Name (ARN).</p>
       tags:
         - Untag
-        - Resource
-        - Apps
-        - Id
-        - Backendenvironments
+        - Resources
+        - Applications
+        - Identifiers
+        - Backend Environments
         - Branches
         - Branch
-        - Name
+        - Names
         - Deployments
         - Domains
         - Webhooks
-        - Environment
-        - Domain
+        - Environments
+        - Domains
         - Jobs
-        - Job
-        - Accesslogs
+        - Jobs
+        - Access Logs
         - Artifacts
-        - Arn
+        - ARN
   /apps/{appId}/branches/{branchName}/deployments/start:
     POST:
       summary: StartDeployment
@@ -321,23 +321,23 @@ paths:
         associated <code>Job</code> will fail.</p>
       tags:
         - Start
-        - Deployment
-        - Apps
-        - Id
-        - Backendenvironments
+        - Deployments
+        - Applications
+        - Identifiers
+        - Backend Environments
         - Branches
         - Branch
-        - Name
+        - Names
         - Deployments
         - Domains
         - Webhooks
-        - Environment
-        - Domain
+        - Environments
+        - Domains
         - Jobs
-        - Job
-        - Accesslogs
+        - Jobs
+        - Access Logs
         - Artifacts
-        - Arn
+        - ARN
         - Start
   /apps/{appId}/branches/{branchName}/jobs/{jobId}/stop:
     DELETE:
@@ -345,22 +345,22 @@ paths:
       description: <p> Stops a job that is in progress for a branch of an Ampli
       tags:
         - Stop
-        - Job
-        - Apps
-        - Id
-        - Backendenvironments
+        - Jobs
+        - Applications
+        - Identifiers
+        - Backend Environments
         - Branches
         - Branch
-        - Name
+        - Names
         - Deployments
         - Domains
         - Webhooks
-        - Environment
-        - Domain
+        - Environments
+        - Domains
         - Jobs
-        - Job
-        - Accesslogs
+        - Jobs
+        - Access Logs
         - Artifacts
-        - Arn
+        - ARN
         - Start
         - St
