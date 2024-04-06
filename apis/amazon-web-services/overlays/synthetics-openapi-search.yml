@@ -12,8 +12,8 @@ paths:
         run this operation in the Region where the canary exists.</p>
       tags:
         - Associate
-        - Resource
-        - Identifier
+        - Resources
+        - Identifiers
         - Associate
   /canary:
     POST:
@@ -42,7 +42,7 @@ paths:
       tags:
         - Create
         - Canary
-        - Identifier
+        - Identifiers
         - Associate
         - Canary
   /group:
@@ -69,7 +69,7 @@ paths:
       tags:
         - Create
         - Group
-        - Identifier
+        - Identifiers
         - Associate
         - Canary
         - Group
@@ -84,11 +84,11 @@ paths:
       tags:
         - Update
         - Canary
-        - Identifier
+        - Identifiers
         - Associate
         - Canary
         - Group
-        - Name
+        - Names
   /group/{groupIdentifier}:
     GET:
       summary: GetGroup
@@ -98,11 +98,11 @@ paths:
       tags:
         - Get
         - Group
-        - Identifier
+        - Identifiers
         - Associate
         - Canary
         - Group
-        - Name
+        - Names
   /canaries:
     POST:
       summary: DescribeCanaries
@@ -123,11 +123,11 @@ paths:
       tags:
         - Describe
         - Canaries
-        - Identifier
+        - Identifiers
         - Associate
         - Canary
         - Group
-        - Name
+        - Names
         - Canaries
   /canaries/last-run:
     POST:
@@ -150,15 +150,15 @@ paths:
         - Describe
         - Canaries
         - Last
-        - Run
-        - Identifier
+        - Runs
+        - Identifiers
         - Associate
         - Canary
         - Group
-        - Name
+        - Names
         - Canaries
         - Last
-        - Run
+        - Runs
   /runtime-versions:
     POST:
       summary: DescribeRuntimeVersions
@@ -171,14 +171,14 @@ paths:
         - Describe
         - Runtime
         - Versions
-        - Identifier
+        - Identifiers
         - Associate
         - Canary
         - Group
-        - Name
+        - Names
         - Canaries
         - Last
-        - Run
+        - Runs
         - Runtime
         - Versions
   /group/{groupIdentifier}/disassociate:
@@ -189,15 +189,15 @@ paths:
         Region where the canary exists.</p>
       tags:
         - Disassociate
-        - Resource
-        - Identifier
+        - Resources
+        - Identifiers
         - Associate
         - Canary
         - Group
-        - Name
+        - Names
         - Canaries
         - Last
-        - Run
+        - Runs
         - Runtime
         - Versions
         - Disassociate
@@ -209,14 +209,14 @@ paths:
         - Get
         - Canary
         - Runs
-        - Identifier
+        - Identifiers
         - Associate
         - Canary
         - Group
-        - Name
+        - Names
         - Canaries
         - Last
-        - Run
+        - Runs
         - Runtime
         - Versions
         - Disassociate
@@ -228,22 +228,22 @@ paths:
         <p>Returns a list of the groups that the specified canary is associated
         with. The canary that you specify must be in the current Region.</p>
       tags:
-        - List
+        - Lists
         - Associated
         - Groups
-        - Identifier
+        - Identifiers
         - Associate
         - Canary
         - Group
-        - Name
+        - Names
         - Canaries
         - Last
-        - Run
+        - Runs
         - Runtime
         - Versions
         - Disassociate
         - Runs
-        - Arn
+        - ARN
         - Groups
   /group/{groupIdentifier}/resources:
     POST:
@@ -252,22 +252,22 @@ paths:
         <p>This operation returns a list of the ARNs of the canaries that are
         associated with the specified group.</p>
       tags:
-        - List
+        - Lists
         - Group
         - Resources
-        - Identifier
+        - Identifiers
         - Associate
         - Canary
         - Group
-        - Name
+        - Names
         - Canaries
         - Last
-        - Run
+        - Runs
         - Runtime
         - Versions
         - Disassociate
         - Runs
-        - Arn
+        - ARN
         - Groups
         - Resources
   /groups:
@@ -277,21 +277,21 @@ paths:
         <p>Returns a list of all groups in the account, displaying their names,
         unique IDs, and ARNs. The groups from all Regions are returned.</p>
       tags:
-        - List
+        - Lists
         - Groups
-        - Identifier
+        - Identifiers
         - Associate
         - Canary
         - Group
-        - Name
+        - Names
         - Canaries
         - Last
-        - Run
+        - Runs
         - Runtime
         - Versions
         - Disassociate
         - Runs
-        - Arn
+        - ARN
         - Groups
         - Resources
   /tags/{resourceArn}:
@@ -300,20 +300,20 @@ paths:
       description: <p>Removes one or more tags from the specified resource.</p>
       tags:
         - Untag
-        - Resource
-        - Identifier
+        - Resources
+        - Identifiers
         - Associate
         - Canary
         - Group
-        - Name
+        - Names
         - Canaries
         - Last
-        - Run
+        - Runs
         - Runtime
         - Versions
         - Disassociate
         - Runs
-        - Arn
+        - ARN
         - Groups
         - Resources
   /canary/{name}/start:
@@ -327,19 +327,19 @@ paths:
       tags:
         - Start
         - Canary
-        - Identifier
+        - Identifiers
         - Associate
         - Canary
         - Group
-        - Name
+        - Names
         - Canaries
         - Last
-        - Run
+        - Runs
         - Runtime
         - Versions
         - Disassociate
         - Runs
-        - Arn
+        - ARN
         - Groups
         - Resources
         - Start
@@ -356,19 +356,19 @@ paths:
       tags:
         - Stop
         - Canary
-        - Identifier
+        - Identifiers
         - Associate
         - Canary
         - Group
-        - Name
+        - Names
         - Canaries
         - Last
-        - Run
+        - Runs
         - Runtime
         - Versions
         - Disassociate
         - Runs
-        - Arn
+        - ARN
         - Groups
         - Resources
         - Start

@@ -7,11 +7,11 @@ paths:
       summary: ListRules
       description: <p>Lists the rules for the listener.</p>
       tags:
-        - List
+        - Lists
         - Rules
-        - Identifier
+        - Identifiers
         - Listeners
-        - Listener
+        - Listeners
         - Rules
   /accesslogsubscriptions:
     GET:
@@ -20,27 +20,27 @@ paths:
         <p>Lists all access log subscriptions for the specified service network
         or service.</p>
       tags:
-        - List
+        - Lists
         - Access
-        - Log
+        - Logs
         - Subscriptions
-        - Identifier
+        - Identifiers
         - Listeners
-        - Listener
+        - Listeners
         - Rules
-        - Accesslogsubscriptions
+        - Access Log Subscriptions
   /services/{serviceIdentifier}/listeners:
     GET:
       summary: ListListeners
       description: <p>Lists the listeners for the specified service.</p>
       tags:
-        - List
+        - Lists
         - Listeners
-        - Identifier
+        - Identifiers
         - Listeners
-        - Listener
+        - Listeners
         - Rules
-        - Accesslogsubscriptions
+        - Access Log Subscriptions
   /services:
     GET:
       summary: ListServices
@@ -48,13 +48,13 @@ paths:
         <p>Lists the services owned by the caller account or shared with the
         caller account.</p>
       tags:
-        - List
+        - Lists
         - Services
-        - Identifier
+        - Identifiers
         - Listeners
-        - Listener
+        - Listeners
         - Rules
-        - Accesslogsubscriptions
+        - Access Log Subscriptions
         - Services
   /servicenetworks:
     GET:
@@ -64,16 +64,16 @@ paths:
         the caller account. Also includes the account ID in the ARN to show
         which account owns the service network.</p>
       tags:
-        - List
-        - Service
-        - Networks
-        - Identifier
-        - Listeners
-        - Listener
-        - Rules
-        - Accesslogsubscriptions
+        - Lists
         - Services
-        - Servicenetworks
+        - Networks
+        - Identifiers
+        - Listeners
+        - Listeners
+        - Rules
+        - Access Log Subscriptions
+        - Services
+        - Service Networks
   /servicenetworkserviceassociations:
     GET:
       summary: ListServiceNetworkServiceAssociations
@@ -88,18 +88,18 @@ paths:
         another account, the association will include the local account ID as
         the prefix in the ARN for each account the resource is shared with.</p>
       tags:
-        - List
-        - Service
-        - Network
-        - Associations
-        - Identifier
-        - Listeners
-        - Listener
-        - Rules
-        - Accesslogsubscriptions
+        - Lists
         - Services
-        - Servicenetworks
-        - Servicenetworkserviceassociations
+        - Networks
+        - Associations
+        - Identifiers
+        - Listeners
+        - Listeners
+        - Rules
+        - Access Log Subscriptions
+        - Services
+        - Service Networks
+        - Service Network Service Associations
   /servicenetworkvpcassociations:
     GET:
       summary: ListServiceNetworkVpcAssociations
@@ -108,20 +108,20 @@ paths:
         list either by VPC or service network. You must provide either the
         service network identifier or the VPC identifier.</p>
       tags:
-        - List
-        - Service
-        - Network
-        - Vpc
-        - Associations
-        - Identifier
-        - Listeners
-        - Listener
-        - Rules
-        - Accesslogsubscriptions
+        - Lists
         - Services
-        - Servicenetworks
-        - Servicenetworkserviceassociations
-        - Servicenetworkvpcassociations
+        - Networks
+        - VPC
+        - Associations
+        - Identifiers
+        - Listeners
+        - Listeners
+        - Rules
+        - Access Log Subscriptions
+        - Services
+        - Service Networks
+        - Service Network Service Associations
+        - Service Network VPC Associations
   /targetgroups:
     GET:
       summary: ListTargetGroups
@@ -129,19 +129,19 @@ paths:
         <p>Lists your target groups. You can narrow your search by using the
         filters below in your request.</p>
       tags:
-        - List
+        - Lists
         - Target
         - Groups
-        - Identifier
+        - Identifiers
         - Listeners
-        - Listener
+        - Listeners
         - Rules
-        - Accesslogsubscriptions
+        - Access Log Subscriptions
         - Services
-        - Servicenetworks
-        - Servicenetworkserviceassociations
-        - Servicenetworkvpcassociations
-        - Targetgroups
+        - Service Networks
+        - Service Network Service Associations
+        - Service Network VPC Associations
+        - Target Groups
   /accesslogsubscriptions/{accessLogSubscriptionIdentifier}:
     PATCH:
       summary: UpdateAccessLogSubscription
@@ -149,59 +149,59 @@ paths:
       tags:
         - Update
         - Access
-        - Log
-        - Subscription
-        - Identifier
+        - Logs
+        - Subscriptions
+        - Identifiers
         - Listeners
-        - Listener
+        - Listeners
         - Rules
-        - Accesslogsubscriptions
+        - Access Log Subscriptions
         - Services
-        - Servicenetworks
-        - Servicenetworkserviceassociations
-        - Servicenetworkvpcassociations
-        - Targetgroups
-        - Log
-        - Subscription
+        - Service Networks
+        - Service Network Service Associations
+        - Service Network VPC Associations
+        - Target Groups
+        - Logs
+        - Subscriptions
   /authpolicy/{resourceIdentifier}:
     PUT:
       summary: PutAuthPolicy
       description: <p>Creates or updates the auth policy.</p>
       tags:
         - Put
-        - Auth
-        - Policy
-        - Identifier
+        - Authentication
+        - Policies
+        - Identifiers
         - Listeners
-        - Listener
+        - Listeners
         - Rules
-        - Accesslogsubscriptions
+        - Access Log Subscriptions
         - Services
-        - Servicenetworks
-        - Servicenetworkserviceassociations
-        - Servicenetworkvpcassociations
-        - Targetgroups
-        - Log
-        - Subscription
+        - Service Networks
+        - Service Network Service Associations
+        - Service Network VPC Associations
+        - Target Groups
+        - Logs
+        - Subscriptions
   /services/{serviceIdentifier}/listeners/{listenerIdentifier}:
     PATCH:
       summary: UpdateListener
       description: <p>Updates the specified listener for the specified service.</p>
       tags:
         - Update
-        - Listener
-        - Identifier
         - Listeners
-        - Listener
+        - Identifiers
+        - Listeners
+        - Listeners
         - Rules
-        - Accesslogsubscriptions
+        - Access Log Subscriptions
         - Services
-        - Servicenetworks
-        - Servicenetworkserviceassociations
-        - Servicenetworkvpcassociations
-        - Targetgroups
-        - Log
-        - Subscription
+        - Service Networks
+        - Service Network Service Associations
+        - Service Network VPC Associations
+        - Target Groups
+        - Logs
+        - Subscriptions
   /resourcepolicy/{resourceArn}:
     PUT:
       summary: PutResourcePolicy
@@ -212,21 +212,21 @@ paths:
         for sharing services and service networks.</p>
       tags:
         - Put
-        - Resource
-        - Policy
-        - Identifier
+        - Resources
+        - Policies
+        - Identifiers
         - Listeners
-        - Listener
+        - Listeners
         - Rules
-        - Accesslogsubscriptions
+        - Access Log Subscriptions
         - Services
-        - Servicenetworks
-        - Servicenetworkserviceassociations
-        - Servicenetworkvpcassociations
-        - Targetgroups
-        - Log
-        - Subscription
-        - Arn
+        - Service Networks
+        - Service Network Service Associations
+        - Service Network VPC Associations
+        - Target Groups
+        - Logs
+        - Subscriptions
+        - ARN
   /services/{serviceIdentifier}/listeners/{listenerIdentifier}/rules/{ruleIdentifier}:
     PATCH:
       summary: UpdateRule
@@ -236,65 +236,65 @@ paths:
         <code>UpdateListener</code>.</p>
       tags:
         - Update
-        - Rule
-        - Identifier
-        - Listeners
-        - Listener
         - Rules
-        - Accesslogsubscriptions
+        - Identifiers
+        - Listeners
+        - Listeners
+        - Rules
+        - Access Log Subscriptions
         - Services
-        - Servicenetworks
-        - Servicenetworkserviceassociations
-        - Servicenetworkvpcassociations
-        - Targetgroups
-        - Log
-        - Subscription
-        - Arn
-        - Rule
+        - Service Networks
+        - Service Network Service Associations
+        - Service Network VPC Associations
+        - Target Groups
+        - Logs
+        - Subscriptions
+        - ARN
+        - Rules
   /services/{serviceIdentifier}:
     PATCH:
       summary: UpdateService
       description: <p>Updates the specified service.</p>
       tags:
         - Update
-        - Service
-        - Identifier
-        - Listeners
-        - Listener
-        - Rules
-        - Accesslogsubscriptions
         - Services
-        - Servicenetworks
-        - Servicenetworkserviceassociations
-        - Servicenetworkvpcassociations
-        - Targetgroups
-        - Log
-        - Subscription
-        - Arn
-        - Rule
+        - Identifiers
+        - Listeners
+        - Listeners
+        - Rules
+        - Access Log Subscriptions
+        - Services
+        - Service Networks
+        - Service Network Service Associations
+        - Service Network VPC Associations
+        - Target Groups
+        - Logs
+        - Subscriptions
+        - ARN
+        - Rules
   /servicenetworks/{serviceNetworkIdentifier}:
     PATCH:
       summary: UpdateServiceNetwork
       description: <p>Updates the specified service network.</p>
       tags:
         - Update
-        - Service
-        - Network
-        - Identifier
-        - Listeners
-        - Listener
-        - Rules
-        - Accesslogsubscriptions
         - Services
-        - Servicenetworks
-        - Servicenetworkserviceassociations
-        - Servicenetworkvpcassociations
-        - Targetgroups
-        - Log
-        - Subscription
-        - Arn
-        - Rule
-        - Network
+        - Networks
+        - Identifiers
+        - Listeners
+        - Listeners
+        - Rules
+        - Access Log Subscriptions
+        - Services
+        - Service Networks
+        - Service Network Service Associations
+        - Service Network VPC Associations
+        - Target Groups
+        - Logs
+        - Subscriptions
+        - ARN
+        - Rules
+        - Networks
   /servicenetworkserviceassociations/{serviceNetworkServiceAssociationIdentifier}:
     GET:
       summary: GetServiceNetworkServiceAssociation
@@ -303,25 +303,25 @@ paths:
         service network and a service.</p>
       tags:
         - Get
-        - Service
-        - Network
-        - Association
-        - Identifier
-        - Listeners
-        - Listener
-        - Rules
-        - Accesslogsubscriptions
         - Services
-        - Servicenetworks
-        - Servicenetworkserviceassociations
-        - Servicenetworkvpcassociations
-        - Targetgroups
-        - Log
-        - Subscription
-        - Arn
-        - Rule
-        - Network
-        - Service
+        - Networks
+        - Association
+        - Identifiers
+        - Listeners
+        - Listeners
+        - Rules
+        - Access Log Subscriptions
+        - Services
+        - Service Networks
+        - Service Network Service Associations
+        - Service Network VPC Associations
+        - Target Groups
+        - Logs
+        - Subscriptions
+        - ARN
+        - Rules
+        - Networks
+        - Services
         - Association
   /servicenetworkvpcassociations/{serviceNetworkVpcAssociationIdentifier}:
     PATCH:
@@ -331,28 +331,28 @@ paths:
         security group, it cannot be removed.</p>
       tags:
         - Update
-        - Service
-        - Network
-        - Vpc
-        - Association
-        - Identifier
-        - Listeners
-        - Listener
-        - Rules
-        - Accesslogsubscriptions
         - Services
-        - Servicenetworks
-        - Servicenetworkserviceassociations
-        - Servicenetworkvpcassociations
-        - Targetgroups
-        - Log
-        - Subscription
-        - Arn
-        - Rule
-        - Network
-        - Service
+        - Networks
+        - VPC
         - Association
-        - Vpc
+        - Identifiers
+        - Listeners
+        - Listeners
+        - Rules
+        - Access Log Subscriptions
+        - Services
+        - Service Networks
+        - Service Network Service Associations
+        - Service Network VPC Associations
+        - Target Groups
+        - Logs
+        - Subscriptions
+        - ARN
+        - Rules
+        - Networks
+        - Services
+        - Association
+        - VPC
   /targetgroups/{targetGroupIdentifier}:
     PATCH:
       summary: UpdateTargetGroup
@@ -361,24 +361,24 @@ paths:
         - Update
         - Target
         - Group
-        - Identifier
+        - Identifiers
         - Listeners
-        - Listener
+        - Listeners
         - Rules
-        - Accesslogsubscriptions
+        - Access Log Subscriptions
         - Services
-        - Servicenetworks
-        - Servicenetworkserviceassociations
-        - Servicenetworkvpcassociations
-        - Targetgroups
-        - Log
-        - Subscription
-        - Arn
-        - Rule
-        - Network
-        - Service
+        - Service Networks
+        - Service Network Service Associations
+        - Service Network VPC Associations
+        - Target Groups
+        - Logs
+        - Subscriptions
+        - ARN
+        - Rules
+        - Networks
+        - Services
         - Association
-        - Vpc
+        - VPC
         - Group
   /targetgroups/{targetGroupIdentifier}/deregistertargets:
     POST:
@@ -389,53 +389,53 @@ paths:
       tags:
         - Deregister
         - Targets
-        - Identifier
+        - Identifiers
         - Listeners
-        - Listener
+        - Listeners
         - Rules
-        - Accesslogsubscriptions
+        - Access Log Subscriptions
         - Services
-        - Servicenetworks
-        - Servicenetworkserviceassociations
-        - Servicenetworkvpcassociations
-        - Targetgroups
-        - Log
-        - Subscription
-        - Arn
-        - Rule
-        - Network
-        - Service
+        - Service Networks
+        - Service Network Service Associations
+        - Service Network VPC Associations
+        - Target Groups
+        - Logs
+        - Subscriptions
+        - ARN
+        - Rules
+        - Networks
+        - Services
         - Association
-        - Vpc
+        - VPC
         - Group
-        - Deregistertargets
+        - Deregister Targets
   /tags/{resourceArn}:
     DELETE:
       summary: UntagResource
       description: <p>Removes the specified tags from the specified resource.</p>
       tags:
         - Untag
-        - Resource
-        - Identifier
+        - Resources
+        - Identifiers
         - Listeners
-        - Listener
+        - Listeners
         - Rules
-        - Accesslogsubscriptions
+        - Access Log Subscriptions
         - Services
-        - Servicenetworks
-        - Servicenetworkserviceassociations
-        - Servicenetworkvpcassociations
-        - Targetgroups
-        - Log
-        - Subscription
-        - Arn
-        - Rule
-        - Network
-        - Service
+        - Service Networks
+        - Service Network Service Associations
+        - Service Network VPC Associations
+        - Target Groups
+        - Logs
+        - Subscriptions
+        - ARN
+        - Rules
+        - Networks
+        - Services
         - Association
-        - Vpc
+        - VPC
         - Group
-        - Deregistertargets
+        - Deregister Targets
   /targetgroups/{targetGroupIdentifier}/listtargets:
     POST:
       summary: ListTargets
@@ -444,29 +444,29 @@ paths:
         included. You can use this API to check the health status of targets.
         You can also ﬁlter the results by target. </p>
       tags:
-        - List
+        - Lists
         - Targets
-        - Identifier
+        - Identifiers
         - Listeners
-        - Listener
+        - Listeners
         - Rules
-        - Accesslogsubscriptions
+        - Access Log Subscriptions
         - Services
-        - Servicenetworks
-        - Servicenetworkserviceassociations
-        - Servicenetworkvpcassociations
-        - Targetgroups
-        - Log
-        - Subscription
-        - Arn
-        - Rule
-        - Network
-        - Service
+        - Service Networks
+        - Service Network Service Associations
+        - Service Network VPC Associations
+        - Target Groups
+        - Logs
+        - Subscriptions
+        - ARN
+        - Rules
+        - Networks
+        - Services
         - Association
-        - Vpc
+        - VPC
         - Group
-        - Deregistertargets
-        - Listtargets
+        - Deregister Targets
+        - Targets
   /targetgroups/{targetGroupIdentifier}/registertargets:
     POST:
       summary: RegisterTargets
@@ -476,25 +476,25 @@ paths:
       tags:
         - Register
         - Targets
-        - Identifier
+        - Identifiers
         - Listeners
-        - Listener
+        - Listeners
         - Rules
-        - Accesslogsubscriptions
+        - Access Log Subscriptions
         - Services
-        - Servicenetworks
-        - Servicenetworkserviceassociations
-        - Servicenetworkvpcassociations
-        - Targetgroups
-        - Log
-        - Subscription
-        - Arn
-        - Rule
-        - Network
-        - Service
+        - Service Networks
+        - Service Network Service Associations
+        - Service Network VPC Associations
+        - Target Groups
+        - Logs
+        - Subscriptions
+        - ARN
+        - Rules
+        - Networks
+        - Services
         - Association
-        - Vpc
+        - VPC
         - Group
-        - Deregistertargets
-        - Listtargets
+        - Deregister Targets
+        - Targets
         - Registertarge
