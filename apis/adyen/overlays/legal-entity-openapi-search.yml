@@ -9,7 +9,7 @@ tags:
   - name: Documents
   - name: Terms of Service
   - name: Hosted Onboarding
-  - name: PCI questionnaires
+  - name: Questionnaires
 paths:
   /businessLines:
     post:
@@ -40,7 +40,7 @@ paths:
         - Business
         - Line
         - Lines
-        - Id
+        - Identifiers
       summary: Delete a business line
       description: |-
         Deletes a business line.
@@ -52,7 +52,7 @@ paths:
         - Business
         - Line
         - Lines
-        - Id
+        - Identifiers
       summary: Get a business line
       description: Returns the detail of a business line.
     patch:
@@ -61,19 +61,19 @@ paths:
         - Business
         - Line
         - Lines
-        - Id
+        - Identifiers
       summary: Update a business line
       description: Updates a business line.
   /documents:
     post:
       tags:
-        - Upload
+        - Uploads
         - Document
         - For
         - Verification
         - Checks
         - Lines
-        - Id
+        - Identifiers
         - Documents
       summary: Upload a document for verification checks
       description: |-
@@ -90,7 +90,7 @@ paths:
         - Delete
         - Document
         - Lines
-        - Id
+        - Identifiers
         - Documents
       summary: Delete a document
       description: Deletes a document.
@@ -99,7 +99,7 @@ paths:
         - Get
         - Document
         - Lines
-        - Id
+        - Identifiers
         - Documents
       summary: Get a document
       description: Returns a document.
@@ -108,7 +108,7 @@ paths:
         - Update
         - Document
         - Lines
-        - Id
+        - Identifiers
         - Documents
       summary: Update a document
       description: |-
@@ -120,9 +120,9 @@ paths:
       tags:
         - Create
         - Legal
-        - Entity
+        - Entities
         - Lines
-        - Id
+        - Identifiers
         - Documents
         - Entities
       summary: Create a legal entity
@@ -144,9 +144,9 @@ paths:
       tags:
         - Get
         - Legal
-        - Entity
+        - Entities
         - Lines
-        - Id
+        - Identifiers
         - Documents
         - Entities
       summary: Get a legal entity
@@ -155,9 +155,9 @@ paths:
       tags:
         - Update
         - Legal
-        - Entity
+        - Entities
         - Lines
-        - Id
+        - Identifiers
         - Documents
         - Entities
       summary: Update a legal entity
@@ -174,9 +174,9 @@ paths:
         - Lines
         - Under
         - Legal
-        - Entity
+        - Entities
         - Lines
-        - Id
+        - Identifiers
         - Documents
         - Entities
         - Business
@@ -185,17 +185,17 @@ paths:
   /legalEntities/{id}/checkVerificationErrors:
     post:
       tags:
-        - Check
+        - Checks
         - Legal
-        - Entity's
+        - Entities
         - Verification
         - Errors
         - Lines
-        - Id
+        - Identifiers
         - Documents
         - Entities
         - Business
-        - Check
+        - Checks
         - Verification
         - Errors
       summary: Check a legal entity's verification errors
@@ -207,18 +207,18 @@ paths:
       tags:
         - Confirm
         - Data
-        - Review
+        - Reviews
         - Lines
-        - Id
+        - Identifiers
         - Documents
         - Entities
         - Business
-        - Check
+        - Checks
         - Verification
         - Errors
         - Confirm
         - Data
-        - Review
+        - Reviews
       summary: Confirm data review
       description: >-
         Confirms that your user has reviewed the data for the legal entity
@@ -236,16 +236,16 @@ paths:
         - Onboarding
         - Page
         - Lines
-        - Id
+        - Identifiers
         - Documents
         - Entities
         - Business
-        - Check
+        - Checks
         - Verification
         - Errors
         - Confirm
         - Data
-        - Review
+        - Reviews
         - Onboarding
         - Links
       summary: Get a link to an Adyen-hosted onboarding page
@@ -261,22 +261,22 @@ paths:
     get:
       tags:
         - Get
-        - Questionnaire
+        - Questionnaires
         - Details
         - Lines
-        - Id
+        - Identifiers
         - Documents
         - Entities
         - Business
-        - Check
+        - Checks
         - Verification
         - Errors
         - Confirm
         - Data
-        - Review
+        - Reviews
         - Onboarding
         - Links
-        - Pci
+        - PCI
         - Questionnaires
       summary: Get PCI questionnaire details
       description: Get a list of signed PCI questionnaires.
@@ -284,21 +284,21 @@ paths:
     post:
       tags:
         - Generate
-        - Questionnaire
+        - Questionnaires
         - Lines
-        - Id
+        - Identifiers
         - Documents
         - Entities
         - Business
-        - Check
+        - Checks
         - Verification
         - Errors
         - Confirm
         - Data
-        - Review
+        - Reviews
         - Onboarding
         - Links
-        - Pci
+        - PCI
         - Questionnaires
         - Generate
         - Templates
@@ -310,21 +310,21 @@ paths:
     post:
       tags:
         - Sign
-        - Questionnaire
+        - Questionnaires
         - Lines
-        - Id
+        - Identifiers
         - Documents
         - Entities
         - Business
-        - Check
+        - Checks
         - Verification
         - Errors
         - Confirm
         - Data
-        - Review
+        - Reviews
         - Onboarding
         - Links
-        - Pci
+        - PCI
         - Questionnaires
         - Generate
         - Templates
@@ -335,21 +335,21 @@ paths:
     get:
       tags:
         - Get
-        - Questionnaire
+        - Questionnaires
         - Lines
-        - Id
+        - Identifiers
         - Documents
         - Entities
         - Business
-        - Check
+        - Checks
         - Verification
         - Errors
         - Confirm
         - Data
-        - Review
+        - Reviews
         - Onboarding
         - Links
-        - Pci
+        - PCI
         - Questionnaires
         - Generate
         - Templates
@@ -363,22 +363,22 @@ paths:
         - Get
         - Terms
         - Of
-        - Service
+        - Services
         - Document
         - Lines
-        - Id
+        - Identifiers
         - Documents
         - Entities
         - Business
-        - Check
+        - Checks
         - Verification
         - Errors
         - Confirm
         - Data
-        - Review
+        - Reviews
         - Onboarding
         - Links
-        - Pci
+        - PCI
         - Questionnaires
         - Generate
         - Templates
@@ -386,7 +386,7 @@ paths:
         - Pciid
         - Terms
         - Of
-        - Service
+        - Services
       summary: Get Terms of Service document
       description: Returns the Terms of Service document for a legal entity.
   /legalEntities/{id}/termsOfService/{termsofservicedocumentid}:
@@ -395,21 +395,21 @@ paths:
         - Accept
         - Terms
         - Of
-        - Service
+        - Services
         - Lines
-        - Id
+        - Identifiers
         - Documents
         - Entities
         - Business
-        - Check
+        - Checks
         - Verification
         - Errors
         - Confirm
         - Data
-        - Review
+        - Reviews
         - Onboarding
         - Links
-        - Pci
+        - PCI
         - Questionnaires
         - Generate
         - Templates
@@ -417,8 +417,8 @@ paths:
         - Pciid
         - Terms
         - Of
-        - Service
-        - Termsofservicedocumentid
+        - Services
+        - Terms Of Service Documents
       summary: Accept Terms of Service
       description: Accepts Terms of Service.
   /legalEntities/{id}/termsOfServiceAcceptanceInfos:
@@ -427,25 +427,25 @@ paths:
         - Get
         - Terms
         - Of
-        - Service
+        - Services
         - Information
         - For
         - Legal
-        - Entity
+        - Entities
         - Lines
-        - Id
+        - Identifiers
         - Documents
         - Entities
         - Business
-        - Check
+        - Checks
         - Verification
         - Errors
         - Confirm
         - Data
-        - Review
+        - Reviews
         - Onboarding
         - Links
-        - Pci
+        - PCI
         - Questionnaires
         - Generate
         - Templates
@@ -453,10 +453,10 @@ paths:
         - Pciid
         - Terms
         - Of
-        - Service
-        - Termsofservicedocumentid
+        - Services
+        - Terms Of Service Documents
         - Acceptance
-        - Infos
+        - Information
       summary: Get Terms of Service information for a legal entity
       description: Returns Terms of Service information for a legal entity.
   /legalEntities/{id}/termsOfServiceStatus:
@@ -465,22 +465,22 @@ paths:
         - Get
         - Terms
         - Of
-        - Service
+        - Services
         - Status
         - Lines
-        - Id
+        - Identifiers
         - Documents
         - Entities
         - Business
-        - Check
+        - Checks
         - Verification
         - Errors
         - Confirm
         - Data
-        - Review
+        - Reviews
         - Onboarding
         - Links
-        - Pci
+        - PCI
         - Questionnaires
         - Generate
         - Templates
@@ -488,10 +488,10 @@ paths:
         - Pciid
         - Terms
         - Of
-        - Service
-        - Termsofservicedocumentid
+        - Services
+        - Terms Of Service Documents
         - Acceptance
-        - Infos
+        - Information
         - Status
       summary: Get Terms of Service status
       description: >-
@@ -501,26 +501,26 @@ paths:
     get:
       tags:
         - Get
-        - List
+        - Lists
         - Of
         - Hosted
         - Onboarding
         - Page
         - Themes
         - Lines
-        - Id
+        - Identifiers
         - Documents
         - Entities
         - Business
-        - Check
+        - Checks
         - Verification
         - Errors
         - Confirm
         - Data
-        - Review
+        - Reviews
         - Onboarding
         - Links
-        - Pci
+        - PCI
         - Questionnaires
         - Generate
         - Templates
@@ -528,10 +528,10 @@ paths:
         - Pciid
         - Terms
         - Of
-        - Service
-        - Termsofservicedocumentid
+        - Services
+        - Terms Of Service Documents
         - Acceptance
-        - Infos
+        - Information
         - Status
         - Themes
       summary: Get a list of hosted onboarding page themes
@@ -551,19 +551,19 @@ paths:
         - Link
         - Theme
         - Lines
-        - Id
+        - Identifiers
         - Documents
         - Entities
         - Business
-        - Check
+        - Checks
         - Verification
         - Errors
         - Confirm
         - Data
-        - Review
+        - Reviews
         - Onboarding
         - Links
-        - Pci
+        - PCI
         - Questionnaires
         - Generate
         - Templates
@@ -571,10 +571,10 @@ paths:
         - Pciid
         - Terms
         - Of
-        - Service
-        - Termsofservicedocumentid
+        - Services
+        - Terms Of Service Documents
         - Acceptance
-        - Infos
+        - Information
         - Status
         - Themes
       summary: Get an onboarding link theme
@@ -587,22 +587,22 @@ paths:
     post:
       tags:
         - Create
-        - Transfer
-        - Instrument
+        - Transfers
+        - Instruments
         - Lines
-        - Id
+        - Identifiers
         - Documents
         - Entities
         - Business
-        - Check
+        - Checks
         - Verification
         - Errors
         - Confirm
         - Data
-        - Review
+        - Reviews
         - Onboarding
         - Links
-        - Pci
+        - PCI
         - Questionnaires
         - Generate
         - Templates
@@ -610,10 +610,10 @@ paths:
         - Pciid
         - Terms
         - Of
-        - Service
-        - Termsofservicedocumentid
+        - Services
+        - Terms Of Service Documents
         - Acceptance
-        - Infos
+        - Information
         - Status
         - Themes
         - Instruments
@@ -635,22 +635,22 @@ paths:
     delete:
       tags:
         - Delete
-        - Transfer
-        - Instrument
+        - Transfers
+        - Instruments
         - Lines
-        - Id
+        - Identifiers
         - Documents
         - Entities
         - Business
-        - Check
+        - Checks
         - Verification
         - Errors
         - Confirm
         - Data
-        - Review
+        - Reviews
         - Onboarding
         - Links
-        - Pci
+        - PCI
         - Questionnaires
         - Generate
         - Templates
@@ -658,10 +658,10 @@ paths:
         - Pciid
         - Terms
         - Of
-        - Service
-        - Termsofservicedocumentid
+        - Services
+        - Terms Of Service Documents
         - Acceptance
-        - Infos
+        - Information
         - Status
         - Themes
         - Instruments
@@ -670,22 +670,22 @@ paths:
     get:
       tags:
         - Get
-        - Transfer
-        - Instrument
+        - Transfers
+        - Instruments
         - Lines
-        - Id
+        - Identifiers
         - Documents
         - Entities
         - Business
-        - Check
+        - Checks
         - Verification
         - Errors
         - Confirm
         - Data
-        - Review
+        - Reviews
         - Onboarding
         - Links
-        - Pci
+        - PCI
         - Questionnaires
         - Generate
         - Templates
@@ -693,10 +693,10 @@ paths:
         - Pciid
         - Terms
         - Of
-        - Service
-        - Termsofservicedocumentid
+        - Services
+        - Terms Of Service Documents
         - Acceptance
-        - Infos
+        - Information
         - Status
         - Themes
         - Instruments
@@ -705,22 +705,22 @@ paths:
     patch:
       tags:
         - Update
-        - Transfer
-        - Instrument
+        - Transfers
+        - Instruments
         - Lines
-        - Id
+        - Identifiers
         - Documents
         - Entities
         - Business
-        - Check
+        - Checks
         - Verification
         - Errors
         - Confirm
         - Data
-        - Review
+        - Reviews
         - Onboarding
         - Links
-        - Pci
+        - PCI
         - Questionnaires
         - Generate
         - Templates
@@ -728,10 +728,10 @@ paths:
         - Pciid
         - Terms
         - Of
-        - Service
-        - Termsofservicedocumentid
+        - Services
+        - Terms Of Service Documents
         - Acceptance
-        - Infos
+        - Information
         - Status
         - Themes
         - Instruments

@@ -3,7 +3,7 @@ info:
   x-publicVersion: true
   title: Configuration API
 tags:
-  - name: Platform
+  - name: Platforms
   - name: Account holders
   - name: Balance accounts
   - name: Payment instruments
@@ -13,7 +13,7 @@ tags:
   - name: Network tokens
   - name: Grant accounts
   - name: Grant offers
-  - name: PIN functionality
+  - name: Functionality
   - name: Card orders
   - name: Transfer routes
 paths:
@@ -23,7 +23,7 @@ paths:
         - Create
         - An
         - Account
-        - Holder
+        - Holders
         - Holders
       summary: Create an account holder
       description: >+
@@ -36,9 +36,9 @@ paths:
         - Get
         - An
         - Account
-        - Holder
         - Holders
-        - Id
+        - Holders
+        - Identifiers
       summary: Get an account holder
       description: Returns an account holder.
     patch:
@@ -46,9 +46,9 @@ paths:
         - Update
         - An
         - Account
-        - Holder
         - Holders
-        - Id
+        - Holders
+        - Identifiers
       summary: Update an account holder
       description: >-
         Updates an account holder. When updating an account holder resource, if
@@ -63,9 +63,9 @@ paths:
         - Of
         - An
         - Account
-        - Holder
         - Holders
-        - Id
+        - Holders
+        - Identifiers
         - Balance
         - Accounts
       summary: Get all balance accounts of an account holder
@@ -80,13 +80,13 @@ paths:
     get:
       tags:
         - Get
-        - Tax
-        - Form
+        - Taxes
+        - Forms
         - Holders
-        - Id
+        - Identifiers
         - Balance
         - Accounts
-        - Tax
+        - Taxes
         - Forms
       summary: Get a tax form
       description: >-
@@ -100,10 +100,10 @@ paths:
         - Balance
         - Account
         - Holders
-        - Id
+        - Identifiers
         - Balance
         - Accounts
-        - Tax
+        - Taxes
         - Forms
       summary: Create a balance account
       description: >-
@@ -119,10 +119,10 @@ paths:
         - Balance
         - Account
         - Holders
-        - Id
+        - Identifiers
         - Balance
         - Accounts
-        - Tax
+        - Taxes
         - Forms
         - Account
         - Sweeps
@@ -139,10 +139,10 @@ paths:
         - Create
         - Sweep
         - Holders
-        - Id
+        - Identifiers
         - Balance
         - Accounts
-        - Tax
+        - Taxes
         - Forms
         - Account
         - Sweeps
@@ -160,10 +160,10 @@ paths:
         - Delete
         - Sweep
         - Holders
-        - Id
+        - Identifiers
         - Balance
         - Accounts
-        - Tax
+        - Taxes
         - Forms
         - Account
         - Sweeps
@@ -175,10 +175,10 @@ paths:
         - Get
         - Sweep
         - Holders
-        - Id
+        - Identifiers
         - Balance
         - Accounts
-        - Tax
+        - Taxes
         - Forms
         - Account
         - Sweeps
@@ -190,10 +190,10 @@ paths:
         - Update
         - Sweep
         - Holders
-        - Id
+        - Identifiers
         - Balance
         - Accounts
-        - Tax
+        - Taxes
         - Forms
         - Account
         - Sweeps
@@ -209,10 +209,10 @@ paths:
         - Balance
         - Account
         - Holders
-        - Id
+        - Identifiers
         - Balance
         - Accounts
-        - Tax
+        - Taxes
         - Forms
         - Account
         - Sweeps
@@ -227,10 +227,10 @@ paths:
         - Balance
         - Account
         - Holders
-        - Id
+        - Identifiers
         - Balance
         - Accounts
-        - Tax
+        - Taxes
         - Forms
         - Account
         - Sweeps
@@ -241,22 +241,22 @@ paths:
     get:
       tags:
         - Get
-        - Payment
+        - Payments
         - Instruments
         - Linked
         - To
         - Balance
         - Account
         - Holders
-        - Id
+        - Identifiers
         - Balance
         - Accounts
-        - Tax
+        - Taxes
         - Forms
         - Account
         - Sweeps
         - Sweep
-        - Payment
+        - Payments
         - Instruments
       summary: Get payment instruments linked to a balance account
       description: >-
@@ -273,17 +273,17 @@ paths:
       tags:
         - Get
         - Balance
-        - Platform
+        - Platforms
         - Holders
-        - Id
+        - Identifiers
         - Balance
         - Accounts
-        - Tax
+        - Taxes
         - Forms
         - Account
         - Sweeps
         - Sweep
-        - Payment
+        - Payments
         - Instruments
         - Platforms
       summary: Get a balance platform
@@ -297,17 +297,17 @@ paths:
         - Holders
         - Under
         - Balance
-        - Platform
+        - Platforms
         - Holders
-        - Id
+        - Identifiers
         - Balance
         - Accounts
-        - Tax
+        - Taxes
         - Forms
         - Account
         - Sweeps
         - Sweep
-        - Payment
+        - Payments
         - Instruments
         - Platforms
       summary: Get all account holders under a balance platform
@@ -322,45 +322,45 @@ paths:
     get:
       tags:
         - Get
-        - List
+        - Lists
         - Of
-        - Card
+        - Cards
         - Orders
         - Holders
-        - Id
+        - Identifiers
         - Balance
         - Accounts
-        - Tax
+        - Taxes
         - Forms
         - Account
         - Sweeps
         - Sweep
-        - Payment
+        - Payments
         - Instruments
         - Platforms
-        - Cardorders
+        - Card Orders
       summary: Get a list of card orders
       description: Returns a paginated list of card orders.
   /cardorders/{id}/items:
     get:
       tags:
         - Get
-        - Card
-        - Order
+        - Cards
+        - Orders
         - Items
         - Holders
-        - Id
+        - Identifiers
         - Balance
         - Accounts
-        - Tax
+        - Taxes
         - Forms
         - Account
         - Sweeps
         - Sweep
-        - Payment
+        - Payments
         - Instruments
         - Platforms
-        - Cardorders
+        - Card Orders
         - Items
       summary: Get card order items
       description: Returns the item list of a specific card order.
@@ -371,18 +371,18 @@ paths:
         - Grant
         - Account
         - Holders
-        - Id
+        - Identifiers
         - Balance
         - Accounts
-        - Tax
+        - Taxes
         - Forms
         - Account
         - Sweeps
         - Sweep
-        - Payment
+        - Payments
         - Instruments
         - Platforms
-        - Cardorders
+        - Card Orders
         - Items
       summary: Get a grant account
       description: >-
@@ -397,18 +397,18 @@ paths:
         - Grant
         - Offers
         - Holders
-        - Id
+        - Identifiers
         - Balance
         - Accounts
-        - Tax
+        - Taxes
         - Forms
         - Account
         - Sweeps
         - Sweep
-        - Payment
+        - Payments
         - Instruments
         - Platforms
-        - Cardorders
+        - Card Orders
         - Items
         - Offers
       summary: Get all available grant offers
@@ -421,109 +421,109 @@ paths:
       tags:
         - Get
         - Grant
-        - Offer
+        - Offers
         - Holders
-        - Id
+        - Identifiers
         - Balance
         - Accounts
-        - Tax
+        - Taxes
         - Forms
         - Account
         - Sweeps
         - Sweep
-        - Payment
+        - Payments
         - Instruments
         - Platforms
-        - Cardorders
+        - Card Orders
         - Items
         - Offers
         - Grant
-        - Offer
+        - Offers
       summary: Get a grant offer
       description: Returns the details of a single grant offer.
   /networkTokens/{networkTokenId}:
     get:
       tags:
         - Get
-        - Network
-        - Token
+        - Networks
+        - Tokens
         - Holders
-        - Id
+        - Identifiers
         - Balance
         - Accounts
-        - Tax
+        - Taxes
         - Forms
         - Account
         - Sweeps
         - Sweep
-        - Payment
+        - Payments
         - Instruments
         - Platforms
-        - Cardorders
+        - Card Orders
         - Items
         - Offers
         - Grant
-        - Offer
+        - Offers
         - Tokens
-        - Network
-        - Token
+        - Networks
+        - Tokens
       summary: Get a network token
       description: Returns the details of a network token.
     patch:
       tags:
         - Update
-        - Network
-        - Token
+        - Networks
+        - Tokens
         - Holders
-        - Id
+        - Identifiers
         - Balance
         - Accounts
-        - Tax
+        - Taxes
         - Forms
         - Account
         - Sweeps
         - Sweep
-        - Payment
+        - Payments
         - Instruments
         - Platforms
-        - Cardorders
+        - Card Orders
         - Items
         - Offers
         - Grant
-        - Offer
+        - Offers
         - Tokens
-        - Network
-        - Token
+        - Networks
+        - Tokens
       summary: Update a network token
       description: Updates the status of the network token.
   /paymentInstrumentGroups:
     post:
       tags:
         - Create
-        - Payment
-        - Instrument
+        - Payments
+        - Instruments
         - Group
         - Holders
-        - Id
+        - Identifiers
         - Balance
         - Accounts
-        - Tax
+        - Taxes
         - Forms
         - Account
         - Sweeps
         - Sweep
-        - Payment
+        - Payments
         - Instruments
         - Platforms
-        - Cardorders
+        - Card Orders
         - Items
         - Offers
         - Grant
-        - Offer
+        - Offers
         - Tokens
-        - Network
-        - Token
-        - Instrument
+        - Networks
+        - Tokens
+        - Instruments
         - Groups
       summary: Create a payment instrument group
       description: >-
@@ -534,30 +534,30 @@ paths:
     get:
       tags:
         - Get
-        - Payment
-        - Instrument
+        - Payments
+        - Instruments
         - Group
         - Holders
-        - Id
+        - Identifiers
         - Balance
         - Accounts
-        - Tax
+        - Taxes
         - Forms
         - Account
         - Sweeps
         - Sweep
-        - Payment
+        - Payments
         - Instruments
         - Platforms
-        - Cardorders
+        - Card Orders
         - Items
         - Offers
         - Grant
-        - Offer
+        - Offers
         - Tokens
-        - Network
-        - Token
-        - Instrument
+        - Networks
+        - Tokens
+        - Instruments
         - Groups
       summary: Get a payment instrument group
       description: Returns the details of a payment instrument group.
@@ -566,35 +566,35 @@ paths:
       tags:
         - Get
         - All
-        - Transaction
+        - Transactions
         - Rules
         - For
-        - Payment
-        - Instrument
+        - Payments
+        - Instruments
         - Group
         - Holders
-        - Id
+        - Identifiers
         - Balance
         - Accounts
-        - Tax
+        - Taxes
         - Forms
         - Account
         - Sweeps
         - Sweep
-        - Payment
+        - Payments
         - Instruments
         - Platforms
-        - Cardorders
+        - Card Orders
         - Items
         - Offers
         - Grant
-        - Offer
+        - Offers
         - Tokens
-        - Network
-        - Token
-        - Instrument
+        - Networks
+        - Tokens
+        - Instruments
         - Groups
-        - Transaction
+        - Transactions
         - Rules
       summary: Get all transaction rules for a payment instrument group
       description: >-
@@ -604,31 +604,31 @@ paths:
     post:
       tags:
         - Create
-        - Payment
-        - Instrument
+        - Payments
+        - Instruments
         - Holders
-        - Id
+        - Identifiers
         - Balance
         - Accounts
-        - Tax
+        - Taxes
         - Forms
         - Account
         - Sweeps
         - Sweep
-        - Payment
+        - Payments
         - Instruments
         - Platforms
-        - Cardorders
+        - Card Orders
         - Items
         - Offers
         - Grant
-        - Offer
+        - Offers
         - Tokens
-        - Network
-        - Token
-        - Instrument
+        - Networks
+        - Tokens
+        - Instruments
         - Groups
-        - Transaction
+        - Transactions
         - Rules
       summary: Create a payment instrument
       description: >-
@@ -640,62 +640,62 @@ paths:
     get:
       tags:
         - Get
-        - Payment
-        - Instrument
+        - Payments
+        - Instruments
         - Holders
-        - Id
+        - Identifiers
         - Balance
         - Accounts
-        - Tax
+        - Taxes
         - Forms
         - Account
         - Sweeps
         - Sweep
-        - Payment
+        - Payments
         - Instruments
         - Platforms
-        - Cardorders
+        - Card Orders
         - Items
         - Offers
         - Grant
-        - Offer
+        - Offers
         - Tokens
-        - Network
-        - Token
-        - Instrument
+        - Networks
+        - Tokens
+        - Instruments
         - Groups
-        - Transaction
+        - Transactions
         - Rules
       summary: Get a payment instrument
       description: Returns the details of a payment instrument.
     patch:
       tags:
         - Update
-        - Payment
-        - Instrument
+        - Payments
+        - Instruments
         - Holders
-        - Id
+        - Identifiers
         - Balance
         - Accounts
-        - Tax
+        - Taxes
         - Forms
         - Account
         - Sweeps
         - Sweep
-        - Payment
+        - Payments
         - Instruments
         - Platforms
-        - Cardorders
+        - Card Orders
         - Items
         - Offers
         - Grant
-        - Offer
+        - Offers
         - Tokens
-        - Network
-        - Token
-        - Instrument
+        - Networks
+        - Tokens
+        - Instruments
         - Groups
-        - Transaction
+        - Transactions
         - Rules
       summary: Update a payment instrument
       description: >-
@@ -706,32 +706,32 @@ paths:
   /paymentInstruments/{id}/networkTokens:
     get:
       tags:
-        - List
-        - Network
+        - Lists
+        - Networks
         - Tokens
         - Holders
-        - Id
+        - Identifiers
         - Balance
         - Accounts
-        - Tax
+        - Taxes
         - Forms
         - Account
         - Sweeps
         - Sweep
-        - Payment
+        - Payments
         - Instruments
         - Platforms
-        - Cardorders
+        - Card Orders
         - Items
         - Offers
         - Grant
-        - Offer
+        - Offers
         - Tokens
-        - Network
-        - Token
-        - Instrument
+        - Networks
+        - Tokens
+        - Instruments
         - Groups
-        - Transaction
+        - Transactions
         - Rules
       summary: List network tokens
       description: List the network tokens connected to a payment instrument.
@@ -741,31 +741,31 @@ paths:
         - Get
         - The
         - Of
-        - Payment
-        - Instrument
+        - Payments
+        - Instruments
         - Holders
-        - Id
+        - Identifiers
         - Balance
         - Accounts
-        - Tax
+        - Taxes
         - Forms
         - Account
         - Sweeps
         - Sweep
-        - Payment
+        - Payments
         - Instruments
         - Platforms
-        - Cardorders
+        - Card Orders
         - Items
         - Offers
         - Grant
-        - Offer
+        - Offers
         - Tokens
-        - Network
-        - Token
-        - Instrument
+        - Networks
+        - Tokens
+        - Instruments
         - Groups
-        - Transaction
+        - Transactions
         - Rules
         - Reveal
       summary: Get the PAN of a payment instrument
@@ -783,34 +783,34 @@ paths:
       tags:
         - Get
         - All
-        - Transaction
+        - Transactions
         - Rules
         - For
-        - Payment
-        - Instrument
+        - Payments
+        - Instruments
         - Holders
-        - Id
+        - Identifiers
         - Balance
         - Accounts
-        - Tax
+        - Taxes
         - Forms
         - Account
         - Sweeps
         - Sweep
-        - Payment
+        - Payments
         - Instruments
         - Platforms
-        - Cardorders
+        - Card Orders
         - Items
         - Offers
         - Grant
-        - Offer
+        - Offers
         - Tokens
-        - Network
-        - Token
-        - Instrument
+        - Networks
+        - Tokens
+        - Instruments
         - Groups
-        - Transaction
+        - Transactions
         - Rules
         - Reveal
       summary: Get all transaction rules for a payment instrument
@@ -823,28 +823,28 @@ paths:
         - Change
         - Pin
         - Holders
-        - Id
+        - Identifiers
         - Balance
         - Accounts
-        - Tax
+        - Taxes
         - Forms
         - Account
         - Sweeps
         - Sweep
-        - Payment
+        - Payments
         - Instruments
         - Platforms
-        - Cardorders
+        - Card Orders
         - Items
         - Offers
         - Grant
-        - Offer
+        - Offers
         - Tokens
-        - Network
-        - Token
-        - Instrument
+        - Networks
+        - Tokens
+        - Instruments
         - Groups
-        - Transaction
+        - Transactions
         - Rules
         - Reveal
         - Pins
@@ -856,35 +856,35 @@ paths:
       tags:
         - Get
         - Public
-        - Key
+        - Keys
         - Holders
-        - Id
+        - Identifiers
         - Balance
         - Accounts
-        - Tax
+        - Taxes
         - Forms
         - Account
         - Sweeps
         - Sweep
-        - Payment
+        - Payments
         - Instruments
         - Platforms
-        - Cardorders
+        - Card Orders
         - Items
         - Offers
         - Grant
-        - Offer
+        - Offers
         - Tokens
-        - Network
-        - Token
-        - Instrument
+        - Networks
+        - Tokens
+        - Instruments
         - Groups
-        - Transaction
+        - Transactions
         - Rules
         - Reveal
         - Pins
         - Change
-        - Key
+        - Keys
       summary: Get RSA publicKey
       description: Get RSA publicKey
   /pins/reveal:
@@ -893,69 +893,69 @@ paths:
         - Reveal
         - Pin
         - Holders
-        - Id
+        - Identifiers
         - Balance
         - Accounts
-        - Tax
+        - Taxes
         - Forms
         - Account
         - Sweeps
         - Sweep
-        - Payment
+        - Payments
         - Instruments
         - Platforms
-        - Cardorders
+        - Card Orders
         - Items
         - Offers
         - Grant
-        - Offer
+        - Offers
         - Tokens
-        - Network
-        - Token
-        - Instrument
+        - Networks
+        - Tokens
+        - Instruments
         - Groups
-        - Transaction
+        - Transactions
         - Rules
         - Reveal
         - Pins
         - Change
-        - Key
+        - Keys
       summary: Reveal Pin
       description: Reveal Pin
   /transactionRules:
     post:
       tags:
         - Create
-        - Transaction
-        - Rule
+        - Transactions
+        - Rules
         - Holders
-        - Id
+        - Identifiers
         - Balance
         - Accounts
-        - Tax
+        - Taxes
         - Forms
         - Account
         - Sweeps
         - Sweep
-        - Payment
+        - Payments
         - Instruments
         - Platforms
-        - Cardorders
+        - Card Orders
         - Items
         - Offers
         - Grant
-        - Offer
+        - Offers
         - Tokens
-        - Network
-        - Token
-        - Instrument
+        - Networks
+        - Tokens
+        - Instruments
         - Groups
-        - Transaction
+        - Transactions
         - Rules
         - Reveal
         - Pins
         - Change
-        - Key
+        - Keys
       summary: Create a transaction rule
       description: >-
         Creates a [transaction
@@ -970,109 +970,109 @@ paths:
     delete:
       tags:
         - Delete
-        - Transaction
-        - Rule
+        - Transactions
+        - Rules
         - Holders
-        - Id
+        - Identifiers
         - Balance
         - Accounts
-        - Tax
+        - Taxes
         - Forms
         - Account
         - Sweeps
         - Sweep
-        - Payment
+        - Payments
         - Instruments
         - Platforms
-        - Cardorders
+        - Card Orders
         - Items
         - Offers
         - Grant
-        - Offer
+        - Offers
         - Tokens
-        - Network
-        - Token
-        - Instrument
+        - Networks
+        - Tokens
+        - Instruments
         - Groups
-        - Transaction
+        - Transactions
         - Rules
         - Reveal
         - Pins
         - Change
-        - Key
-        - Rule
+        - Keys
+        - Rules
       summary: Delete a transaction rule
       description: Deletes a transaction rule.
     get:
       tags:
         - Get
-        - Transaction
-        - Rule
+        - Transactions
+        - Rules
         - Holders
-        - Id
+        - Identifiers
         - Balance
         - Accounts
-        - Tax
+        - Taxes
         - Forms
         - Account
         - Sweeps
         - Sweep
-        - Payment
+        - Payments
         - Instruments
         - Platforms
-        - Cardorders
+        - Card Orders
         - Items
         - Offers
         - Grant
-        - Offer
+        - Offers
         - Tokens
-        - Network
-        - Token
-        - Instrument
+        - Networks
+        - Tokens
+        - Instruments
         - Groups
-        - Transaction
+        - Transactions
         - Rules
         - Reveal
         - Pins
         - Change
-        - Key
-        - Rule
+        - Keys
+        - Rules
       summary: Get a transaction rule
       description: Returns the details of a transaction rule.
     patch:
       tags:
         - Update
-        - Transaction
-        - Rule
+        - Transactions
+        - Rules
         - Holders
-        - Id
+        - Identifiers
         - Balance
         - Accounts
-        - Tax
+        - Taxes
         - Forms
         - Account
         - Sweeps
         - Sweep
-        - Payment
+        - Payments
         - Instruments
         - Platforms
-        - Cardorders
+        - Card Orders
         - Items
         - Offers
         - Grant
-        - Offer
+        - Offers
         - Tokens
-        - Network
-        - Token
-        - Instrument
+        - Networks
+        - Tokens
+        - Instruments
         - Groups
-        - Transaction
+        - Transactions
         - Rules
         - Reveal
         - Pins
         - Change
-        - Key
-        - Rule
+        - Keys
+        - Rules
       summary: Update a transaction rule
       description: >-
         Updates a transaction rule. 
@@ -1090,37 +1090,37 @@ paths:
     post:
       tags:
         - Calculate
-        - Transfer
+        - Transfers
         - Routes
         - Holders
-        - Id
+        - Identifiers
         - Balance
         - Accounts
-        - Tax
+        - Taxes
         - Forms
         - Account
         - Sweeps
         - Sweep
-        - Payment
+        - Payments
         - Instruments
         - Platforms
-        - Cardorders
+        - Card Orders
         - Items
         - Offers
         - Grant
-        - Offer
+        - Offers
         - Tokens
-        - Network
-        - Token
-        - Instrument
+        - Networks
+        - Tokens
+        - Instruments
         - Groups
-        - Transaction
+        - Transactions
         - Rules
         - Reveal
         - Pins
         - Change
-        - Key
-        - Rule
+        - Keys
+        - Rules
         - Routes
         - Calculate
       summary: Calculate transfer routes
@@ -1137,34 +1137,34 @@ paths:
         - Bank
         - Account
         - Holders
-        - Id
+        - Identifiers
         - Balance
         - Accounts
-        - Tax
+        - Taxes
         - Forms
         - Account
         - Sweeps
         - Sweep
-        - Payment
+        - Payments
         - Instruments
         - Platforms
-        - Cardorders
+        - Card Orders
         - Items
         - Offers
         - Grant
-        - Offer
+        - Offers
         - Tokens
-        - Network
-        - Token
-        - Instrument
+        - Networks
+        - Tokens
+        - Instruments
         - Groups
-        - Transaction
+        - Transactions
         - Rules
         - Reveal
         - Pins
         - Change
-        - Key
-        - Rule
+        - Keys
+        - Rules
         - Routes
         - Calculate
         - Bank
