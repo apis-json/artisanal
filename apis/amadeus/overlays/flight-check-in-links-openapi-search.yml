@@ -1,0 +1,219 @@
+swagger: '2.0'
+info:
+  title: Flight Check-in Links
+  x-tags:
+    - '#ama-for-dev'
+  x-status: validated
+  x-release-note:
+    2.1.0:
+      - Change parameter "airline" by "airlineCode"
+      - Correct example
+    '2.0':
+      - Initial Version
+host: test.api.amadeus.com
+basePath: /v2
+schemes:
+  - https
+consumes:
+  - application/vnd.amadeus+json
+produces:
+  - application/vnd.amadeus+json
+paths:
+  /reference-data/urls/checkin-links:
+    get:
+      tags:
+        - - - - checkin-links
+      summary: Lists Check-in URLs.
+      description: ''
+definitions:
+  CheckinLink:
+    required:
+      - type
+      - id
+      - href
+      - channel
+    properties:
+      type:
+        description: the resource name
+        type: string
+        example: checkin-link
+      id:
+        type: string
+        description: identifier of the resource
+        example: 1XEN-GBMobile
+      href:
+        description: direct URL to the relevant page
+        type: string
+        format: uri
+      channel:
+        description: indicates the type of channel supported by the URL
+        type: string
+        enum:
+          - Mobile
+          - Web
+          - All
+        example: Mobile
+      parameters:
+        description: >-
+          list of URL parameters with descriptive information such as
+          description and/or type and/or format
+        additionalProperties:
+          $ref: '#/definitions/Parameter'
+  Parameter:
+    required:
+      - type
+    properties:
+      description:
+        description: parameter descriptive information
+        type: string
+        example: Passenger last name
+      type:
+        description: type of the parameter
+        type: string
+        example: string
+      format:
+        description: format of the parameter
+        type: string
+        example: ([a-zA-Z]|[0-9]){6}
+  Error_400:
+    properties:
+      errors:
+        type: array
+        items:
+          $ref: '#/definitions/Issue'
+    required:
+      - errors
+    example:
+      errors:
+        - status: 400
+          code: 477
+          title: INVALID FORMAT
+          detail: invalid query parameter format
+          source:
+            parameter: airport
+            example: CDG
+  Error_500:
+    properties:
+      errors:
+        type: array
+        items:
+          $ref: '#/definitions/Issue'
+    required:
+      - errors
+    example:
+      errors:
+        - status: 500
+          code: 141
+          title: SYSTEM ERROR HAS OCCURRED
+  Issue:
+    properties:
+      status:
+        description: the HTTP status code applicable to this error
+        type: integer
+      code:
+        description: an application-specific error code
+        type: integer
+        format: int64
+      title:
+        description: a short summary of the error
+        type: string
+      detail:
+        description: explanation of the error
+        type: string
+      source:
+        type: object
+        title: Issue_Source
+        description: an object containing references to the source of the error
+        maxProperties: 1
+        properties:
+          pointer:
+            description: >-
+              a JSON Pointer [RFC6901] to the associated entity in the request
+              document
+            type: string
+          parameter:
+            description: a string indicating which URI query parameter caused the issue
+            type: string
+          example:
+            description: a string indicating an example of the right value
+            type: string
+  Collection_Meta:
+    title: Collection_Meta
+    properties:
+      count:
+        type: integer
+        example: 1
+      links:
+        title: CollectionLinks
+        properties:
+          self:
+            type: string
+            format: uri
+            example: https://test.api.amadeus.com/v1/area/resources?...
+          next:
+            type: string
+            format: uri
+            example: https://test.api.amadeus.com/v1/area/resources?...
+          previous:
+            type: string
+            format: uri
+            example: https://test.api.amadeus.com/v1/area/resources?...
+          last:
+            type: string
+            format: uri
+            example: https://test.api.amadeus.com/v1/area/resources?...
+          first:
+            type: string
+            format: uri
+            example: https://test.api.amadeus.com/v1/area/resources?...
+          up:
+            type: string
+            format: uri
+            example: https://test.api.amadeus.com/v1/area/resources?...
+        example:
+          self: https://test.api.amadeus.com/v1/area/resources?param=value
+responses:
+  '400':
+    description: "code    | title                                 \n- | - \n477     | INVALID FORMAT\n572     | INVALID OPTION\n32171     | MANDATORY DATA MISSING                      \t     \n"
+    schema:
+      $ref: '#/definitions/Error_400'
+  '500':
+    description: Unexpected Error
+    schema:
+      $ref: '#/definitions/Error_500'
+  checkin-links:
+    description: Successful Operation
+    schema:
+      title: Success
+      required:
+        - data
+      properties:
+        warnings:
+          type: array
+          items:
+            $ref: '#/definitions/Issue'
+        meta:
+          $ref: '#/definitions/Collection_Meta'
+        data:
+          type: array
+          items:
+            $ref: '#/definitions/CheckinLink'
+      example:
+        meta:
+          count: 2
+          links:
+            self: >-
+              https://test.api.amadeus.com/v2/reference-data/urls/checkin-links?airlineCode=BA&language=EN
+        data:
+          - type: checkin-link
+            id: BAEN-GBMobile
+            href: >-
+              https://www.britishairways.com/travel/olcilandingpageauthreq/public/en_gb/device-mobile
+            channel: Mobile
+          - type: checkin-link
+            id: BAEN-GBWeb
+            href: >-
+              https://www.britishairways.com/travel/olcilandingpageauthreq/public/en_gb
+            channel: Web
+x-generatedAt: '2020-07-23T11:25:45.773Z'
+tags: []
