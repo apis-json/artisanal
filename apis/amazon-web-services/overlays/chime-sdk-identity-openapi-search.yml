@@ -9,10 +9,10 @@ paths:
         <p>Lists all Amazon Chime <code>AppInstance</code>s created under a
         single AWS account.</p>
       tags:
-        - List
-        - App
+        - Lists
+        - Applications
         - Instances
-        - App
+        - Applications
         - Instances
   /app-instances/{appInstanceArn}/admins:
     GET:
@@ -21,15 +21,15 @@ paths:
         <p>Returns a list of the administrators in the
         <code>AppInstance</code>.</p>
       tags:
-        - List
-        - App
-        - Instance
-        - Admins
-        - App
+        - Lists
+        - Applications
         - Instances
-        - Instance
-        - Arn
-        - Admins
+        - Administrator
+        - Applications
+        - Instances
+        - Instances
+        - ARN
+        - Administrator
   /app-instance-bots:
     GET:
       summary: ListAppInstanceBots
@@ -37,15 +37,15 @@ paths:
         <p>Lists all <code>AppInstanceBots</code> created under a single
         <code>AppInstance</code>.</p>
       tags:
-        - List
-        - App
-        - Instance
-        - Bots
-        - App
+        - Lists
+        - Applications
         - Instances
-        - Instance
-        - Arn
-        - Admins
+        - Bots
+        - Applications
+        - Instances
+        - Instances
+        - ARN
+        - Administrator
         - Bots
   /app-instance-users:
     GET:
@@ -54,15 +54,15 @@ paths:
         <p>List all <code>AppInstanceUsers</code> created under a single
         <code>AppInstance</code>.</p>
       tags:
-        - List
-        - App
-        - Instance
-        - Users
-        - App
+        - Lists
+        - Applications
         - Instances
-        - Instance
-        - Arn
-        - Admins
+        - Users
+        - Applications
+        - Instances
+        - Instances
+        - ARN
+        - Administrator
         - Bots
         - Users
   /app-instances/{appInstanceArn}:
@@ -71,13 +71,13 @@ paths:
       description: <p>Updates <code>AppInstance</code> metadata.</p>
       tags:
         - Update
-        - App
-        - Instance
-        - App
+        - Applications
         - Instances
-        - Instance
-        - Arn
-        - Admins
+        - Applications
+        - Instances
+        - Instances
+        - ARN
+        - Administrator
         - Bots
         - Users
   /app-instances/{appInstanceArn}/admins/{appInstanceAdminArn}:
@@ -86,34 +86,34 @@ paths:
       description: <p>Returns the full details of an <code>AppInstanceAdmin</code>.</p>
       tags:
         - Describe
-        - App
-        - Instance
-        - Admin
-        - App
+        - Applications
         - Instances
-        - Instance
-        - Arn
-        - Admins
+        - Administrative
+        - Applications
+        - Instances
+        - Instances
+        - ARN
+        - Administrator
         - Bots
         - Users
-        - Admin
+        - Administrative
   /app-instance-bots/{appInstanceBotArn}:
     PUT:
       summary: UpdateAppInstanceBot
       description: <p>Updates the name and metadata of an <code>AppInstanceBot</code>.</p>
       tags:
         - Update
-        - App
-        - Instance
-        - Bot
-        - App
+        - Applications
         - Instances
-        - Instance
-        - Arn
-        - Admins
+        - Bot
+        - Applications
+        - Instances
+        - Instances
+        - ARN
+        - Administrator
         - Bots
         - Users
-        - Admin
+        - Administrative
         - Bot
   /app-instance-users/{appInstanceUserArn}:
     PUT:
@@ -123,19 +123,19 @@ paths:
         update names and metadata.</p>
       tags:
         - Update
-        - App
-        - Instance
-        - User
-        - App
+        - Applications
         - Instances
-        - Instance
-        - Arn
-        - Admins
+        - Users
+        - Applications
+        - Instances
+        - Instances
+        - ARN
+        - Administrator
         - Bots
         - Users
-        - Admin
+        - Administrative
         - Bot
-        - User
+        - Users
   /app-instance-users/{appInstanceUserArn}/endpoints/{endpointId}:
     PUT:
       summary: UpdateAppInstanceUserEndpoint
@@ -144,23 +144,23 @@ paths:
         can update the name and <code>AllowMessage</code> values.</p>
       tags:
         - Update
-        - App
-        - Instance
-        - User
-        - Endpoint
-        - App
+        - Applications
         - Instances
-        - Instance
-        - Arn
-        - Admins
+        - Users
+        - Endpoints
+        - Applications
+        - Instances
+        - Instances
+        - ARN
+        - Administrator
         - Bots
         - Users
-        - Admin
+        - Administrative
         - Bot
-        - User
+        - Users
         - Endpoints
-        - Endpoint
-        - Id
+        - Endpoints
+        - Identifiers
   /app-instances/{appInstanceArn}/retention-settings:
     PUT:
       summary: PutAppInstanceRetentionSettings
@@ -169,23 +169,23 @@ paths:
         retains data.</p>
       tags:
         - Put
-        - App
-        - Instance
+        - Applications
+        - Instances
         - Retention
         - Settings
-        - App
+        - Applications
         - Instances
-        - Instance
-        - Arn
-        - Admins
+        - Instances
+        - ARN
+        - Administrator
         - Bots
         - Users
-        - Admin
+        - Administrative
         - Bot
-        - User
+        - Users
         - Endpoints
-        - Endpoint
-        - Id
+        - Endpoints
+        - Identifiers
         - Retention
         - Settings
   /app-instance-users/{appInstanceUserArn}/endpoints:
@@ -198,23 +198,23 @@ paths:
         mobile push notifications for a user.</p>
       tags:
         - Register
-        - App
-        - Instance
-        - User
-        - Endpoint
-        - App
+        - Applications
         - Instances
-        - Instance
-        - Arn
-        - Admins
+        - Users
+        - Endpoints
+        - Applications
+        - Instances
+        - Instances
+        - ARN
+        - Administrator
         - Bots
         - Users
-        - Admin
+        - Administrative
         - Bot
-        - User
+        - Users
         - Endpoints
-        - Endpoint
-        - Id
+        - Endpoints
+        - Identifiers
         - Retention
         - Settings
   /tags:
@@ -222,23 +222,23 @@ paths:
       summary: ListTagsForResource
       description: <p>Lists the tags applied to an Amazon Chime SDK identity resource.</p>
       tags:
-        - List
+        - Lists
         - Tags
         - For
-        - Resource
-        - App
+        - Resources
+        - Applications
         - Instances
-        - Instance
-        - Arn
-        - Admins
+        - Instances
+        - ARN
+        - Administrator
         - Bots
         - Users
-        - Admin
+        - Administrative
         - Bot
-        - User
+        - Users
         - Endpoints
-        - Endpoint
-        - Id
+        - Endpoints
+        - Identifiers
         - Retention
         - Settings
         - Tags
@@ -255,24 +255,24 @@ paths:
         the new settings.</p> </note>
       tags:
         - Put
-        - App
-        - Instance
-        - User
+        - Applications
+        - Instances
+        - Users
         - Expiration
         - Settings
-        - App
+        - Applications
         - Instances
-        - Instance
-        - Arn
-        - Admins
+        - Instances
+        - ARN
+        - Administrator
         - Bots
         - Users
-        - Admin
+        - Administrative
         - Bot
-        - User
+        - Users
         - Endpoints
-        - Endpoint
-        - Id
+        - Endpoints
+        - Identifiers
         - Retention
         - Settings
         - Tags
@@ -284,27 +284,27 @@ paths:
         <p>Applies the specified tags to the specified Amazon Chime SDK identity
         resource.</p>
       tags:
-        - Tag
-        - Resource
-        - App
+        - Tags
+        - Resources
+        - Applications
         - Instances
-        - Instance
-        - Arn
-        - Admins
+        - Instances
+        - ARN
+        - Administrator
         - Bots
         - Users
-        - Admin
+        - Administrative
         - Bot
-        - User
+        - Users
         - Endpoints
-        - Endpoint
-        - Id
+        - Endpoints
+        - Identifiers
         - Retention
         - Settings
         - Tags
         - Expiration
-        - Tags?operation=tag
-        - Resource
+        - Tags
+        - Resources
   /tags?operation=untag-resource:
     POST:
       summary: UntagResource
@@ -313,24 +313,24 @@ paths:
         identity res
       tags:
         - Untag
-        - Resource
-        - App
+        - Resources
+        - Applications
         - Instances
-        - Instance
-        - Arn
-        - Admins
+        - Instances
+        - ARN
+        - Administrator
         - Bots
         - Users
-        - Admin
+        - Administrative
         - Bot
-        - User
+        - Users
         - Endpoints
-        - Endpoint
-        - Id
+        - Endpoints
+        - Identifiers
         - Retention
         - Settings
         - Tags
         - Expiration
-        - Tags?operation=tag
-        - Resource
-        - Tags?operation=unt
+        - Tags
+        - Resources
+        - Tags

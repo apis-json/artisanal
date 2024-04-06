@@ -14,7 +14,7 @@ paths:
       tags:
         - Associate
         - Assets
-        - Id
+        - Identifiers
         - Associate
   /timeseries/associate/:
     POST:
@@ -25,11 +25,11 @@ paths:
         - Time
         - Series
         - To
-        - Asset
-        - Property
-        - Id
+        - Assets
+        - Properties
+        - Identifiers
         - Associate
-        - Timeseries
+        - Time Series
   /projects/{projectId}/assets/associate:
     POST:
       summary: BatchAssociateProjectAssets
@@ -37,13 +37,13 @@ paths:
         <p>Associates a group (batch) of assets with an IoT SiteWise Monitor
         project.</p>
       tags:
-        - Batch
+        - Batches
         - Associate
-        - Project
+        - Projects
         - Assets
-        - Id
+        - Identifiers
         - Associate
-        - Timeseries
+        - Time Series
         - Assets
   /projects/{projectId}/assets/disassociate:
     POST:
@@ -52,13 +52,13 @@ paths:
         <p>Disassociates a group (batch) of assets from an IoT SiteWise Monitor
         project.</p>
       tags:
-        - Batch
+        - Batches
         - Disassociate
-        - Project
+        - Projects
         - Assets
-        - Id
+        - Identifiers
         - Associate
-        - Timeseries
+        - Time Series
         - Assets
         - Disassociate
   /properties/batch/aggregates:
@@ -70,18 +70,18 @@ paths:
         href="https://docs.aws.amazon.com/iot-sitewise/latest/userguide/query-industrial-data.html#aggregates">Querying
         aggregates</a> in the <i>IoT SiteWise User Guide</i>.</p>
       tags:
-        - Batch
+        - Batches
         - Get
-        - Asset
-        - Property
+        - Assets
+        - Properties
         - Aggregates
-        - Id
+        - Identifiers
         - Associate
-        - Timeseries
+        - Time Series
         - Assets
         - Disassociate
         - Properties
-        - Batch
+        - Batches
         - Aggregates
   /properties/batch/latest:
     POST:
@@ -92,18 +92,18 @@ paths:
         href="https://docs.aws.amazon.com/iot-sitewise/latest/userguide/query-industrial-data.html#current-values">Querying
         current values</a> in the <i>IoT SiteWise User Guide</i>.</p>
       tags:
-        - Batch
+        - Batches
         - Get
-        - Asset
-        - Property
+        - Assets
+        - Properties
         - Value
-        - Id
+        - Identifiers
         - Associate
-        - Timeseries
+        - Time Series
         - Assets
         - Disassociate
         - Properties
-        - Batch
+        - Batches
         - Aggregates
         - Latest
   /properties/batch/history:
@@ -115,19 +115,19 @@ paths:
         href="https://docs.aws.amazon.com/iot-sitewise/latest/userguide/query-industrial-data.html#historical-values">Querying
         historical values</a> in the <i>IoT SiteWise User Guide</i>.</p>
       tags:
-        - Batch
+        - Batches
         - Get
-        - Asset
-        - Property
+        - Assets
+        - Properties
         - Value
         - History
-        - Id
+        - Identifiers
         - Associate
-        - Timeseries
+        - Time Series
         - Assets
         - Disassociate
         - Properties
-        - Batch
+        - Batches
         - Aggregates
         - Latest
         - History
@@ -161,18 +161,18 @@ paths:
         href="https://docs.aws.amazon.com/iot-sitewise/latest/userguide/security_iam_service-with-iam.html#security_iam_service-with-iam-id-based-policies-batchputassetpropertyvalue-action">BatchPutAssetPropertyValue
         authorization</a> in the <i>IoT SiteWise User Guide</i>.</p>
       tags:
-        - Batch
+        - Batches
         - Put
-        - Asset
-        - Property
+        - Assets
+        - Properties
         - Value
-        - Id
+        - Identifiers
         - Associate
-        - Timeseries
+        - Time Series
         - Assets
         - Disassociate
         - Properties
-        - Batch
+        - Batches
         - Aggregates
         - Latest
         - History
@@ -184,16 +184,16 @@ paths:
         Identity Center user, an IAM Identity Center group, or an IAM user) or
         an IoT SiteWise Monitor resource (a portal or project).</p>
       tags:
-        - List
+        - Lists
         - Access
         - Policies
-        - Id
+        - Identifiers
         - Associate
-        - Timeseries
+        - Time Series
         - Assets
         - Disassociate
         - Properties
-        - Batch
+        - Batches
         - Aggregates
         - Latest
         - History
@@ -212,15 +212,15 @@ paths:
         to get all of your asset model IDs. Then, use ListAssets to get all
         assets for each asset model.</p>
       tags:
-        - List
+        - Lists
         - Assets
-        - Id
+        - Identifiers
         - Associate
-        - Timeseries
+        - Time Series
         - Assets
         - Disassociate
         - Properties
-        - Batch
+        - Batches
         - Aggregates
         - Latest
         - History
@@ -231,22 +231,22 @@ paths:
       summary: ListAssetModels
       description: <p>Retrieves a paginated list of summaries of all asset models.</p>
       tags:
-        - List
-        - Asset
+        - Lists
+        - Assets
         - Models
-        - Id
+        - Identifiers
         - Associate
-        - Timeseries
+        - Time Series
         - Assets
         - Disassociate
         - Properties
-        - Batch
+        - Batches
         - Aggregates
         - Latest
         - History
         - Access
         - Policies
-        - Asset
+        - Assets
         - Models
   /asset-models/{assetModelId}/composite-models:
     GET:
@@ -255,26 +255,26 @@ paths:
         <p>Retrieves a paginated list of composite models associated with the
         asset model</p>
       tags:
-        - List
-        - Asset
-        - Model
+        - Lists
+        - Assets
+        - Models
         - Composite
         - Models
-        - Id
+        - Identifiers
         - Associate
-        - Timeseries
+        - Time Series
         - Assets
         - Disassociate
         - Properties
-        - Batch
+        - Batches
         - Aggregates
         - Latest
         - History
         - Access
         - Policies
-        - Asset
+        - Assets
         - Models
-        - Model
+        - Models
         - Composite
   /jobs:
     GET:
@@ -285,25 +285,25 @@ paths:
         href="https://docs.aws.amazon.com/iot-sitewise/latest/userguide/ListBulkImportJobs.html">List
         bulk import jobs (CLI)</a> in the <i>IoT SiteWise User Guide</i>.</p>
       tags:
-        - List
+        - Lists
         - Bulk
         - Import
         - Jobs
-        - Id
+        - Identifiers
         - Associate
-        - Timeseries
+        - Time Series
         - Assets
         - Disassociate
         - Properties
-        - Batch
+        - Batches
         - Aggregates
         - Latest
         - History
         - Access
         - Policies
-        - Asset
+        - Assets
         - Models
-        - Model
+        - Models
         - Composite
         - Jobs
   /dashboards:
@@ -313,23 +313,23 @@ paths:
         <p>Retrieves a paginated list of dashboards for an IoT SiteWise Monitor
         project.</p>
       tags:
-        - List
+        - Lists
         - Dashboards
-        - Id
+        - Identifiers
         - Associate
-        - Timeseries
+        - Time Series
         - Assets
         - Disassociate
         - Properties
-        - Batch
+        - Batches
         - Aggregates
         - Latest
         - History
         - Access
         - Policies
-        - Asset
+        - Assets
         - Models
-        - Model
+        - Models
         - Composite
         - Jobs
         - Dashboards
@@ -338,23 +338,23 @@ paths:
       summary: ListGateways
       description: <p>Retrieves a paginated list of gateways.</p>
       tags:
-        - List
+        - Lists
         - Gateways
-        - Id
+        - Identifiers
         - Associate
-        - Timeseries
+        - Time Series
         - Assets
         - Disassociate
         - Properties
-        - Batch
+        - Batches
         - Aggregates
         - Latest
         - History
         - Access
         - Policies
-        - Asset
+        - Assets
         - Models
-        - Model
+        - Models
         - Composite
         - Jobs
         - Dashboards
@@ -365,23 +365,23 @@ paths:
       summary: ListPortals
       description: <p>Retrieves a paginated list of IoT SiteWise Monitor portals.</p>
       tags:
-        - List
+        - Lists
         - Portals
-        - Id
+        - Identifiers
         - Associate
-        - Timeseries
+        - Time Series
         - Assets
         - Disassociate
         - Properties
-        - Batch
+        - Batches
         - Aggregates
         - Latest
         - History
         - Access
         - Policies
-        - Asset
+        - Assets
         - Models
-        - Model
+        - Models
         - Composite
         - Jobs
         - Dashboards
@@ -395,23 +395,23 @@ paths:
         <p>Retrieves a paginated list of projects for an IoT SiteWise Monitor
         portal.</p>
       tags:
-        - List
+        - Lists
         - Projects
-        - Id
+        - Identifiers
         - Associate
-        - Timeseries
+        - Time Series
         - Assets
         - Disassociate
         - Properties
-        - Batch
+        - Batches
         - Aggregates
         - Latest
         - History
         - Access
         - Policies
-        - Asset
+        - Assets
         - Models
-        - Model
+        - Models
         - Composite
         - Jobs
         - Dashboards
@@ -428,22 +428,22 @@ paths:
       tags:
         - Update
         - Access
-        - Policy
-        - Id
+        - Policies
+        - Identifiers
         - Associate
-        - Timeseries
+        - Time Series
         - Assets
         - Disassociate
         - Properties
-        - Batch
+        - Batches
         - Aggregates
         - Latest
         - History
         - Access
         - Policies
-        - Asset
+        - Assets
         - Models
-        - Model
+        - Models
         - Composite
         - Jobs
         - Dashboards
@@ -451,7 +451,7 @@ paths:
         - Gateways
         - Portals
         - Projects
-        - Policy
+        - Policies
   /assets/{assetId}:
     PUT:
       summary: UpdateAsset
@@ -461,22 +461,22 @@ paths:
         assets and models</a> in the <i>IoT SiteWise User Guide</i>.</p>
       tags:
         - Update
-        - Asset
-        - Id
+        - Assets
+        - Identifiers
         - Associate
-        - Timeseries
+        - Time Series
         - Assets
         - Disassociate
         - Properties
-        - Batch
+        - Batches
         - Aggregates
         - Latest
         - History
         - Access
         - Policies
-        - Asset
+        - Assets
         - Models
-        - Model
+        - Models
         - Composite
         - Jobs
         - Dashboards
@@ -484,7 +484,7 @@ paths:
         - Gateways
         - Portals
         - Projects
-        - Policy
+        - Policies
   /asset-models/{assetModelId}:
     PUT:
       summary: UpdateAssetModel
@@ -506,23 +506,23 @@ paths:
         of an existing property.</p> </important>
       tags:
         - Update
-        - Asset
-        - Model
-        - Id
+        - Assets
+        - Models
+        - Identifiers
         - Associate
-        - Timeseries
+        - Time Series
         - Assets
         - Disassociate
         - Properties
-        - Batch
+        - Batches
         - Aggregates
         - Latest
         - History
         - Access
         - Policies
-        - Asset
+        - Assets
         - Models
-        - Model
+        - Models
         - Composite
         - Jobs
         - Dashboards
@@ -530,7 +530,7 @@ paths:
         - Gateways
         - Portals
         - Projects
-        - Policy
+        - Policies
   /asset-models/{assetModelId}/composite-models/{assetModelCompositeModelId}:
     PUT:
       summary: UpdateAssetModelCompositeModel
@@ -554,24 +554,24 @@ paths:
         new unique <code>id</code>.</p> </li> </ol> </important>
       tags:
         - Update
-        - Asset
-        - Model
+        - Assets
+        - Models
         - Composite
-        - Id
+        - Identifiers
         - Associate
-        - Timeseries
+        - Time Series
         - Assets
         - Disassociate
         - Properties
-        - Batch
+        - Batches
         - Aggregates
         - Latest
         - History
         - Access
         - Policies
-        - Asset
+        - Assets
         - Models
-        - Model
+        - Models
         - Composite
         - Jobs
         - Dashboards
@@ -579,7 +579,7 @@ paths:
         - Gateways
         - Portals
         - Projects
-        - Policy
+        - Policies
   /dashboards/{dashboardId}:
     PUT:
       summary: UpdateDashboard
@@ -587,21 +587,21 @@ paths:
       tags:
         - Update
         - Dashboard
-        - Id
+        - Identifiers
         - Associate
-        - Timeseries
+        - Time Series
         - Assets
         - Disassociate
         - Properties
-        - Batch
+        - Batches
         - Aggregates
         - Latest
         - History
         - Access
         - Policies
-        - Asset
+        - Assets
         - Models
-        - Model
+        - Models
         - Composite
         - Jobs
         - Dashboards
@@ -609,7 +609,7 @@ paths:
         - Gateways
         - Portals
         - Projects
-        - Policy
+        - Policies
   /20200301/gateways/{gatewayId}:
     PUT:
       summary: UpdateGateway
@@ -617,21 +617,21 @@ paths:
       tags:
         - Update
         - Gateway
-        - Id
+        - Identifiers
         - Associate
-        - Timeseries
+        - Time Series
         - Assets
         - Disassociate
         - Properties
-        - Batch
+        - Batches
         - Aggregates
         - Latest
         - History
         - Access
         - Policies
-        - Asset
+        - Assets
         - Models
-        - Model
+        - Models
         - Composite
         - Jobs
         - Dashboards
@@ -639,29 +639,29 @@ paths:
         - Gateways
         - Portals
         - Projects
-        - Policy
+        - Policies
   /portals/{portalId}:
     PUT:
       summary: UpdatePortal
       description: <p>Updates an IoT SiteWise Monitor portal.</p>
       tags:
         - Update
-        - Portal
-        - Id
+        - Portals
+        - Identifiers
         - Associate
-        - Timeseries
+        - Time Series
         - Assets
         - Disassociate
         - Properties
-        - Batch
+        - Batches
         - Aggregates
         - Latest
         - History
         - Access
         - Policies
-        - Asset
+        - Assets
         - Models
-        - Model
+        - Models
         - Composite
         - Jobs
         - Dashboards
@@ -669,29 +669,29 @@ paths:
         - Gateways
         - Portals
         - Projects
-        - Policy
+        - Policies
   /projects/{projectId}:
     PUT:
       summary: UpdateProject
       description: <p>Updates an IoT SiteWise Monitor project.</p>
       tags:
         - Update
-        - Project
-        - Id
+        - Projects
+        - Identifiers
         - Associate
-        - Timeseries
+        - Time Series
         - Assets
         - Disassociate
         - Properties
-        - Batch
+        - Batches
         - Aggregates
         - Latest
         - History
         - Access
         - Policies
-        - Asset
+        - Assets
         - Models
-        - Model
+        - Models
         - Composite
         - Jobs
         - Dashboards
@@ -699,7 +699,7 @@ paths:
         - Gateways
         - Portals
         - Projects
-        - Policy
+        - Policies
   /timeseries/delete/:
     POST:
       summary: DeleteTimeSeries
@@ -719,21 +719,21 @@ paths:
         - Delete
         - Time
         - Series
-        - Id
+        - Identifiers
         - Associate
-        - Timeseries
+        - Time Series
         - Assets
         - Disassociate
         - Properties
-        - Batch
+        - Batches
         - Aggregates
         - Latest
         - History
         - Access
         - Policies
-        - Asset
+        - Assets
         - Models
-        - Model
+        - Models
         - Composite
         - Jobs
         - Dashboards
@@ -741,7 +741,7 @@ paths:
         - Gateways
         - Portals
         - Projects
-        - Policy
+        - Policies
         - Delete
   /actions/{actionId}:
     GET:
@@ -749,22 +749,22 @@ paths:
       description: <p>Retrieves information about an action.</p>
       tags:
         - Describe
-        - Action
-        - Id
+        - Actions
+        - Identifiers
         - Associate
-        - Timeseries
+        - Time Series
         - Assets
         - Disassociate
         - Properties
-        - Batch
+        - Batches
         - Aggregates
         - Latest
         - History
         - Access
         - Policies
-        - Asset
+        - Assets
         - Models
-        - Model
+        - Models
         - Composite
         - Jobs
         - Dashboards
@@ -772,7 +772,7 @@ paths:
         - Gateways
         - Portals
         - Projects
-        - Policy
+        - Policies
         - Delete
   /assets/{assetId}/composite-models/{assetCompositeModelId}:
     GET:
@@ -785,24 +785,24 @@ paths:
         href="https://docs.aws.amazon.com/iot-sitewise/latest/APIReference/API_DescribeAssetModelCompositeModel.html">DescribeAssetModelCompositeModel</a>.</p>
       tags:
         - Describe
-        - Asset
+        - Assets
         - Composite
-        - Model
-        - Id
+        - Models
+        - Identifiers
         - Associate
-        - Timeseries
+        - Time Series
         - Assets
         - Disassociate
         - Properties
-        - Batch
+        - Batches
         - Aggregates
         - Latest
         - History
         - Access
         - Policies
-        - Asset
+        - Assets
         - Models
-        - Model
+        - Models
         - Composite
         - Jobs
         - Dashboards
@@ -810,7 +810,7 @@ paths:
         - Gateways
         - Portals
         - Projects
-        - Policy
+        - Policies
         - Delete
   /assets/{assetId}/properties/{propertyId}:
     PUT:
@@ -825,23 +825,23 @@ paths:
         </important>
       tags:
         - Update
-        - Asset
-        - Property
-        - Id
+        - Assets
+        - Properties
+        - Identifiers
         - Associate
-        - Timeseries
+        - Time Series
         - Assets
         - Disassociate
         - Properties
-        - Batch
+        - Batches
         - Aggregates
         - Latest
         - History
         - Access
         - Policies
-        - Asset
+        - Assets
         - Models
-        - Model
+        - Models
         - Composite
         - Jobs
         - Dashboards
@@ -849,9 +849,9 @@ paths:
         - Gateways
         - Portals
         - Projects
-        - Policy
+        - Policies
         - Delete
-        - Property
+        - Properties
   /jobs/{jobId}:
     GET:
       summary: DescribeBulkImportJob
@@ -865,22 +865,22 @@ paths:
         - Describe
         - Bulk
         - Import
-        - Job
-        - Id
+        - Jobs
+        - Identifiers
         - Associate
-        - Timeseries
+        - Time Series
         - Assets
         - Disassociate
         - Properties
-        - Batch
+        - Batches
         - Aggregates
         - Latest
         - History
         - Access
         - Policies
-        - Asset
+        - Assets
         - Models
-        - Model
+        - Models
         - Composite
         - Jobs
         - Dashboards
@@ -888,9 +888,9 @@ paths:
         - Gateways
         - Portals
         - Projects
-        - Policy
+        - Policies
         - Delete
-        - Property
+        - Properties
   /configuration/account/encryption:
     POST:
       summary: PutDefaultEncryptionConfiguration
@@ -903,22 +903,22 @@ paths:
         - Put
         - Default
         - Encryption
-        - Configuration
-        - Id
+        - Configurations
+        - Identifiers
         - Associate
-        - Timeseries
+        - Time Series
         - Assets
         - Disassociate
         - Properties
-        - Batch
+        - Batches
         - Aggregates
         - Latest
         - History
         - Access
         - Policies
-        - Asset
+        - Assets
         - Models
-        - Model
+        - Models
         - Composite
         - Jobs
         - Dashboards
@@ -926,10 +926,10 @@ paths:
         - Gateways
         - Portals
         - Projects
-        - Policy
+        - Policies
         - Delete
-        - Property
-        - Configuration
+        - Properties
+        - Configurations
         - Account
         - Encryption
   /20200301/gateways/{gatewayId}/capability/{capabilityNamespace}:
@@ -946,23 +946,23 @@ paths:
       tags:
         - Describe
         - Gateway
-        - Capability
-        - Configuration
-        - Id
+        - Capabilities
+        - Configurations
+        - Identifiers
         - Associate
-        - Timeseries
+        - Time Series
         - Assets
         - Disassociate
         - Properties
-        - Batch
+        - Batches
         - Aggregates
         - Latest
         - History
         - Access
         - Policies
-        - Asset
+        - Assets
         - Models
-        - Model
+        - Models
         - Composite
         - Jobs
         - Dashboards
@@ -970,14 +970,14 @@ paths:
         - Gateways
         - Portals
         - Projects
-        - Policy
+        - Policies
         - Delete
-        - Property
-        - Configuration
+        - Properties
+        - Configurations
         - Account
         - Encryption
-        - Capability
-        - Namespace
+        - Capabilities
+        - Namespaces
   /logging:
     PUT:
       summary: PutLoggingOptions
@@ -986,21 +986,21 @@ paths:
         - Put
         - Logging
         - Options
-        - Id
+        - Identifiers
         - Associate
-        - Timeseries
+        - Time Series
         - Assets
         - Disassociate
         - Properties
-        - Batch
+        - Batches
         - Aggregates
         - Latest
         - History
         - Access
         - Policies
-        - Asset
+        - Assets
         - Models
-        - Model
+        - Models
         - Composite
         - Jobs
         - Dashboards
@@ -1008,14 +1008,14 @@ paths:
         - Gateways
         - Portals
         - Projects
-        - Policy
+        - Policies
         - Delete
-        - Property
-        - Configuration
+        - Properties
+        - Configurations
         - Account
         - Encryption
-        - Capability
-        - Namespace
+        - Capabilities
+        - Namespaces
         - Logging
   /configuration/account/storage:
     POST:
@@ -1024,22 +1024,22 @@ paths:
       tags:
         - Put
         - Storage
-        - Configuration
-        - Id
+        - Configurations
+        - Identifiers
         - Associate
-        - Timeseries
+        - Time Series
         - Assets
         - Disassociate
         - Properties
-        - Batch
+        - Batches
         - Aggregates
         - Latest
         - History
         - Access
         - Policies
-        - Asset
+        - Assets
         - Models
-        - Model
+        - Models
         - Composite
         - Jobs
         - Dashboards
@@ -1047,14 +1047,14 @@ paths:
         - Gateways
         - Portals
         - Projects
-        - Policy
+        - Policies
         - Delete
-        - Property
-        - Configuration
+        - Properties
+        - Configurations
         - Account
         - Encryption
-        - Capability
-        - Namespace
+        - Capabilities
+        - Namespaces
         - Logging
         - Storage
   /timeseries/describe/:
@@ -1074,21 +1074,21 @@ paths:
         - Describe
         - Time
         - Series
-        - Id
+        - Identifiers
         - Associate
-        - Timeseries
+        - Time Series
         - Assets
         - Disassociate
         - Properties
-        - Batch
+        - Batches
         - Aggregates
         - Latest
         - History
         - Access
         - Policies
-        - Asset
+        - Assets
         - Models
-        - Model
+        - Models
         - Composite
         - Jobs
         - Dashboards
@@ -1096,14 +1096,14 @@ paths:
         - Gateways
         - Portals
         - Projects
-        - Policy
+        - Policies
         - Delete
-        - Property
-        - Configuration
+        - Properties
+        - Configurations
         - Account
         - Encryption
-        - Capability
-        - Namespace
+        - Capabilities
+        - Namespaces
         - Logging
         - Storage
         - Describe
@@ -1116,21 +1116,21 @@ paths:
       tags:
         - Disassociate
         - Assets
-        - Id
+        - Identifiers
         - Associate
-        - Timeseries
+        - Time Series
         - Assets
         - Disassociate
         - Properties
-        - Batch
+        - Batches
         - Aggregates
         - Latest
         - History
         - Access
         - Policies
-        - Asset
+        - Assets
         - Models
-        - Model
+        - Models
         - Composite
         - Jobs
         - Dashboards
@@ -1138,14 +1138,14 @@ paths:
         - Gateways
         - Portals
         - Projects
-        - Policy
+        - Policies
         - Delete
-        - Property
-        - Configuration
+        - Properties
+        - Configurations
         - Account
         - Encryption
-        - Capability
-        - Namespace
+        - Capabilities
+        - Namespaces
         - Logging
         - Storage
         - Describe
@@ -1158,23 +1158,23 @@ paths:
         - Time
         - Series
         - From
-        - Asset
-        - Property
-        - Id
+        - Assets
+        - Properties
+        - Identifiers
         - Associate
-        - Timeseries
+        - Time Series
         - Assets
         - Disassociate
         - Properties
-        - Batch
+        - Batches
         - Aggregates
         - Latest
         - History
         - Access
         - Policies
-        - Asset
+        - Assets
         - Models
-        - Model
+        - Models
         - Composite
         - Jobs
         - Dashboards
@@ -1182,14 +1182,14 @@ paths:
         - Gateways
         - Portals
         - Projects
-        - Policy
+        - Policies
         - Delete
-        - Property
-        - Configuration
+        - Properties
+        - Configurations
         - Account
         - Encryption
-        - Capability
-        - Namespace
+        - Capabilities
+        - Namespaces
         - Logging
         - Storage
         - Describe
@@ -1200,23 +1200,23 @@ paths:
         <p>Retrieves a paginated list of actions for a specific target
         resource.</p>
       tags:
-        - List
+        - Lists
         - Actions
-        - Id
+        - Identifiers
         - Associate
-        - Timeseries
+        - Time Series
         - Assets
         - Disassociate
         - Properties
-        - Batch
+        - Batches
         - Aggregates
         - Latest
         - History
         - Access
         - Policies
-        - Asset
+        - Assets
         - Models
-        - Model
+        - Models
         - Composite
         - Jobs
         - Dashboards
@@ -1224,14 +1224,14 @@ paths:
         - Gateways
         - Portals
         - Projects
-        - Policy
+        - Policies
         - Delete
-        - Property
-        - Configuration
+        - Properties
+        - Configurations
         - Account
         - Encryption
-        - Capability
-        - Namespace
+        - Capabilities
+        - Namespaces
         - Logging
         - Storage
         - Describe
@@ -1244,22 +1244,22 @@ paths:
         models, assets, measurements, metrics, transforms, and aggregates.</p>
       tags:
         - Execute
-        - Query
-        - Id
+        - Queries
+        - Identifiers
         - Associate
-        - Timeseries
+        - Time Series
         - Assets
         - Disassociate
         - Properties
-        - Batch
+        - Batches
         - Aggregates
         - Latest
         - History
         - Access
         - Policies
-        - Asset
+        - Assets
         - Models
-        - Model
+        - Models
         - Composite
         - Jobs
         - Dashboards
@@ -1267,14 +1267,14 @@ paths:
         - Gateways
         - Portals
         - Projects
-        - Policy
+        - Policies
         - Delete
-        - Property
-        - Configuration
+        - Properties
+        - Configurations
         - Account
         - Encryption
-        - Capability
-        - Namespace
+        - Capabilities
+        - Namespaces
         - Logging
         - Storage
         - Describe
@@ -1299,24 +1299,24 @@ paths:
         </li> </ul>
       tags:
         - Get
-        - Asset
-        - Property
+        - Assets
+        - Properties
         - Aggregates
-        - Id
+        - Identifiers
         - Associate
-        - Timeseries
+        - Time Series
         - Assets
         - Disassociate
         - Properties
-        - Batch
+        - Batches
         - Aggregates
         - Latest
         - History
         - Access
         - Policies
-        - Asset
+        - Assets
         - Models
-        - Model
+        - Models
         - Composite
         - Jobs
         - Dashboards
@@ -1324,14 +1324,14 @@ paths:
         - Gateways
         - Portals
         - Projects
-        - Policy
+        - Policies
         - Delete
-        - Property
-        - Configuration
+        - Properties
+        - Configurations
         - Account
         - Encryption
-        - Capability
-        - Namespace
+        - Capabilities
+        - Namespaces
         - Logging
         - Storage
         - Describe
@@ -1355,24 +1355,24 @@ paths:
         </li> </ul>
       tags:
         - Get
-        - Asset
-        - Property
+        - Assets
+        - Properties
         - Value
-        - Id
+        - Identifiers
         - Associate
-        - Timeseries
+        - Time Series
         - Assets
         - Disassociate
         - Properties
-        - Batch
+        - Batches
         - Aggregates
         - Latest
         - History
         - Access
         - Policies
-        - Asset
+        - Assets
         - Models
-        - Model
+        - Models
         - Composite
         - Jobs
         - Dashboards
@@ -1380,14 +1380,14 @@ paths:
         - Gateways
         - Portals
         - Projects
-        - Policy
+        - Policies
         - Delete
-        - Property
-        - Configuration
+        - Properties
+        - Configurations
         - Account
         - Encryption
-        - Capability
-        - Namespace
+        - Capabilities
+        - Namespaces
         - Logging
         - Storage
         - Describe
@@ -1412,25 +1412,25 @@ paths:
         </li> </ul>
       tags:
         - Get
-        - Asset
-        - Property
+        - Assets
+        - Properties
         - Value
         - History
-        - Id
+        - Identifiers
         - Associate
-        - Timeseries
+        - Time Series
         - Assets
         - Disassociate
         - Properties
-        - Batch
+        - Batches
         - Aggregates
         - Latest
         - History
         - Access
         - Policies
-        - Asset
+        - Assets
         - Models
-        - Model
+        - Models
         - Composite
         - Jobs
         - Dashboards
@@ -1438,14 +1438,14 @@ paths:
         - Gateways
         - Portals
         - Projects
-        - Policy
+        - Policies
         - Delete
-        - Property
-        - Configuration
+        - Properties
+        - Configurations
         - Account
         - Encryption
-        - Capability
-        - Namespace
+        - Capabilities
+        - Namespaces
         - Logging
         - Storage
         - Describe
@@ -1473,24 +1473,24 @@ paths:
       tags:
         - Get
         - Interpolated
-        - Asset
-        - Property
+        - Assets
+        - Properties
         - Values
-        - Id
+        - Identifiers
         - Associate
-        - Timeseries
+        - Time Series
         - Assets
         - Disassociate
         - Properties
-        - Batch
+        - Batches
         - Aggregates
         - Latest
         - History
         - Access
         - Policies
-        - Asset
+        - Assets
         - Models
-        - Model
+        - Models
         - Composite
         - Jobs
         - Dashboards
@@ -1498,14 +1498,14 @@ paths:
         - Gateways
         - Portals
         - Projects
-        - Policy
+        - Policies
         - Delete
-        - Property
-        - Configuration
+        - Properties
+        - Configurations
         - Account
         - Encryption
-        - Capability
-        - Namespace
+        - Capabilities
+        - Namespaces
         - Logging
         - Storage
         - Describe
@@ -1521,25 +1521,25 @@ paths:
         model. If you update properties associated with the model before you
         finish listing all the properties, you need to start all over again.</p>
       tags:
-        - List
-        - Asset
-        - Model
+        - Lists
+        - Assets
+        - Models
         - Properties
-        - Id
+        - Identifiers
         - Associate
-        - Timeseries
+        - Time Series
         - Assets
         - Disassociate
         - Properties
-        - Batch
+        - Batches
         - Aggregates
         - Latest
         - History
         - Access
         - Policies
-        - Asset
+        - Assets
         - Models
-        - Model
+        - Models
         - Composite
         - Jobs
         - Dashboards
@@ -1547,14 +1547,14 @@ paths:
         - Gateways
         - Portals
         - Projects
-        - Policy
+        - Policies
         - Delete
-        - Property
-        - Configuration
+        - Properties
+        - Configurations
         - Account
         - Encryption
-        - Capability
-        - Namespace
+        - Capabilities
+        - Namespaces
         - Logging
         - Storage
         - Describe
@@ -1570,24 +1570,24 @@ paths:
         you update properties associated with the model before you finish
         listing all the properties, you need to start all over again.</p>
       tags:
-        - List
-        - Asset
+        - Lists
+        - Assets
         - Properties
-        - Id
+        - Identifiers
         - Associate
-        - Timeseries
+        - Time Series
         - Assets
         - Disassociate
         - Properties
-        - Batch
+        - Batches
         - Aggregates
         - Latest
         - History
         - Access
         - Policies
-        - Asset
+        - Assets
         - Models
-        - Model
+        - Models
         - Composite
         - Jobs
         - Dashboards
@@ -1595,14 +1595,14 @@ paths:
         - Gateways
         - Portals
         - Projects
-        - Policy
+        - Policies
         - Delete
-        - Property
-        - Configuration
+        - Properties
+        - Configurations
         - Account
         - Encryption
-        - Capability
-        - Namespace
+        - Capabilities
+        - Namespaces
         - Logging
         - Storage
         - Describe
@@ -1618,24 +1618,24 @@ paths:
         can use this operation to identify an asset's root asset and all
         associated assets between that asset and its root.</p>
       tags:
-        - List
-        - Asset
+        - Lists
+        - Assets
         - Relationships
-        - Id
+        - Identifiers
         - Associate
-        - Timeseries
+        - Time Series
         - Assets
         - Disassociate
         - Properties
-        - Batch
+        - Batches
         - Aggregates
         - Latest
         - History
         - Access
         - Policies
-        - Asset
+        - Assets
         - Models
-        - Model
+        - Models
         - Composite
         - Jobs
         - Dashboards
@@ -1643,14 +1643,14 @@ paths:
         - Gateways
         - Portals
         - Projects
-        - Policy
+        - Policies
         - Delete
-        - Property
-        - Configuration
+        - Properties
+        - Configurations
         - Account
         - Encryption
-        - Capability
-        - Namespace
+        - Capabilities
+        - Namespaces
         - Logging
         - Storage
         - Describe
@@ -1668,24 +1668,24 @@ paths:
         associated to a parent asset by a hierarchy that you specify.</p> </li>
         <li> <p>List an asset's parent asset.</p> </li> </ul>
       tags:
-        - List
+        - Lists
         - Associated
         - Assets
-        - Id
+        - Identifiers
         - Associate
-        - Timeseries
+        - Time Series
         - Assets
         - Disassociate
         - Properties
-        - Batch
+        - Batches
         - Aggregates
         - Latest
         - History
         - Access
         - Policies
-        - Asset
+        - Assets
         - Models
-        - Model
+        - Models
         - Composite
         - Jobs
         - Dashboards
@@ -1693,14 +1693,14 @@ paths:
         - Gateways
         - Portals
         - Projects
-        - Policy
+        - Policies
         - Delete
-        - Property
-        - Configuration
+        - Properties
+        - Configurations
         - Account
         - Encryption
-        - Capability
-        - Namespace
+        - Capabilities
+        - Namespaces
         - Logging
         - Storage
         - Describe
@@ -1709,7 +1709,7 @@ paths:
         - Execution
         - Interpolated
         - Relationships
-        - Hierarchies
+        - Hierarchy
   /asset-models/{assetModelId}/composition-relationships:
     GET:
       summary: ListCompositionRelationships
@@ -1717,24 +1717,24 @@ paths:
         <p>Retrieves a paginated list of composition relationships for an asset
         model of type <code>COMPONENT_MODEL</code>.</p>
       tags:
-        - List
-        - Composition
+        - Lists
+        - Compositions
         - Relationships
-        - Id
+        - Identifiers
         - Associate
-        - Timeseries
+        - Time Series
         - Assets
         - Disassociate
         - Properties
-        - Batch
+        - Batches
         - Aggregates
         - Latest
         - History
         - Access
         - Policies
-        - Asset
+        - Assets
         - Models
-        - Model
+        - Models
         - Composite
         - Jobs
         - Dashboards
@@ -1742,14 +1742,14 @@ paths:
         - Gateways
         - Portals
         - Projects
-        - Policy
+        - Policies
         - Delete
-        - Property
-        - Configuration
+        - Properties
+        - Configurations
         - Account
         - Encryption
-        - Capability
-        - Namespace
+        - Capabilities
+        - Namespaces
         - Logging
         - Storage
         - Describe
@@ -1758,8 +1758,8 @@ paths:
         - Execution
         - Interpolated
         - Relationships
-        - Hierarchies
-        - Composition
+        - Hierarchy
+        - Compositions
   /projects/{projectId}/assets:
     GET:
       summary: ListProjectAssets
@@ -1767,24 +1767,24 @@ paths:
         <p>Retrieves a paginated list of assets associated with an IoT SiteWise
         Monitor project.</p>
       tags:
-        - List
-        - Project
+        - Lists
+        - Projects
         - Assets
-        - Id
+        - Identifiers
         - Associate
-        - Timeseries
+        - Time Series
         - Assets
         - Disassociate
         - Properties
-        - Batch
+        - Batches
         - Aggregates
         - Latest
         - History
         - Access
         - Policies
-        - Asset
+        - Assets
         - Models
-        - Model
+        - Models
         - Composite
         - Jobs
         - Dashboards
@@ -1792,14 +1792,14 @@ paths:
         - Gateways
         - Portals
         - Projects
-        - Policy
+        - Policies
         - Delete
-        - Property
-        - Configuration
+        - Properties
+        - Configurations
         - Account
         - Encryption
-        - Capability
-        - Namespace
+        - Capabilities
+        - Namespaces
         - Logging
         - Storage
         - Describe
@@ -1808,30 +1808,30 @@ paths:
         - Execution
         - Interpolated
         - Relationships
-        - Hierarchies
-        - Composition
+        - Hierarchy
+        - Compositions
   /tags:
     DELETE:
       summary: UntagResource
       description: <p>Removes a tag from an IoT SiteWise resource.</p>
       tags:
         - Untag
-        - Resource
-        - Id
+        - Resources
+        - Identifiers
         - Associate
-        - Timeseries
+        - Time Series
         - Assets
         - Disassociate
         - Properties
-        - Batch
+        - Batches
         - Aggregates
         - Latest
         - History
         - Access
         - Policies
-        - Asset
+        - Assets
         - Models
-        - Model
+        - Models
         - Composite
         - Jobs
         - Dashboards
@@ -1839,14 +1839,14 @@ paths:
         - Gateways
         - Portals
         - Projects
-        - Policy
+        - Policies
         - Delete
-        - Property
-        - Configuration
+        - Properties
+        - Configurations
         - Account
         - Encryption
-        - Capability
-        - Namespace
+        - Capabilities
+        - Namespaces
         - Logging
         - Storage
         - Describe
@@ -1855,32 +1855,32 @@ paths:
         - Execution
         - Interpolated
         - Relationships
-        - Hierarchies
-        - Composition
+        - Hierarchy
+        - Compositions
         - Tags
   /timeseries/:
     GET:
       summary: ListTimeSeries
       description: <p>Retrieves a paginated list of time series (data streams).</p>
       tags:
-        - List
+        - Lists
         - Time
         - Series
-        - Id
+        - Identifiers
         - Associate
-        - Timeseries
+        - Time Series
         - Assets
         - Disassociate
         - Properties
-        - Batch
+        - Batches
         - Aggregates
         - Latest
         - History
         - Access
         - Policies
-        - Asset
+        - Assets
         - Models
-        - Model
+        - Models
         - Composite
         - Jobs
         - Dashboards
@@ -1888,14 +1888,14 @@ paths:
         - Gateways
         - Portals
         - Projects
-        - Policy
+        - Policies
         - Delete
-        - Property
-        - Configuration
+        - Properties
+        - Configurations
         - Account
         - Encryption
-        - Capability
-        - Namespace
+        - Capabilities
+        - Namespaces
         - Logging
         - Storage
         - Describe
@@ -1904,8 +1904,8 @@ paths:
         - Execution
         - Interpolated
         - Relationships
-        - Hierarchies
-        - Composition
+        - Hierarchy
+        - Compositions
         - Tags
   /20200301/gateways/{gatewayId}/capability:
     POST:
@@ -1922,23 +1922,23 @@ paths:
       tags:
         - Update
         - Gateway
-        - Capability
-        - Configuration
-        - Id
+        - Capabilities
+        - Configurations
+        - Identifiers
         - Associate
-        - Timeseries
+        - Time Series
         - Assets
         - Disassociate
         - Properties
-        - Batch
+        - Batches
         - Aggregates
         - Latest
         - History
         - Access
         - Policies
-        - Asset
+        - Assets
         - Models
-        - Model
+        - Models
         - Composite
         - Jobs
         - Dashboards
@@ -1946,14 +1946,14 @@ paths:
         - Gateways
         - Portals
         - Projects
-        - Policy
+        - Policies
         - Delete
-        - Property
-        - Configuration
+        - Properties
+        - Configurations
         - Account
         - Encryption
-        - Capability
-        - Namespace
+        - Capabilities
+        - Namespaces
         - Logging
         - Storage
         - Describe
@@ -1962,6 +1962,6 @@ paths:
         - Execution
         - Interpolated
         - Relationships
-        - Hierarchies
-        - Composition
+        - Hierarchy
+        - Compositions
         - Ta

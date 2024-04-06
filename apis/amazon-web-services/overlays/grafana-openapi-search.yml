@@ -8,11 +8,11 @@ paths:
       description: <p>Removes the Grafana Enterprise license from a workspace.</p>
       tags:
         - Disassociate
-        - License
-        - Id
         - Licenses
-        - License
-        - Type
+        - Identifiers
+        - Licenses
+        - Licenses
+        - Types
   /workspaces:
     GET:
       summary: ListWorkspaces
@@ -22,12 +22,12 @@ paths:
         information about one workspace, use <a
         href="https://docs.aws.amazon.com/AAMG/latest/APIReference/API_DescribeWorkspace.html">DescribeWorkspace</a>.</p>
       tags:
-        - List
+        - Lists
         - Workspaces
-        - Id
+        - Identifiers
         - Licenses
-        - License
-        - Type
+        - Licenses
+        - Types
         - Workspaces
   /workspaces/{workspaceId}/apikeys:
     POST:
@@ -39,15 +39,15 @@ paths:
         for available APIs and example requests.</p>
       tags:
         - Create
-        - Workspace
-        - Api
-        - Key
-        - Id
-        - Licenses
-        - License
-        - Type
         - Workspaces
-        - Apikeys
+        - APIs
+        - Keys
+        - Identifiers
+        - Licenses
+        - Licenses
+        - Types
+        - Workspaces
+        - API Keys
   /workspaces/{workspaceId}:
     PUT:
       summary: UpdateWorkspace
@@ -63,30 +63,30 @@ paths:
         href="https://docs.aws.amazon.com/grafana/latest/APIReference/API_UpdatePermissions.html">UpdatePermissions</a>.</p>
       tags:
         - Update
-        - Workspace
-        - Id
-        - Licenses
-        - License
-        - Type
         - Workspaces
-        - Apikeys
+        - Identifiers
+        - Licenses
+        - Licenses
+        - Types
+        - Workspaces
+        - API Keys
   /workspaces/{workspaceId}/apikeys/{keyName}:
     DELETE:
       summary: DeleteWorkspaceApiKey
       description: <p>Deletes a Grafana API key for the workspace.</p>
       tags:
         - Delete
-        - Workspace
-        - Api
-        - Key
-        - Id
-        - Licenses
-        - License
-        - Type
         - Workspaces
-        - Apikeys
-        - Key
-        - Name
+        - APIs
+        - Keys
+        - Identifiers
+        - Licenses
+        - Licenses
+        - Types
+        - Workspaces
+        - API Keys
+        - Keys
+        - Names
   /workspaces/{workspaceId}/authentication:
     POST:
       summary: UpdateWorkspaceAuthentication
@@ -100,16 +100,16 @@ paths:
         effect.</p> </note>
       tags:
         - Update
-        - Workspace
-        - Authentication
-        - Id
-        - Licenses
-        - License
-        - Type
         - Workspaces
-        - Apikeys
-        - Key
-        - Name
+        - Authentication
+        - Identifiers
+        - Licenses
+        - Licenses
+        - Types
+        - Workspaces
+        - API Keys
+        - Keys
+        - Names
         - Authentication
   /workspaces/{workspaceId}/configuration:
     PUT:
@@ -117,18 +117,18 @@ paths:
       description: <p>Updates the configuration string for the given workspace</p>
       tags:
         - Update
-        - Workspace
-        - Configuration
-        - Id
-        - Licenses
-        - License
-        - Type
         - Workspaces
-        - Apikeys
-        - Key
-        - Name
+        - Configurations
+        - Identifiers
+        - Licenses
+        - Licenses
+        - Types
+        - Workspaces
+        - API Keys
+        - Keys
+        - Names
         - Authentication
-        - Configuration
+        - Configurations
   /workspaces/{workspaceId}/permissions:
     PATCH:
       summary: UpdatePermissions
@@ -138,16 +138,16 @@ paths:
       tags:
         - Update
         - Permissions
-        - Id
+        - Identifiers
         - Licenses
-        - License
-        - Type
+        - Licenses
+        - Types
         - Workspaces
-        - Apikeys
-        - Key
-        - Name
+        - API Keys
+        - Keys
+        - Names
         - Authentication
-        - Configuration
+        - Configurations
         - Permissions
   /tags/{resourceArn}:
     DELETE:
@@ -157,19 +157,19 @@ paths:
         the tag with the Amazon Managed Grafana resource. </p>
       tags:
         - Untag
-        - Resource
-        - Id
+        - Resources
+        - Identifiers
         - Licenses
-        - License
-        - Type
+        - Licenses
+        - Types
         - Workspaces
-        - Apikeys
-        - Key
-        - Name
+        - API Keys
+        - Keys
+        - Names
         - Authentication
-        - Configuration
+        - Configurations
         - Permissions
-        - Arn
+        - ARN
   /versions:
     GET:
       summary: ListVersions
@@ -178,18 +178,18 @@ paths:
         <code>CreateWorkspace</code>. Optionally, include a workspace to list
         the versions to which it can be upg
       tags:
-        - List
+        - Lists
         - Versions
-        - Id
+        - Identifiers
         - Licenses
-        - License
-        - Type
+        - Licenses
+        - Types
         - Workspaces
-        - Apikeys
-        - Key
-        - Name
+        - API Keys
+        - Keys
+        - Names
         - Authentication
-        - Configuration
+        - Configurations
         - Permissions
-        - Arn
-        - Versio
+        - ARN
+        - Versions

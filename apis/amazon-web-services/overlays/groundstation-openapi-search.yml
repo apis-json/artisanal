@@ -8,29 +8,29 @@ paths:
       description: <p>Describes an existing contact.</p>
       tags:
         - Describe
-        - Contact
-        - Id
+        - Contacts
+        - Identifiers
   /config:
     GET:
       summary: ListConfigs
       description: <p>Returns a list of <code>Config</code> objects.</p>
       tags:
-        - List
-        - Configs
-        - Id
-        - Config
+        - Lists
+        - Configurations
+        - Identifiers
+        - Configurations
   /dataflowEndpointGroup:
     GET:
       summary: ListDataflowEndpointGroups
       description: <p>Returns a list of <code>DataflowEndpoint</code> groups.</p>
       tags:
-        - List
+        - Lists
         - Dataflow
-        - Endpoint
+        - Endpoints
         - Groups
-        - Id
-        - Config
-        - Endpoint
+        - Identifiers
+        - Configurations
+        - Endpoints
         - Group
   /ephemeris:
     POST:
@@ -41,9 +41,9 @@ paths:
       tags:
         - Create
         - Ephemeris
-        - Id
-        - Config
-        - Endpoint
+        - Identifiers
+        - Configurations
+        - Endpoints
         - Group
         - Ephemeris
   /missionprofile:
@@ -51,15 +51,15 @@ paths:
       summary: ListMissionProfiles
       description: <p>Returns a list of mission profiles.</p>
       tags:
-        - List
+        - Lists
         - Mission
         - Profiles
-        - Id
-        - Config
-        - Endpoint
+        - Identifiers
+        - Configurations
+        - Endpoints
         - Group
         - Ephemeris
-        - Missionprofile
+        - Mission Profile
   /config/{configType}/{configId}:
     PUT:
       summary: UpdateConfig
@@ -70,14 +70,14 @@ paths:
         <code>Config</code>.</p>
       tags:
         - Update
-        - Config
-        - Id
-        - Config
-        - Endpoint
+        - Configurations
+        - Identifiers
+        - Configurations
+        - Endpoints
         - Group
         - Ephemeris
-        - Missionprofile
-        - Type
+        - Mission Profile
+        - Types
   /dataflowEndpointGroup/{dataflowEndpointGroupId}:
     GET:
       summary: GetDataflowEndpointGroup
@@ -85,15 +85,15 @@ paths:
       tags:
         - Get
         - Dataflow
-        - Endpoint
+        - Endpoints
         - Group
-        - Id
-        - Config
-        - Endpoint
+        - Identifiers
+        - Configurations
+        - Endpoints
         - Group
         - Ephemeris
-        - Missionprofile
-        - Type
+        - Mission Profile
+        - Types
         - Dataflow
   /ephemeris/{ephemerisId}:
     PUT:
@@ -102,13 +102,13 @@ paths:
       tags:
         - Update
         - Ephemeris
-        - Id
-        - Config
-        - Endpoint
+        - Identifiers
+        - Configurations
+        - Endpoints
         - Group
         - Ephemeris
-        - Missionprofile
-        - Type
+        - Mission Profile
+        - Types
         - Dataflow
   /missionprofile/{missionProfileId}:
     PUT:
@@ -119,16 +119,16 @@ paths:
       tags:
         - Update
         - Mission
-        - Profile
-        - Id
-        - Config
-        - Endpoint
+        - Profiles
+        - Identifiers
+        - Configurations
+        - Endpoints
         - Group
         - Ephemeris
-        - Missionprofile
-        - Type
+        - Mission Profile
+        - Types
         - Dataflow
-        - Profile
+        - Profiles
   /agent/{agentId}/configuration:
     GET:
       summary: GetAgentConfiguration
@@ -139,17 +139,17 @@ paths:
       tags:
         - Get
         - Agent
-        - Configuration
-        - Id
-        - Config
-        - Endpoint
+        - Configurations
+        - Identifiers
+        - Configurations
+        - Endpoints
         - Group
         - Ephemeris
-        - Missionprofile
-        - Type
+        - Mission Profile
+        - Types
         - Dataflow
-        - Profile
-        - Configuration
+        - Profiles
+        - Configurations
   /minute-usage:
     POST:
       summary: GetMinuteUsage
@@ -158,16 +158,16 @@ paths:
         - Get
         - Minute
         - Usage
-        - Id
-        - Config
-        - Endpoint
+        - Identifiers
+        - Configurations
+        - Endpoints
         - Group
         - Ephemeris
-        - Missionprofile
-        - Type
+        - Mission Profile
+        - Types
         - Dataflow
-        - Profile
-        - Configuration
+        - Profiles
+        - Configurations
         - Minute
         - Usage
   /satellite/{satelliteId}:
@@ -176,17 +176,17 @@ paths:
       description: <p>Returns a satellite.</p>
       tags:
         - Get
-        - Satellite
-        - Id
-        - Config
-        - Endpoint
+        - Satellites
+        - Identifiers
+        - Configurations
+        - Endpoints
         - Group
         - Ephemeris
-        - Missionprofile
-        - Type
+        - Mission Profile
+        - Types
         - Dataflow
-        - Profile
-        - Configuration
+        - Profiles
+        - Configurations
         - Minute
         - Usage
   /contacts:
@@ -197,18 +197,18 @@ paths:
         contains AVAILABLE, the request must include <code>groundStation</code>,
         <code>missionprofileArn</code>, and <code>satelliteArn</code>. </p>
       tags:
-        - List
+        - Lists
         - Contacts
-        - Id
-        - Config
-        - Endpoint
+        - Identifiers
+        - Configurations
+        - Endpoints
         - Group
         - Ephemeris
-        - Missionprofile
-        - Type
+        - Mission Profile
+        - Types
         - Dataflow
-        - Profile
-        - Configuration
+        - Profiles
+        - Configurations
         - Minute
         - Usage
         - Contacts
@@ -217,18 +217,18 @@ paths:
       summary: ListEphemerides
       description: <p>List existing ephemerides.</p>
       tags:
-        - List
+        - Lists
         - Ephemerides
-        - Id
-        - Config
-        - Endpoint
+        - Identifiers
+        - Configurations
+        - Endpoints
         - Group
         - Ephemeris
-        - Missionprofile
-        - Type
+        - Mission Profile
+        - Types
         - Dataflow
-        - Profile
-        - Configuration
+        - Profiles
+        - Configurations
         - Minute
         - Usage
         - Contacts
@@ -238,19 +238,19 @@ paths:
       summary: ListGroundStations
       description: <p>Returns a list of ground stations. </p>
       tags:
-        - List
+        - Lists
         - Ground
         - Stations
-        - Id
-        - Config
-        - Endpoint
+        - Identifiers
+        - Configurations
+        - Endpoints
         - Group
         - Ephemeris
-        - Missionprofile
-        - Type
+        - Mission Profile
+        - Types
         - Dataflow
-        - Profile
-        - Configuration
+        - Profiles
+        - Configurations
         - Minute
         - Usage
         - Contacts
@@ -261,48 +261,48 @@ paths:
       summary: ListSatellites
       description: <p>Returns a list of satellites.</p>
       tags:
-        - List
+        - Lists
         - Satellites
-        - Id
-        - Config
-        - Endpoint
+        - Identifiers
+        - Configurations
+        - Endpoints
         - Group
         - Ephemeris
-        - Missionprofile
-        - Type
+        - Mission Profile
+        - Types
         - Dataflow
-        - Profile
-        - Configuration
+        - Profiles
+        - Configurations
         - Minute
         - Usage
         - Contacts
         - Ephemerides
         - Groundstation
-        - Satellite
+        - Satellites
   /tags/{resourceArn}:
     DELETE:
       summary: UntagResource
       description: <p>Deassigns a resource tag.</p>
       tags:
         - Untag
-        - Resource
-        - Id
-        - Config
-        - Endpoint
+        - Resources
+        - Identifiers
+        - Configurations
+        - Endpoints
         - Group
         - Ephemeris
-        - Missionprofile
-        - Type
+        - Mission Profile
+        - Types
         - Dataflow
-        - Profile
-        - Configuration
+        - Profiles
+        - Configurations
         - Minute
         - Usage
         - Contacts
         - Ephemerides
         - Groundstation
-        - Satellite
-        - Arn
+        - Satellites
+        - ARN
   /agent:
     POST:
       summary: RegisterAgent
@@ -313,23 +313,23 @@ paths:
       tags:
         - Register
         - Agent
-        - Id
-        - Config
-        - Endpoint
+        - Identifiers
+        - Configurations
+        - Endpoints
         - Group
         - Ephemeris
-        - Missionprofile
-        - Type
+        - Mission Profile
+        - Types
         - Dataflow
-        - Profile
-        - Configuration
+        - Profiles
+        - Configurations
         - Minute
         - Usage
         - Contacts
         - Ephemerides
         - Groundstation
-        - Satellite
-        - Arn
+        - Satellites
+        - ARN
         - Agent
   /contact:
     POST:
@@ -337,26 +337,26 @@ paths:
       description: <p>Reserves a contact using specified parameters.</p>
       tags:
         - Reserve
-        - Contact
-        - Id
-        - Config
-        - Endpoint
+        - Contacts
+        - Identifiers
+        - Configurations
+        - Endpoints
         - Group
         - Ephemeris
-        - Missionprofile
-        - Type
+        - Mission Profile
+        - Types
         - Dataflow
-        - Profile
-        - Configuration
+        - Profiles
+        - Configurations
         - Minute
         - Usage
         - Contacts
         - Ephemerides
         - Groundstation
-        - Satellite
-        - Arn
+        - Satellites
+        - ARN
         - Agent
-        - Contact
+        - Contacts
   /agent/{agentId}:
     PUT:
       summary: UpdateAgentStatus
@@ -367,22 +367,22 @@ paths:
         - Update
         - Agent
         - Status
-        - Id
-        - Config
-        - Endpoint
+        - Identifiers
+        - Configurations
+        - Endpoints
         - Group
         - Ephemeris
-        - Missionprofile
-        - Type
+        - Mission Profile
+        - Types
         - Dataflow
-        - Profile
-        - Configuration
+        - Profiles
+        - Configurations
         - Minute
         - Usage
         - Contacts
         - Ephemerides
         - Groundstation
-        - Satellite
-        - Arn
+        - Satellites
+        - ARN
         - Agent
         - Conta

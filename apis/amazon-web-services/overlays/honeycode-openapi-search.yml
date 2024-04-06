@@ -16,15 +16,15 @@ paths:
         column level formula and no formula in the last row of the table, then
         that column will be left blank for the new rows. </p>
       tags:
-        - Batch
+        - Batches
         - Create
-        - Table
-        - Rows
-        - Id
         - Tables
-        - Table
         - Rows
-        - Batchcreate
+        - Identifiers
+        - Tables
+        - Tables
+        - Rows
+        - Batches
   /workbooks/{workbookId}/tables/{tableId}/rows/batchdelete:
     POST:
       summary: BatchDeleteTableRows
@@ -33,16 +33,16 @@ paths:
         from a table in a workbook. You need to specify the ids of the rows that
         you want to delete from the table. </p>
       tags:
-        - Batch
+        - Batches
         - Delete
-        - Table
-        - Rows
-        - Id
         - Tables
-        - Table
         - Rows
-        - Batchcreate
-        - Batchdelete
+        - Identifiers
+        - Tables
+        - Tables
+        - Rows
+        - Batches
+        - Batches
   /workbooks/{workbookId}/tables/{tableId}/rows/batchupdate:
     POST:
       summary: BatchUpdateTableRows
@@ -54,17 +54,17 @@ paths:
         will not be updated for that row. To clear out the data in a specific
         cell, you need to set the value as an empty string (""). </p>
       tags:
-        - Batch
+        - Batches
         - Update
-        - Table
-        - Rows
-        - Id
         - Tables
-        - Table
         - Rows
-        - Batchcreate
-        - Batchdelete
-        - Batchupdate
+        - Identifiers
+        - Tables
+        - Tables
+        - Rows
+        - Batches
+        - Batches
+        - Batches
   /workbooks/{workbookId}/tables/{tableId}/rows/batchupsert:
     POST:
       summary: BatchUpsertTableRows
@@ -82,18 +82,18 @@ paths:
         To clear out the data in a specific cell, you need to set the value as
         an empty string (""). </p>
       tags:
-        - Batch
+        - Batches
         - Upsert
-        - Table
-        - Rows
-        - Id
         - Tables
-        - Table
         - Rows
-        - Batchcreate
-        - Batchdelete
-        - Batchupdate
-        - Batchupsert
+        - Identifiers
+        - Tables
+        - Tables
+        - Rows
+        - Batches
+        - Batches
+        - Batches
+        - Batches
   /workbooks/{workbookId}/tables/{tableId}/import/{jobId}:
     GET:
       summary: DescribeTableDataImportJob
@@ -102,20 +102,20 @@ paths:
         and details of a table data import job. </p>
       tags:
         - Describe
-        - Table
+        - Tables
         - Data
         - Import
-        - Job
-        - Id
+        - Jobs
+        - Identifiers
         - Tables
-        - Table
+        - Tables
         - Rows
-        - Batchcreate
-        - Batchdelete
-        - Batchupdate
-        - Batchupsert
+        - Batches
+        - Batches
+        - Batches
+        - Batches
         - Import
-        - Job
+        - Jobs
   /screendata:
     POST:
       summary: GetScreenData
@@ -128,17 +128,17 @@ paths:
         - Get
         - Screen
         - Data
-        - Id
+        - Identifiers
         - Tables
-        - Table
+        - Tables
         - Rows
-        - Batchcreate
-        - Batchdelete
-        - Batchupdate
-        - Batchupsert
+        - Batches
+        - Batches
+        - Batches
+        - Batches
         - Import
-        - Job
-        - Screendata
+        - Jobs
+        - Screen Data
   /workbooks/{workbookId}/apps/{appId}/screens/{screenId}/automations/{automationId}:
     POST:
       summary: InvokeScreenAutomation
@@ -152,19 +152,19 @@ paths:
         - Invoke
         - Screen
         - Automation
-        - Id
+        - Identifiers
         - Tables
-        - Table
+        - Tables
         - Rows
-        - Batchcreate
-        - Batchdelete
-        - Batchupdate
-        - Batchupsert
+        - Batches
+        - Batches
+        - Batches
+        - Batches
         - Import
-        - Job
-        - Screendata
-        - Apps
-        - App
+        - Jobs
+        - Screen Data
+        - Applications
+        - Applications
         - Screens
         - Screen
         - Automations
@@ -176,22 +176,22 @@ paths:
         <p> The ListTableColumns API allows you to retrieve a list of all the
         columns in a table in a workbook. </p>
       tags:
-        - List
-        - Table
-        - Columns
-        - Id
+        - Lists
         - Tables
-        - Table
+        - Columns
+        - Identifiers
+        - Tables
+        - Tables
         - Rows
-        - Batchcreate
-        - Batchdelete
-        - Batchupdate
-        - Batchupsert
+        - Batches
+        - Batches
+        - Batches
+        - Batches
         - Import
-        - Job
-        - Screendata
-        - Apps
-        - App
+        - Jobs
+        - Screen Data
+        - Applications
+        - Applications
         - Screens
         - Screen
         - Automations
@@ -204,28 +204,28 @@ paths:
         <p> The ListTableRows API allows you to retrieve a list of all the rows
         in a table in a workbook. </p>
       tags:
-        - List
-        - Table
-        - Rows
-        - Id
+        - Lists
         - Tables
-        - Table
         - Rows
-        - Batchcreate
-        - Batchdelete
-        - Batchupdate
-        - Batchupsert
+        - Identifiers
+        - Tables
+        - Tables
+        - Rows
+        - Batches
+        - Batches
+        - Batches
+        - Batches
         - Import
-        - Job
-        - Screendata
-        - Apps
-        - App
+        - Jobs
+        - Screen Data
+        - Applications
+        - Applications
         - Screens
         - Screen
         - Automations
         - Automation
         - Columns
-        - List
+        - Lists
   /workbooks/{workbookId}/tables:
     GET:
       summary: ListTables
@@ -233,27 +233,27 @@ paths:
         <p> The ListTables API allows you to retrieve a list of all the tables
         in a workbook. </p>
       tags:
-        - List
+        - Lists
         - Tables
-        - Id
+        - Identifiers
         - Tables
-        - Table
+        - Tables
         - Rows
-        - Batchcreate
-        - Batchdelete
-        - Batchupdate
-        - Batchupsert
+        - Batches
+        - Batches
+        - Batches
+        - Batches
         - Import
-        - Job
-        - Screendata
-        - Apps
-        - App
+        - Jobs
+        - Screen Data
+        - Applications
+        - Applications
         - Screens
         - Screen
         - Automations
         - Automation
         - Columns
-        - List
+        - Lists
   /tags/{resourceArn}:
     DELETE:
       summary: UntagResource
@@ -263,27 +263,27 @@ paths:
         screen-automation. </p>
       tags:
         - Untag
-        - Resource
-        - Id
+        - Resources
+        - Identifiers
         - Tables
-        - Table
+        - Tables
         - Rows
-        - Batchcreate
-        - Batchdelete
-        - Batchupdate
-        - Batchupsert
+        - Batches
+        - Batches
+        - Batches
+        - Batches
         - Import
-        - Job
-        - Screendata
-        - Apps
-        - App
+        - Jobs
+        - Screen Data
+        - Applications
+        - Applications
         - Screens
         - Screen
         - Automations
         - Automation
         - Columns
-        - List
-        - Arn
+        - Lists
+        - ARN
   /workbooks/{workbookId}/tables/{tableId}/rows/query:
     POST:
       summary: QueryTableRows
@@ -291,30 +291,30 @@ paths:
         <p> The QueryTableRows API allows you to use a filter formula to query
         for specific rows in a table. </p>
       tags:
-        - Query
-        - Table
-        - Rows
-        - Id
+        - Queries
         - Tables
-        - Table
         - Rows
-        - Batchcreate
-        - Batchdelete
-        - Batchupdate
-        - Batchupsert
+        - Identifiers
+        - Tables
+        - Tables
+        - Rows
+        - Batches
+        - Batches
+        - Batches
+        - Batches
         - Import
-        - Job
-        - Screendata
-        - Apps
-        - App
+        - Jobs
+        - Screen Data
+        - Applications
+        - Applications
         - Screens
         - Screen
         - Automations
         - Automation
         - Columns
-        - List
-        - Arn
-        - Query
+        - Lists
+        - ARN
+        - Queries
   /workbooks/{workbookId}/tables/{tableId}/import:
     POST:
       summary: StartTableDataImportJob
@@ -325,28 +325,28 @@ paths:
         DescribeTableDataImportJob
       tags:
         - Start
-        - Table
+        - Tables
         - Data
         - Import
-        - Job
-        - Id
+        - Jobs
+        - Identifiers
         - Tables
-        - Table
+        - Tables
         - Rows
-        - Batchcreate
-        - Batchdelete
-        - Batchupdate
-        - Batchupsert
+        - Batches
+        - Batches
+        - Batches
+        - Batches
         - Import
-        - Job
-        - Screendata
-        - Apps
-        - App
+        - Jobs
+        - Screen Data
+        - Applications
+        - Applications
         - Screens
         - Screen
         - Automations
         - Automation
         - Columns
-        - List
-        - Arn
+        - Lists
+        - ARN
         - Que

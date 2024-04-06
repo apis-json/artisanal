@@ -10,7 +10,7 @@ paths:
         is idempotent.</p>
       tags:
         - Create
-        - Campaign
+        - Campaigns
         - Campaigns
   /campaigns/{id}:
     GET:
@@ -18,9 +18,9 @@ paths:
       description: <p>Describes the specific campaign.</p>
       tags:
         - Describe
-        - Campaign
         - Campaigns
-        - Id
+        - Campaigns
+        - Identifiers
   /connect-instance/{connectInstanceId}/config:
     GET:
       summary: GetConnectInstanceConfig
@@ -28,12 +28,12 @@ paths:
       tags:
         - Get
         - Connect
-        - Instance
-        - Config
+        - Instances
+        - Configurations
         - Campaigns
-        - Id
-        - Instance
-        - Config
+        - Identifiers
+        - Instances
+        - Configurations
   /connect-instance/{connectInstanceId}/onboarding:
     PUT:
       summary: StartInstanceOnboardingJob
@@ -42,13 +42,13 @@ paths:
         Campaigns.</p>
       tags:
         - Start
-        - Instance
+        - Instances
         - Onboarding
-        - Job
+        - Jobs
         - Campaigns
-        - Id
-        - Instance
-        - Config
+        - Identifiers
+        - Instances
+        - Configurations
         - Onboarding
   /campaigns/{id}/state:
     GET:
@@ -56,29 +56,29 @@ paths:
       description: <p>Get state of a campaign for the specified Amazon Connect account.</p>
       tags:
         - Get
-        - Campaign
-        - State
         - Campaigns
-        - Id
-        - Instance
-        - Config
+        - States
+        - Campaigns
+        - Identifiers
+        - Instances
+        - Configurations
         - Onboarding
-        - State
+        - States
   /campaigns-state:
     POST:
       summary: GetCampaignStateBatch
       description: <p>Get state of campaigns for the specified Amazon Connect account.</p>
       tags:
         - Get
-        - Campaign
-        - State
-        - Batch
         - Campaigns
-        - Id
-        - Instance
-        - Config
+        - States
+        - Batches
+        - Campaigns
+        - Identifiers
+        - Instances
+        - Configurations
         - Onboarding
-        - State
+        - States
   /campaigns-summary:
     POST:
       summary: ListCampaigns
@@ -86,47 +86,47 @@ paths:
         <p>Provides summary information about the campaigns under the specified
         Amazon Connect account.</p>
       tags:
-        - List
+        - Lists
         - Campaigns
         - Campaigns
-        - Id
-        - Instance
-        - Config
+        - Identifiers
+        - Instances
+        - Configurations
         - Onboarding
-        - State
-        - Summary
+        - States
+        - Summaries
   /tags/{arn}:
     DELETE:
       summary: UntagResource
       description: <p>Untag a resource.</p>
       tags:
         - Untag
-        - Resource
+        - Resources
         - Campaigns
-        - Id
-        - Instance
-        - Config
+        - Identifiers
+        - Instances
+        - Configurations
         - Onboarding
-        - State
-        - Summary
+        - States
+        - Summaries
         - Tags
-        - Arn
+        - ARN
   /campaigns/{id}/pause:
     POST:
       summary: PauseCampaign
       description: <p>Pauses a campaign for the specified Amazon Connect account.</p>
       tags:
         - Pause
-        - Campaign
         - Campaigns
-        - Id
-        - Instance
-        - Config
+        - Campaigns
+        - Identifiers
+        - Instances
+        - Configurations
         - Onboarding
-        - State
-        - Summary
+        - States
+        - Summaries
         - Tags
-        - Arn
+        - ARN
         - Pause
   /campaigns/{id}/dial-requests:
     PUT:
@@ -138,16 +138,16 @@ paths:
         - Put
         - Dial
         - Request
-        - Batch
+        - Batches
         - Campaigns
-        - Id
-        - Instance
-        - Config
+        - Identifiers
+        - Instances
+        - Configurations
         - Onboarding
-        - State
-        - Summary
+        - States
+        - Summaries
         - Tags
-        - Arn
+        - ARN
         - Pause
         - Dial
         - Requests
@@ -157,16 +157,16 @@ paths:
       description: <p>Stops a campaign for the specified Amazon Connect account.</p>
       tags:
         - Resume
-        - Campaign
         - Campaigns
-        - Id
-        - Instance
-        - Config
+        - Campaigns
+        - Identifiers
+        - Instances
+        - Configurations
         - Onboarding
-        - State
-        - Summary
+        - States
+        - Summaries
         - Tags
-        - Arn
+        - ARN
         - Pause
         - Dial
         - Requests
@@ -177,16 +177,16 @@ paths:
       description: <p>Starts a campaign for the specified Amazon Connect account.</p>
       tags:
         - Start
-        - Campaign
         - Campaigns
-        - Id
-        - Instance
-        - Config
+        - Campaigns
+        - Identifiers
+        - Instances
+        - Configurations
         - Onboarding
-        - State
-        - Summary
+        - States
+        - Summaries
         - Tags
-        - Arn
+        - ARN
         - Pause
         - Dial
         - Requests
@@ -198,16 +198,16 @@ paths:
       description: <p>Stops a campaign for the specified Amazon Connect account.</p>
       tags:
         - Stop
-        - Campaign
         - Campaigns
-        - Id
-        - Instance
-        - Config
+        - Campaigns
+        - Identifiers
+        - Instances
+        - Configurations
         - Onboarding
-        - State
-        - Summary
+        - States
+        - Summaries
         - Tags
-        - Arn
+        - ARN
         - Pause
         - Dial
         - Requests
@@ -220,18 +220,18 @@ paths:
       description: <p>Updates the dialer config of a campaign. This API is idempotent.</p>
       tags:
         - Update
-        - Campaign
-        - Dialer
-        - Config
         - Campaigns
-        - Id
-        - Instance
-        - Config
+        - Dialer
+        - Configurations
+        - Campaigns
+        - Identifiers
+        - Instances
+        - Configurations
         - Onboarding
-        - State
-        - Summary
+        - States
+        - Summaries
         - Tags
-        - Arn
+        - ARN
         - Pause
         - Dial
         - Requests
@@ -245,17 +245,17 @@ paths:
       description: <p>Updates the name of a campaign. This API is idempotent.</p>
       tags:
         - Update
-        - Campaign
-        - Name
         - Campaigns
-        - Id
-        - Instance
-        - Config
+        - Names
+        - Campaigns
+        - Identifiers
+        - Instances
+        - Configurations
         - Onboarding
-        - State
-        - Summary
+        - States
+        - Summaries
         - Tags
-        - Arn
+        - ARN
         - Pause
         - Dial
         - Requests
@@ -263,26 +263,26 @@ paths:
         - Start
         - Stop
         - Dialer
-        - Name
+        - Names
   /campaigns/{id}/outbound-call-config:
     POST:
       summary: UpdateCampaignOutboundCallConfig
       description: <p>Updates the outbound call config of a campaign. This API is idemp
       tags:
         - Update
-        - Campaign
+        - Campaigns
         - Outbound
         - Call
-        - Config
+        - Configurations
         - Campaigns
-        - Id
-        - Instance
-        - Config
+        - Identifiers
+        - Instances
+        - Configurations
         - Onboarding
-        - State
-        - Summary
+        - States
+        - Summaries
         - Tags
-        - Arn
+        - ARN
         - Pause
         - Dial
         - Requests
@@ -290,6 +290,6 @@ paths:
         - Start
         - Stop
         - Dialer
-        - Name
+        - Names
         - Outbound
         - Ca

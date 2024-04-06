@@ -7,49 +7,49 @@ paths:
       summary: BatchPutMessage
       description: <p>Sends messages to a channel.</p>
       tags:
-        - Batch
+        - Batches
         - Put
-        - Message
         - Messages
-        - Batch
+        - Messages
+        - Batches
   /pipelines/{pipelineName}/reprocessing/{reprocessingId}:
     DELETE:
       summary: CancelPipelineReprocessing
       description: <p>Cancels the reprocessing of data through the pipeline.</p>
       tags:
         - Cancel
-        - Pipeline
+        - Pipelines
         - Reprocessing
         - Messages
-        - Batch
-        - Name
+        - Batches
+        - Names
         - Reprocessing
-        - Id
+        - Identifiers
   /channels:
     GET:
       summary: ListChannels
       description: <p>Retrieves a list of channels.</p>
       tags:
-        - List
+        - Lists
         - Channels
         - Messages
-        - Batch
-        - Name
+        - Batches
+        - Names
         - Reprocessing
-        - Id
+        - Identifiers
         - Channels
   /datasets:
     GET:
       summary: ListDatasets
       description: <p>Retrieves information about datasets.</p>
       tags:
-        - List
+        - Lists
         - Datasets
         - Messages
-        - Batch
-        - Name
+        - Batches
+        - Names
         - Reprocessing
-        - Id
+        - Identifiers
         - Channels
         - Datasets
   /datasets/{datasetName}/content:
@@ -58,13 +58,13 @@ paths:
       description: <p>Retrieves the contents of a dataset as presigned URIs.</p>
       tags:
         - Get
-        - Dataset
+        - Datasets
         - Content
         - Messages
-        - Batch
-        - Name
+        - Batches
+        - Names
         - Reprocessing
-        - Id
+        - Identifiers
         - Channels
         - Datasets
         - Content
@@ -73,33 +73,33 @@ paths:
       summary: ListDatastores
       description: <p>Retrieves a list of data stores.</p>
       tags:
-        - List
-        - Datastores
+        - Lists
+        - Data Store
         - Messages
-        - Batch
-        - Name
+        - Batches
+        - Names
         - Reprocessing
-        - Id
+        - Identifiers
         - Channels
         - Datasets
         - Content
-        - Datastores
+        - Data Store
   /pipelines:
     GET:
       summary: ListPipelines
       description: <p>Retrieves a list of pipelines.</p>
       tags:
-        - List
+        - Lists
         - Pipelines
         - Messages
-        - Batch
-        - Name
+        - Batches
+        - Names
         - Reprocessing
-        - Id
+        - Identifiers
         - Channels
         - Datasets
         - Content
-        - Datastores
+        - Data Store
         - Pipelines
   /channels/{channelName}:
     PUT:
@@ -107,16 +107,16 @@ paths:
       description: <p>Used to update the settings of a channel.</p>
       tags:
         - Update
-        - Channel
+        - Channels
         - Messages
-        - Batch
-        - Name
+        - Batches
+        - Names
         - Reprocessing
-        - Id
+        - Identifiers
         - Channels
         - Datasets
         - Content
-        - Datastores
+        - Data Store
         - Pipelines
   /datasets/{datasetName}:
     PUT:
@@ -124,16 +124,16 @@ paths:
       description: <p>Updates the settings of a dataset.</p>
       tags:
         - Update
-        - Dataset
+        - Datasets
         - Messages
-        - Batch
-        - Name
+        - Batches
+        - Names
         - Reprocessing
-        - Id
+        - Identifiers
         - Channels
         - Datasets
         - Content
-        - Datastores
+        - Data Store
         - Pipelines
   /datastores/{datastoreName}:
     PUT:
@@ -141,16 +141,16 @@ paths:
       description: <p>Used to update the settings of a data store.</p>
       tags:
         - Update
-        - Datastore
+        - Data Store
         - Messages
-        - Batch
-        - Name
+        - Batches
+        - Names
         - Reprocessing
-        - Id
+        - Identifiers
         - Channels
         - Datasets
         - Content
-        - Datastores
+        - Data Store
         - Pipelines
   /pipelines/{pipelineName}:
     PUT:
@@ -162,16 +162,16 @@ paths:
         <code>pipelineActivities</code> array.</p>
       tags:
         - Update
-        - Pipeline
+        - Pipelines
         - Messages
-        - Batch
-        - Name
+        - Batches
+        - Names
         - Reprocessing
-        - Id
+        - Identifiers
         - Channels
         - Datasets
         - Content
-        - Datastores
+        - Data Store
         - Pipelines
   /logging:
     PUT:
@@ -188,14 +188,14 @@ paths:
         - Logging
         - Options
         - Messages
-        - Batch
-        - Name
+        - Batches
+        - Names
         - Reprocessing
-        - Id
+        - Identifiers
         - Channels
         - Datasets
         - Content
-        - Datastores
+        - Data Store
         - Pipelines
         - Logging
   /datasets/{datasetName}/contents:
@@ -203,18 +203,18 @@ paths:
       summary: ListDatasetContents
       description: <p>Lists information about dataset contents that have been created.</p>
       tags:
-        - List
-        - Dataset
+        - Lists
+        - Datasets
         - Contents
         - Messages
-        - Batch
-        - Name
+        - Batches
+        - Names
         - Reprocessing
-        - Id
+        - Identifiers
         - Channels
         - Datasets
         - Content
-        - Datastores
+        - Data Store
         - Pipelines
         - Logging
         - Contents
@@ -224,16 +224,16 @@ paths:
       description: <p>Removes the given tags (metadata) from the resource.</p>
       tags:
         - Untag
-        - Resource
+        - Resources
         - Messages
-        - Batch
-        - Name
+        - Batches
+        - Names
         - Reprocessing
-        - Id
+        - Identifiers
         - Channels
         - Datasets
         - Content
-        - Datastores
+        - Data Store
         - Pipelines
         - Logging
         - Contents
@@ -245,24 +245,24 @@ paths:
         <p>Simulates the results of running a pipeline activity on a message
         payload.</p>
       tags:
-        - Run
-        - Pipeline
+        - Runs
+        - Pipelines
         - Activity
         - Messages
-        - Batch
-        - Name
+        - Batches
+        - Names
         - Reprocessing
-        - Id
+        - Identifiers
         - Channels
         - Datasets
         - Content
-        - Datastores
+        - Data Store
         - Pipelines
         - Logging
         - Contents
         - Tags
-        - Pipelineactivities
-        - Run
+        - Pipeline Activities
+        - Runs
   /channels/{channelName}/sample:
     GET:
       summary: SampleChannelData
@@ -270,46 +270,46 @@ paths:
         <p>Retrieves a sample of messages from the specified channel ingested
         during the specified timeframe. Up to 10 messages can be retrieved.</p>
       tags:
-        - Sample
-        - Channel
+        - Samples
+        - Channels
         - Data
         - Messages
-        - Batch
-        - Name
+        - Batches
+        - Names
         - Reprocessing
-        - Id
+        - Identifiers
         - Channels
         - Datasets
         - Content
-        - Datastores
+        - Data Store
         - Pipelines
         - Logging
         - Contents
         - Tags
-        - Pipelineactivities
-        - Run
-        - Sample
+        - Pipeline Activities
+        - Runs
+        - Samples
   /pipelines/{pipelineName}/reprocessing:
     POST:
       summary: StartPipelineReprocessing
       description: <p>Starts the reprocessing of raw message data through the pip
       tags:
         - Start
-        - Pipeline
+        - Pipelines
         - Reprocessing
         - Messages
-        - Batch
-        - Name
+        - Batches
+        - Names
         - Reprocessing
-        - Id
+        - Identifiers
         - Channels
         - Datasets
         - Content
-        - Datastores
+        - Data Store
         - Pipelines
         - Logging
         - Contents
         - Tags
-        - Pipelineactivities
-        - Run
-        - Samp
+        - Pipeline Activities
+        - Runs
+        - Samples

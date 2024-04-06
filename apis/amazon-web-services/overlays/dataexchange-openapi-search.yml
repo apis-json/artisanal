@@ -8,9 +8,9 @@ paths:
       description: <p>This operation starts a job.</p>
       tags:
         - Start
-        - Job
-        - Job
-        - Id
+        - Jobs
+        - Jobs
+        - Identifiers
   /v1/data-sets:
     GET:
       summary: ListDataSets
@@ -20,11 +20,11 @@ paths:
         origin ENTITLED, there is no order and the maxResults parameter is
         ignored.</p>
       tags:
-        - List
+        - Lists
         - Data
         - Sets
-        - Job
-        - Id
+        - Jobs
+        - Identifiers
         - V1
         - Data
         - Sets
@@ -33,15 +33,15 @@ paths:
       summary: ListEventActions
       description: <p>This operation lists your event actions.</p>
       tags:
-        - List
-        - Event
+        - Lists
+        - Events
         - Actions
-        - Job
-        - Id
+        - Jobs
+        - Identifiers
         - V1
         - Data
         - Sets
-        - Event
+        - Events
         - Actions
   /v1/jobs:
     GET:
@@ -50,14 +50,14 @@ paths:
         <p>This operation lists your jobs sorted by CreatedAt in descending
         order.</p>
       tags:
-        - List
+        - Lists
         - Jobs
-        - Job
-        - Id
+        - Jobs
+        - Identifiers
         - V1
         - Data
         - Sets
-        - Event
+        - Events
         - Actions
         - Jobs
   /v1/data-sets/{DataSetId}/revisions:
@@ -67,19 +67,19 @@ paths:
         <p>This operation lists a data set's revisions sorted by CreatedAt in
         descending order.</p>
       tags:
-        - List
+        - Lists
         - Data
-        - Set
+        - Sets
         - Revisions
-        - Job
-        - Id
+        - Jobs
+        - Identifiers
         - V1
         - Data
         - Sets
-        - Event
+        - Events
         - Actions
         - Jobs
-        - Set
+        - Sets
         - Revisions
   /v1/data-sets/{DataSetId}/revisions/{RevisionId}/assets/{AssetId}:
     PATCH:
@@ -87,20 +87,20 @@ paths:
       description: <p>This operation updates an asset.</p>
       tags:
         - Update
-        - Asset
-        - Job
-        - Id
+        - Assets
+        - Jobs
+        - Identifiers
         - V1
         - Data
         - Sets
-        - Event
+        - Events
         - Actions
         - Jobs
-        - Set
+        - Sets
         - Revisions
-        - Revision
+        - Revisions
         - Assets
-        - Asset
+        - Assets
   /v1/data-sets/{DataSetId}:
     PATCH:
       summary: UpdateDataSet
@@ -108,63 +108,63 @@ paths:
       tags:
         - Update
         - Data
-        - Set
-        - Job
-        - Id
+        - Sets
+        - Jobs
+        - Identifiers
         - V1
         - Data
         - Sets
-        - Event
+        - Events
         - Actions
         - Jobs
-        - Set
+        - Sets
         - Revisions
-        - Revision
+        - Revisions
         - Assets
-        - Asset
+        - Assets
   /v1/event-actions/{EventActionId}:
     PATCH:
       summary: UpdateEventAction
       description: <p>This operation updates the event action.</p>
       tags:
         - Update
-        - Event
-        - Action
-        - Job
-        - Id
+        - Events
+        - Actions
+        - Jobs
+        - Identifiers
         - V1
         - Data
         - Sets
-        - Event
+        - Events
         - Actions
         - Jobs
-        - Set
+        - Sets
         - Revisions
-        - Revision
+        - Revisions
         - Assets
-        - Asset
-        - Action
+        - Assets
+        - Actions
   /v1/data-sets/{DataSetId}/revisions/{RevisionId}:
     PATCH:
       summary: UpdateRevision
       description: <p>This operation updates a revision.</p>
       tags:
         - Update
-        - Revision
-        - Job
-        - Id
+        - Revisions
+        - Jobs
+        - Identifiers
         - V1
         - Data
         - Sets
-        - Event
+        - Events
         - Actions
         - Jobs
-        - Set
+        - Sets
         - Revisions
-        - Revision
+        - Revisions
         - Assets
-        - Asset
-        - Action
+        - Assets
+        - Actions
   /v1/data-sets/{DataSetId}/revisions/{RevisionId}/assets:
     GET:
       summary: ListRevisionAssets
@@ -172,69 +172,69 @@ paths:
         <p>This operation lists a revision's assets sorted alphabetically in
         descending order.</p>
       tags:
-        - List
-        - Revision
+        - Lists
+        - Revisions
         - Assets
-        - Job
-        - Id
+        - Jobs
+        - Identifiers
         - V1
         - Data
         - Sets
-        - Event
+        - Events
         - Actions
         - Jobs
-        - Set
+        - Sets
         - Revisions
-        - Revision
+        - Revisions
         - Assets
-        - Asset
-        - Action
+        - Assets
+        - Actions
   /tags/{ResourceArn}:
     DELETE:
       summary: UntagResource
       description: <p>This operation removes one or more tags from a resource.</p>
       tags:
         - Untag
-        - Resource
-        - Job
-        - Id
+        - Resources
+        - Jobs
+        - Identifiers
         - V1
         - Data
         - Sets
-        - Event
+        - Events
         - Actions
         - Jobs
-        - Set
+        - Sets
         - Revisions
-        - Revision
+        - Revisions
         - Assets
-        - Asset
-        - Action
-        - Resource
-        - Arn
+        - Assets
+        - Actions
+        - Resources
+        - ARN
   /v1/data-sets/{DataSetId}/revisions/{RevisionId}/revoke:
     POST:
       summary: RevokeRevision
       description: <p>This operation revokes subscribers' access to a revision.</p>
       tags:
         - Revoke
-        - Revision
-        - Job
-        - Id
+        - Revisions
+        - Jobs
+        - Identifiers
         - V1
         - Data
         - Sets
-        - Event
+        - Events
         - Actions
         - Jobs
-        - Set
+        - Sets
         - Revisions
-        - Revision
+        - Revisions
         - Assets
-        - Asset
-        - Action
-        - Resource
-        - Arn
+        - Assets
+        - Actions
+        - Resources
+        - ARN
         - Revoke
   /v1:
     POST:
@@ -244,24 +244,24 @@ paths:
         proxied to the provider’s API Gateway API.</p>
       tags:
         - Send
-        - Api
-        - Asset
-        - Job
-        - Id
+        - APIs
+        - Assets
+        - Jobs
+        - Identifiers
         - V1
         - Data
         - Sets
-        - Event
+        - Events
         - Actions
         - Jobs
-        - Set
+        - Sets
         - Revisions
-        - Revision
+        - Revisions
         - Assets
-        - Asset
-        - Action
-        - Resource
-        - Arn
+        - Assets
+        - Actions
+        - Resources
+        - ARN
         - Revoke
   /v1/data-sets/{DataSetId}/notification:
     POST:
@@ -270,23 +270,23 @@ paths:
       tags:
         - Send
         - Data
-        - Set
-        - Notification
-        - Job
-        - Id
+        - Sets
+        - Notifications
+        - Jobs
+        - Identifiers
         - V1
         - Data
         - Sets
-        - Event
+        - Events
         - Actions
         - Jobs
-        - Set
+        - Sets
         - Revisions
-        - Revision
+        - Revisions
         - Assets
-        - Asset
-        - Action
-        - Resource
-        - Arn
+        - Assets
+        - Actions
+        - Resources
+        - ARN
         - Revoke
-        - Notificati
+        - Notifications

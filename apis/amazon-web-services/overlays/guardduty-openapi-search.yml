@@ -15,7 +15,7 @@ paths:
         - Get
         - Administrator
         - Account
-        - Id
+        - Identifiers
         - Administrator
   /detector/{detectorId}/master:
     GET:
@@ -27,7 +27,7 @@ paths:
         - Get
         - Master
         - Account
-        - Id
+        - Identifiers
         - Administrator
         - Master
   /detector/{detectorId}/findings/archive:
@@ -41,7 +41,7 @@ paths:
       tags:
         - Archive
         - Findings
-        - Id
+        - Identifiers
         - Administrator
         - Master
         - Findings
@@ -53,27 +53,27 @@ paths:
         <p>Lists detectorIds of all the existing Amazon GuardDuty detector
         resources.</p>
       tags:
-        - List
+        - Lists
         - Detectors
-        - Id
+        - Identifiers
         - Administrator
         - Master
         - Findings
         - Archive
-        - Detector
+        - Detectors
   /detector/{detectorId}/filter:
     GET:
       summary: ListFilters
       description: <p>Returns a paginated list of the current filters.</p>
       tags:
-        - List
+        - Lists
         - Filters
-        - Id
+        - Identifiers
         - Administrator
         - Master
         - Findings
         - Archive
-        - Detector
+        - Detectors
         - Filter
   /detector/{detectorId}/ipset:
     GET:
@@ -83,14 +83,14 @@ paths:
         ID. If you use this operation from a member account, the IPSets returned
         are the IPSets from the associated administrator account.</p>
       tags:
-        - List
+        - Lists
         - Sets
-        - Id
+        - Identifiers
         - Administrator
         - Master
         - Findings
         - Archive
-        - Detector
+        - Detectors
         - Filter
         - Ipset
   /detector/{detectorId}/member:
@@ -100,17 +100,17 @@ paths:
         <p>Lists details about all member accounts for the current GuardDuty
         administrator account.</p>
       tags:
-        - List
+        - Lists
         - Members
-        - Id
+        - Identifiers
         - Administrator
         - Master
         - Findings
         - Archive
-        - Detector
+        - Detectors
         - Filter
         - Ipset
-        - Member
+        - Members
   /detector/{detectorId}/publishingDestination:
     GET:
       summary: ListPublishingDestinations
@@ -118,20 +118,20 @@ paths:
         <p>Returns a list of publishing destinations associated with the
         specified <code>detectorId</code>.</p>
       tags:
-        - List
+        - Lists
         - Publishing
         - Destinations
-        - Id
+        - Identifiers
         - Administrator
         - Master
         - Findings
         - Archive
-        - Detector
+        - Detectors
         - Filter
         - Ipset
-        - Member
+        - Members
         - Publishing
-        - Destination
+        - Destinations
   /detector/{detectorId}/findings/create:
     POST:
       summary: CreateSampleFindings
@@ -141,19 +141,19 @@ paths:
         generates sample findings of all supported finding types.</p>
       tags:
         - Create
-        - Sample
+        - Samples
         - Findings
-        - Id
+        - Identifiers
         - Administrator
         - Master
         - Findings
         - Archive
-        - Detector
+        - Detectors
         - Filter
         - Ipset
-        - Member
+        - Members
         - Publishing
-        - Destination
+        - Destinations
         - Create
   /detector/{detectorId}/threatintelset:
     GET:
@@ -164,21 +164,21 @@ paths:
         ThreatIntelSets associated with the administrator account are
         returned.</p>
       tags:
-        - List
+        - Lists
         - Threat
-        - Intel
+        - Intelligence
         - Sets
-        - Id
+        - Identifiers
         - Administrator
         - Master
         - Findings
         - Archive
-        - Detector
+        - Detectors
         - Filter
         - Ipset
-        - Member
+        - Members
         - Publishing
-        - Destination
+        - Destinations
         - Create
         - Threatintelset
   /invitation/decline:
@@ -190,17 +190,17 @@ paths:
       tags:
         - Decline
         - Invitations
-        - Id
+        - Identifiers
         - Administrator
         - Master
         - Findings
         - Archive
-        - Detector
+        - Detectors
         - Filter
         - Ipset
-        - Member
+        - Members
         - Publishing
-        - Destination
+        - Destinations
         - Create
         - Threatintelset
         - Invitation
@@ -217,18 +217,18 @@ paths:
         and endpoints</a>.</p>
       tags:
         - Update
-        - Detector
-        - Id
+        - Detectors
+        - Identifiers
         - Administrator
         - Master
         - Findings
         - Archive
-        - Detector
+        - Detectors
         - Filter
         - Ipset
-        - Member
+        - Members
         - Publishing
-        - Destination
+        - Destinations
         - Create
         - Threatintelset
         - Invitation
@@ -240,47 +240,47 @@ paths:
       tags:
         - Update
         - Filter
-        - Id
+        - Identifiers
         - Administrator
         - Master
         - Findings
         - Archive
-        - Detector
+        - Detectors
         - Filter
         - Ipset
-        - Member
+        - Members
         - Publishing
-        - Destination
+        - Destinations
         - Create
         - Threatintelset
         - Invitation
         - Decline
-        - Name
+        - Names
   /detector/{detectorId}/ipset/{ipSetId}:
     POST:
       summary: UpdateIPSet
       description: <p>Updates the IPSet specified by the IPSet ID.</p>
       tags:
         - Update
-        - Set
-        - Id
+        - Sets
+        - Identifiers
         - Administrator
         - Master
         - Findings
         - Archive
-        - Detector
+        - Detectors
         - Filter
         - Ipset
-        - Member
+        - Members
         - Publishing
-        - Destination
+        - Destinations
         - Create
         - Threatintelset
         - Invitation
         - Decline
-        - Name
-        - Ip
-        - Set
+        - Names
+        - IP
+        - Sets
   /invitation/delete:
     POST:
       summary: DeleteInvitations
@@ -290,24 +290,24 @@ paths:
       tags:
         - Delete
         - Invitations
-        - Id
+        - Identifiers
         - Administrator
         - Master
         - Findings
         - Archive
-        - Detector
+        - Detectors
         - Filter
         - Ipset
-        - Member
+        - Members
         - Publishing
-        - Destination
+        - Destinations
         - Create
         - Threatintelset
         - Invitation
         - Decline
-        - Name
-        - Ip
-        - Set
+        - Names
+        - IP
+        - Sets
         - Delete
   /detector/{detectorId}/member/delete:
     POST:
@@ -322,24 +322,24 @@ paths:
       tags:
         - Delete
         - Members
-        - Id
+        - Identifiers
         - Administrator
         - Master
         - Findings
         - Archive
-        - Detector
+        - Detectors
         - Filter
         - Ipset
-        - Member
+        - Members
         - Publishing
-        - Destination
+        - Destinations
         - Create
         - Threatintelset
         - Invitation
         - Decline
-        - Name
-        - Ip
-        - Set
+        - Names
+        - IP
+        - Sets
         - Delete
   /detector/{detectorId}/publishingDestination/{destinationId}:
     POST:
@@ -350,25 +350,25 @@ paths:
       tags:
         - Update
         - Publishing
-        - Destination
-        - Id
+        - Destinations
+        - Identifiers
         - Administrator
         - Master
         - Findings
         - Archive
-        - Detector
+        - Detectors
         - Filter
         - Ipset
-        - Member
+        - Members
         - Publishing
-        - Destination
+        - Destinations
         - Create
         - Threatintelset
         - Invitation
         - Decline
-        - Name
-        - Ip
-        - Set
+        - Names
+        - IP
+        - Sets
         - Delete
   /detector/{detectorId}/threatintelset/{threatIntelSetId}:
     POST:
@@ -377,29 +377,29 @@ paths:
       tags:
         - Update
         - Threat
-        - Intel
-        - Set
-        - Id
+        - Intelligence
+        - Sets
+        - Identifiers
         - Administrator
         - Master
         - Findings
         - Archive
-        - Detector
+        - Detectors
         - Filter
         - Ipset
-        - Member
+        - Members
         - Publishing
-        - Destination
+        - Destinations
         - Create
         - Threatintelset
         - Invitation
         - Decline
-        - Name
-        - Ip
-        - Set
+        - Names
+        - IP
+        - Sets
         - Delete
         - Threat
-        - Intel
+        - Intelligence
   /detector/{detectorId}/malware-scans:
     POST:
       summary: DescribeMalwareScans
@@ -416,27 +416,27 @@ paths:
         - Describe
         - Malware
         - Scans
-        - Id
+        - Identifiers
         - Administrator
         - Master
         - Findings
         - Archive
-        - Detector
+        - Detectors
         - Filter
         - Ipset
-        - Member
+        - Members
         - Publishing
-        - Destination
+        - Destinations
         - Create
         - Threatintelset
         - Invitation
         - Decline
-        - Name
-        - Ip
-        - Set
+        - Names
+        - IP
+        - Sets
         - Delete
         - Threat
-        - Intel
+        - Intelligence
         - Malware
         - Scans
   /detector/{detectorId}/admin:
@@ -454,32 +454,32 @@ paths:
         and endpoints</a>.</p>
       tags:
         - Update
-        - Organization
-        - Configuration
-        - Id
+        - Organizations
+        - Configurations
+        - Identifiers
         - Administrator
         - Master
         - Findings
         - Archive
-        - Detector
+        - Detectors
         - Filter
         - Ipset
-        - Member
+        - Members
         - Publishing
-        - Destination
+        - Destinations
         - Create
         - Threatintelset
         - Invitation
         - Decline
-        - Name
-        - Ip
-        - Set
+        - Names
+        - IP
+        - Sets
         - Delete
         - Threat
-        - Intel
+        - Intelligence
         - Malware
         - Scans
-        - Admin
+        - Administrative
   /admin/disable:
     POST:
       summary: DisableOrganizationAdminAccount
@@ -489,33 +489,33 @@ paths:
         API operation.</p>
       tags:
         - Disable
-        - Organization
-        - Admin
+        - Organizations
+        - Administrative
         - Account
-        - Id
+        - Identifiers
         - Administrator
         - Master
         - Findings
         - Archive
-        - Detector
+        - Detectors
         - Filter
         - Ipset
-        - Member
+        - Members
         - Publishing
-        - Destination
+        - Destinations
         - Create
         - Threatintelset
         - Invitation
         - Decline
-        - Name
-        - Ip
-        - Set
+        - Names
+        - IP
+        - Sets
         - Delete
         - Threat
-        - Intel
+        - Intelligence
         - Malware
         - Scans
-        - Admin
+        - Administrative
         - Disable
   /detector/{detectorId}/administrator/disassociate:
     POST:
@@ -542,30 +542,30 @@ paths:
         - From
         - Administrator
         - Account
-        - Id
+        - Identifiers
         - Administrator
         - Master
         - Findings
         - Archive
-        - Detector
+        - Detectors
         - Filter
         - Ipset
-        - Member
+        - Members
         - Publishing
-        - Destination
+        - Destinations
         - Create
         - Threatintelset
         - Invitation
         - Decline
-        - Name
-        - Ip
-        - Set
+        - Names
+        - IP
+        - Sets
         - Delete
         - Threat
-        - Intel
+        - Intelligence
         - Malware
         - Scans
-        - Admin
+        - Administrative
         - Disable
         - Disassociate
   /detector/{detectorId}/master/disassociate:
@@ -590,30 +590,30 @@ paths:
         - From
         - Master
         - Account
-        - Id
+        - Identifiers
         - Administrator
         - Master
         - Findings
         - Archive
-        - Detector
+        - Detectors
         - Filter
         - Ipset
-        - Member
+        - Members
         - Publishing
-        - Destination
+        - Destinations
         - Create
         - Threatintelset
         - Invitation
         - Decline
-        - Name
-        - Ip
-        - Set
+        - Names
+        - IP
+        - Sets
         - Delete
         - Threat
-        - Intel
+        - Intelligence
         - Malware
         - Scans
-        - Admin
+        - Administrative
         - Disable
         - Disassociate
   /detector/{detectorId}/member/disassociate:
@@ -639,30 +639,30 @@ paths:
       tags:
         - Disassociate
         - Members
-        - Id
+        - Identifiers
         - Administrator
         - Master
         - Findings
         - Archive
-        - Detector
+        - Detectors
         - Filter
         - Ipset
-        - Member
+        - Members
         - Publishing
-        - Destination
+        - Destinations
         - Create
         - Threatintelset
         - Invitation
         - Decline
-        - Name
-        - Ip
-        - Set
+        - Names
+        - IP
+        - Sets
         - Delete
         - Threat
-        - Intel
+        - Intelligence
         - Malware
         - Scans
-        - Admin
+        - Administrative
         - Disable
         - Disassociate
   /admin/enable:
@@ -674,33 +674,33 @@ paths:
         management account can run this API operation.</p>
       tags:
         - Enable
-        - Organization
-        - Admin
+        - Organizations
+        - Administrative
         - Account
-        - Id
+        - Identifiers
         - Administrator
         - Master
         - Findings
         - Archive
-        - Detector
+        - Detectors
         - Filter
         - Ipset
-        - Member
+        - Members
         - Publishing
-        - Destination
+        - Destinations
         - Create
         - Threatintelset
         - Invitation
         - Decline
-        - Name
-        - Ip
-        - Set
+        - Names
+        - IP
+        - Sets
         - Delete
         - Threat
-        - Intel
+        - Intelligence
         - Malware
         - Scans
-        - Admin
+        - Administrative
         - Disable
         - Disassociate
         - Enable
@@ -717,30 +717,30 @@ paths:
         - Get
         - Coverage
         - Statistics
-        - Id
+        - Identifiers
         - Administrator
         - Master
         - Findings
         - Archive
-        - Detector
+        - Detectors
         - Filter
         - Ipset
-        - Member
+        - Members
         - Publishing
-        - Destination
+        - Destinations
         - Create
         - Threatintelset
         - Invitation
         - Decline
-        - Name
-        - Ip
-        - Set
+        - Names
+        - IP
+        - Sets
         - Delete
         - Threat
-        - Intel
+        - Intelligence
         - Malware
         - Scans
-        - Admin
+        - Administrative
         - Disable
         - Disassociate
         - Enable
@@ -753,30 +753,30 @@ paths:
       tags:
         - Get
         - Findings
-        - Id
+        - Identifiers
         - Administrator
         - Master
         - Findings
         - Archive
-        - Detector
+        - Detectors
         - Filter
         - Ipset
-        - Member
+        - Members
         - Publishing
-        - Destination
+        - Destinations
         - Create
         - Threatintelset
         - Invitation
         - Decline
-        - Name
-        - Ip
-        - Set
+        - Names
+        - IP
+        - Sets
         - Delete
         - Threat
-        - Intel
+        - Intelligence
         - Malware
         - Scans
-        - Admin
+        - Administrative
         - Disable
         - Disassociate
         - Enable
@@ -793,30 +793,30 @@ paths:
         - Get
         - Findings
         - Statistics
-        - Id
+        - Identifiers
         - Administrator
         - Master
         - Findings
         - Archive
-        - Detector
+        - Detectors
         - Filter
         - Ipset
-        - Member
+        - Members
         - Publishing
-        - Destination
+        - Destinations
         - Create
         - Threatintelset
         - Invitation
         - Decline
-        - Name
-        - Ip
-        - Set
+        - Names
+        - IP
+        - Sets
         - Delete
         - Threat
-        - Intel
+        - Intelligence
         - Malware
         - Scans
-        - Admin
+        - Administrative
         - Disable
         - Disassociate
         - Enable
@@ -834,30 +834,30 @@ paths:
         - Get
         - Invitations
         - Count
-        - Id
+        - Identifiers
         - Administrator
         - Master
         - Findings
         - Archive
-        - Detector
+        - Detectors
         - Filter
         - Ipset
-        - Member
+        - Members
         - Publishing
-        - Destination
+        - Destinations
         - Create
         - Threatintelset
         - Invitation
         - Decline
-        - Name
-        - Ip
-        - Set
+        - Names
+        - IP
+        - Sets
         - Delete
         - Threat
-        - Intel
+        - Intelligence
         - Malware
         - Scans
-        - Admin
+        - Administrative
         - Disable
         - Disassociate
         - Enable
@@ -878,32 +878,32 @@ paths:
       tags:
         - Update
         - Malware
-        - Scan
+        - Scans
         - Settings
-        - Id
+        - Identifiers
         - Administrator
         - Master
         - Findings
         - Archive
-        - Detector
+        - Detectors
         - Filter
         - Ipset
-        - Member
+        - Members
         - Publishing
-        - Destination
+        - Destinations
         - Create
         - Threatintelset
         - Invitation
         - Decline
-        - Name
-        - Ip
-        - Set
+        - Names
+        - IP
+        - Sets
         - Delete
         - Threat
-        - Intel
+        - Intelligence
         - Malware
         - Scans
-        - Admin
+        - Administrative
         - Disable
         - Disassociate
         - Enable
@@ -911,7 +911,7 @@ paths:
         - Statistics
         - Get
         - Count
-        - Scan
+        - Scans
         - Settings
   /detector/{detectorId}/member/detector/get:
     POST:
@@ -925,32 +925,32 @@ paths:
         and endpoints</a>.</p>
       tags:
         - Get
-        - Member
+        - Members
         - Detectors
-        - Id
+        - Identifiers
         - Administrator
         - Master
         - Findings
         - Archive
-        - Detector
+        - Detectors
         - Filter
         - Ipset
-        - Member
+        - Members
         - Publishing
-        - Destination
+        - Destinations
         - Create
         - Threatintelset
         - Invitation
         - Decline
-        - Name
-        - Ip
-        - Set
+        - Names
+        - IP
+        - Sets
         - Delete
         - Threat
-        - Intel
+        - Intelligence
         - Malware
         - Scans
-        - Admin
+        - Administrative
         - Disable
         - Disassociate
         - Enable
@@ -958,7 +958,7 @@ paths:
         - Statistics
         - Get
         - Count
-        - Scan
+        - Scans
         - Settings
   /detector/{detectorId}/member/get:
     POST:
@@ -969,30 +969,30 @@ paths:
       tags:
         - Get
         - Members
-        - Id
+        - Identifiers
         - Administrator
         - Master
         - Findings
         - Archive
-        - Detector
+        - Detectors
         - Filter
         - Ipset
-        - Member
+        - Members
         - Publishing
-        - Destination
+        - Destinations
         - Create
         - Threatintelset
         - Invitation
         - Decline
-        - Name
-        - Ip
-        - Set
+        - Names
+        - IP
+        - Sets
         - Delete
         - Threat
-        - Intel
+        - Intelligence
         - Malware
         - Scans
-        - Admin
+        - Administrative
         - Disable
         - Disassociate
         - Enable
@@ -1000,7 +1000,7 @@ paths:
         - Statistics
         - Get
         - Count
-        - Scan
+        - Scans
         - Settings
   /organization/statistics:
     GET:
@@ -1014,32 +1014,32 @@ paths:
         organization.</p>
       tags:
         - Get
-        - Organization
+        - Organizations
         - Statistics
-        - Id
+        - Identifiers
         - Administrator
         - Master
         - Findings
         - Archive
-        - Detector
+        - Detectors
         - Filter
         - Ipset
-        - Member
+        - Members
         - Publishing
-        - Destination
+        - Destinations
         - Create
         - Threatintelset
         - Invitation
         - Decline
-        - Name
-        - Ip
-        - Set
+        - Names
+        - IP
+        - Sets
         - Delete
         - Threat
-        - Intel
+        - Intelligence
         - Malware
         - Scans
-        - Admin
+        - Administrative
         - Disable
         - Disassociate
         - Enable
@@ -1047,9 +1047,9 @@ paths:
         - Statistics
         - Get
         - Count
-        - Scan
+        - Scans
         - Settings
-        - Organization
+        - Organizations
   /detector/{detectorId}/freeTrial/daysRemaining:
     POST:
       summary: GetRemainingFreeTrialDays
@@ -1060,32 +1060,32 @@ paths:
         - Get
         - Remaining
         - Free
-        - Trial
+        - Trials
         - Days
-        - Id
+        - Identifiers
         - Administrator
         - Master
         - Findings
         - Archive
-        - Detector
+        - Detectors
         - Filter
         - Ipset
-        - Member
+        - Members
         - Publishing
-        - Destination
+        - Destinations
         - Create
         - Threatintelset
         - Invitation
         - Decline
-        - Name
-        - Ip
-        - Set
+        - Names
+        - IP
+        - Sets
         - Delete
         - Threat
-        - Intel
+        - Intelligence
         - Malware
         - Scans
-        - Admin
+        - Administrative
         - Disable
         - Disassociate
         - Enable
@@ -1093,11 +1093,11 @@ paths:
         - Statistics
         - Get
         - Count
-        - Scan
+        - Scans
         - Settings
-        - Organization
+        - Organizations
         - Free
-        - Trial
+        - Trials
         - Days
         - Remaining
   /detector/{detectorId}/usage/statistics:
@@ -1115,30 +1115,30 @@ paths:
         - Get
         - Usage
         - Statistics
-        - Id
+        - Identifiers
         - Administrator
         - Master
         - Findings
         - Archive
-        - Detector
+        - Detectors
         - Filter
         - Ipset
-        - Member
+        - Members
         - Publishing
-        - Destination
+        - Destinations
         - Create
         - Threatintelset
         - Invitation
         - Decline
-        - Name
-        - Ip
-        - Set
+        - Names
+        - IP
+        - Sets
         - Delete
         - Threat
-        - Intel
+        - Intelligence
         - Malware
         - Scans
-        - Admin
+        - Administrative
         - Disable
         - Disassociate
         - Enable
@@ -1146,11 +1146,11 @@ paths:
         - Statistics
         - Get
         - Count
-        - Scan
+        - Scans
         - Settings
-        - Organization
+        - Organizations
         - Free
-        - Trial
+        - Trials
         - Days
         - Remaining
         - Usage
@@ -1188,30 +1188,30 @@ paths:
       tags:
         - Invite
         - Members
-        - Id
+        - Identifiers
         - Administrator
         - Master
         - Findings
         - Archive
-        - Detector
+        - Detectors
         - Filter
         - Ipset
-        - Member
+        - Members
         - Publishing
-        - Destination
+        - Destinations
         - Create
         - Threatintelset
         - Invitation
         - Decline
-        - Name
-        - Ip
-        - Set
+        - Names
+        - IP
+        - Sets
         - Delete
         - Threat
-        - Intel
+        - Intelligence
         - Malware
         - Scans
-        - Admin
+        - Administrative
         - Disable
         - Disassociate
         - Enable
@@ -1219,11 +1219,11 @@ paths:
         - Statistics
         - Get
         - Count
-        - Scan
+        - Scans
         - Settings
-        - Organization
+        - Organizations
         - Free
-        - Trial
+        - Trials
         - Days
         - Remaining
         - Usage
@@ -1238,32 +1238,32 @@ paths:
         accounts have Runtime Monitoring enabled and GuardDuty agent running on
         their resources.</p>
       tags:
-        - List
+        - Lists
         - Coverage
-        - Id
+        - Identifiers
         - Administrator
         - Master
         - Findings
         - Archive
-        - Detector
+        - Detectors
         - Filter
         - Ipset
-        - Member
+        - Members
         - Publishing
-        - Destination
+        - Destinations
         - Create
         - Threatintelset
         - Invitation
         - Decline
-        - Name
-        - Ip
-        - Set
+        - Names
+        - IP
+        - Sets
         - Delete
         - Threat
-        - Intel
+        - Intelligence
         - Malware
         - Scans
-        - Admin
+        - Administrative
         - Disable
         - Disassociate
         - Enable
@@ -1271,11 +1271,11 @@ paths:
         - Statistics
         - Get
         - Count
-        - Scan
+        - Scans
         - Settings
-        - Organization
+        - Organizations
         - Free
-        - Trial
+        - Trials
         - Days
         - Remaining
         - Usage
@@ -1285,32 +1285,32 @@ paths:
       summary: ListFindings
       description: <p>Lists Amazon GuardDuty findings for the specified detector ID.</p>
       tags:
-        - List
+        - Lists
         - Findings
-        - Id
+        - Identifiers
         - Administrator
         - Master
         - Findings
         - Archive
-        - Detector
+        - Detectors
         - Filter
         - Ipset
-        - Member
+        - Members
         - Publishing
-        - Destination
+        - Destinations
         - Create
         - Threatintelset
         - Invitation
         - Decline
-        - Name
-        - Ip
-        - Set
+        - Names
+        - IP
+        - Sets
         - Delete
         - Threat
-        - Intel
+        - Intelligence
         - Malware
         - Scans
-        - Admin
+        - Administrative
         - Disable
         - Disassociate
         - Enable
@@ -1318,11 +1318,11 @@ paths:
         - Statistics
         - Get
         - Count
-        - Scan
+        - Scans
         - Settings
-        - Organization
+        - Organizations
         - Free
-        - Trial
+        - Trials
         - Days
         - Remaining
         - Usage
@@ -1334,32 +1334,32 @@ paths:
         <p>Lists all GuardDuty membership invitations that were sent to the
         current Amazon Web Services account.</p>
       tags:
-        - List
+        - Lists
         - Invitations
-        - Id
+        - Identifiers
         - Administrator
         - Master
         - Findings
         - Archive
-        - Detector
+        - Detectors
         - Filter
         - Ipset
-        - Member
+        - Members
         - Publishing
-        - Destination
+        - Destinations
         - Create
         - Threatintelset
         - Invitation
         - Decline
-        - Name
-        - Ip
-        - Set
+        - Names
+        - IP
+        - Sets
         - Delete
         - Threat
-        - Intel
+        - Intelligence
         - Malware
         - Scans
-        - Admin
+        - Administrative
         - Disable
         - Disassociate
         - Enable
@@ -1367,11 +1367,11 @@ paths:
         - Statistics
         - Get
         - Count
-        - Scan
+        - Scans
         - Settings
-        - Organization
+        - Organizations
         - Free
-        - Trial
+        - Trials
         - Days
         - Remaining
         - Usage
@@ -1384,34 +1384,34 @@ paths:
         Only the organization's management account can run this API
         operation.</p>
       tags:
-        - List
-        - Organization
-        - Admin
+        - Lists
+        - Organizations
+        - Administrative
         - Accounts
-        - Id
+        - Identifiers
         - Administrator
         - Master
         - Findings
         - Archive
-        - Detector
+        - Detectors
         - Filter
         - Ipset
-        - Member
+        - Members
         - Publishing
-        - Destination
+        - Destinations
         - Create
         - Threatintelset
         - Invitation
         - Decline
-        - Name
-        - Ip
-        - Set
+        - Names
+        - IP
+        - Sets
         - Delete
         - Threat
-        - Intel
+        - Intelligence
         - Malware
         - Scans
-        - Admin
+        - Administrative
         - Disable
         - Disassociate
         - Enable
@@ -1419,11 +1419,11 @@ paths:
         - Statistics
         - Get
         - Count
-        - Scan
+        - Scans
         - Settings
-        - Organization
+        - Organizations
         - Free
-        - Trial
+        - Trials
         - Days
         - Remaining
         - Usage
@@ -1434,31 +1434,31 @@ paths:
       description: <p>Removes tags from a resource.</p>
       tags:
         - Untag
-        - Resource
-        - Id
+        - Resources
+        - Identifiers
         - Administrator
         - Master
         - Findings
         - Archive
-        - Detector
+        - Detectors
         - Filter
         - Ipset
-        - Member
+        - Members
         - Publishing
-        - Destination
+        - Destinations
         - Create
         - Threatintelset
         - Invitation
         - Decline
-        - Name
-        - Ip
-        - Set
+        - Names
+        - IP
+        - Sets
         - Delete
         - Threat
-        - Intel
+        - Intelligence
         - Malware
         - Scans
-        - Admin
+        - Administrative
         - Disable
         - Disassociate
         - Enable
@@ -1466,16 +1466,16 @@ paths:
         - Statistics
         - Get
         - Count
-        - Scan
+        - Scans
         - Settings
-        - Organization
+        - Organizations
         - Free
-        - Trial
+        - Trials
         - Days
         - Remaining
         - Usage
         - Invite
-        - Arn
+        - ARN
   /malware-scan/start:
     POST:
       summary: StartMalwareScan
@@ -1487,31 +1487,31 @@ paths:
       tags:
         - Start
         - Malware
-        - Scan
-        - Id
+        - Scans
+        - Identifiers
         - Administrator
         - Master
         - Findings
         - Archive
-        - Detector
+        - Detectors
         - Filter
         - Ipset
-        - Member
+        - Members
         - Publishing
-        - Destination
+        - Destinations
         - Create
         - Threatintelset
         - Invitation
         - Decline
-        - Name
-        - Ip
-        - Set
+        - Names
+        - IP
+        - Sets
         - Delete
         - Threat
-        - Intel
+        - Intelligence
         - Malware
         - Scans
-        - Admin
+        - Administrative
         - Disable
         - Disassociate
         - Enable
@@ -1519,16 +1519,16 @@ paths:
         - Statistics
         - Get
         - Count
-        - Scan
+        - Scans
         - Settings
-        - Organization
+        - Organizations
         - Free
-        - Trial
+        - Trials
         - Days
         - Remaining
         - Usage
         - Invite
-        - Arn
+        - ARN
         - Start
   /detector/{detectorId}/member/start:
     POST:
@@ -1543,30 +1543,30 @@ paths:
         - Start
         - Monitoring
         - Members
-        - Id
+        - Identifiers
         - Administrator
         - Master
         - Findings
         - Archive
-        - Detector
+        - Detectors
         - Filter
         - Ipset
-        - Member
+        - Members
         - Publishing
-        - Destination
+        - Destinations
         - Create
         - Threatintelset
         - Invitation
         - Decline
-        - Name
-        - Ip
-        - Set
+        - Names
+        - IP
+        - Sets
         - Delete
         - Threat
-        - Intel
+        - Intelligence
         - Malware
         - Scans
-        - Admin
+        - Administrative
         - Disable
         - Disassociate
         - Enable
@@ -1574,16 +1574,16 @@ paths:
         - Statistics
         - Get
         - Count
-        - Scan
+        - Scans
         - Settings
-        - Organization
+        - Organizations
         - Free
-        - Trial
+        - Trials
         - Days
         - Remaining
         - Usage
         - Invite
-        - Arn
+        - ARN
         - Start
   /detector/{detectorId}/member/stop:
     POST:
@@ -1599,30 +1599,30 @@ paths:
         - Stop
         - Monitoring
         - Members
-        - Id
+        - Identifiers
         - Administrator
         - Master
         - Findings
         - Archive
-        - Detector
+        - Detectors
         - Filter
         - Ipset
-        - Member
+        - Members
         - Publishing
-        - Destination
+        - Destinations
         - Create
         - Threatintelset
         - Invitation
         - Decline
-        - Name
-        - Ip
-        - Set
+        - Names
+        - IP
+        - Sets
         - Delete
         - Threat
-        - Intel
+        - Intelligence
         - Malware
         - Scans
-        - Admin
+        - Administrative
         - Disable
         - Disassociate
         - Enable
@@ -1630,16 +1630,16 @@ paths:
         - Statistics
         - Get
         - Count
-        - Scan
+        - Scans
         - Settings
-        - Organization
+        - Organizations
         - Free
-        - Trial
+        - Trials
         - Days
         - Remaining
         - Usage
         - Invite
-        - Arn
+        - ARN
         - Start
         - Stop
   /detector/{detectorId}/findings/unarchive:
@@ -1651,30 +1651,30 @@ paths:
       tags:
         - Unarchive
         - Findings
-        - Id
+        - Identifiers
         - Administrator
         - Master
         - Findings
         - Archive
-        - Detector
+        - Detectors
         - Filter
         - Ipset
-        - Member
+        - Members
         - Publishing
-        - Destination
+        - Destinations
         - Create
         - Threatintelset
         - Invitation
         - Decline
-        - Name
-        - Ip
-        - Set
+        - Names
+        - IP
+        - Sets
         - Delete
         - Threat
-        - Intel
+        - Intelligence
         - Malware
         - Scans
-        - Admin
+        - Administrative
         - Disable
         - Disassociate
         - Enable
@@ -1682,16 +1682,16 @@ paths:
         - Statistics
         - Get
         - Count
-        - Scan
+        - Scans
         - Settings
-        - Organization
+        - Organizations
         - Free
-        - Trial
+        - Trials
         - Days
         - Remaining
         - Usage
         - Invite
-        - Arn
+        - ARN
         - Start
         - Stop
         - Unarchive
@@ -1703,30 +1703,30 @@ paths:
         - Update
         - Findings
         - Feedback
-        - Id
+        - Identifiers
         - Administrator
         - Master
         - Findings
         - Archive
-        - Detector
+        - Detectors
         - Filter
         - Ipset
-        - Member
+        - Members
         - Publishing
-        - Destination
+        - Destinations
         - Create
         - Threatintelset
         - Invitation
         - Decline
-        - Name
-        - Ip
-        - Set
+        - Names
+        - IP
+        - Sets
         - Delete
         - Threat
-        - Intel
+        - Intelligence
         - Malware
         - Scans
-        - Admin
+        - Administrative
         - Disable
         - Disassociate
         - Enable
@@ -1734,16 +1734,16 @@ paths:
         - Statistics
         - Get
         - Count
-        - Scan
+        - Scans
         - Settings
-        - Organization
+        - Organizations
         - Free
-        - Trial
+        - Trials
         - Days
         - Remaining
         - Usage
         - Invite
-        - Arn
+        - ARN
         - Start
         - Stop
         - Unarchive
@@ -1760,32 +1760,32 @@ paths:
         and endpoint
       tags:
         - Update
-        - Member
+        - Members
         - Detectors
-        - Id
+        - Identifiers
         - Administrator
         - Master
         - Findings
         - Archive
-        - Detector
+        - Detectors
         - Filter
         - Ipset
-        - Member
+        - Members
         - Publishing
-        - Destination
+        - Destinations
         - Create
         - Threatintelset
         - Invitation
         - Decline
-        - Name
-        - Ip
-        - Set
+        - Names
+        - IP
+        - Sets
         - Delete
         - Threat
-        - Intel
+        - Intelligence
         - Malware
         - Scans
-        - Admin
+        - Administrative
         - Disable
         - Disassociate
         - Enable
@@ -1793,16 +1793,16 @@ paths:
         - Statistics
         - Get
         - Count
-        - Scan
+        - Scans
         - Settings
-        - Organization
+        - Organizations
         - Free
-        - Trial
+        - Trials
         - Days
         - Remaining
         - Usage
         - Invite
-        - Arn
+        - ARN
         - Start
         - Stop
         - Unarchive

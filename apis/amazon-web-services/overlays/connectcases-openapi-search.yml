@@ -9,12 +9,12 @@ paths:
         <p>Returns the description for the list of fields in the request
         parameters. </p>
       tags:
-        - Batch
+        - Batches
         - Get
-        - Field
-        - Id
         - Fields
-        - Batch
+        - Identifiers
+        - Fields
+        - Batches
   /domains/{domainId}/fields/{fieldId}/options:
     PUT:
       summary: BatchPutFieldOptions
@@ -22,14 +22,14 @@ paths:
         <p>Creates and updates a set of field options for a single select field
         in a Cases domain.</p>
       tags:
-        - Batch
+        - Batches
         - Put
-        - Field
-        - Options
-        - Id
         - Fields
-        - Batch
-        - Field
+        - Options
+        - Identifiers
+        - Fields
+        - Batches
+        - Fields
         - Options
   /domains/{domainId}/cases:
     POST:
@@ -53,10 +53,10 @@ paths:
       tags:
         - Create
         - Case
-        - Id
+        - Identifiers
         - Fields
-        - Batch
-        - Field
+        - Batches
+        - Fields
         - Options
         - Cases
   /domains:
@@ -75,11 +75,11 @@ paths:
         to Cases</a>.</p> <pre><code> &lt;/important&gt; </code></pre>
       tags:
         - Create
-        - Domain
-        - Id
+        - Domains
+        - Identifiers
         - Fields
-        - Batch
-        - Field
+        - Batches
+        - Fields
         - Options
         - Cases
         - Domains
@@ -92,11 +92,11 @@ paths:
         in a Cases domain. </p>
       tags:
         - Create
-        - Field
-        - Id
         - Fields
-        - Batch
-        - Field
+        - Identifiers
+        - Fields
+        - Batches
+        - Fields
         - Options
         - Cases
         - Domains
@@ -111,11 +111,11 @@ paths:
         cannot be part of layouts since they are not configurable.</p> </note>
       tags:
         - Create
-        - Layout
-        - Id
+        - Layouts
+        - Identifiers
         - Fields
-        - Batch
-        - Field
+        - Batches
+        - Fields
         - Options
         - Cases
         - Domains
@@ -139,11 +139,11 @@ paths:
       tags:
         - Create
         - Related
-        - Item
-        - Id
+        - Items
+        - Identifiers
         - Fields
-        - Batch
-        - Field
+        - Batches
+        - Fields
         - Options
         - Cases
         - Domains
@@ -165,11 +165,11 @@ paths:
         cases.</p>
       tags:
         - Create
-        - Template
-        - Id
+        - Templates
+        - Identifiers
         - Fields
-        - Batch
-        - Field
+        - Batches
+        - Fields
         - Options
         - Cases
         - Domains
@@ -184,11 +184,11 @@ paths:
       description: <p>Returns information about a specific domain if it exists. </p>
       tags:
         - Get
-        - Domain
-        - Id
+        - Domains
+        - Identifiers
         - Fields
-        - Batch
-        - Field
+        - Batches
+        - Fields
         - Options
         - Cases
         - Domains
@@ -213,10 +213,10 @@ paths:
       tags:
         - Update
         - Case
-        - Id
+        - Identifiers
         - Fields
-        - Batch
-        - Field
+        - Batches
+        - Fields
         - Options
         - Cases
         - Domains
@@ -234,10 +234,10 @@ paths:
         - Case
         - Audit
         - Events
-        - Id
+        - Identifiers
         - Fields
-        - Batch
-        - Field
+        - Batches
+        - Fields
         - Options
         - Cases
         - Domains
@@ -259,12 +259,12 @@ paths:
       tags:
         - Put
         - Case
-        - Event
-        - Configuration
-        - Id
+        - Events
+        - Configurations
+        - Identifiers
         - Fields
-        - Batch
-        - Field
+        - Batches
+        - Fields
         - Options
         - Cases
         - Domains
@@ -275,8 +275,8 @@ paths:
         - Templates
         - Audit
         - History
-        - Event
-        - Configuration
+        - Events
+        - Configurations
   /domains/{domainId}/layouts/{layoutId}:
     PUT:
       summary: UpdateLayout
@@ -289,11 +289,11 @@ paths:
         not configurable.</p> </note>
       tags:
         - Update
-        - Layout
-        - Id
+        - Layouts
+        - Identifiers
         - Fields
-        - Batch
-        - Field
+        - Batches
+        - Fields
         - Options
         - Cases
         - Domains
@@ -304,9 +304,9 @@ paths:
         - Templates
         - Audit
         - History
-        - Event
-        - Configuration
-        - Layout
+        - Events
+        - Configurations
+        - Layouts
   /domains/{domainId}/templates/{templateId}:
     PUT:
       summary: UpdateTemplate
@@ -320,11 +320,11 @@ paths:
         preserved.</p>
       tags:
         - Update
-        - Template
-        - Id
+        - Templates
+        - Identifiers
         - Fields
-        - Batch
-        - Field
+        - Batches
+        - Fields
         - Options
         - Cases
         - Domains
@@ -335,23 +335,23 @@ paths:
         - Templates
         - Audit
         - History
-        - Event
-        - Configuration
-        - Layout
-        - Template
+        - Events
+        - Configurations
+        - Layouts
+        - Templates
   /domains/{domainId}/list-cases-for-contact:
     POST:
       summary: ListCasesForContact
       description: <p>Lists cases for a given contact.</p>
       tags:
-        - List
+        - Lists
         - Cases
         - For
-        - Contact
-        - Id
+        - Contacts
+        - Identifiers
         - Fields
-        - Batch
-        - Field
+        - Batches
+        - Fields
         - Options
         - Cases
         - Domains
@@ -362,13 +362,13 @@ paths:
         - Templates
         - Audit
         - History
-        - Event
-        - Configuration
-        - Layout
-        - Template
-        - List
+        - Events
+        - Configurations
+        - Layouts
+        - Templates
+        - Lists
         - For
-        - Contact
+        - Contacts
   /domains-list:
     POST:
       summary: ListDomains
@@ -376,12 +376,12 @@ paths:
         <p>Lists all cases domains in the Amazon Web Services account. Each list
         item is a condensed summary object of the domain.</p>
       tags:
-        - List
+        - Lists
         - Domains
-        - Id
+        - Identifiers
         - Fields
-        - Batch
-        - Field
+        - Batches
+        - Fields
         - Options
         - Cases
         - Domains
@@ -392,13 +392,13 @@ paths:
         - Templates
         - Audit
         - History
-        - Event
-        - Configuration
-        - Layout
-        - Template
-        - List
+        - Events
+        - Configurations
+        - Layouts
+        - Templates
+        - Lists
         - For
-        - Contact
+        - Contacts
   /domains/{domainId}/fields/{fieldId}/options-list:
     POST:
       summary: ListFieldOptions
@@ -406,13 +406,13 @@ paths:
         <p>Lists all of the field options for a field identifier in the domain.
         </p>
       tags:
-        - List
-        - Field
-        - Options
-        - Id
+        - Lists
         - Fields
-        - Batch
-        - Field
+        - Options
+        - Identifiers
+        - Fields
+        - Batches
+        - Fields
         - Options
         - Cases
         - Domains
@@ -423,24 +423,24 @@ paths:
         - Templates
         - Audit
         - History
-        - Event
-        - Configuration
-        - Layout
-        - Template
-        - List
+        - Events
+        - Configurations
+        - Layouts
+        - Templates
+        - Lists
         - For
-        - Contact
+        - Contacts
   /domains/{domainId}/fields-list:
     POST:
       summary: ListFields
       description: <p>Lists all fields in a Cases domain.</p>
       tags:
-        - List
+        - Lists
         - Fields
-        - Id
+        - Identifiers
         - Fields
-        - Batch
-        - Field
+        - Batches
+        - Fields
         - Options
         - Cases
         - Domains
@@ -451,13 +451,13 @@ paths:
         - Templates
         - Audit
         - History
-        - Event
-        - Configuration
-        - Layout
-        - Template
-        - List
+        - Events
+        - Configurations
+        - Layouts
+        - Templates
+        - Lists
         - For
-        - Contact
+        - Contacts
   /domains/{domainId}/layouts-list:
     POST:
       summary: ListLayouts
@@ -465,12 +465,12 @@ paths:
         <p>Lists all layouts in the given cases domain. Each list item is a
         condensed summary object of the layout.</p>
       tags:
-        - List
+        - Lists
         - Layouts
-        - Id
+        - Identifiers
         - Fields
-        - Batch
-        - Field
+        - Batches
+        - Fields
         - Options
         - Cases
         - Domains
@@ -481,24 +481,24 @@ paths:
         - Templates
         - Audit
         - History
-        - Event
-        - Configuration
-        - Layout
-        - Template
-        - List
+        - Events
+        - Configurations
+        - Layouts
+        - Templates
+        - Lists
         - For
-        - Contact
+        - Contacts
   /tags/{arn}:
     DELETE:
       summary: UntagResource
       description: <p>Untags a resource.</p>
       tags:
         - Untag
-        - Resource
-        - Id
+        - Resources
+        - Identifiers
         - Fields
-        - Batch
-        - Field
+        - Batches
+        - Fields
         - Options
         - Cases
         - Domains
@@ -509,15 +509,15 @@ paths:
         - Templates
         - Audit
         - History
-        - Event
-        - Configuration
-        - Layout
-        - Template
-        - List
+        - Events
+        - Configurations
+        - Layouts
+        - Templates
+        - Lists
         - For
-        - Contact
+        - Contacts
         - Tags
-        - Arn
+        - ARN
   /domains/{domainId}/templates-list:
     POST:
       summary: ListTemplates
@@ -525,12 +525,12 @@ paths:
         <p>Lists all of the templates in a Cases domain. Each list item is a
         condensed summary object of the template. </p>
       tags:
-        - List
+        - Lists
         - Templates
-        - Id
+        - Identifiers
         - Fields
-        - Batch
-        - Field
+        - Batches
+        - Fields
         - Options
         - Cases
         - Domains
@@ -541,15 +541,15 @@ paths:
         - Templates
         - Audit
         - History
-        - Event
-        - Configuration
-        - Layout
-        - Template
-        - List
+        - Events
+        - Configurations
+        - Layouts
+        - Templates
+        - Lists
         - For
-        - Contact
+        - Contacts
         - Tags
-        - Arn
+        - ARN
   /domains/{domainId}/cases-search:
     POST:
       summary: SearchCases
@@ -563,10 +563,10 @@ paths:
       tags:
         - Search
         - Cases
-        - Id
+        - Identifiers
         - Fields
-        - Batch
-        - Field
+        - Batches
+        - Fields
         - Options
         - Cases
         - Domains
@@ -577,15 +577,15 @@ paths:
         - Templates
         - Audit
         - History
-        - Event
-        - Configuration
-        - Layout
-        - Template
-        - List
+        - Events
+        - Configurations
+        - Layouts
+        - Templates
+        - Lists
         - For
-        - Contact
+        - Contacts
         - Tags
-        - Arn
+        - ARN
         - Search
   /domains/{domainId}/cases/{caseId}/related-items-search:
     POST:
@@ -598,10 +598,10 @@ paths:
         - Search
         - Related
         - Items
-        - Id
+        - Identifiers
         - Fields
-        - Batch
-        - Field
+        - Batches
+        - Fields
         - Options
         - Cases
         - Domains
@@ -612,15 +612,15 @@ paths:
         - Templates
         - Audit
         - History
-        - Event
-        - Configuration
-        - Layout
-        - Template
-        - List
+        - Events
+        - Configurations
+        - Layouts
+        - Templates
+        - Lists
         - For
-        - Contact
+        - Contacts
         - Tags
-        - Arn
+        - ARN
         - Search
   /domains/{domainId}/fields/{fieldId}:
     PUT:
@@ -628,11 +628,11 @@ paths:
       description: <p>Updates the properties of an existing
       tags:
         - Update
-        - Field
-        - Id
         - Fields
-        - Batch
-        - Field
+        - Identifiers
+        - Fields
+        - Batches
+        - Fields
         - Options
         - Cases
         - Domains
@@ -643,13 +643,13 @@ paths:
         - Templates
         - Audit
         - History
-        - Event
-        - Configuration
-        - Layout
-        - Template
-        - List
+        - Events
+        - Configurations
+        - Layouts
+        - Templates
+        - Lists
         - For
-        - Contact
+        - Contacts
         - Tags
-        - Arn
-        - Sear
+        - ARN
+        - Search
