@@ -15,7 +15,7 @@ paths:
   /v1/events:
     get:
       tags:
-        - - Events
+        - - - - Events
       summary: >-
         Get all the record events in the specified date range filtered on the
         given types
@@ -63,7 +63,7 @@ paths:
   /v1/identifiers:
     get:
       tags:
-        - - Identifiers
+        - - - - Identifiers
       summary: Get all the identifier details for given identifiers
       operationId: GetIdentifiers
       parameters:
@@ -90,7 +90,7 @@ paths:
   /v1/notes:
     get:
       tags:
-        - - Notes
+        - - - - Notes
       summary: >-
         Get all the notes in the specified date range filtered on the given
         identifiers
@@ -208,7 +208,7 @@ paths:
                 $ref: '#/components/schemas/ProblemDetails'
     post:
       tags:
-        - - Notes
+        - - - - Notes
       summary: Create a note
       operationId: CreateNote
       parameters:
@@ -255,7 +255,7 @@ paths:
   /v1/notes/{noteId}:
     get:
       tags:
-        - - Notes
+        - - - - Notes
       summary: Get details of a note
       operationId: GetNote
       parameters:
@@ -287,7 +287,7 @@ paths:
                 $ref: '#/components/schemas/ProblemDetails'
     put:
       tags:
-        - - Notes
+        - - - - Notes
       summary: Update a note
       operationId: UpdateNote
       parameters:
@@ -330,7 +330,7 @@ paths:
                 $ref: '#/components/schemas/ProblemDetails'
     delete:
       tags:
-        - - Notes
+        - - - - Notes
       summary: Delete a Note
       operationId: DeleteNote
       parameters:
@@ -364,7 +364,7 @@ paths:
   /v1/notes/{noteId}/attachments:
     get:
       tags:
-        - - Attachments
+        - - - - Attachments
       summary: Get all the attachments belonging to a note
       operationId: GetAttachments
       parameters:
@@ -398,7 +398,7 @@ paths:
                 $ref: '#/components/schemas/ProblemDetails'
     post:
       tags:
-        - - Attachments
+        - - - - Attachments
       summary: Create an attachment for an existing note
       operationId: CreateAttachment
       parameters:
@@ -441,7 +441,7 @@ paths:
   /v1/notes/{noteId}/attachments/{attachmentId}/download:
     get:
       tags:
-        - - Attachments
+        - - - - Attachments
       summary: Download an attachment from a Note
       operationId: DownloadAttachment
       parameters:
@@ -481,7 +481,7 @@ paths:
   /v1/notes/{noteId}/comments:
     get:
       tags:
-        - - Comments
+        - - - - Comments
       summary: Get all comments for a note
       operationId: GetComments
       parameters:
@@ -520,7 +520,7 @@ paths:
                 $ref: '#/components/schemas/ProblemDetails'
     post:
       tags:
-        - - Comments
+        - - - - Comments
       summary: Create a comment to a Note
       operationId: CreateComment
       parameters:
@@ -574,7 +574,7 @@ paths:
   /v1/notes/{noteId}/comments/{commentId}:
     get:
       tags:
-        - - Comments
+        - - - - Comments
       summary: Get details of a comment belonging to a note
       operationId: GetComment
       parameters:
@@ -617,7 +617,7 @@ paths:
                 $ref: '#/components/schemas/ProblemDetails'
     patch:
       tags:
-        - - Comments
+        - - - - Comments
       summary: Edit a comment for a note
       operationId: PatchComment
       parameters:
@@ -678,7 +678,7 @@ paths:
                 $ref: '#/components/schemas/ProblemDetails'
     delete:
       tags:
-        - - Comments
+        - - - - Comments
       summary: Delete a Comment from a Note
       operationId: DeleteComment
       parameters:
@@ -714,7 +714,7 @@ paths:
   /v1/notes/{noteId}/comments/{commentId}/attachments:
     get:
       tags:
-        - - Comments
+        - - - - Comments
       summary: Get attachments summary of a comment belonging to a note
       operationId: GetCommentAttachments
       parameters:
@@ -759,7 +759,7 @@ paths:
                 $ref: '#/components/schemas/ProblemDetails'
     post:
       tags:
-        - - Comments
+        - - - - Comments
       summary: Create a comment attachment to a Note
       operationId: CreateCommentAttachment
       parameters:
@@ -816,7 +816,7 @@ paths:
   /v1/notes/{noteId}/comments/{commentId}/attachments/{attachmentId}/download:
     get:
       tags:
-        - - Comments
+        - - - - Comments
       summary: Download single attachment detail of a comment belonging to a note
       operationId: DownloadCommentAttachmentForComment
       parameters:
@@ -862,7 +862,7 @@ paths:
   /v1/notes/{noteId}/events:
     get:
       tags:
-        - - Events
+        - - - - Events
       summary: Get all the record events that belong to a note
       operationId: GetEvents
       parameters:
@@ -897,7 +897,7 @@ paths:
   /v1/notes/{noteId}/events/{recordEventId}:
     get:
       tags:
-        - - Events
+        - - - - Events
       summary: Get details of a record event of a note
       operationId: GetRecordEvent
       parameters:
@@ -937,7 +937,7 @@ paths:
   /v1/notes/{noteId}/attachments/{attachmentId}:
     delete:
       tags:
-        - - Attachments
+        - - - - Attachments
       summary: Delete attachment from note
       operationId: SoftDeleteNoteAttachment
       parameters:

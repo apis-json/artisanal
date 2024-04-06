@@ -278,7 +278,7 @@ paths:
                     value: Small
                     valueId: 125
       tags:
-        - - Carts (Single)
+        - - - - Carts (Single)
       responses:
         '201':
           $ref: '#/components/responses/CartResponse'
@@ -371,7 +371,7 @@ paths:
                       list_price: 10
         required: true
       tags:
-        - - Items
+        - - - - Items
       responses:
         '201':
           $ref: '#/components/responses/CartResponse'
@@ -417,8 +417,8 @@ paths:
         the URL. The `query_params` feature allows passing additional
         information to the redirect URL.
       tags:
-        - - Redirects
-          - Cart Redirect URLs
+        - - - - Redirects
+              - Cart Redirect URLs
       requestBody:
         content:
           application/json:
@@ -505,7 +505,7 @@ paths:
               $ref: '#/components/schemas/Cart_Line_Item_Update_Put'
         required: true
       tags:
-        - - Items
+        - - - - Items
       responses:
         '200':
           $ref: '#/components/responses/CartResponse'
@@ -542,7 +542,7 @@ paths:
               - line_items.digital_items.options
               - promotions.banners
       tags:
-        - - Items
+        - - - - Items
       responses:
         '200':
           description: >-
@@ -657,7 +657,7 @@ paths:
               - line_items.digital_items.options
               - promotions.banners
       tags:
-        - - Carts (Single)
+        - - - - Carts (Single)
       responses:
         '200':
           $ref: '#/components/responses/CartResponse'
@@ -709,7 +709,7 @@ paths:
               customer_id: 5
         required: true
       tags:
-        - - Carts (Single)
+        - - - - Carts (Single)
       responses:
         '201':
           $ref: '#/components/responses/CartResponse'
@@ -718,7 +718,7 @@ paths:
     delete:
       description: Deletes a *Cart*. Once a *Cart* has been deleted it can’t be recovered.
       tags:
-        - - Carts (Single)
+        - - - - Carts (Single)
       responses:
         '204':
           description: ''
@@ -732,7 +732,7 @@ paths:
       description: Returns the global cart settings of a store.
       operationId: getGlobalCartSettings
       tags:
-        - - Settings
+        - - - - Settings
       responses:
         '200':
           description: OK
@@ -752,7 +752,7 @@ paths:
       parameters:
         - $ref: '#/components/parameters/ContentType'
       tags:
-        - - Settings
+        - - - - Settings
       requestBody:
         required: true
         content:
@@ -817,7 +817,7 @@ paths:
       summary: Get Channel Cart Settings
       description: Returns the per-channel overrides for the cart settings of a store.
       tags:
-        - - Settings
+        - - - - Settings
       responses:
         '200':
           description: OK
@@ -836,7 +836,7 @@ paths:
       summary: Update Channel Cart Settings
       description: Update the per-channel overrides for the cart settings of a store.
       tags:
-        - - Settings
+        - - - - Settings
       parameters:
         - $ref: '#/components/parameters/ContentType'
       requestBody:
@@ -897,7 +897,7 @@ paths:
     get:
       summary: Get Cart Metafields
       tags:
-        - - Metafields
+        - - - - Metafields
       description: Get a cart's metafields.
       operationId: getCartMetafields
       parameters:
@@ -934,7 +934,7 @@ paths:
     post:
       summary: Create a Cart Metafield
       tags:
-        - - Metafields
+        - - - - Metafields
       description: >
         Create a cart `Metafield`. 
 
@@ -997,7 +997,7 @@ paths:
     get:
       summary: Get a Cart Metafield
       tags:
-        - - Metafields
+        - - - - Metafields
       description: Gets a cart metafield.
       operationId: getCartMetafield
       responses:
@@ -1036,7 +1036,7 @@ paths:
     put:
       summary: Update a Cart Metafield
       tags:
-        - - Metafields
+        - - - - Metafields
       description: |
         Update a `Metafield`, by `cart_id`.
       operationId: updateCartMetafield
@@ -1077,7 +1077,7 @@ paths:
     delete:
       summary: Delete a Metafield
       tags:
-        - - Metafields
+        - - - - Metafields
       description: |
         Deletes a `Metafield`.
       operationId: deleteCartMetafield
@@ -1098,7 +1098,7 @@ paths:
     get:
       summary: Get All Cart Metafields
       tags:
-        - - Batch metafields
+        - - - - Batch metafields
       description: Get all cart metafields.
       operationId: getCartsMetafields
       responses:
@@ -1122,7 +1122,7 @@ paths:
     post:
       summary: Create multiple Metafields
       tags:
-        - - Batch metafields
+        - - - - Batch metafields
       description: Create multiple metafields.
       operationId: createCartsMetafields
       requestBody:
@@ -1166,7 +1166,7 @@ paths:
     put:
       summary: Update multiple Metafields
       tags:
-        - - Batch metafields
+        - - - - Batch metafields
       description: Create multiple metafields.
       operationId: updateCartsMetafields
       requestBody:
@@ -1209,7 +1209,7 @@ paths:
     delete:
       summary: Delete All Metafields
       tags:
-        - - Batch metafields
+        - - - - Batch metafields
       description: Delete all cart metafields.
       operationId: deleteCartsMetafields
       requestBody:

@@ -50,7 +50,7 @@ paths:
         Attribute names are not available on the customer object.
       summary: Get All Customers
       tags:
-        - - - Customers
+        - - - - - - - Customers
       operationId: getCustomers
       deprecated: false
       parameters:
@@ -268,7 +268,7 @@ paths:
           * Provide a `channel_ids` array containing the channels accessible by the customer. This array cannot be empty.
       summary: Create Customers
       tags:
-        - - - Customers
+        - - - - - - - Customers
       operationId: createCustomers
       deprecated: false
       requestBody:
@@ -380,7 +380,7 @@ paths:
         given a channel.
       summary: Update Customers
       tags:
-        - - - Customers
+        - - - - - - - Customers
       operationId: updateCustomers
       deprecated: false
       responses:
@@ -453,7 +453,7 @@ paths:
         returned, with no changes to the data.
       summary: Delete Customers
       tags:
-        - - - Customers
+        - - - - - - - Customers
       operationId: deleteCustomers
       deprecated: false
       parameters:
@@ -556,7 +556,7 @@ paths:
         '200':
           $ref: '#/components/responses/AddressCollectionResponse'
       tags:
-        - - - Addresses
+        - - - - - - - Addresses
     post:
       description: >-
         Creates a Customer Address. Multiple customer addresses can be created
@@ -666,7 +666,7 @@ paths:
               schema:
                 $ref: '#/components/schemas/ErrorResponse'
       tags:
-        - - - Addresses
+        - - - - - - - Addresses
     put:
       description: >-
         Updates a Customer Address. Multiple customer addresses can be updated
@@ -773,7 +773,7 @@ paths:
               schema:
                 $ref: '#/components/schemas/ErrorResponse'
       tags:
-        - - - Addresses
+        - - - - - - - Addresses
     delete:
       description: |-
         Deletes a Customer Address.
@@ -811,11 +811,11 @@ paths:
           description: ''
           headers: {}
       tags:
-        - - - Addresses
+        - - - - - - - Addresses
   /customers/validate-credentials:
     post:
       tags:
-        - - - Validate Credentials
+        - - - - - - - Validate Credentials
       description: >-
         Validate a customer credentials - This endpoint has special rate
         limiting protections to protect against abuse.
@@ -870,7 +870,7 @@ paths:
   /customers/settings:
     get:
       tags:
-        - - - Global Settings
+        - - - - - - - Global Settings
       description: Returns the global-level customer settings.
       summary: Get Customer Settings
       operationId: getCustomersSettings
@@ -892,7 +892,7 @@ paths:
                       default_customer_group_id: 1
     put:
       tags:
-        - - - Global Settings
+        - - - - - - - Global Settings
       description: Updates the customer settings on the global level.
       summary: Update Customer Settings
       operationId: updateCustomersSettings
@@ -931,7 +931,7 @@ paths:
   /customers/settings/channels/{channel_id}:
     get:
       tags:
-        - - - Channel Settings
+        - - - - - - - Channel Settings
       description: |-
         Returns the customer settings per channel.
 
@@ -964,7 +964,7 @@ paths:
                       allow_global_logins: true
     put:
       tags:
-        - - - Channel Settings
+        - - - - - - - Channel Settings
       description: >-
         Update the customer settings per channel
 
@@ -1138,7 +1138,7 @@ paths:
         '200':
           $ref: '#/components/responses/CustomerAttributesResponse'
       tags:
-        - - - Attributes
+        - - - - - - - Attributes
     post:
       description: >-
         Creates a Customer Attribute. Multiple customer attributes can be
@@ -1210,7 +1210,7 @@ paths:
               schema:
                 $ref: '#/components/schemas/ErrorResponse'
       tags:
-        - - - Attributes
+        - - - - - - - Attributes
     put:
       description: >-
         Updates a Customer Attribute. Multiple customer attributes can be
@@ -1269,7 +1269,7 @@ paths:
               schema:
                 $ref: '#/components/schemas/ErrorResponse'
       tags:
-        - - - Attributes
+        - - - - - - - Attributes
     delete:
       description: |-
         Deletes Customer Attributes from the store.
@@ -1306,7 +1306,7 @@ paths:
           description: ''
           headers: {}
       tags:
-        - - - Attributes
+        - - - - - - - Attributes
   /customers/attribute-values:
     get:
       description: >-
@@ -1409,7 +1409,7 @@ paths:
         '200':
           $ref: '#/components/responses/CustomerAttributeValueCollectionResponse'
       tags:
-        - - - Attribute Values
+        - - - - - - - Attribute Values
     put:
       description: >-
         Upserts Customer Attribute Values. Updates the attribute values on the
@@ -1483,7 +1483,7 @@ paths:
               schema:
                 $ref: '#/components/schemas/ErrorResponse'
       tags:
-        - - - Attribute Values
+        - - - - - - - Attribute Values
     delete:
       description: >-
         Deletes Customer Attribute Values. Deletes the attribute value from the
@@ -1525,7 +1525,7 @@ paths:
           description: ''
           headers: {}
       tags:
-        - - - Attribute Values
+        - - - - - - - Attribute Values
   /customers/form-field-values:
     get:
       responses:
@@ -1551,7 +1551,7 @@ paths:
         Form](https://support.bigcommerce.com/s/article/Editing-Form-Fields).
       operationId: getCustomersFormFieldValues
       tags:
-        - - - Form Field Values
+        - - - - - - - Form Field Values
       parameters:
         - name: Accept
           in: header
@@ -1644,7 +1644,7 @@ paths:
         * Limit of 10 concurrent requests.
       operationId: updateCustomerFormFieldValues
       tags:
-        - - - Form Field Values
+        - - - - - - - Form Field Values
       requestBody:
         content:
           application/json:
@@ -1671,7 +1671,7 @@ paths:
         cookies and scripts while shopping on a storefront.
       summary: Get Customer Consent
       tags:
-        - - - Consent
+        - - - - - - - Consent
       operationId: getCustomerConsent
       deprecated: false
       responses:
@@ -1705,7 +1705,7 @@ paths:
         cookies and scripts while shopping on a storefront.
       summary: Update Customer Consent
       tags:
-        - - - Consent
+        - - - - - - - Consent
       operationId: updateCustomerConsent
       deprecated: false
       parameters:
@@ -1757,7 +1757,7 @@ paths:
     get:
       summary: Get Stored Instruments
       tags:
-        - - - Stored Instruments
+        - - - - - - - Stored Instruments
       description: >-
         Lists all available stored instruments for a customer. This list will
         include all types of stored instruments namely card, account and
@@ -1838,7 +1838,7 @@ paths:
     get:
       summary: Get Customer Metafields
       tags:
-        - - - Customer Metafields
+        - - - - - - - Customer Metafields
       description: >-
         Gets customer metafields by passing the `customerId` in the query
         parameters.
@@ -1859,7 +1859,7 @@ paths:
     post:
       summary: Create Customer Metafields
       tags:
-        - - - Customer Metafields
+        - - - - - - - Customer Metafields
       description: >-
         Creates Customer metafields by passing the `customerId` in the query
         parameters.
@@ -1887,7 +1887,7 @@ paths:
         `customerId` and `metafieldId` in the query parameters.
       operationId: getMetafieldsCustomerId
       tags:
-        - - - Customer Metafields
+        - - - - - - - Customer Metafields
       parameters:
         - name: customerId
           in: path
@@ -1913,7 +1913,7 @@ paths:
     put:
       summary: Update a Metafield
       tags:
-        - - - Customer Metafields
+        - - - - - - - Customer Metafields
       description: >-
         Updates customer metafields. To update the customer metafields, use
         'customerId' and 'metafield' in the query parameters.
@@ -1954,7 +1954,7 @@ paths:
     delete:
       summary: Delete Customer Metafields
       tags:
-        - - - Customer Metafields
+        - - - - - - - Customer Metafields
       description: >
         Deletes customer metafields. To delete customer metafields, use
         'customerId' and 'metafieldId' in the query parameters.
@@ -1978,7 +1978,7 @@ paths:
     get:
       summary: Get All Customer Metafields
       tags:
-        - - - Customer Batch Metafields
+        - - - - - - - Customer Batch Metafields
       description: Get all customer metafields.
       operationId: getallCustomersMetafields
       responses:
@@ -2002,7 +2002,7 @@ paths:
     post:
       summary: Create Multiple Metafields
       tags:
-        - - - Customer Batch Metafields
+        - - - - - - - Customer Batch Metafields
       description: Create multiple metafields.
       operationId: createCustomersMetafields
       requestBody:
@@ -2044,7 +2044,7 @@ paths:
     put:
       summary: Update Multiple Metafields
       tags:
-        - - - Customer Batch Metafields
+        - - - - - - - Customer Batch Metafields
       description: Create multiple metafields.
       operationId: updateCustomersMetafields
       requestBody:
@@ -2085,7 +2085,7 @@ paths:
     delete:
       summary: Delete All Metafields
       tags:
-        - - - Customer Batch Metafields
+        - - - - - - - Customer Batch Metafields
       description: Delete all customer metafields.
       operationId: deleteCustomersMetafields
       requestBody:

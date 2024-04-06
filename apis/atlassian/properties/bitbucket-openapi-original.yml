@@ -15,7 +15,7 @@ paths:
   /addon:
     delete:
       tags:
-        - - Addon
+        - - - - Addon
       description: |-
         Deletes the application for the user.
 
@@ -55,7 +55,7 @@ paths:
         - api_key: []
     put:
       tags:
-        - - Addon
+        - - - - Addon
       description: |-
         Updates the application installation for the user.
 
@@ -136,7 +136,7 @@ paths:
   /addon/linkers:
     get:
       tags:
-        - - Addon
+        - - - - Addon
       description: |-
         Gets a list of all [linkers](/cloud/bitbucket/modules/linker/)
         for the authenticated application.
@@ -158,7 +158,7 @@ paths:
   /addon/linkers/{linker_key}:
     get:
       tags:
-        - - Addon
+        - - - - Addon
       description: >-
         Gets a [linker](/cloud/bitbucket/modules/linker/) specified by
         `linker_key`
@@ -196,7 +196,7 @@ paths:
   /addon/linkers/{linker_key}/values:
     delete:
       tags:
-        - - Addon
+        - - - - Addon
       description: |-
         Delete all [linker](/cloud/bitbucket/modules/linker/) values for the
         specified linker of the authenticated application.
@@ -222,7 +222,7 @@ paths:
         - api_key: []
     get:
       tags:
-        - - Addon
+        - - - - Addon
       description: >-
         Gets a list of all [linker](/cloud/bitbucket/modules/linker/) values for
         the
@@ -265,7 +265,7 @@ paths:
         - api_key: []
     post:
       tags:
-        - - Addon
+        - - - - Addon
       description: >-
         Creates a [linker](/cloud/bitbucket/modules/linker/) value for the
         specified
@@ -314,7 +314,7 @@ paths:
         - api_key: []
     put:
       tags:
-        - - Addon
+        - - - - Addon
       description: >-
         Bulk update [linker](/cloud/bitbucket/modules/linker/) values for the
         specified
@@ -373,7 +373,7 @@ paths:
   /addon/linkers/{linker_key}/values/{value_id}:
     delete:
       tags:
-        - - Addon
+        - - - - Addon
       description: |-
         Delete a single [linker](/cloud/bitbucket/modules/linker/) value
         of the authenticated application.
@@ -399,7 +399,7 @@ paths:
         - api_key: []
     get:
       tags:
-        - - Addon
+        - - - - Addon
       description: |-
         Get a single [linker](/cloud/bitbucket/modules/linker/) value
         of the authenticated application.
@@ -441,7 +441,7 @@ paths:
   /hook_events:
     get:
       tags:
-        - - Webhooks
+        - - - - Webhooks
       description: |-
         Returns the webhook resource or subject types on which webhooks can
         be registered.
@@ -481,7 +481,7 @@ paths:
   /hook_events/{subject_type}:
     get:
       tags:
-        - - Webhooks
+        - - - - Webhooks
       description: >-
         Returns a paginated list of all valid webhook events for the
 
@@ -555,7 +555,7 @@ paths:
   /pullrequests/{selected_user}:
     get:
       tags:
-        - - Pullrequests
+        - - - - Pullrequests
       description: >-
         Returns all pull requests authored by the specified user.
 
@@ -620,7 +620,7 @@ paths:
   /repositories:
     get:
       tags:
-        - - Repositories
+        - - - - Repositories
       description: >-
         Returns a paginated list of all public repositories.
 
@@ -699,7 +699,7 @@ paths:
   /repositories/{workspace}:
     get:
       tags:
-        - - Repositories
+        - - - - Repositories
       description: >-
         Returns a paginated list of all repositories owned by the specified
 
@@ -808,7 +808,7 @@ paths:
   /repositories/{workspace}/{repo_slug}:
     delete:
       tags:
-        - - Repositories
+        - - - - Repositories
       description: |-
         Deletes the repository. This is an irreversible operation.
 
@@ -860,7 +860,7 @@ paths:
             - delete:repository:bitbucket
     get:
       tags:
-        - - Repositories
+        - - - - Repositories
       description: Returns the object describing this repository.
       summary: Get a repository
       responses:
@@ -896,7 +896,7 @@ paths:
             - read:repository:bitbucket
     post:
       tags:
-        - - Repositories
+        - - - - Repositories
       description: >-
         Creates a new repository.
 
@@ -988,7 +988,7 @@ paths:
             - admin:repository:bitbucket
     put:
       tags:
-        - - Repositories
+        - - - - Repositories
       description: |-
         Since this endpoint can be used to both update and to create a
         repository, the request body depends on the intent.
@@ -1087,7 +1087,7 @@ paths:
   /repositories/{workspace}/{repo_slug}/branch-restrictions:
     get:
       tags:
-        - - Branch restrictions
+        - - - - Branch restrictions
       description: |-
         Returns a paginated list of all branch restrictions on the
         repository.
@@ -1144,7 +1144,7 @@ paths:
             - admin:repository:bitbucket
     post:
       tags:
-        - - Branch restrictions
+        - - - - Branch restrictions
       description: >-
         Creates a new branch restriction rule for a repository.
 
@@ -1285,7 +1285,7 @@ paths:
   /repositories/{workspace}/{repo_slug}/branch-restrictions/{id}:
     delete:
       tags:
-        - - Branch restrictions
+        - - - - Branch restrictions
       description: Deletes an existing branch restriction rule.
       summary: Delete a branch restriction rule
       responses:
@@ -1323,7 +1323,7 @@ paths:
             - admin:repository:bitbucket
     get:
       tags:
-        - - Branch restrictions
+        - - - - Branch restrictions
       description: Returns a specific branch restriction rule.
       summary: Get a branch restriction rule
       responses:
@@ -1365,7 +1365,7 @@ paths:
             - admin:repository:bitbucket
     put:
       tags:
-        - - Branch restrictions
+        - - - - Branch restrictions
       description: >-
         Updates an existing branch restriction rule.
 
@@ -1447,7 +1447,7 @@ paths:
   /repositories/{workspace}/{repo_slug}/branching-model:
     get:
       tags:
-        - - Branching model
+        - - - - Branching model
       description: >-
         Return the branching model as applied to the repository. This view is
 
@@ -1561,7 +1561,7 @@ paths:
   /repositories/{workspace}/{repo_slug}/branching-model/settings:
     get:
       tags:
-        - - Branching model
+        - - - - Branching model
       description: >-
         Return the branching model configuration for a repository. The returned
 
@@ -1651,7 +1651,7 @@ paths:
             - admin:repository:bitbucket
     put:
       tags:
-        - - Branching model
+        - - - - Branching model
       description: |-
         Update the branching model configuration for a repository.
 
@@ -1789,7 +1789,7 @@ paths:
   /repositories/{workspace}/{repo_slug}/commit/{commit}:
     get:
       tags:
-        - - Commits
+        - - - - Commits
       description: Returns the specified commit.
       summary: Get a commit
       responses:
@@ -1925,7 +1925,7 @@ paths:
   /repositories/{workspace}/{repo_slug}/commit/{commit}/approve:
     delete:
       tags:
-        - - Commits
+        - - - - Commits
       description: |-
         Redact the authenticated user's approval of the specified commit.
 
@@ -1957,7 +1957,7 @@ paths:
             - write:repository:bitbucket
     post:
       tags:
-        - - Commits
+        - - - - Commits
       description: |-
         Approve the specified commit as the authenticated user.
 
@@ -2018,7 +2018,7 @@ paths:
   /repositories/{workspace}/{repo_slug}/commit/{commit}/comments:
     get:
       tags:
-        - - Commits
+        - - - - Commits
       description: |-
         Returns the commit's comments.
 
@@ -2063,7 +2063,7 @@ paths:
             - read:repository:bitbucket
     post:
       tags:
-        - - Commits
+        - - - - Commits
       description: >-
         Creates new comment on the specified commit.
 
@@ -2139,7 +2139,7 @@ paths:
   /repositories/{workspace}/{repo_slug}/commit/{commit}/comments/{comment_id}:
     delete:
       tags:
-        - - Commits
+        - - - - Commits
       description: >-
         Deletes the specified commit comment.
 
@@ -2174,7 +2174,7 @@ paths:
             - read:repository:bitbucket
     get:
       tags:
-        - - Commits
+        - - - - Commits
       description: Returns the specified commit comment.
       summary: Get a commit comment
       responses:
@@ -2196,7 +2196,7 @@ paths:
             - read:repository:bitbucket
     put:
       tags:
-        - - Commits
+        - - - - Commits
       description: >-
         Used to update the contents of a comment. Only the content of the
         comment can be updated.
@@ -2315,7 +2315,7 @@ paths:
       requestBody:
         $ref: '#/components/requestBodies/application_property'
       tags:
-        - - properties
+        - - - - properties
       security:
         - oauth2: []
         - basic: []
@@ -2364,7 +2364,7 @@ paths:
           schema:
             type: string
       tags:
-        - - properties
+        - - - - properties
       security:
         - oauth2: []
         - basic: []
@@ -2417,7 +2417,7 @@ paths:
           schema:
             type: string
       tags:
-        - - properties
+        - - - - properties
       security:
         - oauth2: []
         - basic: []
@@ -2425,7 +2425,7 @@ paths:
   /repositories/{workspace}/{repo_slug}/commit/{commit}/pullrequests:
     get:
       tags:
-        - - Pullrequests
+        - - - - Pullrequests
       summary: List pull requests that contain a commit
       description: >-
         Returns a paginated list of all pull requests as part of which this
@@ -2505,8 +2505,8 @@ paths:
   /repositories/{workspace}/{repo_slug}/commit/{commit}/reports:
     get:
       tags:
-        - - Reports
-          - Commits
+        - - - - Reports
+              - Commits
       description: Returns a paginated list of Reports linked to this commit.
       summary: List reports
       operationId: getReportsForCommit
@@ -2551,8 +2551,8 @@ paths:
   /repositories/{workspace}/{repo_slug}/commit/{commit}/reports/{reportId}:
     put:
       tags:
-        - - Reports
-          - Commits
+        - - - - Reports
+              - Commits
       description: "Creates or updates a report for the specified commit.\nTo upload a report, make sure to generate an ID that is unique across all reports for that commit. If you want to use an existing id from your own system, we recommend prefixing it with your system's name to avoid collisions, for example, mySystem-001.\n\n### Sample cURL request:\n```\ncurl --request PUT 'https://api.bitbucket.org/2.0/repositories/<username>/<reposity-name>/commit/<commit-hash>/reports/mysystem-001' \\\n--header 'Content-Type: application/json' \\\n--data-raw '{\n    \"title\": \"Security scan report\",\n    \"details\": \"This pull request introduces 10 new dependency vulnerabilities.\",\n    \"report_type\": \"SECURITY\",\n    \"reporter\": \"mySystem\",\n    \"link\": \"http://www.mysystem.com/reports/001\",\n    \"result\": \"FAILED\",\n    \"data\": [\n        {\n            \"title\": \"Duration (seconds)\",\n            \"type\": \"DURATION\",\n            \"value\": 14\n        },\n        {\n            \"title\": \"Safe to merge?\",\n            \"type\": \"BOOLEAN\",\n            \"value\": false\n        }\n    ]\n}'\n```\n\n### Possible field values:\nreport_type: SECURITY, COVERAGE, TEST, BUG\nresult: PASSED, FAILED, PENDING\ndata.type: BOOLEAN, DATE, DURATION, LINK, NUMBER, PERCENTAGE, TEXT\n\n#### Data field formats\n| Type  Field   | Value Field Type  | Value Field Display |\n|:--|:|:--|\n| None/ Omitted | Number, String or Boolean (not an array or object) | Plain text |\n| BOOLEAN\t| Boolean | The value will be read as a JSON boolean and displayed as 'Yes' or 'No'. |\n| DATE  | Number | The value will be read as a JSON number in the form of a Unix timestamp (milliseconds) and will be displayed as a relative date if the date is less than one week ago, otherwise  it will be displayed as an absolute date. |\n| DURATION | Number | The value will be read as a JSON number in milliseconds and will be displayed in a human readable duration format. |\n| LINK | Object: `{\"text\": \"Link text here\", \"href\": \"https://link.to.annotation/in/external/tool\"}` | The value will be read as a JSON object containing the fields \"text\" and \"href\" and will be displayed as a clickable link on the report. |\n| NUMBER | Number | The value will be read as a JSON number and large numbers will be  displayed in a human readable format (e.g. 14.3k). |\n| PERCENTAGE | Number (between 0 and 100) | The value will be read as a JSON number between 0 and 100 and will be displayed with a percentage sign. |\n| TEXT | String | The value will be read as a JSON string and will be displayed as-is |\n\nPlease refer to the [Code Insights documentation](https://confluence.atlassian.com/bitbucket/code-insights-994316785.html) for more information.\n"
       operationId: createOrUpdateReport
       summary: Create or update a report
@@ -2610,8 +2610,8 @@ paths:
         - api_key: []
     get:
       tags:
-        - - Reports
-          - Commits
+        - - - - Reports
+              - Commits
       description: Returns a single Report matching the provided ID.
       summary: Get a report
       operationId: getReport
@@ -2667,8 +2667,8 @@ paths:
         - api_key: []
     delete:
       tags:
-        - - Reports
-          - Commits
+        - - - - Reports
+              - Commits
       description: Deletes a single Report matching the provided ID.
       summary: Delete a report
       operationId: deleteReport
@@ -2710,8 +2710,8 @@ paths:
   /repositories/{workspace}/{repo_slug}/commit/{commit}/reports/{reportId}/annotations:
     get:
       tags:
-        - - Reports
-          - Commits
+        - - - - Reports
+              - Commits
       description: Returns a paginated list of Annotations for a specified report.
       summary: List annotations
       operationId: getAnnotationsForReport
@@ -2761,8 +2761,8 @@ paths:
         - api_key: []
     post:
       tags:
-        - - Reports
-          - Commits
+        - - - - Reports
+              - Commits
       description: >
         Bulk upload of annotations.
 
@@ -2887,8 +2887,8 @@ paths:
   /repositories/{workspace}/{repo_slug}/commit/{commit}/reports/{reportId}/annotations/{annotationId}:
     get:
       tags:
-        - - Reports
-          - Commits
+        - - - - Reports
+              - Commits
       description: Returns a single Annotation matching the provided ID.
       summary: Get an annotation
       operationId: getAnnotation
@@ -2950,8 +2950,8 @@ paths:
         - api_key: []
     put:
       tags:
-        - - Reports
-          - Commits
+        - - - - Reports
+              - Commits
       description: >
         Creates or updates an individual annotation for the specified report.
 
@@ -3067,8 +3067,8 @@ paths:
         - api_key: []
     delete:
       tags:
-        - - Reports
-          - Commits
+        - - - - Reports
+              - Commits
       description: Deletes a single Annotation matching the provided ID.
       summary: Delete an annotation
       operationId: deleteAnnotation
@@ -3116,7 +3116,7 @@ paths:
   /repositories/{workspace}/{repo_slug}/commit/{commit}/statuses:
     get:
       tags:
-        - - Commit statuses
+        - - - - Commit statuses
       description: Returns all statuses (e.g. build results) for a specific commit.
       summary: List commit statuses for a commit
       responses:
@@ -3188,7 +3188,7 @@ paths:
   /repositories/{workspace}/{repo_slug}/commit/{commit}/statuses/build:
     post:
       tags:
-        - - Commit statuses
+        - - - - Commit statuses
       description: >-
         Creates a new build status against the specified commit.
 
@@ -3291,7 +3291,7 @@ paths:
   /repositories/{workspace}/{repo_slug}/commit/{commit}/statuses/build/{key}:
     get:
       tags:
-        - - Commit statuses
+        - - - - Commit statuses
       description: Returns the specified build status for a commit.
       summary: Get a build status for a commit
       responses:
@@ -3321,7 +3321,7 @@ paths:
             - read:repository:bitbucket
     put:
       tags:
-        - - Commit statuses
+        - - - - Commit statuses
       description: |-
         Used to update the current status of a build status object on the
         specific commit.
@@ -3400,7 +3400,7 @@ paths:
   /repositories/{workspace}/{repo_slug}/commits:
     get:
       tags:
-        - - Commits
+        - - - - Commits
       description: >-
         These are the repository's commits. They are paginated and returned
 
@@ -3507,7 +3507,7 @@ paths:
             - read:repository:bitbucket
     post:
       tags:
-        - - Commits
+        - - - - Commits
       description: |-
         Identical to `GET /repositories/{workspace}/{repo_slug}/commits`,
         except that POST allows clients to place the include and exclude
@@ -3558,7 +3558,7 @@ paths:
   /repositories/{workspace}/{repo_slug}/commits/{revision}:
     get:
       tags:
-        - - Commits
+        - - - - Commits
       description: >-
         These are the repository's commits. They are paginated and returned
 
@@ -3655,7 +3655,7 @@ paths:
             - read:repository:bitbucket
     post:
       tags:
-        - - Commits
+        - - - - Commits
       description: >-
         Identical to `GET
         /repositories/{workspace}/{repo_slug}/commits/{revision}`,
@@ -3716,7 +3716,7 @@ paths:
   /repositories/{workspace}/{repo_slug}/components:
     get:
       tags:
-        - - Issue tracker
+        - - - - Issue tracker
       description: |-
         Returns the components that have been defined in the issue tracker.
 
@@ -3763,7 +3763,7 @@ paths:
   /repositories/{workspace}/{repo_slug}/components/{component_id}:
     get:
       tags:
-        - - Issue tracker
+        - - - - Issue tracker
       description: Returns the specified issue tracker component object.
       summary: Get a component for issues
       responses:
@@ -3812,7 +3812,7 @@ paths:
   /repositories/{workspace}/{repo_slug}/default-reviewers:
     get:
       tags:
-        - - Pullrequests
+        - - - - Pullrequests
       description: >-
         Returns the repository's default reviewers.
 
@@ -3872,7 +3872,7 @@ paths:
   /repositories/{workspace}/{repo_slug}/default-reviewers/{target_username}:
     delete:
       tags:
-        - - Pullrequests
+        - - - - Pullrequests
       description: Removes a default reviewer from the repository.
       summary: Remove a user from the default reviewers
       responses:
@@ -3904,7 +3904,7 @@ paths:
             - admin:repository:bitbucket
     get:
       tags:
-        - - Pullrequests
+        - - - - Pullrequests
       description: |-
         Returns the specified reviewer.
 
@@ -3945,7 +3945,7 @@ paths:
             - read:pullrequest:bitbucket
     put:
       tags:
-        - - Pullrequests
+        - - - - Pullrequests
       description: |-
         Adds the specified user to the repository's list of default
         reviewers.
@@ -4019,7 +4019,7 @@ paths:
   /repositories/{workspace}/{repo_slug}/deploy-keys:
     get:
       tags:
-        - - Deployments
+        - - - - Deployments
       description: Returns all deploy-keys belonging to a repository.
       summary: List repository deploy keys
       responses:
@@ -4072,7 +4072,7 @@ paths:
         - api_key: []
     post:
       tags:
-        - - Deployments
+        - - - - Deployments
       description: >-
         Create a new deploy key in a repository. Note: If authenticating a
         deploy key
@@ -4169,7 +4169,7 @@ paths:
   /repositories/{workspace}/{repo_slug}/deploy-keys/{key_id}:
     delete:
       tags:
-        - - Deployments
+        - - - - Deployments
       description: This deletes a deploy key from a repository.
       summary: Delete a repository deploy key
       responses:
@@ -4193,7 +4193,7 @@ paths:
         - api_key: []
     get:
       tags:
-        - - Deployments
+        - - - - Deployments
       description: Returns the deploy key belonging to a specific key.
       summary: Get a repository deploy key
       responses:
@@ -4242,7 +4242,7 @@ paths:
         - api_key: []
     put:
       tags:
-        - - Deployments
+        - - - - Deployments
       description: >-
         Create a new deploy key in a repository.
 
@@ -4346,7 +4346,7 @@ paths:
   /repositories/{workspace}/{repo_slug}/deployments:
     get:
       tags:
-        - - Deployments
+        - - - - Deployments
       description: Find deployments
       summary: List deployments
       operationId: getDeploymentsForRepository
@@ -4380,7 +4380,7 @@ paths:
   /repositories/{workspace}/{repo_slug}/deployments/{deployment_uuid}:
     get:
       tags:
-        - - Deployments
+        - - - - Deployments
       description: Retrieve a deployment
       summary: Get a deployment
       operationId: getDeploymentForRepository
@@ -4426,7 +4426,7 @@ paths:
   /repositories/{workspace}/{repo_slug}/deployments_config/environments/{environment_uuid}/variables:
     get:
       tags:
-        - - Pipelines
+        - - - - Pipelines
       description: Find deployment environment level variables.
       summary: List variables for an environment
       operationId: getDeploymentVariables
@@ -4465,7 +4465,7 @@ paths:
         - api_key: []
     post:
       tags:
-        - - Pipelines
+        - - - - Pipelines
       description: Create a deployment environment level variable.
       summary: Create a variable for an environment
       operationId: createDeploymentVariable
@@ -4531,7 +4531,7 @@ paths:
   /repositories/{workspace}/{repo_slug}/deployments_config/environments/{environment_uuid}/variables/{variable_uuid}:
     put:
       tags:
-        - - Pipelines
+        - - - - Pipelines
       description: Update a deployment environment level variable.
       summary: Update a variable for an environment
       operationId: updateDeploymentVariable
@@ -4591,7 +4591,7 @@ paths:
         - api_key: []
     delete:
       tags:
-        - - Pipelines
+        - - - - Pipelines
       description: Delete a deployment environment level variable.
       summary: Delete a variable for an environment
       operationId: deleteDeploymentVariable
@@ -4641,7 +4641,7 @@ paths:
   /repositories/{workspace}/{repo_slug}/diff/{spec}:
     get:
       tags:
-        - - Commits
+        - - - - Commits
       description: >-
         Produces a raw git-style diff.
 
@@ -4813,7 +4813,7 @@ paths:
   /repositories/{workspace}/{repo_slug}/diffstat/{spec}:
     get:
       tags:
-        - - Commits
+        - - - - Commits
       description: >-
         Produces a response in JSON format with a record for every path
 
@@ -4980,7 +4980,7 @@ paths:
   /repositories/{workspace}/{repo_slug}/downloads:
     get:
       tags:
-        - - Downloads
+        - - - - Downloads
       description: Returns a list of download links associated with the repository.
       summary: List download artifacts
       responses:
@@ -5006,7 +5006,7 @@ paths:
             - read:repository:bitbucket
     post:
       tags:
-        - - Downloads
+        - - - - Downloads
       description: |-
         Upload new download artifacts.
 
@@ -5065,7 +5065,7 @@ paths:
   /repositories/{workspace}/{repo_slug}/downloads/{filename}:
     delete:
       tags:
-        - - Downloads
+        - - - - Downloads
       description: Deletes the specified download artifact from the repository.
       summary: Delete a download artifact
       responses:
@@ -5095,7 +5095,7 @@ paths:
             - write:repository:bitbucket
     get:
       tags:
-        - - Downloads
+        - - - - Downloads
       description: |-
         Return a redirect to the contents of a download artifact.
 
@@ -5151,7 +5151,7 @@ paths:
   /repositories/{workspace}/{repo_slug}/effective-branching-model:
     get:
       tags:
-        - - Branching model
+        - - - - Branching model
       description: ''
       summary: >-
         Get the effective, or currently applied, branching model for a
@@ -5213,7 +5213,7 @@ paths:
   /repositories/{workspace}/{repo_slug}/effective-default-reviewers:
     get:
       tags:
-        - - Pullrequests
+        - - - - Pullrequests
       description: >-
         Returns the repository's effective default reviewers. This includes both
         default
@@ -5288,7 +5288,7 @@ paths:
   /repositories/{workspace}/{repo_slug}/environments:
     get:
       tags:
-        - - Deployments
+        - - - - Deployments
       description: Find environments
       summary: List environments
       operationId: getEnvironmentsForRepository
@@ -5321,7 +5321,7 @@ paths:
         - api_key: []
     post:
       tags:
-        - - Deployments
+        - - - - Deployments
       description: Create an environment.
       summary: Create an environment
       operationId: createEnvironment
@@ -5379,7 +5379,7 @@ paths:
   /repositories/{workspace}/{repo_slug}/environments/{environment_uuid}:
     get:
       tags:
-        - - Deployments
+        - - - - Deployments
       summary: Get an environment
       description: Retrieve an environment
       operationId: getEnvironmentForRepository
@@ -5424,7 +5424,7 @@ paths:
         - api_key: []
     delete:
       tags:
-        - - Deployments
+        - - - - Deployments
       description: Delete an environment
       summary: Delete an environment
       operationId: deleteEnvironmentForRepository
@@ -5466,7 +5466,7 @@ paths:
   /repositories/{workspace}/{repo_slug}/environments/{environment_uuid}/changes:
     post:
       tags:
-        - - Deployments
+        - - - - Deployments
       description: Update an environment
       summary: Update an environment
       operationId: updateEnvironmentForRepository
@@ -5508,8 +5508,8 @@ paths:
   /repositories/{workspace}/{repo_slug}/filehistory/{commit}/{path}:
     get:
       tags:
-        - - Source
-          - Repositories
+        - - - - Source
+              - Repositories
       description: >-
         Returns a paginated list of commits that modified the specified file.
 
@@ -5656,7 +5656,7 @@ paths:
   /repositories/{workspace}/{repo_slug}/forks:
     get:
       tags:
-        - - Repositories
+        - - - - Repositories
       description: |-
         Returns a paginated list of all the forks of the specified
         repository.
@@ -5722,7 +5722,7 @@ paths:
             - read:repository:bitbucket
     post:
       tags:
-        - - Repositories
+        - - - - Repositories
       description: >-
         Creates a new fork of the specified repository.
 
@@ -5859,8 +5859,8 @@ paths:
   /repositories/{workspace}/{repo_slug}/hooks:
     get:
       tags:
-        - - Repositories
-          - Webhooks
+        - - - - Repositories
+              - Webhooks
       description: Returns a paginated list of webhooks installed on this repository.
       summary: List webhooks for a repository
       responses:
@@ -5891,8 +5891,8 @@ paths:
         - api_key: []
     post:
       tags:
-        - - Repositories
-          - Webhooks
+        - - - - Repositories
+              - Webhooks
       description: >-
         Creates a new webhook on the specified repository.
 
@@ -5996,8 +5996,8 @@ paths:
   /repositories/{workspace}/{repo_slug}/hooks/{uid}:
     delete:
       tags:
-        - - Repositories
-          - Webhooks
+        - - - - Repositories
+              - Webhooks
       description: |-
         Deletes the specified webhook subscription from the given
         repository.
@@ -6026,8 +6026,8 @@ paths:
         - api_key: []
     get:
       tags:
-        - - Repositories
-          - Webhooks
+        - - - - Repositories
+              - Webhooks
       description: |-
         Returns the webhook with the specified id installed on the specified
         repository.
@@ -6052,8 +6052,8 @@ paths:
         - api_key: []
     put:
       tags:
-        - - Repositories
-          - Webhooks
+        - - - - Repositories
+              - Webhooks
       description: >-
         Updates the specified webhook subscription.
 
@@ -6144,7 +6144,7 @@ paths:
   /repositories/{workspace}/{repo_slug}/issues:
     get:
       tags:
-        - - Issue tracker
+        - - - - Issue tracker
       description: Returns the issues in the issue tracker.
       summary: List issues
       responses:
@@ -6171,7 +6171,7 @@ paths:
         - api_key: []
     post:
       tags:
-        - - Issue tracker
+        - - - - Issue tracker
       description: |-
         Creates a new issue.
 
@@ -6247,7 +6247,7 @@ paths:
   /repositories/{workspace}/{repo_slug}/issues/export:
     post:
       tags:
-        - - Issue tracker
+        - - - - Issue tracker
       description: >-
         A POST request to this endpoint initiates a new background celery task
         that archives the repo's issues.
@@ -6320,7 +6320,7 @@ paths:
   /repositories/{workspace}/{repo_slug}/issues/export/{repo_name}-issues-{task_id}.zip:
     get:
       tags:
-        - - Issue tracker
+        - - - - Issue tracker
       description: >-
         This endpoint is used to poll for the progress of an issue export
 
@@ -6418,7 +6418,7 @@ paths:
   /repositories/{workspace}/{repo_slug}/issues/import:
     get:
       tags:
-        - - Issue tracker
+        - - - - Issue tracker
       description: >-
         When using GET, this endpoint reports the status of the current import
         task.
@@ -6487,7 +6487,7 @@ paths:
         - api_key: []
     post:
       tags:
-        - - Issue tracker
+        - - - - Issue tracker
       description: >-
         A POST request to this endpoint will import the zip file given by the
         archive parameter into the repository. All
@@ -6577,7 +6577,7 @@ paths:
   /repositories/{workspace}/{repo_slug}/issues/{issue_id}:
     delete:
       tags:
-        - - Issue tracker
+        - - - - Issue tracker
       description: |-
         Deletes the specified issue. This requires write access to the
         repository.
@@ -6610,7 +6610,7 @@ paths:
         - api_key: []
     get:
       tags:
-        - - Issue tracker
+        - - - - Issue tracker
       description: Returns the specified issue.
       summary: Get an issue
       responses:
@@ -6647,7 +6647,7 @@ paths:
         - api_key: []
     put:
       tags:
-        - - Issue tracker
+        - - - - Issue tracker
       description: >-
         Modifies the issue.
 
@@ -6739,7 +6739,7 @@ paths:
   /repositories/{workspace}/{repo_slug}/issues/{issue_id}/attachments:
     get:
       tags:
-        - - Issue tracker
+        - - - - Issue tracker
       description: |-
         Returns all attachments for this issue.
 
@@ -6774,7 +6774,7 @@ paths:
         - api_key: []
     post:
       tags:
-        - - Issue tracker
+        - - - - Issue tracker
       description: |-
         Upload new issue attachments.
 
@@ -6837,7 +6837,7 @@ paths:
   /repositories/{workspace}/{repo_slug}/issues/{issue_id}/attachments/{path}:
     delete:
       tags:
-        - - Issue tracker
+        - - - - Issue tracker
       description: Deletes an attachment.
       summary: Delete an attachment for an issue
       responses:
@@ -6862,7 +6862,7 @@ paths:
         - api_key: []
     get:
       tags:
-        - - Issue tracker
+        - - - - Issue tracker
       description: |-
         Returns the contents of the specified file attachment.
 
@@ -6929,7 +6929,7 @@ paths:
   /repositories/{workspace}/{repo_slug}/issues/{issue_id}/changes:
     get:
       tags:
-        - - Issue tracker
+        - - - - Issue tracker
       description: >-
         Returns the list of all changes that have been made to the specified
 
@@ -7108,7 +7108,7 @@ paths:
         - api_key: []
     post:
       tags:
-        - - Issue tracker
+        - - - - Issue tracker
       description: |-
         Makes a change to the specified issue.
 
@@ -7221,7 +7221,7 @@ paths:
   /repositories/{workspace}/{repo_slug}/issues/{issue_id}/changes/{change_id}:
     get:
       tags:
-        - - Issue tracker
+        - - - - Issue tracker
       description: |-
         Returns the specified issue change object.
 
@@ -7280,7 +7280,7 @@ paths:
   /repositories/{workspace}/{repo_slug}/issues/{issue_id}/comments:
     get:
       tags:
-        - - Issue tracker
+        - - - - Issue tracker
       description: >-
         Returns a paginated list of all comments that were made on the
 
@@ -7321,7 +7321,7 @@ paths:
         - api_key: []
     post:
       tags:
-        - - Issue tracker
+        - - - - Issue tracker
       description: >-
         Creates a new issue comment.
 
@@ -7390,7 +7390,7 @@ paths:
   /repositories/{workspace}/{repo_slug}/issues/{issue_id}/comments/{comment_id}:
     delete:
       tags:
-        - - Issue tracker
+        - - - - Issue tracker
       description: Deletes the specified comment.
       summary: Delete a comment on an issue
       responses:
@@ -7403,7 +7403,7 @@ paths:
         - api_key: []
     get:
       tags:
-        - - Issue tracker
+        - - - - Issue tracker
       description: Returns the specified issue comment object.
       summary: Get a comment on an issue
       responses:
@@ -7420,7 +7420,7 @@ paths:
         - api_key: []
     put:
       tags:
-        - - Issue tracker
+        - - - - Issue tracker
       description: >-
         Updates the content of the specified issue comment. Note that only
 
@@ -7496,7 +7496,7 @@ paths:
   /repositories/{workspace}/{repo_slug}/issues/{issue_id}/vote:
     delete:
       tags:
-        - - Issue tracker
+        - - - - Issue tracker
       description: Retract your vote.
       summary: Remove vote for an issue
       responses:
@@ -7514,7 +7514,7 @@ paths:
         - api_key: []
     get:
       tags:
-        - - Issue tracker
+        - - - - Issue tracker
       description: |-
         Check whether the authenticated user has voted for this issue.
         A 204 status code indicates that the user has voted, while a 404
@@ -7549,7 +7549,7 @@ paths:
         - api_key: []
     put:
       tags:
-        - - Issue tracker
+        - - - - Issue tracker
       description: |-
         Vote for this issue.
 
@@ -7609,7 +7609,7 @@ paths:
   /repositories/{workspace}/{repo_slug}/issues/{issue_id}/watch:
     delete:
       tags:
-        - - Issue tracker
+        - - - - Issue tracker
       description: Stop watching this issue.
       summary: Stop watching an issue
       responses:
@@ -7643,7 +7643,7 @@ paths:
         - api_key: []
     get:
       tags:
-        - - Issue tracker
+        - - - - Issue tracker
       description: |-
         Indicated whether or not the authenticated user is watching this
         issue.
@@ -7677,7 +7677,7 @@ paths:
         - api_key: []
     put:
       tags:
-        - - Issue tracker
+        - - - - Issue tracker
       description: |-
         Start watching this issue.
 
@@ -7739,7 +7739,7 @@ paths:
   /repositories/{workspace}/{repo_slug}/merge-base/{revspec}:
     get:
       tags:
-        - - Commits
+        - - - - Commits
       description: >-
         Returns the best common ancestor between two commits, specified in a
         revspec
@@ -7816,7 +7816,7 @@ paths:
   /repositories/{workspace}/{repo_slug}/milestones:
     get:
       tags:
-        - - Issue tracker
+        - - - - Issue tracker
       description: |-
         Returns the milestones that have been defined in the issue tracker.
 
@@ -7863,7 +7863,7 @@ paths:
   /repositories/{workspace}/{repo_slug}/milestones/{milestone_id}:
     get:
       tags:
-        - - Issue tracker
+        - - - - Issue tracker
       description: Returns the specified issue tracker milestone object.
       summary: Get a milestone
       responses:
@@ -7912,7 +7912,7 @@ paths:
   /repositories/{workspace}/{repo_slug}/override-settings:
     get:
       tags:
-        - - Repositories
+        - - - - Repositories
       description: ''
       summary: Retrieve the inheritance state for repository settings
       responses:
@@ -7940,7 +7940,7 @@ paths:
             - admin:repository:bitbucket
     put:
       tags:
-        - - Repositories
+        - - - - Repositories
       description: ''
       summary: |-
         Set the inheritance state for repository settings
@@ -7986,7 +7986,7 @@ paths:
   /repositories/{workspace}/{repo_slug}/patch/{spec}:
     get:
       tags:
-        - - Commits
+        - - - - Commits
       description: |-
         Produces a raw patch for a single commit (diffed against its first
         parent), or a patch-series for a revspec of 2 commits (e.g.
@@ -8059,7 +8059,7 @@ paths:
   /repositories/{workspace}/{repo_slug}/permissions-config/groups:
     get:
       tags:
-        - - Repositories
+        - - - - Repositories
       description: >-
         Returns a paginated list of explicit group permissions for the given
         repository.
@@ -8151,7 +8151,7 @@ paths:
   /repositories/{workspace}/{repo_slug}/permissions-config/groups/{group_slug}:
     delete:
       tags:
-        - - Repositories
+        - - - - Repositories
       description: >-
         Deletes the repository group permission between the requested repository
         and group, if one exists.
@@ -8192,7 +8192,7 @@ paths:
         - api_key: []
     get:
       tags:
-        - - Repositories
+        - - - - Repositories
       description: >-
         Returns the group permission for a given group slug and repository
 
@@ -8264,7 +8264,7 @@ paths:
             - read:user:bitbucket
     put:
       tags:
-        - - Repositories
+        - - - - Repositories
       description: >-
         Updates the group permission, or grants a new permission if one does not
         already exist.
@@ -8380,7 +8380,7 @@ paths:
   /repositories/{workspace}/{repo_slug}/permissions-config/users:
     get:
       tags:
-        - - Repositories
+        - - - - Repositories
       description: >-
         Returns a paginated list of explicit user permissions for the given
         repository.
@@ -8472,7 +8472,7 @@ paths:
   /repositories/{workspace}/{repo_slug}/permissions-config/users/{selected_user_id}:
     delete:
       tags:
-        - - Repositories
+        - - - - Repositories
       description: >-
         Deletes the repository user permission between the requested repository
         and user, if one exists.
@@ -8516,7 +8516,7 @@ paths:
         - api_key: []
     get:
       tags:
-        - - Repositories
+        - - - - Repositories
       description: >-
         Returns the explicit user permission for a given user and repository.
 
@@ -8591,7 +8591,7 @@ paths:
             - read:user:bitbucket
     put:
       tags:
-        - - Repositories
+        - - - - Repositories
       description: >-
         Updates the explicit user permission for a given user and repository.
         The selected user must be a member of
@@ -8713,7 +8713,7 @@ paths:
   /repositories/{workspace}/{repo_slug}/pipelines:
     get:
       tags:
-        - - Pipelines
+        - - - - Pipelines
       summary: List pipelines
       description: Find pipelines
       operationId: getPipelinesForRepository
@@ -8751,7 +8751,7 @@ paths:
         - api_key: []
     post:
       tags:
-        - - Pipelines
+        - - - - Pipelines
       summary: Run a pipeline
       description: >
         Endpoint to create and initiate a pipeline.
@@ -9051,7 +9051,7 @@ paths:
   /repositories/{workspace}/{repo_slug}/pipelines-config/caches:
     get:
       tags:
-        - - Pipelines
+        - - - - Pipelines
       summary: List caches
       description: Retrieve the repository pipelines caches.
       operationId: getRepositoryPipelineCaches
@@ -9093,7 +9093,7 @@ paths:
         - api_key: []
     delete:
       tags:
-        - - Pipelines
+        - - - - Pipelines
       summary: Delete caches
       description: Delete repository cache versions by name.
       operationId: deleteRepositoryPipelineCaches
@@ -9138,7 +9138,7 @@ paths:
   /repositories/{workspace}/{repo_slug}/pipelines-config/caches/{cache_uuid}:
     delete:
       tags:
-        - - Pipelines
+        - - - - Pipelines
       summary: Delete a cache
       description: Delete a repository cache.
       operationId: deleteRepositoryPipelineCache
@@ -9185,7 +9185,7 @@ paths:
   /repositories/{workspace}/{repo_slug}/pipelines-config/caches/{cache_uuid}/content-uri:
     get:
       tags:
-        - - Pipelines
+        - - - - Pipelines
       summary: Get cache content URI
       description: Retrieve the URI of the content of the specified cache.
       operationId: getRepositoryPipelineCacheContentURI
@@ -9236,7 +9236,7 @@ paths:
   /repositories/{workspace}/{repo_slug}/pipelines/{pipeline_uuid}:
     get:
       tags:
-        - - Pipelines
+        - - - - Pipelines
       summary: Get a pipeline
       description: Retrieve a specified pipeline
       operationId: getPipelineForRepository
@@ -9287,7 +9287,7 @@ paths:
   /repositories/{workspace}/{repo_slug}/pipelines/{pipeline_uuid}/steps:
     get:
       tags:
-        - - Pipelines
+        - - - - Pipelines
       summary: List steps for a pipeline
       description: Find steps for the given pipeline.
       operationId: getPipelineStepsForRepository
@@ -9332,7 +9332,7 @@ paths:
   /repositories/{workspace}/{repo_slug}/pipelines/{pipeline_uuid}/steps/{step_uuid}:
     get:
       tags:
-        - - Pipelines
+        - - - - Pipelines
       summary: Get a step of a pipeline
       description: Retrieve a given step of a pipeline.
       operationId: getPipelineStepForRepository
@@ -9391,7 +9391,7 @@ paths:
   /repositories/{workspace}/{repo_slug}/pipelines/{pipeline_uuid}/steps/{step_uuid}/log:
     get:
       tags:
-        - - Pipelines
+        - - - - Pipelines
       summary: Get log file for a step
       description: >-
         Retrieve the log file for a given step of a pipeline.
@@ -9468,7 +9468,7 @@ paths:
   /repositories/{workspace}/{repo_slug}/pipelines/{pipeline_uuid}/steps/{step_uuid}/logs/{log_uuid}:
     get:
       tags:
-        - - Pipelines
+        - - - - Pipelines
       summary: >-
         Get the logs for the build container or a service container for a given
         step of a pipeline.
@@ -9539,7 +9539,7 @@ paths:
   /repositories/{workspace}/{repo_slug}/pipelines/{pipeline_uuid}/steps/{step_uuid}/test_reports:
     get:
       tags:
-        - - Pipelines
+        - - - - Pipelines
       summary: Get a summary of test reports for a given step of a pipeline.
       operationId: getPipelineTestReports
       parameters:
@@ -9593,7 +9593,7 @@ paths:
   /repositories/{workspace}/{repo_slug}/pipelines/{pipeline_uuid}/steps/{step_uuid}/test_reports/test_cases:
     get:
       tags:
-        - - Pipelines
+        - - - - Pipelines
       summary: Get test cases for a given step of a pipeline.
       operationId: getPipelineTestReportTestCases
       parameters:
@@ -9647,7 +9647,7 @@ paths:
   /repositories/{workspace}/{repo_slug}/pipelines/{pipeline_uuid}/steps/{step_uuid}/test_reports/test_cases/{test_case_uuid}/test_case_reasons:
     get:
       tags:
-        - - Pipelines
+        - - - - Pipelines
       summary: >-
         Get test case reasons (output) for a given test case in a step of a
         pipeline.
@@ -9709,7 +9709,7 @@ paths:
   /repositories/{workspace}/{repo_slug}/pipelines/{pipeline_uuid}/stopPipeline:
     post:
       tags:
-        - - Pipelines
+        - - - - Pipelines
       summary: Stop a pipeline
       description: >-
         Signal the stop of a pipeline and all of its steps that not have
@@ -9766,7 +9766,7 @@ paths:
   /repositories/{workspace}/{repo_slug}/pipelines_config:
     get:
       tags:
-        - - Pipelines
+        - - - - Pipelines
       summary: Get configuration
       description: Retrieve the repository pipelines configuration.
       operationId: getRepositoryPipelineConfig
@@ -9802,7 +9802,7 @@ paths:
         - api_key: []
     put:
       tags:
-        - - Pipelines
+        - - - - Pipelines
       summary: Update configuration
       description: Update the pipelines configuration for a repository.
       operationId: updateRepositoryPipelineConfig
@@ -9848,7 +9848,7 @@ paths:
   /repositories/{workspace}/{repo_slug}/pipelines_config/build_number:
     put:
       tags:
-        - - Pipelines
+        - - - - Pipelines
       summary: Update the next build number
       description: >-
         Update the next build number that should be assigned to a pipeline. The
@@ -9911,7 +9911,7 @@ paths:
   /repositories/{workspace}/{repo_slug}/pipelines_config/schedules:
     post:
       tags:
-        - - Pipelines
+        - - - - Pipelines
       summary: Create a schedule
       description: Create a schedule for the given repository.
       operationId: createRepositoryPipelineSchedule
@@ -9975,7 +9975,7 @@ paths:
         - api_key: []
     get:
       tags:
-        - - Pipelines
+        - - - - Pipelines
       summary: List schedules
       description: Retrieve the configured schedules for the given repository.
       operationId: getRepositoryPipelineSchedules
@@ -10020,7 +10020,7 @@ paths:
   /repositories/{workspace}/{repo_slug}/pipelines_config/schedules/{schedule_uuid}:
     get:
       tags:
-        - - Pipelines
+        - - - - Pipelines
       summary: Get a schedule
       description: Retrieve a schedule by its UUID.
       operationId: getRepositoryPipelineSchedule
@@ -10070,7 +10070,7 @@ paths:
         - api_key: []
     put:
       tags:
-        - - Pipelines
+        - - - - Pipelines
       summary: Update a schedule
       description: Update a schedule.
       operationId: updateRepositoryPipelineSchedule
@@ -10128,7 +10128,7 @@ paths:
         - api_key: []
     delete:
       tags:
-        - - Pipelines
+        - - - - Pipelines
       summary: Delete a schedule
       description: Delete a schedule.
       operationId: deleteRepositoryPipelineSchedule
@@ -10175,7 +10175,7 @@ paths:
   /repositories/{workspace}/{repo_slug}/pipelines_config/schedules/{schedule_uuid}/executions:
     get:
       tags:
-        - - Pipelines
+        - - - - Pipelines
       summary: List executions of a schedule
       description: Retrieve the executions of a given schedule.
       operationId: getRepositoryPipelineScheduleExecutions
@@ -10226,7 +10226,7 @@ paths:
   /repositories/{workspace}/{repo_slug}/pipelines_config/ssh/key_pair:
     get:
       tags:
-        - - Pipelines
+        - - - - Pipelines
       summary: Get SSH key pair
       description: >-
         Retrieve the repository SSH key pair excluding the SSH private key. The
@@ -10273,7 +10273,7 @@ paths:
         - api_key: []
     put:
       tags:
-        - - Pipelines
+        - - - - Pipelines
       summary: Update SSH key pair
       description: >-
         Create or update the repository SSH key pair. The private key will be
@@ -10326,7 +10326,7 @@ paths:
         - api_key: []
     delete:
       tags:
-        - - Pipelines
+        - - - - Pipelines
       summary: Delete SSH key pair
       description: Delete the repository SSH key pair.
       operationId: deleteRepositoryPipelineKeyPair
@@ -10367,7 +10367,7 @@ paths:
   /repositories/{workspace}/{repo_slug}/pipelines_config/ssh/known_hosts:
     get:
       tags:
-        - - Pipelines
+        - - - - Pipelines
       summary: List known hosts
       description: Find repository level known hosts.
       operationId: getRepositoryPipelineKnownHosts
@@ -10405,7 +10405,7 @@ paths:
         - api_key: []
     post:
       tags:
-        - - Pipelines
+        - - - - Pipelines
       summary: Create a known host
       description: Create a repository level known host.
       operationId: createRepositoryPipelineKnownHost
@@ -10468,7 +10468,7 @@ paths:
   /repositories/{workspace}/{repo_slug}/pipelines_config/ssh/known_hosts/{known_host_uuid}:
     get:
       tags:
-        - - Pipelines
+        - - - - Pipelines
       summary: Get a known host
       description: Retrieve a repository level known host.
       operationId: getRepositoryPipelineKnownHost
@@ -10520,7 +10520,7 @@ paths:
         - api_key: []
     put:
       tags:
-        - - Pipelines
+        - - - - Pipelines
       summary: Update a known host
       description: Update a repository level known host.
       operationId: updateRepositoryPipelineKnownHost
@@ -10579,7 +10579,7 @@ paths:
         - api_key: []
     delete:
       tags:
-        - - Pipelines
+        - - - - Pipelines
       summary: Delete a known host
       description: Delete a repository level known host.
       operationId: deleteRepositoryPipelineKnownHost
@@ -10626,7 +10626,7 @@ paths:
   /repositories/{workspace}/{repo_slug}/pipelines_config/variables:
     get:
       tags:
-        - - Pipelines
+        - - - - Pipelines
       summary: List variables for a repository
       description: Find repository level variables.
       operationId: getRepositoryPipelineVariables
@@ -10664,7 +10664,7 @@ paths:
         - api_key: []
     post:
       tags:
-        - - Pipelines
+        - - - - Pipelines
       summary: Create a variable for a repository
       description: Create a repository level variable.
       operationId: createRepositoryPipelineVariable
@@ -10727,7 +10727,7 @@ paths:
   /repositories/{workspace}/{repo_slug}/pipelines_config/variables/{variable_uuid}:
     get:
       tags:
-        - - Pipelines
+        - - - - Pipelines
       summary: Get a variable for a repository
       description: Retrieve a repository level variable.
       operationId: getRepositoryPipelineVariable
@@ -10779,7 +10779,7 @@ paths:
         - api_key: []
     put:
       tags:
-        - - Pipelines
+        - - - - Pipelines
       summary: Update a variable for a repository
       description: Update a repository level variable.
       operationId: updateRepositoryPipelineVariable
@@ -10838,7 +10838,7 @@ paths:
         - api_key: []
     delete:
       tags:
-        - - Pipelines
+        - - - - Pipelines
       summary: Delete a variable for a repository
       description: Delete a repository level variable.
       operationId: deleteRepositoryPipelineVariable
@@ -10923,7 +10923,7 @@ paths:
       requestBody:
         $ref: '#/components/requestBodies/application_property'
       tags:
-        - - properties
+        - - - - properties
       security:
         - oauth2: []
         - basic: []
@@ -10966,7 +10966,7 @@ paths:
           schema:
             type: string
       tags:
-        - - properties
+        - - - - properties
       security:
         - oauth2: []
         - basic: []
@@ -11013,7 +11013,7 @@ paths:
           schema:
             type: string
       tags:
-        - - properties
+        - - - - properties
       security:
         - oauth2: []
         - basic: []
@@ -11021,7 +11021,7 @@ paths:
   /repositories/{workspace}/{repo_slug}/pullrequests:
     get:
       tags:
-        - - Pullrequests
+        - - - - Pullrequests
       description: >-
         Returns all pull requests on the specified repository.
 
@@ -11080,7 +11080,7 @@ paths:
             - read:pullrequest:bitbucket
     post:
       tags:
-        - - Pullrequests
+        - - - - Pullrequests
       description: >-
         Creates a new pull request where the destination repository is
 
@@ -11245,7 +11245,7 @@ paths:
   /repositories/{workspace}/{repo_slug}/pullrequests/activity:
     get:
       tags:
-        - - Pullrequests
+        - - - - Pullrequests
       description: >-
         Returns a paginated list of the pull request's activity log.
 
@@ -11593,7 +11593,7 @@ paths:
   /repositories/{workspace}/{repo_slug}/pullrequests/{pull_request_id}:
     get:
       tags:
-        - - Pullrequests
+        - - - - Pullrequests
       description: Returns the specified pull request.
       summary: Get a pull request
       responses:
@@ -11623,7 +11623,7 @@ paths:
             - read:pullrequest:bitbucket
     put:
       tags:
-        - - Pullrequests
+        - - - - Pullrequests
       description: |-
         Mutates the specified pull request.
 
@@ -11699,7 +11699,7 @@ paths:
   /repositories/{workspace}/{repo_slug}/pullrequests/{pull_request_id}/activity:
     get:
       tags:
-        - - Pullrequests
+        - - - - Pullrequests
       description: >-
         Returns a paginated list of the pull request's activity log.
 
@@ -12053,7 +12053,7 @@ paths:
   /repositories/{workspace}/{repo_slug}/pullrequests/{pull_request_id}/approve:
     delete:
       tags:
-        - - Pullrequests
+        - - - - Pullrequests
       description: |-
         Redact the authenticated user's approval of the specified pull
         request.
@@ -12095,7 +12095,7 @@ paths:
             - write:pullrequest:bitbucket
     post:
       tags:
-        - - Pullrequests
+        - - - - Pullrequests
       description: Approve the specified pull request as the authenticated user.
       summary: Approve a pull request
       responses:
@@ -12156,7 +12156,7 @@ paths:
   /repositories/{workspace}/{repo_slug}/pullrequests/{pull_request_id}/comments:
     get:
       tags:
-        - - Pullrequests
+        - - - - Pullrequests
       description: |-
         Returns a paginated list of the pull request's comments.
 
@@ -12202,7 +12202,7 @@ paths:
             - read:pullrequest:bitbucket
     post:
       tags:
-        - - Pullrequests
+        - - - - Pullrequests
       description: |-
         Creates a new pull request comment.
 
@@ -12275,7 +12275,7 @@ paths:
   /repositories/{workspace}/{repo_slug}/pullrequests/{pull_request_id}/comments/{comment_id}:
     delete:
       tags:
-        - - Pullrequests
+        - - - - Pullrequests
       description: Deletes a specific pull request comment.
       summary: Delete a comment on a pull request
       responses:
@@ -12307,7 +12307,7 @@ paths:
             - read:pullrequest:bitbucket
     get:
       tags:
-        - - Pullrequests
+        - - - - Pullrequests
       description: Returns a specific pull request comment.
       summary: Get a comment on a pull request
       responses:
@@ -12341,7 +12341,7 @@ paths:
             - read:pullrequest:bitbucket
     put:
       tags:
-        - - Pullrequests
+        - - - - Pullrequests
       description: Updates a specific pull request comment.
       summary: Update a comment on a pull request
       responses:
@@ -12412,7 +12412,7 @@ paths:
   /repositories/{workspace}/{repo_slug}/pullrequests/{pull_request_id}/comments/{comment_id}/resolve:
     delete:
       tags:
-        - - Pullrequests
+        - - - - Pullrequests
       description: ''
       summary: Reopen a comment thread
       responses:
@@ -12446,7 +12446,7 @@ paths:
             - read:pullrequest:bitbucket
     post:
       tags:
-        - - Pullrequests
+        - - - - Pullrequests
       description: ''
       summary: Resolve a comment thread
       responses:
@@ -12519,7 +12519,7 @@ paths:
   /repositories/{workspace}/{repo_slug}/pullrequests/{pull_request_id}/commits:
     get:
       tags:
-        - - Pullrequests
+        - - - - Pullrequests
       description: |-
         Returns a paginated list of the pull request's commits.
 
@@ -12582,7 +12582,7 @@ paths:
   /repositories/{workspace}/{repo_slug}/pullrequests/{pull_request_id}/decline:
     post:
       tags:
-        - - Pullrequests
+        - - - - Pullrequests
       description: Declines the pull request.
       summary: Decline a pull request
       responses:
@@ -12637,7 +12637,7 @@ paths:
   /repositories/{workspace}/{repo_slug}/pullrequests/{pull_request_id}/diff:
     get:
       tags:
-        - - Pullrequests
+        - - - - Pullrequests
       description: >-
         Redirects to the [repository
         diff](/cloud/bitbucket/rest/api-group-commits/#api-repositories-workspace-repo-slug-diff-spec-get)
@@ -12688,7 +12688,7 @@ paths:
   /repositories/{workspace}/{repo_slug}/pullrequests/{pull_request_id}/diffstat:
     get:
       tags:
-        - - Pullrequests
+        - - - - Pullrequests
       description: >-
         Redirects to the [repository
         diffstat](/cloud/bitbucket/rest/api-group-commits/#api-repositories-workspace-repo-slug-diffstat-spec-get)
@@ -12739,7 +12739,7 @@ paths:
   /repositories/{workspace}/{repo_slug}/pullrequests/{pull_request_id}/merge:
     post:
       tags:
-        - - Pullrequests
+        - - - - Pullrequests
       description: Merges the pull request.
       summary: Merge a pull request
       responses:
@@ -12823,7 +12823,7 @@ paths:
   /repositories/{workspace}/{repo_slug}/pullrequests/{pull_request_id}/merge/task-status/{task_id}:
     get:
       tags:
-        - - Pullrequests
+        - - - - Pullrequests
       description: >-
         When merging a pull request takes too long, the client receives a
 
@@ -12949,7 +12949,7 @@ paths:
   /repositories/{workspace}/{repo_slug}/pullrequests/{pull_request_id}/patch:
     get:
       tags:
-        - - Pullrequests
+        - - - - Pullrequests
       description: >-
         Redirects to the [repository
         patch](/cloud/bitbucket/rest/api-group-commits/#api-repositories-workspace-repo-slug-patch-spec-get)
@@ -13000,7 +13000,7 @@ paths:
   /repositories/{workspace}/{repo_slug}/pullrequests/{pull_request_id}/request-changes:
     delete:
       tags:
-        - - Pullrequests
+        - - - - Pullrequests
       description: ''
       summary: Remove change request for a pull request
       responses:
@@ -13040,7 +13040,7 @@ paths:
             - write:pullrequest:bitbucket
     post:
       tags:
-        - - Pullrequests
+        - - - - Pullrequests
       description: ''
       summary: Request changes for a pull request
       responses:
@@ -13109,8 +13109,8 @@ paths:
   /repositories/{workspace}/{repo_slug}/pullrequests/{pull_request_id}/statuses:
     get:
       tags:
-        - - Pullrequests
-          - Commit statuses
+        - - - - Pullrequests
+              - Commit statuses
       description: |-
         Returns all statuses (e.g. build results) for the given pull
         request.
@@ -13184,7 +13184,7 @@ paths:
   /repositories/{workspace}/{repo_slug}/pullrequests/{pull_request_id}/tasks:
     get:
       tags:
-        - - Pullrequests
+        - - - - Pullrequests
       description: >-
         Returns a paginated list of the pull request's tasks.
 
@@ -13266,7 +13266,7 @@ paths:
             - read:pullrequest:bitbucket
     post:
       tags:
-        - - Pullrequests
+        - - - - Pullrequests
       description: >-
         Creates a new pull request task.
 
@@ -13355,7 +13355,7 @@ paths:
   /repositories/{workspace}/{repo_slug}/pullrequests/{pull_request_id}/tasks/{task_id}:
     delete:
       tags:
-        - - Pullrequests
+        - - - - Pullrequests
       description: Deletes a specific pull request task.
       summary: Delete a task on a pull request
       responses:
@@ -13385,7 +13385,7 @@ paths:
             - read:pullrequest:bitbucket
     get:
       tags:
-        - - Pullrequests
+        - - - - Pullrequests
       description: Returns a specific pull request task.
       summary: Get a task on a pull request
       responses:
@@ -13419,7 +13419,7 @@ paths:
             - read:pullrequest:bitbucket
     put:
       tags:
-        - - Pullrequests
+        - - - - Pullrequests
       description: Updates a specific pull request task.
       summary: Update a task on a pull request
       responses:
@@ -13542,7 +13542,7 @@ paths:
       requestBody:
         $ref: '#/components/requestBodies/application_property'
       tags:
-        - - properties
+        - - - - properties
       security:
         - oauth2: []
         - basic: []
@@ -13591,7 +13591,7 @@ paths:
           schema:
             type: string
       tags:
-        - - properties
+        - - - - properties
       security:
         - oauth2: []
         - basic: []
@@ -13644,7 +13644,7 @@ paths:
           schema:
             type: string
       tags:
-        - - properties
+        - - - - properties
       security:
         - oauth2: []
         - basic: []
@@ -13652,7 +13652,7 @@ paths:
   /repositories/{workspace}/{repo_slug}/refs:
     get:
       tags:
-        - - Refs
+        - - - - Refs
       description: >-
         Returns the branches and tags in the repository.
 
@@ -13764,7 +13764,7 @@ paths:
   /repositories/{workspace}/{repo_slug}/refs/branches:
     get:
       tags:
-        - - Refs
+        - - - - Refs
       description: >-
         Returns a list of all open branches within the specified repository.
 
@@ -13971,7 +13971,7 @@ paths:
             - read:repository:bitbucket
     post:
       tags:
-        - - Refs
+        - - - - Refs
       description: >-
         Creates a new branch in the specified repository.
 
@@ -14069,7 +14069,7 @@ paths:
   /repositories/{workspace}/{repo_slug}/refs/branches/{name}:
     delete:
       tags:
-        - - Refs
+        - - - - Refs
       description: |-
         Delete a branch in the specified repository.
 
@@ -14110,7 +14110,7 @@ paths:
             - write:repository:bitbucket
     get:
       tags:
-        - - Refs
+        - - - - Refs
       description: |-
         Returns a branch object within the specified repository.
 
@@ -14277,7 +14277,7 @@ paths:
   /repositories/{workspace}/{repo_slug}/refs/tags:
     get:
       tags:
-        - - Refs
+        - - - - Refs
       description: >-
         Returns the tags in the repository.
 
@@ -14368,7 +14368,7 @@ paths:
             - read:repository:bitbucket
     post:
       tags:
-        - - Refs
+        - - - - Refs
       description: |-
         Creates a new tag in the specified repository.
 
@@ -14442,7 +14442,7 @@ paths:
   /repositories/{workspace}/{repo_slug}/refs/tags/{name}:
     delete:
       tags:
-        - - Refs
+        - - - - Refs
       description: |-
         Delete a tag in the specified repository.
 
@@ -14479,7 +14479,7 @@ paths:
             - write:repository:bitbucket
     get:
       tags:
-        - - Refs
+        - - - - Refs
       description: >-
         Returns the specified tag.
 
@@ -14673,8 +14673,8 @@ paths:
   /repositories/{workspace}/{repo_slug}/src:
     get:
       tags:
-        - - Source
-          - Repositories
+        - - - - Source
+              - Repositories
       description: >-
         This endpoint redirects the client to the directory listing of the
 
@@ -14733,8 +14733,8 @@ paths:
             - read:repository:bitbucket
     post:
       tags:
-        - - Source
-          - Repositories
+        - - - - Source
+              - Repositories
       description: >-
         This endpoint is used to create new commits in the repository by
 
@@ -15108,8 +15108,8 @@ paths:
   /repositories/{workspace}/{repo_slug}/src/{commit}/{path}:
     get:
       tags:
-        - - Source
-          - Repositories
+        - - - - Source
+              - Repositories
       description: >-
         This endpoints is used to retrieve the contents of a single file,
 
@@ -15524,7 +15524,7 @@ paths:
   /repositories/{workspace}/{repo_slug}/versions:
     get:
       tags:
-        - - Issue tracker
+        - - - - Issue tracker
       description: |-
         Returns the versions that have been defined in the issue tracker.
 
@@ -15571,7 +15571,7 @@ paths:
   /repositories/{workspace}/{repo_slug}/versions/{version_id}:
     get:
       tags:
-        - - Issue tracker
+        - - - - Issue tracker
       description: Returns the specified issue tracker version object.
       summary: Get a defined version for issues
       responses:
@@ -15620,7 +15620,7 @@ paths:
   /repositories/{workspace}/{repo_slug}/watchers:
     get:
       tags:
-        - - Repositories
+        - - - - Repositories
       description: |-
         Returns a paginated list of all the watchers on the specified
         repository.
@@ -15662,7 +15662,7 @@ paths:
   /snippets:
     get:
       tags:
-        - - Snippets
+        - - - - Snippets
       description: >-
         Returns all snippets. Like pull requests, repositories and workspaces,
         the
@@ -15740,7 +15740,7 @@ paths:
         - api_key: []
     post:
       tags:
-        - - Snippets
+        - - - - Snippets
       description: >-
         Creates a new snippet under the authenticated user's account.
 
@@ -15969,7 +15969,7 @@ paths:
   /snippets/{workspace}:
     get:
       tags:
-        - - Snippets
+        - - - - Snippets
       description: >-
         Identical to
         [`/snippets`](/cloud/bitbucket/rest/api-group-snippets/#api-snippets-get),
@@ -16012,7 +16012,7 @@ paths:
         - api_key: []
     post:
       tags:
-        - - Snippets
+        - - - - Snippets
       description: >-
         Identical to
         [`/snippets`](/cloud/bitbucket/rest/api-group-snippets/#api-snippets-post),
@@ -16067,7 +16067,7 @@ paths:
   /snippets/{workspace}/{encoded_id}:
     delete:
       tags:
-        - - Snippets
+        - - - - Snippets
       description: Deletes a snippet and returns an empty response.
       summary: Delete a snippet
       responses:
@@ -16100,7 +16100,7 @@ paths:
         - api_key: []
     get:
       tags:
-        - - Snippets
+        - - - - Snippets
       description: |-
         Retrieves a single snippet.
 
@@ -16357,7 +16357,7 @@ paths:
         - api_key: []
     put:
       tags:
-        - - Snippets
+        - - - - Snippets
       description: |-
         Used to update a snippet. Use this to add and delete files and to
         change a snippet's title.
@@ -16632,7 +16632,7 @@ paths:
   /snippets/{workspace}/{encoded_id}/comments:
     get:
       tags:
-        - - Snippets
+        - - - - Snippets
       description: |-
         Used to retrieve a paginated list of all comments for a specific
         snippet.
@@ -16668,7 +16668,7 @@ paths:
         - api_key: []
     post:
       tags:
-        - - Snippets
+        - - - - Snippets
       description: |-
         Creates a new comment.
 
@@ -16730,7 +16730,7 @@ paths:
   /snippets/{workspace}/{encoded_id}/comments/{comment_id}:
     delete:
       tags:
-        - - Snippets
+        - - - - Snippets
       description: >-
         Deletes a snippet comment.
 
@@ -16760,7 +16760,7 @@ paths:
         - api_key: []
     get:
       tags:
-        - - Snippets
+        - - - - Snippets
       description: Returns the specific snippet comment.
       summary: Get a comment on a snippet
       responses:
@@ -16789,7 +16789,7 @@ paths:
         - api_key: []
     put:
       tags:
-        - - Snippets
+        - - - - Snippets
       description: |-
         Updates a comment.
 
@@ -16852,7 +16852,7 @@ paths:
   /snippets/{workspace}/{encoded_id}/commits:
     get:
       tags:
-        - - Snippets
+        - - - - Snippets
       description: Returns the changes (commits) made on this snippet.
       summary: List snippet changes
       responses:
@@ -16897,7 +16897,7 @@ paths:
   /snippets/{workspace}/{encoded_id}/commits/{revision}:
     get:
       tags:
-        - - Snippets
+        - - - - Snippets
       description: Returns the changes made on this snippet in this commit.
       summary: Get a previous snippet change
       responses:
@@ -16948,7 +16948,7 @@ paths:
   /snippets/{workspace}/{encoded_id}/files/{path}:
     get:
       tags:
-        - - Snippets
+        - - - - Snippets
       description: |-
         Convenience resource for getting to a snippet's raw files without the
         need for first having to retrieve the snippet itself and having to pull
@@ -17003,7 +17003,7 @@ paths:
   /snippets/{workspace}/{encoded_id}/watch:
     delete:
       tags:
-        - - Snippets
+        - - - - Snippets
       description: |-
         Used to stop watching a specific snippet. Returns 204 (No Content)
         to indicate success.
@@ -17030,7 +17030,7 @@ paths:
         - api_key: []
     get:
       tags:
-        - - Snippets
+        - - - - Snippets
       description: |-
         Used to check if the current user is watching a specific snippet.
 
@@ -17057,7 +17057,7 @@ paths:
         - api_key: []
     put:
       tags:
-        - - Snippets
+        - - - - Snippets
       description: Used to start watching a specific snippet. Returns 204 (No Content).
       summary: Watch a snippet
       responses:
@@ -17098,7 +17098,7 @@ paths:
   /snippets/{workspace}/{encoded_id}/watchers:
     get:
       tags:
-        - - Snippets
+        - - - - Snippets
       description: Returns a paginated list of all users watching a specific snippet.
       summary: List users watching a snippet
       responses:
@@ -17138,7 +17138,7 @@ paths:
   /snippets/{workspace}/{encoded_id}/{node_id}:
     delete:
       tags:
-        - - Snippets
+        - - - - Snippets
       description: |-
         Deletes the snippet.
 
@@ -17185,7 +17185,7 @@ paths:
         - api_key: []
     get:
       tags:
-        - - Snippets
+        - - - - Snippets
       description: |-
         Identical to `GET /snippets/encoded_id`, except that this endpoint
         can be used to retrieve the contents of the snippet as it was at an
@@ -17253,7 +17253,7 @@ paths:
         - api_key: []
     put:
       tags:
-        - - Snippets
+        - - - - Snippets
       description: |-
         Identical to `UPDATE /snippets/encoded_id`, except that this endpoint
         takes an explicit commit revision. Only the snippet's "HEAD"/"tip"
@@ -17362,7 +17362,7 @@ paths:
   /snippets/{workspace}/{encoded_id}/{node_id}/files/{path}:
     get:
       tags:
-        - - Snippets
+        - - - - Snippets
       description: |-
         Retrieves the raw contents of a specific file in the snippet. The
         `Content-Disposition` header will be "attachment" to avoid issues with
@@ -17433,7 +17433,7 @@ paths:
   /snippets/{workspace}/{encoded_id}/{revision}/diff:
     get:
       tags:
-        - - Snippets
+        - - - - Snippets
       description: |-
         Returns the diff of the specified commit against its first parent.
 
@@ -17507,7 +17507,7 @@ paths:
   /snippets/{workspace}/{encoded_id}/{revision}/patch:
     get:
       tags:
-        - - Snippets
+        - - - - Snippets
       description: |-
         Returns the patch of the specified commit against its first
         parent.
@@ -17576,7 +17576,7 @@ paths:
   /teams/{username}/pipelines_config/variables:
     get:
       tags:
-        - - Pipelines
+        - - - - Pipelines
       summary: List variables for an account
       deprecated: true
       description: >-
@@ -17607,7 +17607,7 @@ paths:
         - api_key: []
     post:
       tags:
-        - - Pipelines
+        - - - - Pipelines
       deprecated: true
       summary: Create a variable for a user
       description: >-
@@ -17658,7 +17658,7 @@ paths:
   /teams/{username}/pipelines_config/variables/{variable_uuid}:
     get:
       tags:
-        - - Pipelines
+        - - - - Pipelines
       deprecated: true
       summary: Get a variable for a team
       description: >-
@@ -17701,7 +17701,7 @@ paths:
         - api_key: []
     put:
       tags:
-        - - Pipelines
+        - - - - Pipelines
       deprecated: true
       summary: Update a variable for a team
       description: >-
@@ -17746,7 +17746,7 @@ paths:
         - api_key: []
     delete:
       tags:
-        - - Pipelines
+        - - - - Pipelines
       deprecated: true
       summary: Delete a variable for a team
       description: >-
@@ -17786,7 +17786,7 @@ paths:
   /teams/{username}/search/code:
     get:
       tags:
-        - - Search
+        - - - - Search
       summary: Search for code in a team's repositories
       description: |
         Search for code in the repositories of the specified team.
@@ -17920,7 +17920,7 @@ paths:
   /user:
     get:
       tags:
-        - - Users
+        - - - - Users
       description: Returns the currently logged in user.
       summary: Get current user
       responses:
@@ -17945,7 +17945,7 @@ paths:
   /user/emails:
     get:
       tags:
-        - - Users
+        - - - - Users
       description: |-
         Returns all the authenticated user's email addresses. Both
         confirmed and unconfirmed.
@@ -17966,7 +17966,7 @@ paths:
   /user/emails/{email}:
     get:
       tags:
-        - - Users
+        - - - - Users
       description: |-
         Returns details about a specific one of the authenticated user's
         email addresses.
@@ -17996,7 +17996,7 @@ paths:
   /user/permissions/repositories:
     get:
       tags:
-        - - Repositories
+        - - - - Repositories
       description: >-
         Returns an object for each repository the caller has explicit access
 
@@ -18093,7 +18093,7 @@ paths:
   /user/permissions/workspaces:
     get:
       tags:
-        - - Workspaces
+        - - - - Workspaces
       description: >-
         Returns an object for each workspace the caller is a member of, and
 
@@ -18214,7 +18214,7 @@ paths:
   /users/{selected_user}:
     get:
       tags:
-        - - Users
+        - - - - Users
       description: >-
         Gets the public information associated with a user account.
 
@@ -18262,7 +18262,7 @@ paths:
   /users/{selected_user}/pipelines_config/variables:
     get:
       tags:
-        - - Pipelines
+        - - - - Pipelines
       deprecated: true
       summary: List variables for a user
       description: >-
@@ -18295,7 +18295,7 @@ paths:
         - api_key: []
     post:
       tags:
-        - - Pipelines
+        - - - - Pipelines
       deprecated: true
       summary: Create a variable for a user
       description: >-
@@ -18348,7 +18348,7 @@ paths:
   /users/{selected_user}/pipelines_config/variables/{variable_uuid}:
     get:
       tags:
-        - - Pipelines
+        - - - - Pipelines
       deprecated: true
       summary: Get a variable for a user
       description: >-
@@ -18393,7 +18393,7 @@ paths:
         - api_key: []
     put:
       tags:
-        - - Pipelines
+        - - - - Pipelines
       deprecated: true
       summary: Update a variable for a user
       description: >-
@@ -18440,7 +18440,7 @@ paths:
         - api_key: []
     delete:
       tags:
-        - - Pipelines
+        - - - - Pipelines
       deprecated: true
       summary: Delete a variable for a user
       description: >-
@@ -18514,7 +18514,7 @@ paths:
       requestBody:
         $ref: '#/components/requestBodies/application_property'
       tags:
-        - - properties
+        - - - - properties
       security:
         - oauth2: []
         - basic: []
@@ -18551,7 +18551,7 @@ paths:
           schema:
             type: string
       tags:
-        - - properties
+        - - - - properties
       security:
         - oauth2: []
         - basic: []
@@ -18592,7 +18592,7 @@ paths:
           schema:
             type: string
       tags:
-        - - properties
+        - - - - properties
       security:
         - oauth2: []
         - basic: []
@@ -18600,7 +18600,7 @@ paths:
   /users/{selected_user}/search/code:
     get:
       tags:
-        - - Search
+        - - - - Search
       summary: Search for code in a user's repositories
       description: |
         Search for code in the repositories of the specified user.
@@ -18732,7 +18732,7 @@ paths:
   /users/{selected_user}/ssh-keys:
     get:
       tags:
-        - - Ssh
+        - - - - Ssh
       description: Returns a paginated list of the user's SSH public keys.
       summary: List SSH keys
       responses:
@@ -18792,7 +18792,7 @@ paths:
         - api_key: []
     post:
       tags:
-        - - Ssh
+        - - - - Ssh
       description: >-
         Adds a new SSH public key to the specified user account and returns the
         resulting key.
@@ -18891,7 +18891,7 @@ paths:
   /users/{selected_user}/ssh-keys/{key_id}:
     delete:
       tags:
-        - - Ssh
+        - - - - Ssh
       description: Deletes a specific SSH public key from a user's account.
       summary: Delete a SSH key
       responses:
@@ -18920,7 +18920,7 @@ paths:
         - api_key: []
     get:
       tags:
-        - - Ssh
+        - - - - Ssh
       description: Returns a specific SSH public key belonging to a user.
       summary: Get a SSH key
       responses:
@@ -18976,7 +18976,7 @@ paths:
         - api_key: []
     put:
       tags:
-        - - Ssh
+        - - - - Ssh
       description: >-
         Updates a specific SSH public key on a user's account
 
@@ -19079,7 +19079,7 @@ paths:
   /workspaces:
     get:
       tags:
-        - - Workspaces
+        - - - - Workspaces
       description: >-
         Returns a list of workspaces accessible by the authenticated user.
 
@@ -19209,7 +19209,7 @@ paths:
   /workspaces/{workspace}:
     get:
       tags:
-        - - Workspaces
+        - - - - Workspaces
       description: Returns the requested workspace.
       summary: Get a workspace
       responses:
@@ -19241,8 +19241,8 @@ paths:
   /workspaces/{workspace}/hooks:
     get:
       tags:
-        - - Workspaces
-          - Webhooks
+        - - - - Workspaces
+              - Webhooks
       description: Returns a paginated list of webhooks installed on this workspace.
       summary: List webhooks for a workspace
       responses:
@@ -19273,8 +19273,8 @@ paths:
         - api_key: []
     post:
       tags:
-        - - Workspaces
-          - Webhooks
+        - - - - Workspaces
+              - Webhooks
       description: >-
         Creates a new webhook on the specified workspace.
 
@@ -19377,8 +19377,8 @@ paths:
   /workspaces/{workspace}/hooks/{uid}:
     delete:
       tags:
-        - - Workspaces
-          - Webhooks
+        - - - - Workspaces
+              - Webhooks
       description: Deletes the specified webhook subscription from the given workspace.
       summary: Delete a webhook for a workspace
       responses:
@@ -19405,8 +19405,8 @@ paths:
         - api_key: []
     get:
       tags:
-        - - Workspaces
-          - Webhooks
+        - - - - Workspaces
+              - Webhooks
       description: |-
         Returns the webhook with the specified id installed on the given
         workspace.
@@ -19431,8 +19431,8 @@ paths:
         - api_key: []
     put:
       tags:
-        - - Workspaces
-          - Webhooks
+        - - - - Workspaces
+              - Webhooks
       description: >-
         Updates the specified webhook subscription.
 
@@ -19515,7 +19515,7 @@ paths:
   /workspaces/{workspace}/members:
     get:
       tags:
-        - - Workspaces
+        - - - - Workspaces
       description: Returns all members of the requested workspace.
       summary: List users in a workspace
       responses:
@@ -19554,7 +19554,7 @@ paths:
   /workspaces/{workspace}/members/{member}:
     get:
       tags:
-        - - Workspaces
+        - - - - Workspaces
       description: |-
         Returns the workspace membership, which includes
         a `User` object for the member and a `Workspace` object
@@ -19610,7 +19610,7 @@ paths:
   /workspaces/{workspace}/permissions:
     get:
       tags:
-        - - Workspaces
+        - - - - Workspaces
       description: >-
         Returns the list of members in a workspace
 
@@ -19728,7 +19728,7 @@ paths:
   /workspaces/{workspace}/permissions/repositories:
     get:
       tags:
-        - - Workspaces
+        - - - - Workspaces
       description: >-
         Returns an object for each repository permission for all of a
 
@@ -19869,7 +19869,7 @@ paths:
   /workspaces/{workspace}/permissions/repositories/{repo_slug}:
     get:
       tags:
-        - - Workspaces
+        - - - - Workspaces
       description: >-
         Returns an object for the repository permission of each user in the
 
@@ -20006,7 +20006,7 @@ paths:
   /workspaces/{workspace}/pipelines-config/identity/oidc/.well-known/openid-configuration:
     get:
       tags:
-        - - Pipelines
+        - - - - Pipelines
       summary: Get OpenID configuration for OIDC in Pipelines
       description: >-
         This is part of OpenID Connect for Pipelines, see
@@ -20037,7 +20037,7 @@ paths:
   /workspaces/{workspace}/pipelines-config/identity/oidc/keys.json:
     get:
       tags:
-        - - Pipelines
+        - - - - Pipelines
       summary: Get keys for OIDC in Pipelines
       description: >-
         This is part of OpenID Connect for Pipelines, see
@@ -20068,7 +20068,7 @@ paths:
   /workspaces/{workspace}/pipelines-config/variables:
     get:
       tags:
-        - - Pipelines
+        - - - - Pipelines
       summary: List variables for a workspace
       description: Find workspace level variables.
       operationId: getPipelineVariablesForWorkspace
@@ -20100,7 +20100,7 @@ paths:
         - api_key: []
     post:
       tags:
-        - - Pipelines
+        - - - - Pipelines
       summary: Create a variable for a workspace
       description: Create a workspace level variable.
       operationId: createPipelineVariableForWorkspace
@@ -20152,7 +20152,7 @@ paths:
   /workspaces/{workspace}/pipelines-config/variables/{variable_uuid}:
     get:
       tags:
-        - - Pipelines
+        - - - - Pipelines
       summary: Get variable for a workspace
       description: Retrieve a workspace level variable.
       operationId: getPipelineVariableForWorkspace
@@ -20196,7 +20196,7 @@ paths:
         - api_key: []
     put:
       tags:
-        - - Pipelines
+        - - - - Pipelines
       summary: Update variable for a workspace
       description: Update a workspace level variable.
       operationId: updatePipelineVariableForWorkspace
@@ -20242,7 +20242,7 @@ paths:
         - api_key: []
     delete:
       tags:
-        - - Pipelines
+        - - - - Pipelines
       summary: Delete a variable for a workspace
       description: Delete a workspace level variable.
       operationId: deletePipelineVariableForWorkspace
@@ -20283,7 +20283,7 @@ paths:
   /workspaces/{workspace}/projects:
     get:
       tags:
-        - - Workspaces
+        - - - - Workspaces
       description: Returns the list of projects in this workspace.
       summary: List projects in a workspace
       responses:
@@ -20311,7 +20311,7 @@ paths:
             - read:project:bitbucket
     post:
       tags:
-        - - Projects
+        - - - - Projects
       description: |-
         Creates a new project.
 
@@ -20416,7 +20416,7 @@ paths:
   /workspaces/{workspace}/projects/{project_key}:
     delete:
       tags:
-        - - Projects
+        - - - - Projects
       description: >-
         Deletes this project. This is an irreversible operation.
 
@@ -20467,8 +20467,8 @@ paths:
             - admin:project:bitbucket
     get:
       tags:
-        - - Projects
-          - Workspaces
+        - - - - Projects
+              - Workspaces
       description: Returns the requested project.
       summary: Get a project for a workspace
       responses:
@@ -20508,7 +20508,7 @@ paths:
             - read:project:bitbucket
     put:
       tags:
-        - - Projects
+        - - - - Projects
       description: |-
         Since this endpoint can be used to both update and to create a
         project, the request body depends on the intent.
@@ -20607,7 +20607,7 @@ paths:
   /workspaces/{workspace}/projects/{project_key}/branching-model:
     get:
       tags:
-        - - Branching model
+        - - - - Branching model
       description: >-
         Return the branching model set at the project level. This view is
 
@@ -20708,7 +20708,7 @@ paths:
   /workspaces/{workspace}/projects/{project_key}/branching-model/settings:
     get:
       tags:
-        - - Branching model
+        - - - - Branching model
       description: >-
         Return the branching model configuration for a project. The returned
 
@@ -20797,7 +20797,7 @@ paths:
             - admin:project:bitbucket
     put:
       tags:
-        - - Branching model
+        - - - - Branching model
       description: >-
         Update the branching model configuration for a project.
 
@@ -20936,7 +20936,7 @@ paths:
   /workspaces/{workspace}/projects/{project_key}/default-reviewers:
     get:
       tags:
-        - - Projects
+        - - - - Projects
       description: >-
         Return a list of all default reviewers for a project. This is a list of
         users that will be added as default
@@ -21009,7 +21009,7 @@ paths:
   /workspaces/{workspace}/projects/{project_key}/default-reviewers/{selected_user}:
     delete:
       tags:
-        - - Projects
+        - - - - Projects
       description: >-
         Removes a default reviewer from the project.
 
@@ -21061,7 +21061,7 @@ paths:
             - admin:project:bitbucket
     get:
       tags:
-        - - Projects
+        - - - - Projects
       description: Returns the specified default reviewer.
       summary: Get a default reviewer
       responses:
@@ -21107,7 +21107,7 @@ paths:
             - read:pullrequest:bitbucket
     put:
       tags:
-        - - Projects
+        - - - - Projects
       description: >-
         Adds the specified user to the project's list of default reviewers. The
         method is
@@ -21197,7 +21197,7 @@ paths:
   /workspaces/{workspace}/projects/{project_key}/deploy-keys:
     get:
       tags:
-        - - Deployments
+        - - - - Deployments
       description: Returns all deploy keys belonging to a project.
       summary: List project deploy keys
       responses:
@@ -21258,7 +21258,7 @@ paths:
         - api_key: []
     post:
       tags:
-        - - Deployments
+        - - - - Deployments
       description: >-
         Create a new deploy key in a project.
 
@@ -21361,7 +21361,7 @@ paths:
   /workspaces/{workspace}/projects/{project_key}/deploy-keys/{key_id}:
     delete:
       tags:
-        - - Deployments
+        - - - - Deployments
       description: This deletes a deploy key from a project.
       summary: Delete a deploy key from a project
       responses:
@@ -21391,7 +21391,7 @@ paths:
         - api_key: []
     get:
       tags:
-        - - Deployments
+        - - - - Deployments
       description: Returns the deploy key belonging to a specific key ID.
       summary: Get a project deploy key
       responses:
@@ -21474,7 +21474,7 @@ paths:
   /workspaces/{workspace}/projects/{project_key}/permissions-config/groups:
     get:
       tags:
-        - - Projects
+        - - - - Projects
       description: >-
         Returns a paginated list of explicit group permissions for the given
         project.
@@ -21566,7 +21566,7 @@ paths:
   /workspaces/{workspace}/projects/{project_key}/permissions-config/groups/{group_slug}:
     delete:
       tags:
-        - - Projects
+        - - - - Projects
       description: >-
         Deletes the project group permission between the requested project and
         group, if one exists.
@@ -21608,7 +21608,7 @@ paths:
         - api_key: []
     get:
       tags:
-        - - Projects
+        - - - - Projects
       description: >-
         Returns the group permission for a given group and project.
 
@@ -21684,7 +21684,7 @@ paths:
             - read:user:bitbucket
     put:
       tags:
-        - - Projects
+        - - - - Projects
       description: >-
         Updates the group permission, or grants a new permission if one does not
         already exist.
@@ -21805,7 +21805,7 @@ paths:
   /workspaces/{workspace}/projects/{project_key}/permissions-config/users:
     get:
       tags:
-        - - Projects
+        - - - - Projects
       description: >-
         Returns a paginated list of explicit user permissions for the given
         project.
@@ -21899,7 +21899,7 @@ paths:
   /workspaces/{workspace}/projects/{project_key}/permissions-config/users/{selected_user_id}:
     delete:
       tags:
-        - - Projects
+        - - - - Projects
       description: >-
         Deletes the project user permission between the requested project and
         user, if one exists.
@@ -21948,7 +21948,7 @@ paths:
         - api_key: []
     get:
       tags:
-        - - Projects
+        - - - - Projects
       description: >-
         Returns the explicit user permission for a given user and project.
 
@@ -22025,7 +22025,7 @@ paths:
             - read:user:bitbucket
     put:
       tags:
-        - - Projects
+        - - - - Projects
       description: >-
         Updates the explicit user permission for a given user and project. The
         selected
@@ -22154,7 +22154,7 @@ paths:
   /workspaces/{workspace}/search/code:
     get:
       tags:
-        - - Search
+        - - - - Search
       summary: Search for code in a workspace
       description: |
         Search for code in the repositories of the specified workspace.

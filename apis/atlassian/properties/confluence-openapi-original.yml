@@ -75,7 +75,7 @@ paths:
   /wiki/rest/api/audit:
     get:
       tags:
-        - - Audit
+        - - - - Audit
       summary: Get audit records
       description: >-
         Returns all records in the audit log, optionally for a certain date
@@ -173,7 +173,7 @@ paths:
       x-atlassian-connect-scope: INACCESSIBLE
     post:
       tags:
-        - - Audit
+        - - - - Audit
       summary: Create audit record
       description: |-
         Creates a record in the audit log.
@@ -221,7 +221,7 @@ paths:
   /wiki/rest/api/audit/export:
     get:
       tags:
-        - - Audit
+        - - - - Audit
       summary: Export audit records
       description: |-
         Exports audit records as a CSV file or ZIP file.
@@ -302,7 +302,7 @@ paths:
   /wiki/rest/api/audit/retention:
     get:
       tags:
-        - - Audit
+        - - - - Audit
       summary: Get retention period
       description: |-
         Returns the retention period for records in the audit log. The retention
@@ -340,7 +340,7 @@ paths:
       x-atlassian-connect-scope: INACCESSIBLE
     put:
       tags:
-        - - Audit
+        - - - - Audit
       summary: Set retention period
       description: >-
         Sets the retention period for records in the audit log. The retention
@@ -390,7 +390,7 @@ paths:
   /wiki/rest/api/audit/since:
     get:
       tags:
-        - - Audit
+        - - - - Audit
       summary: Get audit records for time period
       description: >-
         Returns records from the audit log, for a time period back from the
@@ -497,7 +497,7 @@ paths:
   /wiki/rest/api/content:
     get:
       tags:
-        - - Content
+        - - - - Content
       summary: Get content
       deprecated: true
       description: >-
@@ -658,7 +658,7 @@ paths:
       x-atlassian-connect-scope: READ
     post:
       tags:
-        - - Content
+        - - - - Content
       summary: Create content
       deprecated: true
       description: >-
@@ -786,7 +786,7 @@ paths:
   /wiki/rest/api/content/archive:
     post:
       tags:
-        - - Content
+        - - - - Content
       summary: Archive pages
       description: >-
         Archives a list of pages. The pages to be archived are specified as a
@@ -880,7 +880,7 @@ paths:
   /wiki/rest/api/content/blueprint/instance/{draftId}:
     put:
       tags:
-        - - Content
+        - - - - Content
       summary: Publish shared draft
       description: >-
         Publishes a shared draft of a page created from a blueprint.
@@ -956,7 +956,7 @@ paths:
       x-atlassian-connect-scope: WRITE
     post:
       tags:
-        - - Content
+        - - - - Content
       summary: Publish legacy draft
       description: >-
         Publishes a legacy draft of a page created from a blueprint. Legacy
@@ -1040,7 +1040,7 @@ paths:
   /wiki/rest/api/content/search:
     get:
       tags:
-        - - Content
+        - - - - Content
       summary: Search content by CQL
       description: >-
         Returns the list of content that matches a Confluence Query Language
@@ -1185,7 +1185,7 @@ paths:
   /wiki/rest/api/content/{id}:
     get:
       tags:
-        - - Content
+        - - - - Content
       summary: Get content by ID
       deprecated: true
       description: >-
@@ -1325,7 +1325,7 @@ paths:
       x-atlassian-connect-scope: READ
     put:
       tags:
-        - - Content
+        - - - - Content
       summary: Update content
       deprecated: true
       description: >-
@@ -1459,7 +1459,7 @@ paths:
       x-atlassian-connect-scope: WRITE
     delete:
       tags:
-        - - Content
+        - - - - Content
       summary: Delete content
       deprecated: true
       description: >-
@@ -1553,7 +1553,7 @@ paths:
   /wiki/rest/api/content/{id}/pageTree:
     delete:
       tags:
-        - - Experimental
+        - - - - Experimental
       summary: Delete page tree
       description: >-
         Moves a pagetree rooted at a page to the space's trash:
@@ -1649,7 +1649,7 @@ paths:
   /wiki/rest/api/content/{id}/child:
     get:
       tags:
-        - - Content - children and descendants
+        - - - - Content - children and descendants
       summary: Get content children
       deprecated: true
       description: >-
@@ -1761,7 +1761,7 @@ paths:
   /wiki/rest/api/content/{pageId}/move/{position}/{targetId}:
     put:
       tags:
-        - - Content - children and descendants
+        - - - - Content - children and descendants
       summary: Move a page to a new location relative to a target page
       description: >-
         Move a page to a new location relative to a target page:
@@ -1872,7 +1872,7 @@ paths:
   /wiki/rest/api/content/{id}/child/attachment:
     get:
       tags:
-        - - Content - attachments
+        - - - - Content - attachments
       summary: Get attachments
       deprecated: true
       description: >-
@@ -1964,7 +1964,7 @@ paths:
       x-atlassian-connect-scope: READ
     put:
       tags:
-        - - Content - attachments
+        - - - - Content - attachments
       summary: Create or update attachment
       description: >-
         Adds an attachment to a piece of content. If the attachment already
@@ -2138,7 +2138,7 @@ paths:
       x-atlassian-connect-scope: WRITE
     post:
       tags:
-        - - Content - attachments
+        - - - - Content - attachments
       summary: Create attachment
       description: >-
         Adds an attachment to a piece of content. This method only adds a new
@@ -2311,7 +2311,7 @@ paths:
   /wiki/rest/api/content/{id}/child/attachment/{attachmentId}:
     put:
       tags:
-        - - Content - attachments
+        - - - - Content - attachments
       summary: Update attachment properties
       description: >-
         Updates the attachment properties, i.e. the non-binary data of an
@@ -2399,7 +2399,7 @@ paths:
   /wiki/rest/api/content/{id}/child/attachment/{attachmentId}/data:
     post:
       tags:
-        - - Content - attachments
+        - - - - Content - attachments
       summary: Update attachment data
       description: >-
         Updates the binary data of an attachment, given the attachment ID, and
@@ -2554,7 +2554,7 @@ paths:
   /wiki/rest/api/content/{id}/child/attachment/{attachmentId}/download:
     get:
       tags:
-        - - Content - attachments
+        - - - - Content - attachments
       summary: Get URI to download attachment
       description: Redirects the client to a URL that serves an attachment's binary data.
       operationId: downloadAttatchment
@@ -2617,7 +2617,7 @@ paths:
   /wiki/rest/api/content/{id}/child/comment:
     get:
       tags:
-        - - Content comments
+        - - - - Content comments
       summary: Get content comments
       deprecated: true
       description: >-
@@ -2728,7 +2728,7 @@ paths:
   /wiki/rest/api/content/{id}/child/{type}:
     get:
       tags:
-        - - Content - children and descendants
+        - - - - Content - children and descendants
       summary: Get content children by type
       deprecated: true
       description: >-
@@ -2846,7 +2846,7 @@ paths:
   /wiki/rest/api/content/{id}/descendant:
     get:
       tags:
-        - - Content - children and descendants
+        - - - - Content - children and descendants
       summary: Get content descendants
       description: >-
         Returns a map of the descendants of a piece of content. This is similar
@@ -2951,7 +2951,7 @@ paths:
   /wiki/rest/api/content/{id}/descendant/{type}:
     get:
       tags:
-        - - Content - children and descendants
+        - - - - Content - children and descendants
       summary: Get content descendants by type
       description: >-
         Returns all descendants of a given type, for a piece of content. This is
@@ -3081,7 +3081,7 @@ paths:
   /wiki/rest/api/content/{id}/history:
     get:
       tags:
-        - - Content
+        - - - - Content
       summary: Get content history
       deprecated: true
       description: >-
@@ -3179,7 +3179,7 @@ paths:
   /wiki/rest/api/content/{id}/history/{version}/macro/id/{macroId}:
     get:
       tags:
-        - - Content - macro body
+        - - - - Content - macro body
       summary: Get macro body by macro ID
       description: >-
         Returns the body of a macro in storage format, for the given macro ID.
@@ -3288,7 +3288,7 @@ paths:
   /wiki/rest/api/content/{id}/history/{version}/macro/id/{macroId}/convert/{to}:
     get:
       tags:
-        - - Content - macro body
+        - - - - Content - macro body
       summary: Get macro body by macro ID and convert the representation synchronously
       description: >-
         Returns the body of a macro in format specified in path, for the given
@@ -3444,7 +3444,7 @@ paths:
   /wiki/rest/api/content/{id}/history/{version}/macro/id/{macroId}/convert/async/{to}:
     get:
       tags:
-        - - Content - macro body
+        - - - - Content - macro body
       summary: Get macro body by macro ID and convert representation Asynchronously
       description: >-
         Returns Async Id of the conversion task which will convert the macro
@@ -3626,7 +3626,7 @@ paths:
   /wiki/rest/api/content/{id}/label:
     get:
       tags:
-        - - Content labels
+        - - - - Content labels
       summary: Get labels for content
       deprecated: true
       description: >-
@@ -3732,7 +3732,7 @@ paths:
       x-atlassian-connect-scope: READ
     post:
       tags:
-        - - Content labels
+        - - - - Content labels
       summary: Add labels to content
       description: >-
         Adds labels to a piece of content. Does not modify the existing labels.
@@ -3824,7 +3824,7 @@ paths:
       x-atlassian-connect-scope: WRITE
     delete:
       tags:
-        - - Content labels
+        - - - - Content labels
       summary: Remove label from content using query parameter
       description: >-
         Removes a label from a piece of content. Labels can't be deleted from
@@ -3894,7 +3894,7 @@ paths:
   /wiki/rest/api/content/{id}/label/{label}:
     delete:
       tags:
-        - - Content labels
+        - - - - Content labels
       summary: Remove label from content
       description: >-
         Removes a label from a piece of content. Labels can't be deleted from
@@ -3969,7 +3969,7 @@ paths:
   /wiki/rest/api/content/{id}/notification/child-created:
     get:
       tags:
-        - - Content watches
+        - - - - Content watches
       summary: Get watches for page
       description: >-
         Returns the watches for a page. A user that watches a page will receive
@@ -4050,7 +4050,7 @@ paths:
   /wiki/rest/api/content/{id}/notification/created:
     get:
       tags:
-        - - Content watches
+        - - - - Content watches
       summary: Get watches for space
       description: >-
         Returns all space watches for the space that the content is in. A user
@@ -4134,7 +4134,7 @@ paths:
   /wiki/rest/api/content/{id}/pagehierarchy/copy:
     post:
       tags:
-        - - Content - children and descendants
+        - - - - Content - children and descendants
       summary: Copy page hierarchy
       description: >-
         Copy page hierarchy allows the copying of an entire hierarchy of pages
@@ -4208,7 +4208,7 @@ paths:
   /wiki/rest/api/content/{id}/copy:
     post:
       tags:
-        - - Content - children and descendants
+        - - - - Content - children and descendants
       summary: Copy single page
       description: >-
         Copies a single page and its associated properties, permissions,
@@ -4296,7 +4296,7 @@ paths:
   /wiki/rest/api/content/{id}/permission/check:
     post:
       tags:
-        - - Content permissions
+        - - - - Content permissions
       summary: Check content permissions
       description: >-
         Check if a user or a group can perform an operation to the specified
@@ -4384,7 +4384,7 @@ paths:
   /wiki/rest/api/content/{id}/property:
     get:
       tags:
-        - - Content properties
+        - - - - Content properties
       summary: Get content properties
       deprecated: true
       description: >-
@@ -4488,7 +4488,7 @@ paths:
       x-atlassian-connect-scope: READ
     post:
       tags:
-        - - Content properties
+        - - - - Content properties
       summary: Create content property
       deprecated: true
       description: >-
@@ -4575,7 +4575,7 @@ paths:
   /wiki/rest/api/content/{id}/property/{key}:
     get:
       tags:
-        - - Content properties
+        - - - - Content properties
       summary: Get content property
       deprecated: true
       description: >-
@@ -4700,7 +4700,7 @@ paths:
       x-atlassian-connect-scope: READ
     put:
       tags:
-        - - Content properties
+        - - - - Content properties
       summary: Update content property
       deprecated: true
       description: >-
@@ -4797,7 +4797,7 @@ paths:
       x-atlassian-connect-scope: WRITE
     post:
       tags:
-        - - Content properties
+        - - - - Content properties
       summary: Create content property for key
       deprecated: true
       description: >-
@@ -4889,7 +4889,7 @@ paths:
       x-atlassian-connect-scope: WRITE
     delete:
       tags:
-        - - Content properties
+        - - - - Content properties
       summary: Delete content property
       deprecated: true
       description: >-
@@ -4952,7 +4952,7 @@ paths:
   /wiki/rest/api/content/{id}/restriction:
     get:
       tags:
-        - - Content restrictions
+        - - - - Content restrictions
       summary: Get restrictions
       description: |-
         Returns the restrictions on a piece of content.
@@ -5061,7 +5061,7 @@ paths:
       x-atlassian-connect-scope: READ
     put:
       tags:
-        - - Content restrictions
+        - - - - Content restrictions
       summary: Update restrictions
       description: >-
         Updates restrictions for a piece of content. For each operation
@@ -5164,7 +5164,7 @@ paths:
       x-atlassian-connect-scope: WRITE
     post:
       tags:
-        - - Content restrictions
+        - - - - Content restrictions
       summary: Add restrictions
       description: |-
         Adds restrictions to a piece of content. Note, this does not change any
@@ -5257,7 +5257,7 @@ paths:
       x-atlassian-connect-scope: WRITE
     delete:
       tags:
-        - - Content restrictions
+        - - - - Content restrictions
       summary: Delete restrictions
       description: |-
         Removes all restrictions (read and update) on a piece of content.
@@ -5349,7 +5349,7 @@ paths:
   /wiki/rest/api/content/{id}/restriction/byOperation:
     get:
       tags:
-        - - Content restrictions
+        - - - - Content restrictions
       summary: Get restrictions by operation
       description: >-
         Returns restrictions on a piece of content by operation. This method is
@@ -5436,7 +5436,7 @@ paths:
   /wiki/rest/api/content/{id}/restriction/byOperation/{operationKey}:
     get:
       tags:
-        - - Content restrictions
+        - - - - Content restrictions
       summary: Get restrictions for operation
       description: >-
         Returns the restictions on a piece of content for a given operation
@@ -5546,7 +5546,7 @@ paths:
   /wiki/rest/api/content/{id}/restriction/byOperation/{operationKey}/group/{groupName}:
     get:
       tags:
-        - - Content restrictions
+        - - - - Content restrictions
       summary: Get content restriction status for group
       deprecated: true
       description: >-
@@ -5644,7 +5644,7 @@ paths:
       x-atlassian-connect-scope: READ
     put:
       tags:
-        - - Content restrictions
+        - - - - Content restrictions
       summary: Add group to content restriction
       deprecated: true
       description: >-
@@ -5716,7 +5716,7 @@ paths:
       x-atlassian-connect-scope: WRITE
     delete:
       tags:
-        - - Content restrictions
+        - - - - Content restrictions
       summary: Remove group from content restriction
       deprecated: true
       description: >-
@@ -5790,7 +5790,7 @@ paths:
   /wiki/rest/api/content/{id}/restriction/byOperation/{operationKey}/byGroupId/{groupId}:
     get:
       tags:
-        - - Content restrictions
+        - - - - Content restrictions
       summary: Get content restriction status for group
       description: >-
         Returns whether the specified content restriction applies to a group.
@@ -5882,7 +5882,7 @@ paths:
       x-atlassian-connect-scope: READ
     put:
       tags:
-        - - Content restrictions
+        - - - - Content restrictions
       summary: Add group to content restriction
       description: >-
         Adds a group to a content restriction by Group Id. That is, grant read
@@ -5960,7 +5960,7 @@ paths:
       x-atlassian-connect-scope: WRITE
     delete:
       tags:
-        - - Content restrictions
+        - - - - Content restrictions
       summary: Remove group from content restriction
       description: >-
         Removes a group from a content restriction. That is, remove read or
@@ -6038,7 +6038,7 @@ paths:
   /wiki/rest/api/content/{id}/restriction/byOperation/{operationKey}/user:
     get:
       tags:
-        - - Content restrictions
+        - - - - Content restrictions
       summary: Get content restriction status for user
       description: >-
         Returns whether the specified content restriction applies to a user.
@@ -6117,7 +6117,7 @@ paths:
       x-atlassian-connect-scope: READ
     put:
       tags:
-        - - Content restrictions
+        - - - - Content restrictions
       summary: Add user to content restriction
       description: |-
         Adds a user to a content restriction. That is, grant read or update
@@ -6182,7 +6182,7 @@ paths:
       x-atlassian-connect-scope: WRITE
     delete:
       tags:
-        - - Content restrictions
+        - - - - Content restrictions
       summary: Remove user from content restriction
       description: >-
         Removes a group from a content restriction. That is, remove read or
@@ -6249,7 +6249,7 @@ paths:
   /wiki/rest/api/content/{id}/state:
     get:
       tags:
-        - - Content states
+        - - - - Content states
       summary: Get content state
       description: >-
         Gets the current content state of the draft or current version of
@@ -6314,7 +6314,7 @@ paths:
       x-atlassian-connect-scope: READ
     put:
       tags:
-        - - Content states
+        - - - - Content states
       summary: >-
         Set the content state of a content and publishes a new version of the
         content.
@@ -6423,7 +6423,7 @@ paths:
       x-atlassian-connect-scope: WRITE
     delete:
       tags:
-        - - Content states
+        - - - - Content states
       summary: Removes the content state of a content and publishes a new version.
       description: >-
         Removes the content state of the content specified and creates a new
@@ -6489,7 +6489,7 @@ paths:
   /wiki/rest/api/content/{id}/state/available:
     get:
       tags:
-        - - Content states
+        - - - - Content states
       summary: Gets available content states for content.
       description: >-
         Gets content states that are available for the content to be set as.
@@ -6549,7 +6549,7 @@ paths:
   /wiki/rest/api/content/{id}/version:
     get:
       tags:
-        - - Content versions
+        - - - - Content versions
       summary: Get content versions
       deprecated: true
       description: >-
@@ -6641,7 +6641,7 @@ paths:
       x-atlassian-connect-scope: READ
     post:
       tags:
-        - - Content versions
+        - - - - Content versions
       summary: Restore content version
       description: >-
         Restores a historical version to be the latest version. That is, a new
@@ -6728,7 +6728,7 @@ paths:
   /wiki/rest/api/content/{id}/version/{versionNumber}:
     get:
       tags:
-        - - Content versions
+        - - - - Content versions
       summary: Get content version
       deprecated: true
       description: >-
@@ -6812,7 +6812,7 @@ paths:
       x-atlassian-connect-scope: READ
     delete:
       tags:
-        - - Content versions
+        - - - - Content versions
       summary: Delete content version
       description: >-
         Delete a historical version. This does not delete the changes made to
@@ -6879,7 +6879,7 @@ paths:
   /wiki/rest/api/content-states:
     put:
       tags:
-        - - Content states
+        - - - - Content states
       summary: Bulk set content state of many contents
       deprecated: true
       description: >-
@@ -6946,7 +6946,7 @@ paths:
       x-atlassian-connect-scope: WRITE
     get:
       tags:
-        - - Content states
+        - - - - Content states
       summary: Get Custom Content States
       description: |-
         Get custom content states that authenticated user has created.
@@ -6986,7 +6986,7 @@ paths:
   /wiki/rest/api/content-states/delete:
     post:
       tags:
-        - - Content states
+        - - - - Content states
       summary: Bulk remove content states from content
       description: >-
         Creates a long running task that Removes content state from draft or
@@ -7063,7 +7063,7 @@ paths:
   /wiki/rest/api/content-states/task/{taskId}:
     get:
       tags:
-        - - Content states
+        - - - - Content states
       summary: Get update on long running task for setting of content state.
       description: >-
         Get Status of long running task that was previously created to set or
@@ -7116,7 +7116,7 @@ paths:
   /wiki/rest/api/contentbody/convert/{to}:
     post:
       tags:
-        - - Content body
+        - - - - Content body
       summary: Convert content body
       description: >-
         Converts a content body from one format to another format.
@@ -7247,7 +7247,7 @@ paths:
   /wiki/rest/api/contentbody/convert/async/{to}:
     post:
       tags:
-        - - Content body
+        - - - - Content body
       summary: Asynchronously convert content body
       description: >-
         Converts a content body from one format to another format
@@ -7407,7 +7407,7 @@ paths:
   /wiki/rest/api/contentbody/convert/async/{id}:
     get:
       tags:
-        - - Content body
+        - - - - Content body
       summary: >-
         Get asynchronously converted content body from the id or the current
         status of the task.
@@ -7483,7 +7483,7 @@ paths:
   /wiki/rest/api/inlinetasks/search:
     get:
       tags:
-        - - Inline tasks
+        - - - - Inline tasks
       summary: Get inline tasks based on search parameters
       deprecated: true
       description: >-
@@ -7628,7 +7628,7 @@ paths:
   /wiki/rest/api/inlinetasks/{inlineTaskId}:
     get:
       tags:
-        - - Inline tasks
+        - - - - Inline tasks
       summary: Get inline task based on global ID
       deprecated: true
       description: >-
@@ -7681,7 +7681,7 @@ paths:
       x-atlassian-connect-scope: READ
     put:
       tags:
-        - - Inline tasks
+        - - - - Inline tasks
       summary: Update inline task given global ID
       deprecated: true
       description: |-
@@ -7740,7 +7740,7 @@ paths:
   /wiki/rest/api/label:
     get:
       tags:
-        - - Label info
+        - - - - Label info
       summary: Get label information
       description: >-
         Returns label information and a list of contents associated with the
@@ -7829,7 +7829,7 @@ paths:
   /wiki/rest/api/group:
     get:
       tags:
-        - - Group
+        - - - - Group
       summary: Get groups
       description: >-
         Returns all user groups. The returned groups are ordered alphabetically
@@ -7902,7 +7902,7 @@ paths:
       x-atlassian-connect-scope: READ
     post:
       tags:
-        - - Group
+        - - - - Group
       summary: Create new user group
       description: |-
         Creates a new user group.
@@ -7953,7 +7953,7 @@ paths:
       x-atlassian-connect-scope: INACCESSIBLE
     delete:
       tags:
-        - - Group
+        - - - - Group
       summary: Delete user group
       description: |-
         Delete user group.
@@ -8004,7 +8004,7 @@ paths:
   /wiki/rest/api/group/by-name:
     get:
       tags:
-        - - Group
+        - - - - Group
       summary: Get group
       description: |-
         Returns a user group for a given group name.
@@ -8056,7 +8056,7 @@ paths:
   /wiki/rest/api/group/by-id:
     get:
       tags:
-        - - Group
+        - - - - Group
       summary: Get group
       description: |-
         Returns a user group for a given group id.
@@ -8104,7 +8104,7 @@ paths:
       x-atlassian-connect-scope: READ
     delete:
       tags:
-        - - Group
+        - - - - Group
       summary: Delete user group
       description: |-
         Delete user group.
@@ -8154,7 +8154,7 @@ paths:
   /wiki/rest/api/group/{groupName}:
     get:
       tags:
-        - - Group
+        - - - - Group
       summary: Get group
       description: |-
         Returns a user group for a given group name.
@@ -8195,7 +8195,7 @@ paths:
   /wiki/rest/api/group/member:
     get:
       tags:
-        - - Group
+        - - - - Group
       summary: Get group members
       description: |-
         Returns the users that are members of a group.
@@ -8292,7 +8292,7 @@ paths:
   /wiki/rest/api/group/{groupName}/member:
     get:
       tags:
-        - - Group
+        - - - - Group
       summary: Get group members
       description: |-
         Returns the users that are members of a group.
@@ -8347,7 +8347,7 @@ paths:
   /wiki/rest/api/group/picker:
     get:
       tags:
-        - - Group
+        - - - - Group
       summary: Search groups by partial query
       description: Get search results of groups by partial query provided.
       operationId: searchGroups
@@ -8417,7 +8417,7 @@ paths:
   /wiki/rest/api/group/userByGroupId:
     post:
       tags:
-        - - Group
+        - - - - Group
       summary: Add member to group by groupId
       description: |-
         Adds a user as a member in a group represented by its groupId
@@ -8474,7 +8474,7 @@ paths:
       x-atlassian-connect-scope: INACCESSIBLE
     delete:
       tags:
-        - - Group
+        - - - - Group
       summary: Remove member from group using group id
       description: |-
         Remove user as a member from a group.
@@ -8532,7 +8532,7 @@ paths:
   /wiki/rest/api/group/{groupId}/membersByGroupId:
     get:
       tags:
-        - - Group
+        - - - - Group
       summary: Get group members
       description: |-
         Returns the users that are members of a group.
@@ -8629,7 +8629,7 @@ paths:
   /wiki/rest/api/group/user:
     post:
       tags:
-        - - Group
+        - - - - Group
       summary: Add member to group
       description: |-
         Adds a user as a member in a group.
@@ -8687,7 +8687,7 @@ paths:
       x-atlassian-connect-scope: INACCESSIBLE
     delete:
       tags:
-        - - Group
+        - - - - Group
       summary: Remove member from group
       description: |-
         Remove user as a member from a group.
@@ -8746,7 +8746,7 @@ paths:
   /wiki/rest/api/longtask:
     get:
       tags:
-        - - Long-running task
+        - - - - Long-running task
       summary: Get long-running tasks
       description: >-
         Returns information about all active long-running tasks (e.g. space
@@ -8806,7 +8806,7 @@ paths:
   /wiki/rest/api/longtask/{id}:
     get:
       tags:
-        - - Long-running task
+        - - - - Long-running task
       summary: Get long-running task
       description: >-
         Returns information about an active long-running task (e.g. space
@@ -8864,7 +8864,7 @@ paths:
   /wiki/rest/api/relation/{relationName}/from/{sourceType}/{sourceKey}/to/{targetType}:
     get:
       tags:
-        - - Relation
+        - - - - Relation
       summary: Find target entities related to a source entity
       description: >-
         Returns all target entities that have a particular relationship to the
@@ -9050,7 +9050,7 @@ paths:
   /wiki/rest/api/relation/{relationName}/from/{sourceType}/{sourceKey}/to/{targetType}/{targetKey}:
     get:
       tags:
-        - - Relation
+        - - - - Relation
       summary: Find relationship from source to target
       description: >-
         Find whether a particular type of relationship exists from a source
@@ -9246,7 +9246,7 @@ paths:
       x-atlassian-connect-scope: READ
     put:
       tags:
-        - - Relation
+        - - - - Relation
       summary: Create relationship
       description: >-
         Creates a relationship between two entities (user, space, content). The
@@ -9406,7 +9406,7 @@ paths:
       x-atlassian-connect-scope: WRITE
     delete:
       tags:
-        - - Relation
+        - - - - Relation
       summary: Delete relationship
       description: |-
         Deletes a relationship between two entities (user, space, content).
@@ -9549,7 +9549,7 @@ paths:
   /wiki/rest/api/relation/{relationName}/to/{targetType}/{targetKey}/from/{sourceType}:
     get:
       tags:
-        - - Relation
+        - - - - Relation
       summary: Find source entities related to a target entity
       description: >-
         Returns all target entities that have a particular relationship to the
@@ -9735,7 +9735,7 @@ paths:
   /wiki/rest/api/search:
     get:
       tags:
-        - - Search
+        - - - - Search
       summary: Search content
       description: >-
         Searches for content using the
@@ -9959,7 +9959,7 @@ paths:
   /wiki/rest/api/search/user:
     get:
       tags:
-        - - Search
+        - - - - Search
       summary: Search users
       description: >-
         Searches for users using user-specific queries from the
@@ -10080,7 +10080,7 @@ paths:
   /wiki/rest/api/settings/lookandfeel:
     get:
       tags:
-        - - Settings
+        - - - - Settings
       summary: Get look and feel settings
       description: >-
         Returns the look and feel settings for the site or a single space. This
@@ -10139,7 +10139,7 @@ paths:
       x-atlassian-connect-scope: READ
     put:
       tags:
-        - - Settings
+        - - - - Settings
       summary: Select look and feel settings
       description: |-
         Sets the look and feel settings to the default (global) settings, the
@@ -10206,7 +10206,7 @@ paths:
   /wiki/rest/api/settings/lookandfeel/custom:
     post:
       tags:
-        - - Settings
+        - - - - Settings
       summary: Update look and feel settings
       description: >-
         Updates the look and feel settings for the site or for a single space.
@@ -10297,7 +10297,7 @@ paths:
       x-atlassian-connect-scope: WRITE
     delete:
       tags:
-        - - Settings
+        - - - - Settings
       summary: Reset look and feel settings
       description: |-
         Resets the custom look and feel settings for the site or a single space.
@@ -10353,7 +10353,7 @@ paths:
   /wiki/rest/api/settings/lookandfeel/selected:
     put:
       tags:
-        - - Settings
+        - - - - Settings
       summary: Set look and feel settings
       description: |-
         Sets the look and feel settings to either the default settings or the
@@ -10429,7 +10429,7 @@ paths:
   /wiki/rest/api/settings/systemInfo:
     get:
       tags:
-        - - Settings
+        - - - - Settings
       summary: Get system info
       description: |-
         Returns the system information for the Confluence Cloud tenant. This
@@ -10471,7 +10471,7 @@ paths:
   /wiki/rest/api/settings/theme:
     get:
       tags:
-        - - Themes
+        - - - - Themes
       summary: Get themes
       description: >-
         Returns all themes, not including the default theme.
@@ -10525,7 +10525,7 @@ paths:
   /wiki/rest/api/settings/theme/selected:
     get:
       tags:
-        - - Themes
+        - - - - Themes
       summary: Get global theme
       description: >-
         Returns the globally assigned theme.
@@ -10565,7 +10565,7 @@ paths:
   /wiki/rest/api/settings/theme/{themeKey}:
     get:
       tags:
-        - - Themes
+        - - - - Themes
       summary: Get theme
       description: >-
         Returns a theme. This includes information about the theme name,
@@ -10612,7 +10612,7 @@ paths:
   /wiki/rest/api/space:
     get:
       tags:
-        - - Space
+        - - - - Space
       summary: Get spaces
       deprecated: true
       description: >-
@@ -10754,7 +10754,7 @@ paths:
       x-atlassian-connect-scope: READ
     post:
       tags:
-        - - Space
+        - - - - Space
       summary: Create space
       description: |-
         Creates a new space. Note, currently you cannot set space labels when
@@ -10816,7 +10816,7 @@ paths:
   /wiki/rest/api/space/_private:
     post:
       tags:
-        - - Space
+        - - - - Space
       summary: Create private space
       description: |-
         Creates a new space that is only visible to the creator. This method is
@@ -10878,7 +10878,7 @@ paths:
   /wiki/rest/api/space/{spaceKey}:
     get:
       tags:
-        - - Space
+        - - - - Space
       summary: Get space
       deprecated: true
       description: >-
@@ -10940,7 +10940,7 @@ paths:
       x-atlassian-connect-scope: READ
     put:
       tags:
-        - - Space
+        - - - - Space
       summary: Update space
       description: |-
         Updates the name, description, or homepage of a space.
@@ -11006,7 +11006,7 @@ paths:
       x-atlassian-connect-scope: WRITE
     delete:
       tags:
-        - - Space
+        - - - - Space
       summary: Delete space
       description: |-
         Deletes a space. Note, the space will be deleted in a long running task.
@@ -11063,7 +11063,7 @@ paths:
   /wiki/rest/api/space/{spaceKey}/content:
     get:
       tags:
-        - - Space
+        - - - - Space
       summary: Get content for space
       deprecated: true
       description: >-
@@ -11164,7 +11164,7 @@ paths:
   /wiki/rest/api/space/{spaceKey}/permission:
     post:
       tags:
-        - - Space permissions
+        - - - - Space permissions
       summary: Add new permission to space
       description: >-
         Adds new permission to space.
@@ -11244,7 +11244,7 @@ paths:
   /wiki/rest/api/space/{spaceKey}/permission/custom-content:
     post:
       tags:
-        - - Space permissions
+        - - - - Space permissions
       summary: Add new custom content permission to space
       description: >-
         Adds new custom content permission to space.
@@ -11321,7 +11321,7 @@ paths:
   /wiki/rest/api/space/{spaceKey}/permission/{id}:
     delete:
       tags:
-        - - Space permissions
+        - - - - Space permissions
       summary: Remove a space permission
       description: >-
         Removes a space permission. Note that removing Read Space permission for
@@ -11390,7 +11390,7 @@ paths:
   /wiki/rest/api/space/{spaceKey}/content/{type}:
     get:
       tags:
-        - - Space
+        - - - - Space
       summary: Get content by type for space
       deprecated: true
       description: >-
@@ -11492,7 +11492,7 @@ paths:
   /wiki/rest/api/space/{spaceKey}/property:
     get:
       tags:
-        - - Space properties
+        - - - - Space properties
       summary: Get space properties
       deprecated: true
       description: >-
@@ -11583,7 +11583,7 @@ paths:
       x-atlassian-connect-scope: READ
     post:
       tags:
-        - - Space properties
+        - - - - Space properties
       summary: Create space property
       deprecated: true
       description: >-
@@ -11663,7 +11663,7 @@ paths:
   /wiki/rest/api/space/{spaceKey}/property/{key}:
     get:
       tags:
-        - - Space properties
+        - - - - Space properties
       summary: Get space property
       deprecated: true
       description: >-
@@ -11740,7 +11740,7 @@ paths:
       x-atlassian-connect-scope: READ
     put:
       tags:
-        - - Space properties
+        - - - - Space properties
       summary: Update space property
       deprecated: true
       description: >-
@@ -11835,7 +11835,7 @@ paths:
       x-atlassian-connect-scope: WRITE
     post:
       tags:
-        - - Space properties
+        - - - - Space properties
       summary: Create space property for key
       deprecated: true
       description: >-
@@ -11917,7 +11917,7 @@ paths:
       x-atlassian-connect-scope: WRITE
     delete:
       tags:
-        - - Space properties
+        - - - - Space properties
       summary: Delete space property
       deprecated: true
       description: >-
@@ -11979,7 +11979,7 @@ paths:
   /wiki/rest/api/space/{spaceKey}/settings:
     get:
       tags:
-        - - Space settings
+        - - - - Space settings
       summary: Get space settings
       description: |-
         Returns the settings of a space. Currently only the
@@ -12032,7 +12032,7 @@ paths:
       x-atlassian-connect-scope: READ
     put:
       tags:
-        - - Space settings
+        - - - - Space settings
       summary: Update space settings
       description: |-
         Updates the settings for a space. Currently only the
@@ -12095,7 +12095,7 @@ paths:
   /wiki/rest/api/space/{spaceKey}/state:
     get:
       tags:
-        - - Content states
+        - - - - Content states
       summary: Get space suggested content states
       description: |-
         Get content states that are suggested in the space.
@@ -12148,7 +12148,7 @@ paths:
   /wiki/rest/api/space/{spaceKey}/state/settings:
     get:
       tags:
-        - - Content states
+        - - - - Content states
       summary: Get content state settings for space
       description: >-
         Get object describing whether content states are allowed at all, if
@@ -12205,7 +12205,7 @@ paths:
   /wiki/rest/api/space/{spaceKey}/state/content:
     get:
       tags:
-        - - Content states
+        - - - - Content states
       summary: Get content in space with given content state
       description: |-
         Finds paginated content with 
@@ -12296,7 +12296,7 @@ paths:
   /wiki/rest/api/space/{spaceKey}/theme:
     get:
       tags:
-        - - Themes
+        - - - - Themes
       summary: Get space theme
       description: >-
         Returns the theme selected for a space, if one is set. If no space
@@ -12348,7 +12348,7 @@ paths:
       x-atlassian-connect-scope: READ
     put:
       tags:
-        - - Themes
+        - - - - Themes
       summary: Set space theme
       description: >-
         Sets the theme for a space. Note, if you want to reset the space theme
@@ -12409,7 +12409,7 @@ paths:
       x-atlassian-connect-scope: WRITE
     delete:
       tags:
-        - - Themes
+        - - - - Themes
       summary: Reset space theme
       description: |-
         Resets the space theme. This means that the space will inherit the
@@ -12451,7 +12451,7 @@ paths:
   /wiki/rest/api/space/{spaceKey}/watch:
     get:
       tags:
-        - - Content watches
+        - - - - Content watches
       summary: Get space watchers
       description: Returns a list of watchers of a space
       operationId: getWatchersForSpace
@@ -12501,7 +12501,7 @@ paths:
   /wiki/rest/api/space/{spaceKey}/label:
     get:
       tags:
-        - - Experimental
+        - - - - Experimental
       summary: Get Space Labels
       description: >-
         Returns a list of labels associated with a space. Can provide a prefix
@@ -12589,7 +12589,7 @@ paths:
       x-atlassian-connect-scope: READ
     post:
       tags:
-        - - Experimental
+        - - - - Experimental
       summary: Add labels to a space
       description: >-
         Adds labels to a piece of content. Does not modify the existing labels.
@@ -12680,7 +12680,7 @@ paths:
       x-atlassian-connect-scope: WRITE
     delete:
       tags:
-        - - Experimental
+        - - - - Experimental
       summary: Remove label from a space
       description: ''
       operationId: deleteLabelFromSpace
@@ -12740,7 +12740,7 @@ paths:
   /wiki/rest/api/template:
     put:
       tags:
-        - - Template
+        - - - - Template
       summary: Update content template
       description: >-
         Updates a content template. Note, blueprint templates cannot be updated
@@ -12801,7 +12801,7 @@ paths:
       x-atlassian-connect-scope: WRITE
     post:
       tags:
-        - - Template
+        - - - - Template
       summary: Create content template
       description: >-
         Creates a new content template. Note, blueprint templates cannot be
@@ -12861,7 +12861,7 @@ paths:
   /wiki/rest/api/template/blueprint:
     get:
       tags:
-        - - Template
+        - - - - Template
       summary: Get blueprint templates
       description: >-
         Returns all templates provided by blueprints. Use this method to
@@ -12957,7 +12957,7 @@ paths:
   /wiki/rest/api/template/page:
     get:
       tags:
-        - - Template
+        - - - - Template
       summary: Get content templates
       description: >-
         Returns all content templates. Use this method to retrieve all global
@@ -13046,7 +13046,7 @@ paths:
   /wiki/rest/api/template/{contentTemplateId}:
     get:
       tags:
-        - - Template
+        - - - - Template
       summary: Get content template
       description: >-
         Returns a content template. This includes information about template,
@@ -13104,7 +13104,7 @@ paths:
       x-atlassian-connect-scope: READ
     delete:
       tags:
-        - - Template
+        - - - - Template
       summary: Remove template
       description: >-
         Deletes a template. This results in different actions depending on the
@@ -13166,7 +13166,7 @@ paths:
   /wiki/rest/api/user:
     get:
       tags:
-        - - Users
+        - - - - Users
       summary: Get user
       description: >-
         Returns a user. This includes information about the user, such as the
@@ -13253,7 +13253,7 @@ paths:
   /wiki/rest/api/user/anonymous:
     get:
       tags:
-        - - Users
+        - - - - Users
       summary: Get anonymous user
       description: |-
         Returns information about how anonymous users are represented, like the
@@ -13309,7 +13309,7 @@ paths:
   /wiki/rest/api/user/current:
     get:
       tags:
-        - - Users
+        - - - - Users
       summary: Get current user
       description: |-
         Returns the currently logged-in user. This includes information about
@@ -13370,7 +13370,7 @@ paths:
   /wiki/rest/api/user/memberof:
     get:
       tags:
-        - - Users
+        - - - - Users
       summary: Get group memberships for user
       description: |-
         Returns the groups that a user is a member of.
@@ -13439,7 +13439,7 @@ paths:
   /wiki/rest/api/user/bulk:
     get:
       tags:
-        - - Users
+        - - - - Users
       summary: Get multiple users using ids
       description: |-
         Returns user details for the ids provided in request.
@@ -13515,7 +13515,7 @@ paths:
   /wiki/rest/api/user/watch/content/{contentId}:
     get:
       tags:
-        - - Content watches
+        - - - - Content watches
       summary: Get content watch status
       description: >-
         Returns whether a user is watching a piece of content. Choose the user
@@ -13589,7 +13589,7 @@ paths:
       x-atlassian-connect-scope: READ
     post:
       tags:
-        - - Content watches
+        - - - - Content watches
       summary: Add content watcher
       description: >-
         Adds a user as a watcher to a piece of content. Choose the user by doing
@@ -13666,7 +13666,7 @@ paths:
       x-atlassian-connect-scope: WRITE
     delete:
       tags:
-        - - Content watches
+        - - - - Content watches
       summary: Remove content watcher
       description: >-
         Removes a user as a watcher from a piece of content. Choose the user by
@@ -13747,7 +13747,7 @@ paths:
   /wiki/rest/api/user/watch/label/{labelName}:
     get:
       tags:
-        - - Content watches
+        - - - - Content watches
       summary: Get label watch status
       description: >-
         Returns whether a user is watching a label. Choose the user by doing one
@@ -13818,7 +13818,7 @@ paths:
       x-atlassian-connect-scope: READ
     post:
       tags:
-        - - Content watches
+        - - - - Content watches
       summary: Add label watcher
       description: >-
         Adds a user as a watcher to a label. Choose the user by doing one of the
@@ -13902,7 +13902,7 @@ paths:
       x-atlassian-connect-scope: WRITE
     delete:
       tags:
-        - - Content watches
+        - - - - Content watches
       summary: Remove label watcher
       description: >-
         Removes a user as a watcher from a label. Choose the user by doing one
@@ -13973,7 +13973,7 @@ paths:
   /wiki/rest/api/user/watch/space/{spaceKey}:
     get:
       tags:
-        - - Content watches
+        - - - - Content watches
       summary: Get space watch status
       description: >-
         Returns whether a user is watching a space. Choose the user by
@@ -14044,7 +14044,7 @@ paths:
       x-atlassian-connect-scope: READ
     post:
       tags:
-        - - Content watches
+        - - - - Content watches
       summary: Add space watcher
       description: >-
         Adds a user as a watcher to a space. Choose the user by doing one of the
@@ -14130,7 +14130,7 @@ paths:
       x-atlassian-connect-scope: WRITE
     delete:
       tags:
-        - - Content watches
+        - - - - Content watches
       summary: Remove space watch
       description: >-
         Removes a user as a watcher from a space. Choose the user by doing one
@@ -14200,7 +14200,7 @@ paths:
   /wiki/rest/api/user/email:
     get:
       tags:
-        - - Users
+        - - - - Users
       summary: Get user email address
       description: >-
         Returns a user's email address. This API is only available to apps
@@ -14253,7 +14253,7 @@ paths:
   /wiki/rest/api/user/email/bulk:
     get:
       tags:
-        - - Users
+        - - - - Users
       summary: Get user email addresses in batch
       description: >-
         Returns user email addresses for a set of accountIds. This API is only
@@ -14305,7 +14305,7 @@ paths:
   /atlassian-connect/1/app/module/dynamic:
     get:
       tags:
-        - - Dynamic modules
+        - - - - Dynamic modules
       summary: Get modules
       description: >-
         Returns all modules registered dynamically by the calling app.
@@ -14336,7 +14336,7 @@ paths:
       x-atlassian-connect-scope: INACCESSIBLE
     post:
       tags:
-        - - Dynamic modules
+        - - - - Dynamic modules
       summary: Register modules
       description: >-
         Registers a list of modules. For the list of modules that support
@@ -14394,7 +14394,7 @@ paths:
       x-atlassian-connect-scope: INACCESSIBLE
     delete:
       tags:
-        - - Dynamic modules
+        - - - - Dynamic modules
       summary: Remove modules
       description: >-
         Remove all or a list of modules registered by the calling app.
@@ -14441,7 +14441,7 @@ paths:
   /wiki/rest/api/analytics/content/{contentId}/views:
     get:
       tags:
-        - - Analytics
+        - - - - Analytics
       summary: Get views
       description: Get the total number of views a piece of content has.
       operationId: getViews
@@ -14505,7 +14505,7 @@ paths:
   /wiki/rest/api/analytics/content/{contentId}/viewers:
     get:
       tags:
-        - - Analytics
+        - - - - Analytics
       summary: Get viewers
       description: Get the total number of distinct viewers a piece of content has.
       operationId: getViewers
@@ -14569,7 +14569,7 @@ paths:
   /wiki/rest/api/user/{userId}/property:
     get:
       tags:
-        - - User properties
+        - - - - User properties
       summary: Get user properties
       description: >-
         Returns the properties for a user as list of property keys. For more
@@ -14650,7 +14650,7 @@ paths:
   /wiki/rest/api/user/{userId}/property/{key}:
     get:
       tags:
-        - - User properties
+        - - - - User properties
       summary: Get user property
       description: >-
         Returns the property corresponding to `key` for a user. For more
@@ -14724,7 +14724,7 @@ paths:
       x-atlassian-connect-scope: READ
     put:
       tags:
-        - - User properties
+        - - - - User properties
       summary: Update user property
       description: >-
         Updates a property for the given user. Note, you cannot update the key
@@ -14810,7 +14810,7 @@ paths:
       x-atlassian-connect-scope: WRITE
     post:
       tags:
-        - - User properties
+        - - - - User properties
       summary: Create user property by key
       description: >-
         Creates a property for a user. For more information  about user
@@ -14897,7 +14897,7 @@ paths:
       x-atlassian-connect-scope: WRITE
     delete:
       tags:
-        - - User properties
+        - - - - User properties
       summary: Delete user property
       description: >-
         Deletes a property for the given user.

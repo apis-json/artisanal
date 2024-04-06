@@ -179,7 +179,7 @@ paths:
       - $ref: '#/components/parameters/Accept'
     get:
       tags:
-        - - Channels
+        - - - - Channels
       summary: Get All Channels
       operationId: getChannels
       description: >-
@@ -210,7 +210,7 @@ paths:
           $ref: '#/components/responses/invalid_filter_value_resp'
     post:
       tags:
-        - - Channels
+        - - - - Channels
       summary: Create a Channel
       parameters:
         - $ref: '#/components/parameters/ContentType'
@@ -236,7 +236,7 @@ paths:
       - $ref: '#/components/parameters/channel_id_path_param'
     get:
       tags:
-        - - Channels
+        - - - - Channels
       summary: Get a Channel
       operationId: getChannel
       description: >-
@@ -251,7 +251,7 @@ paths:
           $ref: '#/components/responses/channel_not_found_resp'
     put:
       tags:
-        - - Channels
+        - - - - Channels
       summary: Update a Channel
       parameters:
         - $ref: '#/components/parameters/ContentType'
@@ -313,7 +313,7 @@ paths:
       - $ref: '#/components/parameters/channel_id_path_param'
     get:
       tags:
-        - - Active Theme
+        - - - - Active Theme
       summary: Get a Channel Active Theme
       operationId: getChannelActiveTheme
       description: |-
@@ -329,7 +329,7 @@ paths:
       - $ref: '#/components/parameters/Accept'
     get:
       tags:
-        - - Currency Assignments
+        - - - - Currency Assignments
       summary: Get All Channels Currency Assignments
       operationId: getAllCurrencyAssignments
       description: Returns a list of currency assignments for all channels.
@@ -338,7 +338,7 @@ paths:
           $ref: '#/components/responses/multiple_channels_currency_assignments_resp'
     post:
       tags:
-        - - Currency Assignments
+        - - - - Currency Assignments
       parameters:
         - $ref: '#/components/parameters/ContentType'
       summary: Create Multiple Channels Currency Assignments
@@ -367,7 +367,7 @@ paths:
             #/components/responses/missing_or_invalid_multiple_channels_currency_assignments_data_resp
     put:
       tags:
-        - - Currency Assignments
+        - - - - Currency Assignments
       summary: Update Multiple Channels Currency Assignments
       parameters:
         - $ref: '#/components/parameters/ContentType'
@@ -400,7 +400,7 @@ paths:
       - $ref: '#/components/parameters/channel_id_path_param'
     get:
       tags:
-        - - Currency Assignments
+        - - - - Currency Assignments
       summary: Get Channel Currency Assignments
       operationId: getSingleChannelCurrencyAssignments
       description: Returns a list of currency assignments for a specific channel.
@@ -411,7 +411,7 @@ paths:
           $ref: '#/components/responses/channel_not_found_resp'
     post:
       tags:
-        - - Currency Assignments
+        - - - - Currency Assignments
       summary: Create Channel Currency Assignments
       parameters:
         - $ref: '#/components/parameters/ContentType'
@@ -439,7 +439,7 @@ paths:
             #/components/responses/missing_or_invalid_single_channel_currency_assignments_data_resp
     put:
       tags:
-        - - Currency Assignments
+        - - - - Currency Assignments
       summary: Update Channel Currency Assignments
       parameters:
         - $ref: '#/components/parameters/ContentType'
@@ -467,7 +467,7 @@ paths:
             #/components/responses/missing_or_invalid_single_channel_currency_assignments_data_resp
     delete:
       tags:
-        - - Currency Assignments
+        - - - - Currency Assignments
       summary: Delete Channel Currency Assignments
       operationId: deleteSingleChannelCurrencyAssignments
       description: >-
@@ -484,7 +484,7 @@ paths:
       - $ref: '#/components/parameters/channel_id_path_param'
     get:
       tags:
-        - - Listings
+        - - - - Listings
       summary: Get Channel Listings
       operationId: getChannelListings
       description: >-
@@ -510,7 +510,7 @@ paths:
           $ref: '#/components/responses/invalid_filters_resp'
     post:
       tags:
-        - - Listings
+        - - - - Listings
       summary: Create Channel Listings
       parameters:
         - $ref: '#/components/parameters/ContentType'
@@ -535,7 +535,7 @@ paths:
             #/components/responses/missing_or_invalid_multiple_listings_data_for_post_resp
     put:
       tags:
-        - - Listings
+        - - - - Listings
       summary: Update Channel Listings
       parameters:
         - $ref: '#/components/parameters/ContentType'
@@ -589,7 +589,7 @@ paths:
       - $ref: '#/components/parameters/listing_id_path_param'
     get:
       tags:
-        - - Listings
+        - - - - Listings
       summary: Get a Channel Listing
       operationId: getChannelListing
       description: Returns a *Channel Listing* for a specific channel.
@@ -605,7 +605,7 @@ paths:
     put:
       summary: Upsert a Siteʼs Checkout URL
       tags:
-        - - Site Checkout URL
+        - - - - Site Checkout URL
       description: Creates or updates (upserts) a siteʼs checkout URL
       operationId: updateCheckoutUrl
       parameters:
@@ -687,7 +687,7 @@ paths:
         Deletes a siteʼs checkout URL. After deletion, a shared checkout URL is
         used.
       tags:
-        - - Site Checkout URL
+        - - - - Site Checkout URL
       responses:
         '200':
           description: OK. `data` and `meta` are empty objects.
@@ -716,7 +716,7 @@ paths:
         '200':
           $ref: '#/components/responses/site_Resp'
       tags:
-        - - Site
+        - - - - Site
     put:
       responses:
         '200':
@@ -734,7 +734,7 @@ paths:
           application/json:
             url: https://example.com/
       tags:
-        - - Site
+        - - - - Site
       description: Updates a site for provided channel.
     post:
       responses:
@@ -754,7 +754,7 @@ paths:
             url: http://kittens.mybigcommerce.com/
             channel_id: 123
       tags:
-        - - Site
+        - - - - Site
       description: Alias of POST `/sites`. Creates a site for provided channel.
     delete:
       responses:
@@ -768,7 +768,7 @@ paths:
       description: Deletes the Channelʼs site.
       operationId: deleteChannelSite
       tags:
-        - - Site
+        - - - - Site
       summary: Delete a Channel Site
   /channels/{channel_id}/channel-menus:
     parameters:
@@ -783,7 +783,7 @@ paths:
         '200':
           $ref: '#/components/responses/channel_menus_Resp'
       tags:
-        - - Menus
+        - - - - Menus
     post:
       responses:
         '200':
@@ -799,7 +799,7 @@ paths:
               $ref: '#/components/schemas/channel_menus_Post'
             examples: {}
       tags:
-        - - Menus
+        - - - - Menus
       description: >-
         Creates or replaces list of control panel side navigation menus for a
         channel.
@@ -823,7 +823,7 @@ paths:
       description: Deletes control panel side navigation menus for a channel.
       operationId: deleteChannelMenus
       tags:
-        - - Menus
+        - - - - Menus
       summary: Delete Channel Menus
   /channels/{channel_id}/metafields:
     parameters:
@@ -832,7 +832,7 @@ paths:
     get:
       summary: Get Channel Metafields
       tags:
-        - - Metafields
+        - - - - Metafields
       responses:
         '200':
           $ref: '#/components/responses/metafield_200'
@@ -861,7 +861,7 @@ paths:
               $ref: '#/components/schemas/metafield_Post'
             examples: {}
       tags:
-        - - Metafields
+        - - - - Metafields
       description: >-
         Creates a channel metafield.
 
@@ -883,7 +883,7 @@ paths:
     get:
       summary: Get a Channel Metafield
       tags:
-        - - Metafields
+        - - - - Metafields
       responses:
         '200':
           $ref: '#/components/responses/metafield_200'
@@ -903,7 +903,7 @@ paths:
             schema:
               $ref: '#/components/schemas/metafield_Put'
       tags:
-        - - Metafields
+        - - - - Metafields
       description: >-
         Updates a single channel metafield.
 
@@ -920,13 +920,13 @@ paths:
         '204':
           description: No Content
       tags:
-        - - Metafields
+        - - - - Metafields
       description: Deletes a single channel metafield.
   /channels/metafields:
     get:
       summary: Get All Channel Metafields
       tags:
-        - - Batch metafields
+        - - - - Batch metafields
       description: Get all channel metafields.
       operationId: getChannelsMetafields
       responses:
@@ -950,7 +950,7 @@ paths:
     post:
       summary: Create multiple Metafields
       tags:
-        - - Batch metafields
+        - - - - Batch metafields
       description: Create multiple metafields.
       operationId: createChannelsMetafields
       requestBody:
@@ -982,7 +982,7 @@ paths:
     put:
       summary: Update multiple Metafields
       tags:
-        - - Batch metafields
+        - - - - Batch metafields
       description: Update multiple metafields.
       operationId: updateChannelsMetafields
       requestBody:
@@ -1014,7 +1014,7 @@ paths:
     delete:
       summary: Delete All Metafields
       tags:
-        - - Batch metafields
+        - - - - Batch metafields
       description: Delete all channel metafields.
       operationId: deleteChannelsMetafields
       requestBody:

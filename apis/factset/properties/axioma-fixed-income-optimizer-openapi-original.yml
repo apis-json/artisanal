@@ -16,7 +16,7 @@ paths:
   /analytics/engines/afi/v3/optimizations:
     post:
       tags:
-        - - AFI Optimizer
+        - - - - AFI Optimizer
       summary: Create and Run AFI optimization
       description: "This endpoint creates and runs AFI optimization specified in the POST body parameters.\r\n            \r\nRemarks:\r\n            \r\n*\tAny settings in POST body will act as a one-time override over the settings saved in the strategy document."
       operationId: postAndOptimize
@@ -336,7 +336,7 @@ paths:
   /analytics/engines/afi/v3/optimizations/{id}:
     put:
       tags:
-        - - AFI Optimizer
+        - - - - AFI Optimizer
       summary: Create or Update AFI optimization and run it.
       description: >-
         This endpoint updates and run the AFI optimization specified in the PUT
@@ -702,7 +702,7 @@ paths:
           response-type: ObjectRoot
     get:
       tags:
-        - - AFI Optimizer
+        - - - - AFI Optimizer
       summary: Get AFI optimization parameters by id
       description: >-
         This is the endpoint that returns the optimization parameters passed for
@@ -931,7 +931,7 @@ paths:
           response-type: AFIOptimizationParametersRoot
     delete:
       tags:
-        - - AFI Optimizer
+        - - - - AFI Optimizer
       summary: Cancel AFI optimization by id
       description: This is the endpoint to cancel a previously submitted optimization.
       operationId: cancelOptimizationById
@@ -1146,7 +1146,7 @@ paths:
   /analytics/engines/afi/v3/optimizations/{id}/status:
     get:
       tags:
-        - - AFI Optimizer
+        - - - - AFI Optimizer
       summary: Get AFI optimization status by id
       description: "This is the endpoint to check on the progress of a previously requested optimization.\r\nIf the optimization has finished computing, the body of the response will contain result in JSON.\r\nOtherwise, the optimization is still running and the X-FactSet-Api-PickUp-Progress header will contain a progress percentage."
       operationId: getOptimizationStatusById
@@ -1400,7 +1400,7 @@ paths:
   /analytics/engines/afi/v3/optimizations/{id}/result:
     get:
       tags:
-        - - AFI Optimizer
+        - - - - AFI Optimizer
       summary: Get AFI optimization result by id
       description: >-
         This is the endpoint to get the result of a previously requested
@@ -1632,7 +1632,7 @@ paths:
   /analytics/engines/afi/v3/strategies/{path}:
     get:
       tags:
-        - - StrategyDocuments
+        - - - - StrategyDocuments
       summary: Get Axioma FI strategy documents and sub-directories in a directory
       description: >-
         This endpoint looks up all Axioma FI strategy documents and

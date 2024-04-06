@@ -16,7 +16,7 @@ paths:
   /analytics/lookups/v3/accounts/{path}:
     get:
       tags:
-        - - Accounts
+        - - - - Accounts
       summary: Get accounts and sub-directories in a directory
       description: >-
         This endpoint looks up all ACCT and ACTM files and sub-directories in a
@@ -264,7 +264,7 @@ paths:
   /analytics/lookups/v3/currencies:
     get:
       tags:
-        - - Currencies
+        - - - - Currencies
       summary: Get currencies
       description: >-
         This endpoint lists all the currencies that can be applied to any
@@ -445,7 +445,7 @@ paths:
   /analytics/engines/pub/v3/documents/{path}:
     get:
       tags:
-        - - Documents
+        - - - - Documents
       summary: Gets Publisher documents and sub-directories in a directory
       description: >-
         This endpoint looks up all Publisher documents and sub-directories in a
@@ -695,7 +695,7 @@ paths:
   /analytics/engines/pub/v3/calculations:
     post:
       tags:
-        - - PubCalculations
+        - - - - PubCalculations
       summary: Create and Run Pub calculation
       description: "This endpoint runs the Pub calculation specified in the POST body parameters.\r\nIt can take one or more units as input."
       operationId: postAndCalculate
@@ -1064,7 +1064,7 @@ paths:
   /analytics/engines/pub/v3/calculations/{id}:
     put:
       tags:
-        - - PubCalculations
+        - - - - PubCalculations
       summary: Create or Update Pub calculation and run it.
       description: "This endpoint updates and run the Pub calculation specified in the PUT body parameters. This also allows creating new Pub calculations with custom ids.\r\nIt can take one or more units as input.\r\n\r\nRemarks:\r\n\r\n*   Start and and end date must be within the configuration's min and max date range"
       operationId: putAndCalculate
@@ -1538,7 +1538,7 @@ paths:
                 description: Number of FI requests remaining till request limit reached.
     get:
       tags:
-        - - PubCalculations
+        - - - - PubCalculations
       summary: Get Pub calculation parameters by id
       description: >-
         This is the endpoint that returns the calculation parameters passed for
@@ -1763,7 +1763,7 @@ paths:
                   available after successful authentication.
     delete:
       tags:
-        - - PubCalculations
+        - - - - PubCalculations
       summary: Cancel Pub calculation by id
       description: This is the endpoint to cancel a previously submitted calculation.
       operationId: cancelCalculationById
@@ -1974,7 +1974,7 @@ paths:
   /analytics/engines/pub/v3/calculations/{id}/status:
     get:
       tags:
-        - - PubCalculations
+        - - - - PubCalculations
       summary: Get Pub calculation status by id
       description: "This is the endpoint to check on the progress of a previously requested calculation.\r\nIf the calculation has finished computing, the result field in the response body will point to the result url.\r\nOtherwise, the calculation is still running and the X-FactSet-Api-PickUp-Progress header will contain a progress percentage."
       operationId: getCalculationStatusById
@@ -2247,7 +2247,7 @@ paths:
   /analytics/engines/pub/v3/calculations/{id}/units/{unitId}/result:
     get:
       tags:
-        - - PubCalculations
+        - - - - PubCalculations
       summary: Get Pub calculation result by id
       description: "This is the endpoint to get the result of a previously requested calculation.\r\nIf the calculation has finished computing, the body of the response will contain the requested document in the specified format."
       operationId: getCalculationUnitResultById

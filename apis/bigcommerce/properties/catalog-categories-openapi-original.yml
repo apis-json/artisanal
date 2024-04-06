@@ -95,7 +95,7 @@ paths:
   /catalog/categories:
     get:
       tags:
-        - - Categories (deprecated)
+        - - - - Categories (deprecated)
       deprecated: true
       summary: Get All Categories
       description: >-
@@ -432,7 +432,7 @@ paths:
                       current: '?page=1&limit=50'
     post:
       tags:
-        - - Categories (deprecated)
+        - - - - Categories (deprecated)
       deprecated: true
       summary: Create a Category
       description: "When possible, use the [Category Trees - Create categories](/docs/rest-catalog/category-trees/categories#create-categories) endpoint instead.\n\nCreates a *Category*.\n\nUse this endpoint when an API only works with categories of a default BigCommerce storefront (`channel_id=1`). \n\nUse the [Create categories](/docs/rest-catalog/category-trees/categories#create-categories) endpoint when an API works with categories across different category trees that belong to different storefront channels.\n\n**Required Fields**:\n- `parent_id`: \n\t- To create a child category, set the `parent_id` to the parent category.\n\t- To create a top level category, set the `parent_id` to `0`.\n- `name`\n\n**Read-Only Fields**:\n- `id`\n\n**Limits**:\n- 16,000 categories per store limit.\n- 1,000 categories per product limit.\n- 50 characters category name length.\n- 8 levels of category depth limit.\n- 65,642 characters category description length limit.\n\n **Note:**\n The default rate limit for this endpoint is 40 concurrent requests.\n"
@@ -676,7 +676,7 @@ paths:
       x-codegen-request-body-name: category
     delete:
       tags:
-        - - Categories (deprecated)
+        - - - - Categories (deprecated)
       deprecated: true
       summary: Delete Categories
       description: >-
@@ -848,7 +848,7 @@ paths:
   /catalog/categories/{category_id}:
     get:
       tags:
-        - - Categories (deprecated)
+        - - - - Categories (deprecated)
       deprecated: true
       summary: Get a Category
       description: >-
@@ -916,7 +916,7 @@ paths:
                 description: Error payload for the BigCommerce API.
     put:
       tags:
-        - - Categories (deprecated)
+        - - - - Categories (deprecated)
       deprecated: true
       summary: Update a Category
       description: >-
@@ -1360,7 +1360,7 @@ paths:
       x-codegen-request-body-name: category
     delete:
       tags:
-        - - Categories (deprecated)
+        - - - - Categories (deprecated)
       deprecated: true
       summary: Delete a Category
       description: >-
@@ -1387,7 +1387,7 @@ paths:
   /catalog/categories/{category_id}/metafields:
     get:
       tags:
-        - - Metafields
+        - - - - Metafields
       summary: Get Category Metafields
       description: >-
         Returns a list of *Metafields* on a *Category*. Optional filter
@@ -1554,7 +1554,7 @@ paths:
                 description: Error payload for the BigCommerce API.
     post:
       tags:
-        - - Metafields
+        - - - - Metafields
       summary: Create a Category Metafield
       description: >-
         Creates a *Category Metafield*.
@@ -1679,7 +1679,7 @@ paths:
   /catalog/categories/{category_id}/metafields/{metafield_id}:
     get:
       tags:
-        - - Metafields
+        - - - - Metafields
       summary: Get a Category Metafield
       description: >-
         Returns a single *Category Metafield*. Optional parameters can be passed
@@ -1748,7 +1748,7 @@ paths:
                 description: Error payload for the BigCommerce API.
     put:
       tags:
-        - - Metafields
+        - - - - Metafields
       summary: Update a Category Metafield
       description: "Updates a *Category Metafield*.\n\n**Required Fields**\n* none\n\n**Read-Only Fields**\n* id\n* These fields can only be modified by the app (API credentials) that created the metafield:\n\t* namespace\n\t* key\n\t* permission_set\n\n**Usage Notes**\n* Attempting to modify `namespace`, `key`, and `permission_set` fields using a client ID different from the one used to create those metafields will result in a 403 error message. "
       operationId: updateCategoryMetafield
@@ -1810,7 +1810,7 @@ paths:
       x-codegen-request-body-name: Metafield
     delete:
       tags:
-        - - Metafields
+        - - - - Metafields
       summary: Delete a Category Metafield
       description: Deletes a *Category Metafield*.
       operationId: deleteCategoryMetafield
@@ -1825,7 +1825,7 @@ paths:
   /catalog/categories/{category_id}/image:
     post:
       tags:
-        - - Images
+        - - - - Images
       summary: Create a Category Image
       description: >-
         Create a *Category Image*.
@@ -1935,7 +1935,7 @@ paths:
                     type: string
     delete:
       tags:
-        - - Images
+        - - - - Images
       summary: Delete a Category Image
       description: Deletes a *Category Image*.
       operationId: deleteCategoryImage
@@ -1949,7 +1949,7 @@ paths:
   /catalog/categories/{category_id}/products/sort-order:
     get:
       tags:
-        - - Sort Order
+        - - - - Sort Order
       summary: Get Product Sort Order
       description: >-
         Returns a list of products and their sort order for a specific category.
@@ -1990,7 +1990,7 @@ paths:
                 $ref: '#/components/schemas/error_Base'
     put:
       tags:
-        - - Sort Order
+        - - - - Sort Order
       summary: Update Product Sort Order
       description: Updates sort order of products within a specific category.
       operationId: updateCategorySortOrders
@@ -2044,7 +2044,7 @@ paths:
     get:
       summary: Get All Category Metafields
       tags:
-        - - Batch metafields
+        - - - - Batch metafields
       description: Get all category metafields.
       operationId: getCategoriesMetafields
       responses:
@@ -2068,7 +2068,7 @@ paths:
     post:
       summary: Create multiple Metafields
       tags:
-        - - Batch metafields
+        - - - - Batch metafields
       description: Create multiple metafields.
       operationId: createCategoriesMetafields
       requestBody:
@@ -2111,7 +2111,7 @@ paths:
     put:
       summary: Update multiple Metafields
       tags:
-        - - Batch metafields
+        - - - - Batch metafields
       description: Create multiple metafields.
       operationId: updateCategoriesMetafields
       requestBody:
@@ -2153,7 +2153,7 @@ paths:
     delete:
       summary: Delete All Metafields
       tags:
-        - - Batch metafields
+        - - - - Batch metafields
       description: Delete all category metafields.
       operationId: deleteCategoriesMetafields
       requestBody:
