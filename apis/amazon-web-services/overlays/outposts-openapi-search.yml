@@ -8,9 +8,9 @@ paths:
       description: <p>Cancels the specified order for an Outpost.</p>
       tags:
         - Cancel
-        - Order
-        - Order
-        - Id
+        - Orders
+        - Orders
+        - Identifiers
         - Cancel
   /orders:
     POST:
@@ -18,9 +18,9 @@ paths:
       description: <p>Creates an order for an Outpost.</p>
       tags:
         - Create
-        - Order
-        - Order
-        - Id
+        - Orders
+        - Orders
+        - Identifiers
         - Cancel
         - Orders
   /outposts:
@@ -34,10 +34,10 @@ paths:
         include items that match any of the values that you specify for the
         filter.</p>
       tags:
-        - List
+        - Lists
         - Outposts
-        - Order
-        - Id
+        - Orders
+        - Identifiers
         - Cancel
         - Orders
         - Outposts
@@ -52,10 +52,10 @@ paths:
         where you can specify multiple values, the results include items that
         match any of the values that you specify for the filter.</p>
       tags:
-        - List
+        - Lists
         - Sites
-        - Order
-        - Id
+        - Orders
+        - Identifiers
         - Cancel
         - Orders
         - Outposts
@@ -66,29 +66,29 @@ paths:
       description: <p> Updates an Outpost. </p>
       tags:
         - Update
-        - Outpost
-        - Order
-        - Id
+        - Outposts
+        - Orders
+        - Identifiers
         - Cancel
         - Orders
         - Outposts
         - Sites
-        - Outpost
+        - Outposts
   /sites/{SiteId}:
     PATCH:
       summary: UpdateSite
       description: <p>Updates the specified site.</p>
       tags:
         - Update
-        - Site
-        - Order
-        - Id
+        - Sites
+        - Orders
+        - Identifiers
         - Cancel
         - Orders
         - Outposts
         - Sites
-        - Outpost
-        - Site
+        - Outposts
+        - Sites
   /catalog/item/{CatalogItemId}:
     GET:
       summary: GetCatalogItem
@@ -96,17 +96,17 @@ paths:
       tags:
         - Get
         - Catalog
-        - Item
-        - Order
-        - Id
+        - Items
+        - Orders
+        - Identifiers
         - Cancel
         - Orders
         - Outposts
         - Sites
-        - Outpost
-        - Site
+        - Outposts
+        - Sites
         - Catalog
-        - Item
+        - Items
   /connections/{ConnectionId}:
     GET:
       summary: GetConnection
@@ -125,57 +125,57 @@ paths:
         </p>
       tags:
         - Get
-        - Connection
-        - Order
-        - Id
+        - Connections
+        - Orders
+        - Identifiers
         - Cancel
         - Orders
         - Outposts
         - Sites
-        - Outpost
-        - Site
+        - Outposts
+        - Sites
         - Catalog
-        - Item
-        - Connection
+        - Items
+        - Connections
   /orders/{OrderId}:
     GET:
       summary: GetOrder
       description: <p>Gets information about the specified order.</p>
       tags:
         - Get
-        - Order
-        - Order
-        - Id
+        - Orders
+        - Orders
+        - Identifiers
         - Cancel
         - Orders
         - Outposts
         - Sites
-        - Outpost
-        - Site
+        - Outposts
+        - Sites
         - Catalog
-        - Item
-        - Connection
+        - Items
+        - Connections
   /outposts/{OutpostId}/instanceTypes:
     GET:
       summary: GetOutpostInstanceTypes
       description: <p>Gets the instance types for the specified Outpost.</p>
       tags:
         - Get
-        - Outpost
-        - Instance
+        - Outposts
+        - Instances
         - Types
-        - Order
-        - Id
+        - Orders
+        - Identifiers
         - Cancel
         - Orders
         - Outposts
         - Sites
-        - Outpost
-        - Site
+        - Outposts
+        - Sites
         - Catalog
-        - Item
-        - Connection
-        - Instance
+        - Items
+        - Connections
+        - Instances
         - Types
   /sites/{SiteId}/address:
     PUT:
@@ -188,22 +188,22 @@ paths:
         Outposts that belong to the site have been deactivated.</p>
       tags:
         - Update
-        - Site
-        - Address
-        - Order
-        - Id
+        - Sites
+        - Addresses
+        - Orders
+        - Identifiers
         - Cancel
         - Orders
         - Outposts
         - Sites
-        - Outpost
-        - Site
+        - Outposts
+        - Sites
         - Catalog
-        - Item
-        - Connection
-        - Instance
+        - Items
+        - Connections
+        - Instances
         - Types
-        - Address
+        - Addresses
   /outposts/{OutpostId}/assets:
     GET:
       summary: ListAssets
@@ -215,22 +215,22 @@ paths:
         include items that match any of the values that you specify for the
         filter.</p>
       tags:
-        - List
+        - Lists
         - Assets
-        - Order
-        - Id
+        - Orders
+        - Identifiers
         - Cancel
         - Orders
         - Outposts
         - Sites
-        - Outpost
-        - Site
+        - Outposts
+        - Sites
         - Catalog
-        - Item
-        - Connection
-        - Instance
+        - Items
+        - Connections
+        - Instances
         - Types
-        - Address
+        - Addresses
         - Assets
   /catalog/items:
     GET:
@@ -242,23 +242,23 @@ paths:
         you can specify multiple values, the results include items that match
         any of the values that you specify for the filter.</p>
       tags:
-        - List
+        - Lists
         - Catalog
         - Items
-        - Order
-        - Id
+        - Orders
+        - Identifiers
         - Cancel
         - Orders
         - Outposts
         - Sites
-        - Outpost
-        - Site
+        - Outposts
+        - Sites
         - Catalog
-        - Item
-        - Connection
-        - Instance
+        - Items
+        - Connections
+        - Instances
         - Types
-        - Address
+        - Addresses
         - Assets
         - Items
   /list-orders:
@@ -266,51 +266,51 @@ paths:
       summary: ListOrders
       description: <p>Lists the Outpost orders for your Amazon Web Services account.</p>
       tags:
-        - List
+        - Lists
         - Orders
-        - Order
-        - Id
+        - Orders
+        - Identifiers
         - Cancel
         - Orders
         - Outposts
         - Sites
-        - Outpost
-        - Site
+        - Outposts
+        - Sites
         - Catalog
-        - Item
-        - Connection
-        - Instance
+        - Items
+        - Connections
+        - Instances
         - Types
-        - Address
+        - Addresses
         - Assets
         - Items
-        - List
+        - Lists
   /tags/{ResourceArn}:
     DELETE:
       summary: UntagResource
       description: <p>Removes tags from the specified resource.</p>
       tags:
         - Untag
-        - Resource
-        - Order
-        - Id
+        - Resources
+        - Orders
+        - Identifiers
         - Cancel
         - Orders
         - Outposts
         - Sites
-        - Outpost
-        - Site
+        - Outposts
+        - Sites
         - Catalog
-        - Item
-        - Connection
-        - Instance
+        - Items
+        - Connections
+        - Instances
         - Types
-        - Address
+        - Addresses
         - Assets
         - Items
-        - List
-        - Resource
-        - Arn
+        - Lists
+        - Resources
+        - ARN
   /connections:
     POST:
       summary: StartConnection
@@ -329,26 +329,26 @@ paths:
         </p>
       tags:
         - Start
-        - Connection
-        - Order
-        - Id
+        - Connections
+        - Orders
+        - Identifiers
         - Cancel
         - Orders
         - Outposts
         - Sites
-        - Outpost
-        - Site
+        - Outposts
+        - Sites
         - Catalog
-        - Item
-        - Connection
-        - Instance
+        - Items
+        - Connections
+        - Instances
         - Types
-        - Address
+        - Addresses
         - Assets
         - Items
-        - List
-        - Resource
-        - Arn
+        - Lists
+        - Resources
+        - ARN
         - Connections
   /sites/{SiteId}/rackPhysicalProperties:
     PATCH:
@@ -363,30 +363,30 @@ paths:
         cancel the 
       tags:
         - Update
-        - Site
+        - Sites
         - Rack
         - Physical
         - Properties
-        - Order
-        - Id
+        - Orders
+        - Identifiers
         - Cancel
         - Orders
         - Outposts
         - Sites
-        - Outpost
-        - Site
+        - Outposts
+        - Sites
         - Catalog
-        - Item
-        - Connection
-        - Instance
+        - Items
+        - Connections
+        - Instances
         - Types
-        - Address
+        - Addresses
         - Assets
         - Items
-        - List
-        - Resource
-        - Arn
+        - Lists
+        - Resources
+        - ARN
         - Connections
         - Rack
         - Physical
-        - Properti
+        - Properties

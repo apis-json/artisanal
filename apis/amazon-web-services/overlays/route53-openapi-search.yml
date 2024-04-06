@@ -11,12 +11,12 @@ paths:
         <code>ACTIVE</code>.</p>
       tags:
         - Activate
-        - Key
+        - Keys
         - Signing
         - Hosted
-        - Zone
-        - Id
-        - Name
+        - Zones
+        - Identifiers
+        - Names
         - Activate
   /2013-04-01/hostedzone/{Id}/associatevpc:
     POST:
@@ -47,13 +47,13 @@ paths:
         - Associate
         - With
         - Hosted
-        - Zone
+        - Zones
         - Hosted
-        - Zone
-        - Id
-        - Name
+        - Zones
+        - Identifiers
+        - Names
         - Activate
-        - Associatevpc
+        - Associate VPC
   /2013-04-01/cidrcollection/{CidrCollectionId}:
     GET:
       summary: ListCidrLocations
@@ -61,17 +61,17 @@ paths:
         <p>Returns a paginated list of CIDR locations for the given collection
         (metadata only, does not include CIDR blocks).</p>
       tags:
-        - List
-        - Cidr
+        - Lists
+        - CIDR
         - Locations
         - Hosted
-        - Zone
-        - Id
-        - Name
+        - Zones
+        - Identifiers
+        - Names
         - Activate
-        - Associatevpc
-        - Cidr
-        - Collection
+        - Associate VPC
+        - CIDR
+        - Collections
   /2013-04-01/hostedzone/{Id}/rrset/:
     POST:
       summary: ChangeResourceRecordSets
@@ -146,17 +146,17 @@ paths:
         in the <i>Amazon Route 53 Developer Guide</i>.</p>
       tags:
         - Change
-        - Resource
+        - Resources
         - Record
         - Sets
         - Hosted
-        - Zone
-        - Id
-        - Name
+        - Zones
+        - Identifiers
+        - Names
         - Activate
-        - Associatevpc
-        - Cidr
-        - Collection
+        - Associate VPC
+        - CIDR
+        - Collections
         - Rrset
   /2013-04-01/tags/{ResourceType}/{ResourceId}:
     GET:
@@ -168,21 +168,21 @@ paths:
         Cost Allocation Tags</a> in the <i>Billing and Cost Management User
         Guide</i>.</p>
       tags:
-        - List
+        - Lists
         - Tags
         - For
-        - Resource
+        - Resources
         - Hosted
-        - Zone
-        - Id
-        - Name
+        - Zones
+        - Identifiers
+        - Names
         - Activate
-        - Associatevpc
-        - Cidr
-        - Collection
+        - Associate VPC
+        - CIDR
+        - Collections
         - Rrset
-        - Resource
-        - Type
+        - Resources
+        - Types
   /2013-04-01/cidrcollection:
     GET:
       summary: ListCidrCollections
@@ -190,24 +190,24 @@ paths:
         <p>Returns a paginated list of CIDR collections in the Amazon Web
         Services account (metadata only).</p>
       tags:
-        - List
-        - Cidr
+        - Lists
+        - CIDR
         - Collections
         - Hosted
-        - Zone
-        - Id
-        - Name
+        - Zones
+        - Identifiers
+        - Names
         - Activate
-        - Associatevpc
-        - Cidr
-        - Collection
+        - Associate VPC
+        - CIDR
+        - Collections
         - Rrset
-        - Resource
-        - Type
+        - Resources
+        - Types
         - '2013'
         - '04'
         - '01'
-        - Cidrcollection
+        - CIDR Collection
   /2013-04-01/healthcheck:
     GET:
       summary: ListHealthChecks
@@ -215,25 +215,25 @@ paths:
         <p>Retrieve a list of the health checks that are associated with the
         current Amazon Web Services account. </p>
       tags:
-        - List
+        - Lists
         - Health
         - Checks
         - Hosted
-        - Zone
-        - Id
-        - Name
+        - Zones
+        - Identifiers
+        - Names
         - Activate
-        - Associatevpc
-        - Cidr
-        - Collection
+        - Associate VPC
+        - CIDR
+        - Collections
         - Rrset
-        - Resource
-        - Type
+        - Resources
+        - Types
         - '2013'
         - '04'
         - '01'
-        - Cidrcollection
-        - Healthcheck
+        - CIDR Collection
+        - Health Check
   /2013-04-01/hostedzone:
     GET:
       summary: ListHostedZones
@@ -245,26 +245,26 @@ paths:
         response. If you have a lot of hosted zones, you can use the
         <code>maxitems</code> parameter to list them in groups of up to 100.</p>
       tags:
-        - List
+        - Lists
         - Hosted
         - Zones
         - Hosted
-        - Zone
-        - Id
-        - Name
+        - Zones
+        - Identifiers
+        - Names
         - Activate
-        - Associatevpc
-        - Cidr
-        - Collection
+        - Associate VPC
+        - CIDR
+        - Collections
         - Rrset
-        - Resource
-        - Type
+        - Resources
+        - Types
         - '2013'
         - '04'
         - '01'
-        - Cidrcollection
-        - Healthcheck
-        - Hostedzone
+        - CIDR Collection
+        - Health Check
+        - Hosted Zones
   /2013-04-01/keysigningkey:
     POST:
       summary: CreateKeySigningKey
@@ -273,26 +273,26 @@ paths:
         You can only have two KSKs per hosted zone.</p>
       tags:
         - Create
-        - Key
+        - Keys
         - Signing
         - Hosted
-        - Zone
-        - Id
-        - Name
+        - Zones
+        - Identifiers
+        - Names
         - Activate
-        - Associatevpc
-        - Cidr
-        - Collection
+        - Associate VPC
+        - CIDR
+        - Collections
         - Rrset
-        - Resource
-        - Type
+        - Resources
+        - Types
         - '2013'
         - '04'
         - '01'
-        - Cidrcollection
-        - Healthcheck
-        - Hostedzone
-        - Keysigningkey
+        - CIDR Collection
+        - Health Check
+        - Hosted Zones
+        - Key Signing
   /2013-04-01/queryloggingconfig:
     GET:
       summary: ListQueryLoggingConfigs
@@ -307,29 +307,29 @@ paths:
         href="https://docs.aws.amazon.com/Route53/latest/DeveloperGuide/query-logs.html">Logging
         DNS Queries</a> in the <i>Amazon Route 53 Developer Guide</i>.</p>
       tags:
-        - List
-        - Query
+        - Lists
+        - Queries
         - Logging
-        - Configs
+        - Configurations
         - Hosted
-        - Zone
-        - Id
-        - Name
+        - Zones
+        - Identifiers
+        - Names
         - Activate
-        - Associatevpc
-        - Cidr
-        - Collection
+        - Associate VPC
+        - CIDR
+        - Collections
         - Rrset
-        - Resource
-        - Type
+        - Resources
+        - Types
         - '2013'
         - '04'
         - '01'
-        - Cidrcollection
-        - Healthcheck
-        - Hostedzone
-        - Keysigningkey
-        - Queryloggingconfig
+        - CIDR Collection
+        - Health Check
+        - Hosted Zones
+        - Key Signing
+        - Query Logging Configurations
   /2013-04-01/delegationset:
     GET:
       summary: ListReusableDelegationSets
@@ -337,30 +337,30 @@ paths:
         <p>Retrieves a list of the reusable delegation sets that are associated
         with the current Amazon Web Services account.</p>
       tags:
-        - List
+        - Lists
         - Reusable
         - Delegation
         - Sets
         - Hosted
-        - Zone
-        - Id
-        - Name
+        - Zones
+        - Identifiers
+        - Names
         - Activate
-        - Associatevpc
-        - Cidr
-        - Collection
+        - Associate VPC
+        - CIDR
+        - Collections
         - Rrset
-        - Resource
-        - Type
+        - Resources
+        - Types
         - '2013'
         - '04'
         - '01'
-        - Cidrcollection
-        - Healthcheck
-        - Hostedzone
-        - Keysigningkey
-        - Queryloggingconfig
-        - Delegationset
+        - CIDR Collection
+        - Health Check
+        - Hosted Zones
+        - Key Signing
+        - Query Logging Configurations
+        - Delegation Sets
   /2013-04-01/trafficpolicy:
     POST:
       summary: CreateTrafficPolicy
@@ -371,28 +371,28 @@ paths:
       tags:
         - Create
         - Traffic
-        - Policy
+        - Policies
         - Hosted
-        - Zone
-        - Id
-        - Name
+        - Zones
+        - Identifiers
+        - Names
         - Activate
-        - Associatevpc
-        - Cidr
-        - Collection
+        - Associate VPC
+        - CIDR
+        - Collections
         - Rrset
-        - Resource
-        - Type
+        - Resources
+        - Types
         - '2013'
         - '04'
         - '01'
-        - Cidrcollection
-        - Healthcheck
-        - Hostedzone
-        - Keysigningkey
-        - Queryloggingconfig
-        - Delegationset
-        - Trafficpolicy
+        - CIDR Collection
+        - Health Check
+        - Hosted Zones
+        - Key Signing
+        - Query Logging Configurations
+        - Delegation Sets
+        - Traffic Policies
   /2013-04-01/trafficpolicyinstance:
     POST:
       summary: CreateTrafficPolicyInstance
@@ -415,30 +415,30 @@ paths:
       tags:
         - Create
         - Traffic
-        - Policy
-        - Instance
+        - Policies
+        - Instances
         - Hosted
-        - Zone
-        - Id
-        - Name
+        - Zones
+        - Identifiers
+        - Names
         - Activate
-        - Associatevpc
-        - Cidr
-        - Collection
+        - Associate VPC
+        - CIDR
+        - Collections
         - Rrset
-        - Resource
-        - Type
+        - Resources
+        - Types
         - '2013'
         - '04'
         - '01'
-        - Cidrcollection
-        - Healthcheck
-        - Hostedzone
-        - Keysigningkey
-        - Queryloggingconfig
-        - Delegationset
-        - Trafficpolicy
-        - Trafficpolicyinstance
+        - CIDR Collection
+        - Health Check
+        - Hosted Zones
+        - Key Signing
+        - Query Logging Configurations
+        - Delegation Sets
+        - Traffic Policies
+        - Traffic Policy Instances
   /2013-04-01/trafficpolicy/{Id}:
     POST:
       summary: CreateTrafficPolicyVersion
@@ -454,30 +454,30 @@ paths:
       tags:
         - Create
         - Traffic
-        - Policy
-        - Version
+        - Policies
+        - Versions
         - Hosted
-        - Zone
-        - Id
-        - Name
+        - Zones
+        - Identifiers
+        - Names
         - Activate
-        - Associatevpc
-        - Cidr
-        - Collection
+        - Associate VPC
+        - CIDR
+        - Collections
         - Rrset
-        - Resource
-        - Type
+        - Resources
+        - Types
         - '2013'
         - '04'
         - '01'
-        - Cidrcollection
-        - Healthcheck
-        - Hostedzone
-        - Keysigningkey
-        - Queryloggingconfig
-        - Delegationset
-        - Trafficpolicy
-        - Trafficpolicyinstance
+        - CIDR Collection
+        - Health Check
+        - Hosted Zones
+        - Key Signing
+        - Query Logging Configurations
+        - Delegation Sets
+        - Traffic Policies
+        - Traffic Policy Instances
   /2013-04-01/hostedzone/{Id}/authorizevpcassociation:
     GET:
       summary: ListVPCAssociationAuthorizations
@@ -489,32 +489,32 @@ paths:
         <code>VPC</code> child element for each VPC that can be associated with
         the hosted zone.</p>
       tags:
-        - List
+        - Lists
         - Association
-        - Authorizations
+        - Authorization
         - Hosted
-        - Zone
-        - Id
-        - Name
+        - Zones
+        - Identifiers
+        - Names
         - Activate
-        - Associatevpc
-        - Cidr
-        - Collection
+        - Associate VPC
+        - CIDR
+        - Collections
         - Rrset
-        - Resource
-        - Type
+        - Resources
+        - Types
         - '2013'
         - '04'
         - '01'
-        - Cidrcollection
-        - Healthcheck
-        - Hostedzone
-        - Keysigningkey
-        - Queryloggingconfig
-        - Delegationset
-        - Trafficpolicy
-        - Trafficpolicyinstance
-        - Authorizevpcassociation
+        - CIDR Collection
+        - Health Check
+        - Hosted Zones
+        - Key Signing
+        - Query Logging Configurations
+        - Delegation Sets
+        - Traffic Policies
+        - Traffic Policy Instances
+        - Authorizers VPC Association
   /2013-04-01/keysigningkey/{HostedZoneId}/{Name}/deactivate:
     POST:
       summary: DeactivateKeySigningKey
@@ -524,31 +524,31 @@ paths:
         <code>INACTIVE</code>.</p>
       tags:
         - Deactivate
-        - Key
+        - Keys
         - Signing
         - Hosted
-        - Zone
-        - Id
-        - Name
+        - Zones
+        - Identifiers
+        - Names
         - Activate
-        - Associatevpc
-        - Cidr
-        - Collection
+        - Associate VPC
+        - CIDR
+        - Collections
         - Rrset
-        - Resource
-        - Type
+        - Resources
+        - Types
         - '2013'
         - '04'
         - '01'
-        - Cidrcollection
-        - Healthcheck
-        - Hostedzone
-        - Keysigningkey
-        - Queryloggingconfig
-        - Delegationset
-        - Trafficpolicy
-        - Trafficpolicyinstance
-        - Authorizevpcassociation
+        - CIDR Collection
+        - Health Check
+        - Hosted Zones
+        - Key Signing
+        - Query Logging Configurations
+        - Delegation Sets
+        - Traffic Policies
+        - Traffic Policy Instances
+        - Authorizers VPC Association
         - Deactivate
   /2013-04-01/healthcheck/{HealthCheckId}:
     POST:
@@ -563,33 +563,33 @@ paths:
       tags:
         - Update
         - Health
-        - Check
+        - Checks
         - Hosted
-        - Zone
-        - Id
-        - Name
+        - Zones
+        - Identifiers
+        - Names
         - Activate
-        - Associatevpc
-        - Cidr
-        - Collection
+        - Associate VPC
+        - CIDR
+        - Collections
         - Rrset
-        - Resource
-        - Type
+        - Resources
+        - Types
         - '2013'
         - '04'
         - '01'
-        - Cidrcollection
-        - Healthcheck
-        - Hostedzone
-        - Keysigningkey
-        - Queryloggingconfig
-        - Delegationset
-        - Trafficpolicy
-        - Trafficpolicyinstance
-        - Authorizevpcassociation
+        - CIDR Collection
+        - Health Check
+        - Hosted Zones
+        - Key Signing
+        - Query Logging Configurations
+        - Delegation Sets
+        - Traffic Policies
+        - Traffic Policy Instances
+        - Authorizers VPC Association
         - Deactivate
         - Health
-        - Check
+        - Checks
   /2013-04-01/hostedzone/{Id}:
     POST:
       summary: UpdateHostedZoneComment
@@ -597,34 +597,34 @@ paths:
       tags:
         - Update
         - Hosted
-        - Zone
-        - Comment
+        - Zones
+        - Comments
         - Hosted
-        - Zone
-        - Id
-        - Name
+        - Zones
+        - Identifiers
+        - Names
         - Activate
-        - Associatevpc
-        - Cidr
-        - Collection
+        - Associate VPC
+        - CIDR
+        - Collections
         - Rrset
-        - Resource
-        - Type
+        - Resources
+        - Types
         - '2013'
         - '04'
         - '01'
-        - Cidrcollection
-        - Healthcheck
-        - Hostedzone
-        - Keysigningkey
-        - Queryloggingconfig
-        - Delegationset
-        - Trafficpolicy
-        - Trafficpolicyinstance
-        - Authorizevpcassociation
+        - CIDR Collection
+        - Health Check
+        - Hosted Zones
+        - Key Signing
+        - Query Logging Configurations
+        - Delegation Sets
+        - Traffic Policies
+        - Traffic Policy Instances
+        - Authorizers VPC Association
         - Deactivate
         - Health
-        - Check
+        - Checks
   /2013-04-01/keysigningkey/{HostedZoneId}/{Name}:
     DELETE:
       summary: DeleteKeySigningKey
@@ -639,34 +639,34 @@ paths:
         to verify that the KSK is in an <code>INACTIVE</code> status.</p>
       tags:
         - Delete
-        - Key
+        - Keys
         - Signing
         - Hosted
-        - Zone
-        - Id
-        - Name
+        - Zones
+        - Identifiers
+        - Names
         - Activate
-        - Associatevpc
-        - Cidr
-        - Collection
+        - Associate VPC
+        - CIDR
+        - Collections
         - Rrset
-        - Resource
-        - Type
+        - Resources
+        - Types
         - '2013'
         - '04'
         - '01'
-        - Cidrcollection
-        - Healthcheck
-        - Hostedzone
-        - Keysigningkey
-        - Queryloggingconfig
-        - Delegationset
-        - Trafficpolicy
-        - Trafficpolicyinstance
-        - Authorizevpcassociation
+        - CIDR Collection
+        - Health Check
+        - Hosted Zones
+        - Key Signing
+        - Query Logging Configurations
+        - Delegation Sets
+        - Traffic Policies
+        - Traffic Policy Instances
+        - Authorizers VPC Association
         - Deactivate
         - Health
-        - Check
+        - Checks
   /2013-04-01/queryloggingconfig/{Id}:
     GET:
       summary: GetQueryLoggingConfig
@@ -679,35 +679,35 @@ paths:
         DNS Queries</a>.</p>
       tags:
         - Get
-        - Query
+        - Queries
         - Logging
-        - Config
+        - Configurations
         - Hosted
-        - Zone
-        - Id
-        - Name
+        - Zones
+        - Identifiers
+        - Names
         - Activate
-        - Associatevpc
-        - Cidr
-        - Collection
+        - Associate VPC
+        - CIDR
+        - Collections
         - Rrset
-        - Resource
-        - Type
+        - Resources
+        - Types
         - '2013'
         - '04'
         - '01'
-        - Cidrcollection
-        - Healthcheck
-        - Hostedzone
-        - Keysigningkey
-        - Queryloggingconfig
-        - Delegationset
-        - Trafficpolicy
-        - Trafficpolicyinstance
-        - Authorizevpcassociation
+        - CIDR Collection
+        - Health Check
+        - Hosted Zones
+        - Key Signing
+        - Query Logging Configurations
+        - Delegation Sets
+        - Traffic Policies
+        - Traffic Policy Instances
+        - Authorizers VPC Association
         - Deactivate
         - Health
-        - Check
+        - Checks
   /2013-04-01/delegationset/{Id}:
     GET:
       summary: GetReusableDelegationSet
@@ -719,33 +719,33 @@ paths:
         - Get
         - Reusable
         - Delegation
-        - Set
+        - Sets
         - Hosted
-        - Zone
-        - Id
-        - Name
+        - Zones
+        - Identifiers
+        - Names
         - Activate
-        - Associatevpc
-        - Cidr
-        - Collection
+        - Associate VPC
+        - CIDR
+        - Collections
         - Rrset
-        - Resource
-        - Type
+        - Resources
+        - Types
         - '2013'
         - '04'
         - '01'
-        - Cidrcollection
-        - Healthcheck
-        - Hostedzone
-        - Keysigningkey
-        - Queryloggingconfig
-        - Delegationset
-        - Trafficpolicy
-        - Trafficpolicyinstance
-        - Authorizevpcassociation
+        - CIDR Collection
+        - Health Check
+        - Hosted Zones
+        - Key Signing
+        - Query Logging Configurations
+        - Delegation Sets
+        - Traffic Policies
+        - Traffic Policy Instances
+        - Authorizers VPC Association
         - Deactivate
         - Health
-        - Check
+        - Checks
   /2013-04-01/trafficpolicy/{Id}/{Version}:
     POST:
       summary: UpdateTrafficPolicyComment
@@ -753,35 +753,35 @@ paths:
       tags:
         - Update
         - Traffic
-        - Policy
-        - Comment
+        - Policies
+        - Comments
         - Hosted
-        - Zone
-        - Id
-        - Name
+        - Zones
+        - Identifiers
+        - Names
         - Activate
-        - Associatevpc
-        - Cidr
-        - Collection
+        - Associate VPC
+        - CIDR
+        - Collections
         - Rrset
-        - Resource
-        - Type
+        - Resources
+        - Types
         - '2013'
         - '04'
         - '01'
-        - Cidrcollection
-        - Healthcheck
-        - Hostedzone
-        - Keysigningkey
-        - Queryloggingconfig
-        - Delegationset
-        - Trafficpolicy
-        - Trafficpolicyinstance
-        - Authorizevpcassociation
+        - CIDR Collection
+        - Health Check
+        - Hosted Zones
+        - Key Signing
+        - Query Logging Configurations
+        - Delegation Sets
+        - Traffic Policies
+        - Traffic Policy Instances
+        - Authorizers VPC Association
         - Deactivate
         - Health
-        - Check
-        - Version
+        - Checks
+        - Versions
   /2013-04-01/trafficpolicyinstance/{Id}:
     POST:
       summary: UpdateTrafficPolicyInstance
@@ -789,35 +789,35 @@ paths:
       tags:
         - Update
         - Traffic
-        - Policy
-        - Instance
+        - Policies
+        - Instances
         - Hosted
-        - Zone
-        - Id
-        - Name
+        - Zones
+        - Identifiers
+        - Names
         - Activate
-        - Associatevpc
-        - Cidr
-        - Collection
+        - Associate VPC
+        - CIDR
+        - Collections
         - Rrset
-        - Resource
-        - Type
+        - Resources
+        - Types
         - '2013'
         - '04'
         - '01'
-        - Cidrcollection
-        - Healthcheck
-        - Hostedzone
-        - Keysigningkey
-        - Queryloggingconfig
-        - Delegationset
-        - Trafficpolicy
-        - Trafficpolicyinstance
-        - Authorizevpcassociation
+        - CIDR Collection
+        - Health Check
+        - Hosted Zones
+        - Key Signing
+        - Query Logging Configurations
+        - Delegation Sets
+        - Traffic Policies
+        - Traffic Policy Instances
+        - Authorizers VPC Association
         - Deactivate
         - Health
-        - Check
-        - Version
+        - Checks
+        - Versions
   /2013-04-01/hostedzone/{Id}/deauthorizevpcassociation:
     POST:
       summary: DeleteVPCAssociationAuthorization
@@ -839,33 +839,33 @@ paths:
         - Association
         - Authorization
         - Hosted
-        - Zone
-        - Id
-        - Name
+        - Zones
+        - Identifiers
+        - Names
         - Activate
-        - Associatevpc
-        - Cidr
-        - Collection
+        - Associate VPC
+        - CIDR
+        - Collections
         - Rrset
-        - Resource
-        - Type
+        - Resources
+        - Types
         - '2013'
         - '04'
         - '01'
-        - Cidrcollection
-        - Healthcheck
-        - Hostedzone
-        - Keysigningkey
-        - Queryloggingconfig
-        - Delegationset
-        - Trafficpolicy
-        - Trafficpolicyinstance
-        - Authorizevpcassociation
+        - CIDR Collection
+        - Health Check
+        - Hosted Zones
+        - Key Signing
+        - Query Logging Configurations
+        - Delegation Sets
+        - Traffic Policies
+        - Traffic Policy Instances
+        - Authorizers VPC Association
         - Deactivate
         - Health
-        - Check
-        - Version
-        - Deauthorizevpcassociation
+        - Checks
+        - Versions
+        - Deauthorize VPC Association
   /2013-04-01/hostedzone/{Id}/disable-dnssec:
     POST:
       summary: DisableHostedZoneDNSSEC
@@ -876,37 +876,37 @@ paths:
       tags:
         - Disable
         - Hosted
-        - Zone
+        - Zones
         - Hosted
-        - Zone
-        - Id
-        - Name
+        - Zones
+        - Identifiers
+        - Names
         - Activate
-        - Associatevpc
-        - Cidr
-        - Collection
+        - Associate VPC
+        - CIDR
+        - Collections
         - Rrset
-        - Resource
-        - Type
+        - Resources
+        - Types
         - '2013'
         - '04'
         - '01'
-        - Cidrcollection
-        - Healthcheck
-        - Hostedzone
-        - Keysigningkey
-        - Queryloggingconfig
-        - Delegationset
-        - Trafficpolicy
-        - Trafficpolicyinstance
-        - Authorizevpcassociation
+        - CIDR Collection
+        - Health Check
+        - Hosted Zones
+        - Key Signing
+        - Query Logging Configurations
+        - Delegation Sets
+        - Traffic Policies
+        - Traffic Policy Instances
+        - Authorizers VPC Association
         - Deactivate
         - Health
-        - Check
-        - Version
-        - Deauthorizevpcassociation
+        - Checks
+        - Versions
+        - Deauthorize VPC Association
         - Disable
-        - Dnssec
+        - DNS Security
   /2013-04-01/hostedzone/{Id}/disassociatevpc:
     POST:
       summary: DisassociateVPCFromHostedZone
@@ -944,38 +944,38 @@ paths:
         - Disassociate
         - From
         - Hosted
-        - Zone
+        - Zones
         - Hosted
-        - Zone
-        - Id
-        - Name
+        - Zones
+        - Identifiers
+        - Names
         - Activate
-        - Associatevpc
-        - Cidr
-        - Collection
+        - Associate VPC
+        - CIDR
+        - Collections
         - Rrset
-        - Resource
-        - Type
+        - Resources
+        - Types
         - '2013'
         - '04'
         - '01'
-        - Cidrcollection
-        - Healthcheck
-        - Hostedzone
-        - Keysigningkey
-        - Queryloggingconfig
-        - Delegationset
-        - Trafficpolicy
-        - Trafficpolicyinstance
-        - Authorizevpcassociation
+        - CIDR Collection
+        - Health Check
+        - Hosted Zones
+        - Key Signing
+        - Query Logging Configurations
+        - Delegation Sets
+        - Traffic Policies
+        - Traffic Policy Instances
+        - Authorizers VPC Association
         - Deactivate
         - Health
-        - Check
-        - Version
-        - Deauthorizevpcassociation
+        - Checks
+        - Versions
+        - Deauthorize VPC Association
         - Disable
-        - Dnssec
-        - Disassociatevpc
+        - DNS Security
+        - Disassociate VPC
   /2013-04-01/hostedzone/{Id}/enable-dnssec:
     POST:
       summary: EnableHostedZoneDNSSEC
@@ -983,38 +983,38 @@ paths:
       tags:
         - Enable
         - Hosted
-        - Zone
+        - Zones
         - Hosted
-        - Zone
-        - Id
-        - Name
+        - Zones
+        - Identifiers
+        - Names
         - Activate
-        - Associatevpc
-        - Cidr
-        - Collection
+        - Associate VPC
+        - CIDR
+        - Collections
         - Rrset
-        - Resource
-        - Type
+        - Resources
+        - Types
         - '2013'
         - '04'
         - '01'
-        - Cidrcollection
-        - Healthcheck
-        - Hostedzone
-        - Keysigningkey
-        - Queryloggingconfig
-        - Delegationset
-        - Trafficpolicy
-        - Trafficpolicyinstance
-        - Authorizevpcassociation
+        - CIDR Collection
+        - Health Check
+        - Hosted Zones
+        - Key Signing
+        - Query Logging Configurations
+        - Delegation Sets
+        - Traffic Policies
+        - Traffic Policy Instances
+        - Authorizers VPC Association
         - Deactivate
         - Health
-        - Check
-        - Version
-        - Deauthorizevpcassociation
+        - Checks
+        - Versions
+        - Deauthorize VPC Association
         - Disable
-        - Dnssec
-        - Disassociatevpc
+        - DNS Security
+        - Disassociate VPC
         - Enable
   /2013-04-01/accountlimit/{Type}:
     GET:
@@ -1035,38 +1035,38 @@ paths:
       tags:
         - Get
         - Account
-        - Limit
+        - Limits
         - Hosted
-        - Zone
-        - Id
-        - Name
+        - Zones
+        - Identifiers
+        - Names
         - Activate
-        - Associatevpc
-        - Cidr
-        - Collection
+        - Associate VPC
+        - CIDR
+        - Collections
         - Rrset
-        - Resource
-        - Type
+        - Resources
+        - Types
         - '2013'
         - '04'
         - '01'
-        - Cidrcollection
-        - Healthcheck
-        - Hostedzone
-        - Keysigningkey
-        - Queryloggingconfig
-        - Delegationset
-        - Trafficpolicy
-        - Trafficpolicyinstance
-        - Authorizevpcassociation
+        - CIDR Collection
+        - Health Check
+        - Hosted Zones
+        - Key Signing
+        - Query Logging Configurations
+        - Delegation Sets
+        - Traffic Policies
+        - Traffic Policy Instances
+        - Authorizers VPC Association
         - Deactivate
         - Health
-        - Check
-        - Version
-        - Deauthorizevpcassociation
+        - Checks
+        - Versions
+        - Deauthorize VPC Association
         - Disable
-        - Dnssec
-        - Disassociatevpc
+        - DNS Security
+        - Disassociate VPC
         - Enable
   /2013-04-01/change/{Id}:
     GET:
@@ -1083,36 +1083,36 @@ paths:
         - Get
         - Change
         - Hosted
-        - Zone
-        - Id
-        - Name
+        - Zones
+        - Identifiers
+        - Names
         - Activate
-        - Associatevpc
-        - Cidr
-        - Collection
+        - Associate VPC
+        - CIDR
+        - Collections
         - Rrset
-        - Resource
-        - Type
+        - Resources
+        - Types
         - '2013'
         - '04'
         - '01'
-        - Cidrcollection
-        - Healthcheck
-        - Hostedzone
-        - Keysigningkey
-        - Queryloggingconfig
-        - Delegationset
-        - Trafficpolicy
-        - Trafficpolicyinstance
-        - Authorizevpcassociation
+        - CIDR Collection
+        - Health Check
+        - Hosted Zones
+        - Key Signing
+        - Query Logging Configurations
+        - Delegation Sets
+        - Traffic Policies
+        - Traffic Policy Instances
+        - Authorizers VPC Association
         - Deactivate
         - Health
-        - Check
-        - Version
-        - Deauthorizevpcassociation
+        - Checks
+        - Versions
+        - Deauthorize VPC Association
         - Disable
-        - Dnssec
-        - Disassociatevpc
+        - DNS Security
+        - Disassociate VPC
         - Enable
   /2013-04-01/checkeripranges:
     GET:
@@ -1130,41 +1130,41 @@ paths:
       tags:
         - Get
         - Checker
-        - Ip
+        - IP
         - Ranges
         - Hosted
-        - Zone
-        - Id
-        - Name
+        - Zones
+        - Identifiers
+        - Names
         - Activate
-        - Associatevpc
-        - Cidr
-        - Collection
+        - Associate VPC
+        - CIDR
+        - Collections
         - Rrset
-        - Resource
-        - Type
+        - Resources
+        - Types
         - '2013'
         - '04'
         - '01'
-        - Cidrcollection
-        - Healthcheck
-        - Hostedzone
-        - Keysigningkey
-        - Queryloggingconfig
-        - Delegationset
-        - Trafficpolicy
-        - Trafficpolicyinstance
-        - Authorizevpcassociation
+        - CIDR Collection
+        - Health Check
+        - Hosted Zones
+        - Key Signing
+        - Query Logging Configurations
+        - Delegation Sets
+        - Traffic Policies
+        - Traffic Policy Instances
+        - Authorizers VPC Association
         - Deactivate
         - Health
-        - Check
-        - Version
-        - Deauthorizevpcassociation
+        - Checks
+        - Versions
+        - Deauthorize VPC Association
         - Disable
-        - Dnssec
-        - Disassociatevpc
+        - DNS Security
+        - Disassociate VPC
         - Enable
-        - Checkeripranges
+        - Checker IP Ranges
   /2013-04-01/hostedzone/{Id}/dnssec:
     GET:
       summary: GetDNSSEC
@@ -1174,38 +1174,38 @@ paths:
       tags:
         - Get
         - Hosted
-        - Zone
-        - Id
-        - Name
+        - Zones
+        - Identifiers
+        - Names
         - Activate
-        - Associatevpc
-        - Cidr
-        - Collection
+        - Associate VPC
+        - CIDR
+        - Collections
         - Rrset
-        - Resource
-        - Type
+        - Resources
+        - Types
         - '2013'
         - '04'
         - '01'
-        - Cidrcollection
-        - Healthcheck
-        - Hostedzone
-        - Keysigningkey
-        - Queryloggingconfig
-        - Delegationset
-        - Trafficpolicy
-        - Trafficpolicyinstance
-        - Authorizevpcassociation
+        - CIDR Collection
+        - Health Check
+        - Hosted Zones
+        - Key Signing
+        - Query Logging Configurations
+        - Delegation Sets
+        - Traffic Policies
+        - Traffic Policy Instances
+        - Authorizers VPC Association
         - Deactivate
         - Health
-        - Check
-        - Version
-        - Deauthorizevpcassociation
+        - Checks
+        - Versions
+        - Deauthorize VPC Association
         - Disable
-        - Dnssec
-        - Disassociatevpc
+        - DNS Security
+        - Disassociate VPC
         - Enable
-        - Checkeripranges
+        - Checker IP Ranges
   /2013-04-01/geolocation:
     GET:
       summary: GetGeoLocation
@@ -1227,40 +1227,40 @@ paths:
       tags:
         - Get
         - Geo
-        - Location
+        - Locations
         - Hosted
-        - Zone
-        - Id
-        - Name
+        - Zones
+        - Identifiers
+        - Names
         - Activate
-        - Associatevpc
-        - Cidr
-        - Collection
+        - Associate VPC
+        - CIDR
+        - Collections
         - Rrset
-        - Resource
-        - Type
+        - Resources
+        - Types
         - '2013'
         - '04'
         - '01'
-        - Cidrcollection
-        - Healthcheck
-        - Hostedzone
-        - Keysigningkey
-        - Queryloggingconfig
-        - Delegationset
-        - Trafficpolicy
-        - Trafficpolicyinstance
-        - Authorizevpcassociation
+        - CIDR Collection
+        - Health Check
+        - Hosted Zones
+        - Key Signing
+        - Query Logging Configurations
+        - Delegation Sets
+        - Traffic Policies
+        - Traffic Policy Instances
+        - Authorizers VPC Association
         - Deactivate
         - Health
-        - Check
-        - Version
-        - Deauthorizevpcassociation
+        - Checks
+        - Versions
+        - Deauthorize VPC Association
         - Disable
-        - Dnssec
-        - Disassociatevpc
+        - DNS Security
+        - Disassociate VPC
         - Enable
-        - Checkeripranges
+        - Checker IP Ranges
         - Geolocation
   /2013-04-01/healthcheckcount:
     GET:
@@ -1271,43 +1271,43 @@ paths:
       tags:
         - Get
         - Health
-        - Check
+        - Checks
         - Count
         - Hosted
-        - Zone
-        - Id
-        - Name
+        - Zones
+        - Identifiers
+        - Names
         - Activate
-        - Associatevpc
-        - Cidr
-        - Collection
+        - Associate VPC
+        - CIDR
+        - Collections
         - Rrset
-        - Resource
-        - Type
+        - Resources
+        - Types
         - '2013'
         - '04'
         - '01'
-        - Cidrcollection
-        - Healthcheck
-        - Hostedzone
-        - Keysigningkey
-        - Queryloggingconfig
-        - Delegationset
-        - Trafficpolicy
-        - Trafficpolicyinstance
-        - Authorizevpcassociation
+        - CIDR Collection
+        - Health Check
+        - Hosted Zones
+        - Key Signing
+        - Query Logging Configurations
+        - Delegation Sets
+        - Traffic Policies
+        - Traffic Policy Instances
+        - Authorizers VPC Association
         - Deactivate
         - Health
-        - Check
-        - Version
-        - Deauthorizevpcassociation
+        - Checks
+        - Versions
+        - Deauthorize VPC Association
         - Disable
-        - Dnssec
-        - Disassociatevpc
+        - DNS Security
+        - Disassociate VPC
         - Enable
-        - Checkeripranges
+        - Checker IP Ranges
         - Geolocation
-        - Healthcheckcount
+        - Health Check
   /2013-04-01/healthcheck/{HealthCheckId}/lastfailurereason:
     GET:
       summary: GetHealthCheckLastFailureReason
@@ -1317,46 +1317,46 @@ paths:
       tags:
         - Get
         - Health
-        - Check
+        - Checks
         - Last
         - Failure
-        - Reason
+        - Reasons
         - Hosted
-        - Zone
-        - Id
-        - Name
+        - Zones
+        - Identifiers
+        - Names
         - Activate
-        - Associatevpc
-        - Cidr
-        - Collection
+        - Associate VPC
+        - CIDR
+        - Collections
         - Rrset
-        - Resource
-        - Type
+        - Resources
+        - Types
         - '2013'
         - '04'
         - '01'
-        - Cidrcollection
-        - Healthcheck
-        - Hostedzone
-        - Keysigningkey
-        - Queryloggingconfig
-        - Delegationset
-        - Trafficpolicy
-        - Trafficpolicyinstance
-        - Authorizevpcassociation
+        - CIDR Collection
+        - Health Check
+        - Hosted Zones
+        - Key Signing
+        - Query Logging Configurations
+        - Delegation Sets
+        - Traffic Policies
+        - Traffic Policy Instances
+        - Authorizers VPC Association
         - Deactivate
         - Health
-        - Check
-        - Version
-        - Deauthorizevpcassociation
+        - Checks
+        - Versions
+        - Deauthorize VPC Association
         - Disable
-        - Dnssec
-        - Disassociatevpc
+        - DNS Security
+        - Disassociate VPC
         - Enable
-        - Checkeripranges
+        - Checker IP Ranges
         - Geolocation
-        - Healthcheckcount
-        - Lastfailurereason
+        - Health Check
+        - Last Failure Reasons
   /2013-04-01/healthcheck/{HealthCheckId}/status:
     GET:
       summary: GetHealthCheckStatus
@@ -1368,44 +1368,44 @@ paths:
       tags:
         - Get
         - Health
-        - Check
+        - Checks
         - Status
         - Hosted
-        - Zone
-        - Id
-        - Name
+        - Zones
+        - Identifiers
+        - Names
         - Activate
-        - Associatevpc
-        - Cidr
-        - Collection
+        - Associate VPC
+        - CIDR
+        - Collections
         - Rrset
-        - Resource
-        - Type
+        - Resources
+        - Types
         - '2013'
         - '04'
         - '01'
-        - Cidrcollection
-        - Healthcheck
-        - Hostedzone
-        - Keysigningkey
-        - Queryloggingconfig
-        - Delegationset
-        - Trafficpolicy
-        - Trafficpolicyinstance
-        - Authorizevpcassociation
+        - CIDR Collection
+        - Health Check
+        - Hosted Zones
+        - Key Signing
+        - Query Logging Configurations
+        - Delegation Sets
+        - Traffic Policies
+        - Traffic Policy Instances
+        - Authorizers VPC Association
         - Deactivate
         - Health
-        - Check
-        - Version
-        - Deauthorizevpcassociation
+        - Checks
+        - Versions
+        - Deauthorize VPC Association
         - Disable
-        - Dnssec
-        - Disassociatevpc
+        - DNS Security
+        - Disassociate VPC
         - Enable
-        - Checkeripranges
+        - Checker IP Ranges
         - Geolocation
-        - Healthcheckcount
-        - Lastfailurereason
+        - Health Check
+        - Last Failure Reasons
         - Status
   /2013-04-01/hostedzonecount:
     GET:
@@ -1416,46 +1416,46 @@ paths:
       tags:
         - Get
         - Hosted
-        - Zone
+        - Zones
         - Count
         - Hosted
-        - Zone
-        - Id
-        - Name
+        - Zones
+        - Identifiers
+        - Names
         - Activate
-        - Associatevpc
-        - Cidr
-        - Collection
+        - Associate VPC
+        - CIDR
+        - Collections
         - Rrset
-        - Resource
-        - Type
+        - Resources
+        - Types
         - '2013'
         - '04'
         - '01'
-        - Cidrcollection
-        - Healthcheck
-        - Hostedzone
-        - Keysigningkey
-        - Queryloggingconfig
-        - Delegationset
-        - Trafficpolicy
-        - Trafficpolicyinstance
-        - Authorizevpcassociation
+        - CIDR Collection
+        - Health Check
+        - Hosted Zones
+        - Key Signing
+        - Query Logging Configurations
+        - Delegation Sets
+        - Traffic Policies
+        - Traffic Policy Instances
+        - Authorizers VPC Association
         - Deactivate
         - Health
-        - Check
-        - Version
-        - Deauthorizevpcassociation
+        - Checks
+        - Versions
+        - Deauthorize VPC Association
         - Disable
-        - Dnssec
-        - Disassociatevpc
+        - DNS Security
+        - Disassociate VPC
         - Enable
-        - Checkeripranges
+        - Checker IP Ranges
         - Geolocation
-        - Healthcheckcount
-        - Lastfailurereason
+        - Health Check
+        - Last Failure Reasons
         - Status
-        - Hostedzonecount
+        - Hosted Zone Count
   /2013-04-01/hostedzonelimit/{Id}/{Type}:
     GET:
       summary: GetHostedZoneLimit
@@ -1471,46 +1471,46 @@ paths:
       tags:
         - Get
         - Hosted
-        - Zone
-        - Limit
+        - Zones
+        - Limits
         - Hosted
-        - Zone
-        - Id
-        - Name
+        - Zones
+        - Identifiers
+        - Names
         - Activate
-        - Associatevpc
-        - Cidr
-        - Collection
+        - Associate VPC
+        - CIDR
+        - Collections
         - Rrset
-        - Resource
-        - Type
+        - Resources
+        - Types
         - '2013'
         - '04'
         - '01'
-        - Cidrcollection
-        - Healthcheck
-        - Hostedzone
-        - Keysigningkey
-        - Queryloggingconfig
-        - Delegationset
-        - Trafficpolicy
-        - Trafficpolicyinstance
-        - Authorizevpcassociation
+        - CIDR Collection
+        - Health Check
+        - Hosted Zones
+        - Key Signing
+        - Query Logging Configurations
+        - Delegation Sets
+        - Traffic Policies
+        - Traffic Policy Instances
+        - Authorizers VPC Association
         - Deactivate
         - Health
-        - Check
-        - Version
-        - Deauthorizevpcassociation
+        - Checks
+        - Versions
+        - Deauthorize VPC Association
         - Disable
-        - Dnssec
-        - Disassociatevpc
+        - DNS Security
+        - Disassociate VPC
         - Enable
-        - Checkeripranges
+        - Checker IP Ranges
         - Geolocation
-        - Healthcheckcount
-        - Lastfailurereason
+        - Health Check
+        - Last Failure Reasons
         - Status
-        - Hostedzonecount
+        - Hosted Zone Count
   /2013-04-01/reusabledelegationsetlimit/{Id}/{Type}:
     GET:
       summary: GetReusableDelegationSetLimit
@@ -1527,46 +1527,46 @@ paths:
         - Get
         - Reusable
         - Delegation
-        - Set
-        - Limit
+        - Sets
+        - Limits
         - Hosted
-        - Zone
-        - Id
-        - Name
+        - Zones
+        - Identifiers
+        - Names
         - Activate
-        - Associatevpc
-        - Cidr
-        - Collection
+        - Associate VPC
+        - CIDR
+        - Collections
         - Rrset
-        - Resource
-        - Type
+        - Resources
+        - Types
         - '2013'
         - '04'
         - '01'
-        - Cidrcollection
-        - Healthcheck
-        - Hostedzone
-        - Keysigningkey
-        - Queryloggingconfig
-        - Delegationset
-        - Trafficpolicy
-        - Trafficpolicyinstance
-        - Authorizevpcassociation
+        - CIDR Collection
+        - Health Check
+        - Hosted Zones
+        - Key Signing
+        - Query Logging Configurations
+        - Delegation Sets
+        - Traffic Policies
+        - Traffic Policy Instances
+        - Authorizers VPC Association
         - Deactivate
         - Health
-        - Check
-        - Version
-        - Deauthorizevpcassociation
+        - Checks
+        - Versions
+        - Deauthorize VPC Association
         - Disable
-        - Dnssec
-        - Disassociatevpc
+        - DNS Security
+        - Disassociate VPC
         - Enable
-        - Checkeripranges
+        - Checker IP Ranges
         - Geolocation
-        - Healthcheckcount
-        - Lastfailurereason
+        - Health Check
+        - Last Failure Reasons
         - Status
-        - Hostedzonecount
+        - Hosted Zone Count
   /2013-04-01/trafficpolicyinstancecount:
     GET:
       summary: GetTrafficPolicyInstanceCount
@@ -1576,48 +1576,48 @@ paths:
       tags:
         - Get
         - Traffic
-        - Policy
-        - Instance
+        - Policies
+        - Instances
         - Count
         - Hosted
-        - Zone
-        - Id
-        - Name
+        - Zones
+        - Identifiers
+        - Names
         - Activate
-        - Associatevpc
-        - Cidr
-        - Collection
+        - Associate VPC
+        - CIDR
+        - Collections
         - Rrset
-        - Resource
-        - Type
+        - Resources
+        - Types
         - '2013'
         - '04'
         - '01'
-        - Cidrcollection
-        - Healthcheck
-        - Hostedzone
-        - Keysigningkey
-        - Queryloggingconfig
-        - Delegationset
-        - Trafficpolicy
-        - Trafficpolicyinstance
-        - Authorizevpcassociation
+        - CIDR Collection
+        - Health Check
+        - Hosted Zones
+        - Key Signing
+        - Query Logging Configurations
+        - Delegation Sets
+        - Traffic Policies
+        - Traffic Policy Instances
+        - Authorizers VPC Association
         - Deactivate
         - Health
-        - Check
-        - Version
-        - Deauthorizevpcassociation
+        - Checks
+        - Versions
+        - Deauthorize VPC Association
         - Disable
-        - Dnssec
-        - Disassociatevpc
+        - DNS Security
+        - Disassociate VPC
         - Enable
-        - Checkeripranges
+        - Checker IP Ranges
         - Geolocation
-        - Healthcheckcount
-        - Lastfailurereason
+        - Health Check
+        - Last Failure Reasons
         - Status
-        - Hostedzonecount
-        - Trafficpolicyinstancecount
+        - Hosted Zone Count
+        - Traffic Policy Instance Count
   /2013-04-01/cidrcollection/{CidrCollectionId}/cidrblocks:
     GET:
       summary: ListCidrBlocks
@@ -1625,49 +1625,49 @@ paths:
         <p>Returns a paginated list of location objects and their CIDR
         blocks.</p>
       tags:
-        - List
-        - Cidr
+        - Lists
+        - CIDR
         - Blocks
         - Hosted
-        - Zone
-        - Id
-        - Name
+        - Zones
+        - Identifiers
+        - Names
         - Activate
-        - Associatevpc
-        - Cidr
-        - Collection
+        - Associate VPC
+        - CIDR
+        - Collections
         - Rrset
-        - Resource
-        - Type
+        - Resources
+        - Types
         - '2013'
         - '04'
         - '01'
-        - Cidrcollection
-        - Healthcheck
-        - Hostedzone
-        - Keysigningkey
-        - Queryloggingconfig
-        - Delegationset
-        - Trafficpolicy
-        - Trafficpolicyinstance
-        - Authorizevpcassociation
+        - CIDR Collection
+        - Health Check
+        - Hosted Zones
+        - Key Signing
+        - Query Logging Configurations
+        - Delegation Sets
+        - Traffic Policies
+        - Traffic Policy Instances
+        - Authorizers VPC Association
         - Deactivate
         - Health
-        - Check
-        - Version
-        - Deauthorizevpcassociation
+        - Checks
+        - Versions
+        - Deauthorize VPC Association
         - Disable
-        - Dnssec
-        - Disassociatevpc
+        - DNS Security
+        - Disassociate VPC
         - Enable
-        - Checkeripranges
+        - Checker IP Ranges
         - Geolocation
-        - Healthcheckcount
-        - Lastfailurereason
+        - Health Check
+        - Last Failure Reasons
         - Status
-        - Hostedzonecount
-        - Trafficpolicyinstancecount
-        - Cidrblocks
+        - Hosted Zone Count
+        - Traffic Policy Instance Count
+        - CIDR Blocks
   /2013-04-01/geolocations:
     GET:
       summary: ListGeoLocations
@@ -1683,50 +1683,50 @@ paths:
         href="https://docs.aws.amazon.com/Route53/latest/APIReference/API_GeoLocation.html">GeoLocation</a>
         data type.</p>
       tags:
-        - List
+        - Lists
         - Geo
         - Locations
         - Hosted
-        - Zone
-        - Id
-        - Name
+        - Zones
+        - Identifiers
+        - Names
         - Activate
-        - Associatevpc
-        - Cidr
-        - Collection
+        - Associate VPC
+        - CIDR
+        - Collections
         - Rrset
-        - Resource
-        - Type
+        - Resources
+        - Types
         - '2013'
         - '04'
         - '01'
-        - Cidrcollection
-        - Healthcheck
-        - Hostedzone
-        - Keysigningkey
-        - Queryloggingconfig
-        - Delegationset
-        - Trafficpolicy
-        - Trafficpolicyinstance
-        - Authorizevpcassociation
+        - CIDR Collection
+        - Health Check
+        - Hosted Zones
+        - Key Signing
+        - Query Logging Configurations
+        - Delegation Sets
+        - Traffic Policies
+        - Traffic Policy Instances
+        - Authorizers VPC Association
         - Deactivate
         - Health
-        - Check
-        - Version
-        - Deauthorizevpcassociation
+        - Checks
+        - Versions
+        - Deauthorize VPC Association
         - Disable
-        - Dnssec
-        - Disassociatevpc
+        - DNS Security
+        - Disassociate VPC
         - Enable
-        - Checkeripranges
+        - Checker IP Ranges
         - Geolocation
-        - Healthcheckcount
-        - Lastfailurereason
+        - Health Check
+        - Last Failure Reasons
         - Status
-        - Hostedzonecount
-        - Trafficpolicyinstancecount
-        - Cidrblocks
-        - Geolocations
+        - Hosted Zone Count
+        - Traffic Policy Instance Count
+        - CIDR Blocks
+        - Geolocation
   /2013-04-01/hostedzonesbyname:
     GET:
       summary: ListHostedZonesByName
@@ -1775,53 +1775,53 @@ paths:
         <code>dnsname</code> and <code>hostedzoneid</code> parameters,
         respectively.</p> </li> </ul>
       tags:
-        - List
+        - Lists
         - Hosted
         - Zones
         - By
-        - Name
+        - Names
         - Hosted
-        - Zone
-        - Id
-        - Name
+        - Zones
+        - Identifiers
+        - Names
         - Activate
-        - Associatevpc
-        - Cidr
-        - Collection
+        - Associate VPC
+        - CIDR
+        - Collections
         - Rrset
-        - Resource
-        - Type
+        - Resources
+        - Types
         - '2013'
         - '04'
         - '01'
-        - Cidrcollection
-        - Healthcheck
-        - Hostedzone
-        - Keysigningkey
-        - Queryloggingconfig
-        - Delegationset
-        - Trafficpolicy
-        - Trafficpolicyinstance
-        - Authorizevpcassociation
+        - CIDR Collection
+        - Health Check
+        - Hosted Zones
+        - Key Signing
+        - Query Logging Configurations
+        - Delegation Sets
+        - Traffic Policies
+        - Traffic Policy Instances
+        - Authorizers VPC Association
         - Deactivate
         - Health
-        - Check
-        - Version
-        - Deauthorizevpcassociation
+        - Checks
+        - Versions
+        - Deauthorize VPC Association
         - Disable
-        - Dnssec
-        - Disassociatevpc
+        - DNS Security
+        - Disassociate VPC
         - Enable
-        - Checkeripranges
+        - Checker IP Ranges
         - Geolocation
-        - Healthcheckcount
-        - Lastfailurereason
+        - Health Check
+        - Last Failure Reasons
         - Status
-        - Hostedzonecount
-        - Trafficpolicyinstancecount
-        - Cidrblocks
-        - Geolocations
-        - Hostedzonesbyname
+        - Hosted Zone Count
+        - Traffic Policy Instance Count
+        - CIDR Blocks
+        - Geolocation
+        - Hosted Zones
   /2013-04-01/hostedzonesbyvpc:
     GET:
       summary: ListHostedZonesByVPC
@@ -1851,53 +1851,53 @@ paths:
         Management</a> in the <i>Amazon Web Services General Reference</i>.</p>
         </note>
       tags:
-        - List
+        - Lists
         - Hosted
         - Zones
         - By
         - Hosted
-        - Zone
-        - Id
-        - Name
+        - Zones
+        - Identifiers
+        - Names
         - Activate
-        - Associatevpc
-        - Cidr
-        - Collection
+        - Associate VPC
+        - CIDR
+        - Collections
         - Rrset
-        - Resource
-        - Type
+        - Resources
+        - Types
         - '2013'
         - '04'
         - '01'
-        - Cidrcollection
-        - Healthcheck
-        - Hostedzone
-        - Keysigningkey
-        - Queryloggingconfig
-        - Delegationset
-        - Trafficpolicy
-        - Trafficpolicyinstance
-        - Authorizevpcassociation
+        - CIDR Collection
+        - Health Check
+        - Hosted Zones
+        - Key Signing
+        - Query Logging Configurations
+        - Delegation Sets
+        - Traffic Policies
+        - Traffic Policy Instances
+        - Authorizers VPC Association
         - Deactivate
         - Health
-        - Check
-        - Version
-        - Deauthorizevpcassociation
+        - Checks
+        - Versions
+        - Deauthorize VPC Association
         - Disable
-        - Dnssec
-        - Disassociatevpc
+        - DNS Security
+        - Disassociate VPC
         - Enable
-        - Checkeripranges
+        - Checker IP Ranges
         - Geolocation
-        - Healthcheckcount
-        - Lastfailurereason
+        - Health Check
+        - Last Failure Reasons
         - Status
-        - Hostedzonecount
-        - Trafficpolicyinstancecount
-        - Cidrblocks
-        - Geolocations
-        - Hostedzonesbyname
-        - Hostedzonesbyvpc
+        - Hosted Zone Count
+        - Traffic Policy Instance Count
+        - CIDR Blocks
+        - Geolocation
+        - Hosted Zones
+        - Hosted Zones
   /2013-04-01/hostedzone/{Id}/rrset:
     GET:
       summary: ListResourceRecordSets
@@ -1948,53 +1948,53 @@ paths:
         <code>StartRecordType</code>, and
         <code>StartRecordIdentifier</code>.</p>
       tags:
-        - List
-        - Resource
+        - Lists
+        - Resources
         - Record
         - Sets
         - Hosted
-        - Zone
-        - Id
-        - Name
+        - Zones
+        - Identifiers
+        - Names
         - Activate
-        - Associatevpc
-        - Cidr
-        - Collection
+        - Associate VPC
+        - CIDR
+        - Collections
         - Rrset
-        - Resource
-        - Type
+        - Resources
+        - Types
         - '2013'
         - '04'
         - '01'
-        - Cidrcollection
-        - Healthcheck
-        - Hostedzone
-        - Keysigningkey
-        - Queryloggingconfig
-        - Delegationset
-        - Trafficpolicy
-        - Trafficpolicyinstance
-        - Authorizevpcassociation
+        - CIDR Collection
+        - Health Check
+        - Hosted Zones
+        - Key Signing
+        - Query Logging Configurations
+        - Delegation Sets
+        - Traffic Policies
+        - Traffic Policy Instances
+        - Authorizers VPC Association
         - Deactivate
         - Health
-        - Check
-        - Version
-        - Deauthorizevpcassociation
+        - Checks
+        - Versions
+        - Deauthorize VPC Association
         - Disable
-        - Dnssec
-        - Disassociatevpc
+        - DNS Security
+        - Disassociate VPC
         - Enable
-        - Checkeripranges
+        - Checker IP Ranges
         - Geolocation
-        - Healthcheckcount
-        - Lastfailurereason
+        - Health Check
+        - Last Failure Reasons
         - Status
-        - Hostedzonecount
-        - Trafficpolicyinstancecount
-        - Cidrblocks
-        - Geolocations
-        - Hostedzonesbyname
-        - Hostedzonesbyvpc
+        - Hosted Zone Count
+        - Traffic Policy Instance Count
+        - CIDR Blocks
+        - Geolocation
+        - Hosted Zones
+        - Hosted Zones
   /2013-04-01/tags/{ResourceType}:
     POST:
       summary: ListTagsForResources
@@ -2005,53 +2005,53 @@ paths:
         Cost Allocation Tags</a> in the <i>Billing and Cost Management User
         Guide</i>.</p>
       tags:
-        - List
+        - Lists
         - Tags
         - For
         - Resources
         - Hosted
-        - Zone
-        - Id
-        - Name
+        - Zones
+        - Identifiers
+        - Names
         - Activate
-        - Associatevpc
-        - Cidr
-        - Collection
+        - Associate VPC
+        - CIDR
+        - Collections
         - Rrset
-        - Resource
-        - Type
+        - Resources
+        - Types
         - '2013'
         - '04'
         - '01'
-        - Cidrcollection
-        - Healthcheck
-        - Hostedzone
-        - Keysigningkey
-        - Queryloggingconfig
-        - Delegationset
-        - Trafficpolicy
-        - Trafficpolicyinstance
-        - Authorizevpcassociation
+        - CIDR Collection
+        - Health Check
+        - Hosted Zones
+        - Key Signing
+        - Query Logging Configurations
+        - Delegation Sets
+        - Traffic Policies
+        - Traffic Policy Instances
+        - Authorizers VPC Association
         - Deactivate
         - Health
-        - Check
-        - Version
-        - Deauthorizevpcassociation
+        - Checks
+        - Versions
+        - Deauthorize VPC Association
         - Disable
-        - Dnssec
-        - Disassociatevpc
+        - DNS Security
+        - Disassociate VPC
         - Enable
-        - Checkeripranges
+        - Checker IP Ranges
         - Geolocation
-        - Healthcheckcount
-        - Lastfailurereason
+        - Health Check
+        - Last Failure Reasons
         - Status
-        - Hostedzonecount
-        - Trafficpolicyinstancecount
-        - Cidrblocks
-        - Geolocations
-        - Hostedzonesbyname
-        - Hostedzonesbyvpc
+        - Hosted Zone Count
+        - Traffic Policy Instance Count
+        - CIDR Blocks
+        - Geolocation
+        - Hosted Zones
+        - Hosted Zones
   /2013-04-01/trafficpolicies:
     GET:
       summary: ListTrafficPolicies
@@ -2064,53 +2064,53 @@ paths:
         href="https://docs.aws.amazon.com/Route53/latest/APIReference/API_DeleteTrafficPolicy.html">DeleteTrafficPolicy</a>.
         </p>
       tags:
-        - List
+        - Lists
         - Traffic
         - Policies
         - Hosted
-        - Zone
-        - Id
-        - Name
+        - Zones
+        - Identifiers
+        - Names
         - Activate
-        - Associatevpc
-        - Cidr
-        - Collection
+        - Associate VPC
+        - CIDR
+        - Collections
         - Rrset
-        - Resource
-        - Type
+        - Resources
+        - Types
         - '2013'
         - '04'
         - '01'
-        - Cidrcollection
-        - Healthcheck
-        - Hostedzone
-        - Keysigningkey
-        - Queryloggingconfig
-        - Delegationset
-        - Trafficpolicy
-        - Trafficpolicyinstance
-        - Authorizevpcassociation
+        - CIDR Collection
+        - Health Check
+        - Hosted Zones
+        - Key Signing
+        - Query Logging Configurations
+        - Delegation Sets
+        - Traffic Policies
+        - Traffic Policy Instances
+        - Authorizers VPC Association
         - Deactivate
         - Health
-        - Check
-        - Version
-        - Deauthorizevpcassociation
+        - Checks
+        - Versions
+        - Deauthorize VPC Association
         - Disable
-        - Dnssec
-        - Disassociatevpc
+        - DNS Security
+        - Disassociate VPC
         - Enable
-        - Checkeripranges
+        - Checker IP Ranges
         - Geolocation
-        - Healthcheckcount
-        - Lastfailurereason
+        - Health Check
+        - Last Failure Reasons
         - Status
-        - Hostedzonecount
-        - Trafficpolicyinstancecount
-        - Cidrblocks
-        - Geolocations
-        - Hostedzonesbyname
-        - Hostedzonesbyvpc
-        - Trafficpolicies
+        - Hosted Zone Count
+        - Traffic Policy Instance Count
+        - CIDR Blocks
+        - Geolocation
+        - Hosted Zones
+        - Hosted Zones
+        - Traffic Policies
   /2013-04-01/trafficpolicyinstances:
     GET:
       summary: ListTrafficPolicyInstances
@@ -2125,55 +2125,55 @@ paths:
         a lot of traffic policy instances, you can use the <code>MaxItems</code>
         parameter to list them in groups of up to 100.</p>
       tags:
-        - List
+        - Lists
         - Traffic
-        - Policy
+        - Policies
         - Instances
         - Hosted
-        - Zone
-        - Id
-        - Name
+        - Zones
+        - Identifiers
+        - Names
         - Activate
-        - Associatevpc
-        - Cidr
-        - Collection
+        - Associate VPC
+        - CIDR
+        - Collections
         - Rrset
-        - Resource
-        - Type
+        - Resources
+        - Types
         - '2013'
         - '04'
         - '01'
-        - Cidrcollection
-        - Healthcheck
-        - Hostedzone
-        - Keysigningkey
-        - Queryloggingconfig
-        - Delegationset
-        - Trafficpolicy
-        - Trafficpolicyinstance
-        - Authorizevpcassociation
+        - CIDR Collection
+        - Health Check
+        - Hosted Zones
+        - Key Signing
+        - Query Logging Configurations
+        - Delegation Sets
+        - Traffic Policies
+        - Traffic Policy Instances
+        - Authorizers VPC Association
         - Deactivate
         - Health
-        - Check
-        - Version
-        - Deauthorizevpcassociation
+        - Checks
+        - Versions
+        - Deauthorize VPC Association
         - Disable
-        - Dnssec
-        - Disassociatevpc
+        - DNS Security
+        - Disassociate VPC
         - Enable
-        - Checkeripranges
+        - Checker IP Ranges
         - Geolocation
-        - Healthcheckcount
-        - Lastfailurereason
+        - Health Check
+        - Last Failure Reasons
         - Status
-        - Hostedzonecount
-        - Trafficpolicyinstancecount
-        - Cidrblocks
-        - Geolocations
-        - Hostedzonesbyname
-        - Hostedzonesbyvpc
-        - Trafficpolicies
-        - Trafficpolicyinstances
+        - Hosted Zone Count
+        - Traffic Policy Instance Count
+        - CIDR Blocks
+        - Geolocation
+        - Hosted Zones
+        - Hosted Zones
+        - Traffic Policies
+        - Traffic Policy Instances
   /2013-04-01/trafficpolicyinstances/hostedzone:
     GET:
       summary: ListTrafficPolicyInstancesByHostedZone
@@ -2189,58 +2189,58 @@ paths:
         policy instances, you can use the <code>MaxItems</code> parameter to
         list them in groups of up to 100.</p>
       tags:
-        - List
+        - Lists
         - Traffic
-        - Policy
+        - Policies
         - Instances
         - By
         - Hosted
-        - Zone
+        - Zones
         - Hosted
-        - Zone
-        - Id
-        - Name
+        - Zones
+        - Identifiers
+        - Names
         - Activate
-        - Associatevpc
-        - Cidr
-        - Collection
+        - Associate VPC
+        - CIDR
+        - Collections
         - Rrset
-        - Resource
-        - Type
+        - Resources
+        - Types
         - '2013'
         - '04'
         - '01'
-        - Cidrcollection
-        - Healthcheck
-        - Hostedzone
-        - Keysigningkey
-        - Queryloggingconfig
-        - Delegationset
-        - Trafficpolicy
-        - Trafficpolicyinstance
-        - Authorizevpcassociation
+        - CIDR Collection
+        - Health Check
+        - Hosted Zones
+        - Key Signing
+        - Query Logging Configurations
+        - Delegation Sets
+        - Traffic Policies
+        - Traffic Policy Instances
+        - Authorizers VPC Association
         - Deactivate
         - Health
-        - Check
-        - Version
-        - Deauthorizevpcassociation
+        - Checks
+        - Versions
+        - Deauthorize VPC Association
         - Disable
-        - Dnssec
-        - Disassociatevpc
+        - DNS Security
+        - Disassociate VPC
         - Enable
-        - Checkeripranges
+        - Checker IP Ranges
         - Geolocation
-        - Healthcheckcount
-        - Lastfailurereason
+        - Health Check
+        - Last Failure Reasons
         - Status
-        - Hostedzonecount
-        - Trafficpolicyinstancecount
-        - Cidrblocks
-        - Geolocations
-        - Hostedzonesbyname
-        - Hostedzonesbyvpc
-        - Trafficpolicies
-        - Trafficpolicyinstances
+        - Hosted Zone Count
+        - Traffic Policy Instance Count
+        - CIDR Blocks
+        - Geolocation
+        - Hosted Zones
+        - Hosted Zones
+        - Traffic Policies
+        - Traffic Policy Instances
   /2013-04-01/trafficpolicyinstances/trafficpolicy:
     GET:
       summary: ListTrafficPolicyInstancesByPolicy
@@ -2256,56 +2256,56 @@ paths:
         policy instances, you can use the <code>MaxItems</code> parameter to
         list them in groups of up to 100.</p>
       tags:
-        - List
+        - Lists
         - Traffic
-        - Policy
+        - Policies
         - Instances
         - By
         - Hosted
-        - Zone
-        - Id
-        - Name
+        - Zones
+        - Identifiers
+        - Names
         - Activate
-        - Associatevpc
-        - Cidr
-        - Collection
+        - Associate VPC
+        - CIDR
+        - Collections
         - Rrset
-        - Resource
-        - Type
+        - Resources
+        - Types
         - '2013'
         - '04'
         - '01'
-        - Cidrcollection
-        - Healthcheck
-        - Hostedzone
-        - Keysigningkey
-        - Queryloggingconfig
-        - Delegationset
-        - Trafficpolicy
-        - Trafficpolicyinstance
-        - Authorizevpcassociation
+        - CIDR Collection
+        - Health Check
+        - Hosted Zones
+        - Key Signing
+        - Query Logging Configurations
+        - Delegation Sets
+        - Traffic Policies
+        - Traffic Policy Instances
+        - Authorizers VPC Association
         - Deactivate
         - Health
-        - Check
-        - Version
-        - Deauthorizevpcassociation
+        - Checks
+        - Versions
+        - Deauthorize VPC Association
         - Disable
-        - Dnssec
-        - Disassociatevpc
+        - DNS Security
+        - Disassociate VPC
         - Enable
-        - Checkeripranges
+        - Checker IP Ranges
         - Geolocation
-        - Healthcheckcount
-        - Lastfailurereason
+        - Health Check
+        - Last Failure Reasons
         - Status
-        - Hostedzonecount
-        - Trafficpolicyinstancecount
-        - Cidrblocks
-        - Geolocations
-        - Hostedzonesbyname
-        - Hostedzonesbyvpc
-        - Trafficpolicies
-        - Trafficpolicyinstances
+        - Hosted Zone Count
+        - Traffic Policy Instance Count
+        - CIDR Blocks
+        - Geolocation
+        - Hosted Zones
+        - Hosted Zones
+        - Traffic Policies
+        - Traffic Policy Instances
   /2013-04-01/trafficpolicies/{Id}/versions:
     GET:
       summary: ListTrafficPolicyVersions
@@ -2314,55 +2314,55 @@ paths:
         policy.</p> <p>Traffic policy versions are listed in numerical order by
         <code>VersionNumber</code>.</p>
       tags:
-        - List
+        - Lists
         - Traffic
-        - Policy
+        - Policies
         - Versions
         - Hosted
-        - Zone
-        - Id
-        - Name
+        - Zones
+        - Identifiers
+        - Names
         - Activate
-        - Associatevpc
-        - Cidr
-        - Collection
+        - Associate VPC
+        - CIDR
+        - Collections
         - Rrset
-        - Resource
-        - Type
+        - Resources
+        - Types
         - '2013'
         - '04'
         - '01'
-        - Cidrcollection
-        - Healthcheck
-        - Hostedzone
-        - Keysigningkey
-        - Queryloggingconfig
-        - Delegationset
-        - Trafficpolicy
-        - Trafficpolicyinstance
-        - Authorizevpcassociation
+        - CIDR Collection
+        - Health Check
+        - Hosted Zones
+        - Key Signing
+        - Query Logging Configurations
+        - Delegation Sets
+        - Traffic Policies
+        - Traffic Policy Instances
+        - Authorizers VPC Association
         - Deactivate
         - Health
-        - Check
-        - Version
-        - Deauthorizevpcassociation
+        - Checks
+        - Versions
+        - Deauthorize VPC Association
         - Disable
-        - Dnssec
-        - Disassociatevpc
+        - DNS Security
+        - Disassociate VPC
         - Enable
-        - Checkeripranges
+        - Checker IP Ranges
         - Geolocation
-        - Healthcheckcount
-        - Lastfailurereason
+        - Health Check
+        - Last Failure Reasons
         - Status
-        - Hostedzonecount
-        - Trafficpolicyinstancecount
-        - Cidrblocks
-        - Geolocations
-        - Hostedzonesbyname
-        - Hostedzonesbyvpc
-        - Trafficpolicies
-        - Trafficpolicyinstances
+        - Hosted Zone Count
+        - Traffic Policy Instance Count
+        - CIDR Blocks
+        - Geolocation
+        - Hosted Zones
+        - Hosted Zones
+        - Traffic Policies
+        - Traffic Policy Instances
         - Versions
   /2013-04-01/testdnsanswer:
     GET:
@@ -2378,52 +2378,52 @@ paths:
         of a subdomain that point to the parent name servers, those will not be
         returned.</
       tags:
-        - Test
-        - Answer
+        - Tests
+        - Answers
         - Hosted
-        - Zone
-        - Id
-        - Name
+        - Zones
+        - Identifiers
+        - Names
         - Activate
-        - Associatevpc
-        - Cidr
-        - Collection
+        - Associate VPC
+        - CIDR
+        - Collections
         - Rrset
-        - Resource
-        - Type
+        - Resources
+        - Types
         - '2013'
         - '04'
         - '01'
-        - Cidrcollection
-        - Healthcheck
-        - Hostedzone
-        - Keysigningkey
-        - Queryloggingconfig
-        - Delegationset
-        - Trafficpolicy
-        - Trafficpolicyinstance
-        - Authorizevpcassociation
+        - CIDR Collection
+        - Health Check
+        - Hosted Zones
+        - Key Signing
+        - Query Logging Configurations
+        - Delegation Sets
+        - Traffic Policies
+        - Traffic Policy Instances
+        - Authorizers VPC Association
         - Deactivate
         - Health
-        - Check
-        - Version
-        - Deauthorizevpcassociation
+        - Checks
+        - Versions
+        - Deauthorize VPC Association
         - Disable
-        - Dnssec
-        - Disassociatevpc
+        - DNS Security
+        - Disassociate VPC
         - Enable
-        - Checkeripranges
+        - Checker IP Ranges
         - Geolocation
-        - Healthcheckcount
-        - Lastfailurereason
+        - Health Check
+        - Last Failure Reasons
         - Status
-        - Hostedzonecount
-        - Trafficpolicyinstancecount
-        - Cidrblocks
-        - Geolocations
-        - Hostedzonesbyname
-        - Hostedzonesbyvpc
-        - Trafficpolicies
-        - Trafficpolicyinstances
+        - Hosted Zone Count
+        - Traffic Policy Instance Count
+        - CIDR Blocks
+        - Geolocation
+        - Hosted Zones
+        - Hosted Zones
+        - Traffic Policies
+        - Traffic Policy Instances
         - Versions
         - Testdnsansw

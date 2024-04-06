@@ -8,8 +8,8 @@ paths:
       description: <p>Acknowledges that the specified network order was received.</p>
       tags:
         - Acknowledge
-        - Order
-        - Receipt
+        - Orders
+        - Receipts
         - V1
         - Orders
         - Acknowledge
@@ -20,7 +20,7 @@ paths:
       tags:
         - Activate
         - Device
-        - Identifier
+        - Identifiers
         - V1
         - Orders
         - Acknowledge
@@ -33,15 +33,15 @@ paths:
       description: <p>Activates the specified network site.</p>
       tags:
         - Activate
-        - Network
-        - Site
+        - Networks
+        - Sites
         - V1
         - Orders
         - Acknowledge
         - Device
         - Identifiers
         - Activate
-        - Network
+        - Networks
         - Sites
   /v1/network-resources/configure:
     POST:
@@ -56,14 +56,14 @@ paths:
       tags:
         - Configure
         - Access
-        - Point
+        - Points
         - V1
         - Orders
         - Acknowledge
         - Device
         - Identifiers
         - Activate
-        - Network
+        - Networks
         - Sites
         - Resources
         - Configure
@@ -73,14 +73,14 @@ paths:
       description: <p>Creates a network.</p>
       tags:
         - Create
-        - Network
+        - Networks
         - V1
         - Orders
         - Acknowledge
         - Device
         - Identifiers
         - Activate
-        - Network
+        - Networks
         - Sites
         - Resources
         - Configure
@@ -91,15 +91,15 @@ paths:
       description: <p>Creates a network site.</p>
       tags:
         - Create
-        - Network
-        - Site
+        - Networks
+        - Sites
         - V1
         - Orders
         - Acknowledge
         - Device
         - Identifiers
         - Activate
-        - Network
+        - Networks
         - Sites
         - Resources
         - Configure
@@ -111,14 +111,14 @@ paths:
       tags:
         - Deactivate
         - Device
-        - Identifier
+        - Identifiers
         - V1
         - Orders
         - Acknowledge
         - Device
         - Identifiers
         - Activate
-        - Network
+        - Networks
         - Sites
         - Resources
         - Configure
@@ -130,42 +130,42 @@ paths:
       description: <p>Gets the specified network.</p>
       tags:
         - Get
-        - Network
+        - Networks
         - V1
         - Orders
         - Acknowledge
         - Device
         - Identifiers
         - Activate
-        - Network
+        - Networks
         - Sites
         - Resources
         - Configure
         - Networks
         - Deactivate
-        - Arn
+        - ARN
   /v1/network-sites/{networkSiteArn}:
     GET:
       summary: GetNetworkSite
       description: <p>Gets the specified network site.</p>
       tags:
         - Get
-        - Network
-        - Site
+        - Networks
+        - Sites
         - V1
         - Orders
         - Acknowledge
         - Device
         - Identifiers
         - Activate
-        - Network
+        - Networks
         - Sites
         - Resources
         - Configure
         - Networks
         - Deactivate
-        - Arn
-        - Site
+        - ARN
+        - Sites
   /v1/device-identifiers/{deviceIdentifierArn}:
     GET:
       summary: GetDeviceIdentifier
@@ -173,69 +173,69 @@ paths:
       tags:
         - Get
         - Device
-        - Identifier
+        - Identifiers
         - V1
         - Orders
         - Acknowledge
         - Device
         - Identifiers
         - Activate
-        - Network
+        - Networks
         - Sites
         - Resources
         - Configure
         - Networks
         - Deactivate
-        - Arn
-        - Site
-        - Identifier
+        - ARN
+        - Sites
+        - Identifiers
   /v1/network-resources/{networkResourceArn}:
     GET:
       summary: GetNetworkResource
       description: <p>Gets the specified network resource.</p>
       tags:
         - Get
-        - Network
-        - Resource
+        - Networks
+        - Resources
         - V1
         - Orders
         - Acknowledge
         - Device
         - Identifiers
         - Activate
-        - Network
+        - Networks
         - Sites
         - Resources
         - Configure
         - Networks
         - Deactivate
-        - Arn
-        - Site
-        - Identifier
-        - Resource
+        - ARN
+        - Sites
+        - Identifiers
+        - Resources
   /v1/orders/{orderArn}:
     GET:
       summary: GetOrder
       description: <p>Gets the specified order.</p>
       tags:
         - Get
-        - Order
+        - Orders
         - V1
         - Orders
         - Acknowledge
         - Device
         - Identifiers
         - Activate
-        - Network
+        - Networks
         - Sites
         - Resources
         - Configure
         - Networks
         - Deactivate
-        - Arn
-        - Site
-        - Identifier
-        - Resource
+        - ARN
+        - Sites
+        - Identifiers
+        - Resources
   /v1/device-identifiers/list:
     POST:
       summary: ListDeviceIdentifiers
@@ -247,7 +247,7 @@ paths:
         joined with an OR, and the request returns results that match all of the
         specified filters.</p>
       tags:
-        - List
+        - Lists
         - Device
         - Identifiers
         - V1
@@ -256,17 +256,17 @@ paths:
         - Device
         - Identifiers
         - Activate
-        - Network
+        - Networks
         - Sites
         - Resources
         - Configure
         - Networks
         - Deactivate
-        - Arn
-        - Site
-        - Identifier
-        - Resource
-        - List
+        - ARN
+        - Sites
+        - Identifiers
+        - Resources
+        - Lists
   /v1/network-resources:
     POST:
       summary: ListNetworkResources
@@ -277,8 +277,8 @@ paths:
         specify multiple filters, filters are joined with an OR, and the request
         returns results that match all of the specified filters.</p>
       tags:
-        - List
-        - Network
+        - Lists
+        - Networks
         - Resources
         - V1
         - Orders
@@ -286,17 +286,17 @@ paths:
         - Device
         - Identifiers
         - Activate
-        - Network
+        - Networks
         - Sites
         - Resources
         - Configure
         - Networks
         - Deactivate
-        - Arn
-        - Site
-        - Identifier
-        - Resource
-        - List
+        - ARN
+        - Sites
+        - Identifiers
+        - Resources
+        - Lists
   /v1/network-sites/list:
     POST:
       summary: ListNetworkSites
@@ -305,8 +305,8 @@ paths:
         specific list of results. Use filters to match the status of the network
         site.</p>
       tags:
-        - List
-        - Network
+        - Lists
+        - Networks
         - Sites
         - V1
         - Orders
@@ -314,17 +314,17 @@ paths:
         - Device
         - Identifiers
         - Activate
-        - Network
+        - Networks
         - Sites
         - Resources
         - Configure
         - Networks
         - Deactivate
-        - Arn
-        - Site
-        - Identifier
-        - Resource
-        - List
+        - ARN
+        - Sites
+        - Identifiers
+        - Resources
+        - Lists
   /v1/networks/list:
     POST:
       summary: ListNetworks
@@ -332,7 +332,7 @@ paths:
         <p>Lists networks. Add filters to your request to return a more specific
         list of results. Use filters to match the status of the network.</p>
       tags:
-        - List
+        - Lists
         - Networks
         - V1
         - Orders
@@ -340,17 +340,17 @@ paths:
         - Device
         - Identifiers
         - Activate
-        - Network
+        - Networks
         - Sites
         - Resources
         - Configure
         - Networks
         - Deactivate
-        - Arn
-        - Site
-        - Identifier
-        - Resource
-        - List
+        - ARN
+        - Sites
+        - Identifiers
+        - Resources
+        - Lists
   /v1/orders/list:
     POST:
       summary: ListOrders
@@ -361,7 +361,7 @@ paths:
         multiple filters, filters are joined with an OR, and the request returns
         results that match all of the specified filters.</p>
       tags:
-        - List
+        - Lists
         - Orders
         - V1
         - Orders
@@ -369,41 +369,41 @@ paths:
         - Device
         - Identifiers
         - Activate
-        - Network
+        - Networks
         - Sites
         - Resources
         - Configure
         - Networks
         - Deactivate
-        - Arn
-        - Site
-        - Identifier
-        - Resource
-        - List
+        - ARN
+        - Sites
+        - Identifiers
+        - Resources
+        - Lists
   /tags/{resourceArn}:
     DELETE:
       summary: UntagResource
       description: <p>Removes tags from the specified resource.</p>
       tags:
         - Untag
-        - Resource
+        - Resources
         - V1
         - Orders
         - Acknowledge
         - Device
         - Identifiers
         - Activate
-        - Network
+        - Networks
         - Sites
         - Resources
         - Configure
         - Networks
         - Deactivate
-        - Arn
-        - Site
-        - Identifier
-        - Resource
-        - List
+        - ARN
+        - Sites
+        - Identifiers
+        - Resources
+        - Lists
   /ping:
     GET:
       summary: Ping
@@ -416,17 +416,17 @@ paths:
         - Device
         - Identifiers
         - Activate
-        - Network
+        - Networks
         - Sites
         - Resources
         - Configure
         - Networks
         - Deactivate
-        - Arn
-        - Site
-        - Identifier
-        - Resource
-        - List
+        - ARN
+        - Sites
+        - Identifiers
+        - Resources
+        - Lists
         - Ping
   /v1/network-resources/update:
     POST:
@@ -447,8 +447,8 @@ paths:
         a radio unit</a>.</p>
       tags:
         - Start
-        - Network
-        - Resource
+        - Networks
+        - Resources
         - Update
         - V1
         - Orders
@@ -456,17 +456,17 @@ paths:
         - Device
         - Identifiers
         - Activate
-        - Network
+        - Networks
         - Sites
         - Resources
         - Configure
         - Networks
         - Deactivate
-        - Arn
-        - Site
-        - Identifier
-        - Resource
-        - List
+        - ARN
+        - Sites
+        - Identifiers
+        - Resources
+        - Lists
         - Ping
         - Update
   /v1/network-sites/site:
@@ -475,25 +475,25 @@ paths:
       description: <p>Updates the specified network site.</p>
       tags:
         - Update
-        - Network
-        - Site
+        - Networks
+        - Sites
         - V1
         - Orders
         - Acknowledge
         - Device
         - Identifiers
         - Activate
-        - Network
+        - Networks
         - Sites
         - Resources
         - Configure
         - Networks
         - Deactivate
-        - Arn
-        - Site
-        - Identifier
-        - Resource
-        - List
+        - ARN
+        - Sites
+        - Identifiers
+        - Resources
+        - Lists
         - Ping
         - Update
   /v1/network-sites/plan:
@@ -502,8 +502,8 @@ paths:
       description: <p>Updates the specified network site
       tags:
         - Update
-        - Network
-        - Site
+        - Networks
+        - Sites
         - Plan
         - V1
         - Orders
@@ -511,17 +511,17 @@ paths:
         - Device
         - Identifiers
         - Activate
-        - Network
+        - Networks
         - Sites
         - Resources
         - Configure
         - Networks
         - Deactivate
-        - Arn
-        - Site
-        - Identifier
-        - Resource
-        - List
+        - ARN
+        - Sites
+        - Identifiers
+        - Resources
+        - Lists
         - Ping
         - Update
         - Pl

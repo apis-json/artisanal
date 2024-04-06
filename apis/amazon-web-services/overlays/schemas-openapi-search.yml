@@ -7,7 +7,7 @@ paths:
       summary: ListDiscoverers
       description: <p>List the discoverers.</p>
       tags:
-        - List
+        - Lists
         - Discoverers
         - V1
         - Discoverers
@@ -17,10 +17,10 @@ paths:
       description: <p>Updates a registry.</p>
       tags:
         - Update
-        - Registry
+        - Registries
         - V1
         - Discoverers
-        - Name
+        - Names
   /v1/registries/name/{registryName}/schemas/name/{schemaName}:
     PUT:
       summary: UpdateSchema
@@ -29,56 +29,56 @@ paths:
         deleted after two years.</p></note>
       tags:
         - Update
-        - Schema
+        - Schemas
         - V1
         - Discoverers
-        - Name
+        - Names
         - Schemas
-        - Schema
+        - Schemas
   /v1/discoverers/id/{discovererId}:
     PUT:
       summary: UpdateDiscoverer
       description: <p>Updates the discoverer</p>
       tags:
         - Update
-        - Discoverer
+        - Discoverers
         - V1
         - Discoverers
-        - Name
+        - Names
         - Schemas
-        - Schema
-        - Id
+        - Schemas
+        - Identifiers
   /v1/policy:
     PUT:
       summary: PutResourcePolicy
       description: <p>The name of the policy.</p>
       tags:
         - Put
-        - Resource
-        - Policy
+        - Resources
+        - Policies
         - V1
         - Discoverers
-        - Name
+        - Names
         - Schemas
-        - Schema
-        - Id
-        - Policy
+        - Schemas
+        - Identifiers
+        - Policies
   /v1/registries/name/{registryName}/schemas/name/{schemaName}/version/{schemaVersion}:
     DELETE:
       summary: DeleteSchemaVersion
       description: <p>Delete the schema version definition</p>
       tags:
         - Delete
-        - Schema
-        - Version
+        - Schemas
+        - Versions
         - V1
         - Discoverers
-        - Name
+        - Names
         - Schemas
-        - Schema
-        - Id
-        - Policy
-        - Version
+        - Schemas
+        - Identifiers
+        - Policies
+        - Versions
   /v1/registries/name/{registryName}/schemas/name/{schemaName}/language/{language}:
     POST:
       summary: PutCodeBinding
@@ -89,13 +89,13 @@ paths:
         - Binding
         - V1
         - Discoverers
-        - Name
+        - Names
         - Schemas
-        - Schema
-        - Id
-        - Policy
-        - Version
-        - Language
+        - Schemas
+        - Identifiers
+        - Policies
+        - Versions
+        - Languages
   /v1/registries/name/{registryName}/schemas/name/{schemaName}/language/{language}/source:
     GET:
       summary: GetCodeBindingSource
@@ -107,13 +107,13 @@ paths:
         - Source
         - V1
         - Discoverers
-        - Name
+        - Names
         - Schemas
-        - Schema
-        - Id
-        - Policy
-        - Version
-        - Language
+        - Schemas
+        - Identifiers
+        - Policies
+        - Versions
+        - Languages
         - Source
   /v1/discover:
     POST:
@@ -124,16 +124,16 @@ paths:
       tags:
         - Get
         - Discovered
-        - Schema
+        - Schemas
         - V1
         - Discoverers
-        - Name
+        - Names
         - Schemas
-        - Schema
-        - Id
-        - Policy
-        - Version
-        - Language
+        - Schemas
+        - Identifiers
+        - Policies
+        - Versions
+        - Languages
         - Source
         - Discover
   /v1/registries:
@@ -141,17 +141,17 @@ paths:
       summary: ListRegistries
       description: <p>List the registries.</p>
       tags:
-        - List
+        - Lists
         - Registries
         - V1
         - Discoverers
-        - Name
+        - Names
         - Schemas
-        - Schema
-        - Id
-        - Policy
-        - Version
-        - Language
+        - Schemas
+        - Identifiers
+        - Policies
+        - Versions
+        - Languages
         - Source
         - Discover
         - Registries
@@ -160,18 +160,18 @@ paths:
       summary: ListSchemaVersions
       description: <p>Provides a list of the schema versions and related information.</p>
       tags:
-        - List
-        - Schema
+        - Lists
+        - Schemas
         - Versions
         - V1
         - Discoverers
-        - Name
+        - Names
         - Schemas
-        - Schema
-        - Id
-        - Policy
-        - Version
-        - Language
+        - Schemas
+        - Identifiers
+        - Policies
+        - Versions
+        - Languages
         - Source
         - Discover
         - Registries
@@ -181,17 +181,17 @@ paths:
       summary: ListSchemas
       description: <p>List the schemas.</p>
       tags:
-        - List
+        - Lists
         - Schemas
         - V1
         - Discoverers
-        - Name
+        - Names
         - Schemas
-        - Schema
-        - Id
-        - Policy
-        - Version
-        - Language
+        - Schemas
+        - Identifiers
+        - Policies
+        - Versions
+        - Languages
         - Source
         - Discover
         - Registries
@@ -202,23 +202,23 @@ paths:
       description: <p>Removes tags from a resource.</p>
       tags:
         - Untag
-        - Resource
+        - Resources
         - V1
         - Discoverers
-        - Name
+        - Names
         - Schemas
-        - Schema
-        - Id
-        - Policy
-        - Version
-        - Language
+        - Schemas
+        - Identifiers
+        - Policies
+        - Versions
+        - Languages
         - Source
         - Discover
         - Registries
         - Versions
         - Tags
-        - Resource
-        - Arn
+        - Resources
+        - ARN
   /v1/registries/name/{registryName}/schemas/search:
     GET:
       summary: SearchSchemas
@@ -228,20 +228,20 @@ paths:
         - Schemas
         - V1
         - Discoverers
-        - Name
+        - Names
         - Schemas
-        - Schema
-        - Id
-        - Policy
-        - Version
-        - Language
+        - Schemas
+        - Identifiers
+        - Policies
+        - Versions
+        - Languages
         - Source
         - Discover
         - Registries
         - Versions
         - Tags
-        - Resource
-        - Arn
+        - Resources
+        - ARN
         - Search
   /v1/discoverers/id/{discovererId}/start:
     POST:
@@ -249,23 +249,23 @@ paths:
       description: <p>Starts the discoverer</p>
       tags:
         - Start
-        - Discoverer
+        - Discoverers
         - V1
         - Discoverers
-        - Name
+        - Names
         - Schemas
-        - Schema
-        - Id
-        - Policy
-        - Version
-        - Language
+        - Schemas
+        - Identifiers
+        - Policies
+        - Versions
+        - Languages
         - Source
         - Discover
         - Registries
         - Versions
         - Tags
-        - Resource
-        - Arn
+        - Resources
+        - ARN
         - Search
         - Start
   /v1/discoverers/id/{discovererId}/stop:
@@ -274,23 +274,23 @@ paths:
       description: <p>Stops the discoverer</p>
       tags:
         - Stop
-        - Discoverer
+        - Discoverers
         - V1
         - Discoverers
-        - Name
+        - Names
         - Schemas
-        - Schema
-        - Id
-        - Policy
-        - Version
-        - Language
+        - Schemas
+        - Identifiers
+        - Policies
+        - Versions
+        - Languages
         - Source
         - Discover
         - Registries
         - Versions
         - Tags
-        - Resource
-        - Arn
+        - Resources
+        - ARN
         - Search
         - Start
         - Stop
@@ -300,23 +300,23 @@ paths:
       description: <p>Exports a schema to a different specific
       tags:
         - Export
-        - Schema
+        - Schemas
         - V1
         - Discoverers
-        - Name
+        - Names
         - Schemas
-        - Schema
-        - Id
-        - Policy
-        - Version
-        - Language
+        - Schemas
+        - Identifiers
+        - Policies
+        - Versions
+        - Languages
         - Source
         - Discover
         - Registries
         - Versions
         - Tags
-        - Resource
-        - Arn
+        - Resources
+        - ARN
         - Search
         - Start
         - Stop

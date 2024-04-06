@@ -15,10 +15,10 @@ paths:
         for terminal streams</a> in the <i>Amazon QLDB Developer Guide</i>.</p>
       tags:
         - Describe
-        - Journal
+        - Journals
         - Kinesis
         - Stream
-        - Id
+        - Identifiers
   /ledgers:
     GET:
       summary: ListLedgers
@@ -28,9 +28,9 @@ paths:
         <code>MaxResults</code> items and is paginated so that you can retrieve
         all the items by calling <code>ListLedgers</code> multiple times.</p>
       tags:
-        - List
+        - Lists
         - Ledgers
-        - Id
+        - Identifiers
         - Ledgers
   /ledgers/{name}:
     PATCH:
@@ -38,10 +38,10 @@ paths:
       description: <p>Updates properties on a ledger.</p>
       tags:
         - Update
-        - Ledger
-        - Id
         - Ledgers
-        - Name
+        - Identifiers
+        - Ledgers
+        - Names
   /ledgers/{name}/journal-s3-exports/{exportId}:
     GET:
       summary: DescribeJournalS3Export
@@ -58,12 +58,12 @@ paths:
         <code>ResourceNotFoundException</code>.</p>
       tags:
         - Describe
-        - Journal
+        - Journals
         - S3
         - Export
-        - Id
+        - Identifiers
         - Ledgers
-        - Name
+        - Names
   /ledgers/{name}/journal-s3-exports:
     GET:
       summary: ListJournalS3ExportsForLedger
@@ -77,16 +77,16 @@ paths:
         href="https://docs.aws.amazon.com/qldb/latest/developerguide/export-journal.request.html#export-journal.request.expiration">Export
         job expiration</a> in the <i>Amazon QLDB Developer Guide</i>.</p>
       tags:
-        - List
-        - Journal
+        - Lists
+        - Journals
         - S3
         - Exports
         - For
-        - Ledger
-        - Id
         - Ledgers
-        - Name
-        - Journal
+        - Identifiers
+        - Ledgers
+        - Names
+        - Journals
         - S3
         - Exports
   /ledgers/{name}/block:
@@ -107,14 +107,14 @@ paths:
         <code>InvalidParameterException</code>.</p>
       tags:
         - Get
-        - Block
-        - Id
+        - Blocks
+        - Identifiers
         - Ledgers
-        - Name
-        - Journal
+        - Names
+        - Journals
         - S3
         - Exports
-        - Block
+        - Blocks
   /ledgers/{name}/digest:
     POST:
       summary: GetDigest
@@ -125,13 +125,13 @@ paths:
       tags:
         - Get
         - Digest
-        - Id
+        - Identifiers
         - Ledgers
-        - Name
-        - Journal
+        - Names
+        - Journals
         - S3
         - Exports
-        - Block
+        - Blocks
         - Digest
   /ledgers/{name}/revision:
     POST:
@@ -142,16 +142,16 @@ paths:
         if <code>DigestTipAddress</code> is provided.</p>
       tags:
         - Get
-        - Revision
-        - Id
+        - Revisions
+        - Identifiers
         - Ledgers
-        - Name
-        - Journal
+        - Names
+        - Journals
         - S3
         - Exports
-        - Block
+        - Blocks
         - Digest
-        - Revision
+        - Revisions
   /ledgers/{name}/journal-kinesis-streams:
     POST:
       summary: StreamJournalToKinesis
@@ -162,18 +162,18 @@ paths:
         resource.</p>
       tags:
         - Stream
-        - Journal
+        - Journals
         - To
         - Kinesis
-        - Id
+        - Identifiers
         - Ledgers
-        - Name
-        - Journal
+        - Names
+        - Journals
         - S3
         - Exports
-        - Block
+        - Blocks
         - Digest
-        - Revision
+        - Revisions
         - Kinesis
         - Streams
   /journal-s3-exports:
@@ -189,19 +189,19 @@ paths:
         href="https://docs.aws.amazon.com/qldb/latest/developerguide/export-journal.request.html#export-journal.request.expiration">Export
         job expiration</a> in the <i>Amazon QLDB Developer Guide</i>.</p>
       tags:
-        - List
-        - Journal
+        - Lists
+        - Journals
         - S3
         - Exports
-        - Id
+        - Identifiers
         - Ledgers
-        - Name
-        - Journal
+        - Names
+        - Journals
         - S3
         - Exports
-        - Block
+        - Blocks
         - Digest
-        - Revision
+        - Revisions
         - Kinesis
         - Streams
   /tags/{resourceArn}:
@@ -212,19 +212,19 @@ paths:
         can specify up to 50 tag keys to remove.</p>
       tags:
         - Untag
-        - Resource
-        - Id
+        - Resources
+        - Identifiers
         - Ledgers
-        - Name
-        - Journal
+        - Names
+        - Journals
         - S3
         - Exports
-        - Block
+        - Blocks
         - Digest
-        - Revision
+        - Revisions
         - Kinesis
         - Streams
-        - Arn
+        - ARN
   /ledgers/{name}/permissions-mode:
     PATCH:
       summary: UpdateLedgerPermissionsMode
@@ -238,20 +238,20 @@ paths:
         Guide</i>.</p> </
       tags:
         - Update
-        - Ledger
+        - Ledgers
         - Permissions
         - Mode
-        - Id
+        - Identifiers
         - Ledgers
-        - Name
-        - Journal
+        - Names
+        - Journals
         - S3
         - Exports
-        - Block
+        - Blocks
         - Digest
-        - Revision
+        - Revisions
         - Kinesis
         - Streams
-        - Arn
+        - ARN
         - Permissions
         - Mo

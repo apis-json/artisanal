@@ -8,11 +8,11 @@ paths:
       description: <p>Copy an image set.</p>
       tags:
         - Copy
-        - Image
-        - Set
-        - Id
-        - Image
-        - Set
+        - Images
+        - Sets
+        - Identifiers
+        - Images
+        - Sets
         - Source
         - Copy
   /datastore:
@@ -20,41 +20,41 @@ paths:
       summary: ListDatastores
       description: <p>List data stores.</p>
       tags:
-        - List
-        - Datastores
-        - Id
-        - Image
-        - Set
+        - Lists
+        - Data Store
+        - Identifiers
+        - Images
+        - Sets
         - Source
         - Copy
-        - Datastore
+        - Data Store
   /datastore/{datastoreId}:
     GET:
       summary: GetDatastore
       description: <p>Get data store properties.</p>
       tags:
         - Get
-        - Datastore
-        - Id
-        - Image
-        - Set
+        - Data Store
+        - Identifiers
+        - Images
+        - Sets
         - Source
         - Copy
-        - Datastore
+        - Data Store
   /datastore/{datastoreId}/imageSet/{imageSetId}/deleteImageSet:
     POST:
       summary: DeleteImageSet
       description: <p>Delete an image set.</p>
       tags:
         - Delete
-        - Image
-        - Set
-        - Id
-        - Image
-        - Set
+        - Images
+        - Sets
+        - Identifiers
+        - Images
+        - Sets
         - Source
         - Copy
-        - Datastore
+        - Data Store
         - Delete
   /getDICOMImportJob/datastore/{datastoreId}/job/{jobId}:
     GET:
@@ -65,94 +65,94 @@ paths:
       tags:
         - Get
         - Import
-        - Job
-        - Id
-        - Image
-        - Set
+        - Jobs
+        - Identifiers
+        - Images
+        - Sets
         - Source
         - Copy
-        - Datastore
+        - Data Store
         - Delete
         - Import
-        - Job
+        - Jobs
   /datastore/{datastoreId}/imageSet/{imageSetId}/getImageFrame:
     POST:
       summary: GetImageFrame
       description: <p>Get an image frame (pixel data) for an image set.</p>
       tags:
         - Get
-        - Image
-        - Frame
-        - Id
-        - Image
-        - Set
+        - Images
+        - Frames
+        - Identifiers
+        - Images
+        - Sets
         - Source
         - Copy
-        - Datastore
+        - Data Store
         - Delete
         - Import
-        - Job
+        - Jobs
         - Get
-        - Frame
+        - Frames
   /datastore/{datastoreId}/imageSet/{imageSetId}/getImageSet:
     POST:
       summary: GetImageSet
       description: <p>Get image set properties.</p>
       tags:
         - Get
-        - Image
-        - Set
-        - Id
-        - Image
-        - Set
+        - Images
+        - Sets
+        - Identifiers
+        - Images
+        - Sets
         - Source
         - Copy
-        - Datastore
+        - Data Store
         - Delete
         - Import
-        - Job
+        - Jobs
         - Get
-        - Frame
+        - Frames
   /datastore/{datastoreId}/imageSet/{imageSetId}/getImageSetMetadata:
     POST:
       summary: GetImageSetMetadata
       description: <p>Get metadata attributes for an image set.</p>
       tags:
         - Get
-        - Image
-        - Set
+        - Images
+        - Sets
         - Metadata
-        - Id
-        - Image
-        - Set
+        - Identifiers
+        - Images
+        - Sets
         - Source
         - Copy
-        - Datastore
+        - Data Store
         - Delete
         - Import
-        - Job
+        - Jobs
         - Get
-        - Frame
+        - Frames
         - Metadata
   /listDICOMImportJobs/datastore/{datastoreId}:
     GET:
       summary: ListDICOMImportJobs
       description: <p>List import jobs created for a specific data store.</p>
       tags:
-        - List
+        - Lists
         - Import
         - Jobs
-        - Id
-        - Image
-        - Set
+        - Identifiers
+        - Images
+        - Sets
         - Source
         - Copy
-        - Datastore
+        - Data Store
         - Delete
         - Import
-        - Job
+        - Jobs
         - Get
-        - Frame
+        - Frames
         - Metadata
         - Jobs
   /datastore/{datastoreId}/imageSet/{imageSetId}/listImageSetVersions:
@@ -160,24 +160,24 @@ paths:
       summary: ListImageSetVersions
       description: <p>List image set versions.</p>
       tags:
-        - List
-        - Image
-        - Set
+        - Lists
+        - Images
+        - Sets
         - Versions
-        - Id
-        - Image
-        - Set
+        - Identifiers
+        - Images
+        - Sets
         - Source
         - Copy
-        - Datastore
+        - Data Store
         - Delete
         - Import
-        - Job
+        - Jobs
         - Get
-        - Frame
+        - Frames
         - Metadata
         - Jobs
-        - List
+        - Lists
         - Versions
   /tags/{resourceArn}:
     DELETE:
@@ -185,23 +185,23 @@ paths:
       description: <p>Removes tags from a medical imaging resource.</p>
       tags:
         - Untag
-        - Resource
-        - Id
-        - Image
-        - Set
+        - Resources
+        - Identifiers
+        - Images
+        - Sets
         - Source
         - Copy
-        - Datastore
+        - Data Store
         - Delete
         - Import
-        - Job
+        - Jobs
         - Get
-        - Frame
+        - Frames
         - Metadata
         - Jobs
-        - List
+        - Lists
         - Versions
-        - Arn
+        - ARN
   /datastore/{datastoreId}/searchImageSets:
     POST:
       summary: SearchImageSets
@@ -215,24 +215,24 @@ paths:
         to oldest.</p> </note>
       tags:
         - Search
-        - Image
+        - Images
         - Sets
-        - Id
-        - Image
-        - Set
+        - Identifiers
+        - Images
+        - Sets
         - Source
         - Copy
-        - Datastore
+        - Data Store
         - Delete
         - Import
-        - Job
+        - Jobs
         - Get
-        - Frame
+        - Frames
         - Metadata
         - Jobs
-        - List
+        - Lists
         - Versions
-        - Arn
+        - ARN
         - Search
         - Sets
   /startDICOMImportJob/datastore/{datastoreId}:
@@ -247,23 +247,23 @@ paths:
       tags:
         - Start
         - Import
-        - Job
-        - Id
-        - Image
-        - Set
+        - Jobs
+        - Identifiers
+        - Images
+        - Sets
         - Source
         - Copy
-        - Datastore
+        - Data Store
         - Delete
         - Import
-        - Job
+        - Jobs
         - Get
-        - Frame
+        - Frames
         - Metadata
         - Jobs
-        - List
+        - Lists
         - Versions
-        - Arn
+        - ARN
         - Search
         - Sets
   /datastore/{datastoreId}/imageSet/{imageSetId}/updateImageSetMetadata:
@@ -272,25 +272,25 @@ paths:
       description: <p>Update image set metadata attri
       tags:
         - Update
-        - Image
-        - Set
+        - Images
+        - Sets
         - Metadata
-        - Id
-        - Image
-        - Set
+        - Identifiers
+        - Images
+        - Sets
         - Source
         - Copy
-        - Datastore
+        - Data Store
         - Delete
         - Import
-        - Job
+        - Jobs
         - Get
-        - Frame
+        - Frames
         - Metadata
         - Jobs
-        - List
+        - Lists
         - Versions
-        - Arn
+        - ARN
         - Search
         - Sets
         - Upda
