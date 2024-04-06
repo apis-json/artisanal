@@ -90,7 +90,6 @@ tags:
   - name: Complex Rules
   - name: Custom Fields
   - name: Images
-  - null
   - name: Reviews
   - name: Videos
   - name: Channel Assignments
@@ -100,7 +99,7 @@ paths:
   /catalog/products:
     get:
       tags:
-        - Products
+        - - Products
       summary: Get All Products
       description: >-
         Returns a list of **Products**. Optional filter parameters can be passed
@@ -500,7 +499,7 @@ paths:
                     $ref: '#/components/schemas/metaCollection_Full'
     put:
       tags:
-        - Products
+        - - Products
       summary: Update Products (Batch)
       description: |-
         Updates products in batches. Batches are limited to 10 products.
@@ -1001,7 +1000,7 @@ paths:
       x-codegen-request-body-name: products
     post:
       tags:
-        - Products
+        - - Products
       summary: Create a Product
       description: >-
         Creates a *Product*. Only one product can be created at a time; however,
@@ -1412,7 +1411,7 @@ paths:
       x-codegen-request-body-name: product
     delete:
       tags:
-        - Products
+        - - Products
       summary: Delete Products
       description: >-
         To delete *Product* objects, you must include a filter. This prevents
@@ -1549,7 +1548,7 @@ paths:
   /catalog/products/{product_id}:
     get:
       tags:
-        - Products
+        - - Products
       summary: Get a Product
       description: Returns a single *Product*. Optional parameters can be passed in.
       operationId: getProduct
@@ -1708,7 +1707,7 @@ paths:
                 description: Error payload for the BigCommerce API.
     put:
       tags:
-        - Products
+        - - Products
       summary: Update a Product
       description: >
         Updates a *Product*.
@@ -2129,7 +2128,7 @@ paths:
       x-codegen-request-body-name: product
     delete:
       tags:
-        - Products
+        - - Products
       summary: Delete a Product
       description: Deletes a *Product*.
       operationId: deleteProduct
@@ -2143,7 +2142,7 @@ paths:
   /catalog/products/{product_id}/images:
     get:
       tags:
-        - Images
+        - - Images
       summary: Get All Product Images
       description: >-
         Returns a list of *Product Images*. Optional parameters can be passed
@@ -2263,7 +2262,7 @@ paths:
                 description: Error payload for the BigCommerce API.
     post:
       tags:
-        - Images
+        - - Images
       summary: Create a Product Image
       description: >-
         Creates a *Product Image*.
@@ -2701,7 +2700,7 @@ paths:
   /catalog/products/{product_id}/images/{image_id}:
     get:
       tags:
-        - Images
+        - - Images
       summary: Get a Product Image
       description: Returns a single *Product Image*. Optional parameters can be passed in.
       operationId: getProductImage
@@ -2776,7 +2775,7 @@ paths:
                 description: Error payload for the BigCommerce API.
     put:
       tags:
-        - Images
+        - - Images
       summary: Update a Product Image
       description: >-
         Updates a *Product Image*.
@@ -3007,7 +3006,7 @@ paths:
       x-codegen-request-body-name: productImage
     delete:
       tags:
-        - Images
+        - - Images
       summary: Delete a Product Image
       description: Deletes a *Product Image*.
       operationId: deleteProductImage
@@ -3022,7 +3021,7 @@ paths:
   /catalog/products/{product_id}/videos:
     get:
       tags:
-        - Videos
+        - - Videos
       summary: Get All Product Videos
       description: >-
         Returns a list of *Product Videos*. Optional parameters can be passed
@@ -3145,7 +3144,7 @@ paths:
                       current: '?page=1&limit=50'
     post:
       tags:
-        - Videos
+        - - Videos
       summary: Create a Product Video
       description: |-
         Creates a *Product Video*.
@@ -3325,7 +3324,7 @@ paths:
   /catalog/products/{product_id}/videos/{id}:
     get:
       tags:
-        - Videos
+        - - Videos
       summary: Get a Product Video
       description: Returns a single *Product Video*. Optional parameters can be passed in.
       operationId: getProductVideo
@@ -3388,7 +3387,7 @@ paths:
                 description: Error payload for the BigCommerce API.
     put:
       tags:
-        - Videos
+        - - Videos
       summary: Update a Product Video
       description: |-
         Updates a *Product Video.
@@ -3557,7 +3556,7 @@ paths:
       x-codegen-request-body-name: productVideo
     delete:
       tags:
-        - Videos
+        - - Videos
       summary: Delete a Product Video
       description: Deletes a *Product Video*.
       operationId: deleteProductVideo
@@ -3572,7 +3571,7 @@ paths:
   /catalog/products/{product_id}/complex-rules:
     get:
       tags:
-        - Complex Rules
+        - - Complex Rules
       summary: Get Complex Rules
       description: >-
         Returns a list of all product *Complex Rules*. Optional parameters may
@@ -3672,7 +3671,7 @@ paths:
                       current: '?page=1&limit=50'
     post:
       tags:
-        - Complex Rules
+        - - Complex Rules
       summary: Create a Complex Rule
       description: |-
         Creates a product *Complex Rule*.
@@ -4092,7 +4091,7 @@ paths:
   /catalog/products/{product_id}/complex-rules/{complex_rule_id}:
     get:
       tags:
-        - Complex Rules
+        - - Complex Rules
       summary: Get a Product Complex Rule
       description: Returns a single *Complex Rule*. Optional parameters can be passed in.
       operationId: getProductComplexRule
@@ -4321,7 +4320,7 @@ paths:
                 description: Error payload for the BigCommerce API.
     put:
       tags:
-        - Complex Rules
+        - - Complex Rules
       summary: Update a Product Complex Rule
       description: |-
         Updates a *Complex Rule*.
@@ -4727,7 +4726,7 @@ paths:
       x-codegen-request-body-name: ComplexRule
     delete:
       tags:
-        - Complex Rules
+        - - Complex Rules
       summary: Delete a Product Complex Rule
       description: Deletes a product *Complex Rule*.
       operationId: deleteProductComplexRule
@@ -4742,7 +4741,7 @@ paths:
   /catalog/products/{product_id}/custom-fields:
     get:
       tags:
-        - Custom Fields
+        - - Custom Fields
       summary: Get Product Custom Fields
       description: >-
         Returns a list of product *Custom Fields*. You can pass in optional
@@ -4793,7 +4792,7 @@ paths:
           $ref: '#/components/responses/MethodNotAllowedError'
     post:
       tags:
-        - Custom Fields
+        - - Custom Fields
       summary: Create a Product Custom Field
       description: |-
         Creates a *Custom Field*.
@@ -4841,7 +4840,7 @@ paths:
   /catalog/products/{product_id}/custom-fields/{custom_field_id}:
     get:
       tags:
-        - Custom Fields
+        - - Custom Fields
       summary: Get a Product Custom Field
       description: |
         Returns a *Custom Field*.
@@ -4877,7 +4876,7 @@ paths:
           $ref: '#/components/responses/MethodNotAllowedError'
     put:
       tags:
-        - Custom Fields
+        - - Custom Fields
       summary: Update a Product Custom Field
       description: |-
         Updates a *Custom Field*.
@@ -4919,7 +4918,7 @@ paths:
           $ref: '#/components/responses/GeneralError'
     delete:
       tags:
-        - Custom Fields
+        - - Custom Fields
       summary: Delete a Product Custom Field
       description: |-
         Deletes a product *Custom Field*.
@@ -4945,7 +4944,7 @@ paths:
   /catalog/products/{product_id}/bulk-pricing-rules/{bulk_pricing_rule_id}:
     get:
       tags:
-        - Bulk Pricing Rules
+        - - Bulk Pricing Rules
       summary: Get a Bulk Pricing Rule
       description: >-
         Returns a single *Bulk Pricing Rule*. Optional parameters can be passed
@@ -5019,7 +5018,7 @@ paths:
                 description: Error payload for the BigCommerce API.
     put:
       tags:
-        - Bulk Pricing Rules
+        - - Bulk Pricing Rules
       summary: Update a Bulk Pricing Rule
       description: |-
         Updates a *Bulk Pricing Rule*.
@@ -5213,7 +5212,7 @@ paths:
       x-codegen-request-body-name: BulkPricingRule
     delete:
       tags:
-        - Bulk Pricing Rules
+        - - Bulk Pricing Rules
       summary: Delete a Bulk Pricing Rule
       description: Deletes a *Bulk Pricing Rule*.
       operationId: deleteBulkPricingRule
@@ -5249,7 +5248,7 @@ paths:
   /catalog/products/{product_id}/metafields:
     get:
       tags:
-        - Metafields
+        - - Metafields
       summary: Get Product Metafields
       description: >-
         Returns a list of *Product Metafields*. Optional parameters can be
@@ -5362,7 +5361,7 @@ paths:
                 description: Error payload for the BigCommerce API.
     post:
       tags:
-        - Metafields
+        - - Metafields
       summary: Create a Product Metafield
       description: >-
         Creates a *Product Metafield*.
@@ -5479,7 +5478,7 @@ paths:
   /catalog/products/{product_id}/metafields/{metafield_id}:
     get:
       tags:
-        - Metafields
+        - - Metafields
       summary: Get a Product Metafield
       description: >-
         Returns a single *Product Metafield*. Optional parameters can be passed
@@ -5549,7 +5548,7 @@ paths:
                 description: Error payload for the BigCommerce API.
     put:
       tags:
-        - Metafields
+        - - Metafields
       summary: Update a Product Metafield
       description: "Updates a *Product Metafield*.\n\n**Required Fields**\n* none\n\n**Read-Only Fields**\n* id\n* These fields can only be modified using the API account that created the metafield:\n\t* `namespace`\n\t* `key`\n\t* `permission_set`\n\t* `value`\n\n**Usage Notes**\n* Attempting to modify the `namespace`, `key`, `permission_set`, or `value` field using an API account different from the one used to create those metafields will result in a `403` error message. "
       operationId: updateProductMetafield
@@ -5611,7 +5610,7 @@ paths:
       x-codegen-request-body-name: Metafield
     delete:
       tags:
-        - Metafields
+        - - Metafields
       summary: Delete a Product Metafield
       description: Deletes a *Product Metafield*.
       operationId: deleteProductMetafield
@@ -5626,7 +5625,7 @@ paths:
   /catalog/products/{product_id}/reviews:
     get:
       tags:
-        - Reviews
+        - - Reviews
       summary: Get Product Reviews
       description: >-
         Returns a list of all *Product Reviews*. Optional parameters can be
@@ -5775,7 +5774,7 @@ paths:
                 description: Error payload for the BigCommerce API.
     post:
       tags:
-        - Reviews
+        - - Reviews
       summary: Create a Product Review
       description: |-
         Creates a *Product Review*.
@@ -5965,7 +5964,7 @@ paths:
   /catalog/products/{product_id}/reviews/{review_id}:
     get:
       tags:
-        - Reviews
+        - - Reviews
       summary: Get a Product Review
       description: Returns a single *Product Review*. Optional parameters maybe passed in.
       operationId: getProductReview
@@ -6099,7 +6098,7 @@ paths:
                 description: Error payload for the BigCommerce API.
     put:
       tags:
-        - Reviews
+        - - Reviews
       summary: Update a Product Review
       description: |-
         Updates a *Product Review*.
@@ -6286,7 +6285,7 @@ paths:
       x-codegen-request-body-name: productReview
     delete:
       tags:
-        - Reviews
+        - - Reviews
       summary: Delete a Product Review
       description: Deletes a *Product Review*.
       operationId: deleteProductReview
@@ -6304,7 +6303,7 @@ paths:
       description: Returns a list of products channel assignments.
       operationId: getProductsChannelAssignments
       tags:
-        - Channel Assignments
+        - - Channel Assignments
       parameters:
         - name: page
           in: query
@@ -6344,7 +6343,7 @@ paths:
       parameters:
         - $ref: '#/components/parameters/ContentType'
       tags:
-        - Channel Assignments
+        - - Channel Assignments
       requestBody:
         required: true
         content:
@@ -6369,7 +6368,7 @@ paths:
       description: Delete products channel assignments. A filter must be supplied.
       operationId: deleteProductsChannelAssignments
       tags:
-        - Channel Assignments
+        - - Channel Assignments
       parameters:
         - name: product_id:in
           in: query
@@ -6398,7 +6397,7 @@ paths:
       description: Returns a list of products category assignments.
       operationId: getProductsCategoryAssignments
       tags:
-        - Category Assignments
+        - - Category Assignments
       parameters:
         - name: page
           in: query
@@ -6438,7 +6437,7 @@ paths:
       parameters:
         - $ref: '#/components/parameters/ContentType'
       tags:
-        - Category Assignments
+        - - Category Assignments
       requestBody:
         required: true
         content:
@@ -6463,7 +6462,7 @@ paths:
       description: Deletes products category assignments. A filter must be supplied.
       operationId: deleteProductsCategoryAssignments
       tags:
-        - Category Assignments
+        - - Category Assignments
       parameters:
         - name: product_id:in
           in: query
@@ -6489,7 +6488,7 @@ paths:
   /catalog/summary:
     get:
       tags:
-        - Summary
+        - - Summary
       summary: Get a Catalog Summary
       description: |-
         Returns a lightweight inventory summary from the BigCommerce Catalog.
@@ -6575,7 +6574,7 @@ paths:
     get:
       summary: Get All Product Metafields
       tags:
-        - Batch metafields
+        - - Batch metafields
       description: Get all product metafields.
       operationId: getProductsMetafields
       responses:
@@ -6599,7 +6598,7 @@ paths:
     post:
       summary: Create multiple Metafields
       tags:
-        - Batch metafields
+        - - Batch metafields
       description: Create multiple metafields.
       operationId: createProductsMetafields
       requestBody:
@@ -6642,7 +6641,7 @@ paths:
     put:
       summary: Update multiple Metafields
       tags:
-        - Batch metafields
+        - - Batch metafields
       description: Update multiple metafields.
       operationId: updateProductsMetafields
       requestBody:
@@ -6684,7 +6683,7 @@ paths:
     delete:
       summary: Delete All Metafields
       tags:
-        - Batch metafields
+        - - Batch metafields
       description: Delete all product metafields.
       operationId: deleteProductsMetafields
       requestBody:

@@ -88,7 +88,7 @@ paths:
         FactSet Account Team or "Report Issue" above and our support teams can
         assist.*
       tags:
-        - Time-Series
+        - - Time-Series
       operationId: getTimeSeriesData
       parameters:
         - $ref: '#/components/parameters/ids'
@@ -200,7 +200,7 @@ paths:
         FactSet Account Team or "Report Issue" above and our support teams can
         assist.*
       tags:
-        - Time-Series
+        - - Time-Series
       operationId: getTimeSeriesDataForList
       responses:
         '200':
@@ -345,7 +345,7 @@ paths:
         *Note: This is a general rule of thumb and performance may vary
         depending on the formulas in use.*
       tags:
-        - Cross-Sectional
+        - - Cross-Sectional
       operationId: getCrossSectionalData
       parameters:
         - $ref: '#/components/parameters/ids'
@@ -513,7 +513,7 @@ paths:
         *Note: This is a general rule of thumb and performance may vary
         depending on the formulas in use.*
       tags:
-        - Cross-Sectional
+        - - Cross-Sectional
       operationId: getCrossSectionalDataForList
       responses:
         '200':
@@ -615,7 +615,7 @@ paths:
 
           *This feature is available to Individual Users subscribed to the Performance Package and Performance Package Plus Performance Tiers and all Production Users. If you are unsure which Performance Tier you are subscribed to or you would like to gain access to the batch capabilities, please contact your FactSet Account Team or "Report Issue" above and our support teams can assist.*
       tags:
-        - Batch Processing
+        - - Batch Processing
       operationId: getBatchStatus
       parameters:
         - $ref: '#/components/parameters/batchId'
@@ -683,7 +683,7 @@ paths:
 
           *This feature is available to Individual Users subscribed to the Performance Package and Performance Package Plus Performance Tiers and all Production Users. If you are unsure which Performance Tier you are subscribed to or you would like to gain access to the batch capabilities, please contact your FactSet Account Team or "Report Issue" above and our support teams can assist.*
       tags:
-        - Batch Processing
+        - - Batch Processing
       operationId: getBatchStatusWithPost
       responses:
         '201':
@@ -752,7 +752,7 @@ paths:
 
           *This feature is available to Individual Users subscribed to the Performance Package and Performance Package Plus Performance Tiers and all Production Users. If you are unsure which Performance Tier you are subscribed to or you would like to gain access to the batch capabilities, please contact your FactSet Account Team or "Report Issue" above and our support teams can assist.*
       tags:
-        - Batch Processing
+        - - Batch Processing
       operationId: getBatchData
       parameters:
         - $ref: '#/components/parameters/batchId'
@@ -812,7 +812,7 @@ paths:
 
           *This feature is available to Individual Users subscribed to the Performance Package and Performance Package Plus Performance Tiers and all Production Users. If you are unsure which Performance Tier you are subscribed to or you would like to gain access to the batch capabilities, please contact your FactSet Account Team or "Report Issue" above and our support teams can assist.*
       tags:
-        - Batch Processing
+        - - Batch Processing
       operationId: getBatchDataWithPost
       responses:
         '200':
@@ -2070,7 +2070,7 @@ components:
         the the objectTypes of the formulas requested.
 
 
-        
+
 
         Formulas that have associated dates (TIMESERIES objectType in the
         standard **flatten=N** response model) will result in a data object for
@@ -2134,7 +2134,7 @@ components:
 
         ```
 
-        
+
 
 
         Formulas that result in an array (no associated dates, ARRAY objectType
@@ -2184,7 +2184,7 @@ components:
 
         ```
 
-        
+
 
         Scalar data items (SCALAR objectType in the standard **flatten=N**
         response model) will be repeated in each data object for the requestId.
@@ -2220,7 +2220,7 @@ components:
 
         ```
 
-        
+
 
         Formulas that result in a matrix (2 dimensional array, MATRIX objectType
         in the standard **flatten=N** response model) can be thought of as
@@ -2270,8 +2270,6 @@ components:
         ]
 
         ```
-
-        
       type: object
       properties:
         requestId:
@@ -5004,3 +5002,4 @@ components:
       schema:
         type: integer
         example: 62
+tags: []

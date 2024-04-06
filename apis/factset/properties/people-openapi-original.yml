@@ -27,7 +27,7 @@ paths:
         Returns a summary of basic information about the person referenced by
         the entityId specified in the URI.
       tags:
-        - Profiles
+        - - Profiles
       operationId: getPeopleProfiles
       parameters:
         - $ref: '#/components/parameters/profileEntityId'
@@ -51,7 +51,7 @@ paths:
     post:
       summary: Returns profile information for a large list of people.
       tags:
-        - Profiles
+        - - Profiles
       operationId: getPeopleProfilesForList
       requestBody:
         required: true
@@ -83,7 +83,7 @@ paths:
         Returns the `Job` history of the person referenced by the entityId
         specified in the request.
       tags:
-        - Job History
+        - - Job History
       operationId: getPeopleJobs
       parameters:
         - $ref: '#/components/parameters/entityId'
@@ -113,7 +113,7 @@ paths:
         Returns the `Job` history of the person referenced by the entityId
         specified in the request.
       tags:
-        - Job History
+        - - Job History
       operationId: getPeopleJobsForList
       requestBody:
         required: true
@@ -147,7 +147,7 @@ paths:
         name, and FactSet Entity Identifier. The personId returned can then be
         used in the `/profiles` endpoint to learn more about the given person.
       tags:
-        - Company
+        - - Company
       operationId: getCompanyPeople
       parameters:
         - $ref: '#/components/parameters/companyId'
@@ -179,7 +179,7 @@ paths:
         name, and FactSet Entity Identifier. The personId returned can then be
         used in the /profiles endpoint to learn more about the given person.
       tags:
-        - Company
+        - - Company
       operationId: getCompanyPeopleForList
       requestBody:
         required: true
@@ -230,7 +230,7 @@ paths:
           * Sales and Marketing Managers
           * Human Resources
       tags:
-        - Company
+        - - Company
       operationId: getCompanyPositions
       parameters:
         - $ref: '#/components/parameters/companyId'
@@ -277,7 +277,7 @@ paths:
           * Sales and Marketing Managers
           * Human Resources
       tags:
-        - Company
+        - - Company
       operationId: getCompanyPositionsForList
       requestBody:
         required: true
@@ -313,7 +313,7 @@ paths:
         compensation details for the executives are limited to US region. All
         the compensation figures are expressed in raw units. 
       tags:
-        - Company
+        - - Company
       operationId: getCompanyCompensation
       parameters:
         - $ref: '#/components/parameters/companyId'
@@ -345,7 +345,7 @@ paths:
         limited to US region. All the compensation figures are expressed in raw
         units. 
       tags:
-        - Company
+        - - Company
       operationId: getCompanyCompensationForList
       requestBody:
         required: true
@@ -379,7 +379,7 @@ paths:
         leadership. We can utilize the data for analyzing a company's board and
         management.
       tags:
-        - Company
+        - - Company
       operationId: getCompanyStats
       parameters:
         - $ref: '#/components/parameters/companyId'
@@ -409,7 +409,7 @@ paths:
         leadership. We can utilize the data for analyzing a company's board and
         management. 
       tags:
-        - Company
+        - - Company
       operationId: getCompanyStatsForList
       requestBody:
         required: true
@@ -606,8 +606,7 @@ components:
       name: mbType
       description: >-
         Search based on the management and board types. The types include -
-        |type|description|||||MB|Management &
-        Board||MGMT|Management||BRD|Board|
+        |type|description|||||MB|Management & Board||MGMT|Management||BRD|Board|
       in: query
       schema:
         type: string
@@ -1330,10 +1329,10 @@ components:
       default: PEOPLE
       description: >-
         Controls the types of people returned based on high-level job functions.
-        Filter by -   |function|description|  |||  |PEOPLE|Retrieve
-        **ALL** Executives of a requested company|  |OFFICER|Retrieve only the
-        Officers of a requested company|  |DIRECTOR|Retrieve only the Directors
-        of a requested company|
+        Filter by -   |function|description|  |||  |PEOPLE|Retrieve **ALL**
+        Executives of a requested company|  |OFFICER|Retrieve only the Officers
+        of a requested company|  |DIRECTOR|Retrieve only the Directors of a
+        requested company|
       example: DIRECTOR
     status:
       type: string
@@ -1407,8 +1406,7 @@ components:
     mbType:
       description: >-
         Search based on the management and board types. The types include -
-        |type|description|||||MB|Management &
-        Board||MGMT|Management||BRD|Board|
+        |type|description|||||MB|Management & Board||MGMT|Management||BRD|Board|
       type: string
       enum:
         - MB

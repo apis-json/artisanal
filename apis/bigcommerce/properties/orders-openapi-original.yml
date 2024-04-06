@@ -24,7 +24,6 @@ tags:
   - name: Payment Actions
   - name: Transactions
   - name: Order Settings
-  - null
 paths:
   /orders/{order_id}/payment_actions/capture:
     post:
@@ -59,7 +58,7 @@ paths:
         '504':
           $ref: '#/components/responses/504_GatewayTimeout'
       tags:
-        - Payment Actions
+        - - - Payment Actions
     parameters:
       - $ref: '#/components/parameters/Accept'
       - $ref: '#/components/parameters/OrderIdParam'
@@ -97,7 +96,7 @@ paths:
         '504':
           $ref: '#/components/responses/504_GatewayTimeout'
       tags:
-        - Payment Actions
+        - - - Payment Actions
     parameters:
       - $ref: '#/components/parameters/Accept'
       - $ref: '#/components/parameters/OrderIdParam'
@@ -107,7 +106,7 @@ paths:
       - $ref: '#/components/parameters/OrderIdParam'
     get:
       tags:
-        - Transactions
+        - - - Transactions
       description: >-
         Returns an **orderʼs** transactions.
 
@@ -240,7 +239,7 @@ paths:
         '422':
           $ref: '#/components/responses/422_UnprocessableEntity'
       tags:
-        - Payment Actions
+        - - - Payment Actions
     parameters:
       - $ref: '#/components/parameters/Accept'
       - $ref: '#/components/parameters/OrderIdParam'
@@ -373,7 +372,7 @@ paths:
                         error: Tax service gone away
                     meta: {}
       tags:
-        - Payment Actions
+        - - - Payment Actions
     get:
       summary: Get Refunds for Order
       description: >-
@@ -395,7 +394,7 @@ paths:
         '200':
           $ref: '#/components/responses/RefundCollection_Resp'
       tags:
-        - Payment Actions
+        - - - Payment Actions
     parameters:
       - $ref: '#/components/parameters/Accept'
       - $ref: '#/components/parameters/OrderIdParam'
@@ -416,7 +415,7 @@ paths:
         '200':
           $ref: '#/components/responses/RefundID_Response'
       tags:
-        - Payment Actions
+        - - - Payment Actions
   /orders/payment_actions/refunds:
     parameters:
       - $ref: '#/components/parameters/Accept'
@@ -432,7 +431,7 @@ paths:
         * `store_v2_orders`
       operationId: getOrdersRefunds
       tags:
-        - Payment Actions
+        - - - Payment Actions
       parameters:
         - name: order_id:in
           in: query
@@ -601,7 +600,7 @@ paths:
                       success: 0
                       total: 2
       tags:
-        - Payment Actions
+        - - - Payment Actions
       x-private: true
   /orders/{order_id}/metafields:
     parameters:
@@ -610,7 +609,7 @@ paths:
     get:
       summary: Get Order Metafields
       tags:
-        - Metafields
+        - - - Metafields
       description: >
         Gets a `Metafield` object list, by `order_id`.
 
@@ -650,7 +649,7 @@ paths:
     post:
       summary: Create Metafields
       tags:
-        - Metafields
+        - - - Metafields
       description: >-
         Creates an order `Metafield`.
 
@@ -708,7 +707,7 @@ paths:
     get:
       summary: Get a Metafield
       tags:
-        - Metafields
+        - - - Metafields
       description: |
         Gets a `Metafield`, by `order_id`.
       operationId: getOrderMetafield
@@ -730,7 +729,7 @@ paths:
     put:
       summary: Update a Metafield
       tags:
-        - Metafields
+        - - - Metafields
       description: >-
         Updates a `Metafield` object.
 
@@ -766,7 +765,7 @@ paths:
     delete:
       summary: Delete a Metafield
       tags:
-        - Metafields
+        - - - Metafields
       description: |
         Deletes a `Metafield`.
       operationId: deleteOrderMetafield
@@ -780,7 +779,7 @@ paths:
       description: Returns global order settings.
       operationId: getGlobalOrderSettings
       tags:
-        - Order Settings
+        - - - Order Settings
       responses:
         '200':
           description: OK
@@ -807,7 +806,7 @@ paths:
       parameters:
         - $ref: '#/components/parameters/ContentType'
       tags:
-        - Order Settings
+        - - - Order Settings
       requestBody:
         content:
           application/json:
@@ -854,7 +853,7 @@ paths:
       description: Returns order settings for a specific channel.
       operationId: getChannelOrderSettings
       tags:
-        - Order Settings
+        - - - Order Settings
       responses:
         '200':
           description: OK
@@ -884,7 +883,7 @@ paths:
       parameters:
         - $ref: '#/components/parameters/ContentType'
       tags:
-        - Order Settings
+        - - - Order Settings
       requestBody:
         content:
           application/json:
@@ -938,7 +937,7 @@ paths:
     get:
       summary: Get All Order Metafields
       tags:
-        - Batch metafields
+        - - - Batch metafields
       description: Get all order metafields.
       operationId: getOrdersMetafields
       responses:
@@ -962,7 +961,7 @@ paths:
     post:
       summary: Create multiple Metafields
       tags:
-        - Batch metafields
+        - - - Batch metafields
       description: Create multiple metafields.
       operationId: createOrdersMetafields
       requestBody:
@@ -1005,7 +1004,7 @@ paths:
     put:
       summary: Update multiple Metafields
       tags:
-        - Batch metafields
+        - - - Batch metafields
       description: Create multiple metafields.
       operationId: updateOrdersMetafields
       requestBody:
@@ -1047,7 +1046,7 @@ paths:
     delete:
       summary: Delete All Metafields
       tags:
-        - Batch metafields
+        - - - Batch metafields
       description: Delete all order metafields.
       operationId: deleteOrdersMetafields
       requestBody:

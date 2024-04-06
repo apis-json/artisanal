@@ -63,7 +63,7 @@ paths:
         names. Otherwise, use the "Entity Match - Bulk" workflow to submit
         larger universes of names to be concorded via a file.</p><p>
       tags:
-        - Entity Match
+        - - Entity Match
       operationId: getEntityMatch
       parameters:
         - $ref: '#/components/parameters/name'
@@ -132,7 +132,7 @@ paths:
           * Corporations, Joint Ventures, and Holding Companies
           * Fund Managers and various Fund Types (Open-end, Closed End, Hedge, Soverign Wealth, Pension, Exchange Traded, and more).</p>
       tags:
-        - Entity Match
+        - - Entity Match
       operationId: getEntityMatchForList
       requestBody:
         $ref: '#/components/requestBodies/EntityMatchRequestV2'
@@ -162,7 +162,7 @@ paths:
         request. If you do not have a universe created, reference the
         `/universe` endpoint.
       tags:
-        - Entity Match - Bulk
+        - - Entity Match - Bulk
       operationId: getEntityTaskForList
       requestBody:
         description: Entity Request object. Used to create an Entity Task.
@@ -509,7 +509,7 @@ paths:
           * BAD_REQUEST - The task creation was unsuccesfull. Typically occurs with an incorrect input file format or column headers.
           * ABORTED - The task was aborted.
       tags:
-        - Entity Match - Bulk
+        - - Entity Match - Bulk
       operationId: getEntityTaskStatus
       parameters:
         - $ref: '#/components/parameters/taskStatusId'
@@ -539,7 +539,7 @@ paths:
         Mapped entities will include a FactSet Entity Identifier (-E). Results
         will be saved to the `universeId` specified in the input file.
       tags:
-        - Entity Match - Bulk
+        - - Entity Match - Bulk
       operationId: getEntityDecisions
       parameters:
         - $ref: '#/components/parameters/taskDecisionId'
@@ -564,7 +564,7 @@ paths:
       description: |
         Create a new universe that is distinct from any existing universe
       tags:
-        - Universes
+        - - Universes
       operationId: getUniverseForList
       requestBody:
         $ref: '#/components/requestBodies/CreateUniverseRequest'
@@ -589,7 +589,7 @@ paths:
       description: |
         Retrieves all entity mappings within a requested universe.
       tags:
-        - Mappings
+        - - Mappings
       operationId: getEntityUniverse
       parameters:
         - $ref: '#/components/parameters/universeIdRequired'
@@ -619,7 +619,7 @@ paths:
         Retrieves all entity mappings that were saved in a given universe.
         Supports filtering by a large number of `clientId`s
       tags:
-        - Mappings
+        - - Mappings
       operationId: getEntityUniverseForList
       requestBody:
         $ref: '#/components/requestBodies/EntityUniverseRequest'
@@ -642,7 +642,7 @@ paths:
       description: |
         Retrieves all people mappings within a requested universe.
       tags:
-        - People Mapping
+        - - People Mapping
       operationId: getPeopleUniverse
       parameters:
         - $ref: '#/components/parameters/universeIdRequired'
@@ -672,7 +672,7 @@ paths:
         Retrieves all people mappings that were saved in a given universe.
         Supports filtering by a large number of `clientId`s
       tags:
-        - People Mapping
+        - - People Mapping
       operationId: getPeopleUniverseForList
       requestBody:
         $ref: '#/components/requestBodies/PeopleUniverseRequest'
@@ -695,7 +695,7 @@ paths:
       description: |
         Update metadata for an existing universe
       tags:
-        - Universes
+        - - Universes
       operationId: getUpdateUniverseForList
       requestBody:
         $ref: '#/components/requestBodies/UpdateUniverseRequest'
@@ -721,7 +721,7 @@ paths:
         Fetch information on active universes for the current user. Optionally
         filter for a specific universe given a `universeId`
       tags:
-        - Universes
+        - - Universes
       operationId: getUniverses
       parameters:
         - $ref: '#/components/parameters/universeId'
@@ -738,7 +738,7 @@ paths:
         Get the total number of mappings in a universe, as well as the number of
         mapped, unmapped and indeterminate mappings
       tags:
-        - Universes
+        - - Universes
       operationId: getEntityUniverseStatistics
       parameters:
         - $ref: '#/components/parameters/universeIdRequired'
@@ -754,7 +754,7 @@ paths:
         Get the total number of mappings in a universe, as well as the number of
         mapped, unmapped and indeterminate mappings
       tags:
-        - Universes
+        - - Universes
       operationId: getUniverseStatistics
       parameters:
         - $ref: '#/components/parameters/universeStatisticsRequired'
@@ -771,7 +771,7 @@ paths:
         all exiting values are overwritten in the database with the values
         passed in the request. clientId and clientName are required.
       tags:
-        - Mappings
+        - - Mappings
       operationId: getEntityMappingForList
       requestBody:
         $ref: '#/components/requestBodies/EntityMappingRequestV2'
@@ -796,7 +796,7 @@ paths:
         making a post, all exiting values are overwritten in the database with
         the values passed in the request. clientId and clientName are required.
       tags:
-        - People Mapping
+        - - People Mapping
       operationId: getPeopleMappingForList
       requestBody:
         $ref: '#/components/requestBodies/PeopleMappingRequestV2'
@@ -821,7 +821,7 @@ paths:
         all exiting values are overwritten in the database with the values
         passed in the request. clientId and universeId are required.
       tags:
-        - Mappings
+        - - Mappings
       operationId: getEntityMappingDeleteForList
       requestBody:
         $ref: '#/components/requestBodies/EntityMappingDeleteRequestV2'
@@ -846,7 +846,7 @@ paths:
         all exiting values are overwritten in the database with the values
         passed in the request. clientId and universeId are required.
       tags:
-        - People Mapping
+        - - People Mapping
       operationId: getPeopleMappingDeleteForList
       requestBody:
         $ref: '#/components/requestBodies/PeopleMappingDeleteRequestV2'
@@ -875,7 +875,7 @@ paths:
         directly by users. Reach out to your FactSet Account team to learn more
         about Concordance in Snowflake.*
       tags:
-        - Snowflake
+        - - Snowflake
       operationId: getSnowflakeEntityMatchForList
       requestBody:
         $ref: '#/components/requestBodies/SnowflakeEntityMatchRequest'
@@ -887,7 +887,7 @@ paths:
       summary: Save entity mappings to a universe
       description: Manually save or update entity mappings with metadata
       tags:
-        - Snowflake
+        - - Snowflake
       operationId: snowflakeEntityMappingPost
       requestBody:
         $ref: '#/components/requestBodies/SnowflakeEntityMappingRequest'
@@ -907,7 +907,7 @@ paths:
         - Bulk" workflow to submit larger universes of names to be concorded via
         a file.</p><p>
       tags:
-        - People Match
+        - - People Match
       operationId: getPeopleMatch
       parameters:
         - $ref: '#/components/parameters/personName'
@@ -938,7 +938,7 @@ paths:
         `universeId` is provided, any match for an input including a `clientId`
         will be saved to that universe.
       tags:
-        - People Match
+        - - People Match
       operationId: getPeopleMatchForList
       requestBody:
         $ref: '#/components/requestBodies/PeopleMatchRequestV2'
@@ -969,7 +969,7 @@ paths:
             1.Filling all the required fields including the `personNameColumn`.(do not include `firstNameColumn`,`lastNameColumn` & `middleNameColumn`)
             2.Filling all the required fields excluding the `personNameColumn`.(Ensure atleast the `lastNameColumn` is filled)
       tags:
-        - People Match - Bulk
+        - - People Match - Bulk
       operationId: getPeopleTaskForList
       requestBody:
         description: People Request object. Used to create an People Task.
@@ -1105,7 +1105,7 @@ paths:
           * BAD_REQUEST - The task creation was unsuccesfull. Typically occurs with an incorrect input file format or column headers.
           * ABORTED - The task was aborted.
       tags:
-        - People Match - Bulk
+        - - People Match - Bulk
       operationId: getPeopleTaskStatus
       parameters:
         - $ref: '#/components/parameters/peopleTaskStatusId'
@@ -1135,7 +1135,7 @@ paths:
         Mapped entities will include a FactSet Entity Identifier (-E). Results
         will be saved to the `universeId` specified in the input file.
       tags:
-        - People Match - Bulk
+        - - People Match - Bulk
       operationId: getPeopleDecisions
       parameters:
         - $ref: '#/components/parameters/peopleTaskDecisionId'

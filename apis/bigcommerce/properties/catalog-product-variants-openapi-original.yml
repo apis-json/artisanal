@@ -86,13 +86,12 @@ tags:
   - null
   - name: Product Variants
   - name: Variants (Batch)
-  - null
   - name: Images
 paths:
   /catalog/products/{product_id}/variants:
     get:
       tags:
-        - Product Variants
+        - - Product Variants
       summary: Get All Product Variants
       description: >-
         Returns a list of product *Variants*. Optional parameters can be passed
@@ -267,7 +266,7 @@ paths:
                 description: Error payload for the BigCommerce API.
     post:
       tags:
-        - Product Variants
+        - - Product Variants
       summary: Create a Product Variant
       description: >-
         Creates a *Product Variant*.
@@ -428,7 +427,7 @@ paths:
   /catalog/products/{product_id}/variants/{variant_id}:
     get:
       tags:
-        - Product Variants
+        - - Product Variants
       summary: Get a Product Variant
       description: >-
         Returns a single product *Variant*. Optional parameters can be passed
@@ -519,7 +518,7 @@ paths:
                 description: Error payload for the BigCommerce API.
     put:
       tags:
-        - Product Variants
+        - - Product Variants
       summary: Update a Product Variant
       description: Updates a product *Variant*.
       operationId: updateProductVariant
@@ -610,7 +609,7 @@ paths:
       x-codegen-request-body-name: Variant
     delete:
       tags:
-        - Product Variants
+        - - Product Variants
       summary: Delete a Product Variant
       description: Deletes a product *Variant*.
       operationId: deleteProductVariant
@@ -625,7 +624,7 @@ paths:
   /catalog/products/{product_id}/variants/{variant_id}/metafields:
     get:
       tags:
-        - Metafields
+        - - Metafields
       summary: Get Product Variant Metafields
       description: >-
         Returns a list of product variant *Metafields*. Optional parameters can
@@ -715,7 +714,7 @@ paths:
                 description: Error payload for the BigCommerce API.
     post:
       tags:
-        - Metafields
+        - - Metafields
       summary: Create a Product Variant Metafield
       description: >-
         Creates a product variant *Metafield*.
@@ -849,7 +848,7 @@ paths:
   /catalog/products/{product_id}/variants/{variant_id}/metafields/{metafield_id}:
     get:
       tags:
-        - Metafields
+        - - Metafields
       summary: Get a Product Variant Metafields
       description: >-
         Returns a single product variant *Metafield*. Optional parameters can be
@@ -919,7 +918,7 @@ paths:
                 description: Error payload for the BigCommerce API.
     put:
       tags:
-        - Metafields
+        - - Metafields
       summary: Update Product Variant Metafields
       description: "Updates a product variant *Metafield*.\n\n**Required Fields:**\n* none\n\n**Read-Only Fields**\n* id\n* These fields can only be modified by the app (API credentials) that created the metafield:\n\t* namespace\n\t* key\n\t* permission_set\n\n**Usage Notes**\n* Attempting to modify `namespace`, `key`, and `permission_set` fields using a client ID different from the one used to create those metafields will result in a 403 error message. "
       operationId: updateProductVariantMetafield
@@ -981,7 +980,7 @@ paths:
       x-codegen-request-body-name: Metafield
     delete:
       tags:
-        - Metafields
+        - - Metafields
       summary: Delete a Product Variant Metafield
       description: Deletes a product variant *Metafield*.
       operationId: deleteProductVariantMetafield
@@ -997,7 +996,7 @@ paths:
   /catalog/products/{product_id}/variants/{variant_id}/image:
     post:
       tags:
-        - Images
+        - - Images
       summary: Create a Product Variant Image
       description: >-
         Creates a *Variant Image*.
@@ -1178,7 +1177,7 @@ paths:
   /catalog/variants:
     get:
       tags:
-        - Variants (Batch)
+        - - Variants (Batch)
       summary: Get All Variants
       description: >-
         Returns a list of all variants in your catalog. Optional parameters can
@@ -1501,7 +1500,7 @@ paths:
                 description: Error payload for the BigCommerce API.
     put:
       tags:
-        - Variants (Batch)
+        - - Variants (Batch)
       summary: Update Variants (Batch)
       description: >-
         Updates a batch of `variant` objects. Currently the limit is 50 variants
@@ -2093,7 +2092,7 @@ paths:
     get:
       summary: Get All Product Variant Metafields
       tags:
-        - Batch metafields
+        - - Batch metafields
       description: Get all variant metafields.
       operationId: getVariantsMetafields
       responses:
@@ -2117,7 +2116,7 @@ paths:
     post:
       summary: Create multiple Metafields
       tags:
-        - Batch metafields
+        - - Batch metafields
       description: Create multiple metafields.
       operationId: createVariantsMetafields
       requestBody:
@@ -2160,7 +2159,7 @@ paths:
     put:
       summary: Update multiple Metafields
       tags:
-        - Batch metafields
+        - - Batch metafields
       description: Create multiple metafields.
       operationId: updateVariantsMetafields
       requestBody:
@@ -2202,7 +2201,7 @@ paths:
     delete:
       summary: Delete All Metafields
       tags:
-        - Batch metafields
+        - - Batch metafields
       description: Delete all variant metafields.
       operationId: deleteVariantsMetafields
       requestBody:

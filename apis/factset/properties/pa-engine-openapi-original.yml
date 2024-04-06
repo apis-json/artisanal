@@ -16,7 +16,7 @@ paths:
   /analytics/lookups/v3/accounts/{path}:
     get:
       tags:
-        - Accounts
+        - - Accounts
       summary: Get accounts and sub-directories in a directory
       description: >-
         This endpoint looks up all ACCT and ACTM files and sub-directories in a
@@ -272,7 +272,7 @@ paths:
   /analytics/engines/pa/v3/columns:
     get:
       tags:
-        - Columns
+        - - Columns
       summary: Get PA columns
       description: >-
         This endpoint lists all the PA columns that can be applied to a
@@ -486,7 +486,7 @@ paths:
   /analytics/engines/pa/v3/columns/{id}:
     get:
       tags:
-        - Columns
+        - - Columns
       summary: Get PA column settings
       description: This endpoint returns the default settings of a PA column.
       operationId: getPAColumnById
@@ -749,7 +749,7 @@ paths:
   /analytics/engines/pa/v3/columnstatistics:
     get:
       tags:
-        - ColumnStatistics
+        - - ColumnStatistics
       summary: Get PA column statistics
       description: >-
         This endpoint lists all the column statistics that can be applied to a
@@ -930,7 +930,7 @@ paths:
   /analytics/engines/pa/v3/components:
     get:
       tags:
-        - Components
+        - - Components
       summary: Get PA components
       description: This endpoint returns the list of PA components in a given PA document.
       operationId: getPAComponents
@@ -1184,7 +1184,7 @@ paths:
   /analytics/engines/pa/v3/components/{id}:
     get:
       tags:
-        - Components
+        - - Components
       summary: Get PA component by id
       description: This endpoint returns the default settings of a PA component.
       operationId: getPAComponentById
@@ -1438,7 +1438,7 @@ paths:
   /analytics/lookups/v3/currencies:
     get:
       tags:
-        - Currencies
+        - - Currencies
       summary: Get currencies
       description: >-
         This endpoint lists all the currencies that can be applied to any
@@ -1619,7 +1619,7 @@ paths:
   /analytics/engines/pa/v3/dates:
     get:
       tags:
-        - Dates
+        - - Dates
       summary: Convert PA dates to absolute format
       description: >-
         This endpoint converts the given start and end dates in FactSet date
@@ -1900,7 +1900,7 @@ paths:
   /analytics/engines/pa/v3/documents/{path}:
     get:
       tags:
-        - Documents
+        - - Documents
       summary: Get PA3 documents and sub-directories in a directory
       description: >-
         This endpoint looks up all PA3 documents and sub-directories in a given
@@ -2156,7 +2156,7 @@ paths:
   /analytics/engines/pa/v3/frequencies:
     get:
       tags:
-        - Frequencies
+        - - Frequencies
       summary: Get PA frequencies
       description: >-
         This endpoint lists all the frequencies that can be applied to a PA
@@ -2337,7 +2337,7 @@ paths:
   /analytics/engines/pa/v3/groups:
     get:
       tags:
-        - Groups
+        - - Groups
       summary: Get PA groups
       description: >-
         This endpoint lists all the PA groups that can be applied to a PA
@@ -2527,7 +2527,7 @@ paths:
   /analytics/engines/pa/v3/grouping-frequencies:
     get:
       tags:
-        - Groups
+        - - Groups
       summary: Get PA grouping frequencies
       description: >-
         This endpoint lists all the PA grouping frequencies that can be applied
@@ -2708,7 +2708,7 @@ paths:
   /analytics/engines/pa/v3/linked-templates:
     post:
       tags:
-        - LinkedPATemplates
+        - - LinkedPATemplates
       summary: Create a linked PA template
       description: "This endpoint creates a template from an **existing portfolio analysis tile**, allowing the user to replicate and fetch reports settings.\r\n\r\nRemarks:\r\n\r\n*   Mandatory fields are required to be passed in POST requests and Optional fields are not necessary. \r\n    If no mandatory fields are passed, then we can use the template as a component and skip the component creation.\r\n    \r\n*   Mandatory, optional and locked fields can be  \"accounts\", \"benchmarks\", \"groups\", \"columns\", \"datasources\", \"dates\", \"currencyisocode\" and \"componentdetail\".\r\n\r\n*   We cannot override the Locked fields when creating the Component.\r\n\r\n*   Mandatory and locked strings are mutually exclusive.\r\n\r\n*   Multi-horizon frequencies are not supported through this endpoint."
       operationId: createLinkedPATemplates
@@ -2974,7 +2974,7 @@ paths:
                   available after successful authentication.
     get:
       tags:
-        - LinkedPATemplates
+        - - LinkedPATemplates
       summary: Get linked PA templates
       description: This endpoint returns the list of linked PA templates in given path.
       operationId: getLinkedPATemplates
@@ -3241,7 +3241,7 @@ paths:
   /analytics/engines/pa/v3/linked-templates/{id}:
     put:
       tags:
-        - LinkedPATemplates
+        - - LinkedPATemplates
       summary: Update a linked PA template
       description: "This endpoint allows the user to change the request body and description from an existing template.\r\n\r\nRemarks:\r\n\r\n*   Mandatory fields are required to be passed in POST requests and Optional fields are not necessary. \r\n    If no mandatory fields are passed, then we can use the template as a component and skip the component creation.\r\n    \r\n*   Mandatory, optional and locked fields can be  \"accounts\", \"benchmarks\", \"groups\", \"columns\", \"datasources\", \"dates\", \"currencyisocode\" and \"componentdetail\".\r\n\r\n*   We cannot override the Locked fields when creating the Component.\r\n\r\n*   Mandatory and locked strings are mutually exclusive.\r\n\r\n*   Multi-horizon frequencies are not supported through this endpoint."
       operationId: updateLinkedPATemplates
@@ -3519,7 +3519,7 @@ paths:
                   available after successful authentication.
     delete:
       tags:
-        - LinkedPATemplates
+        - - LinkedPATemplates
       summary: Delete a linked PA template.
       description: This endpoint deletes an existing linked PA template.
       operationId: deleteLinkedPATemplates
@@ -3770,7 +3770,7 @@ paths:
                   available after successful authentication.
     get:
       tags:
-        - LinkedPATemplates
+        - - LinkedPATemplates
       summary: Get linked PA template by id
       description: This endpoint fetches the linked PA template settings.
       operationId: getLinkedPATemplatesById
@@ -4026,7 +4026,7 @@ paths:
   /analytics/engines/pa/v3/calculations:
     post:
       tags:
-        - PACalculations
+        - - PACalculations
       summary: Create and Run PA calculation
       description: "This endpoint runs the PA calculation specified in the POST body parameters.\r\nIt can take one or more calculation units as input.\r\n\r\nRemarks:\r\n\r\n*\tAny settings in POST body will act as a one-time override over the settings saved in the PA template.\r\n\r\n*   Account identifiers must have .ACCT or .ACTM extension or BENCH: prefix. Holdings mode can be optionally set for every account. \r\n    Possible values for holdings mode are B&H (Buy and Hold), TBR (Transaction based returns), OMS (Order Management System), \r\n    VLT (Vaulted returns) or EXT (External Returns Data). Default holdings mode value is B&H. \r\n\r\n*   If we are overriding the grouping with a frequency, we will be overriding the grouping saved to the original component and also overriding \r\n    the default frequency of the Beginning of Period to whatever we pass in the request body.\r\n    \r\n*   If we are overriding gouping frequency without overriding the group id it will not be applied to the default groupings saved to the original component.\r\n\r\n*   Componentdetail supports securities, groups, groupsall, and totals levels of granularity. However, if no value is passed, the default value is 'securities'.\r\n    Additionally, while 'groupsall' returns all the group levels in the PA component,\r\n    setting componentdetail to 'groups' only returns the expanded or collapsed group levels within the PA component."
       operationId: postAndCalculate
@@ -4424,7 +4424,7 @@ paths:
                   available after successful authentication.
     get:
       tags:
-        - PACalculations
+        - - PACalculations
       summary: Get all calculations
       description: This endpoints returns all calculation requests.
       operationId: getAllCalculations
@@ -4676,7 +4676,7 @@ paths:
   /analytics/engines/pa/v3/calculations/{id}:
     put:
       tags:
-        - PACalculations
+        - - PACalculations
       summary: Create or Update PA calculation and run it.
       description: "This endpoint updates and run the PA calculation specified in the PUT body parameters. This also allows creating new PA calculations with custom ids.\r\nIt can take one or more calculation units as input.\r\n\r\nRemarks:\r\n\r\n*\tAny settings in PUT body will act as a one-time override over the settings saved in the PA template.\r\n\r\n*   Account identifiers must have .ACCT or .ACTM extension or BENCH: prefix. Holdings mode can be optionally set for every account. \r\n    Possible values for holdings mode are B&H (Buy and Hold), TBR (Transaction based returns), OMS (Order Management System), \r\n    VLT (Vaulted returns) or EXT (External Returns Data). Default holdings mode value is B&H.\r\n\r\n*   If we are overriding the grouping with a frequency, we will be overriding the grouping saved to the original component and also overriding \r\n    the default frequency of the Beginning of Period to whatever we pass in the request body.\r\n    \r\n*   If we are overriding gouping frequency without overriding the group id it will not be applied to the default groupings saved to the original component.\r\n\r\n*   Componentdetail supports securities, groups, groupsall, and totals levels of granularity. However, if no value is passed, the default value is 'securities'.\r\n    Additionally, while 'groupsall' returns all the group levels in the PA component,\r\n    setting componentdetail to 'groups' only returns the expanded or collapsed group levels within the PA component."
       operationId: putAndCalculate
@@ -5121,7 +5121,7 @@ paths:
                   available after successful authentication.
     get:
       tags:
-        - PACalculations
+        - - PACalculations
       summary: Get PA calculation parameters by id
       description: >-
         This is the endpoint that returns the calculation parameters passed for
@@ -5346,7 +5346,7 @@ paths:
                   available after successful authentication.
     delete:
       tags:
-        - PACalculations
+        - - PACalculations
       summary: Cancel PA calculation by id
       description: This is the endpoint to cancel a previously submitted calculation.
       operationId: cancelCalculationById
@@ -5545,7 +5545,7 @@ paths:
   /analytics/engines/pa/v3/calculations/{id}/status:
     get:
       tags:
-        - PACalculations
+        - - PACalculations
       summary: Get PA calculation status by id
       description: "This is the endpoint to check on the progress of a previously requested calculation.\r\nIf the calculation has finished computing, the location header will point to the result url.\r\nOtherwise, the calculation is still running and the X-FactSet-Api-PickUp-Progress header will contain a progress percentage."
       operationId: getCalculationStatusById
@@ -5820,7 +5820,7 @@ paths:
   /analytics/engines/pa/v3/calculations/{id}/units/{unitId}/result:
     get:
       tags:
-        - PACalculations
+        - - PACalculations
       summary: Get PA calculation result by id
       description: "This is the endpoint to get the result of a previously requested calculation.\r\nIf the calculation has finished computing, the body of the response will contain the requested document in JSON."
       operationId: getCalculationUnitResultById
@@ -6068,7 +6068,7 @@ paths:
   /analytics/engines/pa/v3/pricing-sources:
     get:
       tags:
-        - PricingSources
+        - - PricingSources
       summary: Get PA pricing sources
       description: >-
         This endpoint lists all the PA pricing sources that can be applied to a
@@ -6348,7 +6348,7 @@ paths:
   /analytics/engines/pa/v3/templated-components:
     post:
       tags:
-        - TemplatedPAComponents
+        - - TemplatedPAComponents
       summary: Create templated PA component
       description: "This endpoint creates new component based off of linked PA template or unlinked PA template.\r\n\r\nRemarks:\r\n\r\n*   Any settings in the POST body will act as a one-time override over the settings saved in the PA template.\r\n\r\n*   Account identifiers must have .ACCT or .ACTM extension or BENCH: prefix. Holdings mode can be optionally set for every account. \r\n    Possible values for holdings mode are B&H (Buy and Hold), TBR (Transaction based returns), OMS (Order Management System), \r\n    VLT (Vaulted returns) or EXT (External Returns Data). Default holdings mode value is B&H.\r\n\r\n*   Multi-horizon frequencies are not supported through this endpoint.\r\n\r\n*   Componentdetail supports securities, groups, groupsall, and totals levels of granularity. However, if no value is passed, the default value is 'securities'.\r\n    Additionally, while 'groupsall' returns all the group levels in the PA component,\r\n    setting componentdetail to 'groups' only returns the expanded or collapsed group levels within the PA component.\r\n\r\n*   If we are overriding the grouping with a frequency, we will be overriding the grouping saved to the original component and also overriding \r\n    the default frequency of the Beginning of Period to whatever we pass in the request body.\r\n    \r\n*   If we are overriding gouping frequency without overriding the group id it will not be applied to the default groupings saved to the original component."
       operationId: createTemplatedPAComponents
@@ -6632,7 +6632,7 @@ paths:
                   available after successful authentication.
     get:
       tags:
-        - TemplatedPAComponents
+        - - TemplatedPAComponents
       summary: Get templated PA components in path
       description: This endpoint returns the list of templated PA components in path.
       operationId: getTemplatedPAComponentsInPath
@@ -6855,7 +6855,7 @@ paths:
   /analytics/engines/pa/v3/templated-components/{id}:
     put:
       tags:
-        - TemplatedPAComponents
+        - - TemplatedPAComponents
       summary: Update templated PA component
       description: "This endpoint allows the user to change the request body from an existing templated PA component.\r\n\r\nRemarks:\r\n\r\n*   Any settings in the POST body will act as a one-time override over the settings saved in the PA template.\r\n\r\n*   Account identifiers must have .ACCT or .ACTM extension or BENCH: prefix. Holdings mode can be optionally set for every account. \r\n    Possible values for holdings mode are B&H (Buy and Hold), TBR (Transaction based returns), OMS (Order Management System), \r\n    VLT (Vaulted returns) or EXT (External Returns Data). Default holdings mode value is B&H. \r\n\r\n*   Multi-horizon frequencies are not supported through this endpoint.\r\n\r\n*   Componentdetail supports securities, groups, groupsall, and totals levels of granularity. However, if no value is passed, the default value is 'securities'.\r\n    Additionally, while 'groupsall' returns all the group levels in the PA component,\r\n    setting componentdetail to 'groups' only returns the expanded or collapsed group levels within the PA component.\r\n\r\n*   If we are overriding the grouping with a frequency, we will be overriding the grouping saved to the original component and also overriding \r\n    the default frequency of the Beginning of Period to whatever we pass in the request body.\r\n    \r\n*   If we are overriding gouping frequency without overriding the group id it will not be applied to the default groupings saved to the original component."
       operationId: updateTemplatedPAComponents
@@ -7151,7 +7151,7 @@ paths:
                   available after successful authentication.
     get:
       tags:
-        - TemplatedPAComponents
+        - - TemplatedPAComponents
       summary: Get templated PA component by id
       description: This endpoint fetches the templated PA component settings.
       operationId: getTemplatedPAComponentById
@@ -7406,7 +7406,7 @@ paths:
                   available after successful authentication.
     delete:
       tags:
-        - TemplatedPAComponents
+        - - TemplatedPAComponents
       summary: Delete templated PA component
       description: This endpoint deletes an existing templated PA component
       operationId: deleteTemplatedPAComponents
@@ -7658,7 +7658,7 @@ paths:
   /analytics/engines/pa/v3/unlinked-templates:
     post:
       tags:
-        - UnlinkedPATemplates
+        - - UnlinkedPATemplates
       summary: Create unlinked PA template
       description: "This endpoint creates a template which is not linked to any specific PA3 tile. \r\n\r\nRemarks:\r\n\r\n*   Mandatory fields are required to be passed in POST requests and Optional fields are not necessary. \r\n    If no mandatory fields are passed, then we can use the template as a component and skip the component creation.\r\n    \r\n*   Mandatory, optional and locked fields can be  \"accounts\", \"benchmarks\", \"groups\", \"columns\", \"datasources\", \"dates\", \"currencyisocode\" and \"componentdetail\".\r\n\r\n*   We cannot override the Locked fields when creating the Component.\r\n\r\n*   Mandatory and locked strings are mutually exclusive.\r\n\r\n*   Any settings in the POST body will act as a one-time override over the settings saved in the PA template.\r\n\r\n*   Account identifiers must have .ACCT or .ACTM extension or BENCH: prefix. Holdings mode can be optionally set for every account. \r\n    Possible values for holdings mode are B&H (Buy and Hold), TBR (Transaction based returns), OMS (Order Management System), \r\n    VLT (Vaulted returns) or EXT (External Returns Data). Default holdings mode value is B&H.\r\n\r\n*   Multi-horizon frequencies are not supported through this endpoint.\r\n\r\n*   Componentdetail supports securities, groups, groupsall, and totals levels of granularity. However, if no value is passed, the default value is 'securities'.\r\n    Additionally, while 'groupsall' returns all the group levels in the PA component,\r\n    setting componentdetail to 'groups' only returns the expanded or collapsed group levels within the PA component.\r\n\r\n*   If we are overriding the grouping with a frequency, we will be overriding the grouping saved to the original component and also \r\n    overriding the default frequency of the Beginning of Period to whatever we pass in the request body.\r\n    \r\n*   If we are overriding gouping frequency without overriding the group id it will not be applied to the default groupings saved to the original component."
       operationId: createUnlinkedPATemplates
@@ -7928,7 +7928,7 @@ paths:
                   available after successful authentication.
     get:
       tags:
-        - UnlinkedPATemplates
+        - - UnlinkedPATemplates
       summary: Get unlinked PA templates
       description: This endpoint returns the list of unlinked PA templates.
       operationId: getUnlinkedPATemplates
@@ -8157,7 +8157,7 @@ paths:
   /analytics/engines/pa/v3/unlinked-templates/{id}:
     put:
       tags:
-        - UnlinkedPATemplates
+        - - UnlinkedPATemplates
       summary: Update unlinked PA template
       description: "This endpoint updates an existing unlinked PA template.\r\n\r\nRemarks:\r\n            \r\n*   Mandatory fields are required to be passed in POST requests and Optional fields are not necessary. \r\n    If no mandatory fields are passed, then we can use the template as a component and skip the component creation.\r\n    \r\n*   Mandatory, optional and locked fields can be  \"accounts\", \"benchmarks\", \"groups\", \"columns\", \"datasources\", \"dates\", \"currencyisocode\" and \"componentdetail\".\r\n\r\n*   We cannot override the Locked fields when creating the Component.\r\n\r\n*   Mandatory and locked strings are mutually exclusive.\r\n\r\n*   Any settings in the POST body will act as a one-time override over the settings saved in the PA template.\r\n\r\n*   Account identifiers must have .ACCT or .ACTM extension or BENCH: prefix. Holdings mode can be optionally set for every account. \r\n    Possible values for holdings mode are B&H (Buy and Hold), TBR (Transaction based returns), OMS (Order Management System), \r\n    VLT (Vaulted returns) or EXT (External Returns Data). Default holdings mode value is B&H.\r\n\r\n*   Multi-horizon frequencies are not supported through this endpoint.\r\n\r\n*   Componentdetail supports securities, groups, groupsall, and totals levels of granularity. However, if no value is passed, the default value is 'securities'.\r\n    Additionally, while 'groupsall' returns all the group levels in the PA component,\r\n    setting componentdetail to 'groups' only returns the expanded or collapsed group levels within the PA component.\r\n\r\n*   If we are overriding the grouping with a frequency, we will be overriding the grouping saved to the original component and also overriding \r\n    the default frequency of the Beginning of Period to whatever we pass in the request body.\r\n    \r\n*   If we are overriding gouping frequency without overriding the group id it will not be applied to the default groupings saved to the original component."
       operationId: updateUnlinkedPATemplates
@@ -8465,7 +8465,7 @@ paths:
                   available after successful authentication.
     delete:
       tags:
-        - UnlinkedPATemplates
+        - - UnlinkedPATemplates
       summary: Delete unlinked PA template
       description: This endpoint deletes an existing unliked PA template.
       operationId: deleteUnlinkedPATemplates
@@ -8716,7 +8716,7 @@ paths:
                   available after successful authentication.
     get:
       tags:
-        - UnlinkedPATemplates
+        - - UnlinkedPATemplates
       summary: Get unlinked PA template details by id
       description: This endpoint fetches the template settings.
       operationId: getUnlinkedPATemplatesById
@@ -8972,7 +8972,7 @@ paths:
   /analytics/engines/pa/v3/unlinked-templates/template-types:
     get:
       tags:
-        - UnlinkedPATemplates
+        - - UnlinkedPATemplates
       summary: Get default unlinked PA template types.
       description: This endpoint fetches default unlinked PA template types.
       operationId: getDefaultUnlinkedPATemplateTypes
@@ -9151,7 +9151,7 @@ paths:
   /analytics/engines/pa/v3/unlinked-templates/template-types/{id}:
     get:
       tags:
-        - UnlinkedPATemplates
+        - - UnlinkedPATemplates
       summary: Get unlinked PA template type details by id.
       description: This endpoint fetches the unlinked PA template type details.
       operationId: getDetailsType
@@ -10775,3 +10775,4 @@ security:
 externalDocs:
   description: API Documentation
   url: https://developer.factset.com/api-catalog/pa-engine-api
+tags: []

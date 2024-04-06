@@ -16,7 +16,7 @@ paths:
   /calculations:
     post:
       tags:
-        - QuantCalculations
+        - - QuantCalculations
       summary: Create and Run Quant Engine calculation
       description: "This endpoint runs the Quant Engine calculation specified in the POST body parameters.\r\nIt can take one or more calculation units as input."
       operationId: postAndCalculate
@@ -411,7 +411,7 @@ paths:
                   available after successful authentication.
     get:
       tags:
-        - QuantCalculations
+        - - QuantCalculations
       summary: Get all calculations
       description: This endpoints returns all calculation requests.
       operationId: getAllCalculations
@@ -663,7 +663,7 @@ paths:
   /calculations/{id}:
     put:
       tags:
-        - QuantCalculations
+        - - QuantCalculations
       summary: Create or update Quant Engine calculation and run it.
       description: "This endpoint updates and runs the Quant Engine calculation specified in the PUT body parameters. This also allows creating new Quant Engine calculations with custom ids.\r\nIt can take one or more calculation units as input."
       operationId: putAndCalculate
@@ -1105,7 +1105,7 @@ paths:
                   available after successful authentication.
     get:
       tags:
-        - QuantCalculations
+        - - QuantCalculations
       summary: Get Quant Engine calculation parameters by id
       description: >-
         This is the endpoint that returns the calculation parameters passed for
@@ -1330,7 +1330,7 @@ paths:
                   available after successful authentication.
     delete:
       tags:
-        - QuantCalculations
+        - - QuantCalculations
       summary: Cancel Quant calculation by id
       description: This is the endpoint to cancel a previously submitted calculation.
       operationId: cancelCalculationById
@@ -1541,7 +1541,7 @@ paths:
   /calculations/{id}/status:
     get:
       tags:
-        - QuantCalculations
+        - - QuantCalculations
       summary: Get Quant Engine calculation status by id
       description: "This is the endpoint to check on the progress of a previously requested calculation.\r\nIf the calculation has finished computing, the location header will point to the result url.\r\nOtherwise, the calculation is still running and the X-FactSet-Api-PickUp-Progress header will contain a progress percentage."
       operationId: getCalculationStatusById
@@ -1816,7 +1816,7 @@ paths:
   /calculations/{id}/units/{unitId}/result:
     get:
       tags:
-        - QuantCalculations
+        - - QuantCalculations
       summary: Get Quant Engine calculation result by id
       description: "This is the endpoint to get the result of a previously requested calculation.\r\nIf the calculation has finished computing, the body of the response will contain the requested document in JSON."
       operationId: getCalculationUnitResultById
@@ -2076,7 +2076,7 @@ paths:
   /calculations/{id}/units/{unitId}/info:
     get:
       tags:
-        - QuantCalculations
+        - - QuantCalculations
       summary: Get Quant Engine calculation metadata information by id
       description: >-
         This is the endpoint to get the metadata information of a previously
@@ -2929,3 +2929,4 @@ security:
 externalDocs:
   description: API Documentation
   url: https://developer.factset.com/api-catalog/quant-engine-api
+tags: []
