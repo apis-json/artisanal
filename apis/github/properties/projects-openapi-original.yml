@@ -1,0 +1,2084 @@
+openapi: 3.1.0
+info:
+  title: Projects
+  description: Needs a description.
+paths:
+  /orgs/{org}/projects:
+    get:
+      summary: List organization projects
+      description: >-
+        Lists the projects in an organization. Returns a `404 Not Found` status
+        if projects are disabled in the organization. If you do not have
+        sufficient privileges to perform this action, a `401 Unauthorized` or
+        `410 Gone` status is returned.
+      tags:
+        - - - - projects
+      operationId: projects/list-for-org
+      externalDocs:
+        description: API method documentation
+        url: >-
+          https://docs.github.com/enterprise-server@3.9/rest/projects/projects#list-organization-projects
+      parameters:
+        - $ref: '#/components/parameters/org'
+        - name: state
+          description: Indicates the state of the projects to return.
+          in: query
+          required: false
+          schema:
+            type: string
+            enum:
+              - open
+              - closed
+              - all
+            default: open
+        - $ref: '#/components/parameters/per-page'
+        - $ref: '#/components/parameters/page'
+      responses:
+        '200':
+          description: Response
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  $ref: '#/components/schemas/project'
+              examples:
+                default:
+                  $ref: '#/components/examples/project-items'
+          headers:
+            Link:
+              $ref: '#/components/headers/link'
+        '422':
+          $ref: '#/components/responses/validation_failed_simple'
+      x-github:
+        githubCloudOnly: false
+        enabledForGitHubApps: true
+        category: projects
+        subcategory: projects
+    post:
+      summary: Create an organization project
+      description: >-
+        Creates an organization project board. Returns a `410 Gone` status if
+        projects are disabled in the organization or if the organization does
+        not have existing classic projects. If you do not have sufficient
+        privileges to perform this action, a `401 Unauthorized` or `410 Gone`
+        status is returned.
+      tags:
+        - - - - projects
+      operationId: projects/create-for-org
+      externalDocs:
+        description: API method documentation
+        url: >-
+          https://docs.github.com/enterprise-server@3.9/rest/projects/projects#create-an-organization-project
+      parameters:
+        - $ref: '#/components/parameters/org'
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              type: object
+              properties:
+                name:
+                  type: string
+                  description: The name of the project.
+                body:
+                  type: string
+                  description: The description of the project.
+              required:
+                - name
+            examples:
+              default:
+                value:
+                  name: Organization Roadmap
+                  body: High-level roadmap for the upcoming year.
+      responses:
+        '201':
+          description: Response
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/project'
+              examples:
+                default:
+                  $ref: '#/components/examples/project-2'
+        '401':
+          $ref: '#/components/responses/requires_authentication'
+        '403':
+          $ref: '#/components/responses/forbidden'
+        '404':
+          $ref: '#/components/responses/not_found'
+        '410':
+          $ref: '#/components/responses/gone'
+        '422':
+          $ref: '#/components/responses/validation_failed_simple'
+      x-github:
+        githubCloudOnly: false
+        enabledForGitHubApps: true
+        category: projects
+        subcategory: projects
+  /orgs/{org}/teams/{team_slug}/projects:
+    get:
+      summary: List team projects
+      description: >-
+        Lists the organization projects for a team.
+
+
+        **Note:** You can also specify a team by `org_id` and `team_id` using
+        the route `GET /organizations/{org_id}/team/{team_id}/projects`.
+      tags:
+        - - - - teams
+      operationId: teams/list-projects-in-org
+      externalDocs:
+        description: API method documentation
+        url: >-
+          https://docs.github.com/enterprise-server@3.9/rest/teams/teams#list-team-projects
+      parameters:
+        - $ref: '#/components/parameters/org'
+        - $ref: '#/components/parameters/team-slug'
+        - $ref: '#/components/parameters/per-page'
+        - $ref: '#/components/parameters/page'
+      responses:
+        '200':
+          description: Response
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  $ref: '#/components/schemas/team-project'
+              examples:
+                default:
+                  $ref: '#/components/examples/team-project-items'
+          headers:
+            Link:
+              $ref: '#/components/headers/link'
+      x-github:
+        githubCloudOnly: false
+        enabledForGitHubApps: true
+        category: teams
+        subcategory: teams
+  /orgs/{org}/teams/{team_slug}/projects/{project_id}:
+    get:
+      summary: Check team permissions for a project
+      description: >-
+        Checks whether a team has `read`, `write`, or `admin` permissions for an
+        organization project. The response includes projects inherited from a
+        parent team.
+
+
+        **Note:** You can also specify a team by `org_id` and `team_id` using
+        the route `GET
+        /organizations/{org_id}/team/{team_id}/projects/{project_id}`.
+      tags:
+        - - - - teams
+      operationId: teams/check-permissions-for-project-in-org
+      externalDocs:
+        description: API method documentation
+        url: >-
+          https://docs.github.com/enterprise-server@3.9/rest/teams/teams#check-team-permissions-for-a-project
+      parameters:
+        - $ref: '#/components/parameters/org'
+        - $ref: '#/components/parameters/team-slug'
+        - $ref: '#/components/parameters/project-id'
+      responses:
+        '200':
+          description: Response
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/team-project'
+              examples:
+                default:
+                  $ref: '#/components/examples/team-project'
+        '404':
+          description: Not Found if project is not managed by this team
+      x-github:
+        githubCloudOnly: false
+        enabledForGitHubApps: true
+        category: teams
+        subcategory: teams
+    put:
+      summary: Add or update team project permissions
+      description: >-
+        Adds an organization project to a team. To add a project to a team or
+        update the team's permission on a project, the authenticated user must
+        have `admin` permissions for the project. The project and team must be
+        part of the same organization.
+
+
+        **Note:** You can also specify a team by `org_id` and `team_id` using
+        the route `PUT
+        /organizations/{org_id}/team/{team_id}/projects/{project_id}`.
+      tags:
+        - - - - teams
+      operationId: teams/add-or-update-project-permissions-in-org
+      externalDocs:
+        description: API method documentation
+        url: >-
+          https://docs.github.com/enterprise-server@3.9/rest/teams/teams#add-or-update-team-project-permissions
+      parameters:
+        - $ref: '#/components/parameters/org'
+        - $ref: '#/components/parameters/team-slug'
+        - $ref: '#/components/parameters/project-id'
+      requestBody:
+        required: false
+        content:
+          application/json:
+            schema:
+              type: object
+              properties:
+                permission:
+                  type: string
+                  description: >-
+                    The permission to grant to the team for this project.
+                    Default: the team's `permission` attribute will be used to
+                    determine what permission to grant the team on this project.
+                    Note that, if you choose not to pass any parameters, you'll
+                    need to set `Content-Length` to zero when calling this
+                    endpoint. For more information, see "[HTTP
+                    method](https://docs.github.com/enterprise-server@3.9/rest/guides/getting-started-with-the-rest-api#http-method)."
+                  enum:
+                    - read
+                    - write
+                    - admin
+              nullable: true
+            examples:
+              default:
+                summary: Updates the permissions for the team to write for the project
+                value:
+                  permission: write
+      responses:
+        '204':
+          description: Response
+        '403':
+          description: Forbidden if the project is not owned by the organization
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  message:
+                    type: string
+                  documentation_url:
+                    type: string
+              examples:
+                response-if-the-project-is-not-owned-by-the-organization:
+                  value:
+                    message: Must have admin rights to Repository.
+                    documentation_url: >-
+                      https://docs.github.com/enterprise-server@3.9/rest/teams/teams#add-or-update-team-project-permissions
+      x-github:
+        githubCloudOnly: false
+        enabledForGitHubApps: true
+        category: teams
+        subcategory: teams
+    delete:
+      summary: Remove a project from a team
+      description: >-
+        Removes an organization project from a team. An organization owner or a
+        team maintainer can remove any project from the team. To remove a
+        project from a team as an organization member, the authenticated user
+        must have `read` access to both the team and project, or `admin` access
+        to the team or project. This endpoint removes the project from the team,
+        but does not delete the project.
+
+
+        **Note:** You can also specify a team by `org_id` and `team_id` using
+        the route `DELETE
+        /organizations/{org_id}/team/{team_id}/projects/{project_id}`.
+      tags:
+        - - - - teams
+      operationId: teams/remove-project-in-org
+      externalDocs:
+        description: API method documentation
+        url: >-
+          https://docs.github.com/enterprise-server@3.9/rest/teams/teams#remove-a-project-from-a-team
+      parameters:
+        - $ref: '#/components/parameters/org'
+        - $ref: '#/components/parameters/team-slug'
+        - $ref: '#/components/parameters/project-id'
+      responses:
+        '204':
+          description: Response
+      x-github:
+        githubCloudOnly: false
+        enabledForGitHubApps: true
+        category: teams
+        subcategory: teams
+  /projects/columns/cards/{card_id}:
+    get:
+      summary: Get a project card
+      description: Gets information about a project card.
+      tags:
+        - - - - projects
+      operationId: projects/get-card
+      externalDocs:
+        description: API method documentation
+        url: >-
+          https://docs.github.com/enterprise-server@3.9/rest/projects/cards#get-a-project-card
+      parameters:
+        - $ref: '#/components/parameters/card-id'
+      responses:
+        '200':
+          description: Response
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/project-card'
+              examples:
+                default:
+                  $ref: '#/components/examples/project-card'
+        '304':
+          $ref: '#/components/responses/not_modified'
+        '401':
+          $ref: '#/components/responses/requires_authentication'
+        '403':
+          $ref: '#/components/responses/forbidden'
+        '404':
+          $ref: '#/components/responses/not_found'
+      x-github:
+        githubCloudOnly: false
+        enabledForGitHubApps: true
+        category: projects
+        subcategory: cards
+    patch:
+      summary: Update an existing project card
+      description: ''
+      tags:
+        - - - - projects
+      operationId: projects/update-card
+      externalDocs:
+        description: API method documentation
+        url: >-
+          https://docs.github.com/enterprise-server@3.9/rest/projects/cards#update-an-existing-project-card
+      parameters:
+        - $ref: '#/components/parameters/card-id'
+      requestBody:
+        required: false
+        content:
+          application/json:
+            schema:
+              type: object
+              properties:
+                note:
+                  description: The project card's note
+                  example: Update all gems
+                  type: string
+                  nullable: true
+                archived:
+                  description: Whether or not the card is archived
+                  example: false
+                  type: boolean
+            examples:
+              default:
+                summary: Change the note on the card
+                value:
+                  note: Add payload for delete Project column
+      responses:
+        '200':
+          description: Response
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/project-card'
+              examples:
+                default:
+                  $ref: '#/components/examples/project-card'
+        '304':
+          $ref: '#/components/responses/not_modified'
+        '401':
+          $ref: '#/components/responses/requires_authentication'
+        '403':
+          $ref: '#/components/responses/forbidden'
+        '404':
+          $ref: '#/components/responses/not_found'
+        '422':
+          $ref: '#/components/responses/validation_failed_simple'
+      x-github:
+        githubCloudOnly: false
+        enabledForGitHubApps: true
+        category: projects
+        subcategory: cards
+    delete:
+      summary: Delete a project card
+      description: Deletes a project card
+      tags:
+        - - - - projects
+      operationId: projects/delete-card
+      externalDocs:
+        description: API method documentation
+        url: >-
+          https://docs.github.com/enterprise-server@3.9/rest/projects/cards#delete-a-project-card
+      parameters:
+        - $ref: '#/components/parameters/card-id'
+      responses:
+        '204':
+          description: Response
+        '304':
+          $ref: '#/components/responses/not_modified'
+        '401':
+          $ref: '#/components/responses/requires_authentication'
+        '403':
+          description: Forbidden
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  message:
+                    type: string
+                  documentation_url:
+                    type: string
+                  errors:
+                    type: array
+                    items:
+                      type: string
+        '404':
+          $ref: '#/components/responses/not_found'
+      x-github:
+        githubCloudOnly: false
+        enabledForGitHubApps: true
+        category: projects
+        subcategory: cards
+  /projects/columns/cards/{card_id}/moves:
+    post:
+      summary: Move a project card
+      description: ''
+      tags:
+        - - - - projects
+      operationId: projects/move-card
+      externalDocs:
+        description: API method documentation
+        url: >-
+          https://docs.github.com/enterprise-server@3.9/rest/projects/cards#move-a-project-card
+      parameters:
+        - $ref: '#/components/parameters/card-id'
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              properties:
+                position:
+                  description: >-
+                    The position of the card in a column. Can be one of: `top`,
+                    `bottom`, or `after:<card_id>` to place after the specified
+                    card.
+                  example: bottom
+                  type: string
+                  pattern: ^(?:top|bottom|after:\d+)$
+                column_id:
+                  description: >-
+                    The unique identifier of the column the card should be moved
+                    to
+                  example: 42
+                  type: integer
+              required:
+                - position
+              type: object
+            examples:
+              default:
+                summary: Move the card to the bottom of the column
+                value:
+                  column_id: 42
+                  position: bottom
+      responses:
+        '201':
+          description: Response
+          content:
+            application/json:
+              schema:
+                type: object
+                properties: {}
+                additionalProperties: false
+              examples:
+                default:
+                  value: null
+        '304':
+          $ref: '#/components/responses/not_modified'
+        '401':
+          $ref: '#/components/responses/requires_authentication'
+        '403':
+          description: Forbidden
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  message:
+                    type: string
+                  documentation_url:
+                    type: string
+                  errors:
+                    type: array
+                    items:
+                      type: object
+                      properties:
+                        code:
+                          type: string
+                        message:
+                          type: string
+                        resource:
+                          type: string
+                        field:
+                          type: string
+        '422':
+          $ref: '#/components/responses/validation_failed'
+        '503':
+          description: Response
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  code:
+                    type: string
+                  message:
+                    type: string
+                  documentation_url:
+                    type: string
+                  errors:
+                    type: array
+                    items:
+                      type: object
+                      properties:
+                        code:
+                          type: string
+                        message:
+                          type: string
+      x-github:
+        githubCloudOnly: false
+        enabledForGitHubApps: true
+        category: projects
+        subcategory: cards
+  /projects/columns/{column_id}:
+    get:
+      summary: Get a project column
+      description: Gets information about a project column.
+      tags:
+        - - - - projects
+      operationId: projects/get-column
+      externalDocs:
+        description: API method documentation
+        url: >-
+          https://docs.github.com/enterprise-server@3.9/rest/projects/columns#get-a-project-column
+      parameters:
+        - $ref: '#/components/parameters/column-id'
+      responses:
+        '200':
+          description: Response
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/project-column'
+              examples:
+                default:
+                  $ref: '#/components/examples/project-column'
+        '304':
+          $ref: '#/components/responses/not_modified'
+        '401':
+          $ref: '#/components/responses/requires_authentication'
+        '403':
+          $ref: '#/components/responses/forbidden'
+        '404':
+          $ref: '#/components/responses/not_found'
+      x-github:
+        githubCloudOnly: false
+        enabledForGitHubApps: true
+        category: projects
+        subcategory: columns
+    patch:
+      summary: Update an existing project column
+      description: ''
+      tags:
+        - - - - projects
+      operationId: projects/update-column
+      externalDocs:
+        description: API method documentation
+        url: >-
+          https://docs.github.com/enterprise-server@3.9/rest/projects/columns#update-an-existing-project-column
+      parameters:
+        - $ref: '#/components/parameters/column-id'
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              properties:
+                name:
+                  description: Name of the project column
+                  example: Remaining tasks
+                  type: string
+              required:
+                - name
+              type: object
+            examples:
+              default:
+                summary: Rename the project column
+                value:
+                  name: To Do
+      responses:
+        '200':
+          description: Response
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/project-column'
+              examples:
+                default:
+                  $ref: '#/components/examples/project-column'
+        '304':
+          $ref: '#/components/responses/not_modified'
+        '401':
+          $ref: '#/components/responses/requires_authentication'
+        '403':
+          $ref: '#/components/responses/forbidden'
+      x-github:
+        githubCloudOnly: false
+        enabledForGitHubApps: true
+        category: projects
+        subcategory: columns
+    delete:
+      summary: Delete a project column
+      description: Deletes a project column.
+      tags:
+        - - - - projects
+      operationId: projects/delete-column
+      externalDocs:
+        description: API method documentation
+        url: >-
+          https://docs.github.com/enterprise-server@3.9/rest/projects/columns#delete-a-project-column
+      parameters:
+        - $ref: '#/components/parameters/column-id'
+      responses:
+        '204':
+          description: Response
+        '304':
+          $ref: '#/components/responses/not_modified'
+        '401':
+          $ref: '#/components/responses/requires_authentication'
+        '403':
+          $ref: '#/components/responses/forbidden'
+      x-github:
+        githubCloudOnly: false
+        enabledForGitHubApps: true
+        category: projects
+        subcategory: columns
+  /projects/columns/{column_id}/cards:
+    get:
+      summary: List project cards
+      description: Lists the project cards in a project.
+      tags:
+        - - - - projects
+      operationId: projects/list-cards
+      externalDocs:
+        description: API method documentation
+        url: >-
+          https://docs.github.com/enterprise-server@3.9/rest/projects/cards#list-project-cards
+      parameters:
+        - $ref: '#/components/parameters/column-id'
+        - name: archived_state
+          description: Filters the project cards that are returned by the card's state.
+          in: query
+          required: false
+          schema:
+            type: string
+            enum:
+              - all
+              - archived
+              - not_archived
+            default: not_archived
+        - $ref: '#/components/parameters/per-page'
+        - $ref: '#/components/parameters/page'
+      responses:
+        '200':
+          description: Response
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  $ref: '#/components/schemas/project-card'
+              examples:
+                default:
+                  $ref: '#/components/examples/project-card-items'
+          headers:
+            Link:
+              $ref: '#/components/headers/link'
+        '304':
+          $ref: '#/components/responses/not_modified'
+        '401':
+          $ref: '#/components/responses/requires_authentication'
+        '403':
+          $ref: '#/components/responses/forbidden'
+      x-github:
+        githubCloudOnly: false
+        enabledForGitHubApps: true
+        category: projects
+        subcategory: cards
+    post:
+      summary: Create a project card
+      description: ''
+      tags:
+        - - - - projects
+      operationId: projects/create-card
+      externalDocs:
+        description: API method documentation
+        url: >-
+          https://docs.github.com/enterprise-server@3.9/rest/projects/cards#create-a-project-card
+      parameters:
+        - $ref: '#/components/parameters/column-id'
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              oneOf:
+                - type: object
+                  properties:
+                    note:
+                      description: The project card's note
+                      example: Update all gems
+                      type: string
+                      nullable: true
+                  required:
+                    - note
+                - type: object
+                  properties:
+                    content_id:
+                      description: >-
+                        The unique identifier of the content associated with the
+                        card
+                      example: 42
+                      type: integer
+                    content_type:
+                      description: The piece of content associated with the card
+                      example: PullRequest
+                      type: string
+                  required:
+                    - content_id
+                    - content_type
+            examples:
+              default:
+                summary: Create a new card
+                value:
+                  note: Add payload for delete Project column
+      responses:
+        '201':
+          description: Response
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/project-card'
+              examples:
+                default:
+                  $ref: '#/components/examples/project-card'
+        '304':
+          $ref: '#/components/responses/not_modified'
+        '401':
+          $ref: '#/components/responses/requires_authentication'
+        '403':
+          $ref: '#/components/responses/forbidden'
+        '422':
+          description: Validation failed
+          content:
+            application/json:
+              schema:
+                oneOf:
+                  - $ref: '#/components/schemas/validation-error'
+                  - $ref: '#/components/schemas/validation-error-simple'
+        '503':
+          description: Response
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  code:
+                    type: string
+                  message:
+                    type: string
+                  documentation_url:
+                    type: string
+                  errors:
+                    type: array
+                    items:
+                      type: object
+                      properties:
+                        code:
+                          type: string
+                        message:
+                          type: string
+      x-github:
+        githubCloudOnly: false
+        enabledForGitHubApps: true
+        category: projects
+        subcategory: cards
+  /projects/columns/{column_id}/moves:
+    post:
+      summary: Move a project column
+      description: ''
+      tags:
+        - - - - projects
+      operationId: projects/move-column
+      externalDocs:
+        description: API method documentation
+        url: >-
+          https://docs.github.com/enterprise-server@3.9/rest/projects/columns#move-a-project-column
+      parameters:
+        - $ref: '#/components/parameters/column-id'
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              properties:
+                position:
+                  description: >-
+                    The position of the column in a project. Can be one of:
+                    `first`, `last`, or `after:<column_id>` to place after the
+                    specified column.
+                  example: last
+                  type: string
+                  pattern: ^(?:first|last|after:\d+)$
+              required:
+                - position
+              type: object
+            examples:
+              default:
+                summary: Move the column to the end of the board
+                value:
+                  position: last
+      responses:
+        '201':
+          description: Response
+          content:
+            application/json:
+              schema:
+                type: object
+                properties: {}
+                additionalProperties: false
+              examples:
+                default:
+                  value: null
+        '304':
+          $ref: '#/components/responses/not_modified'
+        '401':
+          $ref: '#/components/responses/requires_authentication'
+        '403':
+          $ref: '#/components/responses/forbidden'
+        '422':
+          $ref: '#/components/responses/validation_failed_simple'
+      x-github:
+        githubCloudOnly: false
+        enabledForGitHubApps: true
+        category: projects
+        subcategory: columns
+  /projects/{project_id}:
+    get:
+      summary: Get a project
+      description: >-
+        Gets a project by its `id`. Returns a `404 Not Found` status if projects
+        are disabled. If you do not have sufficient privileges to perform this
+        action, a `401 Unauthorized` or `410 Gone` status is returned.
+      tags:
+        - - - - projects
+      operationId: projects/get
+      externalDocs:
+        description: API method documentation
+        url: >-
+          https://docs.github.com/enterprise-server@3.9/rest/projects/projects#get-a-project
+      parameters:
+        - $ref: '#/components/parameters/project-id'
+      responses:
+        '200':
+          description: Response
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/project'
+              examples:
+                default:
+                  $ref: '#/components/examples/project-3'
+        '304':
+          $ref: '#/components/responses/not_modified'
+        '401':
+          $ref: '#/components/responses/requires_authentication'
+        '403':
+          $ref: '#/components/responses/forbidden'
+      x-github:
+        githubCloudOnly: false
+        enabledForGitHubApps: true
+        category: projects
+        subcategory: projects
+    patch:
+      summary: Update a project
+      description: >-
+        Updates a project board's information. Returns a `404 Not Found` status
+        if projects are disabled. If you do not have sufficient privileges to
+        perform this action, a `401 Unauthorized` or `410 Gone` status is
+        returned.
+      operationId: projects/update
+      tags:
+        - - - - projects
+      externalDocs:
+        description: API method documentation
+        url: >-
+          https://docs.github.com/enterprise-server@3.9/rest/projects/projects#update-a-project
+      parameters:
+        - $ref: '#/components/parameters/project-id'
+      requestBody:
+        required: false
+        content:
+          application/json:
+            schema:
+              properties:
+                name:
+                  description: Name of the project
+                  example: Week One Sprint
+                  type: string
+                body:
+                  description: Body of the project
+                  example: >-
+                    This project represents the sprint of the first week in
+                    January
+                  type: string
+                  nullable: true
+                state:
+                  description: State of the project; either 'open' or 'closed'
+                  example: open
+                  type: string
+                organization_permission:
+                  description: >-
+                    The baseline permission that all organization members have
+                    on this project
+                  type: string
+                  enum:
+                    - read
+                    - write
+                    - admin
+                    - none
+                private:
+                  description: Whether or not this project can be seen by everyone.
+                  type: boolean
+              type: object
+            examples:
+              default:
+                summary: Change the name, state, and permissions for a project
+                value:
+                  name: Week One Sprint
+                  state: open
+                  organization_permission: write
+      responses:
+        '200':
+          description: Response
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/project'
+              examples:
+                default:
+                  $ref: '#/components/examples/project-3'
+        '304':
+          $ref: '#/components/responses/not_modified'
+        '401':
+          $ref: '#/components/responses/requires_authentication'
+        '403':
+          description: Forbidden
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  message:
+                    type: string
+                  documentation_url:
+                    type: string
+                  errors:
+                    type: array
+                    items:
+                      type: string
+        '404':
+          description: >-
+            Not Found if the authenticated user does not have access to the
+            project
+        '410':
+          $ref: '#/components/responses/gone'
+        '422':
+          $ref: '#/components/responses/validation_failed_simple'
+      x-github:
+        githubCloudOnly: false
+        enabledForGitHubApps: true
+        category: projects
+        subcategory: projects
+    delete:
+      summary: Delete a project
+      description: >-
+        Deletes a project board. Returns a `404 Not Found` status if projects
+        are disabled.
+      operationId: projects/delete
+      tags:
+        - - - - projects
+      externalDocs:
+        description: API method documentation
+        url: >-
+          https://docs.github.com/enterprise-server@3.9/rest/projects/projects#delete-a-project
+      parameters:
+        - $ref: '#/components/parameters/project-id'
+      responses:
+        '204':
+          description: Delete Success
+        '304':
+          $ref: '#/components/responses/not_modified'
+        '401':
+          $ref: '#/components/responses/requires_authentication'
+        '403':
+          description: Forbidden
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  message:
+                    type: string
+                  documentation_url:
+                    type: string
+                  errors:
+                    type: array
+                    items:
+                      type: string
+        '404':
+          $ref: '#/components/responses/not_found'
+        '410':
+          $ref: '#/components/responses/gone'
+      x-github:
+        githubCloudOnly: false
+        enabledForGitHubApps: true
+        category: projects
+        subcategory: projects
+  /projects/{project_id}/collaborators:
+    get:
+      summary: List project collaborators
+      description: >-
+        Lists the collaborators for an organization project. For a project, the
+        list of collaborators includes outside collaborators, organization
+        members that are direct collaborators, organization members with access
+        through team memberships, organization members with access through
+        default organization permissions, and organization owners. You must be
+        an organization owner or a project `admin` to list collaborators.
+      tags:
+        - - - - projects
+      operationId: projects/list-collaborators
+      externalDocs:
+        description: API method documentation
+        url: >-
+          https://docs.github.com/enterprise-server@3.9/rest/projects/collaborators#list-project-collaborators
+      parameters:
+        - $ref: '#/components/parameters/project-id'
+        - name: affiliation
+          description: >-
+            Filters the collaborators by their affiliation. `outside` means
+            outside collaborators of a project that are not a member of the
+            project's organization. `direct` means collaborators with
+            permissions to a project, regardless of organization membership
+            status. `all` means all collaborators the authenticated user can
+            see.
+          in: query
+          required: false
+          schema:
+            type: string
+            enum:
+              - outside
+              - direct
+              - all
+            default: all
+        - $ref: '#/components/parameters/per-page'
+        - $ref: '#/components/parameters/page'
+      responses:
+        '200':
+          description: Response
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  $ref: '#/components/schemas/simple-user'
+              examples:
+                default:
+                  $ref: '#/components/examples/simple-user-items'
+          headers:
+            Link:
+              $ref: '#/components/headers/link'
+        '304':
+          $ref: '#/components/responses/not_modified'
+        '401':
+          $ref: '#/components/responses/requires_authentication'
+        '403':
+          $ref: '#/components/responses/forbidden'
+        '404':
+          $ref: '#/components/responses/not_found'
+        '422':
+          $ref: '#/components/responses/validation_failed'
+      x-github:
+        githubCloudOnly: false
+        enabledForGitHubApps: true
+        category: projects
+        subcategory: collaborators
+  /projects/{project_id}/collaborators/{username}:
+    put:
+      summary: Add project collaborator
+      description: >-
+        Adds a collaborator to an organization project and sets their permission
+        level. You must be an organization owner or a project `admin` to add a
+        collaborator.
+      tags:
+        - - - - projects
+      operationId: projects/add-collaborator
+      externalDocs:
+        description: API method documentation
+        url: >-
+          https://docs.github.com/enterprise-server@3.9/rest/projects/collaborators#add-project-collaborator
+      parameters:
+        - $ref: '#/components/parameters/project-id'
+        - $ref: '#/components/parameters/username'
+      requestBody:
+        required: false
+        content:
+          application/json:
+            schema:
+              type: object
+              properties:
+                permission:
+                  description: The permission to grant the collaborator.
+                  enum:
+                    - read
+                    - write
+                    - admin
+                  default: write
+                  example: write
+                  type: string
+              nullable: true
+            examples:
+              default:
+                summary: Applying write permissions for the new collaborator
+                value:
+                  permission: write
+      responses:
+        '204':
+          description: Response
+        '304':
+          $ref: '#/components/responses/not_modified'
+        '401':
+          $ref: '#/components/responses/requires_authentication'
+        '403':
+          $ref: '#/components/responses/forbidden'
+        '404':
+          $ref: '#/components/responses/not_found'
+        '422':
+          $ref: '#/components/responses/validation_failed'
+      x-github:
+        githubCloudOnly: false
+        enabledForGitHubApps: true
+        category: projects
+        subcategory: collaborators
+    delete:
+      summary: Remove user as a collaborator
+      description: >-
+        Removes a collaborator from an organization project. You must be an
+        organization owner or a project `admin` to remove a collaborator.
+      tags:
+        - - - - projects
+      operationId: projects/remove-collaborator
+      externalDocs:
+        description: API method documentation
+        url: >-
+          https://docs.github.com/enterprise-server@3.9/rest/projects/collaborators#remove-user-as-a-collaborator
+      parameters:
+        - $ref: '#/components/parameters/project-id'
+        - $ref: '#/components/parameters/username'
+      responses:
+        '204':
+          description: Response
+        '304':
+          $ref: '#/components/responses/not_modified'
+        '401':
+          $ref: '#/components/responses/requires_authentication'
+        '403':
+          $ref: '#/components/responses/forbidden'
+        '404':
+          $ref: '#/components/responses/not_found'
+        '422':
+          $ref: '#/components/responses/validation_failed'
+      x-github:
+        githubCloudOnly: false
+        enabledForGitHubApps: true
+        category: projects
+        subcategory: collaborators
+  /projects/{project_id}/collaborators/{username}/permission:
+    get:
+      summary: Get project permission for a user
+      description: >-
+        Returns the collaborator's permission level for an organization project.
+        Possible values for the `permission` key: `admin`, `write`, `read`,
+        `none`. You must be an organization owner or a project `admin` to review
+        a user's permission level.
+      tags:
+        - - - - projects
+      operationId: projects/get-permission-for-user
+      externalDocs:
+        description: API method documentation
+        url: >-
+          https://docs.github.com/enterprise-server@3.9/rest/projects/collaborators#get-project-permission-for-a-user
+      parameters:
+        - $ref: '#/components/parameters/project-id'
+        - $ref: '#/components/parameters/username'
+      responses:
+        '200':
+          description: Response
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/project-collaborator-permission'
+              examples:
+                default:
+                  $ref: '#/components/examples/project-collaborator-permission'
+        '304':
+          $ref: '#/components/responses/not_modified'
+        '401':
+          $ref: '#/components/responses/requires_authentication'
+        '403':
+          $ref: '#/components/responses/forbidden'
+        '404':
+          $ref: '#/components/responses/not_found'
+        '422':
+          $ref: '#/components/responses/validation_failed'
+      x-github:
+        githubCloudOnly: false
+        enabledForGitHubApps: true
+        category: projects
+        subcategory: collaborators
+  /projects/{project_id}/columns:
+    get:
+      summary: List project columns
+      description: Lists the project columns in a project.
+      tags:
+        - - - - projects
+      operationId: projects/list-columns
+      externalDocs:
+        description: API method documentation
+        url: >-
+          https://docs.github.com/enterprise-server@3.9/rest/projects/columns#list-project-columns
+      parameters:
+        - $ref: '#/components/parameters/project-id'
+        - $ref: '#/components/parameters/per-page'
+        - $ref: '#/components/parameters/page'
+      responses:
+        '200':
+          description: Response
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  $ref: '#/components/schemas/project-column'
+              examples:
+                default:
+                  $ref: '#/components/examples/project-column-items'
+          headers:
+            Link:
+              $ref: '#/components/headers/link'
+        '304':
+          $ref: '#/components/responses/not_modified'
+        '401':
+          $ref: '#/components/responses/requires_authentication'
+        '403':
+          $ref: '#/components/responses/forbidden'
+      x-github:
+        githubCloudOnly: false
+        enabledForGitHubApps: true
+        category: projects
+        subcategory: columns
+    post:
+      summary: Create a project column
+      description: Creates a new project column.
+      tags:
+        - - - - projects
+      operationId: projects/create-column
+      externalDocs:
+        description: API method documentation
+        url: >-
+          https://docs.github.com/enterprise-server@3.9/rest/projects/columns#create-a-project-column
+      parameters:
+        - $ref: '#/components/parameters/project-id'
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              properties:
+                name:
+                  description: Name of the project column
+                  example: Remaining tasks
+                  type: string
+              required:
+                - name
+              type: object
+            examples:
+              default:
+                value:
+                  name: Remaining tasks
+      responses:
+        '201':
+          description: Response
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/project-column'
+              examples:
+                default:
+                  value:
+                    url: https://api.github.com/projects/columns/367
+                    project_url: https://api.github.com/projects/120
+                    cards_url: https://api.github.com/projects/columns/367/cards
+                    id: 367
+                    node_id: MDEzOlByb2plY3RDb2x1bW4zNjc=
+                    name: To Do
+                    created_at: '2016-09-05T14:18:44Z'
+                    updated_at: '2016-09-05T14:22:28Z'
+        '304':
+          $ref: '#/components/responses/not_modified'
+        '401':
+          $ref: '#/components/responses/requires_authentication'
+        '403':
+          $ref: '#/components/responses/forbidden'
+        '422':
+          $ref: '#/components/responses/validation_failed_simple'
+      x-github:
+        githubCloudOnly: false
+        enabledForGitHubApps: true
+        category: projects
+        subcategory: columns
+  /repos/{owner}/{repo}/projects:
+    get:
+      summary: List repository projects
+      description: >-
+        Lists the projects in a repository. Returns a `404 Not Found` status if
+        projects are disabled in the repository. If you do not have sufficient
+        privileges to perform this action, a `401 Unauthorized` or `410 Gone`
+        status is returned.
+      tags:
+        - - - - projects
+      operationId: projects/list-for-repo
+      externalDocs:
+        description: API method documentation
+        url: >-
+          https://docs.github.com/enterprise-server@3.9/rest/projects/projects#list-repository-projects
+      parameters:
+        - $ref: '#/components/parameters/owner'
+        - $ref: '#/components/parameters/repo'
+        - name: state
+          description: Indicates the state of the projects to return.
+          in: query
+          required: false
+          schema:
+            type: string
+            enum:
+              - open
+              - closed
+              - all
+            default: open
+        - $ref: '#/components/parameters/per-page'
+        - $ref: '#/components/parameters/page'
+      responses:
+        '200':
+          description: Response
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  $ref: '#/components/schemas/project'
+              examples:
+                default:
+                  $ref: '#/components/examples/project-items-2'
+          headers:
+            Link:
+              $ref: '#/components/headers/link'
+        '401':
+          $ref: '#/components/responses/requires_authentication'
+        '403':
+          $ref: '#/components/responses/forbidden'
+        '404':
+          $ref: '#/components/responses/not_found'
+        '410':
+          $ref: '#/components/responses/gone'
+        '422':
+          $ref: '#/components/responses/validation_failed_simple'
+      x-github:
+        githubCloudOnly: false
+        enabledForGitHubApps: true
+        category: projects
+        subcategory: projects
+    post:
+      summary: Create a repository project
+      description: >-
+        Creates a repository project board. Returns a `410 Gone` status if
+        projects are disabled in the repository or if the repository does not
+        have existing classic projects. If you do not have sufficient privileges
+        to perform this action, a `401 Unauthorized` or `410 Gone` status is
+        returned.
+      tags:
+        - - - - projects
+      operationId: projects/create-for-repo
+      externalDocs:
+        description: API method documentation
+        url: >-
+          https://docs.github.com/enterprise-server@3.9/rest/projects/projects#create-a-repository-project
+      parameters:
+        - $ref: '#/components/parameters/owner'
+        - $ref: '#/components/parameters/repo'
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              type: object
+              properties:
+                name:
+                  type: string
+                  description: The name of the project.
+                body:
+                  type: string
+                  description: The description of the project.
+              required:
+                - name
+            examples:
+              default:
+                value:
+                  name: Projects Documentation
+                  body: Developer documentation project for the developer site.
+      responses:
+        '201':
+          description: Response
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/project'
+              examples:
+                default:
+                  $ref: '#/components/examples/project-3'
+        '401':
+          $ref: '#/components/responses/requires_authentication'
+        '403':
+          $ref: '#/components/responses/forbidden'
+        '404':
+          $ref: '#/components/responses/not_found'
+        '410':
+          $ref: '#/components/responses/gone'
+        '422':
+          $ref: '#/components/responses/validation_failed_simple'
+      x-github:
+        githubCloudOnly: false
+        enabledForGitHubApps: true
+        category: projects
+        subcategory: projects
+  /teams/{team_id}/projects:
+    get:
+      summary: List team projects (Legacy)
+      description: >-
+        **Deprecation Notice:** This endpoint route is deprecated and will be
+        removed from the Teams API. We recommend migrating your existing code to
+        use the new [`List team
+        projects`](https://docs.github.com/enterprise-server@3.9/rest/teams/teams#list-team-projects)
+        endpoint.
+
+
+        Lists the organization projects for a team.
+      tags:
+        - - - - teams
+      operationId: teams/list-projects-legacy
+      externalDocs:
+        description: API method documentation
+        url: >-
+          https://docs.github.com/enterprise-server@3.9/rest/teams/teams#list-team-projects-legacy
+      parameters:
+        - $ref: '#/components/parameters/team-id'
+        - $ref: '#/components/parameters/per-page'
+        - $ref: '#/components/parameters/page'
+      responses:
+        '200':
+          description: Response
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  $ref: '#/components/schemas/team-project'
+              examples:
+                default:
+                  $ref: '#/components/examples/team-project-items'
+          headers:
+            Link:
+              $ref: '#/components/headers/link'
+        '404':
+          $ref: '#/components/responses/not_found'
+      x-github:
+        githubCloudOnly: false
+        enabledForGitHubApps: true
+        removalDate: '2021-02-01'
+        deprecationDate: '2020-01-21'
+        category: teams
+        subcategory: teams
+      deprecated: true
+  /teams/{team_id}/projects/{project_id}:
+    get:
+      summary: Check team permissions for a project (Legacy)
+      description: >-
+        **Deprecation Notice:** This endpoint route is deprecated and will be
+        removed from the Teams API. We recommend migrating your existing code to
+        use the new [Check team permissions for a
+        project](https://docs.github.com/enterprise-server@3.9/rest/teams/teams#check-team-permissions-for-a-project)
+        endpoint.
+
+
+        Checks whether a team has `read`, `write`, or `admin` permissions for an
+        organization project. The response includes projects inherited from a
+        parent team.
+      tags:
+        - - - - teams
+      operationId: teams/check-permissions-for-project-legacy
+      externalDocs:
+        description: API method documentation
+        url: >-
+          https://docs.github.com/enterprise-server@3.9/rest/teams/teams#check-team-permissions-for-a-project-legacy
+      parameters:
+        - $ref: '#/components/parameters/team-id'
+        - $ref: '#/components/parameters/project-id'
+      responses:
+        '200':
+          description: Response
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/team-project'
+              examples:
+                default:
+                  $ref: '#/components/examples/team-project'
+        '404':
+          description: Not Found if project is not managed by this team
+      x-github:
+        githubCloudOnly: false
+        enabledForGitHubApps: true
+        removalDate: '2021-02-01'
+        deprecationDate: '2020-01-21'
+        category: teams
+        subcategory: teams
+      deprecated: true
+    put:
+      summary: Add or update team project permissions (Legacy)
+      description: >-
+        **Deprecation Notice:** This endpoint route is deprecated and will be
+        removed from the Teams API. We recommend migrating your existing code to
+        use the new [Add or update team project
+        permissions](https://docs.github.com/enterprise-server@3.9/rest/teams/teams#add-or-update-team-project-permissions)
+        endpoint.
+
+
+        Adds an organization project to a team. To add a project to a team or
+        update the team's permission on a project, the authenticated user must
+        have `admin` permissions for the project. The project and team must be
+        part of the same organization.
+      tags:
+        - - - - teams
+      operationId: teams/add-or-update-project-permissions-legacy
+      externalDocs:
+        description: API method documentation
+        url: >-
+          https://docs.github.com/enterprise-server@3.9/rest/teams/teams#add-or-update-team-project-permissions-legacy
+      parameters:
+        - $ref: '#/components/parameters/team-id'
+        - $ref: '#/components/parameters/project-id'
+      requestBody:
+        required: false
+        content:
+          application/json:
+            schema:
+              type: object
+              properties:
+                permission:
+                  type: string
+                  description: >-
+                    The permission to grant to the team for this project.
+                    Default: the team's `permission` attribute will be used to
+                    determine what permission to grant the team on this project.
+                    Note that, if you choose not to pass any parameters, you'll
+                    need to set `Content-Length` to zero when calling this
+                    endpoint. For more information, see "[HTTP
+                    method](https://docs.github.com/enterprise-server@3.9/rest/guides/getting-started-with-the-rest-api#http-method)."
+                  enum:
+                    - read
+                    - write
+                    - admin
+            examples:
+              default:
+                summary: Example of setting permission to read
+                value:
+                  permission: read
+      responses:
+        '204':
+          description: Response
+        '403':
+          description: Forbidden if the project is not owned by the organization
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  message:
+                    type: string
+                  documentation_url:
+                    type: string
+              examples:
+                response-if-the-project-is-not-owned-by-the-organization:
+                  value:
+                    message: Must have admin rights to Repository.
+                    documentation_url: >-
+                      https://docs.github.com/enterprise-server@3.9/rest/teams/teams#add-or-update-team-project-permissions
+        '404':
+          $ref: '#/components/responses/not_found'
+        '422':
+          $ref: '#/components/responses/validation_failed'
+      x-github:
+        githubCloudOnly: false
+        enabledForGitHubApps: true
+        removalDate: '2021-02-01'
+        deprecationDate: '2020-01-21'
+        category: teams
+        subcategory: teams
+      deprecated: true
+    delete:
+      summary: Remove a project from a team (Legacy)
+      description: >-
+        **Deprecation Notice:** This endpoint route is deprecated and will be
+        removed from the Teams API. We recommend migrating your existing code to
+        use the new [Remove a project from a
+        team](https://docs.github.com/enterprise-server@3.9/rest/teams/teams#remove-a-project-from-a-team)
+        endpoint.
+
+
+        Removes an organization project from a team. An organization owner or a
+        team maintainer can remove any project from the team. To remove a
+        project from a team as an organization member, the authenticated user
+        must have `read` access to both the team and project, or `admin` access
+        to the team or project. **Note:** This endpoint removes the project from
+        the team, but does not delete it.
+      tags:
+        - - - - teams
+      operationId: teams/remove-project-legacy
+      externalDocs:
+        description: API method documentation
+        url: >-
+          https://docs.github.com/enterprise-server@3.9/rest/teams/teams#remove-a-project-from-a-team-legacy
+      parameters:
+        - $ref: '#/components/parameters/team-id'
+        - $ref: '#/components/parameters/project-id'
+      responses:
+        '204':
+          description: Response
+        '404':
+          $ref: '#/components/responses/not_found'
+        '422':
+          $ref: '#/components/responses/validation_failed'
+      x-github:
+        githubCloudOnly: false
+        enabledForGitHubApps: true
+        removalDate: '2021-02-01'
+        deprecationDate: '2020-01-21'
+        category: teams
+        subcategory: teams
+      deprecated: true
+  /user/projects:
+    post:
+      summary: Create a user project
+      description: >-
+        Creates a user project board. Returns a `410 Gone` status if the user
+        does not have existing classic projects. If you do not have sufficient
+        privileges to perform this action, a `401 Unauthorized` or `410 Gone`
+        status is returned.
+      tags:
+        - - - - projects
+      operationId: projects/create-for-authenticated-user
+      externalDocs:
+        description: API method documentation
+        url: >-
+          https://docs.github.com/enterprise-server@3.9/rest/projects/projects#create-a-user-project
+      parameters: []
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              properties:
+                name:
+                  description: Name of the project
+                  example: Week One Sprint
+                  type: string
+                body:
+                  description: Body of the project
+                  example: >-
+                    This project represents the sprint of the first week in
+                    January
+                  type: string
+                  nullable: true
+              required:
+                - name
+              type: object
+            examples:
+              default:
+                summary: Create a new project
+                value:
+                  name: My Projects
+                  body: A board to manage my personal projects.
+      responses:
+        '201':
+          description: Response
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/project'
+              examples:
+                default:
+                  $ref: '#/components/examples/project'
+        '304':
+          $ref: '#/components/responses/not_modified'
+        '401':
+          $ref: '#/components/responses/requires_authentication'
+        '403':
+          $ref: '#/components/responses/forbidden'
+        '422':
+          $ref: '#/components/responses/validation_failed_simple'
+      x-github:
+        githubCloudOnly: false
+        enabledForGitHubApps: true
+        category: projects
+        subcategory: projects
+  /users/{username}/projects:
+    get:
+      summary: List user projects
+      description: Lists projects for a user.
+      tags:
+        - - - - projects
+      operationId: projects/list-for-user
+      externalDocs:
+        description: API method documentation
+        url: >-
+          https://docs.github.com/enterprise-server@3.9/rest/projects/projects#list-user-projects
+      parameters:
+        - $ref: '#/components/parameters/username'
+        - name: state
+          description: Indicates the state of the projects to return.
+          in: query
+          required: false
+          schema:
+            type: string
+            enum:
+              - open
+              - closed
+              - all
+            default: open
+        - $ref: '#/components/parameters/per-page'
+        - $ref: '#/components/parameters/page'
+      responses:
+        '200':
+          description: Response
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  $ref: '#/components/schemas/project'
+              examples:
+                default:
+                  $ref: '#/components/examples/project-items-3'
+          headers:
+            Link:
+              $ref: '#/components/headers/link'
+        '422':
+          $ref: '#/components/responses/validation_failed'
+      x-github:
+        githubCloudOnly: false
+        enabledForGitHubApps: false
+        category: projects
+        subcategory: projects
+components:
+  schemas:
+    team-project:
+      title: Team Project
+      description: A team's access to a project.
+      type: object
+      properties:
+        owner_url:
+          type: string
+        url:
+          type: string
+        html_url:
+          type: string
+        columns_url:
+          type: string
+        id:
+          type: integer
+        node_id:
+          type: string
+        name:
+          type: string
+        body:
+          type: string
+          nullable: true
+        number:
+          type: integer
+        state:
+          type: string
+        creator:
+          $ref: '#/components/schemas/simple-user'
+        created_at:
+          type: string
+        updated_at:
+          type: string
+        organization_permission:
+          description: >-
+            The organization permission for this project. Only present when
+            owner is an organization.
+          type: string
+        private:
+          description: >-
+            Whether the project is private or not. Only present when owner is an
+            organization.
+          type: boolean
+        permissions:
+          type: object
+          properties:
+            read:
+              type: boolean
+            write:
+              type: boolean
+            admin:
+              type: boolean
+          required:
+            - read
+            - write
+            - admin
+      required:
+        - owner_url
+        - url
+        - html_url
+        - columns_url
+        - id
+        - node_id
+        - name
+        - body
+        - number
+        - state
+        - creator
+        - created_at
+        - updated_at
+        - permissions
+    project-card:
+      title: Project Card
+      description: Project cards represent a scope of work.
+      type: object
+      properties:
+        url:
+          type: string
+          format: uri
+          example: https://api.github.com/projects/columns/cards/1478
+        id:
+          description: The project card's ID
+          example: 42
+          type: integer
+        node_id:
+          type: string
+          example: MDExOlByb2plY3RDYXJkMTQ3OA==
+        note:
+          type: string
+          example: Add payload for delete Project column
+          nullable: true
+        creator:
+          $ref: '#/components/schemas/nullable-simple-user'
+        created_at:
+          type: string
+          format: date-time
+          example: '2016-09-05T14:21:06Z'
+        updated_at:
+          type: string
+          format: date-time
+          example: '2016-09-05T14:20:22Z'
+        archived:
+          description: Whether or not the card is archived
+          example: false
+          type: boolean
+        column_name:
+          type: string
+        project_id:
+          type: string
+        column_url:
+          type: string
+          format: uri
+          example: https://api.github.com/projects/columns/367
+        content_url:
+          type: string
+          format: uri
+          example: https://api.github.com/repos/api-playground/projects-test/issues/3
+        project_url:
+          type: string
+          format: uri
+          example: https://api.github.com/projects/120
+      required:
+        - id
+        - node_id
+        - note
+        - url
+        - column_url
+        - project_url
+        - creator
+        - created_at
+        - updated_at
+    project-column:
+      title: Project Column
+      description: Project columns contain cards of work.
+      type: object
+      properties:
+        url:
+          type: string
+          format: uri
+          example: https://api.github.com/projects/columns/367
+        project_url:
+          type: string
+          format: uri
+          example: https://api.github.com/projects/120
+        cards_url:
+          type: string
+          format: uri
+          example: https://api.github.com/projects/columns/367/cards
+        id:
+          description: The unique identifier of the project column
+          example: 42
+          type: integer
+        node_id:
+          type: string
+          example: MDEzOlByb2plY3RDb2x1bW4zNjc=
+        name:
+          description: Name of the project column
+          example: Remaining tasks
+          type: string
+        created_at:
+          type: string
+          format: date-time
+          example: '2016-09-05T14:18:44Z'
+        updated_at:
+          type: string
+          format: date-time
+          example: '2016-09-05T14:22:28Z'
+      required:
+        - id
+        - node_id
+        - url
+        - project_url
+        - cards_url
+        - name
+        - created_at
+        - updated_at
+    project:
+      title: Project
+      description: Projects are a way to organize columns and cards of work.
+      type: object
+      properties:
+        owner_url:
+          type: string
+          format: uri
+          example: https://api.github.com/repos/api-playground/projects-test
+        url:
+          type: string
+          format: uri
+          example: https://api.github.com/projects/1002604
+        html_url:
+          type: string
+          format: uri
+          example: https://github.com/api-playground/projects-test/projects/12
+        columns_url:
+          type: string
+          format: uri
+          example: https://api.github.com/projects/1002604/columns
+        id:
+          type: integer
+          example: 1002604
+        node_id:
+          type: string
+          example: MDc6UHJvamVjdDEwMDI2MDQ=
+        name:
+          description: Name of the project
+          example: Week One Sprint
+          type: string
+        body:
+          description: Body of the project
+          example: This project represents the sprint of the first week in January
+          type: string
+          nullable: true
+        number:
+          type: integer
+          example: 1
+        state:
+          description: State of the project; either 'open' or 'closed'
+          example: open
+          type: string
+        creator:
+          $ref: '#/components/schemas/nullable-simple-user'
+        created_at:
+          type: string
+          format: date-time
+          example: '2011-04-10T20:09:31Z'
+        updated_at:
+          type: string
+          format: date-time
+          example: '2014-03-03T18:58:10Z'
+        organization_permission:
+          description: >-
+            The baseline permission that all organization members have on this
+            project. Only present if owner is an organization.
+          type: string
+          enum:
+            - read
+            - write
+            - admin
+            - none
+        private:
+          description: >-
+            Whether or not this project can be seen by everyone. Only present if
+            owner is an organization.
+          type: boolean
+      required:
+        - id
+        - node_id
+        - number
+        - name
+        - body
+        - state
+        - url
+        - html_url
+        - owner_url
+        - creator
+        - columns_url
+        - created_at
+        - updated_at
+    project-collaborator-permission:
+      title: Project Collaborator Permission
+      description: Project Collaborator Permission
+      type: object
+      properties:
+        permission:
+          type: string
+        user:
+          $ref: '#/components/schemas/nullable-simple-user'
+      required:
+        - permission
+        - user

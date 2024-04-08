@@ -1,0 +1,1923 @@
+openapi: 3.1.0
+info:
+  title: App
+  description: Needs a description.
+paths:
+  /app:
+    get:
+      summary: Get the authenticated app
+      description: >-
+        Returns the GitHub App associated with the authentication credentials
+        used. To see how many app installations are associated with this GitHub
+        App, see the `installations_count` in the response. For more details
+        about your app's installations, see the "[List installations for the
+        authenticated
+        app](https://docs.github.com/enterprise-server@3.9/rest/apps/apps#list-installations-for-the-authenticated-app)"
+        endpoint.
+
+
+        You must use a
+        [JWT](https://docs.github.com/enterprise-server@3.9/apps/building-github-apps/authenticating-with-github-apps/#authenticating-as-a-github-app)
+        to access this endpoint.
+      tags:
+        - - - - apps
+      operationId: apps/get-authenticated
+      externalDocs:
+        description: API method documentation
+        url: >-
+          https://docs.github.com/enterprise-server@3.9/rest/apps/apps#get-the-authenticated-app
+      parameters: []
+      responses:
+        '200':
+          description: Response
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/integration'
+              examples:
+                default:
+                  $ref: '#/components/examples/integration'
+      x-github:
+        githubCloudOnly: false
+        enabledForGitHubApps: true
+        category: apps
+        subcategory: apps
+  /app-manifests/{code}/conversions:
+    post:
+      summary: Create a GitHub App from a manifest
+      description: >-
+        Use this endpoint to complete the handshake necessary when implementing
+        the [GitHub App Manifest
+        flow](https://docs.github.com/enterprise-server@3.9/apps/building-github-apps/creating-github-apps-from-a-manifest/).
+        When you create a GitHub App with the manifest flow, you receive a
+        temporary `code` used to retrieve the GitHub App's `id`, `pem` (private
+        key), and `webhook_secret`.
+      tags:
+        - - - - apps
+      operationId: apps/create-from-manifest
+      externalDocs:
+        description: API method documentation
+        url: >-
+          https://docs.github.com/enterprise-server@3.9/rest/apps/apps#create-a-github-app-from-a-manifest
+      parameters:
+        - name: code
+          in: path
+          required: true
+          schema:
+            type: string
+      responses:
+        '201':
+          description: Response
+          content:
+            application/json:
+              schema:
+                allOf:
+                  - $ref: '#/components/schemas/integration'
+                  - type: object
+                    properties:
+                      client_id:
+                        type: string
+                      client_secret:
+                        type: string
+                      webhook_secret:
+                        type: string
+                        nullable: true
+                      pem:
+                        type: string
+                    required:
+                      - client_id
+                      - client_secret
+                      - webhook_secret
+                      - pem
+                    additionalProperties: true
+              examples:
+                default:
+                  $ref: '#/components/examples/integration-from-manifest'
+        '404':
+          $ref: '#/components/responses/not_found'
+        '422':
+          $ref: '#/components/responses/validation_failed_simple'
+      x-github:
+        githubCloudOnly: false
+        enabledForGitHubApps: false
+        category: apps
+        subcategory: apps
+  /app/hook/config:
+    get:
+      summary: Get a webhook configuration for an app
+      description: >-
+        Returns the webhook configuration for a GitHub App. For more information
+        about configuring a webhook for your app, see "[Creating a GitHub
+        App](/developers/apps/creating-a-github-app)."
+
+
+        You must use a
+        [JWT](https://docs.github.com/enterprise-server@3.9/apps/building-github-apps/authenticating-with-github-apps/#authenticating-as-a-github-app)
+        to access this endpoint.
+      tags:
+        - - - - apps
+      operationId: apps/get-webhook-config-for-app
+      externalDocs:
+        description: API method documentation
+        url: >-
+          https://docs.github.com/enterprise-server@3.9/rest/apps/webhooks#get-a-webhook-configuration-for-an-app
+      responses:
+        '200':
+          description: Response
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/webhook-config'
+              examples:
+                default:
+                  $ref: '#/components/examples/webhook-config'
+      x-github:
+        githubCloudOnly: false
+        enabledForGitHubApps: false
+        category: apps
+        subcategory: webhooks
+    patch:
+      summary: Update a webhook configuration for an app
+      description: >-
+        Updates the webhook configuration for a GitHub App. For more information
+        about configuring a webhook for your app, see "[Creating a GitHub
+        App](/developers/apps/creating-a-github-app)."
+
+
+        You must use a
+        [JWT](https://docs.github.com/enterprise-server@3.9/apps/building-github-apps/authenticating-with-github-apps/#authenticating-as-a-github-app)
+        to access this endpoint.
+      tags:
+        - - - - apps
+      operationId: apps/update-webhook-config-for-app
+      externalDocs:
+        description: API method documentation
+        url: >-
+          https://docs.github.com/enterprise-server@3.9/rest/apps/webhooks#update-a-webhook-configuration-for-an-app
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              type: object
+              properties:
+                url:
+                  $ref: '#/components/schemas/webhook-config-url'
+                content_type:
+                  $ref: '#/components/schemas/webhook-config-content-type'
+                secret:
+                  $ref: '#/components/schemas/webhook-config-secret'
+                insecure_ssl:
+                  $ref: '#/components/schemas/webhook-config-insecure-ssl'
+            examples:
+              default:
+                value:
+                  content_type: json
+                  insecure_ssl: '0'
+                  secret: '********'
+                  url: https://example.com/webhook
+      responses:
+        '200':
+          description: Response
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/webhook-config'
+              examples:
+                default:
+                  $ref: '#/components/examples/webhook-config'
+      x-github:
+        githubCloudOnly: false
+        enabledForGitHubApps: false
+        category: apps
+        subcategory: webhooks
+  /app/hook/deliveries:
+    get:
+      summary: List deliveries for an app webhook
+      description: >-
+        Returns a list of webhook deliveries for the webhook configured for a
+        GitHub App.
+
+
+        You must use a
+        [JWT](https://docs.github.com/enterprise-server@3.9/apps/building-github-apps/authenticating-with-github-apps/#authenticating-as-a-github-app)
+        to access this endpoint.
+      tags:
+        - - - - apps
+      operationId: apps/list-webhook-deliveries
+      externalDocs:
+        description: API method documentation
+        url: >-
+          https://docs.github.com/enterprise-server@3.9/rest/apps/webhooks#list-deliveries-for-an-app-webhook
+      parameters:
+        - $ref: '#/components/parameters/per-page'
+        - $ref: '#/components/parameters/cursor'
+        - name: redelivery
+          in: query
+          required: false
+          schema:
+            type: boolean
+      responses:
+        '200':
+          description: Response
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  $ref: '#/components/schemas/hook-delivery-item'
+              examples:
+                default:
+                  $ref: '#/components/examples/hook-delivery-items'
+        '400':
+          $ref: '#/components/responses/bad_request'
+        '422':
+          $ref: '#/components/responses/validation_failed'
+      x-github:
+        githubCloudOnly: false
+        enabledForGitHubApps: false
+        category: apps
+        subcategory: webhooks
+  /app/hook/deliveries/{delivery_id}:
+    get:
+      summary: Get a delivery for an app webhook
+      description: >-
+        Returns a delivery for the webhook configured for a GitHub App.
+
+
+        You must use a
+        [JWT](https://docs.github.com/enterprise-server@3.9/apps/building-github-apps/authenticating-with-github-apps/#authenticating-as-a-github-app)
+        to access this endpoint.
+      tags:
+        - - - - apps
+      operationId: apps/get-webhook-delivery
+      externalDocs:
+        description: API method documentation
+        url: >-
+          https://docs.github.com/enterprise-server@3.9/rest/apps/webhooks#get-a-delivery-for-an-app-webhook
+      parameters:
+        - $ref: '#/components/parameters/delivery-id'
+      responses:
+        '200':
+          description: Response
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/hook-delivery'
+              examples:
+                default:
+                  $ref: '#/components/examples/hook-delivery'
+        '400':
+          $ref: '#/components/responses/bad_request'
+        '422':
+          $ref: '#/components/responses/validation_failed'
+      x-github:
+        githubCloudOnly: false
+        enabledForGitHubApps: false
+        category: apps
+        subcategory: webhooks
+  /app/hook/deliveries/{delivery_id}/attempts:
+    post:
+      summary: Redeliver a delivery for an app webhook
+      description: >-
+        Redeliver a delivery for the webhook configured for a GitHub App.
+
+
+        You must use a
+        [JWT](https://docs.github.com/enterprise-server@3.9/apps/building-github-apps/authenticating-with-github-apps/#authenticating-as-a-github-app)
+        to access this endpoint.
+      tags:
+        - - - - apps
+      operationId: apps/redeliver-webhook-delivery
+      externalDocs:
+        description: API method documentation
+        url: >-
+          https://docs.github.com/enterprise-server@3.9/rest/apps/webhooks#redeliver-a-delivery-for-an-app-webhook
+      parameters:
+        - $ref: '#/components/parameters/delivery-id'
+      responses:
+        '202':
+          $ref: '#/components/responses/accepted'
+        '400':
+          $ref: '#/components/responses/bad_request'
+        '422':
+          $ref: '#/components/responses/validation_failed'
+      x-github:
+        githubCloudOnly: false
+        enabledForGitHubApps: false
+        category: apps
+        subcategory: webhooks
+  /app/installation-requests:
+    get:
+      summary: List installation requests for the authenticated app
+      description: >-
+        Lists all the pending installation requests for the authenticated GitHub
+        App.
+      tags:
+        - - - - apps
+      operationId: apps/list-installation-requests-for-authenticated-app
+      externalDocs:
+        description: API method documentation
+        url: >-
+          https://docs.github.com/enterprise-server@3.9/rest/apps/apps#list-installation-requests-for-the-authenticated-app
+      parameters:
+        - $ref: '#/components/parameters/per-page'
+        - $ref: '#/components/parameters/page'
+      responses:
+        '200':
+          description: List of integration installation requests
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  $ref: '#/components/schemas/integration-installation-request'
+              examples:
+                exampleKey1:
+                  $ref: >-
+                    #/components/examples/integration-installation-request-paginated
+        '304':
+          $ref: '#/components/responses/not_modified'
+        '401':
+          $ref: '#/components/responses/requires_authentication'
+      x-github:
+        githubCloudOnly: false
+        enabledForGitHubApps: true
+        category: apps
+        subcategory: apps
+  /app/installations:
+    get:
+      summary: List installations for the authenticated app
+      description: >-
+        The permissions the installation has are included under the
+        `permissions` key.
+
+
+        You must use a
+        [JWT](https://docs.github.com/enterprise-server@3.9/apps/building-github-apps/authenticating-with-github-apps/#authenticating-as-a-github-app)
+        to access this endpoint.
+      tags:
+        - - - - apps
+      operationId: apps/list-installations
+      externalDocs:
+        description: API method documentation
+        url: >-
+          https://docs.github.com/enterprise-server@3.9/rest/apps/apps#list-installations-for-the-authenticated-app
+      parameters:
+        - $ref: '#/components/parameters/per-page'
+        - $ref: '#/components/parameters/page'
+        - $ref: '#/components/parameters/since'
+        - name: outdated
+          in: query
+          required: false
+          schema:
+            type: string
+      responses:
+        '200':
+          description: >-
+            The permissions the installation has are included under the
+            `permissions` key.
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  $ref: '#/components/schemas/installation'
+              examples:
+                default:
+                  $ref: '#/components/examples/base-installation-items'
+          headers:
+            Link:
+              $ref: '#/components/headers/link'
+      x-github:
+        githubCloudOnly: false
+        enabledForGitHubApps: true
+        category: apps
+        subcategory: apps
+  /app/installations/{installation_id}:
+    get:
+      summary: Get an installation for the authenticated app
+      description: >-
+        Enables an authenticated GitHub App to find an installation's
+        information using the installation id.
+
+
+        You must use a
+        [JWT](https://docs.github.com/enterprise-server@3.9/apps/building-github-apps/authenticating-with-github-apps/#authenticating-as-a-github-app)
+        to access this endpoint.
+      tags:
+        - - - - apps
+      operationId: apps/get-installation
+      externalDocs:
+        description: API method documentation
+        url: >-
+          https://docs.github.com/enterprise-server@3.9/rest/apps/apps#get-an-installation-for-the-authenticated-app
+      parameters:
+        - $ref: '#/components/parameters/installation-id'
+      responses:
+        '200':
+          description: Response
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/installation'
+              examples:
+                default:
+                  $ref: '#/components/examples/base-installation'
+        '404':
+          $ref: '#/components/responses/not_found'
+      x-github:
+        githubCloudOnly: false
+        enabledForGitHubApps: true
+        category: apps
+        subcategory: apps
+    delete:
+      summary: Delete an installation for the authenticated app
+      description: >-
+        Uninstalls a GitHub App on a user, organization, or business account. If
+        you prefer to temporarily suspend an app's access to your account's
+        resources, then we recommend the "[Suspend an app
+        installation](https://docs.github.com/enterprise-server@3.9/rest/apps/apps#suspend-an-app-installation)"
+        endpoint.
+
+
+        You must use a
+        [JWT](https://docs.github.com/enterprise-server@3.9/apps/building-github-apps/authenticating-with-github-apps/#authenticating-as-a-github-app)
+        to access this endpoint.
+      tags:
+        - - - - apps
+      operationId: apps/delete-installation
+      externalDocs:
+        description: API method documentation
+        url: >-
+          https://docs.github.com/enterprise-server@3.9/rest/apps/apps#delete-an-installation-for-the-authenticated-app
+      parameters:
+        - $ref: '#/components/parameters/installation-id'
+      responses:
+        '204':
+          description: Response
+        '404':
+          $ref: '#/components/responses/not_found'
+      x-github:
+        githubCloudOnly: false
+        enabledForGitHubApps: false
+        category: apps
+        subcategory: apps
+  /app/installations/{installation_id}/access_tokens:
+    post:
+      summary: Create an installation access token for an app
+      description: >-
+        Creates an installation access token that enables a GitHub App to make
+        authenticated API requests for the app's installation on an organization
+        or individual account. Installation tokens expire one hour from the time
+        you create them. Using an expired token produces a status code of `401 -
+        Unauthorized`, and requires creating a new installation token. By
+        default the installation token has access to all repositories that the
+        installation can access. 
+
+
+        Optionally, you can use the `repositories` or `repository_ids` body
+        parameters to specify individual repositories that the installation
+        access token can access. If you don't use `repositories` or
+        `repository_ids` to grant access to specific repositories, the
+        installation access token will have access to all repositories that the
+        installation was granted access to. The installation access token cannot
+        be granted access to repositories that the installation was not granted
+        access to. Up to 500 repositories can be listed in this manner.
+
+
+        Optionally, use the `permissions` body parameter to specify the
+        permissions that the installation access token should have. If
+        `permissions` is not specified, the installation access token will have
+        all of the permissions that were granted to the app. The installation
+        access token cannot be granted permissions that the app was not granted.
+
+
+        When using the repository or permission parameters to reduce the access
+        of the token, the complexity of the token is increased due to both the
+        number of permissions in the request and the number of repositories the
+        token will have access to. If the complexity is too large, the token
+        will fail to be issued. If this occurs, the error message will indicate
+        the maximum number of repositories that should be requested. For the
+        average application requesting 8 permissions, this limit is around 5000
+        repositories. With fewer permissions requested, more repositories are
+        supported. 
+
+
+        You must use a
+        [JWT](https://docs.github.com/enterprise-server@3.9/apps/building-github-apps/authenticating-with-github-apps/#authenticating-as-a-github-app)
+        to access this endpoint.
+      tags:
+        - - - - apps
+      operationId: apps/create-installation-access-token
+      externalDocs:
+        description: API method documentation
+        url: >-
+          https://docs.github.com/enterprise-server@3.9/rest/apps/apps#create-an-installation-access-token-for-an-app
+      parameters:
+        - $ref: '#/components/parameters/installation-id'
+      requestBody:
+        required: false
+        content:
+          application/json:
+            schema:
+              type: object
+              properties:
+                repositories:
+                  description: >-
+                    List of repository names that the token should have access
+                    to
+                  type: array
+                  items:
+                    type: string
+                    example: rails
+                repository_ids:
+                  description: List of repository IDs that the token should have access to
+                  example:
+                    - 1
+                  type: array
+                  items:
+                    type: integer
+                permissions:
+                  $ref: '#/components/schemas/app-permissions'
+            examples:
+              default:
+                value:
+                  repositories:
+                    - Hello-World
+                  permissions:
+                    issues: write
+                    contents: read
+      responses:
+        '201':
+          description: Response
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/installation-token'
+              examples:
+                default:
+                  $ref: '#/components/examples/installation-token'
+        '401':
+          $ref: '#/components/responses/requires_authentication'
+        '403':
+          $ref: '#/components/responses/forbidden'
+        '404':
+          $ref: '#/components/responses/not_found'
+        '422':
+          $ref: '#/components/responses/validation_failed'
+      x-github:
+        githubCloudOnly: false
+        enabledForGitHubApps: true
+        category: apps
+        subcategory: apps
+  /app/installations/{installation_id}/suspended:
+    put:
+      summary: Suspend an app installation
+      description: >-
+        Suspends a GitHub App on a user, organization, or business account,
+        which blocks the app from accessing the account's resources. When a
+        GitHub App is suspended, the app's access to the GitHub Enterprise
+        Server API or webhook events is blocked for that account.
+
+
+        You must use a
+        [JWT](https://docs.github.com/enterprise-server@3.9/apps/building-github-apps/authenticating-with-github-apps/#authenticating-as-a-github-app)
+        to access this endpoint.
+      tags:
+        - - - - apps
+      operationId: apps/suspend-installation
+      externalDocs:
+        description: API method documentation
+        url: >-
+          https://docs.github.com/enterprise-server@3.9/rest/apps/apps#suspend-an-app-installation
+      parameters:
+        - $ref: '#/components/parameters/installation-id'
+      responses:
+        '204':
+          description: Response
+        '404':
+          $ref: '#/components/responses/not_found'
+      x-github:
+        githubCloudOnly: false
+        enabledForGitHubApps: false
+        category: apps
+        subcategory: apps
+    delete:
+      summary: Unsuspend an app installation
+      description: >-
+        Removes a GitHub App installation suspension.
+
+
+        You must use a
+        [JWT](https://docs.github.com/enterprise-server@3.9/apps/building-github-apps/authenticating-with-github-apps/#authenticating-as-a-github-app)
+        to access this endpoint.
+      tags:
+        - - - - apps
+      operationId: apps/unsuspend-installation
+      externalDocs:
+        description: API method documentation
+        url: >-
+          https://docs.github.com/enterprise-server@3.9/rest/apps/apps#unsuspend-an-app-installation
+      parameters:
+        - $ref: '#/components/parameters/installation-id'
+      responses:
+        '204':
+          description: Response
+        '404':
+          $ref: '#/components/responses/not_found'
+      x-github:
+        githubCloudOnly: false
+        enabledForGitHubApps: false
+        category: apps
+        subcategory: apps
+  /applications/grants:
+    get:
+      summary: List your grants
+      description: >-
+        **Deprecation Notice:** GitHub Enterprise Server will discontinue the
+        [OAuth Authorizations
+        API](https://docs.github.com/enterprise-server@3.9/rest/oauth-authorizations/oauth-authorizations/),
+        which is used by integrations to create personal access tokens and OAuth
+        tokens, and you must now create these tokens using our [web application
+        flow](https://docs.github.com/enterprise-server@3.9/developers/apps/authorizing-oauth-apps#web-application-flow).
+        The [OAuth Authorizations
+        API](https://docs.github.com/enterprise-server@3.9/rest/oauth-authorizations/oauth-authorizations)
+        will be removed on November, 13, 2020. For more information, including
+        scheduled brownouts, see the [blog
+        post](https://developer.github.com/changes/2020-02-14-deprecating-oauth-auth-endpoint/).
+
+
+        You can use this API to list the set of OAuth applications that have
+        been granted access to your account. Unlike the [list your
+        authorizations](https://docs.github.com/enterprise-server@3.9/rest/oauth-authorizations/oauth-authorizations#list-your-authorizations)
+        API, this API does not manage individual tokens. This API will return
+        one entry for each OAuth application that has been granted access to
+        your account, regardless of the number of tokens an application has
+        generated for your user. The list of OAuth applications returned matches
+        what is shown on [the application authorizations settings screen within
+        GitHub](https://github.com/settings/applications#authorized). The
+        `scopes` returned are the union of scopes authorized for the
+        application. For example, if an application has one token with `repo`
+        scope and another token with `user` scope, the grant will return
+        `["repo", "user"]`.
+      tags:
+        - - - - oauth-authorizations
+      operationId: oauth-authorizations/list-grants
+      externalDocs:
+        description: API method documentation
+        url: >-
+          https://docs.github.com/enterprise-server@3.9/rest/oauth-authorizations/oauth-authorizations#list-your-grants
+      parameters:
+        - $ref: '#/components/parameters/per-page'
+        - $ref: '#/components/parameters/page'
+        - name: client_id
+          in: query
+          required: false
+          description: The client ID of your GitHub app.
+          schema:
+            type: string
+      responses:
+        '200':
+          description: Response
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  $ref: '#/components/schemas/application-grant'
+              examples:
+                default:
+                  $ref: '#/components/examples/application-grant-items'
+          headers:
+            Link:
+              $ref: '#/components/headers/link'
+        '304':
+          $ref: '#/components/responses/not_modified'
+        '401':
+          $ref: '#/components/responses/requires_authentication'
+        '403':
+          $ref: '#/components/responses/forbidden'
+        '404':
+          $ref: '#/components/responses/not_found'
+      x-github:
+        githubCloudOnly: false
+        enabledForGitHubApps: false
+        removalDate: '2020-11-13'
+        deprecationDate: '2020-02-14'
+        category: oauth-authorizations
+        subcategory: oauth-authorizations
+      deprecated: true
+  /applications/grants/{grant_id}:
+    get:
+      summary: Get a single grant
+      description: >-
+        **Deprecation Notice:** GitHub Enterprise Server will discontinue the
+        [OAuth Authorizations
+        API](https://docs.github.com/enterprise-server@3.9/rest/oauth-authorizations/oauth-authorizations),
+        which is used by integrations to create personal access tokens and OAuth
+        tokens, and you must now create these tokens using our [web application
+        flow](https://docs.github.com/enterprise-server@3.9/apps/building-oauth-apps/authorizing-oauth-apps/#web-application-flow).
+        The [OAuth Authorizations
+        API](https://docs.github.com/enterprise-server@3.9/rest/oauth-authorizations/oauth-authorizations)
+        will be removed on November, 13, 2020. For more information, including
+        scheduled brownouts, see the [blog
+        post](https://developer.github.com/changes/2020-02-14-deprecating-oauth-auth-endpoint/).
+      tags:
+        - - - - oauth-authorizations
+      operationId: oauth-authorizations/get-grant
+      externalDocs:
+        description: API method documentation
+        url: >-
+          https://docs.github.com/enterprise-server@3.9/rest/oauth-authorizations/oauth-authorizations#get-a-single-grant
+      parameters:
+        - $ref: '#/components/parameters/grant-id'
+      responses:
+        '200':
+          description: Response
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/application-grant'
+              examples:
+                default:
+                  $ref: '#/components/examples/application-grant'
+        '304':
+          $ref: '#/components/responses/not_modified'
+        '401':
+          $ref: '#/components/responses/requires_authentication'
+        '403':
+          $ref: '#/components/responses/forbidden'
+      x-github:
+        githubCloudOnly: false
+        enabledForGitHubApps: false
+        removalDate: '2020-11-13'
+        deprecationDate: '2020-02-14'
+        category: oauth-authorizations
+        subcategory: oauth-authorizations
+      deprecated: true
+    delete:
+      summary: Delete a grant
+      description: >-
+        **Deprecation Notice:** GitHub Enterprise Server will discontinue the
+        [OAuth Authorizations
+        API](https://docs.github.com/enterprise-server@3.9/rest/oauth-authorizations/oauth-authorizations/),
+        which is used by integrations to create personal access tokens and OAuth
+        tokens, and you must now create these tokens using our [web application
+        flow](https://docs.github.com/enterprise-server@3.9/developers/apps/authorizing-oauth-apps#web-application-flow).
+        The [OAuth Authorizations
+        API](https://docs.github.com/enterprise-server@3.9/rest/oauth-authorizations/oauth-authorizations/)
+        will be removed on November, 13, 2020. For more information, including
+        scheduled brownouts, see the [blog
+        post](https://developer.github.com/changes/2020-02-14-deprecating-oauth-auth-endpoint/).
+
+
+        Deleting an OAuth application's grant will also delete all OAuth tokens
+        associated with the application for your user. Once deleted, the
+        application has no access to your account and is no longer listed on
+        [the application authorizations settings screen within
+        GitHub](https://github.com/settings/applications#authorized).
+      tags:
+        - - - - oauth-authorizations
+      operationId: oauth-authorizations/delete-grant
+      externalDocs:
+        description: API method documentation
+        url: >-
+          https://docs.github.com/enterprise-server@3.9/rest/oauth-authorizations/oauth-authorizations#delete-a-grant
+      parameters:
+        - $ref: '#/components/parameters/grant-id'
+      responses:
+        '204':
+          description: Response
+        '304':
+          $ref: '#/components/responses/not_modified'
+        '401':
+          $ref: '#/components/responses/requires_authentication'
+        '403':
+          $ref: '#/components/responses/forbidden'
+      x-github:
+        githubCloudOnly: false
+        enabledForGitHubApps: false
+        removalDate: '2020-11-13'
+        deprecationDate: '2020-02-14'
+        category: oauth-authorizations
+        subcategory: oauth-authorizations
+      deprecated: true
+  /applications/{client_id}/grant:
+    delete:
+      summary: Delete an app authorization
+      description: >-
+        OAuth and GitHub application owners can revoke a grant for their
+        application and a specific user. You must use [Basic
+        Authentication](https://docs.github.com/enterprise-server@3.9/rest/overview/other-authentication-methods#basic-authentication)
+        when accessing this endpoint, using the OAuth application's `client_id`
+        and `client_secret` as the username and password. You must also provide
+        a valid OAuth `access_token` as an input parameter and the grant for the
+        token's owner will be deleted.
+
+        Deleting an application's grant will also delete all OAuth tokens
+        associated with the application for the user. Once deleted, the
+        application will have no access to the user's account and will no longer
+        be listed on [the application authorizations settings screen within
+        GitHub](https://github.com/settings/applications#authorized).
+      operationId: apps/delete-authorization
+      tags:
+        - - - - apps
+      externalDocs:
+        description: API method documentation
+        url: >-
+          https://docs.github.com/enterprise-server@3.9/rest/apps/oauth-applications#delete-an-app-authorization
+      parameters:
+        - $ref: '#/components/parameters/client-id'
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              type: object
+              properties:
+                access_token:
+                  type: string
+                  description: >-
+                    The OAuth access token used to authenticate to the GitHub
+                    API.
+              required:
+                - access_token
+            examples:
+              default:
+                value:
+                  access_token: e72e16c7e42f292c6912e7710c838347ae178b4a
+      responses:
+        '204':
+          description: Response
+        '422':
+          $ref: '#/components/responses/validation_failed'
+      x-github:
+        githubCloudOnly: false
+        enabledForGitHubApps: false
+        category: apps
+        subcategory: oauth-applications
+  /applications/{client_id}/token:
+    post:
+      summary: Check a token
+      description: >-
+        OAuth applications and GitHub applications with OAuth authorizations can
+        use this API method for checking OAuth token validity without exceeding
+        the normal rate limits for failed login attempts. Authentication works
+        differently with this particular endpoint. You must use [Basic
+        Authentication](https://docs.github.com/enterprise-server@3.9/rest/overview/other-authentication-methods#basic-authentication)
+        to use this endpoint, where the username is the application `client_id`
+        and the password is its `client_secret`. Invalid tokens will return `404
+        NOT FOUND`.
+      tags:
+        - - - - apps
+      operationId: apps/check-token
+      externalDocs:
+        description: API method documentation
+        url: >-
+          https://docs.github.com/enterprise-server@3.9/rest/apps/oauth-applications#check-a-token
+      parameters:
+        - $ref: '#/components/parameters/client-id'
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              properties:
+                access_token:
+                  description: The access_token of the OAuth or GitHub application.
+                  type: string
+              required:
+                - access_token
+              type: object
+            examples:
+              default:
+                value:
+                  access_token: e72e16c7e42f292c6912e7710c838347ae178b4a
+      responses:
+        '200':
+          description: Response
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/authorization'
+              examples:
+                default:
+                  $ref: '#/components/examples/authorization-with-user'
+        '404':
+          $ref: '#/components/responses/not_found'
+        '422':
+          $ref: '#/components/responses/validation_failed'
+      x-github:
+        githubCloudOnly: false
+        enabledForGitHubApps: false
+        category: apps
+        subcategory: oauth-applications
+    patch:
+      summary: Reset a token
+      description: >-
+        OAuth applications and GitHub applications with OAuth authorizations can
+        use this API method to reset a valid OAuth token without end-user
+        involvement. Applications must save the "token" property in the response
+        because changes take effect immediately. You must use [Basic
+        Authentication](https://docs.github.com/enterprise-server@3.9/rest/overview/other-authentication-methods#basic-authentication)
+        when accessing this endpoint, using the application's `client_id` and
+        `client_secret` as the username and password. Invalid tokens will return
+        `404 NOT FOUND`.
+      tags:
+        - - - - apps
+      operationId: apps/reset-token
+      externalDocs:
+        description: API method documentation
+        url: >-
+          https://docs.github.com/enterprise-server@3.9/rest/apps/oauth-applications#reset-a-token
+      parameters:
+        - $ref: '#/components/parameters/client-id'
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              properties:
+                access_token:
+                  description: The access_token of the OAuth or GitHub application.
+                  type: string
+              required:
+                - access_token
+              type: object
+            examples:
+              default:
+                value:
+                  access_token: e72e16c7e42f292c6912e7710c838347ae178b4a
+      responses:
+        '200':
+          description: Response
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/authorization'
+              examples:
+                default:
+                  $ref: '#/components/examples/authorization-with-user'
+        '422':
+          $ref: '#/components/responses/validation_failed'
+      x-github:
+        githubCloudOnly: false
+        enabledForGitHubApps: false
+        category: apps
+        subcategory: oauth-applications
+    delete:
+      summary: Delete an app token
+      description: >-
+        OAuth  or GitHub application owners can revoke a single token for an
+        OAuth application or a GitHub application with an OAuth authorization.
+        You must use [Basic
+        Authentication](https://docs.github.com/enterprise-server@3.9/rest/overview/other-authentication-methods#basic-authentication)
+        when accessing this endpoint, using the application's `client_id` and
+        `client_secret` as the username and password.
+      tags:
+        - - - - apps
+      operationId: apps/delete-token
+      externalDocs:
+        description: API method documentation
+        url: >-
+          https://docs.github.com/enterprise-server@3.9/rest/apps/oauth-applications#delete-an-app-token
+      parameters:
+        - $ref: '#/components/parameters/client-id'
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              type: object
+              properties:
+                access_token:
+                  type: string
+                  description: >-
+                    The OAuth access token used to authenticate to the GitHub
+                    API.
+              required:
+                - access_token
+            examples:
+              default:
+                value:
+                  access_token: e72e16c7e42f292c6912e7710c838347ae178b4a
+      responses:
+        '204':
+          description: Response
+        '422':
+          $ref: '#/components/responses/validation_failed'
+      x-github:
+        githubCloudOnly: false
+        enabledForGitHubApps: false
+        category: apps
+        subcategory: oauth-applications
+  /applications/{client_id}/token/scoped:
+    post:
+      summary: Create a scoped access token
+      description: >-
+        Use a non-scoped user access token to create a repository-scoped and/or
+        permission-scoped user access token. You can specify
+
+        which repositories the token can access and which permissions are
+        granted to the
+
+        token.
+
+
+        Invalid tokens will return `404 NOT FOUND`.
+
+
+        You must use [Basic
+        Authentication](https://docs.github.com/enterprise-server@3.9/rest/overview/other-authentication-methods#basic-authentication)
+
+        when accessing this endpoint, using the `client_id` and `client_secret`
+        of the GitHub App
+
+        as the username and password.
+      tags:
+        - - - - apps
+      operationId: apps/scope-token
+      externalDocs:
+        description: API method documentation
+        url: >-
+          https://docs.github.com/enterprise-server@3.9/rest/apps/apps#create-a-scoped-access-token
+      parameters:
+        - $ref: '#/components/parameters/client-id'
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              type: object
+              properties:
+                access_token:
+                  type: string
+                  description: The access token used to authenticate to the GitHub API.
+                  example: e72e16c7e42f292c6912e7710c838347ae178b4a
+                target:
+                  description: >-
+                    The name of the user or organization to scope the user
+                    access token to. **Required** unless `target_id` is
+                    specified.
+                  type: string
+                  example: octocat
+                target_id:
+                  description: >-
+                    The ID of the user or organization to scope the user access
+                    token to. **Required** unless `target` is specified.
+                  example: 1
+                  type: integer
+                repositories:
+                  description: >-
+                    The list of repository names to scope the user access token
+                    to. `repositories` may not be specified if `repository_ids`
+                    is specified.
+                  type: array
+                  items:
+                    type: string
+                    example: rails
+                repository_ids:
+                  description: >-
+                    The list of repository IDs to scope the user access token
+                    to. `repository_ids` may not be specified if `repositories`
+                    is specified.
+                  example:
+                    - 1
+                  type: array
+                  items:
+                    type: integer
+                permissions:
+                  $ref: '#/components/schemas/app-permissions'
+              required:
+                - access_token
+            examples:
+              default:
+                value:
+                  access_token: e72e16c7e42f292c6912e7710c838347ae178b4a
+                  target: octocat
+                  permissions:
+                    metadata: read
+                    issues: write
+                    contents: read
+      responses:
+        '200':
+          description: Response
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/authorization'
+              examples:
+                default:
+                  $ref: '#/components/examples/scope-token'
+        '401':
+          $ref: '#/components/responses/requires_authentication'
+        '403':
+          $ref: '#/components/responses/forbidden'
+        '404':
+          $ref: '#/components/responses/not_found'
+        '422':
+          $ref: '#/components/responses/validation_failed'
+      x-github:
+        githubCloudOnly: false
+        enabledForGitHubApps: false
+        category: apps
+        subcategory: apps
+  /apps/{app_slug}:
+    get:
+      summary: Get an app
+      description: >-
+        **Note**: The `:app_slug` is just the URL-friendly name of your GitHub
+        App. You can find this on the settings page for your GitHub App (e.g.,
+        `https://github.com/settings/apps/:app_slug`).
+      tags:
+        - - - - apps
+      operationId: apps/get-by-slug
+      externalDocs:
+        description: API method documentation
+        url: >-
+          https://docs.github.com/enterprise-server@3.9/rest/apps/apps#get-an-app
+      parameters:
+        - $ref: '#/components/parameters/app-slug'
+      responses:
+        '200':
+          description: Response
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/integration'
+              examples:
+                default:
+                  $ref: '#/components/examples/integration'
+        '403':
+          $ref: '#/components/responses/forbidden'
+        '404':
+          $ref: '#/components/responses/not_found'
+      x-github:
+        githubCloudOnly: false
+        enabledForGitHubApps: true
+        category: apps
+        subcategory: apps
+  /repos/{owner}/{repo}/actions/runs/{run_id}/approvals:
+    get:
+      summary: Get the review history for a workflow run
+      description: >-
+        Anyone with read access to the repository can use this endpoint.
+
+
+        OAuth app tokens and personal access tokens (classic) need the `repo`
+        scope to use this endpoint with a private repository.
+      tags:
+        - - - - actions
+      operationId: actions/get-reviews-for-run
+      externalDocs:
+        description: API method documentation
+        url: >-
+          https://docs.github.com/enterprise-server@3.9/rest/actions/workflow-runs#get-the-review-history-for-a-workflow-run
+      parameters:
+        - $ref: '#/components/parameters/owner'
+        - $ref: '#/components/parameters/repo'
+        - $ref: '#/components/parameters/run-id'
+      responses:
+        '200':
+          description: Response
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  $ref: '#/components/schemas/environment-approvals'
+              examples:
+                default:
+                  $ref: '#/components/examples/environment-approvals-items'
+      x-github:
+        githubCloudOnly: false
+        enabledForGitHubApps: true
+        category: actions
+        subcategory: workflow-runs
+  /repos/{owner}/{repo}/branches/{branch}/protection/restrictions/apps:
+    get:
+      summary: Get apps with access to the protected branch
+      description: >-
+        Protected branches are available in public repositories with GitHub Free
+        and GitHub Free for organizations, and in public and private
+        repositories with GitHub Pro, GitHub Team, GitHub Enterprise Cloud, and
+        GitHub Enterprise Server. For more information, see [GitHub's
+        products](https://docs.github.com/enterprise-server@3.9/github/getting-started-with-github/githubs-products)
+        in the GitHub Help documentation.
+
+
+        Lists the GitHub Apps that have push access to this branch. Only GitHub
+        Apps that are installed on the repository and that have been granted
+        write access to the repository contents can be added as authorized
+        actors on a protected branch.
+      tags:
+        - - - - repos
+      operationId: repos/get-apps-with-access-to-protected-branch
+      externalDocs:
+        description: API method documentation
+        url: >-
+          https://docs.github.com/enterprise-server@3.9/rest/branches/branch-protection#get-apps-with-access-to-the-protected-branch
+      parameters:
+        - $ref: '#/components/parameters/owner'
+        - $ref: '#/components/parameters/repo'
+        - $ref: '#/components/parameters/branch'
+      responses:
+        '200':
+          description: Response
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  $ref: '#/components/schemas/integration'
+              examples:
+                default:
+                  $ref: '#/components/examples/integration-items'
+        '404':
+          $ref: '#/components/responses/not_found'
+      x-github:
+        githubCloudOnly: false
+        enabledForGitHubApps: true
+        category: branches
+        subcategory: branch-protection
+    post:
+      summary: Add app access restrictions
+      description: >-
+        Protected branches are available in public repositories with GitHub Free
+        and GitHub Free for organizations, and in public and private
+        repositories with GitHub Pro, GitHub Team, GitHub Enterprise Cloud, and
+        GitHub Enterprise Server. For more information, see [GitHub's
+        products](https://docs.github.com/enterprise-server@3.9/github/getting-started-with-github/githubs-products)
+        in the GitHub Help documentation.
+
+
+        Grants the specified apps push access for this branch. Only GitHub Apps
+        that are installed on the repository and that have been granted write
+        access to the repository contents can be added as authorized actors on a
+        protected branch.
+      tags:
+        - - - - repos
+      operationId: repos/add-app-access-restrictions
+      externalDocs:
+        description: API method documentation
+        url: >-
+          https://docs.github.com/enterprise-server@3.9/rest/branches/branch-protection#add-app-access-restrictions
+      parameters:
+        - $ref: '#/components/parameters/owner'
+        - $ref: '#/components/parameters/repo'
+        - $ref: '#/components/parameters/branch'
+      requestBody:
+        required: false
+        content:
+          application/json:
+            schema:
+              oneOf:
+                - type: object
+                  properties:
+                    apps:
+                      type: array
+                      description: >-
+                        The GitHub Apps that have push access to this branch.
+                        Use the slugified version of the app name. **Note**: The
+                        list of users, apps, and teams in total is limited to
+                        100 items.
+                      items:
+                        type: string
+                  required:
+                    - apps
+                  example:
+                    apps:
+                      - my-app
+                - type: array
+                  items:
+                    type: string
+            examples:
+              default:
+                value:
+                  apps:
+                    - octoapp
+      responses:
+        '200':
+          description: Response
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  $ref: '#/components/schemas/integration'
+              examples:
+                default:
+                  $ref: '#/components/examples/integration-items'
+        '422':
+          $ref: '#/components/responses/validation_failed'
+      x-github:
+        githubCloudOnly: false
+        enabledForGitHubApps: true
+        requestBodyParameterName: apps
+        category: branches
+        subcategory: branch-protection
+    put:
+      summary: Set app access restrictions
+      description: >-
+        Protected branches are available in public repositories with GitHub Free
+        and GitHub Free for organizations, and in public and private
+        repositories with GitHub Pro, GitHub Team, GitHub Enterprise Cloud, and
+        GitHub Enterprise Server. For more information, see [GitHub's
+        products](https://docs.github.com/enterprise-server@3.9/github/getting-started-with-github/githubs-products)
+        in the GitHub Help documentation.
+
+
+        Replaces the list of apps that have push access to this branch. This
+        removes all apps that previously had push access and grants push access
+        to the new list of apps. Only GitHub Apps that are installed on the
+        repository and that have been granted write access to the repository
+        contents can be added as authorized actors on a protected branch.
+      tags:
+        - - - - repos
+      operationId: repos/set-app-access-restrictions
+      externalDocs:
+        description: API method documentation
+        url: >-
+          https://docs.github.com/enterprise-server@3.9/rest/branches/branch-protection#set-app-access-restrictions
+      parameters:
+        - $ref: '#/components/parameters/owner'
+        - $ref: '#/components/parameters/repo'
+        - $ref: '#/components/parameters/branch'
+      requestBody:
+        required: false
+        content:
+          application/json:
+            schema:
+              oneOf:
+                - type: object
+                  properties:
+                    apps:
+                      type: array
+                      description: >-
+                        The GitHub Apps that have push access to this branch.
+                        Use the slugified version of the app name. **Note**: The
+                        list of users, apps, and teams in total is limited to
+                        100 items.
+                      items:
+                        type: string
+                  required:
+                    - apps
+                  example:
+                    apps:
+                      - my-app
+                - type: array
+                  items:
+                    type: string
+            examples:
+              default:
+                value:
+                  apps:
+                    - octoapp
+      responses:
+        '200':
+          description: Response
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  $ref: '#/components/schemas/integration'
+              examples:
+                default:
+                  $ref: '#/components/examples/integration-items'
+        '422':
+          $ref: '#/components/responses/validation_failed'
+      x-github:
+        githubCloudOnly: false
+        enabledForGitHubApps: true
+        requestBodyParameterName: apps
+        category: branches
+        subcategory: branch-protection
+    delete:
+      summary: Remove app access restrictions
+      description: >-
+        Protected branches are available in public repositories with GitHub Free
+        and GitHub Free for organizations, and in public and private
+        repositories with GitHub Pro, GitHub Team, GitHub Enterprise Cloud, and
+        GitHub Enterprise Server. For more information, see [GitHub's
+        products](https://docs.github.com/enterprise-server@3.9/github/getting-started-with-github/githubs-products)
+        in the GitHub Help documentation.
+
+
+        Removes the ability of an app to push to this branch. Only GitHub Apps
+        that are installed on the repository and that have been granted write
+        access to the repository contents can be added as authorized actors on a
+        protected branch.
+      tags:
+        - - - - repos
+      operationId: repos/remove-app-access-restrictions
+      externalDocs:
+        description: API method documentation
+        url: >-
+          https://docs.github.com/enterprise-server@3.9/rest/branches/branch-protection#remove-app-access-restrictions
+      parameters:
+        - $ref: '#/components/parameters/owner'
+        - $ref: '#/components/parameters/repo'
+        - $ref: '#/components/parameters/branch'
+      requestBody:
+        content:
+          application/json:
+            schema:
+              oneOf:
+                - type: object
+                  properties:
+                    apps:
+                      type: array
+                      description: >-
+                        The GitHub Apps that have push access to this branch.
+                        Use the slugified version of the app name. **Note**: The
+                        list of users, apps, and teams in total is limited to
+                        100 items.
+                      items:
+                        type: string
+                  required:
+                    - apps
+                  example:
+                    apps:
+                      - my-app
+                - type: array
+                  items:
+                    type: string
+            examples:
+              default:
+                value:
+                  apps:
+                    - my-app
+      responses:
+        '200':
+          description: Response
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  $ref: '#/components/schemas/integration'
+              examples:
+                default:
+                  $ref: '#/components/examples/integration-items'
+        '422':
+          $ref: '#/components/responses/validation_failed'
+      x-github:
+        githubCloudOnly: false
+        enabledForGitHubApps: true
+        requestBodyParameterName: apps
+        category: branches
+        subcategory: branch-protection
+components:
+  schemas:
+    integration:
+      title: GitHub app
+      description: >-
+        GitHub apps are a new way to extend GitHub. They can be installed
+        directly on organizations and user accounts and granted access to
+        specific repositories. They come with granular permissions and built-in
+        webhooks. GitHub apps are first class actors within GitHub.
+      type: object
+      properties:
+        id:
+          description: Unique identifier of the GitHub app
+          example: 37
+          type: integer
+        slug:
+          description: The slug name of the GitHub app
+          example: probot-owners
+          type: string
+        node_id:
+          type: string
+          example: MDExOkludGVncmF0aW9uMQ==
+        owner:
+          $ref: '#/components/schemas/nullable-simple-user'
+        name:
+          description: The name of the GitHub app
+          example: Probot Owners
+          type: string
+        description:
+          type: string
+          example: The description of the app.
+          nullable: true
+        external_url:
+          type: string
+          format: uri
+          example: https://example.com
+        html_url:
+          type: string
+          format: uri
+          example: https://github.com/apps/super-ci
+        created_at:
+          type: string
+          format: date-time
+          example: '2017-07-08T16:18:44-04:00'
+        updated_at:
+          type: string
+          format: date-time
+          example: '2017-07-08T16:18:44-04:00'
+        permissions:
+          description: The set of permissions for the GitHub app
+          type: object
+          properties:
+            issues:
+              type: string
+            checks:
+              type: string
+            metadata:
+              type: string
+            contents:
+              type: string
+            deployments:
+              type: string
+          additionalProperties:
+            type: string
+          example:
+            issues: read
+            deployments: write
+        events:
+          description: The list of events for the GitHub app
+          example:
+            - label
+            - deployment
+          type: array
+          items:
+            type: string
+        installations_count:
+          description: The number of installations associated with the GitHub app
+          example: 5
+          type: integer
+        client_id:
+          type: string
+          example: '"Iv1.25b5d1e65ffc4022"'
+        client_secret:
+          type: string
+          example: '"1d4b2097ac622ba702d19de498f005747a8b21d3"'
+        webhook_secret:
+          type: string
+          example: '"6fba8f2fc8a7e8f2cca5577eddd82ca7586b3b6b"'
+          nullable: true
+        pem:
+          type: string
+          example: >-
+            "--BEGIN RSA PRIVATE
+            KEY--\nMIIEogIBAAKCAQEArYxrNYD/iT5CZVpRJu4rBKmmze3PVmT/gCo2ATUvDvZTPTey\nxcGJ3vvrJXazKk06pN05TN29o98jrYz4cengG3YGsXPNEpKsIrEl8NhbnxapEnM9\nJCMRe0P5JcPsfZlX6hmiT7136GRWiGOUba2X9+HKh8QJVLG5rM007TBER9/z9mWm\nrJuNh+m5l320oBQY/Qq3A7wzdEfZw8qm/mIN0FCeoXH1L6B8xXWaAYBwhTEh6SSn\nZHlO1Xu1JWDmAvBCi0RO5aRSKM8q9QEkvvHP4yweAtK3N8+aAbZ7ovaDhyGz8r6r\nzhU1b8Uo0Z2ysf503WqzQgIajr7Fry7/kUwpgQIDAQABAoIBADwJp80Ko1xHPZDy\nfcCKBDfIuPvkmSW6KumbsLMaQv1aGdHDwwTGv3t0ixSay8CGlxMRtRDyZPib6SvQ\n6OH/lpfpbMdW2ErkksgtoIKBVrDilfrcAvrNZu7NxRNbhCSvN8q0s4ICecjbbVQh\nnueSdlA6vGXbW58BHMq68uRbHkP+k+mM9U0mDJ1HMch67wlg5GbayVRt63H7R2+r\nVxcna7B80J/lCEjIYZznawgiTvp3MSanTglqAYi+m1EcSsP14bJIB9vgaxS79kTu\noiSo93leJbBvuGo8QEiUqTwMw4tDksmkLsoqNKQ1q9P7LZ9DGcujtPy4EZsamSJT\ny8OJt0ECgYEA2lxOxJsQk2kI325JgKFjo92mQeUObIvPfSNWUIZQDTjniOI6Gv63\nGLWVFrZcvQBWjMEQraJA9xjPbblV8PtfO87MiJGLWCHFxmPz2dzoedN+2Coxom8m\nV95CLz8QUShuao6u/RYcvUaZEoYs5bHcTmy5sBK80JyEmafJPtCQVxMCgYEAy3ar\nZr3yv4xRPEPMat4rseswmuMooSaK3SKub19WFI5IAtB/e7qR1Rj9JhOGcZz+OQrl\nT78O2OFYlgOIkJPvRMrPpK5V9lslc7tz1FSh3BZMRGq5jSyD7ETSOQ0c8T2O/s7v\nbeEPbVbDe4mwvM24XByH0GnWveVxaDl51ABD65sCgYB3ZAspUkOA5egVCh8kNpnd\nSd6SnuQBE3ySRlT2WEnCwP9Ph6oPgn+oAfiPX4xbRqkL8q/k0BdHQ4h+zNwhk7+h\nWtPYRAP1Xxnc/F+jGjb+DVaIaKGU18MWPg7f+FI6nampl3Q0KvfxwX0GdNhtio8T\nTj1E+SnFwh56SRQuxSh2gwKBgHKjlIO5NtNSflsUYFM+hyQiPiqnHzddfhSG+/3o\nm5nNaSmczJesUYreH5San7/YEy2UxAugvP7aSY2MxB+iGsiJ9WD2kZzTUlDZJ7RV\nUzWsoqBR+eZfVJ2FUWWvy8TpSG6trh4dFxImNtKejCR1TREpSiTV3Zb1dmahK9GV\nrK9NAoGAbBxRLoC01xfxCTgt5BDiBcFVh4fp5yYKwavJPLzHSpuDOrrI9jDn1oKN\nonq5sDU1i391zfQvdrbX4Ova48BN+B7p63FocP/MK5tyyBoT8zQEk2+vWDOw7H/Z\nu5dTCPxTIsoIwUw1I+7yIxqJzLPFgR2gVBwY1ra/8iAqCj+zeBw=\n--END
+            RSA PRIVATE KEY--\n"
+      required:
+        - id
+        - node_id
+        - owner
+        - name
+        - description
+        - external_url
+        - html_url
+        - created_at
+        - updated_at
+        - permissions
+        - events
+    webhook-config:
+      title: Webhook Configuration
+      description: Configuration object of the webhook
+      type: object
+      properties:
+        url:
+          $ref: '#/components/schemas/webhook-config-url'
+        content_type:
+          $ref: '#/components/schemas/webhook-config-content-type'
+        secret:
+          $ref: '#/components/schemas/webhook-config-secret'
+        insecure_ssl:
+          $ref: '#/components/schemas/webhook-config-insecure-ssl'
+    hook-delivery:
+      title: Webhook delivery
+      description: Delivery made by a webhook.
+      type: object
+      properties:
+        id:
+          description: Unique identifier of the delivery.
+          type: integer
+          example: 42
+        guid:
+          description: >-
+            Unique identifier for the event (shared with all deliveries for all
+            webhooks that subscribe to this event).
+          type: string
+          example: 58474f00-b361-11eb-836d-0e4f3503ccbe
+        delivered_at:
+          description: Time when the delivery was delivered.
+          type: string
+          format: date-time
+          example: '2021-05-12T20:33:44Z'
+        redelivery:
+          description: Whether the delivery is a redelivery.
+          type: boolean
+          example: false
+        duration:
+          description: Time spent delivering.
+          type: number
+          example: 0.03
+        status:
+          description: Description of the status of the attempted delivery
+          type: string
+          example: failed to connect
+        status_code:
+          description: Status code received when delivery was made.
+          type: integer
+          example: 502
+        event:
+          description: The event that triggered the delivery.
+          type: string
+          example: issues
+        action:
+          description: The type of activity for the event that triggered the delivery.
+          type: string
+          example: opened
+          nullable: true
+        installation_id:
+          description: The id of the GitHub App installation associated with this event.
+          type: integer
+          example: 123
+          nullable: true
+        repository_id:
+          description: The id of the repository associated with this event.
+          type: integer
+          example: 123
+          nullable: true
+        url:
+          description: The URL target of the delivery.
+          type: string
+          example: https://www.example.com
+        request:
+          type: object
+          properties:
+            headers:
+              description: The request headers sent with the webhook delivery.
+              type: object
+              nullable: true
+              additionalProperties: true
+            payload:
+              description: The webhook payload.
+              type: object
+              nullable: true
+              additionalProperties: true
+          required:
+            - headers
+            - payload
+        response:
+          type: object
+          properties:
+            headers:
+              description: The response headers received when the delivery was made.
+              type: object
+              nullable: true
+              additionalProperties: true
+            payload:
+              description: The response payload received.
+              type: string
+              nullable: true
+              additionalProperties: true
+          required:
+            - headers
+            - payload
+      required:
+        - id
+        - guid
+        - delivered_at
+        - redelivery
+        - duration
+        - status
+        - status_code
+        - event
+        - action
+        - installation_id
+        - repository_id
+        - request
+        - response
+    installation:
+      title: Installation
+      description: Installation
+      type: object
+      properties:
+        id:
+          description: The ID of the installation.
+          type: integer
+          example: 1
+        account:
+          nullable: true
+          anyOf:
+            - $ref: '#/components/schemas/simple-user'
+            - $ref: '#/components/schemas/enterprise'
+        repository_selection:
+          description: >-
+            Describe whether all repositories have been selected or there's a
+            selection involved
+          type: string
+          enum:
+            - all
+            - selected
+        access_tokens_url:
+          type: string
+          format: uri
+          example: https://api.github.com/app/installations/1/access_tokens
+        repositories_url:
+          type: string
+          format: uri
+          example: https://api.github.com/installation/repositories
+        html_url:
+          type: string
+          format: uri
+          example: https://github.com/organizations/github/settings/installations/1
+        app_id:
+          type: integer
+          example: 1
+        target_id:
+          description: The ID of the user or organization this token is being scoped to.
+          type: integer
+        target_type:
+          type: string
+          example: Organization
+        permissions:
+          $ref: '#/components/schemas/app-permissions'
+        events:
+          type: array
+          items:
+            type: string
+        created_at:
+          type: string
+          format: date-time
+        updated_at:
+          type: string
+          format: date-time
+        single_file_name:
+          type: string
+          example: config.yaml
+          nullable: true
+        has_multiple_single_files:
+          type: boolean
+          example: true
+        single_file_paths:
+          type: array
+          items:
+            type: string
+          example:
+            - config.yml
+            - .github/issue_TEMPLATE.md
+        app_slug:
+          type: string
+          example: github-actions
+        suspended_by:
+          $ref: '#/components/schemas/nullable-simple-user'
+        suspended_at:
+          type: string
+          format: date-time
+          nullable: true
+        contact_email:
+          type: string
+          example: '"test_13f1e99741e3e004@d7e1eb0bc0a1ba12.com"'
+          nullable: true
+      required:
+        - id
+        - app_id
+        - app_slug
+        - target_id
+        - target_type
+        - single_file_name
+        - repository_selection
+        - access_tokens_url
+        - html_url
+        - repositories_url
+        - events
+        - account
+        - permissions
+        - created_at
+        - updated_at
+        - suspended_by
+        - suspended_at
+    application-grant:
+      title: Application Grant
+      description: The authorization associated with an OAuth Access.
+      type: object
+      properties:
+        id:
+          type: integer
+          example: 1
+        url:
+          type: string
+          format: uri
+          example: https://api.github.com/applications/grants/1
+        app:
+          type: object
+          properties:
+            client_id:
+              type: string
+            name:
+              type: string
+            url:
+              type: string
+              format: uri
+          required:
+            - client_id
+            - name
+            - url
+        created_at:
+          type: string
+          format: date-time
+          example: '2011-09-06T17:26:27Z'
+        updated_at:
+          type: string
+          format: date-time
+          example: '2011-09-06T20:39:23Z'
+        scopes:
+          type: array
+          items:
+            type: string
+          example:
+            - public_repo
+        user:
+          $ref: '#/components/schemas/nullable-simple-user'
+      required:
+        - app
+        - id
+        - scopes
+        - url
+        - created_at
+        - updated_at
+    authorization:
+      title: Authorization
+      description: >-
+        The authorization for an OAuth app, GitHub App, or a Personal Access
+        Token.
+      type: object
+      properties:
+        id:
+          type: integer
+        url:
+          type: string
+          format: uri
+        scopes:
+          description: A list of scopes that this authorization is in.
+          type: array
+          items:
+            type: string
+          nullable: true
+        token:
+          type: string
+        token_last_eight:
+          type: string
+          nullable: true
+        hashed_token:
+          type: string
+          nullable: true
+        app:
+          type: object
+          properties:
+            client_id:
+              type: string
+            name:
+              type: string
+            url:
+              type: string
+              format: uri
+          required:
+            - client_id
+            - name
+            - url
+        note:
+          type: string
+          nullable: true
+        note_url:
+          type: string
+          format: uri
+          nullable: true
+        updated_at:
+          type: string
+          format: date-time
+        created_at:
+          type: string
+          format: date-time
+        fingerprint:
+          type: string
+          nullable: true
+        user:
+          $ref: '#/components/schemas/nullable-simple-user'
+        installation:
+          $ref: '#/components/schemas/nullable-scoped-installation'
+        expires_at:
+          type: string
+          format: date-time
+          nullable: true
+      required:
+        - app
+        - id
+        - note
+        - note_url
+        - scopes
+        - token
+        - hashed_token
+        - token_last_eight
+        - fingerprint
+        - url
+        - created_at
+        - updated_at
+        - expires_at

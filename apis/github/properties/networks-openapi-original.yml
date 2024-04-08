@@ -1,0 +1,48 @@
+openapi: 3.1.0
+info:
+  title: Networks
+  description: Needs a description.
+paths:
+  /networks/{owner}/{repo}/events:
+    get:
+      summary: List public events for a network of repositories
+      description: ''
+      tags:
+        - - - - activity
+      operationId: activity/list-public-events-for-repo-network
+      externalDocs:
+        description: API method documentation
+        url: >-
+          https://docs.github.com/enterprise-server@3.9/rest/activity/events#list-public-events-for-a-network-of-repositories
+      parameters:
+        - $ref: '#/components/parameters/owner'
+        - $ref: '#/components/parameters/repo'
+        - $ref: '#/components/parameters/per-page'
+        - $ref: '#/components/parameters/page'
+      responses:
+        '200':
+          description: Response
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  $ref: '#/components/schemas/event'
+              examples:
+                default:
+                  $ref: '#/components/examples/public-repo-events-items'
+        '301':
+          $ref: '#/components/responses/moved_permanently'
+        '304':
+          $ref: '#/components/responses/not_modified'
+        '403':
+          $ref: '#/components/responses/forbidden'
+        '404':
+          $ref: '#/components/responses/not_found'
+      x-github:
+        githubCloudOnly: false
+        enabledForGitHubApps: true
+        category: activity
+        subcategory: events
+components:
+  schemas: {}

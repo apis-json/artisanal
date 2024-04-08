@@ -1,0 +1,1251 @@
+openapi: 3.1.0
+info:
+  title: Gists
+  description: Needs a description.
+paths:
+  /enterprise/stats/gists:
+    get:
+      summary: Get gist statistics
+      description: ''
+      operationId: enterprise-admin/get-gist-stats
+      tags:
+        - - - - enterprise-admin
+      externalDocs:
+        description: API method documentation
+        url: >-
+          https://docs.github.com/enterprise-server@3.9/rest/enterprise-admin/admin-stats#get-gist-statistics
+      responses:
+        '200':
+          description: Response
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/enterprise-gist-overview'
+              examples:
+                default:
+                  value:
+                    total_gists: 500
+                    private_gists: 30
+                    public_gists: 470
+      x-github:
+        githubCloudOnly: false
+        enabledForGitHubApps: false
+        category: enterprise-admin
+        subcategory: admin-stats
+  /gists:
+    get:
+      summary: List gists for the authenticated user
+      description: >-
+        Lists the authenticated user's gists or if called anonymously, this
+        endpoint returns all public gists:
+      tags:
+        - - - - gists
+      operationId: gists/list
+      externalDocs:
+        description: API method documentation
+        url: >-
+          https://docs.github.com/enterprise-server@3.9/rest/gists/gists#list-gists-for-the-authenticated-user
+      parameters:
+        - $ref: '#/components/parameters/since'
+        - $ref: '#/components/parameters/per-page'
+        - $ref: '#/components/parameters/page'
+      responses:
+        '200':
+          description: Response
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  $ref: '#/components/schemas/base-gist'
+              examples:
+                default:
+                  $ref: '#/components/examples/base-gist-items'
+          headers:
+            Link:
+              $ref: '#/components/headers/link'
+        '304':
+          $ref: '#/components/responses/not_modified'
+        '403':
+          $ref: '#/components/responses/forbidden'
+      x-github:
+        githubCloudOnly: false
+        enabledForGitHubApps: false
+        category: gists
+        subcategory: gists
+    post:
+      summary: Create a gist
+      description: >-
+        Allows you to add a new gist with one or more files.
+
+
+        **Note:** Don't name your files "gistfile" with a numerical suffix. This
+        is the format of the automatic naming scheme that Gist uses internally.
+      operationId: gists/create
+      tags:
+        - - - - gists
+      externalDocs:
+        description: API method documentation
+        url: >-
+          https://docs.github.com/enterprise-server@3.9/rest/gists/gists#create-a-gist
+      parameters: []
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              properties:
+                description:
+                  description: Description of the gist
+                  example: Example Ruby script
+                  type: string
+                files:
+                  description: Names and content for the files that make up the gist
+                  example:
+                    hello.rb:
+                      content: puts "Hello, World!"
+                  type: object
+                  additionalProperties:
+                    type: object
+                    properties:
+                      content:
+                        description: Content of the file
+                        readOnly: false
+                        type: string
+                    required:
+                      - content
+                public:
+                  oneOf:
+                    - description: Flag indicating whether the gist is public
+                      example: true
+                      type: boolean
+                      default: false
+                    - type: string
+                      example: 'true'
+                      default: 'false'
+                      enum:
+                        - 'true'
+                        - 'false'
+              required:
+                - files
+              type: object
+            examples:
+              default:
+                summary: Creating a gist
+                value:
+                  description: Example of a gist
+                  public: false
+                  files:
+                    README.md:
+                      content: Hello World
+      responses:
+        '201':
+          description: Response
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/gist-simple'
+              examples:
+                default:
+                  $ref: '#/components/examples/gist'
+          headers:
+            Location:
+              example: https://api.github.com/gists/aa5a315d61ae9438b18d
+              schema:
+                type: string
+        '304':
+          $ref: '#/components/responses/not_modified'
+        '403':
+          $ref: '#/components/responses/forbidden'
+        '404':
+          $ref: '#/components/responses/not_found'
+        '422':
+          $ref: '#/components/responses/validation_failed'
+      x-github:
+        githubCloudOnly: false
+        enabledForGitHubApps: false
+        category: gists
+        subcategory: gists
+  /gists/public:
+    get:
+      summary: List public gists
+      description: >-
+        List public gists sorted by most recently updated to least recently
+        updated.
+
+
+        Note: With
+        [pagination](https://docs.github.com/enterprise-server@3.9/rest/guides/using-pagination-in-the-rest-api),
+        you can fetch up to 3000 gists. For example, you can fetch 100 pages
+        with 30 gists per page or 30 pages with 100 gists per page.
+      tags:
+        - - - - gists
+      operationId: gists/list-public
+      externalDocs:
+        description: API method documentation
+        url: >-
+          https://docs.github.com/enterprise-server@3.9/rest/gists/gists#list-public-gists
+      parameters:
+        - $ref: '#/components/parameters/since'
+        - $ref: '#/components/parameters/per-page'
+        - $ref: '#/components/parameters/page'
+      responses:
+        '200':
+          description: Response
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  $ref: '#/components/schemas/base-gist'
+              examples:
+                default:
+                  $ref: '#/components/examples/base-gist-items'
+          headers:
+            Link:
+              $ref: '#/components/headers/link'
+        '304':
+          $ref: '#/components/responses/not_modified'
+        '403':
+          $ref: '#/components/responses/forbidden'
+        '422':
+          $ref: '#/components/responses/validation_failed'
+      x-github:
+        githubCloudOnly: false
+        enabledForGitHubApps: false
+        category: gists
+        subcategory: gists
+  /gists/starred:
+    get:
+      summary: List starred gists
+      description: 'List the authenticated user''s starred gists:'
+      tags:
+        - - - - gists
+      operationId: gists/list-starred
+      externalDocs:
+        description: API method documentation
+        url: >-
+          https://docs.github.com/enterprise-server@3.9/rest/gists/gists#list-starred-gists
+      parameters:
+        - $ref: '#/components/parameters/since'
+        - $ref: '#/components/parameters/per-page'
+        - $ref: '#/components/parameters/page'
+      responses:
+        '200':
+          description: Response
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  $ref: '#/components/schemas/base-gist'
+              examples:
+                default:
+                  $ref: '#/components/examples/base-gist-items'
+          headers:
+            Link:
+              $ref: '#/components/headers/link'
+        '304':
+          $ref: '#/components/responses/not_modified'
+        '401':
+          $ref: '#/components/responses/requires_authentication'
+        '403':
+          $ref: '#/components/responses/forbidden'
+      x-github:
+        githubCloudOnly: false
+        enabledForGitHubApps: false
+        category: gists
+        subcategory: gists
+  /gists/{gist_id}:
+    get:
+      summary: Get a gist
+      description: >-
+        Gets a specified gist.
+
+
+        This endpoint supports the following custom media types. For more
+        information, see "[Media
+        types](https://docs.github.com/enterprise-server@3.9/rest/using-the-rest-api/getting-started-with-the-rest-api#media-types)."
+
+
+        - **`application/vnd.github.raw+json`**: Returns the raw markdown. This
+        is the default if you do not pass any specific media type.
+
+        - **`application/vnd.github.base64+json`**: Returns the base64-encoded
+        contents. This can be useful if your gist contains any invalid UTF-8
+        sequences.
+      tags:
+        - - - - gists
+      operationId: gists/get
+      externalDocs:
+        description: API method documentation
+        url: >-
+          https://docs.github.com/enterprise-server@3.9/rest/gists/gists#get-a-gist
+      parameters:
+        - $ref: '#/components/parameters/gist-id'
+      responses:
+        '200':
+          description: Response
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/gist-simple'
+              examples:
+                default:
+                  $ref: '#/components/examples/gist'
+        '304':
+          $ref: '#/components/responses/not_modified'
+        '403':
+          $ref: '#/components/responses/forbidden_gist'
+        '404':
+          $ref: '#/components/responses/not_found'
+      x-github:
+        githubCloudOnly: false
+        enabledForGitHubApps: false
+        category: gists
+        subcategory: gists
+    patch:
+      summary: Update a gist
+      description: >-
+        Allows you to update a gist's description and to update, delete, or
+        rename gist files. Files
+
+        from the previous version of the gist that aren't explicitly changed
+        during an edit
+
+        are unchanged.
+
+
+        At least one of `description` or `files` is required.
+
+
+        This endpoint supports the following custom media types. For more
+        information, see "[Media
+        types](https://docs.github.com/enterprise-server@3.9/rest/using-the-rest-api/getting-started-with-the-rest-api#media-types)."
+
+
+        - **`application/vnd.github.raw+json`**: Returns the raw markdown. This
+        is the default if you do not pass any specific media type.
+
+        - **`application/vnd.github.base64+json`**: Returns the base64-encoded
+        contents. This can be useful if your gist contains any invalid UTF-8
+        sequences.
+      tags:
+        - - - - gists
+      operationId: gists/update
+      externalDocs:
+        description: API method documentation
+        url: >-
+          https://docs.github.com/enterprise-server@3.9/rest/gists/gists#update-a-gist
+      parameters:
+        - $ref: '#/components/parameters/gist-id'
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              properties:
+                description:
+                  description: The description of the gist.
+                  example: Example Ruby script
+                  type: string
+                files:
+                  description: >-
+                    The gist files to be updated, renamed, or deleted. Each
+                    `key` must match the current filename
+
+                    (including extension) of the targeted gist file. For
+                    example: `hello.py`.
+
+
+                    To delete a file, set the whole file to null. For example:
+                    `hello.py : null`. The file will also be
+
+                    deleted if the specified object does not contain at least
+                    one of `content` or `filename`.
+                  example:
+                    hello.rb:
+                      content: blah
+                      filename: goodbye.rb
+                  type: object
+                  additionalProperties:
+                    type: object
+                    nullable: true
+                    properties:
+                      content:
+                        description: The new content of the file.
+                        type: string
+                      filename:
+                        description: The new filename for the file.
+                        type: string
+                        nullable: true
+              type: object
+              nullable: true
+            examples:
+              updateGist:
+                summary: Updating a gist
+                value:
+                  description: An updated gist description
+                  files:
+                    README.md:
+                      content: Hello World from GitHub
+              deleteFile:
+                summary: Deleting a gist file
+                value:
+                  files:
+                    hello.py: null
+              renameFile:
+                summary: Renaming a gist file
+                value:
+                  files:
+                    hello.py:
+                      filename: goodbye.py
+      responses:
+        '200':
+          description: Response
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/gist-simple'
+              examples:
+                updateGist:
+                  $ref: '#/components/examples/gist'
+                deleteFile:
+                  $ref: '#/components/examples/delete-gist-file'
+                renameFile:
+                  $ref: '#/components/examples/rename-gist-file'
+        '404':
+          $ref: '#/components/responses/not_found'
+        '422':
+          $ref: '#/components/responses/validation_failed'
+      x-github:
+        githubCloudOnly: false
+        enabledForGitHubApps: false
+        category: gists
+        subcategory: gists
+    delete:
+      summary: Delete a gist
+      description: ''
+      tags:
+        - - - - gists
+      operationId: gists/delete
+      externalDocs:
+        description: API method documentation
+        url: >-
+          https://docs.github.com/enterprise-server@3.9/rest/gists/gists#delete-a-gist
+      parameters:
+        - $ref: '#/components/parameters/gist-id'
+      responses:
+        '204':
+          description: Response
+        '304':
+          $ref: '#/components/responses/not_modified'
+        '403':
+          $ref: '#/components/responses/forbidden'
+        '404':
+          $ref: '#/components/responses/not_found'
+      x-github:
+        githubCloudOnly: false
+        enabledForGitHubApps: false
+        category: gists
+        subcategory: gists
+  /gists/{gist_id}/comments:
+    get:
+      summary: List gist comments
+      description: >-
+        Lists the comments on a gist.
+
+
+        This endpoint supports the following custom media types. For more
+        information, see "[Media
+        types](https://docs.github.com/enterprise-server@3.9/rest/using-the-rest-api/getting-started-with-the-rest-api#media-types)."
+
+
+        - **`application/vnd.github.raw+json`**: Returns the raw markdown. This
+        is the default if you do not pass any specific media type.
+
+        - **`application/vnd.github.base64+json`**: Returns the base64-encoded
+        contents. This can be useful if your gist contains any invalid UTF-8
+        sequences.
+      tags:
+        - - - - gists
+      operationId: gists/list-comments
+      externalDocs:
+        description: API method documentation
+        url: >-
+          https://docs.github.com/enterprise-server@3.9/rest/gists/comments#list-gist-comments
+      parameters:
+        - $ref: '#/components/parameters/gist-id'
+        - $ref: '#/components/parameters/per-page'
+        - $ref: '#/components/parameters/page'
+      responses:
+        '200':
+          description: Response
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  $ref: '#/components/schemas/gist-comment'
+              examples:
+                default:
+                  $ref: '#/components/examples/gist-comment-items'
+          headers:
+            Link:
+              $ref: '#/components/headers/link'
+        '304':
+          $ref: '#/components/responses/not_modified'
+        '403':
+          $ref: '#/components/responses/forbidden'
+        '404':
+          $ref: '#/components/responses/not_found'
+      x-github:
+        githubCloudOnly: false
+        enabledForGitHubApps: false
+        category: gists
+        subcategory: comments
+    post:
+      summary: Create a gist comment
+      description: >-
+        Creates a comment on a gist.
+
+
+        This endpoint supports the following custom media types. For more
+        information, see "[Media
+        types](https://docs.github.com/enterprise-server@3.9/rest/using-the-rest-api/getting-started-with-the-rest-api#media-types)."
+
+
+        - **`application/vnd.github.raw+json`**: Returns the raw markdown. This
+        is the default if you do not pass any specific media type.
+
+        - **`application/vnd.github.base64+json`**: Returns the base64-encoded
+        contents. This can be useful if your gist contains any invalid UTF-8
+        sequences.
+      tags:
+        - - - - gists
+      operationId: gists/create-comment
+      externalDocs:
+        description: API method documentation
+        url: >-
+          https://docs.github.com/enterprise-server@3.9/rest/gists/comments#create-a-gist-comment
+      parameters:
+        - $ref: '#/components/parameters/gist-id'
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              properties:
+                body:
+                  description: The comment text.
+                  type: string
+                  maxLength: 65535
+                  example: Body of the attachment
+              type: object
+              required:
+                - body
+            examples:
+              default:
+                summary: Creating a comment in a gist
+                value:
+                  body: This is a comment to a gist
+      responses:
+        '201':
+          description: Response
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/gist-comment'
+              examples:
+                default:
+                  $ref: '#/components/examples/gist-comment'
+          headers:
+            Location:
+              example: https://api.github.com/gists/a6db0bec360bb87e9418/comments/1
+              schema:
+                type: string
+        '304':
+          $ref: '#/components/responses/not_modified'
+        '403':
+          $ref: '#/components/responses/forbidden'
+        '404':
+          $ref: '#/components/responses/not_found'
+      x-github:
+        githubCloudOnly: false
+        enabledForGitHubApps: false
+        category: gists
+        subcategory: comments
+  /gists/{gist_id}/comments/{comment_id}:
+    get:
+      summary: Get a gist comment
+      description: >-
+        Gets a comment on a gist.
+
+
+        This endpoint supports the following custom media types. For more
+        information, see "[Media
+        types](https://docs.github.com/enterprise-server@3.9/rest/using-the-rest-api/getting-started-with-the-rest-api#media-types)."
+
+
+        - **`application/vnd.github.raw+json`**: Returns the raw markdown. This
+        is the default if you do not pass any specific media type.
+
+        - **`application/vnd.github.base64+json`**: Returns the base64-encoded
+        contents. This can be useful if your gist contains any invalid UTF-8
+        sequences.
+      tags:
+        - - - - gists
+      operationId: gists/get-comment
+      externalDocs:
+        description: API method documentation
+        url: >-
+          https://docs.github.com/enterprise-server@3.9/rest/gists/comments#get-a-gist-comment
+      parameters:
+        - $ref: '#/components/parameters/gist-id'
+        - $ref: '#/components/parameters/comment-id'
+      responses:
+        '200':
+          description: Response
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/gist-comment'
+              examples:
+                default:
+                  $ref: '#/components/examples/gist-comment'
+        '304':
+          $ref: '#/components/responses/not_modified'
+        '403':
+          $ref: '#/components/responses/forbidden_gist'
+        '404':
+          $ref: '#/components/responses/not_found'
+      x-github:
+        githubCloudOnly: false
+        enabledForGitHubApps: false
+        category: gists
+        subcategory: comments
+    patch:
+      summary: Update a gist comment
+      description: >-
+        Updates a comment on a gist.
+
+
+        This endpoint supports the following custom media types. For more
+        information, see "[Media
+        types](https://docs.github.com/enterprise-server@3.9/rest/using-the-rest-api/getting-started-with-the-rest-api#media-types)."
+
+
+        - **`application/vnd.github.raw+json`**: Returns the raw markdown. This
+        is the default if you do not pass any specific media type.
+
+        - **`application/vnd.github.base64+json`**: Returns the base64-encoded
+        contents. This can be useful if your gist contains any invalid UTF-8
+        sequences.
+      tags:
+        - - - - gists
+      operationId: gists/update-comment
+      externalDocs:
+        description: API method documentation
+        url: >-
+          https://docs.github.com/enterprise-server@3.9/rest/gists/comments#update-a-gist-comment
+      parameters:
+        - $ref: '#/components/parameters/gist-id'
+        - $ref: '#/components/parameters/comment-id'
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              properties:
+                body:
+                  description: The comment text.
+                  type: string
+                  maxLength: 65535
+                  example: Body of the attachment
+              type: object
+              required:
+                - body
+            examples:
+              default:
+                summary: Updating a comment in a gist
+                value:
+                  body: This is an update to a comment in a gist
+      responses:
+        '200':
+          description: Response
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/gist-comment'
+              examples:
+                default:
+                  $ref: '#/components/examples/gist-comment'
+        '404':
+          $ref: '#/components/responses/not_found'
+      x-github:
+        githubCloudOnly: false
+        enabledForGitHubApps: false
+        category: gists
+        subcategory: comments
+    delete:
+      summary: Delete a gist comment
+      description: ''
+      tags:
+        - - - - gists
+      operationId: gists/delete-comment
+      externalDocs:
+        description: API method documentation
+        url: >-
+          https://docs.github.com/enterprise-server@3.9/rest/gists/comments#delete-a-gist-comment
+      parameters:
+        - $ref: '#/components/parameters/gist-id'
+        - $ref: '#/components/parameters/comment-id'
+      responses:
+        '204':
+          description: Response
+        '304':
+          $ref: '#/components/responses/not_modified'
+        '403':
+          $ref: '#/components/responses/forbidden'
+        '404':
+          $ref: '#/components/responses/not_found'
+      x-github:
+        githubCloudOnly: false
+        enabledForGitHubApps: false
+        category: gists
+        subcategory: comments
+  /gists/{gist_id}/commits:
+    get:
+      summary: List gist commits
+      description: ''
+      tags:
+        - - - - gists
+      operationId: gists/list-commits
+      externalDocs:
+        description: API method documentation
+        url: >-
+          https://docs.github.com/enterprise-server@3.9/rest/gists/gists#list-gist-commits
+      parameters:
+        - $ref: '#/components/parameters/gist-id'
+        - $ref: '#/components/parameters/per-page'
+        - $ref: '#/components/parameters/page'
+      responses:
+        '200':
+          description: Response
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  $ref: '#/components/schemas/gist-commit'
+              examples:
+                default:
+                  $ref: '#/components/examples/gist-commit-items'
+          headers:
+            Link:
+              example: <https://api.github.com/resource?page=2>; rel="next"
+              schema:
+                type: string
+        '304':
+          $ref: '#/components/responses/not_modified'
+        '403':
+          $ref: '#/components/responses/forbidden'
+        '404':
+          $ref: '#/components/responses/not_found'
+      x-github:
+        githubCloudOnly: false
+        enabledForGitHubApps: false
+        category: gists
+        subcategory: gists
+  /gists/{gist_id}/forks:
+    get:
+      summary: List gist forks
+      description: ''
+      tags:
+        - - - - gists
+      operationId: gists/list-forks
+      externalDocs:
+        description: API method documentation
+        url: >-
+          https://docs.github.com/enterprise-server@3.9/rest/gists/gists#list-gist-forks
+      parameters:
+        - $ref: '#/components/parameters/gist-id'
+        - $ref: '#/components/parameters/per-page'
+        - $ref: '#/components/parameters/page'
+      responses:
+        '200':
+          description: Response
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  $ref: '#/components/schemas/gist-simple'
+              examples:
+                default:
+                  $ref: '#/components/examples/gist-fork-items'
+          headers:
+            Link:
+              $ref: '#/components/headers/link'
+        '304':
+          $ref: '#/components/responses/not_modified'
+        '403':
+          $ref: '#/components/responses/forbidden'
+        '404':
+          $ref: '#/components/responses/not_found'
+      x-github:
+        githubCloudOnly: false
+        enabledForGitHubApps: false
+        category: gists
+        subcategory: gists
+    post:
+      summary: Fork a gist
+      description: ''
+      tags:
+        - - - - gists
+      operationId: gists/fork
+      externalDocs:
+        description: API method documentation
+        url: >-
+          https://docs.github.com/enterprise-server@3.9/rest/gists/gists#fork-a-gist
+      parameters:
+        - $ref: '#/components/parameters/gist-id'
+      responses:
+        '201':
+          description: Response
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/base-gist'
+              examples:
+                default:
+                  $ref: '#/components/examples/base-gist'
+          headers:
+            Location:
+              example: https://api.github.com/gists/aa5a315d61ae9438b18d
+              schema:
+                type: string
+        '304':
+          $ref: '#/components/responses/not_modified'
+        '403':
+          $ref: '#/components/responses/forbidden'
+        '404':
+          $ref: '#/components/responses/not_found'
+        '422':
+          $ref: '#/components/responses/validation_failed'
+      x-github:
+        githubCloudOnly: false
+        enabledForGitHubApps: false
+        category: gists
+        subcategory: gists
+  /gists/{gist_id}/star:
+    get:
+      summary: Check if a gist is starred
+      description: ''
+      tags:
+        - - - - gists
+      operationId: gists/check-is-starred
+      externalDocs:
+        description: API method documentation
+        url: >-
+          https://docs.github.com/enterprise-server@3.9/rest/gists/gists#check-if-a-gist-is-starred
+      parameters:
+        - $ref: '#/components/parameters/gist-id'
+      responses:
+        '204':
+          description: Response if gist is starred
+        '304':
+          $ref: '#/components/responses/not_modified'
+        '403':
+          $ref: '#/components/responses/forbidden'
+        '404':
+          description: Not Found if gist is not starred
+          content:
+            application/json:
+              schema:
+                type: object
+                properties: {}
+                additionalProperties: false
+      x-github:
+        githubCloudOnly: false
+        enabledForGitHubApps: false
+        category: gists
+        subcategory: gists
+    put:
+      summary: Star a gist
+      description: >-
+        Note that you'll need to set `Content-Length` to zero when calling out
+        to this endpoint. For more information, see "[HTTP
+        method](https://docs.github.com/enterprise-server@3.9/rest/guides/getting-started-with-the-rest-api#http-method)."
+      tags:
+        - - - - gists
+      operationId: gists/star
+      externalDocs:
+        description: API method documentation
+        url: >-
+          https://docs.github.com/enterprise-server@3.9/rest/gists/gists#star-a-gist
+      parameters:
+        - $ref: '#/components/parameters/gist-id'
+      responses:
+        '204':
+          description: Response
+        '304':
+          $ref: '#/components/responses/not_modified'
+        '403':
+          $ref: '#/components/responses/forbidden'
+        '404':
+          $ref: '#/components/responses/not_found'
+      x-github:
+        githubCloudOnly: false
+        enabledForGitHubApps: false
+        category: gists
+        subcategory: gists
+    delete:
+      summary: Unstar a gist
+      description: ''
+      tags:
+        - - - - gists
+      operationId: gists/unstar
+      externalDocs:
+        description: API method documentation
+        url: >-
+          https://docs.github.com/enterprise-server@3.9/rest/gists/gists#unstar-a-gist
+      parameters:
+        - $ref: '#/components/parameters/gist-id'
+      responses:
+        '204':
+          description: Response
+        '304':
+          $ref: '#/components/responses/not_modified'
+        '403':
+          $ref: '#/components/responses/forbidden'
+        '404':
+          $ref: '#/components/responses/not_found'
+      x-github:
+        githubCloudOnly: false
+        enabledForGitHubApps: false
+        category: gists
+        subcategory: gists
+  /gists/{gist_id}/{sha}:
+    get:
+      summary: Get a gist revision
+      description: >-
+        Gets a specified gist revision.
+
+
+        This endpoint supports the following custom media types. For more
+        information, see "[Media
+        types](https://docs.github.com/enterprise-server@3.9/rest/using-the-rest-api/getting-started-with-the-rest-api#media-types)."
+
+
+        - **`application/vnd.github.raw+json`**: Returns the raw markdown. This
+        is the default if you do not pass any specific media type.
+
+        - **`application/vnd.github.base64+json`**: Returns the base64-encoded
+        contents. This can be useful if your gist contains any invalid UTF-8
+        sequences.
+      tags:
+        - - - - gists
+      operationId: gists/get-revision
+      externalDocs:
+        description: API method documentation
+        url: >-
+          https://docs.github.com/enterprise-server@3.9/rest/gists/gists#get-a-gist-revision
+      parameters:
+        - $ref: '#/components/parameters/gist-id'
+        - name: sha
+          in: path
+          required: true
+          schema:
+            type: string
+      responses:
+        '200':
+          description: Response
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/gist-simple'
+              examples:
+                default:
+                  $ref: '#/components/examples/gist'
+        '403':
+          $ref: '#/components/responses/forbidden'
+        '404':
+          $ref: '#/components/responses/not_found'
+        '422':
+          $ref: '#/components/responses/validation_failed'
+      x-github:
+        githubCloudOnly: false
+        enabledForGitHubApps: false
+        category: gists
+        subcategory: gists
+  /users/{username}/gists:
+    get:
+      summary: List gists for a user
+      description: 'Lists public gists for the specified user:'
+      tags:
+        - - - - gists
+      operationId: gists/list-for-user
+      externalDocs:
+        description: API method documentation
+        url: >-
+          https://docs.github.com/enterprise-server@3.9/rest/gists/gists#list-gists-for-a-user
+      parameters:
+        - $ref: '#/components/parameters/username'
+        - $ref: '#/components/parameters/since'
+        - $ref: '#/components/parameters/per-page'
+        - $ref: '#/components/parameters/page'
+      responses:
+        '200':
+          description: Response
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  $ref: '#/components/schemas/base-gist'
+              examples:
+                default:
+                  $ref: '#/components/examples/base-gist-items'
+          headers:
+            Link:
+              $ref: '#/components/headers/link'
+        '422':
+          $ref: '#/components/responses/validation_failed'
+      x-github:
+        githubCloudOnly: false
+        enabledForGitHubApps: false
+        category: gists
+        subcategory: gists
+components:
+  schemas:
+    enterprise-gist-overview:
+      title: Enterprise Gist Stats
+      type: object
+      properties:
+        total_gists:
+          type: integer
+        private_gists:
+          type: integer
+        public_gists:
+          type: integer
+      required:
+        - total_gists
+        - private_gists
+        - public_gists
+    gist-simple:
+      title: Gist Simple
+      description: Gist Simple
+      type: object
+      properties:
+        forks:
+          deprecated: true
+          nullable: true
+          type: array
+          items:
+            type: object
+            properties:
+              id:
+                type: string
+              url:
+                type: string
+                format: uri
+              user:
+                $ref: '#/components/schemas/public-user'
+              created_at:
+                type: string
+                format: date-time
+              updated_at:
+                type: string
+                format: date-time
+        history:
+          deprecated: true
+          nullable: true
+          type: array
+          items:
+            $ref: '#/components/schemas/gist-history'
+        fork_of:
+          nullable: true
+          title: Gist
+          description: Gist
+          type: object
+          properties:
+            url:
+              type: string
+              format: uri
+            forks_url:
+              type: string
+              format: uri
+            commits_url:
+              type: string
+              format: uri
+            id:
+              type: string
+            node_id:
+              type: string
+            git_pull_url:
+              type: string
+              format: uri
+            git_push_url:
+              type: string
+              format: uri
+            html_url:
+              type: string
+              format: uri
+            files:
+              type: object
+              additionalProperties:
+                type: object
+                properties:
+                  filename:
+                    type: string
+                  type:
+                    type: string
+                  language:
+                    type: string
+                  raw_url:
+                    type: string
+                  size:
+                    type: integer
+            public:
+              type: boolean
+            created_at:
+              type: string
+              format: date-time
+            updated_at:
+              type: string
+              format: date-time
+            description:
+              type: string
+              nullable: true
+            comments:
+              type: integer
+            user:
+              $ref: '#/components/schemas/nullable-simple-user'
+            comments_url:
+              type: string
+              format: uri
+            owner:
+              $ref: '#/components/schemas/nullable-simple-user'
+            truncated:
+              type: boolean
+            forks:
+              type: array
+              items: {}
+            history:
+              type: array
+              items: {}
+          required:
+            - id
+            - node_id
+            - url
+            - forks_url
+            - commits_url
+            - git_pull_url
+            - git_push_url
+            - html_url
+            - comments_url
+            - public
+            - description
+            - comments
+            - user
+            - files
+            - created_at
+            - updated_at
+        url:
+          type: string
+        forks_url:
+          type: string
+        commits_url:
+          type: string
+        id:
+          type: string
+        node_id:
+          type: string
+        git_pull_url:
+          type: string
+        git_push_url:
+          type: string
+        html_url:
+          type: string
+        files:
+          type: object
+          additionalProperties:
+            nullable: true
+            type: object
+            properties:
+              filename:
+                type: string
+              type:
+                type: string
+              language:
+                type: string
+              raw_url:
+                type: string
+              size:
+                type: integer
+              truncated:
+                type: boolean
+              content:
+                type: string
+        public:
+          type: boolean
+        created_at:
+          type: string
+        updated_at:
+          type: string
+        description:
+          type: string
+          nullable: true
+        comments:
+          type: integer
+        user:
+          type: string
+          nullable: true
+        comments_url:
+          type: string
+        owner:
+          $ref: '#/components/schemas/simple-user'
+        truncated:
+          type: boolean
+    gist-comment:
+      title: Gist Comment
+      description: A comment made to a gist.
+      type: object
+      properties:
+        id:
+          type: integer
+          example: 1
+        node_id:
+          type: string
+          example: MDExOkdpc3RDb21tZW50MQ==
+        url:
+          type: string
+          format: uri
+          example: https://api.github.com/gists/a6db0bec360bb87e9418/comments/1
+        body:
+          description: The comment text.
+          type: string
+          maxLength: 65535
+          example: Body of the attachment
+        user:
+          $ref: '#/components/schemas/nullable-simple-user'
+        created_at:
+          type: string
+          format: date-time
+          example: '2011-04-18T23:23:56Z'
+        updated_at:
+          type: string
+          format: date-time
+          example: '2011-04-18T23:23:56Z'
+        author_association:
+          $ref: '#/components/schemas/author-association'
+      required:
+        - url
+        - id
+        - node_id
+        - user
+        - body
+        - author_association
+        - created_at
+        - updated_at

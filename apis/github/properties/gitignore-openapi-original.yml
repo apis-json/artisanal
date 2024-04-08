@@ -1,0 +1,122 @@
+openapi: 3.1.0
+info:
+  title: Gitignore
+  description: Needs a description.
+paths:
+  /gitignore/templates:
+    get:
+      summary: Get all gitignore templates
+      description: >-
+        List all templates available to pass as an option when [creating a
+        repository](https://docs.github.com/enterprise-server@3.9/rest/repos/repos#create-a-repository-for-the-authenticated-user).
+      operationId: gitignore/get-all-templates
+      tags:
+        - - - - gitignore
+      externalDocs:
+        description: API method documentation
+        url: >-
+          https://docs.github.com/enterprise-server@3.9/rest/gitignore/gitignore#get-all-gitignore-templates
+      parameters: []
+      responses:
+        '200':
+          description: Response
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  type: string
+              examples:
+                default:
+                  value:
+                    - Actionscript
+                    - Android
+                    - AppceleratorTitanium
+                    - Autotools
+                    - Bancha
+                    - C
+                    - C++
+        '304':
+          $ref: '#/components/responses/not_modified'
+      x-github:
+        githubCloudOnly: false
+        enabledForGitHubApps: true
+        category: gitignore
+        subcategory: gitignore
+  /gitignore/templates/{name}:
+    get:
+      summary: Get a gitignore template
+      description: >-
+        Get the content of a gitignore template.
+
+
+        This endpoint supports the following custom media types. For more
+        information, see "[Media
+        types](https://docs.github.com/enterprise-server@3.9/rest/using-the-rest-api/getting-started-with-the-rest-api#media-types)."
+
+
+        - **`application/vnd.github.raw+json`**: Returns the raw .gitignore
+        contents.
+      operationId: gitignore/get-template
+      tags:
+        - - - - gitignore
+      externalDocs:
+        description: API method documentation
+        url: >-
+          https://docs.github.com/enterprise-server@3.9/rest/gitignore/gitignore#get-a-gitignore-template
+      parameters:
+        - name: name
+          in: path
+          required: true
+          schema:
+            type: string
+      responses:
+        '200':
+          description: Response
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/gitignore-template'
+              examples:
+                default:
+                  $ref: '#/components/examples/gitignore-template'
+        '304':
+          $ref: '#/components/responses/not_modified'
+      x-github:
+        githubCloudOnly: false
+        enabledForGitHubApps: true
+        category: gitignore
+        subcategory: gitignore
+components:
+  schemas:
+    gitignore-template:
+      title: Gitignore Template
+      description: Gitignore Template
+      type: object
+      properties:
+        name:
+          type: string
+          example: C
+        source:
+          type: string
+          example: |
+            # Object files
+            *.o
+
+            # Libraries
+            *.lib
+            *.a
+
+            # Shared objects (inc. Windows DLLs)
+            *.dll
+            *.so
+            *.so.*
+            *.dylib
+
+            # Executables
+            *.exe
+            *.out
+            *.app
+      required:
+        - name
+        - source

@@ -1,0 +1,872 @@
+openapi: 3.1.0
+info:
+  title: Installation
+  description: Needs a description.
+paths:
+  /app/installation-requests:
+    get:
+      summary: List installation requests for the authenticated app
+      description: >-
+        Lists all the pending installation requests for the authenticated GitHub
+        App.
+      tags:
+        - - - - apps
+      operationId: apps/list-installation-requests-for-authenticated-app
+      externalDocs:
+        description: API method documentation
+        url: >-
+          https://docs.github.com/enterprise-server@3.9/rest/apps/apps#list-installation-requests-for-the-authenticated-app
+      parameters:
+        - $ref: '#/components/parameters/per-page'
+        - $ref: '#/components/parameters/page'
+      responses:
+        '200':
+          description: List of integration installation requests
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  $ref: '#/components/schemas/integration-installation-request'
+              examples:
+                exampleKey1:
+                  $ref: >-
+                    #/components/examples/integration-installation-request-paginated
+        '304':
+          $ref: '#/components/responses/not_modified'
+        '401':
+          $ref: '#/components/responses/requires_authentication'
+      x-github:
+        githubCloudOnly: false
+        enabledForGitHubApps: true
+        category: apps
+        subcategory: apps
+  /app/installations:
+    get:
+      summary: List installations for the authenticated app
+      description: >-
+        The permissions the installation has are included under the
+        `permissions` key.
+
+
+        You must use a
+        [JWT](https://docs.github.com/enterprise-server@3.9/apps/building-github-apps/authenticating-with-github-apps/#authenticating-as-a-github-app)
+        to access this endpoint.
+      tags:
+        - - - - apps
+      operationId: apps/list-installations
+      externalDocs:
+        description: API method documentation
+        url: >-
+          https://docs.github.com/enterprise-server@3.9/rest/apps/apps#list-installations-for-the-authenticated-app
+      parameters:
+        - $ref: '#/components/parameters/per-page'
+        - $ref: '#/components/parameters/page'
+        - $ref: '#/components/parameters/since'
+        - name: outdated
+          in: query
+          required: false
+          schema:
+            type: string
+      responses:
+        '200':
+          description: >-
+            The permissions the installation has are included under the
+            `permissions` key.
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  $ref: '#/components/schemas/installation'
+              examples:
+                default:
+                  $ref: '#/components/examples/base-installation-items'
+          headers:
+            Link:
+              $ref: '#/components/headers/link'
+      x-github:
+        githubCloudOnly: false
+        enabledForGitHubApps: true
+        category: apps
+        subcategory: apps
+  /app/installations/{installation_id}:
+    get:
+      summary: Get an installation for the authenticated app
+      description: >-
+        Enables an authenticated GitHub App to find an installation's
+        information using the installation id.
+
+
+        You must use a
+        [JWT](https://docs.github.com/enterprise-server@3.9/apps/building-github-apps/authenticating-with-github-apps/#authenticating-as-a-github-app)
+        to access this endpoint.
+      tags:
+        - - - - apps
+      operationId: apps/get-installation
+      externalDocs:
+        description: API method documentation
+        url: >-
+          https://docs.github.com/enterprise-server@3.9/rest/apps/apps#get-an-installation-for-the-authenticated-app
+      parameters:
+        - $ref: '#/components/parameters/installation-id'
+      responses:
+        '200':
+          description: Response
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/installation'
+              examples:
+                default:
+                  $ref: '#/components/examples/base-installation'
+        '404':
+          $ref: '#/components/responses/not_found'
+      x-github:
+        githubCloudOnly: false
+        enabledForGitHubApps: true
+        category: apps
+        subcategory: apps
+    delete:
+      summary: Delete an installation for the authenticated app
+      description: >-
+        Uninstalls a GitHub App on a user, organization, or business account. If
+        you prefer to temporarily suspend an app's access to your account's
+        resources, then we recommend the "[Suspend an app
+        installation](https://docs.github.com/enterprise-server@3.9/rest/apps/apps#suspend-an-app-installation)"
+        endpoint.
+
+
+        You must use a
+        [JWT](https://docs.github.com/enterprise-server@3.9/apps/building-github-apps/authenticating-with-github-apps/#authenticating-as-a-github-app)
+        to access this endpoint.
+      tags:
+        - - - - apps
+      operationId: apps/delete-installation
+      externalDocs:
+        description: API method documentation
+        url: >-
+          https://docs.github.com/enterprise-server@3.9/rest/apps/apps#delete-an-installation-for-the-authenticated-app
+      parameters:
+        - $ref: '#/components/parameters/installation-id'
+      responses:
+        '204':
+          description: Response
+        '404':
+          $ref: '#/components/responses/not_found'
+      x-github:
+        githubCloudOnly: false
+        enabledForGitHubApps: false
+        category: apps
+        subcategory: apps
+  /app/installations/{installation_id}/access_tokens:
+    post:
+      summary: Create an installation access token for an app
+      description: >-
+        Creates an installation access token that enables a GitHub App to make
+        authenticated API requests for the app's installation on an organization
+        or individual account. Installation tokens expire one hour from the time
+        you create them. Using an expired token produces a status code of `401 -
+        Unauthorized`, and requires creating a new installation token. By
+        default the installation token has access to all repositories that the
+        installation can access. 
+
+
+        Optionally, you can use the `repositories` or `repository_ids` body
+        parameters to specify individual repositories that the installation
+        access token can access. If you don't use `repositories` or
+        `repository_ids` to grant access to specific repositories, the
+        installation access token will have access to all repositories that the
+        installation was granted access to. The installation access token cannot
+        be granted access to repositories that the installation was not granted
+        access to. Up to 500 repositories can be listed in this manner.
+
+
+        Optionally, use the `permissions` body parameter to specify the
+        permissions that the installation access token should have. If
+        `permissions` is not specified, the installation access token will have
+        all of the permissions that were granted to the app. The installation
+        access token cannot be granted permissions that the app was not granted.
+
+
+        When using the repository or permission parameters to reduce the access
+        of the token, the complexity of the token is increased due to both the
+        number of permissions in the request and the number of repositories the
+        token will have access to. If the complexity is too large, the token
+        will fail to be issued. If this occurs, the error message will indicate
+        the maximum number of repositories that should be requested. For the
+        average application requesting 8 permissions, this limit is around 5000
+        repositories. With fewer permissions requested, more repositories are
+        supported. 
+
+
+        You must use a
+        [JWT](https://docs.github.com/enterprise-server@3.9/apps/building-github-apps/authenticating-with-github-apps/#authenticating-as-a-github-app)
+        to access this endpoint.
+      tags:
+        - - - - apps
+      operationId: apps/create-installation-access-token
+      externalDocs:
+        description: API method documentation
+        url: >-
+          https://docs.github.com/enterprise-server@3.9/rest/apps/apps#create-an-installation-access-token-for-an-app
+      parameters:
+        - $ref: '#/components/parameters/installation-id'
+      requestBody:
+        required: false
+        content:
+          application/json:
+            schema:
+              type: object
+              properties:
+                repositories:
+                  description: >-
+                    List of repository names that the token should have access
+                    to
+                  type: array
+                  items:
+                    type: string
+                    example: rails
+                repository_ids:
+                  description: List of repository IDs that the token should have access to
+                  example:
+                    - 1
+                  type: array
+                  items:
+                    type: integer
+                permissions:
+                  $ref: '#/components/schemas/app-permissions'
+            examples:
+              default:
+                value:
+                  repositories:
+                    - Hello-World
+                  permissions:
+                    issues: write
+                    contents: read
+      responses:
+        '201':
+          description: Response
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/installation-token'
+              examples:
+                default:
+                  $ref: '#/components/examples/installation-token'
+        '401':
+          $ref: '#/components/responses/requires_authentication'
+        '403':
+          $ref: '#/components/responses/forbidden'
+        '404':
+          $ref: '#/components/responses/not_found'
+        '422':
+          $ref: '#/components/responses/validation_failed'
+      x-github:
+        githubCloudOnly: false
+        enabledForGitHubApps: true
+        category: apps
+        subcategory: apps
+  /app/installations/{installation_id}/suspended:
+    put:
+      summary: Suspend an app installation
+      description: >-
+        Suspends a GitHub App on a user, organization, or business account,
+        which blocks the app from accessing the account's resources. When a
+        GitHub App is suspended, the app's access to the GitHub Enterprise
+        Server API or webhook events is blocked for that account.
+
+
+        You must use a
+        [JWT](https://docs.github.com/enterprise-server@3.9/apps/building-github-apps/authenticating-with-github-apps/#authenticating-as-a-github-app)
+        to access this endpoint.
+      tags:
+        - - - - apps
+      operationId: apps/suspend-installation
+      externalDocs:
+        description: API method documentation
+        url: >-
+          https://docs.github.com/enterprise-server@3.9/rest/apps/apps#suspend-an-app-installation
+      parameters:
+        - $ref: '#/components/parameters/installation-id'
+      responses:
+        '204':
+          description: Response
+        '404':
+          $ref: '#/components/responses/not_found'
+      x-github:
+        githubCloudOnly: false
+        enabledForGitHubApps: false
+        category: apps
+        subcategory: apps
+    delete:
+      summary: Unsuspend an app installation
+      description: >-
+        Removes a GitHub App installation suspension.
+
+
+        You must use a
+        [JWT](https://docs.github.com/enterprise-server@3.9/apps/building-github-apps/authenticating-with-github-apps/#authenticating-as-a-github-app)
+        to access this endpoint.
+      tags:
+        - - - - apps
+      operationId: apps/unsuspend-installation
+      externalDocs:
+        description: API method documentation
+        url: >-
+          https://docs.github.com/enterprise-server@3.9/rest/apps/apps#unsuspend-an-app-installation
+      parameters:
+        - $ref: '#/components/parameters/installation-id'
+      responses:
+        '204':
+          description: Response
+        '404':
+          $ref: '#/components/responses/not_found'
+      x-github:
+        githubCloudOnly: false
+        enabledForGitHubApps: false
+        category: apps
+        subcategory: apps
+  /installation/repositories:
+    get:
+      summary: List repositories accessible to the app installation
+      description: List repositories that an app installation can access.
+      tags:
+        - - - - apps
+      operationId: apps/list-repos-accessible-to-installation
+      externalDocs:
+        description: API method documentation
+        url: >-
+          https://docs.github.com/enterprise-server@3.9/rest/apps/installations#list-repositories-accessible-to-the-app-installation
+      parameters:
+        - $ref: '#/components/parameters/per-page'
+        - $ref: '#/components/parameters/page'
+      responses:
+        '200':
+          description: Response
+          content:
+            application/json:
+              schema:
+                type: object
+                required:
+                  - total_count
+                  - repositories
+                properties:
+                  total_count:
+                    type: integer
+                  repositories:
+                    type: array
+                    items:
+                      $ref: '#/components/schemas/repository'
+                  repository_selection:
+                    type: string
+                    example: selected
+              examples:
+                default:
+                  $ref: '#/components/examples/repository-paginated-2'
+          headers:
+            Link:
+              $ref: '#/components/headers/link'
+        '304':
+          $ref: '#/components/responses/not_modified'
+        '401':
+          $ref: '#/components/responses/requires_authentication'
+        '403':
+          $ref: '#/components/responses/forbidden'
+      x-github:
+        githubCloudOnly: false
+        enabledForGitHubApps: true
+        category: apps
+        subcategory: installations
+  /installation/token:
+    delete:
+      summary: Revoke an installation access token
+      description: >-
+        Revokes the installation token you're using to authenticate as an
+        installation and access this endpoint.
+
+
+        Once an installation token is revoked, the token is invalidated and
+        cannot be used. Other endpoints that require the revoked installation
+        token must have a new installation token to work. You can create a new
+        token using the "[Create an installation access token for an
+        app](https://docs.github.com/enterprise-server@3.9/rest/apps/apps#create-an-installation-access-token-for-an-app)"
+        endpoint.
+      tags:
+        - - - - apps
+      operationId: apps/revoke-installation-access-token
+      externalDocs:
+        description: API method documentation
+        url: >-
+          https://docs.github.com/enterprise-server@3.9/rest/apps/installations#revoke-an-installation-access-token
+      parameters: []
+      responses:
+        '204':
+          description: Response
+      x-github:
+        githubCloudOnly: false
+        enabledForGitHubApps: true
+        category: apps
+        subcategory: installations
+  /orgs/{org}/installation:
+    get:
+      summary: Get an organization installation for the authenticated app
+      description: >-
+        Enables an authenticated GitHub App to find the organization's
+        installation information.
+
+
+        You must use a
+        [JWT](https://docs.github.com/enterprise-server@3.9/apps/building-github-apps/authenticating-with-github-apps/#authenticating-as-a-github-app)
+        to access this endpoint.
+      tags:
+        - - - - apps
+      operationId: apps/get-org-installation
+      externalDocs:
+        description: API method documentation
+        url: >-
+          https://docs.github.com/enterprise-server@3.9/rest/apps/apps#get-an-organization-installation-for-the-authenticated-app
+      parameters:
+        - $ref: '#/components/parameters/org'
+      responses:
+        '200':
+          description: Response
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/installation'
+              examples:
+                default:
+                  $ref: '#/components/examples/installation'
+      x-github:
+        githubCloudOnly: false
+        enabledForGitHubApps: false
+        category: apps
+        subcategory: apps
+  /orgs/{org}/installations:
+    get:
+      summary: List app installations for an organization
+      description: >-
+        Lists all GitHub Apps in an organization. The installation count
+        includes
+
+        all GitHub Apps installed on repositories in the organization.
+
+
+        The authenticated user must be an organization owner to use this
+        endpoint.
+
+
+        OAuth app tokens and personal access tokens (classic) need the
+        `admin:read` scope to use this endpoint.
+      tags:
+        - - - - orgs
+      operationId: orgs/list-app-installations
+      externalDocs:
+        description: API method documentation
+        url: >-
+          https://docs.github.com/enterprise-server@3.9/rest/orgs/orgs#list-app-installations-for-an-organization
+      parameters:
+        - $ref: '#/components/parameters/org'
+        - $ref: '#/components/parameters/per-page'
+        - $ref: '#/components/parameters/page'
+      responses:
+        '200':
+          description: Response
+          content:
+            application/json:
+              schema:
+                type: object
+                required:
+                  - total_count
+                  - installations
+                properties:
+                  total_count:
+                    type: integer
+                  installations:
+                    type: array
+                    items:
+                      $ref: '#/components/schemas/installation'
+              examples:
+                default:
+                  $ref: '#/components/examples/installation-paginated'
+          headers:
+            Link:
+              $ref: '#/components/headers/link'
+      x-github:
+        githubCloudOnly: false
+        enabledForGitHubApps: true
+        category: orgs
+        subcategory: orgs
+  /repos/{owner}/{repo}/installation:
+    get:
+      summary: Get a repository installation for the authenticated app
+      description: >-
+        Enables an authenticated GitHub App to find the repository's
+        installation information. The installation's account type will be either
+        an organization or a user account, depending which account the
+        repository belongs to.
+
+
+        You must use a
+        [JWT](https://docs.github.com/enterprise-server@3.9/apps/building-github-apps/authenticating-with-github-apps/#authenticating-as-a-github-app)
+        to access this endpoint.
+      tags:
+        - - - - apps
+      operationId: apps/get-repo-installation
+      externalDocs:
+        description: API method documentation
+        url: >-
+          https://docs.github.com/enterprise-server@3.9/rest/apps/apps#get-a-repository-installation-for-the-authenticated-app
+      parameters:
+        - $ref: '#/components/parameters/owner'
+        - $ref: '#/components/parameters/repo'
+      responses:
+        '200':
+          description: Response
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/installation'
+              examples:
+                default:
+                  $ref: '#/components/examples/installation'
+        '301':
+          $ref: '#/components/responses/moved_permanently'
+        '404':
+          $ref: '#/components/responses/not_found'
+      x-github:
+        githubCloudOnly: false
+        enabledForGitHubApps: false
+        category: apps
+        subcategory: apps
+  /user/installations:
+    get:
+      summary: List app installations accessible to the user access token
+      description: >-
+        Lists installations of your GitHub App that the authenticated user has
+        explicit permission (`:read`, `:write`, or `:admin`) to access.
+
+
+        The authenticated user has explicit permission to access repositories
+        they own, repositories where they are a collaborator, and repositories
+        that they can access through an organization membership.
+
+
+        You can find the permissions for the installation under the
+        `permissions` key.
+      tags:
+        - - - - apps
+      operationId: apps/list-installations-for-authenticated-user
+      externalDocs:
+        description: API method documentation
+        url: >-
+          https://docs.github.com/enterprise-server@3.9/rest/apps/installations#list-app-installations-accessible-to-the-user-access-token
+      parameters:
+        - $ref: '#/components/parameters/per-page'
+        - $ref: '#/components/parameters/page'
+      responses:
+        '200':
+          description: >-
+            You can find the permissions for the installation under the
+            `permissions` key.
+          content:
+            application/json:
+              schema:
+                type: object
+                required:
+                  - total_count
+                  - installations
+                properties:
+                  total_count:
+                    type: integer
+                  installations:
+                    type: array
+                    items:
+                      $ref: '#/components/schemas/installation'
+              examples:
+                default:
+                  $ref: >-
+                    #/components/examples/base-installation-for-auth-user-paginated
+          headers:
+            Link:
+              $ref: '#/components/headers/link'
+        '304':
+          $ref: '#/components/responses/not_modified'
+        '401':
+          $ref: '#/components/responses/requires_authentication'
+        '403':
+          $ref: '#/components/responses/forbidden'
+      x-github:
+        githubCloudOnly: false
+        enabledForGitHubApps: false
+        category: apps
+        subcategory: installations
+  /user/installations/{installation_id}/repositories:
+    get:
+      summary: List repositories accessible to the user access token
+      description: >-
+        List repositories that the authenticated user has explicit permission
+        (`:read`, `:write`, or `:admin`) to access for an installation.
+
+
+        The authenticated user has explicit permission to access repositories
+        they own, repositories where they are a collaborator, and repositories
+        that they can access through an organization membership.
+
+
+        The access the user has to each repository is included in the hash under
+        the `permissions` key.
+      tags:
+        - - - - apps
+      operationId: apps/list-installation-repos-for-authenticated-user
+      externalDocs:
+        description: API method documentation
+        url: >-
+          https://docs.github.com/enterprise-server@3.9/rest/apps/installations#list-repositories-accessible-to-the-user-access-token
+      parameters:
+        - $ref: '#/components/parameters/installation-id'
+        - $ref: '#/components/parameters/per-page'
+        - $ref: '#/components/parameters/page'
+      responses:
+        '200':
+          description: >-
+            The access the user has to each repository is included in the hash
+            under the `permissions` key.
+          content:
+            application/json:
+              schema:
+                type: object
+                required:
+                  - total_count
+                  - repositories
+                properties:
+                  total_count:
+                    type: integer
+                  repository_selection:
+                    type: string
+                  repositories:
+                    type: array
+                    items:
+                      $ref: '#/components/schemas/repository'
+              examples:
+                default:
+                  $ref: '#/components/examples/repository-paginated'
+          headers:
+            Link:
+              $ref: '#/components/headers/link'
+        '304':
+          $ref: '#/components/responses/not_modified'
+        '403':
+          $ref: '#/components/responses/forbidden'
+        '404':
+          $ref: '#/components/responses/not_found'
+      x-github:
+        githubCloudOnly: false
+        enabledForGitHubApps: false
+        category: apps
+        subcategory: installations
+  /user/installations/{installation_id}/repositories/{repository_id}:
+    put:
+      summary: Add a repository to an app installation
+      description: >-
+        Add a single repository to an installation. The authenticated user must
+        have admin access to the repository.
+      tags:
+        - - - - apps
+      operationId: apps/add-repo-to-installation-for-authenticated-user
+      externalDocs:
+        description: API method documentation
+        url: >-
+          https://docs.github.com/enterprise-server@3.9/rest/apps/installations#add-a-repository-to-an-app-installation
+      parameters:
+        - $ref: '#/components/parameters/installation-id'
+        - $ref: '#/components/parameters/repository-id'
+      responses:
+        '204':
+          description: Response
+        '304':
+          $ref: '#/components/responses/not_modified'
+        '403':
+          $ref: '#/components/responses/forbidden'
+        '404':
+          $ref: '#/components/responses/not_found'
+      x-github:
+        githubCloudOnly: false
+        enabledForGitHubApps: false
+        category: apps
+        subcategory: installations
+    delete:
+      summary: Remove a repository from an app installation
+      description: >-
+        Remove a single repository from an installation. The authenticated user
+        must have admin access to the repository.
+
+
+        You must use a personal access token (which you can create via the
+        [command
+        line](https://docs.github.com/enterprise-server@3.9/github/authenticating-to-github/creating-a-personal-access-token)
+        or [Basic
+        Authentication](https://docs.github.com/enterprise-server@3.9/rest/overview/other-authentication-methods#basic-authentication))
+        to access this endpoint.
+      tags:
+        - - - - apps
+      operationId: apps/remove-repo-from-installation-for-authenticated-user
+      externalDocs:
+        description: API method documentation
+        url: >-
+          https://docs.github.com/enterprise-server@3.9/rest/apps/installations#remove-a-repository-from-an-app-installation
+      parameters:
+        - $ref: '#/components/parameters/installation-id'
+        - $ref: '#/components/parameters/repository-id'
+      responses:
+        '204':
+          description: Response
+        '304':
+          $ref: '#/components/responses/not_modified'
+        '403':
+          $ref: '#/components/responses/forbidden'
+        '404':
+          $ref: '#/components/responses/not_found'
+      x-github:
+        githubCloudOnly: false
+        enabledForGitHubApps: false
+        category: apps
+        subcategory: installations
+  /users/{username}/installation:
+    get:
+      summary: Get a user installation for the authenticated app
+      description: >-
+        Enables an authenticated GitHub App to find the user’s installation
+        information.
+
+
+        You must use a
+        [JWT](https://docs.github.com/enterprise-server@3.9/apps/building-github-apps/authenticating-with-github-apps/#authenticating-as-a-github-app)
+        to access this endpoint.
+      tags:
+        - - - - apps
+      operationId: apps/get-user-installation
+      externalDocs:
+        description: API method documentation
+        url: >-
+          https://docs.github.com/enterprise-server@3.9/rest/apps/apps#get-a-user-installation-for-the-authenticated-app
+      parameters:
+        - $ref: '#/components/parameters/username'
+      responses:
+        '200':
+          description: Response
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/installation'
+              examples:
+                default:
+                  $ref: '#/components/examples/installation'
+      x-github:
+        githubCloudOnly: false
+        enabledForGitHubApps: false
+        category: apps
+        subcategory: apps
+components:
+  schemas:
+    installation:
+      title: Installation
+      description: Installation
+      type: object
+      properties:
+        id:
+          description: The ID of the installation.
+          type: integer
+          example: 1
+        account:
+          nullable: true
+          anyOf:
+            - $ref: '#/components/schemas/simple-user'
+            - $ref: '#/components/schemas/enterprise'
+        repository_selection:
+          description: >-
+            Describe whether all repositories have been selected or there's a
+            selection involved
+          type: string
+          enum:
+            - all
+            - selected
+        access_tokens_url:
+          type: string
+          format: uri
+          example: https://api.github.com/app/installations/1/access_tokens
+        repositories_url:
+          type: string
+          format: uri
+          example: https://api.github.com/installation/repositories
+        html_url:
+          type: string
+          format: uri
+          example: https://github.com/organizations/github/settings/installations/1
+        app_id:
+          type: integer
+          example: 1
+        target_id:
+          description: The ID of the user or organization this token is being scoped to.
+          type: integer
+        target_type:
+          type: string
+          example: Organization
+        permissions:
+          $ref: '#/components/schemas/app-permissions'
+        events:
+          type: array
+          items:
+            type: string
+        created_at:
+          type: string
+          format: date-time
+        updated_at:
+          type: string
+          format: date-time
+        single_file_name:
+          type: string
+          example: config.yaml
+          nullable: true
+        has_multiple_single_files:
+          type: boolean
+          example: true
+        single_file_paths:
+          type: array
+          items:
+            type: string
+          example:
+            - config.yml
+            - .github/issue_TEMPLATE.md
+        app_slug:
+          type: string
+          example: github-actions
+        suspended_by:
+          $ref: '#/components/schemas/nullable-simple-user'
+        suspended_at:
+          type: string
+          format: date-time
+          nullable: true
+        contact_email:
+          type: string
+          example: '"test_13f1e99741e3e004@d7e1eb0bc0a1ba12.com"'
+          nullable: true
+      required:
+        - id
+        - app_id
+        - app_slug
+        - target_id
+        - target_type
+        - single_file_name
+        - repository_selection
+        - access_tokens_url
+        - html_url
+        - repositories_url
+        - events
+        - account
+        - permissions
+        - created_at
+        - updated_at
+        - suspended_by
+        - suspended_at

@@ -1,0 +1,2889 @@
+openapi: 3.1.0
+info:
+  title: Enterprise
+  description: Needs a description.
+paths:
+  /enterprise/announcement:
+    get:
+      summary: Get the global announcement banner
+      description: >-
+        Gets the current message and expiration date of the global announcement
+        banner in your enterprise.
+      tags:
+        - - - - enterprise-admin
+      operationId: enterprise-admin/get-announcement
+      externalDocs:
+        description: API method documentation
+        url: >-
+          https://docs.github.com/enterprise-server@3.9/rest/enterprise-admin/announcement#get-the-global-announcement-banner
+      responses:
+        '200':
+          description: Response
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/announcement'
+              examples:
+                default:
+                  $ref: '#/components/examples/announcement'
+      x-github:
+        githubCloudOnly: false
+        enabledForGitHubApps: false
+        category: enterprise-admin
+        subcategory: announcement
+    patch:
+      summary: Set the global announcement banner
+      description: >-
+        Sets the message and expiration time for the global announcement banner
+        in your enterprise.
+      tags:
+        - - - - enterprise-admin
+      operationId: enterprise-admin/set-announcement
+      externalDocs:
+        description: API method documentation
+        url: >-
+          https://docs.github.com/enterprise-server@3.9/rest/enterprise-admin/announcement#set-the-global-announcement-banner
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/announcement'
+            examples:
+              default:
+                value:
+                  announcement: Very **important** announcement about _something_.
+                  expires_at: '2021-01-01T00:00:00.000+00:00'
+      responses:
+        '200':
+          description: Response
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/announcement'
+              examples:
+                default:
+                  $ref: '#/components/examples/announcement'
+      x-github:
+        githubCloudOnly: false
+        enabledForGitHubApps: false
+        category: enterprise-admin
+        subcategory: announcement
+    delete:
+      summary: Remove the global announcement banner
+      description: Removes the global announcement banner in your enterprise.
+      tags:
+        - - - - enterprise-admin
+      operationId: enterprise-admin/remove-announcement
+      externalDocs:
+        description: API method documentation
+        url: >-
+          https://docs.github.com/enterprise-server@3.9/rest/enterprise-admin/announcement#remove-the-global-announcement-banner
+      responses:
+        '204':
+          description: Response
+      x-github:
+        githubCloudOnly: false
+        enabledForGitHubApps: false
+        category: enterprise-admin
+        subcategory: announcement
+  /enterprise/settings/license:
+    get:
+      summary: Get license information
+      description: ''
+      operationId: enterprise-admin/get-license-information
+      tags:
+        - - - - enterprise-admin
+      externalDocs:
+        description: API method documentation
+        url: >-
+          https://docs.github.com/enterprise-server@3.9/rest/enterprise-admin/license#get-license-information
+      responses:
+        '200':
+          description: Response
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/license-info'
+              examples:
+                default:
+                  $ref: '#/components/examples/license-info'
+      x-github:
+        githubCloudOnly: false
+        enabledForGitHubApps: false
+        category: enterprise-admin
+        subcategory: license
+  /enterprise/stats/all:
+    get:
+      summary: Get all statistics
+      description: ''
+      operationId: enterprise-admin/get-all-stats
+      tags:
+        - - - - enterprise-admin
+      externalDocs:
+        description: API method documentation
+        url: >-
+          https://docs.github.com/enterprise-server@3.9/rest/enterprise-admin/admin-stats#get-all-statistics
+      responses:
+        '200':
+          description: Response
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/enterprise-overview'
+              examples:
+                default:
+                  $ref: '#/components/examples/enterprise-overview'
+      x-github:
+        githubCloudOnly: false
+        enabledForGitHubApps: false
+        category: enterprise-admin
+        subcategory: admin-stats
+  /enterprise/stats/comments:
+    get:
+      summary: Get comment statistics
+      description: ''
+      operationId: enterprise-admin/get-comment-stats
+      tags:
+        - - - - enterprise-admin
+      externalDocs:
+        description: API method documentation
+        url: >-
+          https://docs.github.com/enterprise-server@3.9/rest/enterprise-admin/admin-stats#get-comment-statistics
+      responses:
+        '200':
+          description: Response
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/enterprise-comment-overview'
+              examples:
+                default:
+                  value:
+                    total_commit_comments: 5000
+                    total_gist_comments: 400
+                    total_issue_comments: 10900
+                    total_pull_request_comments: 9900
+      x-github:
+        githubCloudOnly: false
+        enabledForGitHubApps: false
+        category: enterprise-admin
+        subcategory: admin-stats
+  /enterprise/stats/gists:
+    get:
+      summary: Get gist statistics
+      description: ''
+      operationId: enterprise-admin/get-gist-stats
+      tags:
+        - - - - enterprise-admin
+      externalDocs:
+        description: API method documentation
+        url: >-
+          https://docs.github.com/enterprise-server@3.9/rest/enterprise-admin/admin-stats#get-gist-statistics
+      responses:
+        '200':
+          description: Response
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/enterprise-gist-overview'
+              examples:
+                default:
+                  value:
+                    total_gists: 500
+                    private_gists: 30
+                    public_gists: 470
+      x-github:
+        githubCloudOnly: false
+        enabledForGitHubApps: false
+        category: enterprise-admin
+        subcategory: admin-stats
+  /enterprise/stats/hooks:
+    get:
+      summary: Get hooks statistics
+      operationId: enterprise-admin/get-hooks-stats
+      tags:
+        - - - - enterprise-admin
+      externalDocs:
+        description: API method documentation
+        url: >-
+          https://docs.github.com/enterprise-server@3.9/rest/enterprise-admin/admin-stats#get-hooks-statistics
+      responses:
+        '200':
+          description: Response
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/enterprise-hook-overview'
+              examples:
+                default:
+                  value:
+                    total_hooks: 50
+                    active_hooks: 47
+                    inactive_hooks: 3
+      x-github:
+        githubCloudOnly: false
+        enabledForGitHubApps: false
+        category: enterprise-admin
+        subcategory: admin-stats
+  /enterprise/stats/issues:
+    get:
+      summary: Get issue statistics
+      description: ''
+      operationId: enterprise-admin/get-issue-stats
+      tags:
+        - - - - enterprise-admin
+      externalDocs:
+        description: API method documentation
+        url: >-
+          https://docs.github.com/enterprise-server@3.9/rest/enterprise-admin/admin-stats#get-issue-statistics
+      responses:
+        '200':
+          description: Response
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/enterprise-issue-overview'
+              examples:
+                default:
+                  value:
+                    total_issues: 5000
+                    open_issues: 300
+                    closed_issues: 4700
+      x-github:
+        githubCloudOnly: false
+        enabledForGitHubApps: false
+        category: enterprise-admin
+        subcategory: admin-stats
+  /enterprise/stats/milestones:
+    get:
+      summary: Get milestone statistics
+      description: ''
+      operationId: enterprise-admin/get-milestone-stats
+      tags:
+        - - - - enterprise-admin
+      externalDocs:
+        description: API method documentation
+        url: >-
+          https://docs.github.com/enterprise-server@3.9/rest/enterprise-admin/admin-stats#get-milestone-statistics
+      responses:
+        '200':
+          description: Response
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/enterprise-milestone-overview'
+              examples:
+                default:
+                  value:
+                    total_milestones: 90
+                    open_milestones: 10
+                    closed_milestones: 80
+      x-github:
+        githubCloudOnly: false
+        enabledForGitHubApps: false
+        category: enterprise-admin
+        subcategory: admin-stats
+  /enterprise/stats/orgs:
+    get:
+      summary: Get organization statistics
+      description: ''
+      operationId: enterprise-admin/get-org-stats
+      tags:
+        - - - - enterprise-admin
+      externalDocs:
+        description: API method documentation
+        url: >-
+          https://docs.github.com/enterprise-server@3.9/rest/enterprise-admin/admin-stats#get-organization-statistics
+      responses:
+        '200':
+          description: Response
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/enterprise-organization-overview'
+              examples:
+                default:
+                  value:
+                    total_orgs: 50
+                    disabled_orgs: 1
+                    total_teams: 70
+                    total_team_members: 700
+      x-github:
+        githubCloudOnly: false
+        enabledForGitHubApps: false
+        category: enterprise-admin
+        subcategory: admin-stats
+  /enterprise/stats/pages:
+    get:
+      summary: Get pages statistics
+      description: ''
+      operationId: enterprise-admin/get-pages-stats
+      tags:
+        - - - - enterprise-admin
+      externalDocs:
+        description: API method documentation
+        url: >-
+          https://docs.github.com/enterprise-server@3.9/rest/enterprise-admin/admin-stats#get-pages-statistics
+      responses:
+        '200':
+          description: Response
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/enterprise-page-overview'
+              examples:
+                default:
+                  value:
+                    total_pages: 20
+      x-github:
+        githubCloudOnly: false
+        enabledForGitHubApps: false
+        category: enterprise-admin
+        subcategory: admin-stats
+  /enterprise/stats/pulls:
+    get:
+      summary: Get pull request statistics
+      description: ''
+      operationId: enterprise-admin/get-pull-request-stats
+      tags:
+        - - - - enterprise-admin
+      externalDocs:
+        description: API method documentation
+        url: >-
+          https://docs.github.com/enterprise-server@3.9/rest/enterprise-admin/admin-stats#get-pull-request-statistics
+      responses:
+        '200':
+          description: Response
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/enterprise-pull-request-overview'
+              examples:
+                default:
+                  value:
+                    total_pulls: 1200
+                    merged_pulls: 1100
+                    mergeable_pulls: 90
+                    unmergeable_pulls: 10
+      x-github:
+        githubCloudOnly: false
+        enabledForGitHubApps: false
+        category: enterprise-admin
+        subcategory: admin-stats
+  /enterprise/stats/repos:
+    get:
+      summary: Get repository statistics
+      operationId: enterprise-admin/get-repo-stats
+      tags:
+        - - - - enterprise-admin
+      externalDocs:
+        description: API method documentation
+        url: >-
+          https://docs.github.com/enterprise-server@3.9/rest/enterprise-admin/admin-stats#get-repository-statistics
+      responses:
+        '200':
+          description: Response
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/enterprise-repository-overview'
+              examples:
+                default:
+                  value:
+                    total_repos: 200
+                    root_repos: 1
+                    fork_repos: 10
+                    org_repos: 150
+                    total_pushes: 39000
+                    total_wikis: 5
+      x-github:
+        githubCloudOnly: false
+        enabledForGitHubApps: false
+        category: enterprise-admin
+        subcategory: admin-stats
+  /enterprise/stats/users:
+    get:
+      summary: Get users statistics
+      description: ''
+      operationId: enterprise-admin/get-user-stats
+      tags:
+        - - - - enterprise-admin
+      externalDocs:
+        description: API method documentation
+        url: >-
+          https://docs.github.com/enterprise-server@3.9/rest/enterprise-admin/admin-stats#get-users-statistics
+      responses:
+        '200':
+          description: Response
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/enterprise-user-overview'
+              examples:
+                default:
+                  value:
+                    total_users: 100
+                    admin_users: 3
+                    suspended_users: 1
+      x-github:
+        githubCloudOnly: false
+        enabledForGitHubApps: false
+        category: enterprise-admin
+        subcategory: admin-stats
+  /enterprises/{enterprise}/actions/cache/usage:
+    get:
+      summary: Get GitHub Actions cache usage for an enterprise
+      description: >-
+        Gets the total GitHub Actions cache usage for an enterprise.
+
+        The data fetched using this API is refreshed approximately every 5
+        minutes, so values returned from this endpoint may take at least 5
+        minutes to get updated.
+
+
+        OAuth tokens and personal access tokens (classic) need the
+        `admin:enterprise` scope to use this endpoint.
+      operationId: actions/get-actions-cache-usage-for-enterprise
+      tags:
+        - - - - actions
+      externalDocs:
+        description: API method documentation
+        url: >-
+          https://docs.github.com/enterprise-server@3.9/rest/actions/cache#get-github-actions-cache-usage-for-an-enterprise
+      parameters:
+        - $ref: '#/components/parameters/enterprise'
+      responses:
+        '200':
+          description: Response
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/actions-cache-usage-org-enterprise'
+              examples:
+                default:
+                  $ref: '#/components/examples/actions-cache-usage-org-enterprise'
+          headers:
+            Link:
+              $ref: '#/components/headers/link'
+      x-github:
+        enabledForGitHubApps: false
+        githubCloudOnly: true
+        category: actions
+        subcategory: cache
+  /enterprises/{enterprise}/actions/cache/usage-policy:
+    get:
+      summary: Get GitHub Actions cache usage policy for an enterprise
+      description: >-
+        Gets the GitHub Actions cache usage policy for an enterprise.
+
+
+        OAuth tokens and personal access tokens (classic) need the
+        `admin:enterprise` scope to use this endpoint.
+      tags:
+        - - - - actions
+      operationId: actions/get-actions-cache-usage-policy-for-enterprise
+      externalDocs:
+        description: API method documentation
+        url: >-
+          https://docs.github.com/enterprise-server@3.9/rest/actions/cache#get-github-actions-cache-usage-policy-for-an-enterprise
+      parameters:
+        - $ref: '#/components/parameters/enterprise'
+      responses:
+        '200':
+          description: Response
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/actions-cache-usage-policy-enterprise'
+              examples:
+                default:
+                  $ref: '#/components/examples/actions-cache-usage-policy-enterprise'
+          headers:
+            Link:
+              $ref: '#/components/headers/link'
+      x-github:
+        enabledForGitHubApps: false
+        githubCloudOnly: false
+        category: actions
+        subcategory: cache
+    patch:
+      summary: Set GitHub Actions cache usage policy for an enterprise
+      description: >-
+        Sets the GitHub Actions cache usage policy for an enterprise.
+
+
+        OAuth app tokens and personal access tokens (classic) need the
+        `admin:enterprise` scope to use this endpoint.
+      tags:
+        - - - - actions
+      operationId: actions/set-actions-cache-usage-policy-for-enterprise
+      externalDocs:
+        description: API method documentation
+        url: >-
+          https://docs.github.com/enterprise-server@3.9/rest/actions/cache#set-github-actions-cache-usage-policy-for-an-enterprise
+      parameters:
+        - $ref: '#/components/parameters/enterprise'
+      responses:
+        '204':
+          description: Response
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/actions-cache-usage-policy-enterprise'
+            examples:
+              selected_actions:
+                $ref: '#/components/examples/actions-cache-usage-policy-enterprise'
+      x-github:
+        enabledForGitHubApps: false
+        githubCloudOnly: false
+        category: actions
+        subcategory: cache
+  /enterprises/{enterprise}/actions/permissions:
+    get:
+      summary: Get GitHub Actions permissions for an enterprise
+      description: >-
+        Gets the GitHub Actions permissions policy for organizations and allowed
+        actions in an enterprise.
+
+
+        OAuth app tokens and personal access tokens (classic) need the
+        `admin:enterprise` scope to use this endpoint.
+      operationId: enterprise-admin/get-github-actions-permissions-enterprise
+      tags:
+        - - - - enterprise-admin
+      externalDocs:
+        description: API method documentation
+        url: >-
+          https://docs.github.com/enterprise-server@3.9/rest/actions/permissions#get-github-actions-permissions-for-an-enterprise
+      parameters:
+        - $ref: '#/components/parameters/enterprise'
+      responses:
+        '200':
+          description: Response
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/actions-enterprise-permissions'
+              examples:
+                default:
+                  $ref: '#/components/examples/actions-enterprise-permissions'
+      x-github:
+        enabledForGitHubApps: false
+        githubCloudOnly: true
+        category: actions
+        subcategory: permissions
+    put:
+      summary: Set GitHub Actions permissions for an enterprise
+      description: >-
+        Sets the GitHub Actions permissions policy for organizations and allowed
+        actions in an enterprise.
+
+
+        OAuth app tokens and personal access tokens (classic) need the
+        `admin:enterprise` scope to use this endpoint.
+      operationId: enterprise-admin/set-github-actions-permissions-enterprise
+      tags:
+        - - - - enterprise-admin
+      externalDocs:
+        description: API method documentation
+        url: >-
+          https://docs.github.com/enterprise-server@3.9/rest/actions/permissions#set-github-actions-permissions-for-an-enterprise
+      parameters:
+        - $ref: '#/components/parameters/enterprise'
+      responses:
+        '204':
+          description: Response
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              type: object
+              properties:
+                enabled_organizations:
+                  $ref: '#/components/schemas/enabled-organizations'
+                allowed_actions:
+                  $ref: '#/components/schemas/allowed-actions'
+              required:
+                - enabled_organizations
+            examples:
+              default:
+                value:
+                  enabled_organizations: all
+                  allowed_actions: selected
+      x-github:
+        enabledForGitHubApps: false
+        githubCloudOnly: true
+        category: actions
+        subcategory: permissions
+  /enterprises/{enterprise}/actions/permissions/organizations:
+    get:
+      summary: List selected organizations enabled for GitHub Actions in an enterprise
+      description: >-
+        Lists the organizations that are selected to have GitHub Actions enabled
+        in an enterprise. To use this endpoint, the enterprise permission policy
+        for `enabled_organizations` must be configured to `selected`. For more
+        information, see "[Set GitHub Actions permissions for an
+        enterprise](#set-github-actions-permissions-for-an-enterprise)."
+
+
+        OAuth app tokens and personal access tokens (classic) need the
+        `admin:enterprise` scope to use this endpoint.
+      operationId: >-
+        enterprise-admin/list-selected-organizations-enabled-github-actions-enterprise
+      tags:
+        - - - - enterprise-admin
+      externalDocs:
+        description: API method documentation
+        url: >-
+          https://docs.github.com/enterprise-server@3.9/rest/actions/permissions#list-selected-organizations-enabled-for-github-actions-in-an-enterprise
+      parameters:
+        - $ref: '#/components/parameters/enterprise'
+        - $ref: '#/components/parameters/per-page'
+        - $ref: '#/components/parameters/page'
+      responses:
+        '200':
+          description: Response
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  total_count:
+                    type: number
+                  organizations:
+                    type: array
+                    items:
+                      $ref: '#/components/schemas/organization-simple'
+                required:
+                  - total_count
+                  - organizations
+              examples:
+                default:
+                  $ref: '#/components/examples/organization-targets'
+      x-github:
+        enabledForGitHubApps: false
+        githubCloudOnly: true
+        category: actions
+        subcategory: permissions
+    put:
+      summary: Set selected organizations enabled for GitHub Actions in an enterprise
+      description: >-
+        Replaces the list of selected organizations that are enabled for GitHub
+        Actions in an enterprise. To use this endpoint, the enterprise
+        permission policy for `enabled_organizations` must be configured to
+        `selected`. For more information, see "[Set GitHub Actions permissions
+        for an enterprise](#set-github-actions-permissions-for-an-enterprise)."
+
+
+        OAuth app tokens and personal access tokens (classic) need the
+        `admin:enterprise` scope to use this endpoint.
+      operationId: >-
+        enterprise-admin/set-selected-organizations-enabled-github-actions-enterprise
+      tags:
+        - - - - enterprise-admin
+      externalDocs:
+        description: API method documentation
+        url: >-
+          https://docs.github.com/enterprise-server@3.9/rest/actions/permissions#set-selected-organizations-enabled-for-github-actions-in-an-enterprise
+      parameters:
+        - $ref: '#/components/parameters/enterprise'
+      responses:
+        '204':
+          description: Response
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              type: object
+              properties:
+                selected_organization_ids:
+                  description: List of organization IDs to enable for GitHub Actions.
+                  type: array
+                  items:
+                    type: integer
+                    description: Unique identifier of the organization.
+              required:
+                - selected_organization_ids
+            examples:
+              default:
+                value:
+                  selected_organization_ids:
+                    - 32
+                    - 91
+      x-github:
+        enabledForGitHubApps: false
+        githubCloudOnly: true
+        category: actions
+        subcategory: permissions
+  /enterprises/{enterprise}/actions/permissions/organizations/{org_id}:
+    put:
+      summary: Enable a selected organization for GitHub Actions in an enterprise
+      description: >-
+        Adds an organization to the list of selected organizations that are
+        enabled for GitHub Actions in an enterprise. To use this endpoint, the
+        enterprise permission policy for `enabled_organizations` must be
+        configured to `selected`. For more information, see "[Set GitHub Actions
+        permissions for an
+        enterprise](#set-github-actions-permissions-for-an-enterprise)."
+
+
+        OAuth app tokens and personal access tokens (classic) need the
+        `admin:enterprise` scope to use this endpoint.
+      operationId: enterprise-admin/enable-selected-organization-github-actions-enterprise
+      tags:
+        - - - - enterprise-admin
+      externalDocs:
+        description: API method documentation
+        url: >-
+          https://docs.github.com/enterprise-server@3.9/rest/actions/permissions#enable-a-selected-organization-for-github-actions-in-an-enterprise
+      parameters:
+        - $ref: '#/components/parameters/enterprise'
+        - $ref: '#/components/parameters/org-id'
+      responses:
+        '204':
+          description: Response
+      x-github:
+        enabledForGitHubApps: false
+        githubCloudOnly: true
+        category: actions
+        subcategory: permissions
+    delete:
+      summary: Disable a selected organization for GitHub Actions in an enterprise
+      description: >-
+        Removes an organization from the list of selected organizations that are
+        enabled for GitHub Actions in an enterprise. To use this endpoint, the
+        enterprise permission policy for `enabled_organizations` must be
+        configured to `selected`. For more information, see "[Set GitHub Actions
+        permissions for an
+        enterprise](#set-github-actions-permissions-for-an-enterprise)."
+
+
+        OAuth app tokens and personal access tokens (classic) need the
+        `admin:enterprise` scope to use this endpoint.
+      operationId: enterprise-admin/disable-selected-organization-github-actions-enterprise
+      tags:
+        - - - - enterprise-admin
+      externalDocs:
+        description: API method documentation
+        url: >-
+          https://docs.github.com/enterprise-server@3.9/rest/actions/permissions#disable-a-selected-organization-for-github-actions-in-an-enterprise
+      parameters:
+        - $ref: '#/components/parameters/enterprise'
+        - $ref: '#/components/parameters/org-id'
+      responses:
+        '204':
+          description: Response
+      x-github:
+        enabledForGitHubApps: false
+        githubCloudOnly: true
+        category: actions
+        subcategory: permissions
+  /enterprises/{enterprise}/actions/permissions/selected-actions:
+    get:
+      summary: Get allowed actions for an enterprise
+      description: >-
+        Gets the selected actions that are allowed in an enterprise. To use this
+        endpoint, the enterprise permission policy for `allowed_actions` must be
+        configured to `selected`. For more information, see "[Set GitHub Actions
+        permissions for an
+        enterprise](#set-github-actions-permissions-for-an-enterprise)."
+
+
+        OAuth app tokens and personal access tokens (classic) need the
+        `admin:enterprise` scope to use this endpoint.
+      operationId: enterprise-admin/get-allowed-actions-enterprise
+      tags:
+        - - - - enterprise-admin
+      externalDocs:
+        description: API method documentation
+        url: >-
+          https://docs.github.com/enterprise-server@3.9/rest/actions/permissions#get-allowed-actions-and-reusable-workflows-for-an-enterprise
+      parameters:
+        - $ref: '#/components/parameters/enterprise'
+      responses:
+        '200':
+          description: Response
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/selected-actions'
+              examples:
+                default:
+                  $ref: '#/components/examples/selected-actions'
+      x-github:
+        enabledForGitHubApps: false
+        githubCloudOnly: true
+        category: actions
+        subcategory: permissions
+    put:
+      summary: Set allowed actions for an enterprise
+      description: >-
+        Sets the actions that are allowed in an enterprise. To use this
+        endpoint, the enterprise permission policy for `allowed_actions` must be
+        configured to `selected`. For more information, see "[Set GitHub Actions
+        permissions for an
+        enterprise](#set-github-actions-permissions-for-an-enterprise)."
+
+
+        OAuth app tokens and personal access tokens (classic) need the
+        `admin:enterprise` scope to use this endpoint.
+      operationId: enterprise-admin/set-allowed-actions-enterprise
+      tags:
+        - - - - enterprise-admin
+      externalDocs:
+        description: API method documentation
+        url: >-
+          https://docs.github.com/enterprise-server@3.9/rest/actions/permissions#set-allowed-actions-and-reusable-workflows-for-an-enterprise
+      parameters:
+        - $ref: '#/components/parameters/enterprise'
+      responses:
+        '204':
+          description: Response
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/selected-actions'
+            examples:
+              selected_actions:
+                $ref: '#/components/examples/selected-actions'
+      x-github:
+        enabledForGitHubApps: false
+        githubCloudOnly: true
+        category: actions
+        subcategory: permissions
+  /enterprises/{enterprise}/actions/permissions/workflow:
+    get:
+      summary: Get default workflow permissions for an enterprise
+      description: >-
+        Gets the default workflow permissions granted to the `GITHUB_TOKEN` when
+        running workflows in an enterprise,
+
+        as well as whether GitHub Actions can submit approving pull request
+        reviews. For more information, see
+
+        "[Enforcing a policy for workflow permissions in your
+        enterprise](https://docs.github.com/enterprise-server@3.9/admin/policies/enforcing-policies-for-your-enterprise/enforcing-policies-for-github-actions-in-your-enterprise#enforcing-a-policy-for-workflow-permissions-in-your-enterprise)."
+
+
+        OAuth tokens and personal access tokens (classic) need the
+        `admin:enterprise` scope to use this endpoint.
+      tags:
+        - - - - actions
+      operationId: actions/get-github-actions-default-workflow-permissions-enterprise
+      externalDocs:
+        description: API method documentation
+        url: >-
+          https://docs.github.com/enterprise-server@3.9/rest/actions/permissions#get-default-workflow-permissions-for-an-enterprise
+      parameters:
+        - $ref: '#/components/parameters/enterprise'
+      responses:
+        '200':
+          description: Success response
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/actions-get-default-workflow-permissions'
+              examples:
+                default:
+                  $ref: '#/components/examples/actions-default-workflow-permissions'
+      x-github:
+        githubCloudOnly: true
+        enabledForGitHubApps: false
+        category: actions
+        subcategory: permissions
+    put:
+      summary: Set default workflow permissions for an enterprise
+      description: >-
+        Sets the default workflow permissions granted to the `GITHUB_TOKEN` when
+        running workflows in an enterprise, and sets
+
+        whether GitHub Actions can submit approving pull request reviews. For
+        more information, see
+
+        "[Enforcing a policy for workflow permissions in your
+        enterprise](https://docs.github.com/enterprise-server@3.9/admin/policies/enforcing-policies-for-your-enterprise/enforcing-policies-for-github-actions-in-your-enterprise#enforcing-a-policy-for-workflow-permissions-in-your-enterprise)."
+
+
+        OAuth app tokens and personal access tokens (classic) need the
+        `admin:enterprise` scope to use this endpoint.
+      tags:
+        - - - - actions
+      operationId: actions/set-github-actions-default-workflow-permissions-enterprise
+      externalDocs:
+        description: API method documentation
+        url: >-
+          https://docs.github.com/enterprise-server@3.9/rest/actions/permissions#set-default-workflow-permissions-for-an-enterprise
+      parameters:
+        - $ref: '#/components/parameters/enterprise'
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/actions-set-default-workflow-permissions'
+            examples:
+              default:
+                $ref: '#/components/examples/actions-default-workflow-permissions'
+      responses:
+        '204':
+          description: Success response
+      x-github:
+        githubCloudOnly: true
+        enabledForGitHubApps: false
+        category: actions
+        subcategory: permissions
+  /enterprises/{enterprise}/actions/runner-groups:
+    get:
+      summary: List self-hosted runner groups for an enterprise
+      description: >-
+        Lists all self-hosted runner groups for an enterprise.
+
+
+        OAuth app tokens and personal access tokens (classic) need the
+        `manage_runners:enterprise` scope to use this endpoint.
+      operationId: enterprise-admin/list-self-hosted-runner-groups-for-enterprise
+      tags:
+        - - - - enterprise-admin
+      externalDocs:
+        description: API method documentation
+        url: >-
+          https://docs.github.com/enterprise-server@3.9/rest/actions/self-hosted-runner-groups#list-self-hosted-runner-groups-for-an-enterprise
+      parameters:
+        - $ref: '#/components/parameters/enterprise'
+        - $ref: '#/components/parameters/per-page'
+        - $ref: '#/components/parameters/page'
+        - $ref: '#/components/parameters/visible-to-organization'
+      responses:
+        '200':
+          description: Response
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  total_count:
+                    type: number
+                  runner_groups:
+                    type: array
+                    items:
+                      $ref: '#/components/schemas/runner-groups-enterprise'
+                required:
+                  - total_count
+                  - runner_groups
+              examples:
+                default:
+                  $ref: '#/components/examples/runner-groups-enterprise'
+      x-github:
+        enabledForGitHubApps: false
+        githubCloudOnly: true
+        category: actions
+        subcategory: self-hosted-runner-groups
+    post:
+      summary: Create a self-hosted runner group for an enterprise
+      description: >-
+        Creates a new self-hosted runner group for an enterprise.
+
+
+        OAuth app tokens and personal access tokens (classic) need the
+        `manage_runners:enterprise` scope to use this endpoint.
+      operationId: enterprise-admin/create-self-hosted-runner-group-for-enterprise
+      tags:
+        - - - - enterprise-admin
+      externalDocs:
+        description: API method documentation
+        url: >-
+          https://docs.github.com/enterprise-server@3.9/rest/actions/self-hosted-runner-groups#create-a-self-hosted-runner-group-for-an-enterprise
+      parameters:
+        - $ref: '#/components/parameters/enterprise'
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              type: object
+              properties:
+                name:
+                  description: Name of the runner group.
+                  type: string
+                visibility:
+                  description: >-
+                    Visibility of a runner group. You can select all
+                    organizations or select individual organization.
+                  type: string
+                  enum:
+                    - selected
+                    - all
+                selected_organization_ids:
+                  description: List of organization IDs that can access the runner group.
+                  type: array
+                  items:
+                    type: integer
+                    description: Unique identifier of the organization.
+                runners:
+                  description: List of runner IDs to add to the runner group.
+                  type: array
+                  items:
+                    type: integer
+                    description: Unique identifier of the runner.
+                allows_public_repositories:
+                  description: >-
+                    Whether the runner group can be used by `public`
+                    repositories.
+                  type: boolean
+                  default: false
+                restricted_to_workflows:
+                  description: >-
+                    If `true`, the runner group will be restricted to running
+                    only the workflows specified in the `selected_workflows`
+                    array.
+                  type: boolean
+                  default: false
+                selected_workflows:
+                  description: >-
+                    List of workflows the runner group should be allowed to run.
+                    This setting will be ignored unless
+                    `restricted_to_workflows` is set to `true`.
+                  type: array
+                  items:
+                    type: string
+                    description: >-
+                      Name of workflow the runner group should be allowed to
+                      run. Note that a ref, tag, or long SHA is required.
+                    example: octo-org/octo-repo/.github/workflows/deploy.yaml@main
+              required:
+                - name
+            examples:
+              default:
+                value:
+                  name: Expensive hardware runners
+                  visibility: selected
+                  selected_organization_ids:
+                    - 32
+                    - 91
+                  runners:
+                    - 9
+                    - 2
+      responses:
+        '201':
+          description: Response
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/runner-groups-enterprise'
+              examples:
+                default:
+                  $ref: '#/components/examples/runner-group-enterprise'
+      x-github:
+        enabledForGitHubApps: false
+        githubCloudOnly: true
+        category: actions
+        subcategory: self-hosted-runner-groups
+  /enterprises/{enterprise}/actions/runner-groups/{runner_group_id}:
+    get:
+      summary: Get a self-hosted runner group for an enterprise
+      description: >-
+        Gets a specific self-hosted runner group for an enterprise.
+
+
+        OAuth app tokens and personal access tokens (classic) need the
+        `manage_runners:enterprise` scope to use this endpoint.
+      operationId: enterprise-admin/get-self-hosted-runner-group-for-enterprise
+      tags:
+        - - - - enterprise-admin
+      externalDocs:
+        description: API method documentation
+        url: >-
+          https://docs.github.com/enterprise-server@3.9/rest/actions/self-hosted-runner-groups#get-a-self-hosted-runner-group-for-an-enterprise
+      parameters:
+        - $ref: '#/components/parameters/enterprise'
+        - $ref: '#/components/parameters/runner-group-id'
+      responses:
+        '200':
+          description: Response
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/runner-groups-enterprise'
+              examples:
+                default:
+                  $ref: '#/components/examples/runner-group-enterprise'
+      x-github:
+        enabledForGitHubApps: false
+        githubCloudOnly: true
+        category: actions
+        subcategory: self-hosted-runner-groups
+    patch:
+      summary: Update a self-hosted runner group for an enterprise
+      description: >-
+        Updates the `name` and `visibility` of a self-hosted runner group in an
+        enterprise.
+
+
+        OAuth app tokens and personal access tokens (classic) need the
+        `manage_runners:enterprise` scope to use this endpoint.
+      operationId: enterprise-admin/update-self-hosted-runner-group-for-enterprise
+      tags:
+        - - - - enterprise-admin
+      externalDocs:
+        description: API method documentation
+        url: >-
+          https://docs.github.com/enterprise-server@3.9/rest/actions/self-hosted-runner-groups#update-a-self-hosted-runner-group-for-an-enterprise
+      parameters:
+        - $ref: '#/components/parameters/enterprise'
+        - $ref: '#/components/parameters/runner-group-id'
+      requestBody:
+        required: false
+        content:
+          application/json:
+            schema:
+              type: object
+              properties:
+                name:
+                  description: Name of the runner group.
+                  type: string
+                visibility:
+                  description: >-
+                    Visibility of a runner group. You can select all
+                    organizations or select individual organizations.
+                  type: string
+                  enum:
+                    - selected
+                    - all
+                  default: all
+                allows_public_repositories:
+                  description: >-
+                    Whether the runner group can be used by `public`
+                    repositories.
+                  type: boolean
+                  default: false
+                restricted_to_workflows:
+                  description: >-
+                    If `true`, the runner group will be restricted to running
+                    only the workflows specified in the `selected_workflows`
+                    array.
+                  type: boolean
+                  default: false
+                selected_workflows:
+                  description: >-
+                    List of workflows the runner group should be allowed to run.
+                    This setting will be ignored unless
+                    `restricted_to_workflows` is set to `true`.
+                  type: array
+                  items:
+                    type: string
+                    description: >-
+                      Name of workflow the runner group should be allowed to
+                      run. Note that a ref, tag, or long SHA is required.
+                    example: octo-org/octo-repo/.github/workflows/deploy.yaml@main
+            examples:
+              default:
+                value:
+                  name: Expensive hardware runners
+                  visibility: selected
+      responses:
+        '200':
+          description: Response
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/runner-groups-enterprise'
+              examples:
+                default:
+                  $ref: '#/components/examples/runner-group-update-enterprise'
+      x-github:
+        enabledForGitHubApps: false
+        githubCloudOnly: true
+        category: actions
+        subcategory: self-hosted-runner-groups
+    delete:
+      summary: Delete a self-hosted runner group from an enterprise
+      description: >-
+        Deletes a self-hosted runner group for an enterprise.
+
+
+        OAuth app tokens and personal access tokens (classic) need the
+        `manage_runners:enterprise` scope to use this endpoint.
+      operationId: enterprise-admin/delete-self-hosted-runner-group-from-enterprise
+      tags:
+        - - - - enterprise-admin
+      externalDocs:
+        description: API method documentation
+        url: >-
+          https://docs.github.com/enterprise-server@3.9/rest/actions/self-hosted-runner-groups#delete-a-self-hosted-runner-group-from-an-enterprise
+      parameters:
+        - $ref: '#/components/parameters/enterprise'
+        - $ref: '#/components/parameters/runner-group-id'
+      responses:
+        '204':
+          description: Response
+      x-github:
+        enabledForGitHubApps: false
+        githubCloudOnly: true
+        category: actions
+        subcategory: self-hosted-runner-groups
+  /enterprises/{enterprise}/actions/runner-groups/{runner_group_id}/organizations:
+    get:
+      summary: List organization access to a self-hosted runner group in an enterprise
+      description: >-
+        Lists the organizations with access to a self-hosted runner group.
+
+
+        OAuth app tokens and personal access tokens (classic) need the
+        `manage_runners:enterprise` scope to use this endpoint.
+      operationId: >-
+        enterprise-admin/list-org-access-to-self-hosted-runner-group-in-enterprise
+      tags:
+        - - - - enterprise-admin
+      externalDocs:
+        description: API method documentation
+        url: >-
+          https://docs.github.com/enterprise-server@3.9/rest/actions/self-hosted-runner-groups#list-organization-access-to-a-self-hosted-runner-group-in-an-enterprise
+      parameters:
+        - $ref: '#/components/parameters/enterprise'
+        - $ref: '#/components/parameters/runner-group-id'
+        - $ref: '#/components/parameters/per-page'
+        - $ref: '#/components/parameters/page'
+      responses:
+        '200':
+          description: Response
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  total_count:
+                    type: number
+                  organizations:
+                    type: array
+                    items:
+                      $ref: '#/components/schemas/organization-simple'
+                required:
+                  - total_count
+                  - organizations
+              examples:
+                default:
+                  $ref: '#/components/examples/organization-targets'
+      x-github:
+        enabledForGitHubApps: false
+        githubCloudOnly: true
+        category: actions
+        subcategory: self-hosted-runner-groups
+    put:
+      summary: Set organization access for a self-hosted runner group in an enterprise
+      description: >-
+        Replaces the list of organizations that have access to a self-hosted
+        runner configured in an enterprise.
+
+
+        OAuth app tokens and personal access tokens (classic) need the
+        `manage_runners:enterprise` scope to use this endpoint.
+      operationId: >-
+        enterprise-admin/set-org-access-to-self-hosted-runner-group-in-enterprise
+      tags:
+        - - - - enterprise-admin
+      externalDocs:
+        description: API method documentation
+        url: >-
+          https://docs.github.com/enterprise-server@3.9/rest/actions/self-hosted-runner-groups#set-organization-access-for-a-self-hosted-runner-group-in-an-enterprise
+      parameters:
+        - $ref: '#/components/parameters/enterprise'
+        - $ref: '#/components/parameters/runner-group-id'
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              type: object
+              properties:
+                selected_organization_ids:
+                  description: List of organization IDs that can access the runner group.
+                  type: array
+                  items:
+                    type: integer
+                    description: Unique identifier of the organization.
+              required:
+                - selected_organization_ids
+            examples:
+              default:
+                value:
+                  selected_organization_ids:
+                    - 32
+                    - 91
+      responses:
+        '204':
+          description: Response
+      x-github:
+        enabledForGitHubApps: false
+        githubCloudOnly: true
+        category: actions
+        subcategory: self-hosted-runner-groups
+  /enterprises/{enterprise}/actions/runner-groups/{runner_group_id}/organizations/{org_id}:
+    put:
+      summary: Add organization access to a self-hosted runner group in an enterprise
+      description: >-
+        Adds an organization to the list of selected organizations that can
+        access a self-hosted runner group. The runner group must have
+        `visibility` set to `selected`. For more information, see "[Create a
+        self-hosted runner group for an
+        enterprise](#create-a-self-hosted-runner-group-for-an-enterprise)."
+
+
+        OAuth app tokens and personal access tokens (classic) need the
+        `manage_runners:enterprise` scope to use this endpoint.
+      operationId: >-
+        enterprise-admin/add-org-access-to-self-hosted-runner-group-in-enterprise
+      tags:
+        - - - - enterprise-admin
+      externalDocs:
+        description: API method documentation
+        url: >-
+          https://docs.github.com/enterprise-server@3.9/rest/actions/self-hosted-runner-groups#add-organization-access-to-a-self-hosted-runner-group-in-an-enterprise
+      parameters:
+        - $ref: '#/components/parameters/enterprise'
+        - $ref: '#/components/parameters/runner-group-id'
+        - $ref: '#/components/parameters/org-id'
+      responses:
+        '204':
+          description: Response
+      x-github:
+        enabledForGitHubApps: false
+        githubCloudOnly: true
+        category: actions
+        subcategory: self-hosted-runner-groups
+    delete:
+      summary: >-
+        Remove organization access to a self-hosted runner group in an
+        enterprise
+      description: >-
+        Removes an organization from the list of selected organizations that can
+        access a self-hosted runner group. The runner group must have
+        `visibility` set to `selected`. For more information, see "[Create a
+        self-hosted runner group for an
+        enterprise](#create-a-self-hosted-runner-group-for-an-enterprise)."
+
+
+        OAuth app tokens and personal access tokens (classic) need the
+        `manage_runners:enterprise` scope to use this endpoint.
+      operationId: >-
+        enterprise-admin/remove-org-access-to-self-hosted-runner-group-in-enterprise
+      tags:
+        - - - - enterprise-admin
+      externalDocs:
+        description: API method documentation
+        url: >-
+          https://docs.github.com/enterprise-server@3.9/rest/actions/self-hosted-runner-groups#remove-organization-access-to-a-self-hosted-runner-group-in-an-enterprise
+      parameters:
+        - $ref: '#/components/parameters/enterprise'
+        - $ref: '#/components/parameters/runner-group-id'
+        - $ref: '#/components/parameters/org-id'
+      responses:
+        '204':
+          description: Response
+      x-github:
+        enabledForGitHubApps: false
+        githubCloudOnly: true
+        category: actions
+        subcategory: self-hosted-runner-groups
+  /enterprises/{enterprise}/actions/runner-groups/{runner_group_id}/runners:
+    get:
+      summary: List self-hosted runners in a group for an enterprise
+      description: >-
+        Lists the self-hosted runners that are in a specific enterprise group.
+
+
+        OAuth app tokens and personal access tokens (classic) need the
+        `manage_runners:enterprise` scope to use this endpoint.
+      operationId: enterprise-admin/list-self-hosted-runners-in-group-for-enterprise
+      tags:
+        - - - - enterprise-admin
+      externalDocs:
+        description: API method documentation
+        url: >-
+          https://docs.github.com/enterprise-server@3.9/rest/actions/self-hosted-runner-groups#list-self-hosted-runners-in-a-group-for-an-enterprise
+      parameters:
+        - $ref: '#/components/parameters/enterprise'
+        - $ref: '#/components/parameters/runner-group-id'
+        - $ref: '#/components/parameters/per-page'
+        - $ref: '#/components/parameters/page'
+      responses:
+        '200':
+          description: Response
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  total_count:
+                    type: number
+                  runners:
+                    type: array
+                    items:
+                      $ref: '#/components/schemas/runner'
+                required:
+                  - total_count
+                  - runners
+              examples:
+                default:
+                  $ref: '#/components/examples/runner-paginated'
+          headers:
+            Link:
+              $ref: '#/components/headers/link'
+      x-github:
+        enabledForGitHubApps: false
+        githubCloudOnly: true
+        category: actions
+        subcategory: self-hosted-runner-groups
+    put:
+      summary: Set self-hosted runners in a group for an enterprise
+      description: >-
+        Replaces the list of self-hosted runners that are part of an enterprise
+        runner group.
+
+
+        OAuth app tokens and personal access tokens (classic) need the
+        `manage_runners:enterprise` scope to use this endpoint.
+      operationId: enterprise-admin/set-self-hosted-runners-in-group-for-enterprise
+      tags:
+        - - - - enterprise-admin
+      externalDocs:
+        description: API method documentation
+        url: >-
+          https://docs.github.com/enterprise-server@3.9/rest/actions/self-hosted-runner-groups#set-self-hosted-runners-in-a-group-for-an-enterprise
+      parameters:
+        - $ref: '#/components/parameters/enterprise'
+        - $ref: '#/components/parameters/runner-group-id'
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              type: object
+              properties:
+                runners:
+                  description: List of runner IDs to add to the runner group.
+                  type: array
+                  items:
+                    type: integer
+                    description: Unique identifier of the runner.
+              required:
+                - runners
+            examples:
+              default:
+                value:
+                  runners:
+                    - 9
+                    - 2
+      responses:
+        '204':
+          description: Response
+      x-github:
+        enabledForGitHubApps: false
+        githubCloudOnly: true
+        category: actions
+        subcategory: self-hosted-runner-groups
+  /enterprises/{enterprise}/actions/runner-groups/{runner_group_id}/runners/{runner_id}:
+    put:
+      summary: Add a self-hosted runner to a group for an enterprise
+      description: >-
+        Adds a self-hosted runner to a runner group configured in an enterprise.
+
+
+        OAuth app tokens and personal access tokens (classic) need the
+        `manage_runners:enterprise` scope to use this endpoint.
+      operationId: enterprise-admin/add-self-hosted-runner-to-group-for-enterprise
+      tags:
+        - - - - enterprise-admin
+      externalDocs:
+        description: API method documentation
+        url: >-
+          https://docs.github.com/enterprise-server@3.9/rest/actions/self-hosted-runner-groups#add-a-self-hosted-runner-to-a-group-for-an-enterprise
+      parameters:
+        - $ref: '#/components/parameters/enterprise'
+        - $ref: '#/components/parameters/runner-group-id'
+        - $ref: '#/components/parameters/runner-id'
+      responses:
+        '204':
+          description: Response
+      x-github:
+        enabledForGitHubApps: false
+        githubCloudOnly: true
+        category: actions
+        subcategory: self-hosted-runner-groups
+    delete:
+      summary: Remove a self-hosted runner from a group for an enterprise
+      description: >-
+        Removes a self-hosted runner from a group configured in an enterprise.
+        The runner is then returned to the default group.
+
+
+        OAuth app tokens and personal access tokens (classic) need the
+        `manage_runners:enterprise` scope to use this endpoint.
+      operationId: enterprise-admin/remove-self-hosted-runner-from-group-for-enterprise
+      tags:
+        - - - - enterprise-admin
+      externalDocs:
+        description: API method documentation
+        url: >-
+          https://docs.github.com/enterprise-server@3.9/rest/actions/self-hosted-runner-groups#remove-a-self-hosted-runner-from-a-group-for-an-enterprise
+      parameters:
+        - $ref: '#/components/parameters/enterprise'
+        - $ref: '#/components/parameters/runner-group-id'
+        - $ref: '#/components/parameters/runner-id'
+      responses:
+        '204':
+          description: Response
+      x-github:
+        enabledForGitHubApps: false
+        githubCloudOnly: true
+        category: actions
+        subcategory: self-hosted-runner-groups
+  /enterprises/{enterprise}/actions/runners:
+    get:
+      summary: List self-hosted runners for an enterprise
+      description: >-
+        Lists all self-hosted runners configured for an enterprise.
+
+
+        OAuth app tokens and personal access tokens (classic) need the
+        `manage_runners:enterprise` scope to use this endpoint.
+      operationId: enterprise-admin/list-self-hosted-runners-for-enterprise
+      tags:
+        - - - - enterprise-admin
+      externalDocs:
+        description: API method documentation
+        url: >-
+          https://docs.github.com/enterprise-server@3.9/rest/actions/self-hosted-runners#list-self-hosted-runners-for-an-enterprise
+      parameters:
+        - $ref: '#/components/parameters/enterprise'
+        - $ref: '#/components/parameters/per-page'
+        - $ref: '#/components/parameters/page'
+      responses:
+        '200':
+          description: Response
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  total_count:
+                    type: number
+                  runners:
+                    type: array
+                    items:
+                      $ref: '#/components/schemas/runner'
+              examples:
+                default:
+                  $ref: '#/components/examples/runner-paginated'
+          headers:
+            Link:
+              $ref: '#/components/headers/link'
+      x-github:
+        enabledForGitHubApps: false
+        githubCloudOnly: true
+        category: actions
+        subcategory: self-hosted-runners
+  /enterprises/{enterprise}/actions/runners/downloads:
+    get:
+      summary: List runner applications for an enterprise
+      description: >-
+        Lists binaries for the runner application that you can download and run.
+
+
+        OAuth app tokens and personal access tokens (classic) need the
+        `manage_runners:enterprise` scope to use this endpoint.
+      operationId: enterprise-admin/list-runner-applications-for-enterprise
+      tags:
+        - - - - enterprise-admin
+      externalDocs:
+        description: API method documentation
+        url: >-
+          https://docs.github.com/enterprise-server@3.9/rest/actions/self-hosted-runners#list-runner-applications-for-an-enterprise
+      parameters:
+        - $ref: '#/components/parameters/enterprise'
+      responses:
+        '200':
+          description: Response
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  $ref: '#/components/schemas/runner-application'
+              examples:
+                default:
+                  $ref: '#/components/examples/runner-application-items-airgap'
+      x-github:
+        enabledForGitHubApps: false
+        githubCloudOnly: true
+        category: actions
+        subcategory: self-hosted-runners
+  /enterprises/{enterprise}/actions/runners/registration-token:
+    post:
+      summary: Create a registration token for an enterprise
+      description: >-
+        Returns a token that you can pass to the `config` script. The token
+        expires after one hour.
+
+
+        Example using registration token:
+
+
+        Configure your self-hosted runner, replacing `TOKEN` with the
+        registration token provided by this endpoint.
+
+
+        ```
+
+        ./config.sh --url https://github.com/enterprises/octo-enterprise --token
+        TOKEN
+
+        ```
+
+
+        OAuth app tokens and personal access tokens (classic) need the
+        `manage_runners:enterprise` scope to use this endpoint.
+      operationId: enterprise-admin/create-registration-token-for-enterprise
+      tags:
+        - - - - enterprise-admin
+      externalDocs:
+        description: API method documentation
+        url: >-
+          https://docs.github.com/enterprise-server@3.9/rest/actions/self-hosted-runners#create-a-registration-token-for-an-enterprise
+      parameters:
+        - $ref: '#/components/parameters/enterprise'
+      responses:
+        '201':
+          description: Response
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/authentication-token'
+              examples:
+                default:
+                  $ref: '#/components/examples/authentication-token'
+      x-github:
+        enabledForGitHubApps: false
+        githubCloudOnly: true
+        category: actions
+        subcategory: self-hosted-runners
+  /enterprises/{enterprise}/actions/runners/remove-token:
+    post:
+      summary: Create a remove token for an enterprise
+      description: >-
+        Returns a token that you can pass to the `config` script to remove a
+        self-hosted runner from an enterprise. The token expires after one hour.
+
+
+        Example using remove token:
+
+
+        To remove your self-hosted runner from an enterprise, replace `TOKEN`
+        with the remove token provided by this
+
+        endpoint.
+
+
+        ```
+
+        ./config.sh remove --token TOKEN
+
+        ```
+
+
+        OAuth app tokens and personal access tokens (classic) need the
+        `manage_runners:enterprise` scope to use this endpoint.
+      operationId: enterprise-admin/create-remove-token-for-enterprise
+      tags:
+        - - - - enterprise-admin
+      externalDocs:
+        description: API method documentation
+        url: >-
+          https://docs.github.com/enterprise-server@3.9/rest/actions/self-hosted-runners#create-a-remove-token-for-an-enterprise
+      parameters:
+        - $ref: '#/components/parameters/enterprise'
+      responses:
+        '201':
+          description: Response
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/authentication-token'
+              examples:
+                default:
+                  $ref: '#/components/examples/authentication-token-2'
+      x-github:
+        enabledForGitHubApps: false
+        githubCloudOnly: true
+        category: actions
+        subcategory: self-hosted-runners
+  /enterprises/{enterprise}/actions/runners/{runner_id}:
+    get:
+      summary: Get a self-hosted runner for an enterprise
+      description: >-
+        Gets a specific self-hosted runner configured in an enterprise.
+
+
+        OAuth app tokens and personal access tokens (classic) need the
+        `manage_runners:enterprise` scope to use this endpoint.
+      operationId: enterprise-admin/get-self-hosted-runner-for-enterprise
+      tags:
+        - - - - enterprise-admin
+      externalDocs:
+        description: API method documentation
+        url: >-
+          https://docs.github.com/enterprise-server@3.9/rest/actions/self-hosted-runners#get-a-self-hosted-runner-for-an-enterprise
+      parameters:
+        - $ref: '#/components/parameters/enterprise'
+        - $ref: '#/components/parameters/runner-id'
+      responses:
+        '200':
+          description: Response
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/runner'
+              examples:
+                default:
+                  $ref: '#/components/examples/runner'
+      x-github:
+        enabledForGitHubApps: false
+        githubCloudOnly: true
+        category: actions
+        subcategory: self-hosted-runners
+    delete:
+      summary: Delete a self-hosted runner from an enterprise
+      description: >-
+        Forces the removal of a self-hosted runner from an enterprise. You can
+        use this endpoint to completely remove the runner when the machine you
+        were using no longer exists.
+
+
+        OAuth app tokens and personal access tokens (classic) need the
+        `manage_runners:enterprise` scope to use this endpoint.
+      operationId: enterprise-admin/delete-self-hosted-runner-from-enterprise
+      tags:
+        - - - - enterprise-admin
+      externalDocs:
+        description: API method documentation
+        url: >-
+          https://docs.github.com/enterprise-server@3.9/rest/actions/self-hosted-runners#delete-a-self-hosted-runner-from-an-enterprise
+      parameters:
+        - $ref: '#/components/parameters/enterprise'
+        - $ref: '#/components/parameters/runner-id'
+      responses:
+        '204':
+          description: Response
+      x-github:
+        enabledForGitHubApps: false
+        githubCloudOnly: true
+        category: actions
+        subcategory: self-hosted-runners
+  /enterprises/{enterprise}/actions/runners/{runner_id}/labels:
+    get:
+      summary: List labels for a self-hosted runner for an enterprise
+      description: >-
+        Lists all labels for a self-hosted runner configured in an enterprise.
+
+
+        OAuth app tokens and personal access tokens (classic) need the
+        `manage_runners:enterprise` scope to use this endpoint.
+      tags:
+        - - - - enterprise-admin
+      operationId: enterprise-admin/list-labels-for-self-hosted-runner-for-enterprise
+      externalDocs:
+        description: API method documentation
+        url: >-
+          https://docs.github.com/enterprise-server@3.9/rest/actions/self-hosted-runners#list-labels-for-a-self-hosted-runner-for-an-enterprise
+      parameters:
+        - $ref: '#/components/parameters/enterprise'
+        - $ref: '#/components/parameters/runner-id'
+      responses:
+        '200':
+          $ref: '#/components/responses/actions_runner_labels'
+        '404':
+          $ref: '#/components/responses/not_found'
+      x-github:
+        enabledForGitHubApps: false
+        githubCloudOnly: true
+        category: actions
+        subcategory: self-hosted-runners
+    post:
+      summary: Add custom labels to a self-hosted runner for an enterprise
+      description: >-
+        Add custom labels to a self-hosted runner configured in an enterprise.
+
+
+        OAuth app tokens and personal access tokens (classic) need the
+        `manage_runners:enterprise` scope to use this endpoint.
+      tags:
+        - - - - enterprise-admin
+      operationId: enterprise-admin/add-custom-labels-to-self-hosted-runner-for-enterprise
+      externalDocs:
+        description: API method documentation
+        url: >-
+          https://docs.github.com/enterprise-server@3.9/rest/actions/self-hosted-runners#add-custom-labels-to-a-self-hosted-runner-for-an-enterprise
+      parameters:
+        - $ref: '#/components/parameters/enterprise'
+        - $ref: '#/components/parameters/runner-id'
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              type: object
+              required:
+                - labels
+              properties:
+                labels:
+                  type: array
+                  minItems: 1
+                  maxItems: 100
+                  description: The names of the custom labels to add to the runner.
+                  items:
+                    type: string
+            examples:
+              default:
+                value:
+                  labels:
+                    - gpu
+                    - accelerated
+      responses:
+        '200':
+          $ref: '#/components/responses/actions_runner_labels'
+        '404':
+          $ref: '#/components/responses/not_found'
+        '422':
+          $ref: '#/components/responses/validation_failed_simple'
+      x-github:
+        githubCloudOnly: true
+        enabledForGitHubApps: false
+        category: actions
+        subcategory: self-hosted-runners
+    put:
+      summary: Set custom labels for a self-hosted runner for an enterprise
+      description: >-
+        Remove all previous custom labels and set the new custom labels for a
+        specific
+
+        self-hosted runner configured in an enterprise.
+
+
+        OAuth app tokens and personal access tokens (classic) need the
+        `manage_runners:enterprise` scope to use this endpoint.
+      tags:
+        - - - - enterprise-admin
+      operationId: enterprise-admin/set-custom-labels-for-self-hosted-runner-for-enterprise
+      externalDocs:
+        description: API method documentation
+        url: >-
+          https://docs.github.com/enterprise-server@3.9/rest/actions/self-hosted-runners#set-custom-labels-for-a-self-hosted-runner-for-an-enterprise
+      parameters:
+        - $ref: '#/components/parameters/enterprise'
+        - $ref: '#/components/parameters/runner-id'
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              type: object
+              required:
+                - labels
+              properties:
+                labels:
+                  type: array
+                  minItems: 0
+                  maxItems: 100
+                  description: >-
+                    The names of the custom labels to set for the runner. You
+                    can pass an empty array to remove all custom labels.
+                  items:
+                    type: string
+            examples:
+              default:
+                value:
+                  labels:
+                    - gpu
+                    - accelerated
+      responses:
+        '200':
+          $ref: '#/components/responses/actions_runner_labels'
+        '404':
+          $ref: '#/components/responses/not_found'
+        '422':
+          $ref: '#/components/responses/validation_failed_simple'
+      x-github:
+        githubCloudOnly: true
+        enabledForGitHubApps: false
+        category: actions
+        subcategory: self-hosted-runners
+    delete:
+      summary: Remove all custom labels from a self-hosted runner for an enterprise
+      description: >-
+        Remove all custom labels from a self-hosted runner configured in an
+
+        enterprise. Returns the remaining read-only labels from the runner.
+
+
+        OAuth app tokens and personal access tokens (classic) need the
+        `manage_runners:enterprise` scope to use this endpoint.
+      tags:
+        - - - - enterprise-admin
+      operationId: >-
+        enterprise-admin/remove-all-custom-labels-from-self-hosted-runner-for-enterprise
+      externalDocs:
+        description: API method documentation
+        url: >-
+          https://docs.github.com/enterprise-server@3.9/rest/actions/self-hosted-runners#remove-all-custom-labels-from-a-self-hosted-runner-for-an-enterprise
+      parameters:
+        - $ref: '#/components/parameters/enterprise'
+        - $ref: '#/components/parameters/runner-id'
+      responses:
+        '200':
+          $ref: '#/components/responses/actions_runner_labels_readonly'
+        '404':
+          $ref: '#/components/responses/not_found'
+        '422':
+          $ref: '#/components/responses/validation_failed_simple'
+      x-github:
+        githubCloudOnly: true
+        enabledForGitHubApps: false
+        category: actions
+        subcategory: self-hosted-runners
+  /enterprises/{enterprise}/actions/runners/{runner_id}/labels/{name}:
+    delete:
+      summary: Remove a custom label from a self-hosted runner for an enterprise
+      description: >-
+        Remove a custom label from a self-hosted runner configured
+
+        in an enterprise. Returns the remaining labels from the runner.
+
+
+        This endpoint returns a `404 Not Found` status if the custom label is
+        not
+
+        present on the runner.
+
+
+        OAuth app tokens and personal access tokens (classic) need the
+        `manage_runners:enterprise` scope to use this endpoint.
+      tags:
+        - - - - enterprise-admin
+      operationId: >-
+        enterprise-admin/remove-custom-label-from-self-hosted-runner-for-enterprise
+      externalDocs:
+        description: API method documentation
+        url: >-
+          https://docs.github.com/enterprise-server@3.9/rest/actions/self-hosted-runners#remove-a-custom-label-from-a-self-hosted-runner-for-an-enterprise
+      parameters:
+        - $ref: '#/components/parameters/enterprise'
+        - $ref: '#/components/parameters/runner-id'
+        - $ref: '#/components/parameters/runner-label-name'
+      responses:
+        '200':
+          $ref: '#/components/responses/actions_runner_labels'
+        '404':
+          $ref: '#/components/responses/not_found'
+        '422':
+          $ref: '#/components/responses/validation_failed_simple'
+      x-github:
+        githubCloudOnly: true
+        enabledForGitHubApps: false
+        category: actions
+        subcategory: self-hosted-runners
+  /enterprises/{enterprise}/audit-log:
+    get:
+      summary: Get the audit log for an enterprise
+      operationId: enterprise-admin/get-audit-log
+      description: >-
+        Gets the audit log for an enterprise.
+
+
+        The authenticated user must be an enterprise admin to use this endpoint.
+
+
+        OAuth app tokens and personal access tokens (classic) need the
+        `admin:enterprise` scope to use this endpoint.
+      tags:
+        - - - - enterprise-admin
+      externalDocs:
+        description: API method documentation
+        url: >-
+          https://docs.github.com/enterprise-server@3.9/rest/enterprise-admin/audit-log#get-the-audit-log-for-an-enterprise
+      parameters:
+        - $ref: '#/components/parameters/enterprise'
+        - $ref: '#/components/parameters/audit-log-enterprise-phrase'
+        - $ref: '#/components/parameters/audit-log-include'
+        - $ref: '#/components/parameters/audit-log-after'
+        - $ref: '#/components/parameters/audit-log-before'
+        - $ref: '#/components/parameters/audit-log-order'
+        - $ref: '#/components/parameters/page'
+        - $ref: '#/components/parameters/per-page'
+      responses:
+        '200':
+          description: Response
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  $ref: '#/components/schemas/audit-log-event'
+              examples:
+                default:
+                  $ref: '#/components/examples/audit-log'
+      x-github:
+        githubCloudOnly: true
+        enabledForGitHubApps: false
+        category: enterprise-admin
+        subcategory: audit-log
+  /enterprises/{enterprise}/code-scanning/alerts:
+    get:
+      summary: List code scanning alerts for an enterprise
+      description: >-
+        Lists code scanning alerts for the default branch for all eligible
+        repositories in an enterprise. Eligible repositories are repositories
+        that are owned by organizations that you own or for which you are a
+        security manager. For more information, see "[Managing security managers
+        in your
+        organization](https://docs.github.com/enterprise-server@3.9/organizations/managing-peoples-access-to-your-organization-with-roles/managing-security-managers-in-your-organization)."
+
+
+        The authenticated user must be a member of the enterprise to use this
+        endpoint.
+
+
+        OAuth app tokens and personal access tokens (classic) need the
+        `security_events` or `repo` scope to use this endpoint.
+      tags:
+        - - - - code-scanning
+      operationId: code-scanning/list-alerts-for-enterprise
+      externalDocs:
+        description: API method documentation
+        url: >-
+          https://docs.github.com/enterprise-server@3.9/rest/code-scanning/code-scanning#list-code-scanning-alerts-for-an-enterprise
+      parameters:
+        - $ref: '#/components/parameters/enterprise'
+        - $ref: '#/components/parameters/tool-name'
+        - $ref: '#/components/parameters/tool-guid'
+        - $ref: '#/components/parameters/pagination-before'
+        - $ref: '#/components/parameters/pagination-after'
+        - $ref: '#/components/parameters/page'
+        - $ref: '#/components/parameters/per-page'
+        - $ref: '#/components/parameters/direction'
+        - name: state
+          description: >-
+            If specified, only code scanning alerts with this state will be
+            returned.
+          in: query
+          required: false
+          schema:
+            $ref: '#/components/schemas/code-scanning-alert-state-query'
+        - name: sort
+          description: The property by which to sort the results.
+          in: query
+          required: false
+          schema:
+            type: string
+            enum:
+              - created
+              - updated
+            default: created
+      responses:
+        '200':
+          description: Response
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  $ref: '#/components/schemas/code-scanning-organization-alert-items'
+              examples:
+                default:
+                  $ref: '#/components/examples/code-scanning-organization-alert-items'
+          headers:
+            Link:
+              $ref: '#/components/headers/link'
+        '404':
+          $ref: '#/components/responses/not_found'
+        '503':
+          $ref: '#/components/responses/service_unavailable'
+      x-github:
+        githubCloudOnly: true
+        enabledForGitHubApps: false
+        previews: []
+        category: code-scanning
+        subcategory: code-scanning
+  /enterprises/{enterprise}/code_security_and_analysis:
+    get:
+      summary: Get code security and analysis features for an enterprise
+      description: >-
+        Gets code security and analysis settings for the specified enterprise.
+
+
+        The authenticated user must be an administrator of the enterprise in
+        order to use this endpoint.
+
+
+        OAuth app tokens and personal access tokens (classic) need the
+        `admin:enterprise` scope to use this endpoint.
+      tags:
+        - - - - enterprise-admin
+      operationId: secret-scanning/get-security-analysis-settings-for-enterprise
+      externalDocs:
+        description: API method documentation
+        url: >-
+          https://docs.github.com/enterprise-server@3.9/rest/enterprise-admin/code-security-and-analysis#get-code-security-and-analysis-features-for-an-enterprise
+      parameters:
+        - $ref: '#/components/parameters/enterprise'
+      responses:
+        '200':
+          description: Response
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/enterprise-security-analysis-settings'
+              examples:
+                default:
+                  $ref: '#/components/examples/enterprise-security-analysis-settings'
+        '404':
+          $ref: '#/components/responses/not_found'
+      x-github:
+        githubCloudOnly: true
+        enabledForGitHubApps: false
+        category: enterprise-admin
+        subcategory: code-security-and-analysis
+    patch:
+      summary: Update code security and analysis features for an enterprise
+      description: >-
+        Updates the settings for advanced security, Dependabot alerts, secret
+        scanning, and push protection for new repositories in an enterprise.
+
+
+        The authenticated user must be an administrator of the enterprise to use
+        this endpoint.
+
+
+        OAuth app tokens and personal access tokens (classic) need the
+        `admin:enterprise` scope to use this endpoint.
+      tags:
+        - - - - enterprise-admin
+      operationId: secret-scanning/patch-security-analysis-settings-for-enterprise
+      externalDocs:
+        description: API method documentation
+        url: >-
+          https://docs.github.com/enterprise-server@3.9/rest/enterprise-admin/code-security-and-analysis#update-code-security-and-analysis-features-for-an-enterprise
+      parameters:
+        - $ref: '#/components/parameters/enterprise'
+      requestBody:
+        required: false
+        content:
+          application/json:
+            schema:
+              type: object
+              properties:
+                advanced_security_enabled_for_new_repositories:
+                  type: boolean
+                  description: >-
+                    Whether GitHub Advanced Security is automatically enabled
+                    for new repositories. For more information, see "[About
+                    GitHub Advanced
+                    Security](https://docs.github.com/enterprise-server@3.9/get-started/learning-about-github/about-github-advanced-security)."
+                dependabot_alerts_enabled_for_new_repositories:
+                  type: boolean
+                  description: >-
+                    Whether Dependabot alerts are automatically enabled for new
+                    repositories. For more information, see "[About Dependabot
+                    alerts](https://docs.github.com/enterprise-server@3.9/code-security/dependabot/dependabot-alerts/about-dependabot-alerts)."
+                secret_scanning_enabled_for_new_repositories:
+                  type: boolean
+                  description: >-
+                    Whether secret scanning is automatically enabled for new
+                    repositories. For more information, see "[About secret
+                    scanning](https://docs.github.com/enterprise-server@3.9/code-security/secret-scanning/about-secret-scanning)."
+                secret_scanning_push_protection_enabled_for_new_repositories:
+                  type: boolean
+                  description: >-
+                    Whether secret scanning push protection is automatically
+                    enabled for new repositories. For more information, see
+                    "[Protecting pushes with secret
+                    scanning](https://docs.github.com/enterprise-server@3.9/code-security/secret-scanning/protecting-pushes-with-secret-scanning)."
+                secret_scanning_push_protection_custom_link:
+                  type: string
+                  nullable: true
+                  description: >-
+                    The URL that will be displayed to contributors who are
+                    blocked from pushing a secret. For more information, see
+                    "[Protecting pushes with secret
+                    scanning](https://docs.github.com/enterprise-server@3.9/code-security/secret-scanning/protecting-pushes-with-secret-scanning)."
+
+                    To disable this functionality, set this field to `null`.
+            examples:
+              default:
+                value:
+                  advanced_security_enabled_for_new_repositories: true
+                  advanced_security_enabled_new_user_namespace_repos: true
+                  dependabot_alerts_enabled_for_new_repositories: true
+                  secret_scanning_enabled_for_new_repositories: true
+                  secret_scanning_push_protection_enabled_for_new_repositories: true
+                  secret_scanning_push_protection_custom_link: https://github.com/test-org/test-repo/blob/main/README.md
+      responses:
+        '204':
+          description: Action started
+        '404':
+          $ref: '#/components/responses/not_found'
+        '422':
+          description: >-
+            The action could not be taken due to an in progress enablement, or a
+            policy is preventing enablement
+      x-github:
+        githubCloudOnly: true
+        enabledForGitHubApps: false
+        category: enterprise-admin
+        subcategory: code-security-and-analysis
+  /enterprises/{enterprise}/dependabot/alerts:
+    get:
+      summary: List Dependabot alerts for an enterprise
+      description: >-
+        Lists Dependabot alerts for repositories that are owned by the specified
+        enterprise.
+
+
+        The authenticated user must be a member of the enterprise to use this
+        endpoint.
+
+
+        Alerts are only returned for organizations in the enterprise for which
+        you are an organization owner or a security manager. For more
+        information about security managers, see "[Managing security managers in
+        your
+        organization](https://docs.github.com/enterprise-server@3.9/organizations/managing-peoples-access-to-your-organization-with-roles/managing-security-managers-in-your-organization)."
+
+
+        OAuth app tokens and personal access tokens (classic) need the `repo` or
+        `security_events` scope to use this endpoint.
+      tags:
+        - - - - dependabot
+      operationId: dependabot/list-alerts-for-enterprise
+      externalDocs:
+        description: API method documentation
+        url: >-
+          https://docs.github.com/enterprise-server@3.9/rest/dependabot/alerts#list-dependabot-alerts-for-an-enterprise
+      parameters:
+        - $ref: '#/components/parameters/enterprise'
+        - $ref: '#/components/parameters/dependabot-alert-comma-separated-states'
+        - $ref: '#/components/parameters/dependabot-alert-comma-separated-severities'
+        - $ref: '#/components/parameters/dependabot-alert-comma-separated-ecosystems'
+        - $ref: '#/components/parameters/dependabot-alert-comma-separated-packages'
+        - $ref: '#/components/parameters/dependabot-alert-scope'
+        - $ref: '#/components/parameters/dependabot-alert-sort'
+        - $ref: '#/components/parameters/direction'
+        - $ref: '#/components/parameters/pagination-before'
+        - $ref: '#/components/parameters/pagination-after'
+        - $ref: '#/components/parameters/pagination-first'
+        - $ref: '#/components/parameters/pagination-last'
+        - $ref: '#/components/parameters/per-page'
+      responses:
+        '200':
+          description: Response
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  $ref: '#/components/schemas/dependabot-alert-with-repository'
+              examples:
+                default:
+                  $ref: '#/components/examples/dependabot-alerts-for-organization'
+        '304':
+          $ref: '#/components/responses/not_modified'
+        '403':
+          $ref: '#/components/responses/forbidden'
+        '404':
+          $ref: '#/components/responses/not_found'
+        '422':
+          $ref: '#/components/responses/validation_failed_simple'
+      x-github:
+        githubCloudOnly: false
+        enabledForGitHubApps: false
+        previews: []
+        category: dependabot
+        subcategory: alerts
+  /enterprises/{enterprise}/secret-scanning/alerts:
+    get:
+      summary: List secret scanning alerts for an enterprise
+      description: >-
+        Lists secret scanning alerts for eligible repositories in an enterprise,
+        from newest to oldest.
+
+        To use this endpoint, you must be a member of the enterprise, and you
+        must use an access token with the `repo` scope or `security_events`
+        scope. Alerts are only returned for organizations in the enterprise for
+        which you are an organization owner or a [security
+        manager](https://docs.github.com/enterprise-server@3.9/organizations/managing-peoples-access-to-your-organization-with-roles/managing-security-managers-in-your-organization).
+      tags:
+        - - - - secret-scanning
+      operationId: secret-scanning/list-alerts-for-enterprise
+      externalDocs:
+        description: API method documentation
+        url: >-
+          https://docs.github.com/enterprise-server@3.9/rest/secret-scanning/secret-scanning#list-secret-scanning-alerts-for-an-enterprise
+      parameters:
+        - $ref: '#/components/parameters/enterprise'
+        - $ref: '#/components/parameters/secret-scanning-alert-state'
+        - $ref: '#/components/parameters/secret-scanning-alert-secret-type'
+        - $ref: '#/components/parameters/secret-scanning-alert-resolution'
+        - $ref: '#/components/parameters/secret-scanning-alert-sort'
+        - $ref: '#/components/parameters/direction'
+        - $ref: '#/components/parameters/per-page'
+        - $ref: '#/components/parameters/pagination-before'
+        - $ref: '#/components/parameters/pagination-after'
+      responses:
+        '200':
+          description: Response
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  $ref: '#/components/schemas/organization-secret-scanning-alert'
+              examples:
+                default:
+                  $ref: >-
+                    #/components/examples/organization-secret-scanning-alert-list
+          headers:
+            Link:
+              $ref: '#/components/headers/link'
+        '404':
+          $ref: '#/components/responses/not_found'
+        '503':
+          $ref: '#/components/responses/service_unavailable'
+      x-github:
+        githubCloudOnly: false
+        enabledForGitHubApps: false
+        category: secret-scanning
+        subcategory: secret-scanning
+  /enterprises/{enterprise}/settings/billing/advanced-security:
+    get:
+      summary: Get GitHub Advanced Security active committers for an enterprise
+      description: >-
+        Gets the GitHub Advanced Security active committers for an enterprise
+        per repository.
+
+
+        Each distinct user login across all repositories is counted as a single
+        Advanced Security seat, so the `total_advanced_security_committers` is
+        not the sum of active_users for each repository.
+
+
+        The total number of repositories with committer information is tracked
+        by the `total_count` field.
+      tags:
+        - - - - billing
+      operationId: billing/get-github-advanced-security-billing-ghe
+      externalDocs:
+        description: API method documentation
+        url: >-
+          https://docs.github.com/enterprise-server@3.9/rest/enterprise-admin/billing#get-github-advanced-security-active-committers-for-an-enterprise
+      parameters:
+        - $ref: '#/components/parameters/enterprise'
+        - $ref: '#/components/parameters/per-page'
+        - $ref: '#/components/parameters/page'
+      responses:
+        '200':
+          description: Success
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/advanced-security-active-committers'
+              examples:
+                default:
+                  $ref: '#/components/examples/advanced-security-active-committers'
+        '403':
+          $ref: '#/components/responses/code_scanning_forbidden_read'
+      x-github:
+        githubCloudOnly: true
+        enabledForGitHubApps: false
+        category: enterprise-admin
+        subcategory: billing
+  /enterprises/{enterprise}/{security_product}/{enablement}:
+    post:
+      summary: Enable or disable a security feature
+      description: >-
+        Enables or disables the specified security feature for all repositories
+        in an enterprise.
+
+
+        The authenticated user must be an administrator of the enterprise to use
+        this endpoint.
+
+
+        OAuth app tokens and personal access tokens (classic) need the
+        `admin:enterprise` scope to use this endpoint.
+      tags:
+        - - - - enterprise-admin
+      operationId: secret-scanning/post-security-product-enablement-for-enterprise
+      externalDocs:
+        description: API method documentation
+        url: >-
+          https://docs.github.com/enterprise-server@3.9/rest/enterprise-admin/code-security-and-analysis#enable-or-disable-a-security-feature
+      parameters:
+        - $ref: '#/components/parameters/enterprise'
+        - $ref: '#/components/parameters/enterprise-security-product'
+        - $ref: '#/components/parameters/enterprise-security-product-enablement'
+      responses:
+        '204':
+          description: Action started
+        '404':
+          $ref: '#/components/responses/not_found'
+        '422':
+          description: >-
+            The action could not be taken due to an in progress enablement, or a
+            policy is preventing enablement
+      x-github:
+        githubCloudOnly: true
+        enabledForGitHubApps: false
+        category: enterprise-admin
+        subcategory: code-security-and-analysis
+components:
+  schemas:
+    announcement:
+      title: Enterprise Announcement
+      description: Enterprise global announcement
+      type: object
+      properties:
+        announcement:
+          $ref: '#/components/schemas/announcement-message'
+        expires_at:
+          $ref: '#/components/schemas/announcement-expiration'
+      required:
+        - announcement
+    license-info:
+      type: object
+      properties:
+        seats:
+          oneOf:
+            - type: string
+            - type: integer
+        seats_used:
+          type: integer
+        seats_available:
+          oneOf:
+            - type: string
+            - type: integer
+        kind:
+          type: string
+        days_until_expiration:
+          type: integer
+        expire_at:
+          type: string
+    enterprise-overview:
+      type: object
+      properties:
+        repos:
+          $ref: '#/components/schemas/enterprise-repository-overview'
+        hooks:
+          $ref: '#/components/schemas/enterprise-hook-overview'
+        pages:
+          $ref: '#/components/schemas/enterprise-page-overview'
+        orgs:
+          $ref: '#/components/schemas/enterprise-organization-overview'
+        users:
+          $ref: '#/components/schemas/enterprise-user-overview'
+        pulls:
+          $ref: '#/components/schemas/enterprise-pull-request-overview'
+        issues:
+          $ref: '#/components/schemas/enterprise-issue-overview'
+        milestones:
+          $ref: '#/components/schemas/enterprise-milestone-overview'
+        gists:
+          $ref: '#/components/schemas/enterprise-gist-overview'
+        comments:
+          $ref: '#/components/schemas/enterprise-comment-overview'
+    enterprise-comment-overview:
+      title: Enterprise Comment Stats
+      type: object
+      properties:
+        total_commit_comments:
+          type: integer
+        total_gist_comments:
+          type: integer
+        total_issue_comments:
+          type: integer
+        total_pull_request_comments:
+          type: integer
+      required:
+        - total_commit_comments
+        - total_gist_comments
+        - total_issue_comments
+        - total_pull_request_comments
+    enterprise-gist-overview:
+      title: Enterprise Gist Stats
+      type: object
+      properties:
+        total_gists:
+          type: integer
+        private_gists:
+          type: integer
+        public_gists:
+          type: integer
+      required:
+        - total_gists
+        - private_gists
+        - public_gists
+    enterprise-hook-overview:
+      title: Hooks Enterprise Stats
+      type: object
+      properties:
+        total_hooks:
+          type: integer
+        active_hooks:
+          type: integer
+        inactive_hooks:
+          type: integer
+      required:
+        - total_hooks
+        - active_hooks
+        - inactive_hooks
+    enterprise-issue-overview:
+      title: Enterprise Issue Stats
+      type: object
+      properties:
+        total_issues:
+          type: integer
+        open_issues:
+          type: integer
+        closed_issues:
+          type: integer
+      required:
+        - total_issues
+        - open_issues
+        - closed_issues
+    enterprise-milestone-overview:
+      title: Enterprise Milestone Stats
+      type: object
+      properties:
+        total_milestones:
+          type: integer
+        open_milestones:
+          type: integer
+        closed_milestones:
+          type: integer
+      required:
+        - total_milestones
+        - open_milestones
+        - closed_milestones
+    enterprise-organization-overview:
+      title: Enterprise Organization Stats
+      type: object
+      properties:
+        total_orgs:
+          type: integer
+        disabled_orgs:
+          type: integer
+        total_teams:
+          type: integer
+        total_team_members:
+          type: integer
+      required:
+        - total_orgs
+        - disabled_orgs
+        - total_teams
+        - total_team_members
+    enterprise-page-overview:
+      title: Enterprise Pages Stats
+      type: object
+      properties:
+        total_pages:
+          type: integer
+      required:
+        - total_pages
+    enterprise-pull-request-overview:
+      title: Enterprise Pull Request Stats
+      type: object
+      properties:
+        total_pulls:
+          type: integer
+        merged_pulls:
+          type: integer
+        mergeable_pulls:
+          type: integer
+        unmergeable_pulls:
+          type: integer
+      required:
+        - total_pulls
+        - merged_pulls
+        - mergeable_pulls
+        - unmergeable_pulls
+    enterprise-repository-overview:
+      title: Repository Enterprise Stats
+      type: object
+      properties:
+        total_repos:
+          type: integer
+        root_repos:
+          type: integer
+        fork_repos:
+          type: integer
+        org_repos:
+          type: integer
+        total_pushes:
+          type: integer
+        total_wikis:
+          type: integer
+      required:
+        - total_repos
+        - root_repos
+        - fork_repos
+        - org_repos
+        - total_pushes
+        - total_wikis
+    enterprise-user-overview:
+      title: Enterprise User Stats
+      type: object
+      properties:
+        total_users:
+          type: integer
+        admin_users:
+          type: integer
+        suspended_users:
+          type: integer
+      required:
+        - total_users
+        - admin_users
+        - suspended_users
+    actions-cache-usage-org-enterprise:
+      type: object
+      properties:
+        total_active_caches_count:
+          type: integer
+          description: >-
+            The count of active caches across all repositories of an enterprise
+            or an organization.
+        total_active_caches_size_in_bytes:
+          type: integer
+          description: >-
+            The total size in bytes of all active cache items across all
+            repositories of an enterprise or an organization.
+      required:
+        - total_active_caches_count
+        - total_active_caches_size_in_bytes
+    actions-cache-usage-policy-enterprise:
+      title: Actions cache usage policy for an enterprise
+      description: GitHub Actions cache usage policy for an enterprise.
+      type: object
+      properties:
+        repo_cache_size_limit_in_gb:
+          description: >-
+            For repositories in an enterprise, the default size limit for the
+            sum of all caches in a repository, in gigabytes.
+          type: integer
+          example: 10
+        max_repo_cache_size_limit_in_gb:
+          description: >-
+            For repositories in an enterprise, the maximum value that can be set
+            as the limit for the sum of all caches in a repository, in
+            gigabytes.
+          type: integer
+          example: 15
+    actions-enterprise-permissions:
+      type: object
+      properties:
+        enabled_organizations:
+          $ref: '#/components/schemas/enabled-organizations'
+        selected_organizations_url:
+          type: string
+          description: >-
+            The API URL to use to get or set the selected organizations that are
+            allowed to run GitHub Actions, when `enabled_organizations` is set
+            to `selected`.
+        allowed_actions:
+          $ref: '#/components/schemas/allowed-actions'
+        selected_actions_url:
+          $ref: '#/components/schemas/selected-actions-url'
+      required:
+        - enabled_organizations
+    selected-actions:
+      type: object
+      properties:
+        github_owned_allowed:
+          type: boolean
+          description: >-
+            Whether GitHub-owned actions are allowed. For example, this includes
+            the actions in the `actions` organization.
+        patterns_allowed:
+          type: array
+          description: >-
+            Specifies a list of string-matching patterns to allow specific
+            action(s). Wildcards, tags, and SHAs are allowed. For example,
+            `monalisa/octocat@*`, `monalisa/octocat@v2`, `monalisa/*`.
+          items:
+            type: string
+      required:
+        - github_owned_allowed
+        - patterns_allowed
+    actions-get-default-workflow-permissions:
+      type: object
+      properties:
+        default_workflow_permissions:
+          $ref: '#/components/schemas/actions-default-workflow-permissions'
+        can_approve_pull_request_reviews:
+          $ref: '#/components/schemas/actions-can-approve-pull-request-reviews'
+      required:
+        - default_workflow_permissions
+        - can_approve_pull_request_reviews
+    runner-groups-enterprise:
+      type: object
+      properties:
+        id:
+          type: number
+        name:
+          type: string
+        visibility:
+          type: string
+        default:
+          type: boolean
+        selected_organizations_url:
+          type: string
+        runners_url:
+          type: string
+        allows_public_repositories:
+          type: boolean
+        workflow_restrictions_read_only:
+          description: >-
+            If `true`, the `restricted_to_workflows` and `selected_workflows`
+            fields cannot be modified.
+          type: boolean
+          default: false
+        restricted_to_workflows:
+          description: >-
+            If `true`, the runner group will be restricted to running only the
+            workflows specified in the `selected_workflows` array.
+          type: boolean
+          default: false
+        selected_workflows:
+          description: >-
+            List of workflows the runner group should be allowed to run. This
+            setting will be ignored unless `restricted_to_workflows` is set to
+            `true`.
+          type: array
+          items:
+            type: string
+            description: >-
+              Name of workflow the runner group should be allowed to run. Note
+              that a ref, tag, or long SHA is required.
+            example: octo-org/octo-repo/.github/workflows/deploy.yaml@main
+      required:
+        - id
+        - name
+        - visibility
+        - allows_public_repositories
+        - default
+        - runners_url
+    runner:
+      title: Self hosted runners
+      description: A self hosted runner
+      type: object
+      properties:
+        id:
+          description: The id of the runner.
+          type: integer
+          example: 5
+        runner_group_id:
+          description: The id of the runner group.
+          type: integer
+          example: 1
+        name:
+          description: The name of the runner.
+          type: string
+          example: iMac
+        os:
+          description: The Operating System of the runner.
+          type: string
+          example: macos
+        status:
+          description: The status of the runner.
+          type: string
+          example: online
+        busy:
+          type: boolean
+        labels:
+          type: array
+          items:
+            $ref: '#/components/schemas/runner-label'
+      required:
+        - id
+        - name
+        - os
+        - status
+        - busy
+        - labels
+    enterprise-security-analysis-settings:
+      title: Enterprise Security Analysis Settings
+      type: object
+      properties:
+        advanced_security_enabled_for_new_repositories:
+          type: boolean
+          example: false
+          description: >-
+            Whether GitHub advanced security is automatically enabled for new
+            repositories and repositories transferred to
+
+            this enterprise.
+        dependabot_alerts_enabled_for_new_repositories:
+          type: boolean
+          example: false
+          description: >-
+            Whether Dependabot alerts are automatically enabled for new
+            repositories and repositories transferred to this
+
+            enterprise.
+        secret_scanning_enabled_for_new_repositories:
+          type: boolean
+          example: false
+          description: >-
+            Whether secret scanning is automatically enabled for new
+            repositories and repositories transferred to this
+
+            enterprise.
+        secret_scanning_push_protection_enabled_for_new_repositories:
+          type: boolean
+          example: false
+          description: >-
+            Whether secret scanning push protection is automatically enabled for
+            new repositories and repositories
+
+            transferred to this enterprise.
+        secret_scanning_push_protection_custom_link:
+          type: string
+          nullable: true
+          example: https://github.com/test-org/test-repo/blob/main/README.md
+          description: >-
+            An optional URL string to display to contributors who are blocked
+            from pushing a secret.
+      required:
+        - advanced_security_enabled_for_new_repositories
+        - dependabot_alerts_enabled_for_new_repositories
+        - secret_scanning_enabled_for_new_repositories
+        - secret_scanning_push_protection_enabled_for_new_repositories
+    advanced-security-active-committers:
+      type: object
+      properties:
+        total_advanced_security_committers:
+          type: integer
+          example: 25
+        total_count:
+          type: integer
+          example: 2
+        repositories:
+          type: array
+          items:
+            $ref: >-
+              #/components/schemas/advanced-security-active-committers-repository
+      required:
+        - repositories

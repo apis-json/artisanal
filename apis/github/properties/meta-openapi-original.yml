@@ -1,0 +1,94 @@
+openapi: 3.1.0
+info:
+  title: Meta
+  description: Needs a description.
+paths:
+  /meta:
+    get:
+      summary: Get GitHub Enterprise Server meta information
+      description: ''
+      tags:
+        - - - - meta
+      operationId: meta/get
+      externalDocs:
+        description: API method documentation
+        url: >-
+          https://docs.github.com/enterprise-server@3.9/rest/meta/meta#get-apiname-meta-information
+      parameters: []
+      responses:
+        '200':
+          description: Response
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/api-overview'
+              examples:
+                default:
+                  $ref: '#/components/examples/api-overview'
+        '304':
+          $ref: '#/components/responses/not_modified'
+      x-github:
+        githubCloudOnly: false
+        enabledForGitHubApps: true
+        category: meta
+        subcategory: meta
+components:
+  schemas:
+    api-overview:
+      title: Api Overview
+      description: Api Overview
+      type: object
+      properties:
+        verifiable_password_authentication:
+          type: boolean
+          example: true
+        packages:
+          type: array
+          items:
+            type: string
+          example:
+            - 192.0.2.1
+        dependabot:
+          type: array
+          items:
+            type: string
+          example:
+            - 192.0.2.1
+        domains:
+          type: object
+          properties:
+            website:
+              type: array
+              items:
+                type: string
+                example:
+                  - example.com
+            codespaces:
+              type: array
+              items:
+                type: string
+                example:
+                  - example.com
+            copilot:
+              type: array
+              items:
+                type: string
+                example:
+                  - example.com
+            packages:
+              type: array
+              items:
+                type: string
+                example:
+                  - example.com
+            actions:
+              type: array
+              items:
+                type: string
+                example:
+                  - example.com
+        installed_version:
+          type: string
+          example: 3.9.0
+      required:
+        - verifiable_password_authentication

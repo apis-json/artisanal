@@ -1,0 +1,614 @@
+openapi: 3.1.0
+info:
+  title: Events
+  description: Needs a description.
+paths:
+  /events:
+    get:
+      summary: List public events
+      description: >-
+        We delay the public events feed by five minutes, which means the most
+        recent event returned by the public events API actually occurred at
+        least five minutes ago.
+      tags:
+        - - - - activity
+      operationId: activity/list-public-events
+      externalDocs:
+        description: API method documentation
+        url: >-
+          https://docs.github.com/enterprise-server@3.9/rest/activity/events#list-public-events
+      parameters:
+        - $ref: '#/components/parameters/per-page'
+        - $ref: '#/components/parameters/page'
+      responses:
+        '200':
+          description: Response
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  $ref: '#/components/schemas/event'
+              examples:
+                default:
+                  $ref: '#/components/examples/public-events-items'
+        '304':
+          $ref: '#/components/responses/not_modified'
+        '403':
+          $ref: '#/components/responses/forbidden'
+        '503':
+          $ref: '#/components/responses/service_unavailable'
+      x-github:
+        githubCloudOnly: false
+        enabledForGitHubApps: true
+        category: activity
+        subcategory: events
+  /networks/{owner}/{repo}/events:
+    get:
+      summary: List public events for a network of repositories
+      description: ''
+      tags:
+        - - - - activity
+      operationId: activity/list-public-events-for-repo-network
+      externalDocs:
+        description: API method documentation
+        url: >-
+          https://docs.github.com/enterprise-server@3.9/rest/activity/events#list-public-events-for-a-network-of-repositories
+      parameters:
+        - $ref: '#/components/parameters/owner'
+        - $ref: '#/components/parameters/repo'
+        - $ref: '#/components/parameters/per-page'
+        - $ref: '#/components/parameters/page'
+      responses:
+        '200':
+          description: Response
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  $ref: '#/components/schemas/event'
+              examples:
+                default:
+                  $ref: '#/components/examples/public-repo-events-items'
+        '301':
+          $ref: '#/components/responses/moved_permanently'
+        '304':
+          $ref: '#/components/responses/not_modified'
+        '403':
+          $ref: '#/components/responses/forbidden'
+        '404':
+          $ref: '#/components/responses/not_found'
+      x-github:
+        githubCloudOnly: false
+        enabledForGitHubApps: true
+        category: activity
+        subcategory: events
+  /orgs/{org}/events:
+    get:
+      summary: List public organization events
+      description: ''
+      tags:
+        - - - - activity
+      operationId: activity/list-public-org-events
+      externalDocs:
+        description: API method documentation
+        url: >-
+          https://docs.github.com/enterprise-server@3.9/rest/activity/events#list-public-organization-events
+      parameters:
+        - $ref: '#/components/parameters/org'
+        - $ref: '#/components/parameters/per-page'
+        - $ref: '#/components/parameters/page'
+      responses:
+        '200':
+          description: Response
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  $ref: '#/components/schemas/event'
+              examples:
+                200-response:
+                  $ref: '#/components/examples/public-org-events-items'
+      x-github:
+        githubCloudOnly: false
+        enabledForGitHubApps: true
+        category: activity
+        subcategory: events
+  /repos/{owner}/{repo}/events:
+    get:
+      summary: List repository events
+      description: >
+        **Note**: This API is not built to serve real-time use cases. Depending
+        on the time of day, event latency can be anywhere from 30s to 6h.
+      tags:
+        - - - - activity
+      operationId: activity/list-repo-events
+      externalDocs:
+        description: API method documentation
+        url: >-
+          https://docs.github.com/enterprise-server@3.9/rest/activity/events#list-repository-events
+      parameters:
+        - $ref: '#/components/parameters/owner'
+        - $ref: '#/components/parameters/repo'
+        - $ref: '#/components/parameters/per-page'
+        - $ref: '#/components/parameters/page'
+      responses:
+        '200':
+          description: Response
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  $ref: '#/components/schemas/event'
+              examples:
+                200-response:
+                  $ref: '#/components/examples/repo-events-items'
+      x-github:
+        githubCloudOnly: false
+        enabledForGitHubApps: true
+        category: activity
+        subcategory: events
+  /repos/{owner}/{repo}/issues/events:
+    get:
+      summary: List issue events for a repository
+      description: Lists events for a repository.
+      tags:
+        - - - - issues
+      operationId: issues/list-events-for-repo
+      externalDocs:
+        description: API method documentation
+        url: >-
+          https://docs.github.com/enterprise-server@3.9/rest/issues/events#list-issue-events-for-a-repository
+      parameters:
+        - $ref: '#/components/parameters/owner'
+        - $ref: '#/components/parameters/repo'
+        - $ref: '#/components/parameters/per-page'
+        - $ref: '#/components/parameters/page'
+      responses:
+        '200':
+          description: Response
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  $ref: '#/components/schemas/issue-event'
+              examples:
+                default:
+                  $ref: '#/components/examples/issue-event-items'
+          headers:
+            Link:
+              $ref: '#/components/headers/link'
+        '422':
+          $ref: '#/components/responses/validation_failed'
+      x-github:
+        githubCloudOnly: false
+        enabledForGitHubApps: true
+        category: issues
+        subcategory: events
+  /repos/{owner}/{repo}/issues/events/{event_id}:
+    get:
+      summary: Get an issue event
+      description: Gets a single event by the event id.
+      tags:
+        - - - - issues
+      operationId: issues/get-event
+      externalDocs:
+        description: API method documentation
+        url: >-
+          https://docs.github.com/enterprise-server@3.9/rest/issues/events#get-an-issue-event
+      parameters:
+        - $ref: '#/components/parameters/owner'
+        - $ref: '#/components/parameters/repo'
+        - name: event_id
+          in: path
+          required: true
+          schema:
+            type: integer
+      responses:
+        '200':
+          description: Response
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/issue-event'
+              examples:
+                default:
+                  $ref: '#/components/examples/issue-event'
+        '403':
+          $ref: '#/components/responses/forbidden'
+        '404':
+          $ref: '#/components/responses/not_found'
+        '410':
+          $ref: '#/components/responses/gone'
+      x-github:
+        githubCloudOnly: false
+        enabledForGitHubApps: true
+        category: issues
+        subcategory: events
+  /repos/{owner}/{repo}/issues/{issue_number}/events:
+    get:
+      summary: List issue events
+      description: Lists all events for an issue.
+      tags:
+        - - - - issues
+      operationId: issues/list-events
+      externalDocs:
+        description: API method documentation
+        url: >-
+          https://docs.github.com/enterprise-server@3.9/rest/issues/events#list-issue-events
+      parameters:
+        - $ref: '#/components/parameters/owner'
+        - $ref: '#/components/parameters/repo'
+        - $ref: '#/components/parameters/issue-number'
+        - $ref: '#/components/parameters/per-page'
+        - $ref: '#/components/parameters/page'
+      responses:
+        '200':
+          description: Response
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  $ref: '#/components/schemas/issue-event-for-issue'
+              examples:
+                default:
+                  $ref: '#/components/examples/issue-event-for-issue-items'
+          headers:
+            Link:
+              $ref: '#/components/headers/link'
+        '410':
+          $ref: '#/components/responses/gone'
+      x-github:
+        githubCloudOnly: false
+        enabledForGitHubApps: true
+        category: issues
+        subcategory: events
+  /repos/{owner}/{repo}/pulls/{pull_number}/reviews/{review_id}/events:
+    post:
+      summary: Submit a review for a pull request
+      description: >-
+        Submits a pending review for a pull request. For more information about
+        creating a pending review for a pull request, see "[Create a review for
+        a pull
+        request](https://docs.github.com/enterprise-server@3.9/rest/pulls/reviews#create-a-review-for-a-pull-request)."
+
+
+        This endpoint supports the following custom media types. For more
+        information, see "[Media
+        types](https://docs.github.com/enterprise-server@3.9/rest/using-the-rest-api/getting-started-with-the-rest-api#media-types)."
+
+
+        - **`application/vnd.github-commitcomment.raw+json`**: Returns the raw
+        markdown body. Response will include `body`. This is the default if you
+        do not pass any specific media type.
+
+        - **`application/vnd.github-commitcomment.text+json`**: Returns a text
+        only representation of the markdown body. Response will include
+        `body_text`.
+
+        - **`application/vnd.github-commitcomment.html+json`**: Returns HTML
+        rendered from the body's markdown. Response will include `body_html`.
+
+        - **`application/vnd.github-commitcomment.full+json`**: Returns raw,
+        text, and HTML representations. Response will include `body`,
+        `body_text`, and `body_html`.
+      tags:
+        - - - - pulls
+      operationId: pulls/submit-review
+      externalDocs:
+        description: API method documentation
+        url: >-
+          https://docs.github.com/enterprise-server@3.9/rest/pulls/reviews#submit-a-review-for-a-pull-request
+      parameters:
+        - $ref: '#/components/parameters/owner'
+        - $ref: '#/components/parameters/repo'
+        - $ref: '#/components/parameters/pull-number'
+        - $ref: '#/components/parameters/review-id'
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              type: object
+              properties:
+                body:
+                  type: string
+                  description: The body text of the pull request review
+                event:
+                  type: string
+                  description: >-
+                    The review action you want to perform. The review actions
+                    include: `APPROVE`, `REQUEST_CHANGES`, or `COMMENT`. When
+                    you leave this blank, the API returns _HTTP 422
+                    (Unrecognizable entity)_ and sets the review action state to
+                    `PENDING`, which means you will need to re-submit the pull
+                    request review using a review action.
+                  enum:
+                    - APPROVE
+                    - REQUEST_CHANGES
+                    - COMMENT
+              required:
+                - event
+            examples:
+              default:
+                value:
+                  body: Here is the body for the review.
+                  event: REQUEST_CHANGES
+      responses:
+        '200':
+          description: Response
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/pull-request-review'
+              examples:
+                default:
+                  $ref: '#/components/examples/pull-request-review-4'
+        '403':
+          $ref: '#/components/responses/forbidden'
+        '404':
+          $ref: '#/components/responses/not_found'
+        '422':
+          $ref: '#/components/responses/validation_failed_simple'
+      x-github:
+        githubCloudOnly: false
+        enabledForGitHubApps: true
+        category: pulls
+        subcategory: reviews
+  /users/{username}/events:
+    get:
+      summary: List events for the authenticated user
+      description: >-
+        If you are authenticated as the given user, you will see your private
+        events. Otherwise, you'll only see public events.
+      tags:
+        - - - - activity
+      operationId: activity/list-events-for-authenticated-user
+      externalDocs:
+        description: API method documentation
+        url: >-
+          https://docs.github.com/enterprise-server@3.9/rest/activity/events#list-events-for-the-authenticated-user
+      parameters:
+        - $ref: '#/components/parameters/username'
+        - $ref: '#/components/parameters/per-page'
+        - $ref: '#/components/parameters/page'
+      responses:
+        '200':
+          description: Response
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  $ref: '#/components/schemas/event'
+              examples:
+                default:
+                  $ref: '#/components/examples/user-events-items'
+      x-github:
+        githubCloudOnly: false
+        enabledForGitHubApps: true
+        category: activity
+        subcategory: events
+  /users/{username}/events/orgs/{org}:
+    get:
+      summary: List organization events for the authenticated user
+      description: >-
+        This is the user's organization dashboard. You must be authenticated as
+        the user to view this.
+      tags:
+        - - - - activity
+      operationId: activity/list-org-events-for-authenticated-user
+      externalDocs:
+        description: API method documentation
+        url: >-
+          https://docs.github.com/enterprise-server@3.9/rest/activity/events#list-organization-events-for-the-authenticated-user
+      parameters:
+        - $ref: '#/components/parameters/username'
+        - $ref: '#/components/parameters/org'
+        - $ref: '#/components/parameters/per-page'
+        - $ref: '#/components/parameters/page'
+      responses:
+        '200':
+          description: Response
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  $ref: '#/components/schemas/event'
+              examples:
+                default:
+                  $ref: '#/components/examples/user-org-events-items'
+      x-github:
+        githubCloudOnly: false
+        enabledForGitHubApps: false
+        category: activity
+        subcategory: events
+  /users/{username}/events/public:
+    get:
+      summary: List public events for a user
+      description: ''
+      tags:
+        - - - - activity
+      operationId: activity/list-public-events-for-user
+      externalDocs:
+        description: API method documentation
+        url: >-
+          https://docs.github.com/enterprise-server@3.9/rest/activity/events#list-public-events-for-a-user
+      parameters:
+        - $ref: '#/components/parameters/username'
+        - $ref: '#/components/parameters/per-page'
+        - $ref: '#/components/parameters/page'
+      responses:
+        '200':
+          description: Response
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  $ref: '#/components/schemas/event'
+              examples:
+                default:
+                  $ref: '#/components/examples/user-public-events-items'
+      x-github:
+        githubCloudOnly: false
+        enabledForGitHubApps: true
+        category: activity
+        subcategory: events
+components:
+  schemas:
+    issue-event:
+      title: Issue Event
+      description: Issue Event
+      type: object
+      properties:
+        id:
+          type: integer
+          format: int64
+          example: 1
+        node_id:
+          type: string
+          example: MDEwOklzc3VlRXZlbnQx
+        url:
+          type: string
+          format: uri
+          example: https://api.github.com/repos/octocat/Hello-World/issues/events/1
+        actor:
+          $ref: '#/components/schemas/nullable-simple-user'
+        event:
+          type: string
+          example: closed
+        commit_id:
+          type: string
+          example: 6dcb09b5b57875f334f61aebed695e2e4193db5e
+          nullable: true
+        commit_url:
+          type: string
+          example: >-
+            https://api.github.com/repos/octocat/Hello-World/commits/6dcb09b5b57875f334f61aebed695e2e4193db5e
+          nullable: true
+        created_at:
+          type: string
+          format: date-time
+          example: '2011-04-14T16:00:49Z'
+        issue:
+          $ref: '#/components/schemas/nullable-issue'
+        label:
+          $ref: '#/components/schemas/issue-event-label'
+        assignee:
+          $ref: '#/components/schemas/nullable-simple-user'
+        assigner:
+          $ref: '#/components/schemas/nullable-simple-user'
+        review_requester:
+          $ref: '#/components/schemas/nullable-simple-user'
+        requested_reviewer:
+          $ref: '#/components/schemas/nullable-simple-user'
+        requested_team:
+          $ref: '#/components/schemas/team'
+        dismissed_review:
+          $ref: '#/components/schemas/issue-event-dismissed-review'
+        milestone:
+          $ref: '#/components/schemas/issue-event-milestone'
+        project_card:
+          $ref: '#/components/schemas/issue-event-project-card'
+        rename:
+          $ref: '#/components/schemas/issue-event-rename'
+        author_association:
+          $ref: '#/components/schemas/author-association'
+        lock_reason:
+          type: string
+          nullable: true
+        performed_via_github_app:
+          $ref: '#/components/schemas/nullable-integration'
+      required:
+        - id
+        - node_id
+        - url
+        - actor
+        - event
+        - commit_id
+        - commit_url
+        - created_at
+    pull-request-review:
+      title: Pull Request Review
+      description: Pull Request Reviews are reviews on pull requests.
+      type: object
+      properties:
+        id:
+          description: Unique identifier of the review
+          example: 42
+          type: integer
+        node_id:
+          type: string
+          example: MDE3OlB1bGxSZXF1ZXN0UmV2aWV3ODA=
+        user:
+          $ref: '#/components/schemas/nullable-simple-user'
+        body:
+          description: The text of the review.
+          example: This looks great.
+          type: string
+        state:
+          type: string
+          example: CHANGES_REQUESTED
+        html_url:
+          type: string
+          format: uri
+          example: https://github.com/octocat/Hello-World/pull/12#pullrequestreview-80
+        pull_request_url:
+          type: string
+          format: uri
+          example: https://api.github.com/repos/octocat/Hello-World/pulls/12
+        _links:
+          type: object
+          properties:
+            html:
+              type: object
+              properties:
+                href:
+                  type: string
+              required:
+                - href
+            pull_request:
+              type: object
+              properties:
+                href:
+                  type: string
+              required:
+                - href
+          required:
+            - html
+            - pull_request
+        submitted_at:
+          type: string
+          format: date-time
+        commit_id:
+          description: >-
+            A commit SHA for the review. If the commit object was garbage
+            collected or forcibly deleted, then it no longer exists in Git and
+            this value will be `null`.
+          example: 54bb654c9e6025347f57900a4a5c2313a96b8035
+          type: string
+          nullable: true
+        body_html:
+          type: string
+        body_text:
+          type: string
+        author_association:
+          $ref: '#/components/schemas/author-association'
+      required:
+        - id
+        - node_id
+        - user
+        - body
+        - state
+        - commit_id
+        - html_url
+        - pull_request_url
+        - _links
+        - author_association
