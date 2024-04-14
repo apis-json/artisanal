@@ -1,54 +1,63 @@
-weekNumber: 12
-rules:
-  - code: apis-json-v14-name
-    message: >-
-      Providing a name of your index of APIs helps ensure it will be
-      discoverable.
-  - code: apis-json-v14-description
-    message: >-
-      A robust and informative description of your colleciton of APis makes a
-      lot sense.
-  - code: apis-json-v14-image
-    message: It makes your API more presentable to have a logo or image representation.
-  - code: apis-json-v14-url
-    message: >-
-      Providing a reference to where your APIs.json is located is a valuable
-      references.
-  - code: apis-json-v14-tags
-    message: >-
-      Using the tags property for your APIs.json helps add more metadata and
-      make your APIs discoverable.
-  - code: apis-json-v14-apis-name
-    message: >-
-      Providing a name of your index of APIs helps ensure it will be
-      discoverable.
-  - code: apis-json-v14-apis-description
-    message: >-
-      A robust and informative description of your colleciton of APis makes a
-      lot sense.
-  - code: apis-json-v14-apis-image
-    message: It makes your API more presentable to have a logo or image representation.
-  - code: apis-json-v14-apis-humanURL
-    message: >-
-      Your API should have the human URL included to help provide a single link
-      to your API.
-  - code: apis-json-v14-apis-baseURL
-    message: >-
-      Your API should have the base URL included to help provide a unique
-      identifier for your API.
-  - code: apis-json-v14-apis-tags
-    message: >-
-      Using the tags property for your APIs helps add more metadata and make
-      your APIs discoverable.
-  - code: apis-json-v14-maintainers
-    message: >-
-      Using the maintainers property for your APIs.json helps build trust and
-      provenance for your APis.
-  - code: apis-json-v14-maintainers-fn
-    message: >-
-      Providing an FN for maintainers helps build trust and provide a point of
-      contact for your APIs.json.
-  - code: apis-json-v14-maintainers-email
-    message: >-
-      Providing an email address for maintainers helps build trust and provide a
-      point of contact for your APIs.jso
+name: eBay
+description: >-
+  eBay offers developers a wide range of RESTful and Traditional APIs. For new
+  development, eBay strongly encourages the use of our RESTful APIs. A key
+  benefit of REST is that it uses less bandwidth and supports multiple formats
+  including plain text, XML, HTML, and JSON while SOAP only supports XML.
+url: https://raw.githubusercontent.com/apis-json/artisanal/main/apis/ebay.yml
+created: 2024/04/14
+modified: 2024/04/14
+specificationVersion: '0.16'
+tags: []
+apis:
+  - name: eBay Account API
+    description: >-
+      The Account API gives sellers the ability to configure their eBay seller
+      accounts, including the seller's policies (eBay business policies and
+      seller-defined custom policies), opt in and out of eBay seller programs,
+      configure sales tax tables, and get account information. 
+    tags: []
+    overlays:
+      - type: APIs.io Search
+        url: >-
+          overlays/https://developer.ebay.com/api-docs/master/sell/account/openapi/3/sell_account_v1_oas3.json-openapi-search.yml
+    aid: ebay:ebay-account-api
+  - name: Analytics API
+    description: >-
+      Provides information about an individual seller’s business performance
+      through different report and data gathering resources including customer
+      service metrics, traffic reports, and seller profiles.
+    tags: []
+    overlays:
+      - type: APIs.io Search
+        url: >-
+          overlays/https://developer.ebay.com/api-docs/master/sell/analytics/openapi/3/sell_analytics_v1_oas3.json-openapi-search.yml
+    aid: ebay:analytics-api
+  - name: Compliance API
+    description: >-
+      Provides tools for validating listings to help sellers keep their listings
+      in compliance with eBay’s policies.
+    tags: []
+    overlays:
+      - type: APIs.io Search
+        url: >-
+          overlays/https://developer.ebay.com/api-docs/master/sell/compliance/openapi/3/sell_compliance_v1_oas3.json-openapi-search.yml
+    aid: ebay:compliance-api
+  - name: Feed API
+    description: >-
+      Manage your eBay business by downloading or uploading inventory, order,
+      and customer service metric files, and creating schedules. This API is
+      designed to make a large merchant's workflow more efficient by leveraging
+      eBay infrastructure to use parallel execution and to automatically retry
+      on errors.
+    tags: []
+    overlays:
+      - type: APIs.io Search
+        url: >-
+          overlays/https://developer.ebay.com/api-docs/master/sell/feed/openapi/3/sell_feed_v1_oas3.json-openapi-search.yml
+    aid: ebay:feed-api
+maintainers:
+  - FN: API Evangelist
+    url: http://apievangelist.com
+    email: info@apievangelist.com
+aid: ebay
