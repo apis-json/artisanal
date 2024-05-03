@@ -1,0 +1,109 @@
+---
+layout: default
+---
+<div class="uk-section">
+    <div class="uk-container uk-container-xlarge">
+        <article class="uk-article">       
+            
+            {% assign slug = page.url | replace: '/apis/','' | replace: '/index/','' %}         
+            <div class="article-content">
+
+                <div style="border: 0px solid #000; width: 100%; padding: 0px; margin: 0px; border-radius: 25px;" id="map-{{ slug }}-shell">
+
+                    <h1 class="uk-article-title">{{ page.name | escape }}</h1>
+                    <p>{{ page.description | strip_html | strip_newlines }}</p>  
+
+                    <h2>Tags</h2>
+                    <ul>
+                        {% for tag in page.tags %}
+                            {% if tag != '' %}
+                                <li>{{ tag }}</li>
+                            {% endif %}
+                        {% endfor %}    
+                    </ul> 
+
+                    {% for api in page.apis %}
+                        <a name="{{ api.name }}"></a>
+                        <br><br>
+                        <h3>{{ api.name }}</h3>
+                        <p>{{ api.description | strip_html | strip_newlines }}</p> 
+                        <h4>Properties</h4>
+                        <ul id="">
+                            <li><a href="{{ api.humanURL }}">Human URL</a></li>
+                            {% if api.baseURL != 'https://api.example.com' %}
+                                <li><a href="{{ api.baseURL }}">Base URL</a></li>
+                            {% endif %}
+                            {% for property in api.properties %}
+                                <li><a href="{{ property.url }}">{{ property.type }}</a></li>
+                            {% endfor %}    
+                        </ul>
+
+                        <!-- OPERATIONS -->
+                        {% assign any = 0 %}         
+                        {% for property in api.properties %}
+                            {% if property.type == 'OpenAPI' %}
+                                {% for path in property.data.paths %}
+                                    {% for method in path[1] %}
+                                        {% assign any = 1 %}         
+                                    {% endfor %}                                          
+                                {% endfor %}    
+                            {% endif %}
+                        {% endfor %}      
+                        {% if any == 1 %}                   
+                            <h4>Operations</h4>
+                            <ul id="">
+                            {% for property in api.properties %}
+                                {% if property.type == 'OpenAPI' %}
+                                    {% for path in property.data.paths %}
+                                        {% for method in path[1] %}
+                                                <li><strong>{{ method[1].summary | strip_html | strip_newlines }}</strong> ({{ method[0] }}) - {{ method[1].description | strip_html | strip_newlines }}</li>
+                                        {% endfor %}                                          
+                                    {% endfor %}    
+                                {% endif %}
+                            {% endfor %}    
+                            </ul>  
+                        {% endif %}
+                        <!-- OPERATIONS -->
+                        
+                        <!-- RATINGS -->
+                        {% assign any = 0 %}         
+                        {% for property in api.properties %}
+                            {% if property.type == 'API Evangelist Ratings' %}
+                                {% for rule in property.data.rules %}
+                                    {% assign any = 1 %}        
+                                {% endfor %}    
+                            {% endif %}                            
+                        {% endfor %}     
+                        {% if any == 1 %}                         
+                            <h4>Ratings</h4>
+                            <ul id=""> 
+                            {% for property in api.properties %}
+                                {% if property.type == 'API Evangelist Ratings' %}
+                                    {% for rule in property.data.rules %}
+                                        <li><strong>{{ rule.message }}</strong> ({{ rule.code }})</li>                                       
+                                    {% endfor %}    
+                                {% endif %}                            
+                            {% endfor %}    
+                            </ul>         
+                        {% endif %} 
+                        <!-- RATINGS -->                
+
+                        <h4>Tags</h4>
+                        <ul id="">
+                            {% for tag in api.tags %}
+                                {% if tag != '' %}
+                                    <li>{{ tag }}</li>
+                                {% endif %}
+                            {% endfor %}    
+                        </ul>  
+                        <hr>                                                                   
+                    {% endfor %}                                     
+                    
+                </div>
+
+            </div>
+
+        </article>
+
+    </div>
+</div>

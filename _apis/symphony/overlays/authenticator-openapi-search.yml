@@ -1,0 +1,105 @@
+swagger: '2.0'
+info:
+  title: Authenticator API
+paths:
+  /v1/authenticate:
+    post:
+      summary: Authenticate.
+      description: >
+        Based on the SSL client certificate presented by the TLS layer,
+        authenticate
+
+        the API caller and return a session token.
+      tags:
+        - Authenticate.
+        - V1
+        - Authenticate
+  /v1/app/pod/certificate:
+    get:
+      summary: >
+        Retrieve the certificate that can be use to validate the JWT token
+        obtain
+
+        through the extension application authentication flow.
+      tags:
+        - Retrieve
+        - The
+        - Certificate
+        - That
+        - Can
+        - Be
+        - Use
+        - To
+        - Validate
+        - Token
+        - |-
+          Obtain
+          through
+        - Extension
+        - Application
+        - Authentication
+        - |
+          Flow.
+        - V1
+        - Authenticate
+        - App
+        - Pod
+        - Certificate
+  /v1/logout:
+    post:
+      summary: Logout.
+      description: |
+        Logout a users session.
+      tags:
+        - Logout.
+        - V1
+        - Authenticate
+        - App
+        - Pod
+        - Certificate
+        - Logout
+definitions:
+  Error:
+    type: object
+    properties:
+      code:
+        type: integer
+        format: int32
+      message:
+        type: string
+  Token:
+    type: object
+    properties:
+      name:
+        description: >
+          The name of the header in which the token should be presented on
+          subsequent API calls.
+        type: string
+      token:
+        type: string
+        description: >
+          Authentication token that should be passed as header in each API rest
+          calls.
+
+          This should be considered opaque data by the client. It is not
+          intended to contain any data interpretable by the
+
+          client. The format is secret and subject to change without notice.
+      authorizationToken:
+        type: string
+        description: >
+          (Beta) Short lived access token built from a user session. This field
+          is still on Beta, please continue using 
+
+          the returned "token" instead.
+  PodCertificate:
+    type: object
+    properties:
+      certificate:
+        description: Certificate in PEM format
+        type: string
+  SuccessResponse:
+    type: object
+    properties:
+      message:
+        type: null

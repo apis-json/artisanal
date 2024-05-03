@@ -1,0 +1,26 @@
+---
+layout: default
+title: Rules
+---
+<div class="container">
+    <div class="row">
+        <div class="col-1"></div>
+        <div class="col">
+
+            <h1>Rules</h1>
+            <p>These are the rules used to rate all of the APIs available in this {{ site.node }} API index, adding another dimension to explore the APIs available here.</p>
+            <hr>             
+            <table width="100%">
+            {% assign rules = site.rules | sort: 'name' %}
+            {% for rule in rules %}
+                <tr>
+                    <td width="80%">{{ rule.name }} - {{ rule.description }}</td>
+                    <td width="20%" align="center"><a href="{{ rule.url }}"><button type="button" class="btn btn-outline-success">Details</button></a></td>
+                </tr>
+            {% endfor %}  
+            </table>   
+            <hr>        
+        </div>
+        <div class="col-1"></div>
+    </div>
+</div>            

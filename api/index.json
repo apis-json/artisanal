@@ -1,0 +1,20 @@
+---
+layout: none
+---           
+{
+    "data":[
+    {% for providers in site.apis %}
+    {% for api in providers.apis %}
+    {
+    "name": "{{ api.name | strip_newlines }}",
+    "slug": "{{ providers.name | slugify }}",
+    "description": "{{ api.description | strip_newlines }}",
+    "image": "{{ api.image }}",
+    "humanURL": "{{ api.humanURL }}",
+    "baseURL": "{{ api.baseURL }}",
+    "tags": {{ api.tags | jsonify }},
+    "properties": {{ api.properties | jsonify }},
+    "common": {{ api.common | jsonify }}
+    }{% unless forloop.last %},{% endunless %}
+    {% endfor %}{% unless forloop.last %},{% endunless %}{% endfor %}]
+    }

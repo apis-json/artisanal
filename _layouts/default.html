@@ -1,0 +1,77 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>{{ site.name }} - {{ page.title }}</title>
+    <link href="{{ site.url }}/assets/bootstrap.min.css" rel="stylesheet">
+    <link href="{{ site.url }}/assets/sticky-footer.css" rel="stylesheet">
+  </head>
+  <body>
+    <nav class="navbar navbar-expand-lg navbar-dark bg-dark">
+      <div class="container">
+        <a class="navbar-brand" href="{{ site.url }}">{{ site.name }}</a>
+        <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+          <span class="navbar-toggler-icon"></span>
+        </button>
+        <div class="collapse navbar-collapse" id="navbarSupportedContent">
+          <ul class="navbar-nav me-auto mb-2 mb-lg-0">
+            <li class="nav-item">
+              <a class="nav-link active" aria-current="page" href="{{ site.url }}/">Home</a>
+            </li>
+            <li class="nav-item">
+              <a class="nav-link" href="{{ site.url }}/apis/">APIs</a>
+            </li>
+            <li class="nav-item">
+              <a class="nav-link" href="{{ site.url }}/tags/">Tags</a>
+            </li>   
+            <li class="nav-item">
+              <a class="nav-link" href="{{ site.url }}/rules/">Rules</a>
+            </li>   
+            <li class="nav-item">
+              <a class="nav-link" href="{{ site.url }}/properties/">Properties</a>
+            </li>                                    
+            <li class="nav-item dropdown">
+              <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-bs-toggle="dropdown" aria-expanded="false">
+                Network
+              </a>
+              <ul class="dropdown-menu" aria-labelledby="navbarDropdown">
+                {% for network in site.data.apis.network %}
+                <li><a class="dropdown-item" href="{{ network.url | replace: "apis.json","" }}">{{ network.name }}</a></li>
+                {% endfor %}               
+              </ul>
+            </li>
+          </ul>
+          {% if page.title != 'Search' %}
+            <form class="d-flex" role="search">
+              <input class="form-control me-2" type="search" placeholder="Search" aria-label="Search">
+              <button class="btn btn-outline-success" type="submit">Search</button>
+            </form>
+          {% endif %} 
+        </div>
+      </div>
+    </nav>
+    <div class="alert alert-danger" role="alert" style="text-align: center;">
+      This Search is Exploratory -- <a href="https://github.com/api-search/explore/issues">Submit An Issue With Any Questions</a>!
+    </div>
+    <div class="container my-5">
+      {{ content }}
+    </div>
+
+    <script src="{{ site.url }}/assets/bootstrap.bundle.min.js" integrity="sha384-C6RzsynM9kWDrMNeT87bh95OGNyZPhcTNXj1NW7RuBCsyN/o0jlpcV8Qyq46cDfL" crossorigin="anonymous"></script>
+    <script src="{{ site.url }}/assets/js-yaml.min.js"></script>
+
+    <footer class="footer">
+      <div class="container">
+        <table cellspacing="3" cellpadding="2" align="center">
+          <tr>
+            <td><a href="https://explore.apis.io" style="color: #000;">APIs.io</a></td>
+            <td width="25" align="center">|</td>
+            <td><a href="https://explore.apis.io/about/" style="color: #000;">About</a></td>
+            <td width="25" align="center">|</td>
+            <td><a href="https://apisjson.org" style="color: #000;">APIs.json</a></td>
+      </div>
+    </footer>
+
+  </body>
+</html>
