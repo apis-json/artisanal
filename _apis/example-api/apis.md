@@ -9,8 +9,8 @@ image: https://kinlane-productions.s3.amazonaws.com/apis-json/apis-json-logo.jpg
 tags:
   - Application Programming Interface
   - API
-created: '2024-05-22'
-modified: '2024-05-22'
+created: 2024-5-24
+modified: 2024-5-24
 url: http://example.com/apis.json
 specificationVersion: '0.17'
 apis:
