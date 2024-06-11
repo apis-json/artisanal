@@ -8,14 +8,14 @@ layout: none
 "description": "{{ site.description | strip_html }}",
 "image": "{{ site.image }}",
 "url": "{{ site.url }}/apis.json",
-"created": "2024/04/13",
-"modified": "2024/04/13",
+"created": "2024-04-13",
+"modified": "2024-06-10",
 "tags": {{ site.keywords | jsonify }},
-"includes": [{% for api in site.apis %}{% if api.url contains "overlays" %}{% else %}{% if api.url contains "properties" %}{% else %}{% if api.url contains "json" %}{% else %}{% assign pos = api.url | size | minus: 1 %}{% assign len = api.url | size %}{% assign url = api.url | slice: 0, pos %}{% assign url = url | slice: 1, len %} 
+"includes": [{% for api in site.apis %}{% assign slug = api.url | replace: "/apis/","" %} 
     {
     "name": "{{ api.name | strip_newlines }}",
-    "url": "https://raw.githubusercontent.com/api-search/{{ site.node }}/main/_{{ url }}.md"
-    }{% unless forloop.last %},{% endunless %}{% endif %}{% endif %}{% endif %}{% endfor %}
+    "url": "https://raw.githubusercontent.com/api-search/{{ site.node }}/main/_data/{{ slug }}/overlays/apis-io-search.yml"
+    }{% unless forloop.last %},{% endunless %}{% endfor %}
 ],
 "network": [{% for network in site.data.apis.network %}
     {
