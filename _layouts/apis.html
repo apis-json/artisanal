@@ -6,25 +6,19 @@ layout: default
         <article class="uk-article">       
             
             {% assign slug = page.url | replace: '/apis/','' | replace: '/index/','' %}         
+            {% assign overlay = site.data[slug].overlays.apis-io-search %}
             <div class="article-content">
 
                 <div style="border: 0px solid #000; width: 100%; padding: 0px; margin: 0px; border-radius: 25px;" id="map-{{ slug }}-shell">
+                    {% assign url = page.url | replace_first: "/", "" %}
+                    {% assign pos = url | size | minus: 1 %}
+                    {% assign url = url | slice: 0, pos %}
+                    <a href="https://raw.githubusercontent.com/api-search/cloud/main/_{{ url }}.md" target="_blank"><img src="https://s3.amazonaws.com/kinlane-productions2/bw-icons/bw-api-a.png" align="right" width="100"></a>
+                    <h1 class="uk-article-title">{{ overlay.name | escape }}</h1>
+                    <p>{{ overlay.description | strip_html | strip_newlines }}</p>  
+                    {% for api in overlay.apis %}
 
-                    <h1 class="uk-article-title">{{ page.name | escape }}</h1>
-                    <p>{{ page.description | strip_html | strip_newlines }}</p>  
-
-                    <h2>Tags</h2>
-                    <ul>
-                        {% for tag in page.tags %}
-                            {% if tag != '' %}
-                                <li>{{ tag }}</li>
-                            {% endif %}
-                        {% endfor %}    
-                    </ul> 
-
-                    {% for api in page.apis %}
                         <a name="{{ api.name }}"></a>
-                        <br><br>
                         <h3>{{ api.name }}</h3>
                         <p>{{ api.description | strip_html | strip_newlines }}</p> 
                         <h4>Properties</h4>
