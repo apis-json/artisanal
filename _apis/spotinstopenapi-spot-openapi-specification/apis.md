@@ -1,0 +1,20 @@
+---
+name: 'spotinst/openapi: Spot OpenAPI Specification.'
+description: ' ~ https://github.com/spotinst/openapi'
+image: >-
+  https://kinlane-productions2.s3.amazonaws.com/apis-json-icons/spotinstopenapi-spot-openapi-specification.png
+url: https://example.com/apis/spotinstopenapi-spot-openapi-specification.yml
+created: 2024/7/2
+modified: 2024/7/2
+specificationVersion: '0.16'
+tags:
+  - Bookmark
+apis:
+  - name: 'spotinst/openapi: Spot OpenAPI Specification.'
+    description: ' ~ https://github.com/spotinst/openapi'
+    image: https://kinlane-productions2.s3.amazonaws.com/apis-json/apis-json-logo.jpg
+    humanURL: https://github.com/spotinst/openapi
+maintainers:
+  - FN: API Evangelist
+    email: info@apievangelist.com
+---
